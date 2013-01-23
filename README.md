@@ -1,8 +1,7 @@
-TVHeadend Android Client
+TVHeadend iPhone Client
 
-This is an attempt of a tvheadend android client.
-I don't know anything about android programming, so this is my first project to learn how to do it!
+There's already a tvheadend android client which is feature complete in https://github.com/john-tornblom/TVHGuide
 
-Further updates will follow !
+Instead, I'll try doing my first iPhone project! 
 
-=)
+Updates will follow!
