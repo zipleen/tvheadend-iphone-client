@@ -20,8 +20,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        NSArray *bla = [NSArray arrayWithObjects:@"bla", @"bla2", nil];
-        [self setChannels:bla];
     }
     return self;
 }
@@ -29,7 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    NSArray *bla = [NSArray arrayWithObjects:@"bla", @"bla2", nil];
+    [self setChannels:bla];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -45,23 +44,19 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 0;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.channels count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"ChannelListTableItems";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     // Configure the cell...
     cell.textLabel.text = [self.channels objectAtIndex:indexPath.row];
