@@ -14,7 +14,6 @@
 @end
 
 @implementation tvhclientChannelListViewController
-@synthesize channels = _channels;
 @synthesize channelListObj = _channelListObj;
 
 - (ModelChannelList*) channelListObj {
@@ -36,11 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSArray *bla = [NSArray arrayWithObjects:@"bla", @"bla2", nil];
-    [self setChannels:bla];
     
     [self.channelListObj startGetTestData];
-    
+    [self.channelListObj setDelegate:self];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -59,7 +56,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.channels count];
+    return [self.channelListObj count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,7 +68,7 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [self.channels objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.channelListObj objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -127,5 +124,12 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+- (void)reload
+{
+    [self.tableView reloadData];
+}
+
+
 
 @end

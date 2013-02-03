@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface tvhclientChannelListViewController : UITableViewController
-@property (strong, nonatomic) NSArray *channels;
+- (void)reload;
 @end
