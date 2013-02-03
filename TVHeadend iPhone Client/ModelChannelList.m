@@ -9,38 +9,12 @@
 #import "ModelChannelList.h"
 #import "tvhclientChannelListViewController.h"
 
-@interface NSDictionary(JSONCategories)
-+(NSDictionary*)dictionaryWithContentsOfJSONURLString:(NSString*)urlAddress;
--(NSData*)toJSON;
-@end
-
-@implementation NSDictionary(JSONCategories)
-+(NSDictionary*)dictionaryWithContentsOfJSONURLString:(NSString*)urlAddress
-{
-    NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString: urlAddress] ];
-    __autoreleasing NSError* error = nil;
-    id result = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if (error != nil) return nil;
-    return result;
-}
-
--(NSData*)toJSON
-{
-    NSError* error = nil;
-    id result = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
-    if (error != nil) return nil;
-    return result;
-}
-@end
-
 @interface ModelChannelList ()
-@property (strong, nonatomic) NSMutableData *receivedData;
 @property (strong, nonatomic) NSArray *channelNames;
 @property (weak, nonatomic) tvhclientChannelListViewController *sender;
 @end
 
 @implementation ModelChannelList
-@synthesize receivedData = _receivedData;
 @synthesize channelNames = _channelNames;
 
 - (NSData*)encodeDictionary:(NSDictionary*)dictionary {
@@ -76,43 +50,6 @@
         [channelNames addObject:name];
     }
     self.channelNames = [channelNames copy];
-    
-    /*NSArray* latestLoans = [json objectForKey:@"loans"]; //2
-     
-     NSLog(@"loans: %@", latestLoans); //3
-     */
-    /*
-     // 1) Get the latest loan
-     NSDictionary* loan = [latestLoans objectAtIndex:0];
-     
-     // 2) Get the funded amount and loan amount
-     NSNumber* fundedAmount = [loan objectForKey:@"funded_amount"];
-     NSNumber* loanAmount = [loan objectForKey:@"loan_amount"];
-     float outstandingAmount = [loanAmount floatValue] - [fundedAmount floatValue];
-     
-     // 3) Set the label appropriately
-     humanReadble.text = [NSString stringWithFormat:@"Latest loan: %@ from %@ needs another $%.2f to pursue their entrepreneural dream",
-     [loan objectForKey:@"name"],
-     [(NSDictionary*)[loan objectForKey:@"location"] objectForKey:@"country"],
-     outstandingAmount
-     ];
-     
-     //build an info object and convert to json
-     NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys:
-     [loan objectForKey:@"name"], @"who",
-     [(NSDictionary*)[loan objectForKey:@"location"] objectForKey:@"country"], @"where",
-     [NSNumber numberWithFloat: outstandingAmount], @"what",
-     nil];
-     
-     //convert object to data
-     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:info
-     options:NSJSONWritingPrettyPrinted
-     error:&error];
-     
-     //print out the data contents
-     jsonSummary.text = [[NSString alloc] initWithData:jsonData
-     encoding:NSUTF8StringEncoding];
-     */
     
 }
 
@@ -164,15 +101,6 @@
     return [self.channelNames count];
 }
 
-- (NSArray *) getTestData {
-    /*NSString* theURL = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@",YOURKEY, SEARCHTERM];
-    
-    
-    NSData* jsonData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    NSDictionary *resultsDictionary = [jsonData objectFromJSONData];
-    NSDictionary *resultsDictionary = [jsonString objectFromJSONString];
-     */
-}
 
 - (void) setDelegate: (tvhclientChannelListViewController*)sender {
     self.sender = sender;
