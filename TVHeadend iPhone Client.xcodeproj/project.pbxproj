@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1D426D16BEC2BA00F42F7E /* ModelChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */; };
 		AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
 		AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F716BDB21900973F88 /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA1D426B16BEC2BA00F42F7E /* ModelChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelChannelList.h; sourceTree = "<group>"; };
+		AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelChannelList.m; sourceTree = "<group>"; };
 		AAB399F016BDB21900973F88 /* TVHeadend iPhone Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TVHeadend iPhone Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB399F316BDB21900973F88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAB399F516BDB21900973F88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA1D426A16BEC1B700F42F7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA1D426B16BEC2BA00F42F7E /* ModelChannelList.h */,
+				AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		AAB399E716BDB21900973F88 = {
 			isa = PBXGroup;
 			children = (
@@ -85,12 +97,13 @@
 		AAB399F916BDB21900973F88 /* TVHeadend iPhone Client */ = {
 			isa = PBXGroup;
 			children = (
+				AA1D426A16BEC1B700F42F7E /* Model */,
 				AAB39A0216BDB21900973F88 /* tvhclientAppDelegate.h */,
 				AAB39A0316BDB21900973F88 /* tvhclientAppDelegate.m */,
 				AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */,
+				AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */,
 				AAB39A1916BDB29C00973F88 /* tvhclientChannelListViewController.h */,
 				AAB39A1A16BDB29C00973F88 /* tvhclientChannelListViewController.m */,
-				AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */,
 				AAB399FA16BDB21900973F88 /* Supporting Files */,
 			);
 			path = "TVHeadend iPhone Client";
@@ -181,6 +194,7 @@
 				AAB39A0016BDB21900973F88 /* main.m in Sources */,
 				AAB39A0416BDB21900973F88 /* tvhclientAppDelegate.m in Sources */,
 				AAB39A1B16BDB29C00973F88 /* tvhclientChannelListViewController.m in Sources */,
+				AA1D426D16BEC2BA00F42F7E /* ModelChannelList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

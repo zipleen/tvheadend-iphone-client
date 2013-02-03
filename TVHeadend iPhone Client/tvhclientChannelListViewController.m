@@ -7,13 +7,22 @@
 //
 
 #import "tvhclientChannelListViewController.h"
+#import "ModelChannelList.h"
 
 @interface tvhclientChannelListViewController ()
-
+@property (strong, nonatomic) ModelChannelList *channelListObj;
 @end
 
 @implementation tvhclientChannelListViewController
 @synthesize channels = _channels;
+@synthesize channelListObj = _channelListObj;
+
+- (ModelChannelList*) channelListObj {
+    if ( _channelListObj == nil) {
+        _channelListObj = [[ModelChannelList alloc] init];
+    }
+    return _channelListObj;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,6 +38,9 @@
     [super viewDidLoad];
     NSArray *bla = [NSArray arrayWithObjects:@"bla", @"bla2", nil];
     [self setChannels:bla];
+    
+    [self.channelListObj startGetTestData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
