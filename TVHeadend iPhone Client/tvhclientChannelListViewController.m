@@ -8,6 +8,7 @@
 
 #import "tvhclientChannelListViewController.h"
 #import "ModelChannelList.h"
+#import "Channel.h"
 
 @interface tvhclientChannelListViewController ()
 @property (strong, nonatomic) ModelChannelList *channelListObj;
@@ -68,7 +69,21 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [self.channelListObj objectAtIndex:indexPath.row];
+    Channel *ch = [self.channelListObj objectAtIndex:indexPath.row];
+    cell.textLabel.text = ch.name;
+    cell.detailTextLabel.text = ch.imageUrl;
+    
+    //UIImageView *imageView = [[UIImageView alloc] initWithFrame:cell.frame];
+    //UIImage *image = [UIImage imageWithData:ch.image];
+    //cell.image = image;
+    
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.imageView.frame = CGRectMake(15, 6, 58, 58);
+    //cell.imageView.layer.cornerRadius = 6;
+    //cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.image = [UIImage imageWithData:ch.image];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

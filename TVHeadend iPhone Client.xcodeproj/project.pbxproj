@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA1D426D16BEC2BA00F42F7E /* ModelChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */; };
+		AA63669F16BF2F5D00FDAC1B /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* Channel.m */; };
 		AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
 		AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F716BDB21900973F88 /* CoreGraphics.framework */; };
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		AA1D426B16BEC2BA00F42F7E /* ModelChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelChannelList.h; sourceTree = "<group>"; };
 		AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelChannelList.m; sourceTree = "<group>"; };
+		AA63669D16BF2F5D00FDAC1B /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		AA63669E16BF2F5D00FDAC1B /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		AAB399F016BDB21900973F88 /* TVHeadend iPhone Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TVHeadend iPhone Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB399F316BDB21900973F88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAB399F516BDB21900973F88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +66,8 @@
 			children = (
 				AA1D426B16BEC2BA00F42F7E /* ModelChannelList.h */,
 				AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */,
+				AA63669D16BF2F5D00FDAC1B /* Channel.h */,
+				AA63669E16BF2F5D00FDAC1B /* Channel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				AAB39A0416BDB21900973F88 /* tvhclientAppDelegate.m in Sources */,
 				AAB39A1B16BDB29C00973F88 /* tvhclientChannelListViewController.m in Sources */,
 				AA1D426D16BEC2BA00F42F7E /* ModelChannelList.m in Sources */,
+				AA63669F16BF2F5D00FDAC1B /* Channel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

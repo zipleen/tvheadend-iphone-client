@@ -43,11 +43,18 @@
     id channel;
     //for (NSEnumerator *channel in entries) {
     while (channel = [e nextObject]) {
-        NSLog(@"json : %@", channel);
-        //NSString *ch_icon = [channel objectForKey:@"ch_icon"];
+        //NSLog(@"json : %@", channel);
+        Channel *c = [[Channel alloc] init];
+        
+        NSString *ch_icon = [channel objectForKey:@"ch_icon"];
         NSString *name = [channel objectForKey:@"name"];
-        //NSString *number = [channel objectForKey:@"number"];
-        [channelNames addObject:name];
+        NSString *number = [channel objectForKey:@"number"];
+        
+        [c setName:name];
+        [c setNumber:number];
+        [c setImageUrl:ch_icon];
+        
+        [channelNames addObject:c];
     }
     self.channelNames = [channelNames copy];
     
@@ -93,7 +100,7 @@
     
     }
 
-- (NSString *) objectAtIndex:(int) row {
+- (Channel *) objectAtIndex:(int) row {
     return [self.channelNames objectAtIndex:row];
 }
 

@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "tvhclientChannelListViewController.h"
+#import "Channel.h"
 
 @interface ModelChannelList : NSObject <NSURLConnectionDelegate>
 
 - (void)startGetTestData;
 
-- (NSString *) objectAtIndex:(int) row;
+- (Channel *) objectAtIndex:(int) row;
 - (int) count;
 - (void) setDelegate: (tvhclientChannelListViewController*)sender;
 
