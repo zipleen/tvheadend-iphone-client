@@ -116,9 +116,21 @@
 		AA7C3FCA16C6C9870057E4C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AAB39A0516BDB21900973F88 /* Default.png */,
+				AAB39A0716BDB21900973F88 /* Default@2x.png */,
+				AAB39A0916BDB21900973F88 /* Default-568h@2x.png */,
 				AA7C3FCB16C6CA400057E4C4 /* tv.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		AA7C3FD016C709380057E4C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AAB39A1916BDB29C00973F88 /* TVHChannelListViewController.h */,
+				AAB39A1A16BDB29C00973F88 /* TVHChannelListViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
@@ -188,15 +200,12 @@
 		AAB399F916BDB21900973F88 /* TVHeadend iPhone Client */ = {
 			isa = PBXGroup;
 			children = (
-				AA7C3FCA16C6C9870057E4C4 /* Resources */,
-				AA9101AA16C6B2C500673DF5 /* Framework */,
 				AA1D426A16BEC1B700F42F7E /* Model */,
+				AA7C3FD016C709380057E4C4 /* Controller */,
 				AAB39A0216BDB21900973F88 /* TVHAppDelegate.h */,
 				AAB39A0316BDB21900973F88 /* TVHAppDelegate.m */,
 				AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */,
 				AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */,
-				AAB39A1916BDB29C00973F88 /* TVHChannelListViewController.h */,
-				AAB39A1A16BDB29C00973F88 /* TVHChannelListViewController.m */,
 				AAB399FA16BDB21900973F88 /* Supporting Files */,
 			);
 			path = "TVHeadend iPhone Client";
@@ -205,13 +214,12 @@
 		AAB399FA16BDB21900973F88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA7C3FCA16C6C9870057E4C4 /* Resources */,
+				AA9101AA16C6B2C500673DF5 /* Framework */,
 				AAB399FB16BDB21900973F88 /* TVHeadend iPhone Client-Info.plist */,
 				AAB399FC16BDB21900973F88 /* InfoPlist.strings */,
 				AAB399FF16BDB21900973F88 /* main.m */,
 				AAB39A0116BDB21900973F88 /* TVHeadend iPhone Client-Prefix.pch */,
-				AAB39A0516BDB21900973F88 /* Default.png */,
-				AAB39A0716BDB21900973F88 /* Default@2x.png */,
-				AAB39A0916BDB21900973F88 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

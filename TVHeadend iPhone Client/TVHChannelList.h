@@ -13,13 +13,13 @@
 @protocol TVHChannelListDelegate <NSObject>
 
 -(void) didLoadChannels;
+-(void) didErrorLoading;
 @end
 
 @interface TVHChannelList : AFHTTPClient 
 
 + (id)sharedInstance;
-
-- (void)startGetTestData;
+- (void)fetchChannelList;
 
 - (TVHChannel *) objectAtIndex:(int) row;
 - (int) count;

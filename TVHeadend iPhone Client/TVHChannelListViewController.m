@@ -11,17 +11,17 @@
 #import "TVHChannel.h"
 
 @interface TVHChannelListViewController ()
-@property (strong, nonatomic) TVHChannelList *channelListObj;
+@property (strong, nonatomic) TVHChannelList *channelList;
 @end
 
 @implementation TVHChannelListViewController
-@synthesize channelListObj = _channelListObj;
+@synthesize channelList = _channelList;
 
-- (TVHChannelList*) channelListObj {
-    if ( _channelListObj == nil) {
-        _channelListObj = [[TVHChannelList alloc] init];
+- (TVHChannelList*) channelList {
+    if ( _channelList == nil) {
+        _channelList = [[TVHChannelList alloc] init];
     }
-    return _channelListObj;
+    return _channelList;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -37,8 +37,9 @@
 {
     [super viewDidLoad];
     
-    [self.channelListObj startGetTestData];
-    [self.channelListObj setDelegate:self];
+    [self.channelList setDelegate:self];
+    [self.channelList fetchChannelList];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -57,7 +58,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.channelListObj count];
+    return [self.channelList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,7 +70,7 @@
     } 
     
     // Configure the cell...
-    TVHChannel *ch = [self.channelListObj objectAtIndex:indexPath.row];
+    TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
     cell.textLabel.text = ch.name;
     cell.detailTextLabel.text = ch.imageUrl;
     
@@ -133,11 +134,17 @@
      */
 }
 
-- (void)didLoadChannels
-{
+- (void)didLoadChannels {
     [self.tableView reloadData];
 }
 
-
+- (void)didErrorLoading {
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                         message:@"Error connecting to server - this should redirect you to settings app"
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil];
+    [errorAlert show];
+}
 
 @end

@@ -60,19 +60,20 @@
 }
 
 
-- (void)startGetTestData {
+- (void)fetchChannelList {
     TVHSettings *settings = [TVHSettings sharedInstance];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
-    
-   [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+   
+    [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
         [self.delegate didLoadChannels];
         
-        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"Request Successful, response '%@'", responseStr);
+       // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+       // NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.delegate didErrorLoading];
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
     
