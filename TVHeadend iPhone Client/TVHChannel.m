@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "Channel.h"
+#import "TVHChannel.h"
 
-@interface Channel()
+@interface TVHChannel()
 @end
 
-@implementation Channel
+@implementation TVHChannel
 @synthesize name = _name;
 @synthesize detail = _detail;
 @synthesize imageUrl = _imageUrl;

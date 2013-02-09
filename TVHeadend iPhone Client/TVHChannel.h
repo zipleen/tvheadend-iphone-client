@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Channel : NSObject
+@interface TVHChannel : NSObject
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *detail;
 @property (strong, nonatomic) NSString *imageUrl;

@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA1D426D16BEC2BA00F42F7E /* ModelChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */; };
-		AA63669F16BF2F5D00FDAC1B /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* Channel.m */; };
+		AA1D426D16BEC2BA00F42F7E /* TVHModelChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHModelChannelList.m */; };
+		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7C3FCB16C6CA400057E4C4 /* tv.png */; };
+		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
 		AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021716C6B41700673DF5 /* AFHTTPClient.m */; };
 		AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021916C6B41700673DF5 /* AFHTTPRequestOperation.m */; };
 		AA91022B16C6B41700673DF5 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021B16C6B41700673DF5 /* AFImageRequestOperation.m */; };
@@ -36,11 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA1D426B16BEC2BA00F42F7E /* ModelChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelChannelList.h; sourceTree = "<group>"; };
-		AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelChannelList.m; sourceTree = "<group>"; };
-		AA63669D16BF2F5D00FDAC1B /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
-		AA63669E16BF2F5D00FDAC1B /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		AA1D426B16BEC2BA00F42F7E /* TVHModelChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHModelChannelList.h; sourceTree = "<group>"; };
+		AA1D426C16BEC2BA00F42F7E /* TVHModelChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHModelChannelList.m; sourceTree = "<group>"; };
+		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
+		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA7C3FCB16C6CA400057E4C4 /* tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv.png; sourceTree = "<group>"; };
+		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
+		AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettings.m; sourceTree = "<group>"; };
 		AA91021616C6B41700673DF5 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		AA91021716C6B41700673DF5 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		AA91021816C6B41700673DF5 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -100,10 +103,12 @@
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AA1D426B16BEC2BA00F42F7E /* ModelChannelList.h */,
-				AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */,
-				AA63669D16BF2F5D00FDAC1B /* Channel.h */,
-				AA63669E16BF2F5D00FDAC1B /* Channel.m */,
+				AA1D426B16BEC2BA00F42F7E /* TVHModelChannelList.h */,
+				AA1D426C16BEC2BA00F42F7E /* TVHModelChannelList.m */,
+				AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */,
+				AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */,
+				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
+				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,8 +288,8 @@
 				AAB39A0016BDB21900973F88 /* main.m in Sources */,
 				AAB39A0416BDB21900973F88 /* TVHAppDelegate.m in Sources */,
 				AAB39A1B16BDB29C00973F88 /* TVHChannelListViewController.m in Sources */,
-				AA1D426D16BEC2BA00F42F7E /* ModelChannelList.m in Sources */,
-				AA63669F16BF2F5D00FDAC1B /* Channel.m in Sources */,
+				AA1D426D16BEC2BA00F42F7E /* TVHModelChannelList.m in Sources */,
+				AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */,
 				AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */,
 				AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */,
 				AA91022B16C6B41700673DF5 /* AFImageRequestOperation.m in Sources */,
@@ -294,6 +299,7 @@
 				AA91022F16C6B41700673DF5 /* AFURLConnectionOperation.m in Sources */,
 				AA91023016C6B41700673DF5 /* AFXMLRequestOperation.m in Sources */,
 				AA91023116C6B41700673DF5 /* UIImageView+AFNetworking.m in Sources */,
+				AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

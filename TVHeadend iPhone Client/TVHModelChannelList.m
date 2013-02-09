@@ -6,22 +6,22 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "ModelChannelList.h"
+#import "TVHModelChannelList.h"
 #import "TVHChannelListViewController.h"
 
-@interface ModelChannelList ()
+@interface TVHModelChannelList ()
 @property (strong, nonatomic) NSArray *channelNames;
 @property (weak, nonatomic) TVHChannelListViewController *sender;
 @end
 
-@implementation ModelChannelList
+@implementation TVHModelChannelList
 @synthesize channelNames = _channelNames;
 
 + (id)sharedInstance {
-    static ModelChannelList *__sharedInstance;
+    static TVHModelChannelList *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[ModelChannelList alloc] init];
+        __sharedInstance = [[TVHModelChannelList alloc] init];
     });
     
     return __sharedInstance;
@@ -54,7 +54,7 @@
     //for (NSEnumerator *channel in entries) {
     while (channel = [e nextObject]) {
         //NSLog(@"json : %@", channel);
-        Channel *c = [[Channel alloc] init];
+        TVHChannel *c = [[TVHChannel alloc] init];
         
         NSString *ch_icon = [channel objectForKey:@"ch_icon"];
         NSString *name = [channel objectForKey:@"name"];
@@ -110,7 +110,7 @@
     
     }
 
-- (Channel *) objectAtIndex:(int) row {
+- (TVHChannel *) objectAtIndex:(int) row {
     return [self.channelNames objectAtIndex:row];
 }
 

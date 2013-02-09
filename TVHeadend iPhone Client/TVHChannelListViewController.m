@@ -7,19 +7,19 @@
 //
 
 #import "TVHChannelListViewController.h"
-#import "ModelChannelList.h"
-#import "Channel.h"
+#import "TVHModelChannelList.h"
+#import "TVHChannel.h"
 
 @interface TVHChannelListViewController ()
-@property (strong, nonatomic) ModelChannelList *channelListObj;
+@property (strong, nonatomic) TVHModelChannelList *channelListObj;
 @end
 
 @implementation TVHChannelListViewController
 @synthesize channelListObj = _channelListObj;
 
-- (ModelChannelList*) channelListObj {
+- (TVHModelChannelList*) channelListObj {
     if ( _channelListObj == nil) {
-        _channelListObj = [[ModelChannelList alloc] init];
+        _channelListObj = [[TVHModelChannelList alloc] init];
     }
     return _channelListObj;
 }
@@ -69,7 +69,7 @@
     } 
     
     // Configure the cell...
-    Channel *ch = [self.channelListObj objectAtIndex:indexPath.row];
+    TVHChannel *ch = [self.channelListObj objectAtIndex:indexPath.row];
     cell.textLabel.text = ch.name;
     cell.detailTextLabel.text = ch.imageUrl;
     
