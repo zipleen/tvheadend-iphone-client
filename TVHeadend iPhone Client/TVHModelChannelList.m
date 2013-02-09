@@ -29,18 +29,6 @@
     return __sharedInstance;
 }
 
-- (NSData*)encodeDictionary:(NSDictionary*)dictionary {
-    NSMutableArray *parts = [[NSMutableArray alloc] init];
-    for (NSString *key in dictionary) {
-        NSString *encodedValue = [[dictionary objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *encodedKey = [key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *part = [NSString stringWithFormat: @"%@=%@", encodedKey, encodedValue];
-        [parts addObject:part];
-    }
-    NSString *encodedDictionary = [parts componentsJoinedByString:@"&"];
-    return [encodedDictionary dataUsingEncoding:NSUTF8StringEncoding];
-}
-
 - (void)fetchedData:(NSData *)responseData {
     //parse out the json data
     NSError* error;
@@ -75,42 +63,21 @@
 
 - (void)startGetTestData {
     TVHSettings *settings = [TVHSettings sharedInstance];
-    NSURL *url = [NSURL URLWithString:@"channels" relativeToURL:[settings baseURL]];
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
-    NSData *postData = [self encodeDictionary:postDict];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
     
-    // Create the request
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:[NSString stringWithFormat:@"%d", postData.length] forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
     
-    [NSURLConnection
-     sendAsynchronousRequest:request
-     queue:[NSOperationQueue mainQueue]
-     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-         // do something useful
-         if (error) {
-             // Deal with your error
-             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                 NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-                 NSLog(@"HTTP Error: %d %@", httpResponse.statusCode, error);
-                 return;
-             }
-             NSLog(@"Error %@", error);
-             return;
-         }
-         
-         //NSString *responeString = [[NSString alloc] initWithData:receivedData
-         //                                                encoding:NSUTF8StringEncoding];
-         //NSLog(@"received: %@", responeString);
-         
-         [self fetchedData:data];
-         [self.sender reload];
-     }];
+   [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self fetchedData:responseObject];
+        [self.sender reload];
+        
+        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"Request Successful, response '%@'", responseStr);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+    }];
     
-    }
+}
 
 - (TVHChannel *) objectAtIndex:(int) row {
     return [self.channelNames objectAtIndex:row];
