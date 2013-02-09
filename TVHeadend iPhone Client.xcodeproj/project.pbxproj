@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA1D426D16BEC2BA00F42F7E /* TVHModelChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHModelChannelList.m */; };
+		AA1D426D16BEC2BA00F42F7E /* TVHChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHChannelList.m */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7C3FCB16C6CA400057E4C4 /* tv.png */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
@@ -37,8 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA1D426B16BEC2BA00F42F7E /* TVHModelChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHModelChannelList.h; sourceTree = "<group>"; };
-		AA1D426C16BEC2BA00F42F7E /* TVHModelChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHModelChannelList.m; sourceTree = "<group>"; };
+		AA1D426B16BEC2BA00F42F7E /* TVHChannelList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelList.h; sourceTree = "<group>"; };
+		AA1D426C16BEC2BA00F42F7E /* TVHChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelList.m; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA7C3FCB16C6CA400057E4C4 /* tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv.png; sourceTree = "<group>"; };
@@ -103,8 +103,8 @@
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AA1D426B16BEC2BA00F42F7E /* TVHModelChannelList.h */,
-				AA1D426C16BEC2BA00F42F7E /* TVHModelChannelList.m */,
+				AA1D426B16BEC2BA00F42F7E /* TVHChannelList.h */,
+				AA1D426C16BEC2BA00F42F7E /* TVHChannelList.m */,
 				AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */,
 				AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */,
 				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
@@ -288,7 +288,7 @@
 				AAB39A0016BDB21900973F88 /* main.m in Sources */,
 				AAB39A0416BDB21900973F88 /* TVHAppDelegate.m in Sources */,
 				AAB39A1B16BDB29C00973F88 /* TVHChannelListViewController.m in Sources */,
-				AA1D426D16BEC2BA00F42F7E /* TVHModelChannelList.m in Sources */,
+				AA1D426D16BEC2BA00F42F7E /* TVHChannelList.m in Sources */,
 				AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */,
 				AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */,
 				AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */,

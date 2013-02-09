@@ -6,23 +6,23 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHModelChannelList.h"
+#import "TVHChannelList.h"
 #import "TVHSettings.h"
 
-@interface TVHModelChannelList ()
+@interface TVHChannelList ()
 @property (nonatomic, strong) NSArray *channelNames;
-@property (nonatomic, weak) id <TVHModelChannelListDelegate> delegate;
+@property (nonatomic, weak) id <TVHChannelListDelegate> delegate;
 @end
 
-@implementation TVHModelChannelList
+@implementation TVHChannelList
 @synthesize channelNames = _channelNames;
 @synthesize delegate = _delegate;
 
 + (id)sharedInstance {
-    static TVHModelChannelList *__sharedInstance;
+    static TVHChannelList *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHModelChannelList alloc] init];
+        __sharedInstance = [[TVHChannelList alloc] init];
     });
     
     return __sharedInstance;
@@ -86,7 +86,7 @@
     return [self.channelNames count];
 }
 
-- (void)setDelegate:(id <TVHModelChannelListDelegate>)delegate {
+- (void)setDelegate:(id <TVHChannelListDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
     }

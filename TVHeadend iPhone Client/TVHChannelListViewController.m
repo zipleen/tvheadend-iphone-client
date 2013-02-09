@@ -7,19 +7,19 @@
 //
 
 #import "TVHChannelListViewController.h"
-#import "TVHModelChannelList.h"
+#import "TVHChannelList.h"
 #import "TVHChannel.h"
 
 @interface TVHChannelListViewController ()
-@property (strong, nonatomic) TVHModelChannelList *channelListObj;
+@property (strong, nonatomic) TVHChannelList *channelListObj;
 @end
 
 @implementation TVHChannelListViewController
 @synthesize channelListObj = _channelListObj;
 
-- (TVHModelChannelList*) channelListObj {
+- (TVHChannelList*) channelListObj {
     if ( _channelListObj == nil) {
-        _channelListObj = [[TVHModelChannelList alloc] init];
+        _channelListObj = [[TVHChannelList alloc] init];
     }
     return _channelListObj;
 }
