@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface TVHSettings : NSObject
-
+@property (nonatomic, strong, readonly) NSURL *baseURL;
++ (id)sharedInstance;
 @end

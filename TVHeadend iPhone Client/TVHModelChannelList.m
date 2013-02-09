@@ -7,6 +7,7 @@
 //
 
 #import "TVHModelChannelList.h"
+#import "TVHSettings.h"
 #import "TVHChannelListViewController.h"
 
 @interface TVHModelChannelList ()
@@ -16,6 +17,7 @@
 
 @implementation TVHModelChannelList
 @synthesize channelNames = _channelNames;
+
 
 + (id)sharedInstance {
     static TVHModelChannelList *__sharedInstance;
@@ -72,8 +74,8 @@
 
 
 - (void)startGetTestData {
-    
-    NSURL *url = [NSURL URLWithString:@"http://192.168.1.250:9981/channels"];
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    NSURL *url = [NSURL URLWithString:@"channels" relativeToURL:[settings baseURL]];
     NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
     NSData *postData = [self encodeDictionary:postDict];
     
