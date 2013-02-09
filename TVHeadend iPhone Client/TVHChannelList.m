@@ -10,12 +10,12 @@
 #import "TVHSettings.h"
 
 @interface TVHChannelList ()
-@property (nonatomic, strong) NSArray *channelNames;
+@property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelListDelegate> delegate;
 @end
 
 @implementation TVHChannelList
-@synthesize channelNames = _channelNames;
+@synthesize channels = _channels;
 @synthesize delegate = _delegate;
 
 + (id)sharedInstance {
@@ -36,7 +36,7 @@
                                                            error:&error];
     
     NSArray *entries = [json objectForKey:@"entries"];
-    NSMutableArray *channelNames = [[NSMutableArray alloc] init];
+    NSMutableArray *channels = [[NSMutableArray alloc] init];
     
     NSEnumerator *e = [entries objectEnumerator];
     id channel;
@@ -45,17 +45,21 @@
         //NSLog(@"json : %@", channel);
         TVHChannel *c = [[TVHChannel alloc] init];
         
+        NSInteger ch_id = [[channel objectForKey:@"chid"] intValue];
         NSString *ch_icon = [channel objectForKey:@"ch_icon"];
         NSString *name = [channel objectForKey:@"name"];
         NSString *number = [channel objectForKey:@"number"];
+        NSString *tags = [channel objectForKey:@"tags"];
         
         [c setName:name];
         [c setNumber:number];
         [c setImageUrl:ch_icon];
-        
-        [channelNames addObject:c];
+        [c setChid:ch_id];
+        [c setTags:[tags componentsSeparatedByString:@","]];
+                
+        [channels addObject:c];
     }
-    self.channelNames = [channelNames copy];
+    self.channels = [channels copy];
     
 }
 
@@ -80,11 +84,11 @@
 }
 
 - (TVHChannel *) objectAtIndex:(int) row {
-    return [self.channelNames objectAtIndex:row];
+    return [self.channels objectAtIndex:row];
 }
 
 - (int) count {
-    return [self.channelNames count];
+    return [self.channels count];
 }
 
 - (void)setDelegate:(id <TVHChannelListDelegate>)delegate {

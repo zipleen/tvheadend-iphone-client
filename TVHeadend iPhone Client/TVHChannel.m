@@ -16,6 +16,7 @@
 @synthesize detail = _detail;
 @synthesize imageUrl = _imageUrl;
 @synthesize number = _number;
+@synthesize chid = _chid;
 
 @synthesize image = _image;
 
@@ -24,4 +25,5 @@
     self.image = nil;
     //self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
 }
+
 @end

@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface TVHChannel : NSObject
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *detail;
-@property (strong, nonatomic) NSString *imageUrl;
-@property (strong, nonatomic) NSString *number;
-@property (strong, nonatomic) NSData *image;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *detail;
+@property (nonatomic, strong) NSString *imageUrl;
+@property (nonatomic, strong) NSString *number;
+@property (nonatomic, strong) NSData *image;
+@property (nonatomic) NSInteger chid;
+@property (nonatomic, strong) NSArray *tags;
 @end
