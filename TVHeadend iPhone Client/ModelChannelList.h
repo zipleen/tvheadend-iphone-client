@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "TVHChannelListViewController.h"
 #import "Channel.h"
+#import "AFNetworking.h"
 
-@interface ModelChannelList : NSObject <NSURLConnectionDelegate>
+@interface ModelChannelList : AFHTTPClient <NSURLConnectionDelegate>
+
++ (id)sharedInstance;
 
 - (void)startGetTestData;
 

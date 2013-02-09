@@ -17,6 +17,16 @@
 @implementation ModelChannelList
 @synthesize channelNames = _channelNames;
 
++ (id)sharedInstance {
+    static ModelChannelList *__sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __sharedInstance = [[ModelChannelList alloc] init];
+    });
+    
+    return __sharedInstance;
+}
+
 - (NSData*)encodeDictionary:(NSDictionary*)dictionary {
     NSMutableArray *parts = [[NSMutableArray alloc] init];
     for (NSString *key in dictionary) {

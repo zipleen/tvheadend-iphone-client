@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA1D426D16BEC2BA00F42F7E /* ModelChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */; };
 		AA63669F16BF2F5D00FDAC1B /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* Channel.m */; };
+		AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7C3FCB16C6CA400057E4C4 /* tv.png */; };
 		AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021716C6B41700673DF5 /* AFHTTPClient.m */; };
 		AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021916C6B41700673DF5 /* AFHTTPRequestOperation.m */; };
 		AA91022B16C6B41700673DF5 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021B16C6B41700673DF5 /* AFImageRequestOperation.m */; };
@@ -39,6 +40,7 @@
 		AA1D426C16BEC2BA00F42F7E /* ModelChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelChannelList.m; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		AA7C3FCB16C6CA400057E4C4 /* tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv.png; sourceTree = "<group>"; };
 		AA91021616C6B41700673DF5 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		AA91021716C6B41700673DF5 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		AA91021816C6B41700673DF5 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -104,6 +106,14 @@
 				AA63669E16BF2F5D00FDAC1B /* Channel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		AA7C3FCA16C6C9870057E4C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA7C3FCB16C6CA400057E4C4 /* tv.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
@@ -173,6 +183,7 @@
 		AAB399F916BDB21900973F88 /* TVHeadend iPhone Client */ = {
 			isa = PBXGroup;
 			children = (
+				AA7C3FCA16C6C9870057E4C4 /* Resources */,
 				AA9101AA16C6B2C500673DF5 /* Framework */,
 				AA1D426A16BEC1B700F42F7E /* Model */,
 				AAB39A0216BDB21900973F88 /* TVHAppDelegate.h */,
@@ -258,6 +269,7 @@
 				AAB39A0A16BDB21900973F88 /* Default-568h@2x.png in Resources */,
 				AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */,
 				AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */,
+				AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

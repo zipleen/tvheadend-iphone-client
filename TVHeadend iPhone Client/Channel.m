@@ -21,6 +21,7 @@
 
 - (void) setImageUrl:(NSString *)imageUrl {
     _imageUrl = imageUrl;
-    self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
+    self.image = nil;
+    //self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
 }
 @end
