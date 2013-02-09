@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TVHModelChannelList.h"
 
-@interface TVHChannelListViewController : UITableViewController
-- (void)reload;
+@interface TVHChannelListViewController : UITableViewController <TVHModelChannelListDelegate>
+
 @end

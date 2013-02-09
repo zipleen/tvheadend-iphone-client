@@ -133,7 +133,7 @@
      */
 }
 
-- (void)reload
+- (void)didLoadChannels
 {
     [self.tableView reloadData];
 }

@@ -8,16 +8,15 @@
 
 #import "TVHModelChannelList.h"
 #import "TVHSettings.h"
-#import "TVHChannelListViewController.h"
 
 @interface TVHModelChannelList ()
-@property (strong, nonatomic) NSArray *channelNames;
-@property (weak, nonatomic) TVHChannelListViewController *sender;
+@property (nonatomic, strong) NSArray *channelNames;
+@property (nonatomic, weak) id <TVHModelChannelListDelegate> delegate;
 @end
 
 @implementation TVHModelChannelList
 @synthesize channelNames = _channelNames;
-
+@synthesize delegate = _delegate;
 
 + (id)sharedInstance {
     static TVHModelChannelList *__sharedInstance;
@@ -69,7 +68,7 @@
     
    [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        [self.sender reload];
+        [self.delegate didLoadChannels];
         
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
@@ -87,8 +86,10 @@
     return [self.channelNames count];
 }
 
-
-- (void) setDelegate: (TVHChannelListViewController*)sender {
-    self.sender = sender;
+- (void)setDelegate:(id <TVHModelChannelListDelegate>)delegate {
+    if (_delegate != delegate) {
+        _delegate = delegate;
+    }
 }
+
 @end

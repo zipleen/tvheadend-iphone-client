@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TVHChannelListViewController.h"
 #import "TVHChannel.h"
 #import "AFNetworking.h"
 
-@interface TVHModelChannelList : AFHTTPClient <NSURLConnectionDelegate>
+@protocol TVHModelChannelListDelegate <NSObject>
+
+-(void) didLoadChannels;
+@end
+
+@interface TVHModelChannelList : AFHTTPClient 
 
 + (id)sharedInstance;
 
@@ -19,6 +23,6 @@
 
 - (TVHChannel *) objectAtIndex:(int) row;
 - (int) count;
-- (void) setDelegate: (TVHChannelListViewController*)sender;
+- (void)setDelegate:(id <TVHModelChannelListDelegate>)delegate;
 
 @end
