@@ -7,11 +7,11 @@
 //
 
 #import "ModelChannelList.h"
-#import "tvhclientChannelListViewController.h"
+#import "TVHChannelListViewController.h"
 
 @interface ModelChannelList ()
 @property (strong, nonatomic) NSArray *channelNames;
-@property (weak, nonatomic) tvhclientChannelListViewController *sender;
+@property (weak, nonatomic) TVHChannelListViewController *sender;
 @end
 
 @implementation ModelChannelList
@@ -109,7 +109,7 @@
 }
 
 
-- (void) setDelegate: (tvhclientChannelListViewController*)sender {
+- (void) setDelegate: (TVHChannelListViewController*)sender {
     self.sender = sender;
 }
 @end

@@ -1,5 +1,5 @@
 //
-//  tvhclientAppDelegate.h
+//  tvhclientChannelListViewController.h
 //  TVHeadend iPhone Client
 //
 //  Created by zipleen on 2/2/13.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface tvhclientAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface TVHChannelListViewController : UITableViewController
+- (void)reload;
 @end

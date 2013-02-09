@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "tvhclientAppDelegate.h"
+#import "TVHAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([tvhclientAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([TVHAppDelegate class]));
     }
 }

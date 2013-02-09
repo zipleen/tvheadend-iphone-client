@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "tvhclientAppDelegate.h"
+#import "TVHAppDelegate.h"
 
-@implementation tvhclientAppDelegate
+@implementation TVHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

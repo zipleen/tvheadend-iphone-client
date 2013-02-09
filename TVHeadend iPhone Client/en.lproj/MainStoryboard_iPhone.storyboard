@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="-680" y="-657"/>
         </scene>
-        <!--Tvhclient Channel List View Controller-->
+        <!--Channel List View Controller-->
         <scene sceneID="GxO-Zf-lVI">
             <objects>
-                <tableViewController id="J4O-6S-mIr" customClass="tvhclientChannelListViewController" sceneMemberID="viewController">
+                <tableViewController id="J4O-6S-mIr" customClass="TVHChannelListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KgO-K1-8wq">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,8 +66,8 @@
         </scene>
     </scenes>
     <classes>
-        <class className="tvhclientChannelListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/tvhclientChannelListViewController.h"/>
+        <class className="TVHChannelListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelListViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

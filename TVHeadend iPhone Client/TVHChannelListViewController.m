@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "tvhclientChannelListViewController.h"
+#import "TVHChannelListViewController.h"
 #import "ModelChannelList.h"
 #import "Channel.h"
 
-@interface tvhclientChannelListViewController ()
+@interface TVHChannelListViewController ()
 @property (strong, nonatomic) ModelChannelList *channelListObj;
 @end
 
-@implementation tvhclientChannelListViewController
+@implementation TVHChannelListViewController
 @synthesize channelListObj = _channelListObj;
 
 - (ModelChannelList*) channelListObj {
