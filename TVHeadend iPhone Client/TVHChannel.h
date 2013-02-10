@@ -18,4 +18,5 @@
 @property (nonatomic, strong) NSArray *tags;
 
 -(bool) hasTag:(NSInteger)tag;
+-(NSString*) streamURL;
 @end

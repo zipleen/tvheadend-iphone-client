@@ -7,6 +7,7 @@
 //
 
 #import "TVHChannel.h"
+#import "TVHSettings.h"
 
 @interface TVHChannel()
 @end
@@ -26,7 +27,11 @@
     //self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
 }
 
--(bool) hasTag:(NSInteger)tag {
+- (bool) hasTag:(NSInteger)tag {
     return [self.tags containsObject:[NSString stringWithFormat:@"%d",tag]];
+}
+- (NSString*) streamURL {
+    TVHSettings *tvh = [TVHSettings sharedInstance];
+    return [NSString stringWithFormat:@"%@/stream/channelid/%d?mux=pass", tvh.baseURL, self.chid];
 }
 @end

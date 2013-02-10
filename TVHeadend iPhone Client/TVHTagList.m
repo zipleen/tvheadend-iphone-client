@@ -81,8 +81,8 @@
         [self fetchedData:responseObject];
         [self.delegate didLoadTags];
         
-        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"Request Successful, response '%@'", responseStr);
+        //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.delegate didErrorLoading];
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
