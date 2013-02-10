@@ -23,4 +23,6 @@
 -(NSString*) streamURL;
 -(void) addEpg:(TVHEpg*)epg;
 -(NSString*) getCurrentPlayingProgram;
+-(NSArray*) getEpg;
+-(NSInteger) countEpg;
 @end

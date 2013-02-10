@@ -67,4 +67,13 @@
 - (NSComparisonResult)compareByName:(TVHChannel *)otherObject {
     return [self.name compare:otherObject.name];
 }
+
+-(NSArray*) getEpg {
+    NSArray *ordered = [self.schedulePrograms sortedArrayUsingSelector:@selector(compareByTime:)];
+    return ordered;
+}
+
+-(NSInteger) countEpg {
+    return [self.schedulePrograms count];
+}
 @end

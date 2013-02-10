@@ -10,13 +10,14 @@
 #import "TVHEpg.h"
 #import "TVHSettings.h"
 
-@interface TVHEpgList()
-@property (nonatomic, strong) NSArray *epgList;
+@interface TVHEpgList() @property (nonatomic, strong) NSArray *epgList;
 @property (nonatomic, weak) id <TVHEpgListDelegate> delegate;
+@property (nonatomic) NSInteger lastEventCount;
 @end
 
 @implementation TVHEpgList
 @synthesize epgList = _epgList;
+@synthesize lastEventCount = _lastEventCount;
 
 + (id)sharedInstance {
     static TVHEpgList *__sharedInstance;
@@ -35,6 +36,18 @@
                                                          options:kNilOptions
                                                            error:&error];
     
+    if( error ) {
+        /*NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *appFile = [documentsDirectory stringByAppendingPathComponent:@"MyFile"];
+        [responseData writeToFile:appFile atomically:YES];
+        NSLog(@"%@",documentsDirectory);
+        */
+        NSLog(@"[JSON Error]: %@", error.description);
+        return ;
+    }
+    
+    self.lastEventCount = [[json objectForKey:@"totalCount"] intValue];
     NSArray *entries = [json objectForKey:@"entries"];
     NSMutableArray *epgList = [[NSMutableArray alloc] init];
     
@@ -70,15 +83,21 @@
     NSLog(@"[Loaded EPG programs]: %d", [self.epgList count]);
 }
 
-- (void)fetchEpgList {
+- (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit {
     TVHSettings *settings = [TVHSettings sharedInstance];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
     
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"0", @"start", @"300", @"limit",nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSString stringWithFormat:@"%d", start ],
+                            @"start",
+                            [NSString stringWithFormat:@"%d", limit ],
+                            @"limit",nil];
     
     [httpClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
         [self.delegate didLoadEpg:self];
+        
+        [self getMoreEpg:start limit:limit];
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
@@ -86,6 +105,25 @@
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
     
+}
+
+- (void)getMoreEpg:(NSInteger)start limit:(NSInteger)limit {
+    // get last epg
+    // check date
+    // if date > datenow, get more 50
+    
+    TVHEpg *last = [self.epgList lastObject];
+    if ( last ) {
+        NSDate *localDate = [NSDate date];
+        NSLog(@"localdate: %@ | last start date: %@", localDate, last.start);
+        if ( localDate > last.start && self.lastEventCount<(start+limit) ) {
+            [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50];
+        }
+    }
+}
+
+- (void)fetchEpgList {
+    [self retrieveEpgDataFromTVHeadend:0 limit:50];
 }
 
 - (NSArray*)getEpgList{

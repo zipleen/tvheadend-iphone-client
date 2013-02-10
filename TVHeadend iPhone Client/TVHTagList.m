@@ -37,6 +37,11 @@
                                                          options:kNilOptions
                                                            error:&error];
     
+    if( error ) {
+        NSLog(@"[JSON Error]: %@", error.description);
+        return ;
+    }
+    
     NSArray *entries = [json objectForKey:@"entries"];
     NSMutableArray *tags = [[NSMutableArray alloc] init];
     
