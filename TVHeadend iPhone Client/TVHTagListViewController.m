@@ -135,6 +135,12 @@
         TVHChannelListViewController *ChannelList = segue.destinationViewController;
         [ChannelList setFilterTagId: tag.tagid];
         
+        if ( tag.tagid == 0 ) {
+            [segue.destinationViewController setTitle:@"Channels"];
+        } else {
+            [segue.destinationViewController setTitle:[NSString stringWithFormat:@"Channels:%@", tag.name]];
+        }
+        
     }
 }
 
