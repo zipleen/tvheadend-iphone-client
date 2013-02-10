@@ -80,7 +80,7 @@
     // Configure the cell...
     TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
     cell.textLabel.text = ch.name;
-    cell.detailTextLabel.text = ch.imageUrl;
+    cell.detailTextLabel.text = [ch getCurrentPlayingProgram];
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
     

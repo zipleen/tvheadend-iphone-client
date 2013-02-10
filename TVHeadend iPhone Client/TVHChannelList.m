@@ -7,17 +7,20 @@
 //
 
 #import "TVHChannelList.h"
+#import "TVHEpg.h"
 #import "TVHSettings.h"
 
 @interface TVHChannelList ()
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelListDelegate> delegate;
+@property (nonatomic, weak) TVHEpgList *epgList;
 @end
 
-@implementation TVHChannelList
+@implementation TVHChannelList 
 @synthesize channels = _channels;
 @synthesize delegate = _delegate;
 @synthesize filterTag = _filterTag;
+@synthesize epgList = _epgList;
 
 + (id)sharedInstance {
     static TVHChannelList *__sharedInstance;
@@ -27,6 +30,13 @@
     });
     
     return __sharedInstance;
+}
+
+- (TVHEpgList*) epgList {
+    if(!_epgList){
+        _epgList = [TVHEpgList sharedInstance];
+    }
+    return _epgList;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -75,6 +85,9 @@
         [self fetchedData:responseObject];
         [self.delegate didLoadChannels];
         
+        [self.epgList setDelegate:self];
+        [self.epgList fetchEpgList];
+        
        // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
        // NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -83,6 +96,33 @@
     }];
     
 }
+
+- (TVHChannel*) getChannelById:(NSInteger)channelId {
+    NSEnumerator *e = [self.channels objectEnumerator];
+    TVHChannel *channel;
+    while (channel = [e nextObject]) {
+        if ( [channel chid] == channelId ) {
+            return channel;
+        }
+    }
+    return nil;
+}
+
+#pragma mark EPG delegatee stuff
+
+- (void) didLoadEpg {
+    // for each epg
+    NSArray *list = [self.epgList getEpgList];
+    NSEnumerator *e = [list objectEnumerator];
+    TVHEpg *epg;
+    while (epg = [e nextObject]) {
+        TVHChannel *channel = [self getChannelById:epg.channelId];
+        [channel addEpg:epg];
+    }
+    [self.delegate didLoadChannels];
+}
+
+#pragma mark Controller delegate stuff
 
 - (NSArray*) getFilteredChannelList {
     NSMutableArray *filteredChannels = [[NSMutableArray alloc] init];

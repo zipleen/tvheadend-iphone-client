@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHChannel.h"
+#import "AFNetworking.h"
+
+@protocol TVHEpgListDelegate <NSObject>
+- (void) didLoadEpg;
+@end
 
 @interface TVHEpgList : NSObject
-
++ (id)sharedInstance;
+- (void)fetchEpgList;
+- (NSArray*)getEpgList;
+- (void)setDelegate:(id <TVHEpgListDelegate>)delegate;
 @end

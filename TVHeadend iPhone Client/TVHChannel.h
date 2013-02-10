@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHEpg.h"
+@class TVHEpg;
 
 @interface TVHChannel : NSObject
 @property (nonatomic, strong) NSString *name;
@@ -19,4 +21,6 @@
 
 -(bool) hasTag:(NSInteger)tag;
 -(NSString*) streamURL;
+-(void) addEpg:(TVHEpg*)epg;
+-(NSString*) getCurrentPlayingProgram;
 @end
