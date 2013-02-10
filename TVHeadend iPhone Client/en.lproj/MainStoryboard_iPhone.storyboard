@@ -120,9 +120,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="05s-K2-hia" kind="push" identifier="Show Channel Programs" id="2K2-8X-teh"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -131,6 +128,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Channels" id="g8A-mr-bIp"/>
+                    <connections>
+                        <segue destination="05s-K2-hia" kind="push" identifier="Show Channel Programs" id="7Q6-9G-MXa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2DY-kX-Qx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -91,6 +91,13 @@
 }
 
 #pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TVHChannel *channel = [self.channelList objectAtIndex:indexPath.row];
+    if( [channel countEpg]>0 ) {
+       [self performSegueWithIdentifier:@"Show Channel Programs" sender:self]; 
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"Show Channel Programs"]) {

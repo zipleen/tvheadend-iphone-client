@@ -61,9 +61,12 @@
     
     // Configure the cell...
     TVHEpg *epg = [self.programList objectAtIndex:indexPath.row];
-    cell.textLabel.text = epg.title;
-    cell.detailTextLabel.text = epg.description;
     
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    timeFormatter.dateFormat = @"HH:mm";
+    cell.textLabel.text = [timeFormatter stringFromDate: epg.start];
+    
+    cell.detailTextLabel.text = epg.title;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
