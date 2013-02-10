@@ -26,7 +26,7 @@
 
 - (TVHChannelList*) channelList {
     if ( _channelList == nil) {
-        _channelList = [[TVHChannelList alloc] init];
+        _channelList = [TVHChannelList sharedInstance];
     }
     return _channelList;
 }

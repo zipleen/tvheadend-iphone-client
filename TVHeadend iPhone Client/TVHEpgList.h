@@ -10,8 +10,9 @@
 #import "TVHChannel.h"
 #import "AFNetworking.h"
 
+@class TVHEpgList;
 @protocol TVHEpgListDelegate <NSObject>
-- (void) didLoadEpg;
+- (void) didLoadEpg:(TVHEpgList*)epgList;
 @end
 
 @interface TVHEpgList : NSObject

@@ -18,7 +18,7 @@
 
 - (TVHTagList*) tagList {
     if ( _tagList == nil) {
-        _tagList = [[TVHTagList alloc] init];
+        _tagList = [TVHTagList sharedInstance];
     }
     return _tagList;
 }
@@ -135,12 +135,7 @@
         TVHChannelListViewController *ChannelList = segue.destinationViewController;
         [ChannelList setFilterTagId: tag.tagid];
         
-        if ( tag.tagid == 0 ) {
-            [segue.destinationViewController setTitle:@"Channels"];
-        } else {
-            [segue.destinationViewController setTitle:[NSString stringWithFormat:@"Channels:%@", tag.name]];
-        }
-        
+        [segue.destinationViewController setTitle:tag.name];
     }
 }
 

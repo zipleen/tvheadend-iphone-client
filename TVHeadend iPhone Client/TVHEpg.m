@@ -26,4 +26,7 @@
     _end = localDate;
 }
 
+- (NSComparisonResult)compareByTime:(TVHEpg *)otherObject {
+    return [self.start compare:otherObject.start];
+}
 @end

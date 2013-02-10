@@ -23,7 +23,7 @@
 @synthesize image = _image;
 @synthesize schedulePrograms = _schedulePrograms;
 
--(NSArray*) schedulePrograms{
+-(NSMutableArray*) schedulePrograms{
     if(!_schedulePrograms) {
         _schedulePrograms = [[NSMutableArray alloc] init];
     }
@@ -46,13 +46,22 @@
 }
 
 -(void)addEpg:(TVHEpg*) epg {
-    [self.schedulePrograms addObject:epg];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start == %@", epg.start];
+    NSArray *filteredArray = [self.schedulePrograms filteredArrayUsingPredicate:predicate];
+    
+    if ([filteredArray count] == 0) {
+        [self.schedulePrograms addObject:epg];
+    }
 }
 
 -(NSString*) getCurrentPlayingProgram {
-    TVHEpg *e = [self.schedulePrograms lastObject];
-    
-    return e.title;
+    NSLog(@"Has %d for %@", [self.schedulePrograms count] ,self.name);
+    NSArray *ordered = [self.schedulePrograms sortedArrayUsingSelector:@selector(compareByTime:)];
+    if([ordered count]>0) {
+        TVHEpg *e = [ordered objectAtIndex:0];
+        return e.title;
+    }
+    return nil;
 }
 
 - (NSComparisonResult)compareByName:(TVHChannel *)otherObject {

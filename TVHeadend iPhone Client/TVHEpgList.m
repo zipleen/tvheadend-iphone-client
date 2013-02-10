@@ -61,7 +61,12 @@
                 
         [epgList addObject:e];
     }
-    self.epgList = [epgList copy];
+    if ( [self.epgList count] > 0) {
+        self.epgList = [self.epgList arrayByAddingObjectsFromArray:[epgList copy]];
+    } else {
+        self.epgList = [epgList copy];
+    }
+   
     NSLog(@"[Loaded EPG programs]: %d", [self.epgList count]);
 }
 
@@ -73,7 +78,7 @@
     
     [httpClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        [self.delegate didLoadEpg];
+        [self.delegate didLoadEpg:self];
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);

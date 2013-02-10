@@ -74,29 +74,31 @@
     }
     self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByName:)];
     //self.channels = [channels copy];
+    NSLog(@"[Loaded Channels]: %d", [self.channels count]);
 }
 
 
 - (void)fetchChannelList {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
-   
-    [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self fetchedData:responseObject];
-        [self.delegate didLoadChannels];
+    if( [self.channels count] == 0 ) {
+        TVHSettings *settings = [TVHSettings sharedInstance];
+        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
         
-        [self.epgList setDelegate:self];
-        [self.epgList fetchEpgList];
-        
-       // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-       // NSLog(@"Request Successful, response '%@'", responseStr);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self.delegate didErrorLoading];
-        NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
-    }];
-    
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
+       
+        [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self fetchedData:responseObject];
+            [self.delegate didLoadChannels];
+            
+            [self.epgList setDelegate:self];
+            [self.epgList fetchEpgList];
+            
+           // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+           // NSLog(@"Request Successful, response '%@'", responseStr);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.delegate didErrorLoading];
+            NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+        }];
+    } 
 }
 
 - (TVHChannel*) getChannelById:(NSInteger)channelId {
@@ -112,9 +114,9 @@
 
 #pragma mark EPG delegatee stuff
 
-- (void) didLoadEpg {
+- (void) didLoadEpg:(TVHEpgList*)epgList {
     // for each epg
-    NSArray *list = [self.epgList getEpgList];
+    NSArray *list = [epgList getEpgList];
     NSEnumerator *e = [list objectEnumerator];
     TVHEpg *epg;
     while (epg = [e nextObject]) {

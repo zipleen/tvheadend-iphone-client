@@ -72,26 +72,27 @@
     [orderedTags insertObject:t atIndex:0];
     
     self.tags = [orderedTags copy];
-    
+    NSLog(@"[Loaded Tags]: %d", [self.tags count]);
 }
 
 - (void)fetchTagList {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
-    
-    [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self fetchedData:responseObject];
-        [self.delegate didLoadTags];
+    if( [self.tags count] == 0 ) {
+        TVHSettings *settings = [TVHSettings sharedInstance];
+        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
         
-        //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        //NSLog(@"Request Successful, response '%@'", responseStr);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self.delegate didErrorLoading];
-        NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
-    }];
-    
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
+        
+        [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self fetchedData:responseObject];
+            [self.delegate didLoadTags];
+            
+            //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            //NSLog(@"Request Successful, response '%@'", responseStr);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.delegate didErrorLoading];
+            NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+        }];
+    }
 }
 
 - (TVHTagList *) objectAtIndex:(int) row {
