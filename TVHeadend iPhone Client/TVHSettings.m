@@ -16,6 +16,15 @@
 #define IP_KEY @"IP"
 #define PORT_KEY @"PORT"
 @synthesize baseURL = _baseURL;
+@synthesize ip = _ip;
+
+- (NSString*) ip {
+    if(!_ip) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _ip = [defaults objectForKey:IP_KEY];
+    }
+    return _ip;
+}
 
 - (NSURL*) baseURL {
     if( !_baseURL) {

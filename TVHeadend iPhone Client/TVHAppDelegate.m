@@ -7,12 +7,23 @@
 //
 
 #import "TVHAppDelegate.h"
+#import "TVHSettings.h"
 
 @implementation TVHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    TVHSettings *set = [TVHSettings sharedInstance];
+    if( [set.ip isEqualToString:@""] ) {
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                             message:@"Set ip and port in Settings!!"
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+        [errorAlert show];
+        
+    }
     return YES;
 }
 							
