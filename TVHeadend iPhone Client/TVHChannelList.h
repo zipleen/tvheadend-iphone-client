@@ -16,8 +16,9 @@
 -(void) didErrorLoading;
 @end
 
-@interface TVHChannelList : AFHTTPClient 
+@interface TVHChannelList : AFHTTPClient
 
+@property (nonatomic) NSInteger filterTag;
 + (id)sharedInstance;
 - (void)fetchChannelList;
 

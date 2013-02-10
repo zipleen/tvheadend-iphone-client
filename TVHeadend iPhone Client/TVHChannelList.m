@@ -17,6 +17,7 @@
 @implementation TVHChannelList
 @synthesize channels = _channels;
 @synthesize delegate = _delegate;
+@synthesize filterTag = _filterTag;
 
 + (id)sharedInstance {
     static TVHChannelList *__sharedInstance;
@@ -83,12 +84,35 @@
     
 }
 
-- (TVHChannel *) objectAtIndex:(int) row {
-    return [self.channels objectAtIndex:row];
+- (NSArray*) getFilteredChannelList {
+    NSMutableArray *filteredChannels = [[NSMutableArray alloc] init];
+    
+    NSEnumerator *e = [self.channels objectEnumerator];
+    TVHChannel *channel;
+    while (channel = [e nextObject]) {
+        if( [channel hasTag:self.filterTag] ) {
+            [filteredChannels addObject:channel];
+        }
+    }
+    return [filteredChannels copy];
+}
+
+- (TVHChannel*) objectAtIndex:(int) row {
+    if(self.filterTag == 0) {
+        return [self.channels objectAtIndex:row];
+    } else {
+        NSArray *filteredTag = [self getFilteredChannelList];
+        return [filteredTag objectAtIndex:row];
+    }
 }
 
 - (int) count {
-    return [self.channels count];
+    if(self.filterTag == 0) {
+        return [self.channels count];
+    } else {
+        NSArray *filteredTag = [self getFilteredChannelList];
+        return [filteredTag count];
+    }
 }
 
 - (void)setDelegate:(id <TVHChannelListDelegate>)delegate {

@@ -10,5 +10,5 @@
 #import "TVHChannelList.h"
 
 @interface TVHChannelListViewController : UITableViewController <TVHChannelListDelegate>
-
+@property (nonatomic) NSInteger filterTagId;
 @end

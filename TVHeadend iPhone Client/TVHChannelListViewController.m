@@ -15,6 +15,14 @@
 
 @implementation TVHChannelListViewController
 @synthesize channelList = _channelList;
+@synthesize filterTagId = _filterTagId;
+
+- (NSInteger) filterTagId {
+    if(!_filterTagId) {
+        return 0;
+    }
+    return _filterTagId;
+}
 
 - (TVHChannelList*) channelList {
     if ( _channelList == nil) {
@@ -37,6 +45,7 @@
     [super viewDidLoad];
     
     [self.channelList setDelegate:self];
+    [self.channelList setFilterTag: self.filterTagId];
     [self.channelList fetchChannelList];
     
     // Uncomment the following line to preserve selection between presentations.

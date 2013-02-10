@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="-1101" y="-417"/>
         </scene>
-        <!--Tag List View Controller-->
+        <!--Tag List View Controller - Tags-->
         <scene sceneID="9w5-0r-HFn">
             <objects>
                 <tableViewController id="bdm-Gl-dUk" customClass="TVHTagListViewController" sceneMemberID="viewController">
@@ -31,11 +31,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TagListTableItems" textLabel="4c0-g3-bGe" style="IBUITableViewCellStyleDefault" id="cXw-2G-hv8">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TagListTableItems" textLabel="4c0-g3-bGe" style="IBUITableViewCellStyleDefault" id="cXw-2G-hv8">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4c0-g3-bGe">
@@ -46,6 +46,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="J4O-6S-mIr" kind="push" identifier="Show Channel List" id="aH2-gX-8YJ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -53,18 +56,18 @@
                             <outlet property="delegate" destination="bdm-Gl-dUk" id="b7c-DZ-a7p"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qYf-zH-nV7"/>
+                    <navigationItem key="navigationItem" title="Tags" id="qYf-zH-nV7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2vv-Vk-2L7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-564" y="-998"/>
         </scene>
-        <!--Channel List View Controller-->
+        <!--Channel List View Controller - Channels-->
         <scene sceneID="GxO-Zf-lVI">
             <objects>
                 <tableViewController id="J4O-6S-mIr" customClass="TVHChannelListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KgO-K1-8wq">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -95,11 +98,11 @@
                             <outlet property="delegate" destination="J4O-6S-mIr" id="82n-k6-9RN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="g8A-mr-bIp"/>
+                    <navigationItem key="navigationItem" title="Channels" id="g8A-mr-bIp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2DY-kX-Qx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92" y="-985"/>
+            <point key="canvasLocation" x="-90" y="-998"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

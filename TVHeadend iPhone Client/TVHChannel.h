@@ -16,4 +16,6 @@
 @property (nonatomic, strong) NSData *image;
 @property (nonatomic) NSInteger chid;
 @property (nonatomic, strong) NSArray *tags;
+
+-(bool) hasTag:(NSInteger)tag;
 @end

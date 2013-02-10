@@ -7,6 +7,7 @@
 //
 
 #import "TVHTagListViewController.h"
+#import "TVHChannelListViewController.h"
 
 @interface TVHTagListViewController ()
 @property (strong, nonatomic) TVHTagList *tagList;
@@ -122,13 +123,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"Show Channel List"]) {
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        TVHTag *tag = [self.tagList objectAtIndex:path.row];
+        
+        TVHChannelListViewController *ChannelList = segue.destinationViewController;
+        [ChannelList setFilterTagId: tag.tagid];
+        
+    }
 }
 
 - (void)didLoadTags {

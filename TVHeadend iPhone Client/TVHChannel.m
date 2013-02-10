@@ -17,7 +17,7 @@
 @synthesize imageUrl = _imageUrl;
 @synthesize number = _number;
 @synthesize chid = _chid;
-
+@synthesize tags = _tags;
 @synthesize image = _image;
 
 - (void) setImageUrl:(NSString *)imageUrl {
@@ -26,4 +26,7 @@
     //self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
 }
 
+-(bool) hasTag:(NSInteger)tag {
+    return [self.tags containsObject:[NSString stringWithFormat:@"%d",tag]];
+}
 @end
