@@ -37,6 +37,9 @@
 		AAF54A1916C70D1B0076DF17 /* TVHTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagList.m */; };
 		AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1B16C70D270076DF17 /* TVHTag.m */; };
 		AAF54A1F16C7137B0076DF17 /* TVHTagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagListViewController.m */; };
+		AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2116C735710076DF17 /* TVHEpg.m */; };
+		AAF54A2516C735960076DF17 /* TVHEpgList.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2416C735960076DF17 /* TVHEpgList.m */; };
+		AAF54A5616C73A200076DF17 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAF54A5516C73A200076DF17 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +94,11 @@
 		AAF54A1B16C70D270076DF17 /* TVHTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTag.m; sourceTree = "<group>"; };
 		AAF54A1D16C7137B0076DF17 /* TVHTagListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagListViewController.h; sourceTree = "<group>"; };
 		AAF54A1E16C7137B0076DF17 /* TVHTagListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagListViewController.m; sourceTree = "<group>"; };
+		AAF54A2016C735710076DF17 /* TVHEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpg.h; sourceTree = "<group>"; };
+		AAF54A2116C735710076DF17 /* TVHEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpg.m; sourceTree = "<group>"; };
+		AAF54A2316C735960076DF17 /* TVHEpgList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgList.h; sourceTree = "<group>"; };
+		AAF54A2416C735960076DF17 /* TVHEpgList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgList.m; sourceTree = "<group>"; };
+		AAF54A5516C73A200076DF17 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,10 @@
 				AAF54A1816C70D1B0076DF17 /* TVHTagList.m */,
 				AAF54A1A16C70D270076DF17 /* TVHTag.h */,
 				AAF54A1B16C70D270076DF17 /* TVHTag.m */,
+				AAF54A2316C735960076DF17 /* TVHEpgList.h */,
+				AAF54A2416C735960076DF17 /* TVHEpgList.m */,
+				AAF54A2016C735710076DF17 /* TVHEpg.h */,
+				AAF54A2116C735710076DF17 /* TVHEpg.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -220,6 +232,7 @@
 				AAB39A0216BDB21900973F88 /* TVHAppDelegate.h */,
 				AAB39A0316BDB21900973F88 /* TVHAppDelegate.m */,
 				AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */,
+				AAF54A5516C73A200076DF17 /* Settings.bundle */,
 				AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */,
 				AAB399FA16BDB21900973F88 /* Supporting Files */,
 			);
@@ -298,6 +311,7 @@
 				AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */,
 				AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */,
 				AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */,
+				AAF54A5616C73A200076DF17 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +340,8 @@
 				AAF54A1916C70D1B0076DF17 /* TVHTagList.m in Sources */,
 				AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */,
 				AAF54A1F16C7137B0076DF17 /* TVHTagListViewController.m in Sources */,
+				AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */,
+				AAF54A2516C735960076DF17 /* TVHEpgList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

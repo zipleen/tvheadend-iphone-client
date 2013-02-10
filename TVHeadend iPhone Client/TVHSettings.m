@@ -22,15 +22,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
         NSString *ip = [defaults objectForKey:IP_KEY];
-        if(!ip) {
-            ip = [[NSString alloc] initWithFormat:@"192.168.1.250"];
-        }
-        
         NSString *port = [defaults objectForKey:PORT_KEY];
-        if(!port) {
-            port = [[NSString alloc] initWithFormat:@"9981"];
-        }
-        
         
         NSString *baseUrlString = [NSString stringWithFormat:@"http://%@:%@", ip, port];
         NSURL *url = [NSURL URLWithString:baseUrlString];
