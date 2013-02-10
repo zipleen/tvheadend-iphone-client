@@ -1,26 +1,25 @@
 //
-//  tvhclientChannelListViewController.m
+//  TVHTagListViewController.m
 //  TVHeadend iPhone Client
 //
-//  Created by zipleen on 2/2/13.
+//  Created by zipleen on 2/9/13.
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHChannelListViewController.h"
-#import "TVHChannel.h"
+#import "TVHTagListViewController.h"
 
-@interface TVHChannelListViewController ()
-@property (strong, nonatomic) TVHChannelList *channelList;
+@interface TVHTagListViewController ()
+@property (strong, nonatomic) TVHTagList *tagList;
 @end
 
-@implementation TVHChannelListViewController
-@synthesize channelList = _channelList;
+@implementation TVHTagListViewController
+@synthesize tagList = _tagList;
 
-- (TVHChannelList*) channelList {
-    if ( _channelList == nil) {
-        _channelList = [[TVHChannelList alloc] init];
+- (TVHTagList*) tagList {
+    if ( _tagList == nil) {
+        _tagList = [[TVHTagList alloc] init];
     }
-    return _channelList;
+    return _tagList;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -35,10 +34,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.channelList setDelegate:self];
-    [self.channelList fetchChannelList];
-    
+
+    [self.tagList setDelegate:self];
+    [self.tagList fetchTagList];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -57,23 +55,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.channelList count];
+    return [self.tagList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ChannelListTableItems";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"TagListTableItems";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+   
     if(cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    } 
+    }
     
     // Configure the cell...
-    TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
-    cell.textLabel.text = ch.name;
-    cell.detailTextLabel.text = ch.imageUrl;
+    TVHTag *tag = [self.tagList objectAtIndex:indexPath.row];
+    cell.textLabel.text = tag.name;
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:tag.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
     
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -133,7 +131,7 @@
      */
 }
 
-- (void)didLoadChannels {
+- (void)didLoadTags {
     [self.tableView reloadData];
 }
 
