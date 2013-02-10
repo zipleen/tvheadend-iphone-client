@@ -54,4 +54,8 @@
     
     return e.title;
 }
+
+- (NSComparisonResult)compareByName:(TVHChannel *)otherObject {
+    return [self.name compare:otherObject.name];
+}
 @end

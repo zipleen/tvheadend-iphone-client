@@ -39,6 +39,8 @@
     return _epgList;
 }
 
+
+
 - (void)fetchedData:(NSData *)responseData {
     //parse out the json data
     NSError* error;
@@ -70,8 +72,8 @@
                 
         [channels addObject:c];
     }
-    self.channels = [channels copy];
-    
+    self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByName:)];
+    //self.channels = [channels copy];
 }
 
 

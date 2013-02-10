@@ -40,9 +40,6 @@
     NSArray *entries = [json objectForKey:@"entries"];
     NSMutableArray *tags = [[NSMutableArray alloc] init];
     
-    // All channels
-    TVHTag *t = [[TVHTag alloc] initWithAllChannels];
-    [tags addObject:t];
     
     NSEnumerator *e = [entries objectEnumerator];
     id tag;
@@ -67,7 +64,14 @@
             [tags addObject:t];
         }
     }
-    self.tags = [tags copy];
+     
+    NSMutableArray *orderedTags = [[tags sortedArrayUsingSelector:@selector(compareByName:)] mutableCopy];
+    
+    // All channels
+    TVHTag *t = [[TVHTag alloc] initWithAllChannels];
+    [orderedTags insertObject:t atIndex:0];
+    
+    self.tags = [orderedTags copy];
     
 }
 

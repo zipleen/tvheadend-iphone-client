@@ -24,4 +24,7 @@
     return self;
 }
 
+- (NSComparisonResult)compareByName:(TVHTag *)otherObject {
+    return [self.name compare:otherObject.name];
+}
 @end
