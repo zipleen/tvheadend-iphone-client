@@ -95,7 +95,7 @@
             [self.delegate didLoadChannels];
             
             [self.epgList setDelegate:self];
-            [self.epgList fetchEpgList];
+            [self.epgList downloadEpgList];
             
            // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
            // NSLog(@"Request Successful, response '%@'", responseStr);

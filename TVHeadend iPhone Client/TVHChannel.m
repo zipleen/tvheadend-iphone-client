@@ -7,10 +7,12 @@
 //
 
 #import "TVHChannel.h"
+#import "TVHEpgList.h"
 #import "TVHSettings.h"
 
-@interface TVHChannel()
+@interface TVHChannel() <TVHEpgListDelegate>
 @property (nonatomic, strong) NSMutableArray *schedulePrograms;
+@property (nonatomic, weak) id <TVHChannelDelegate> delegate;
 @end
 
 @implementation TVHChannel
@@ -69,11 +71,38 @@
 }
 
 -(NSArray*) getEpg {
+    if( [self.schedulePrograms count] <= 1 ) {
+        TVHEpgList *epgList = [[TVHEpgList alloc] init];
+        [epgList setDelegate:self];
+        [epgList setFilterToChannelName:self.name];
+        
+        [epgList downloadEpgList];
+        
+        // only 1 program, we can return the array
+        return self.schedulePrograms;
+    }
+    
     NSArray *ordered = [self.schedulePrograms sortedArrayUsingSelector:@selector(compareByTime:)];
     return ordered;
 }
 
 -(NSInteger) countEpg {
     return [self.schedulePrograms count];
+}
+
+- (void) didLoadEpg:(TVHEpgList*)epgList {
+    NSArray *list = [epgList getEpgList];
+    NSEnumerator *e = [list objectEnumerator];
+    TVHEpg *epg;
+    while( epg = [e nextObject]) {
+        [self addEpg:epg];
+    }
+    [self.delegate didLoadEpgChannel];
+}
+
+- (void)setDelegate:(id <TVHChannelDelegate>)delegate {
+    if (_delegate != delegate) {
+        _delegate = delegate;
+    }
 }
 @end

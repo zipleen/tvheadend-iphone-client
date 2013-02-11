@@ -13,11 +13,13 @@
 @interface TVHEpgList() @property (nonatomic, strong) NSArray *epgList;
 @property (nonatomic, weak) id <TVHEpgListDelegate> delegate;
 @property (nonatomic) NSInteger lastEventCount;
+
 @end
 
 @implementation TVHEpgList
 @synthesize epgList = _epgList;
 @synthesize lastEventCount = _lastEventCount;
+@synthesize filterToChannelName = _filterToChannelName;
 
 + (id)sharedInstance {
     static TVHEpgList *__sharedInstance;
@@ -83,15 +85,25 @@
     NSLog(@"[Loaded EPG programs]: %d", [self.epgList count]);
 }
 
+- (NSDictionary*) getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   [NSString stringWithFormat:@"%d", start ],
+                                   @"start",
+                                   [NSString stringWithFormat:@"%d", limit ],
+                                   @"limit",nil];
+    
+    if( self.filterToChannelName != nil ) {
+        [params setObject:self.filterToChannelName forKey:@"channel"];
+    }
+    
+    return [params copy];
+}
+
 - (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit {
     TVHSettings *settings = [TVHSettings sharedInstance];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
     
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSString stringWithFormat:@"%d", start ],
-                            @"start",
-                            [NSString stringWithFormat:@"%d", limit ],
-                            @"limit",nil];
+    NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
     
     [httpClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
@@ -122,12 +134,18 @@
     }
 }
 
-- (void)fetchEpgList {
+- (void)downloadEpgList {
     [self retrieveEpgDataFromTVHeadend:0 limit:50];
 }
 
 - (NSArray*)getEpgList{
     return self.epgList;
+}
+
+- (void)setDelegate:(id <TVHEpgListDelegate>)delegate {
+    if (_delegate != delegate) {
+        _delegate = delegate;
+    }
 }
 
 @end

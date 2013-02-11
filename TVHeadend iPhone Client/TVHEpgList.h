@@ -16,8 +16,9 @@
 @end
 
 @interface TVHEpgList : NSObject
+@property (nonatomic, strong) NSString* filterToChannelName;
 + (id)sharedInstance;
-- (void)fetchEpgList;
+- (void)downloadEpgList;
 - (NSArray*)getEpgList;
 - (void)setDelegate:(id <TVHEpgListDelegate>)delegate;
 @end

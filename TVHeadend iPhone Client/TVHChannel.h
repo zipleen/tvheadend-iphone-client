@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHEpg.h"
+
 @class TVHEpg;
+
+@protocol TVHChannelDelegate <NSObject>
+- (void) didLoadEpgChannel;
+@end
 
 @interface TVHChannel : NSObject
 @property (nonatomic, strong) NSString *name;
@@ -25,4 +30,5 @@
 -(NSString*) getCurrentPlayingProgram;
 -(NSArray*) getEpg;
 -(NSInteger) countEpg;
+-(void)setDelegate:(id <TVHChannelDelegate>) delegate;
 @end

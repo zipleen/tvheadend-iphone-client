@@ -10,7 +10,7 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
 
-@interface TVHChannelListProgramsViewController ()
+@interface TVHChannelListProgramsViewController () <TVHChannelDelegate>
 @property (nonatomic, strong) NSArray *programList;
 @end
 
@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.channel setDelegate:self];
     self.programList = [self.channel getEpg];
 }
 
@@ -87,6 +88,10 @@
         [programDetail setEpg:epg];
         
     }
+}
+
+- (void)didLoadEpgChannel {
+    [self.tableView reloadData];
 }
 
 @end
