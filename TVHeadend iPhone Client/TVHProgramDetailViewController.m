@@ -40,4 +40,10 @@
 - (IBAction)addRecordToTVHeadend:(id)sender {
     
 }
+
+- (IBAction)startStreamInAnotherApp:(id)sender {
+    NSString *url = [NSString stringWithFormat:@"buzzplayer://%@", [self.channel streamURL] ];
+    NSURL *myURL = [NSURL URLWithString:url ];
+    [[UIApplication sharedApplication] openURL:myURL];
+}
 @end
