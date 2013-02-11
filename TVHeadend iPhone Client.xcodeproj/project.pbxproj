@@ -41,6 +41,7 @@
 		AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2116C735710076DF17 /* TVHEpg.m */; };
 		AAF54A2516C735960076DF17 /* TVHEpgList.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2416C735960076DF17 /* TVHEpgList.m */; };
 		AAF54A5616C73A200076DF17 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAF54A5516C73A200076DF17 /* Settings.bundle */; };
+		AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,8 @@
 		AAF54A2316C735960076DF17 /* TVHEpgList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgList.h; sourceTree = "<group>"; };
 		AAF54A2416C735960076DF17 /* TVHEpgList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgList.m; sourceTree = "<group>"; };
 		AAF54A5516C73A200076DF17 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		AAFCB6BF16C86EC800A64434 /* TVHProgramDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHProgramDetailViewController.h; sourceTree = "<group>"; };
+		AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHProgramDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,8 @@
 		AA7C3FD016C709380057E4C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AAFCB6BF16C86EC800A64434 /* TVHProgramDetailViewController.h */,
+				AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */,
 				AA21F11416C7F6A10041C505 /* TVHChannelListProgramsViewController.h */,
 				AA21F11516C7F6A10041C505 /* TVHChannelListProgramsViewController.m */,
 				AAB39A1916BDB29C00973F88 /* TVHChannelListViewController.h */,
@@ -348,6 +353,7 @@
 				AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */,
 				AAF54A2516C735960076DF17 /* TVHEpgList.m in Sources */,
 				AA21F11616C7F6A10041C505 /* TVHChannelListProgramsViewController.m in Sources */,
+				AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

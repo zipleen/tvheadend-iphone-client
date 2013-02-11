@@ -7,6 +7,7 @@
 //
 
 #import "TVHChannelListProgramsViewController.h"
+#import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
 
 @interface TVHChannelListProgramsViewController ()
@@ -76,15 +77,15 @@
 #pragma mark - Table view delegate
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"Show Channel Detail"]) {
+    if([segue.identifier isEqualToString:@"Show Program Detail"]) {
         
-        /*NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHTag *tag = [self.tagList objectAtIndex:path.row];
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        TVHEpg *epg = [self.programList objectAtIndex:path.row];
         
-        TVHChannelListViewController *ChannelList = segue.destinationViewController;
-        [ChannelList setFilterTagId: tag.tagid];
+        TVHProgramDetailViewController *programDetail = segue.destinationViewController;
+        [programDetail setChannel:self.channel];
+        [programDetail setEpg:epg];
         
-        [segue.destinationViewController setTitle:tag.name];*/
     }
 }
 
