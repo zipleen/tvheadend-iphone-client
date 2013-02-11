@@ -32,6 +32,9 @@
         
         NSString *ip = [defaults objectForKey:IP_KEY];
         NSString *port = [defaults objectForKey:PORT_KEY];
+        if(!port) {
+            port = @"9981";
+        }
         
         NSString *baseUrlString = [NSString stringWithFormat:@"http://%@:%@", ip, port];
         NSURL *url = [NSURL URLWithString:baseUrlString];

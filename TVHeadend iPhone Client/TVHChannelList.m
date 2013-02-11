@@ -101,7 +101,7 @@
            // NSLog(@"Request Successful, response '%@'", responseStr);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self.delegate didErrorLoading];
-            NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+            NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
         }];
     } 
 }
