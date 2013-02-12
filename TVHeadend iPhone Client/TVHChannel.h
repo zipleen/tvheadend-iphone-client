@@ -28,7 +28,14 @@
 -(NSString*) streamURL;
 -(void) addEpg:(TVHEpg*)epg;
 -(NSString*) getCurrentPlayingProgram;
--(NSArray*) getEpg;
+
+-(void) downloadRestOfEpg;
 -(NSInteger) countEpg;
+-(NSString*) dateStringForDay:(NSInteger)day;
+-(NSArray*) programsForDay:(NSInteger)day;
+-(TVHEpg*) programDetailForDay:(NSInteger)day index:(NSInteger)program;
+-(NSInteger) numberOfProgramsInDay:(NSInteger)section;
+-(NSInteger) totalCountOfDaysEpg;
+
 -(void)setDelegate:(id <TVHChannelDelegate>) delegate;
 @end

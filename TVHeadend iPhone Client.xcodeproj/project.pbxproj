@@ -10,6 +10,7 @@
 		AA1D426D16BEC2BA00F42F7E /* TVHChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHChannelList.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelListProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelListProgramsViewController.m */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
+		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7C3FCB16C6CA400057E4C4 /* tv.png */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
 		AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021716C6B41700673DF5 /* AFHTTPClient.m */; };
@@ -51,6 +52,8 @@
 		AA21F11516C7F6A10041C505 /* TVHChannelListProgramsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelListProgramsViewController.m; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
+		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
+		AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelEpg.m; sourceTree = "<group>"; };
 		AA7C3FCB16C6CA400057E4C4 /* tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv.png; sourceTree = "<group>"; };
 		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
 		AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettings.m; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
 				AA1D426B16BEC2BA00F42F7E /* TVHChannelList.h */,
 				AA1D426C16BEC2BA00F42F7E /* TVHChannelList.m */,
+				AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */,
+				AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */,
 				AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */,
 				AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */,
 				AAF54A1716C70D1B0076DF17 /* TVHTagList.h */,
@@ -354,6 +359,7 @@
 				AAF54A2516C735960076DF17 /* TVHEpgList.m in Sources */,
 				AA21F11616C7F6A10041C505 /* TVHChannelListProgramsViewController.m in Sources */,
 				AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */,
+				AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +405,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iphone developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iphone developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -414,6 +421,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -431,7 +440,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iphone developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iphone developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -439,6 +449,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

@@ -11,11 +11,11 @@
 #import "TVHEpg.h"
 
 @interface TVHChannelListProgramsViewController () <TVHChannelDelegate>
-@property (nonatomic, strong) NSArray *programList;
+
 @end
 
 @implementation TVHChannelListProgramsViewController
-@synthesize channel = _channel;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     [self.channel setDelegate:self];
-    self.programList = [self.channel getEpg];
+    [self.channel downloadRestOfEpg];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,16 +41,19 @@
 
 #pragma mark - Table view data source
 
-/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}*/
+    return [self.channel totalCountOfDaysEpg];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
+{
+    return [self.channel dateStringForDay:section];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.programList count];
+    return [self.channel numberOfProgramsInDay:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,7 +65,7 @@
     }
     
     // Configure the cell...
-    TVHEpg *epg = [self.programList objectAtIndex:indexPath.row];
+    TVHEpg *epg = [self.channel programDetailForDay:indexPath.section index:indexPath.row];
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     timeFormatter.dateFormat = @"HH:mm";
@@ -81,7 +84,7 @@
     if([segue.identifier isEqualToString:@"Show Program Detail"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHEpg *epg = [self.programList objectAtIndex:path.row];
+        TVHEpg *epg = [self.channel programDetailForDay:path.section index:path.row];
         
         TVHProgramDetailViewController *programDetail = segue.destinationViewController;
         [programDetail setChannel:self.channel];

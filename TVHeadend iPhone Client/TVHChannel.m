@@ -8,6 +8,7 @@
 
 #import "TVHChannel.h"
 #import "TVHEpgList.h"
+#import "TVHChannelEpg.h"
 #import "TVHSettings.h"
 
 @interface TVHChannel() <TVHEpgListDelegate>
@@ -47,47 +48,86 @@
     return [NSString stringWithFormat:@"%@/stream/channelid/%d?mux=pass", tvh.baseURL, self.chid];
 }
 
--(void)addEpg:(TVHEpg*) epg {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start == %@", epg.start];
+-(TVHChannelEpg*) getObjectInsideSchedulePrograms:(NSString*)dateString {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date == %@", dateString];
     NSArray *filteredArray = [self.schedulePrograms filteredArrayUsingPredicate:predicate];
-    
-    if ([filteredArray count] == 0) {
-        [self.schedulePrograms addObject:epg];
+    if ([filteredArray count] > 0) {
+        return [filteredArray objectAtIndex:0];
+    } else {
+        TVHChannelEpg *tvh = [[TVHChannelEpg alloc] init];
+        [tvh setDate:dateString];
+        [self.schedulePrograms addObject:tvh];
+        return tvh;
     }
 }
 
+-(void) addEpg:(TVHEpg*)epg {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"MM/dd/yy";
+    NSString *dateString = [dateFormatter stringFromDate:epg.start];
+    
+    TVHChannelEpg *tvhepg = [self getObjectInsideSchedulePrograms:dateString];
+    [tvhepg.programs addObject:epg];
+}
+
 -(NSString*) getCurrentPlayingProgram {
-    NSLog(@"Has %d for %@", [self.schedulePrograms count] ,self.name);
-    NSArray *ordered = [self.schedulePrograms sortedArrayUsingSelector:@selector(compareByTime:)];
-    if([ordered count]>0) {
-        TVHEpg *e = [ordered objectAtIndex:0];
-        return e.title;
+    if ([self.schedulePrograms count]==0) {
+        NSLog(@"No EPG for %@", self.name);
+        return nil;
     }
-    return nil;
+    TVHChannelEpg *p = [self.schedulePrograms objectAtIndex:0];
+    NSLog(@"Has %d for %@", [p.programs count] ,self.name);
+    return [[p.programs objectAtIndex:0] title];
 }
 
 - (NSComparisonResult)compareByName:(TVHChannel *)otherObject {
     return [self.name compare:otherObject.name];
 }
 
--(NSArray*) getEpg {
-    if( [self.schedulePrograms count] <= 1 ) {
-        TVHEpgList *epgList = [[TVHEpgList alloc] init];
-        [epgList setDelegate:self];
-        [epgList setFilterToChannelName:self.name];
-        
-        [epgList downloadEpgList];
-        
-        // only 1 program, we can return the array
-        return self.schedulePrograms;
+- (NSInteger) countEpg {
+    NSInteger count = 0;
+    TVHChannelEpg *epg;
+    NSEnumerator *e = [self.schedulePrograms objectEnumerator];
+    while( epg = [e nextObject]) {
+        count += [epg.programs count];
     }
-    
-    NSArray *ordered = [self.schedulePrograms sortedArrayUsingSelector:@selector(compareByTime:)];
-    return ordered;
+    return count;
 }
 
--(NSInteger) countEpg {
+-(void) downloadRestOfEpg {
+    // spawn a new epgList so we can set a filter to the channel
+    TVHEpgList *epgList = [[TVHEpgList alloc] init];
+    [epgList setDelegate:self];
+    [epgList setFilterToChannelName:self.name];
+    
+    [epgList downloadEpgList];
+}
+
+-(NSArray*) programsForDay:(NSInteger)day {
+    if ( [self.schedulePrograms count] == 0 ) {
+        return nil;
+    }
+    
+    return [[self.schedulePrograms objectAtIndex:day] copy];
+    //NSArray *ordered = [self.schedulePrograms sortedArrayUsingSelector:@selector(compareByTime:)];
+}
+
+-(TVHEpg*) programDetailForDay:(NSInteger)day index:(NSInteger)program {
+    return [[[self.schedulePrograms objectAtIndex:day] programs] objectAtIndex:program];
+}
+
+-(NSInteger) totalCountOfDaysEpg {
     return [self.schedulePrograms count];
+}
+
+-(NSString*) dateStringForDay:(NSInteger)day {
+    TVHChannelEpg *epg = [self.schedulePrograms objectAtIndex:day];
+    return [epg date];
+}
+
+-(NSInteger) numberOfProgramsInDay:(NSInteger)section{
+    return [[[self.schedulePrograms objectAtIndex:section] programs] count];
 }
 
 - (void) didLoadEpg:(TVHEpgList*)epgList {
