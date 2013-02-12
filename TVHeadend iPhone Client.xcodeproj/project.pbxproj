@@ -9,9 +9,23 @@
 /* Begin PBXBuildFile section */
 		AA1D426D16BEC2BA00F42F7E /* TVHChannelList.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHChannelList.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelListProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelListProgramsViewController.m */; };
+		AA2AEB2416CB0839006B071C /* comp.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB1E16CB0839006B071C /* comp.png */; };
+		AA2AEB2516CB0839006B071C /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB1F16CB0839006B071C /* play.png */; };
+		AA2AEB2616CB0839006B071C /* rec.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB2016CB0839006B071C /* rec.png */; };
+		AA2AEB2716CB0839006B071C /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB2116CB0839006B071C /* search.png */; };
+		AA2AEB2816CB0839006B071C /* stat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB2216CB0839006B071C /* stat.png */; };
+		AA2AEB2916CB0839006B071C /* stat2.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB2316CB0839006B071C /* stat2.png */; };
+		AA2AEB2D16CB098D006B071C /* tag.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB2C16CB098D006B071C /* tag.png */; };
+		AA2AEB2F16CB0A9B006B071C /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB2E16CB0A9B006B071C /* calendar.png */; };
+		AA2AEB3116CB0B06006B071C /* tv.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3016CB0B06006B071C /* tv.png */; };
+		AA2AEB3816CB0CC5006B071C /* rec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3216CB0CC5006B071C /* rec@2x.png */; };
+		AA2AEB3916CB0CC5006B071C /* stat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3316CB0CC5006B071C /* stat@2x.png */; };
+		AA2AEB3A16CB0CC5006B071C /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3416CB0CC5006B071C /* search@2x.png */; };
+		AA2AEB3B16CB0CC5006B071C /* tv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3516CB0CC5006B071C /* tv@2x.png */; };
+		AA2AEB3C16CB0CC5006B071C /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3616CB0CC5006B071C /* play@2x.png */; };
+		AA2AEB3D16CB0CC5006B071C /* comp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3716CB0CC5006B071C /* comp@2x.png */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
-		AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */ = {isa = PBXBuildFile; fileRef = AA7C3FCB16C6CA400057E4C4 /* tv.png */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
 		AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021716C6B41700673DF5 /* AFHTTPClient.m */; };
 		AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021916C6B41700673DF5 /* AFHTTPRequestOperation.m */; };
@@ -30,9 +44,6 @@
 		AAB399FE16BDB21900973F88 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAB399FC16BDB21900973F88 /* InfoPlist.strings */; };
 		AAB39A0016BDB21900973F88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB399FF16BDB21900973F88 /* main.m */; };
 		AAB39A0416BDB21900973F88 /* TVHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB39A0316BDB21900973F88 /* TVHAppDelegate.m */; };
-		AAB39A0616BDB21900973F88 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0516BDB21900973F88 /* Default.png */; };
-		AAB39A0816BDB21900973F88 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0716BDB21900973F88 /* Default@2x.png */; };
-		AAB39A0A16BDB21900973F88 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0916BDB21900973F88 /* Default-568h@2x.png */; };
 		AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */; };
 		AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */; };
 		AAB39A1B16BDB29C00973F88 /* TVHChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB39A1A16BDB29C00973F88 /* TVHChannelListViewController.m */; };
@@ -50,11 +61,25 @@
 		AA1D426C16BEC2BA00F42F7E /* TVHChannelList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelList.m; sourceTree = "<group>"; };
 		AA21F11416C7F6A10041C505 /* TVHChannelListProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelListProgramsViewController.h; sourceTree = "<group>"; };
 		AA21F11516C7F6A10041C505 /* TVHChannelListProgramsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelListProgramsViewController.m; sourceTree = "<group>"; };
+		AA2AEB1E16CB0839006B071C /* comp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comp.png; sourceTree = "<group>"; };
+		AA2AEB1F16CB0839006B071C /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		AA2AEB2016CB0839006B071C /* rec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rec.png; sourceTree = "<group>"; };
+		AA2AEB2116CB0839006B071C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		AA2AEB2216CB0839006B071C /* stat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat.png; sourceTree = "<group>"; };
+		AA2AEB2316CB0839006B071C /* stat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat2.png; sourceTree = "<group>"; };
+		AA2AEB2C16CB098D006B071C /* tag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tag.png; sourceTree = "<group>"; };
+		AA2AEB2E16CB0A9B006B071C /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		AA2AEB3016CB0B06006B071C /* tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv.png; sourceTree = "<group>"; };
+		AA2AEB3216CB0CC5006B071C /* rec@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rec@2x.png"; sourceTree = "<group>"; };
+		AA2AEB3316CB0CC5006B071C /* stat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stat@2x.png"; sourceTree = "<group>"; };
+		AA2AEB3416CB0CC5006B071C /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
+		AA2AEB3516CB0CC5006B071C /* tv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv@2x.png"; sourceTree = "<group>"; };
+		AA2AEB3616CB0CC5006B071C /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		AA2AEB3716CB0CC5006B071C /* comp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comp@2x.png"; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
 		AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelEpg.m; sourceTree = "<group>"; };
-		AA7C3FCB16C6CA400057E4C4 /* tv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv.png; sourceTree = "<group>"; };
 		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
 		AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettings.m; sourceTree = "<group>"; };
 		AA91021616C6B41700673DF5 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -149,13 +174,34 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		AA2AEB1D16CB0839006B071C /* images */ = {
+			isa = PBXGroup;
+			children = (
+				AA2AEB3216CB0CC5006B071C /* rec@2x.png */,
+				AA2AEB3316CB0CC5006B071C /* stat@2x.png */,
+				AA2AEB3416CB0CC5006B071C /* search@2x.png */,
+				AA2AEB3516CB0CC5006B071C /* tv@2x.png */,
+				AA2AEB3616CB0CC5006B071C /* play@2x.png */,
+				AA2AEB3716CB0CC5006B071C /* comp@2x.png */,
+				AA2AEB3016CB0B06006B071C /* tv.png */,
+				AA2AEB2E16CB0A9B006B071C /* calendar.png */,
+				AA2AEB2C16CB098D006B071C /* tag.png */,
+				AA2AEB1E16CB0839006B071C /* comp.png */,
+				AA2AEB1F16CB0839006B071C /* play.png */,
+				AA2AEB2016CB0839006B071C /* rec.png */,
+				AA2AEB2116CB0839006B071C /* search.png */,
+				AA2AEB2216CB0839006B071C /* stat.png */,
+				AA2AEB2316CB0839006B071C /* stat2.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		AA7C3FCA16C6C9870057E4C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				AAB39A0516BDB21900973F88 /* Default.png */,
 				AAB39A0716BDB21900973F88 /* Default@2x.png */,
 				AAB39A0916BDB21900973F88 /* Default-568h@2x.png */,
-				AA7C3FCB16C6CA400057E4C4 /* tv.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -257,6 +303,7 @@
 		AAB399FA16BDB21900973F88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA2AEB1D16CB0839006B071C /* images */,
 				AA7C3FCA16C6C9870057E4C4 /* Resources */,
 				AA9101AA16C6B2C500673DF5 /* Framework */,
 				AAB399FB16BDB21900973F88 /* TVHeadend iPhone Client-Info.plist */,
@@ -320,13 +367,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAB399FE16BDB21900973F88 /* InfoPlist.strings in Resources */,
-				AAB39A0616BDB21900973F88 /* Default.png in Resources */,
-				AAB39A0816BDB21900973F88 /* Default@2x.png in Resources */,
-				AAB39A0A16BDB21900973F88 /* Default-568h@2x.png in Resources */,
 				AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */,
 				AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */,
-				AA7C3FCC16C6CA400057E4C4 /* tv.png in Resources */,
 				AAF54A5616C73A200076DF17 /* Settings.bundle in Resources */,
+				AA2AEB2416CB0839006B071C /* comp.png in Resources */,
+				AA2AEB2516CB0839006B071C /* play.png in Resources */,
+				AA2AEB2616CB0839006B071C /* rec.png in Resources */,
+				AA2AEB2716CB0839006B071C /* search.png in Resources */,
+				AA2AEB2816CB0839006B071C /* stat.png in Resources */,
+				AA2AEB2916CB0839006B071C /* stat2.png in Resources */,
+				AA2AEB2D16CB098D006B071C /* tag.png in Resources */,
+				AA2AEB2F16CB0A9B006B071C /* calendar.png in Resources */,
+				AA2AEB3116CB0B06006B071C /* tv.png in Resources */,
+				AA2AEB3816CB0CC5006B071C /* rec@2x.png in Resources */,
+				AA2AEB3916CB0CC5006B071C /* stat@2x.png in Resources */,
+				AA2AEB3A16CB0CC5006B071C /* search@2x.png in Resources */,
+				AA2AEB3B16CB0CC5006B071C /* tv@2x.png in Resources */,
+				AA2AEB3C16CB0CC5006B071C /* play@2x.png in Resources */,
+				AA2AEB3D16CB0CC5006B071C /* comp@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -67,7 +67,7 @@
     TVHTag *tag = [self.tagList objectAtIndex:indexPath.row];
     cell.textLabel.text = tag.name;
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:tag.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:tag.imageUrl] placeholderImage:[UIImage imageNamed:@"tag.png"]];
     
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
