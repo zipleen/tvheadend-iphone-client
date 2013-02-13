@@ -79,8 +79,6 @@
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
     
-    cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight;
-    
     if( [ch countEpg] > 0 ) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {

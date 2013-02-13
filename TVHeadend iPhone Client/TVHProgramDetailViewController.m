@@ -7,6 +7,7 @@
 //
 
 #import "TVHProgramDetailViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TVHProgramDetailViewController ()
 
@@ -21,7 +22,8 @@
     [super viewDidLoad];
     self.programTitle.text = self.epg.title;
     self.programDescription.text = self.epg.description;
-    self.programImage.image = [UIImage imageNamed:@"tv.png"];
+    [self.programImage setImageWithURL:[NSURL URLWithString:self.channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
+    //self.programImage.image = [UIImage imageNamed:@"tv.png"];
 }
 
 - (void)didReceiveMemoryWarning
