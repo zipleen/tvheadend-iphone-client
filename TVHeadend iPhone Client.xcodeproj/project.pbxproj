@@ -177,21 +177,21 @@
 		AA2AEB1D16CB0839006B071C /* images */ = {
 			isa = PBXGroup;
 			children = (
-				AA2AEB3216CB0CC5006B071C /* rec@2x.png */,
-				AA2AEB3316CB0CC5006B071C /* stat@2x.png */,
-				AA2AEB3416CB0CC5006B071C /* search@2x.png */,
-				AA2AEB3516CB0CC5006B071C /* tv@2x.png */,
-				AA2AEB3616CB0CC5006B071C /* play@2x.png */,
-				AA2AEB3716CB0CC5006B071C /* comp@2x.png */,
-				AA2AEB3016CB0B06006B071C /* tv.png */,
 				AA2AEB2E16CB0A9B006B071C /* calendar.png */,
-				AA2AEB2C16CB098D006B071C /* tag.png */,
 				AA2AEB1E16CB0839006B071C /* comp.png */,
+				AA2AEB3716CB0CC5006B071C /* comp@2x.png */,
 				AA2AEB1F16CB0839006B071C /* play.png */,
+				AA2AEB3616CB0CC5006B071C /* play@2x.png */,
 				AA2AEB2016CB0839006B071C /* rec.png */,
+				AA2AEB3216CB0CC5006B071C /* rec@2x.png */,
 				AA2AEB2116CB0839006B071C /* search.png */,
+				AA2AEB3416CB0CC5006B071C /* search@2x.png */,
 				AA2AEB2216CB0839006B071C /* stat.png */,
 				AA2AEB2316CB0839006B071C /* stat2.png */,
+				AA2AEB3316CB0CC5006B071C /* stat@2x.png */,
+				AA2AEB2C16CB098D006B071C /* tag.png */,
+				AA2AEB3016CB0B06006B071C /* tv.png */,
+				AA2AEB3516CB0CC5006B071C /* tv@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";

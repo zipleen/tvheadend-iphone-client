@@ -8,7 +8,7 @@
         <scene sceneID="Tuh-NU-G7h">
             <objects>
                 <navigationController id="oHm-oh-kZN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Channels" image="tv.png" id="C7a-O9-dd5"/>
+                    <tabBarItem key="tabBarItem" title="Channels" image="comp.png" id="C7a-O9-dd5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FfX-BR-S75">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -364,9 +364,9 @@
     </scenes>
     <resources>
         <image name="calendar.png" width="36" height="34"/>
+        <image name="comp.png" width="32" height="32"/>
         <image name="rec.png" width="32" height="32"/>
         <image name="stat.png" width="32" height="32"/>
-        <image name="tv.png" width="32" height="32"/>
     </resources>
     <classes>
         <class className="TVHChannelListProgramsViewController" superclassName="UITableViewController">
