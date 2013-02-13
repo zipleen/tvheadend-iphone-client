@@ -9,6 +9,7 @@
 #import "TVHAppDelegate.h"
 #import "TVHSettings.h"
 #import "SDURLCache.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation TVHAppDelegate
 
@@ -29,6 +30,7 @@
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
                                                              diskPath:[SDURLCache defaultCachePath]];
     [NSURLCache setSharedURLCache:urlCache];
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     return YES;
 }
 							
