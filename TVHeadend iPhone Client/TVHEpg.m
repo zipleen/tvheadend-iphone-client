@@ -29,4 +29,22 @@
 - (NSComparisonResult)compareByTime:(TVHEpg *)otherObject {
     return [self.start compare:otherObject.start];
 }
+
+- (float)progress {
+    
+    NSDate *now = [NSDate date];
+    NSTimeInterval actualLength = [now timeIntervalSinceDate:self.start];
+    NSTimeInterval programLength = [self.end timeIntervalSinceDate:self.start];
+    
+    
+    if( [now compare:self.start] == NSOrderedAscending  ) {
+        return 0;
+    }
+    if( [now compare:self.end] == NSOrderedDescending ) {
+        return 100;
+    }
+    
+    return actualLength / programLength;
+}
+
 @end

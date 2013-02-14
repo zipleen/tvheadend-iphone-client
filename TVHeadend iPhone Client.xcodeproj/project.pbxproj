@@ -48,6 +48,8 @@
 		AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */; };
 		AAB39A1B16BDB29C00973F88 /* TVHChannelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB39A1A16BDB29C00973F88 /* TVHChannelListViewController.m */; };
 		AACE488D16CC30F700FE928B /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE488C16CC30F700FE928B /* SDURLCache.m */; };
+		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
+		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
 		AAF54A1916C70D1B0076DF17 /* TVHTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagList.m */; };
 		AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1B16C70D270076DF17 /* TVHTag.m */; };
 		AAF54A1F16C7137B0076DF17 /* TVHTagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagListViewController.m */; };
@@ -123,6 +125,8 @@
 		AAB39A1A16BDB29C00973F88 /* TVHChannelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelListViewController.m; sourceTree = "<group>"; };
 		AACE488B16CC30F700FE928B /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = SDURLCache/SDURLCache.h; sourceTree = SOURCE_ROOT; };
 		AACE488C16CC30F700FE928B /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = SDURLCache/SDURLCache.m; sourceTree = SOURCE_ROOT; };
+		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
+		AACE488F16CC6F1800FE928B /* tv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv2@2x.png"; sourceTree = "<group>"; };
 		AAF54A1716C70D1B0076DF17 /* TVHTagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagList.h; sourceTree = "<group>"; };
 		AAF54A1816C70D1B0076DF17 /* TVHTagList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagList.m; sourceTree = "<group>"; };
 		AAF54A1A16C70D270076DF17 /* TVHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTag.h; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				AA2AEB2C16CB098D006B071C /* tag.png */,
 				AA2AEB3016CB0B06006B071C /* tv.png */,
 				AA2AEB3516CB0CC5006B071C /* tv@2x.png */,
+				AACE488E16CC6F1800FE928B /* tv2.png */,
+				AACE488F16CC6F1800FE928B /* tv2@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -390,6 +396,8 @@
 				AA2AEB3B16CB0CC5006B071C /* tv@2x.png in Resources */,
 				AA2AEB3C16CB0CC5006B071C /* play@2x.png in Resources */,
 				AA2AEB3D16CB0CC5006B071C /* comp@2x.png in Resources */,
+				AACE489016CC6F1900FE928B /* tv2.png in Resources */,
+				AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

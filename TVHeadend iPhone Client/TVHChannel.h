@@ -27,7 +27,7 @@
 -(bool) hasTag:(NSInteger)tag;
 -(NSString*) streamURL;
 -(void) addEpg:(TVHEpg*)epg;
--(NSString*) getCurrentPlayingProgram;
+-(TVHEpg*) currentPlayingProgram;
 
 -(void) downloadRestOfEpg;
 -(NSInteger) countEpg;

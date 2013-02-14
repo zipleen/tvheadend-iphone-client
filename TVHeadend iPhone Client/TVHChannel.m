@@ -71,14 +71,14 @@
     [tvhepg.programs addObject:epg];
 }
 
--(NSString*) getCurrentPlayingProgram {
+-(TVHEpg*) currentPlayingProgram {
     if ([self.schedulePrograms count]==0) {
         NSLog(@"No EPG for %@", self.name);
         return nil;
     }
     TVHChannelEpg *p = [self.schedulePrograms objectAtIndex:0];
     NSLog(@"Has %d for %@", [p.programs count] ,self.name);
-    return [[p.programs objectAtIndex:0] title];
+    return [p.programs objectAtIndex:0];
 }
 
 - (NSComparisonResult)compareByName:(TVHChannel *)otherObject {

@@ -74,10 +74,27 @@
     
     // Configure the cell...
     TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
-    cell.textLabel.text = ch.name;
-    cell.detailTextLabel.text = [ch getCurrentPlayingProgram];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm";
+    TVHEpg *currentPlayingProgram = [ch currentPlayingProgram];
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
+    UILabel *channelNameLabel = (UILabel *)[cell viewWithTag:100];
+	UILabel *currentProgramLabel = (UILabel *)[cell viewWithTag:101];
+	UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
+    UILabel *currentTimeProgramLabel = (UILabel *)[cell viewWithTag:103];
+    UIProgressView *currentTimeProgress = (UIProgressView*)[cell viewWithTag:104];
+	currentProgramLabel.text = nil;
+    currentTimeProgramLabel.text = nil;
+    currentTimeProgress.hidden = true;
+    
+    channelNameLabel.text = ch.name;
+    [channelImage setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    if(currentPlayingProgram) {
+        currentProgramLabel.text = currentPlayingProgram.title;
+        currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
+        currentTimeProgress.hidden = false;
+        currentTimeProgress.progress = [currentPlayingProgram progress];
+    }
     
     if( [ch countEpg] > 0 ) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

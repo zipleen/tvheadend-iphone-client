@@ -19,4 +19,5 @@
 
 - (void) setStartFromInteger:(NSInteger)start;
 - (void) setEndFromInteger:(NSInteger)end;
+- (float) progress;
 @end
