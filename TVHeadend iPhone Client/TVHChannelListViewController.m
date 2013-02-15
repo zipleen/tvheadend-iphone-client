@@ -96,21 +96,12 @@
         currentTimeProgress.progress = [currentPlayingProgram progress];
     }
     
-    if( [ch countEpg] > 0 ) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    
     return cell;
 }
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    TVHChannel *channel = [self.channelList objectAtIndex:indexPath.row];
-    if( [channel countEpg]>0 ) {
-       [self performSegueWithIdentifier:@"Show Channel Programs" sender:self]; 
-    }
+    [self performSegueWithIdentifier:@"Show Channel Programs" sender:self]; 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

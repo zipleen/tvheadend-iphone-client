@@ -182,20 +182,20 @@
         <scene sceneID="GxO-Zf-lVI">
             <objects>
                 <tableViewController id="J4O-6S-mIr" customClass="TVHChannelListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="KgO-K1-8wq">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" id="KgO-K1-8wq">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChannelListTableItems" rowHeight="62" id="pKk-My-OcX">
-                                <rect key="frame" x="0.0" y="22" width="320" height="62"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChannelListTableItems" rowHeight="58" id="pKk-My-OcX">
+                                <rect key="frame" x="0.0" y="22" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="61"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" id="kaK-YP-hpt">
-                                            <rect key="frame" x="4" y="4" width="60" height="50"/>
+                                            <rect key="frame" x="4" y="3" width="60" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="My Channel Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g6h-GJ-DyD">
@@ -392,7 +392,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addRecordToTVHeadend:"/>
-                <relationship kind="action" name="startStreamInAnotherApp:"/>
                 <relationship kind="outlet" name="programDescription" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
