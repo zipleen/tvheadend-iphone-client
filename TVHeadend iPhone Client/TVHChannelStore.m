@@ -6,35 +6,35 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHChannelList.h"
+#import "TVHChannelStore.h"
 #import "TVHEpg.h"
 #import "TVHSettings.h"
 
-@interface TVHChannelList ()
+@interface TVHChannelStore ()
 @property (nonatomic, strong) NSArray *channels;
-@property (nonatomic, weak) id <TVHChannelListDelegate> delegate;
-@property (nonatomic, weak) TVHEpgList *epgList;
+@property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
+@property (nonatomic, weak) TVHEpgStore *epgList;
 @end
 
-@implementation TVHChannelList 
+@implementation TVHChannelStore 
 @synthesize channels = _channels;
 @synthesize delegate = _delegate;
 @synthesize filterTag = _filterTag;
 @synthesize epgList = _epgList;
 
 + (id)sharedInstance {
-    static TVHChannelList *__sharedInstance;
+    static TVHChannelStore *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHChannelList alloc] init];
+        __sharedInstance = [[TVHChannelStore alloc] init];
     });
     
     return __sharedInstance;
 }
 
-- (TVHEpgList*) epgList {
+- (TVHEpgStore*) epgList {
     if(!_epgList){
-        _epgList = [TVHEpgList sharedInstance];
+        _epgList = [TVHEpgStore sharedInstance];
     }
     return _epgList;
 }
@@ -119,7 +119,7 @@
 
 #pragma mark EPG delegatee stuff
 
-- (void) didLoadEpg:(TVHEpgList*)epgList {
+- (void) didLoadEpg:(TVHEpgStore*)epgList {
     // for each epg
     NSArray *list = [epgList getEpgList];
     NSEnumerator *e = [list objectEnumerator];
@@ -164,7 +164,7 @@
     }
 }
 
-- (void)setDelegate:(id <TVHChannelListDelegate>)delegate {
+- (void)setDelegate:(id <TVHChannelStoreDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
     }

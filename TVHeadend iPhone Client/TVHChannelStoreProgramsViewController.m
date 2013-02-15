@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHChannelListProgramsViewController.h"
+#import "TVHChannelStoreProgramsViewController.h"
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
 
-@interface TVHChannelListProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
+@interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
 
 @end
 
-@implementation TVHChannelListProgramsViewController
+@implementation TVHChannelStoreProgramsViewController
 
 
 - (id)initWithStyle:(UITableViewStyle)style

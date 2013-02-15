@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
-#import "TVHEpgList.h"
+#import "TVHEpgStore.h"
 #import "AFNetworking.h"
 
-@protocol TVHChannelListDelegate <NSObject>
+@protocol TVHChannelStoreDelegate <NSObject>
 
 -(void) didLoadChannels;
 -(void) didErrorLoading;
 @end
 
-@interface TVHChannelList : AFHTTPClient <TVHEpgListDelegate>
+@interface TVHChannelStore : AFHTTPClient <TVHEpgStoreDelegate>
 
 @property (nonatomic) NSInteger filterTag;
 + (id)sharedInstance;
@@ -25,6 +25,6 @@
 
 - (TVHChannel *) objectAtIndex:(int) row;
 - (int) count;
-- (void)setDelegate:(id <TVHChannelListDelegate>)delegate;
+- (void)setDelegate:(id <TVHChannelStoreDelegate>)delegate;
 
 @end

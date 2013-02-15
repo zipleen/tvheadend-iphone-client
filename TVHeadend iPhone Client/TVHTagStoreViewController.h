@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TVHTagList.h"
+#import "TVHTagStore.h"
 
-@interface TVHTagListViewController : UITableViewController <TVHTagListDelegate>
+@interface TVHTagStoreViewController : UITableViewController <TVHTagStoreDelegate>
 
 @end

@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TVHChannelList.h"
+#import "TVHChannelStore.h"
 
-@interface TVHChannelListViewController : UITableViewController <TVHChannelListDelegate>
+@interface TVHChannelStoreViewController : UITableViewController <TVHChannelStoreDelegate>
 @property (nonatomic) NSInteger filterTagId;
 @end

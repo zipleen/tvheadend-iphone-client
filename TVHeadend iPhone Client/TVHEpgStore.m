@@ -6,26 +6,26 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHEpgList.h"
+#import "TVHEpgStore.h"
 #import "TVHEpg.h"
 #import "TVHSettings.h"
 
-@interface TVHEpgList() @property (nonatomic, strong) NSArray *epgList;
-@property (nonatomic, weak) id <TVHEpgListDelegate> delegate;
+@interface TVHEpgStore() @property (nonatomic, strong) NSArray *epgList;
+@property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
 @property (nonatomic) NSInteger lastEventCount;
 
 @end
 
-@implementation TVHEpgList
+@implementation TVHEpgStore
 @synthesize epgList = _epgList;
 @synthesize lastEventCount = _lastEventCount;
 @synthesize filterToChannelName = _filterToChannelName;
 
 + (id)sharedInstance {
-    static TVHEpgList *__sharedInstance;
+    static TVHEpgStore *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHEpgList alloc] init];
+        __sharedInstance = [[TVHEpgStore alloc] init];
     });
     
     return __sharedInstance;
@@ -142,7 +142,7 @@
     return self.epgList;
 }
 
-- (void)setDelegate:(id <TVHEpgListDelegate>)delegate {
+- (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
     }

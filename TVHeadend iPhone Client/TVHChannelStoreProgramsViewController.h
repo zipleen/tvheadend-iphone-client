@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TVHChannel.h"
 
-@interface TVHChannelListProgramsViewController : UITableViewController
+@interface TVHChannelStoreProgramsViewController : UITableViewController
 - (IBAction)playStream:(id)sender;
 @property (nonatomic, weak) TVHChannel *channel;
 @end

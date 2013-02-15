@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHChannelListViewController.h"
-#import "TVHChannelListProgramsViewController.h"
+#import "TVHChannelStoreViewController.h"
+#import "TVHChannelStoreProgramsViewController.h"
 #import "TVHChannel.h"
 
-@interface TVHChannelListViewController ()
-@property (strong, nonatomic) TVHChannelList *channelList;
+@interface TVHChannelStoreViewController ()
+@property (strong, nonatomic) TVHChannelStore *channelList;
 @end
 
-@implementation TVHChannelListViewController
+@implementation TVHChannelStoreViewController
 @synthesize channelList = _channelList;
 @synthesize filterTagId = _filterTagId;
 
@@ -25,9 +25,9 @@
     return _filterTagId;
 }
 
-- (TVHChannelList*) channelList {
+- (TVHChannelStore*) channelList {
     if ( _channelList == nil) {
-        _channelList = [TVHChannelList sharedInstance];
+        _channelList = [TVHChannelStore sharedInstance];
     }
     return _channelList;
 }
@@ -111,7 +111,7 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHChannel *channel = [self.channelList objectAtIndex:path.row];
         
-        TVHChannelListProgramsViewController *channelPrograms = segue.destinationViewController;
+        TVHChannelStoreProgramsViewController *channelPrograms = segue.destinationViewController;
         [channelPrograms setChannel:channel];
         
         [segue.destinationViewController setTitle:channel.name];

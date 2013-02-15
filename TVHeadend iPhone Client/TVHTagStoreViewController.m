@@ -6,19 +6,19 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHTagListViewController.h"
-#import "TVHChannelListViewController.h"
+#import "TVHTagStoreViewController.h"
+#import "TVHChannelStoreViewController.h"
 
-@interface TVHTagListViewController ()
-@property (strong, nonatomic) TVHTagList *tagList;
+@interface TVHTagStoreViewController ()
+@property (strong, nonatomic) TVHTagStore *tagList;
 @end
 
-@implementation TVHTagListViewController
+@implementation TVHTagStoreViewController
 @synthesize tagList = _tagList;
 
-- (TVHTagList*) tagList {
+- (TVHTagStore*) tagList {
     if ( _tagList == nil) {
-        _tagList = [TVHTagList sharedInstance];
+        _tagList = [TVHTagStore sharedInstance];
     }
     return _tagList;
 }
@@ -83,7 +83,7 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHTag *tag = [self.tagList objectAtIndex:path.row];
         
-        TVHChannelListViewController *ChannelList = segue.destinationViewController;
+        TVHChannelStoreViewController *ChannelList = segue.destinationViewController;
         [ChannelList setFilterTagId: tag.tagid];
         
         [segue.destinationViewController setTitle:tag.name];

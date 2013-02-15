@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-687" y="-1330"/>
         </scene>
-        <!--Tag List View Controller - Tags-->
+        <!--Tag Store View Controller - Tags-->
         <scene sceneID="9w5-0r-HFn">
             <objects>
-                <tableViewController id="bdm-Gl-dUk" customClass="TVHTagListViewController" sceneMemberID="viewController">
+                <tableViewController id="bdm-Gl-dUk" customClass="TVHTagStoreViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="U6e-6s-hv0">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="-684" y="532"/>
         </scene>
-        <!--Channel List View Controller - Channels-->
+        <!--Channel Store View Controller - Channels-->
         <scene sceneID="GxO-Zf-lVI">
             <objects>
-                <tableViewController id="J4O-6S-mIr" customClass="TVHChannelListViewController" sceneMemberID="viewController">
+                <tableViewController id="J4O-6S-mIr" customClass="TVHChannelStoreViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" id="KgO-K1-8wq">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -242,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="392" y="-1330"/>
         </scene>
-        <!--Channel List Programs View Controller-->
+        <!--Channel Store Programs View Controller-->
         <scene sceneID="VIV-l7-ChN">
             <objects>
-                <tableViewController id="05s-K2-hia" customClass="TVHChannelListProgramsViewController" sceneMemberID="viewController">
+                <tableViewController id="05s-K2-hia" customClass="TVHChannelStoreProgramsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ht7-9e-hje">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -379,15 +379,6 @@
         <image name="stat.png" width="32" height="32"/>
     </resources>
     <classes>
-        <class className="TVHChannelListProgramsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelListProgramsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="playStream:"/>
-            </relationships>
-        </class>
-        <class className="TVHChannelListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelListViewController.h"/>
-        </class>
         <class className="TVHProgramDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
             <relationships>
@@ -396,9 +387,6 @@
                 <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
             </relationships>
-        </class>
-        <class className="TVHTagListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagListViewController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

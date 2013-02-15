@@ -10,15 +10,15 @@
 #import "TVHChannel.h"
 #import "AFNetworking.h"
 
-@class TVHEpgList;
-@protocol TVHEpgListDelegate <NSObject>
-- (void) didLoadEpg:(TVHEpgList*)epgList;
+@class TVHEpgStore;
+@protocol TVHEpgStoreDelegate <NSObject>
+- (void) didLoadEpg:(TVHEpgStore*)epgList;
 @end
 
-@interface TVHEpgList : NSObject
+@interface TVHEpgStore : NSObject
 @property (nonatomic, strong) NSString* filterToChannelName;
 + (id)sharedInstance;
 - (void)downloadEpgList;
 - (NSArray*)getEpgList;
-- (void)setDelegate:(id <TVHEpgListDelegate>)delegate;
+- (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate;
 @end

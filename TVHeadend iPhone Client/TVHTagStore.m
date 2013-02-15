@@ -6,25 +6,25 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHTagList.h"
+#import "TVHTagStore.h"
 #import "TVHSettings.h"
 
-@interface TVHTagList()
+@interface TVHTagStore()
 @property (nonatomic, strong) NSArray *tags;
-@property (nonatomic, weak) id <TVHTagListDelegate> delegate;
+@property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 @end
 
 
-@implementation TVHTagList
+@implementation TVHTagStore
 
 @synthesize tags = _tags;
 @synthesize delegate = _delegate;
 
 + (id)sharedInstance {
-    static TVHTagList *__sharedInstance;
+    static TVHTagStore *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHTagList alloc] init];
+        __sharedInstance = [[TVHTagStore alloc] init];
     });
     
     return __sharedInstance;
@@ -100,7 +100,7 @@
     }
 }
 
-- (TVHTagList *) objectAtIndex:(int) row {
+- (TVHTagStore *) objectAtIndex:(int) row {
     return [self.tags objectAtIndex:row];
 }
 
@@ -108,7 +108,7 @@
     return [self.tags count];
 }
 
-- (void)setDelegate:(id <TVHTagListDelegate>)delegate {
+- (void)setDelegate:(id <TVHTagStoreDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
     }
