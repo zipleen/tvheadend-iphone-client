@@ -10,7 +10,7 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
 
-@interface TVHChannelListProgramsViewController () <TVHChannelDelegate>
+@interface TVHChannelListProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
 
 @end
 
@@ -95,6 +95,45 @@
 
 - (void)didLoadEpgChannel {
     [self.tableView reloadData];
+}
+
+- (IBAction)playStream:(UIBarButtonItem*)sender {
+    NSString *actionSheetTitle = @"Play Channel in"; //Action Sheet Title
+    NSString *other1 = @"Buzz Player";
+    NSString *other2 = @"GoodPlayer";
+    NSString *other3 = @"Oplayer";
+    NSString *cancelTitle = @"Cancel";
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:actionSheetTitle
+                                  delegate:self
+                                  cancelButtonTitle:cancelTitle
+                                  destructiveButtonTitle:nil
+                                  otherButtonTitles:other1, other2, other3, nil];
+    //[actionSheet showFromToolbar:self.navigationController.toolbar];
+    [actionSheet showFromBarButtonItem:sender  animated:YES];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if  ([buttonTitle isEqualToString:@"Destructive Button"]) {
+        
+    }
+    if ([buttonTitle isEqualToString:@"Buzz Player"]) {
+        NSString *url = [NSString stringWithFormat:@"buzzplayer://%@", [self.channel streamURL] ];
+        NSURL *myURL = [NSURL URLWithString:url ];
+        [[UIApplication sharedApplication] openURL:myURL];
+    }
+    if ([buttonTitle isEqualToString:@"GoodPlayer"]) {
+        NSString *url = [NSString stringWithFormat:@"goodplayer://%@", [self.channel streamURL] ];
+        NSURL *myURL = [NSURL URLWithString:url ];
+        [[UIApplication sharedApplication] openURL:myURL];
+    }
+    if ([buttonTitle isEqualToString:@"Oplayer"]) {
+        NSString *url = [NSString stringWithFormat:@"oplayer://%@", [self.channel streamURL] ];
+        NSURL *myURL = [NSURL URLWithString:url ];
+        [[UIApplication sharedApplication] openURL:myURL];
+    }
+    
 }
 
 @end

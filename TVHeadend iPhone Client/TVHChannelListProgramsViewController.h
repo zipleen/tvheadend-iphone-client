@@ -10,5 +10,6 @@
 #import "TVHChannel.h"
 
 @interface TVHChannelListProgramsViewController : UITableViewController
+- (IBAction)playStream:(id)sender;
 @property (nonatomic, weak) TVHChannel *channel;
 @end

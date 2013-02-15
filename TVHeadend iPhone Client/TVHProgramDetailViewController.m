@@ -9,7 +9,7 @@
 #import "TVHProgramDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface TVHProgramDetailViewController ()
+@interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 
 @end
 
@@ -43,9 +43,4 @@
     
 }
 
-- (IBAction)startStreamInAnotherApp:(id)sender {
-    NSString *url = [NSString stringWithFormat:@"buzzplayer://%@", [self.channel streamURL] ];
-    NSURL *myURL = [NSURL URLWithString:url ];
-    [[UIApplication sharedApplication] openURL:myURL];
-}
 @end

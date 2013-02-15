@@ -19,6 +19,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *programTitle;
 
 - (IBAction)addRecordToTVHeadend:(id)sender;
-- (IBAction)startStreamInAnotherApp:(id)sender;
-
 @end

@@ -45,7 +45,7 @@
 
 -(NSString*)streamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
-    return [NSString stringWithFormat:@"%@/stream/channelid/%d?mux=pass", tvh.baseURL, self.chid];
+    return [NSString stringWithFormat:@"%@/stream/channelid/%d", tvh.baseURL, self.chid];
 }
 
 -(TVHChannelEpg*) getObjectInsideSchedulePrograms:(NSString*)dateString {
