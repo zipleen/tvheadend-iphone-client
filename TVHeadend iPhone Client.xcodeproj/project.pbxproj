@@ -36,6 +36,13 @@
 		AA43D49016CEFDB700104BBF /* WBRedGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D48316CEFDB700104BBF /* WBRedGradientView.m */; };
 		AA43D49116CEFDB700104BBF /* WBStickyNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D48516CEFDB700104BBF /* WBStickyNoticeView.m */; };
 		AA43D49216CEFDB700104BBF /* WBSuccessNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D48716CEFDB700104BBF /* WBSuccessNoticeView.m */; };
+		AA43D49E16CF167300104BBF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43D49D16CF167300104BBF /* SenTestingKit.framework */; };
+		AA43D49F16CF167300104BBF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
+		AA43D4A016CF167300104BBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
+		AA43D4A616CF167300104BBF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA43D4A416CF167300104BBF /* InfoPlist.strings */; };
+		AA43D4A916CF167300104BBF /* TvhClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D4A816CF167300104BBF /* TvhClientTests.m */; };
+		AA43D4B016CF189A00104BBF /* TVHEpgStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D4AF16CF189A00104BBF /* TVHEpgStoreTests.m */; };
+		AA43D4B316CF1A7600104BBF /* Log.287 in Resources */ = {isa = PBXBuildFile; fileRef = AA43D4B216CF1A7600104BBF /* Log.287 */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
@@ -70,6 +77,16 @@
 		AAF54A5616C73A200076DF17 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAF54A5516C73A200076DF17 /* Settings.bundle */; };
 		AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA43D4B416CF230400104BBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAB399E816BDB21900973F88 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAB399EF16BDB21900973F88;
+			remoteInfo = "TVHeadend iPhone Client";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AA1D426B16BEC2BA00F42F7E /* TVHChannelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStore.h; sourceTree = "<group>"; };
@@ -114,6 +131,16 @@
 		AA43D48516CEFDB700104BBF /* WBStickyNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStickyNoticeView.m; sourceTree = "<group>"; };
 		AA43D48616CEFDB700104BBF /* WBSuccessNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSuccessNoticeView.h; sourceTree = "<group>"; };
 		AA43D48716CEFDB700104BBF /* WBSuccessNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSuccessNoticeView.m; sourceTree = "<group>"; };
+		AA43D49C16CF167300104BBF /* TvhClientTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TvhClientTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA43D49D16CF167300104BBF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		AA43D4A316CF167300104BBF /* TvhClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TvhClientTests-Info.plist"; sourceTree = "<group>"; };
+		AA43D4A516CF167300104BBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AA43D4A716CF167300104BBF /* TvhClientTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TvhClientTests.h; sourceTree = "<group>"; };
+		AA43D4A816CF167300104BBF /* TvhClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TvhClientTests.m; sourceTree = "<group>"; };
+		AA43D4AA16CF167300104BBF /* TvhClientTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TvhClientTests-Prefix.pch"; sourceTree = "<group>"; };
+		AA43D4AE16CF189A00104BBF /* TVHEpgStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgStoreTests.h; sourceTree = "<group>"; };
+		AA43D4AF16CF189A00104BBF /* TVHEpgStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgStoreTests.m; sourceTree = "<group>"; };
+		AA43D4B216CF1A7600104BBF /* Log.287 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.287; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
@@ -178,6 +205,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA43D49816CF167300104BBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA43D49E16CF167300104BBF /* SenTestingKit.framework in Frameworks */,
+				AA43D49F16CF167300104BBF /* UIKit.framework in Frameworks */,
+				AA43D4A016CF167300104BBF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAB399ED16BDB21900973F88 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -271,6 +308,37 @@
 			path = NoticeView/NoticeView/WBNoticeView;
 			sourceTree = SOURCE_ROOT;
 		};
+		AA43D4A116CF167300104BBF /* TvhClientTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D4B116CF1A7600104BBF /* TestData */,
+				AA43D4A716CF167300104BBF /* TvhClientTests.h */,
+				AA43D4A816CF167300104BBF /* TvhClientTests.m */,
+				AA43D4AE16CF189A00104BBF /* TVHEpgStoreTests.h */,
+				AA43D4AF16CF189A00104BBF /* TVHEpgStoreTests.m */,
+				AA43D4A216CF167300104BBF /* Supporting Files */,
+			);
+			path = TvhClientTests;
+			sourceTree = "<group>";
+		};
+		AA43D4A216CF167300104BBF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D4A316CF167300104BBF /* TvhClientTests-Info.plist */,
+				AA43D4A416CF167300104BBF /* InfoPlist.strings */,
+				AA43D4AA16CF167300104BBF /* TvhClientTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA43D4B116CF1A7600104BBF /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D4B216CF1A7600104BBF /* Log.287 */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
 		AA7C3FCA16C6C9870057E4C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB399F916BDB21900973F88 /* TVHeadend iPhone Client */,
+				AA43D4A116CF167300104BBF /* TvhClientTests */,
 				AAB399F216BDB21900973F88 /* Frameworks */,
 				AAB399F116BDB21900973F88 /* Products */,
 			);
@@ -347,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB399F016BDB21900973F88 /* TVHeadend iPhone Client.app */,
+				AA43D49C16CF167300104BBF /* TvhClientTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -360,6 +430,7 @@
 				AAB399F316BDB21900973F88 /* UIKit.framework */,
 				AAB399F516BDB21900973F88 /* Foundation.framework */,
 				AAB399F716BDB21900973F88 /* CoreGraphics.framework */,
+				AA43D49D16CF167300104BBF /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -396,6 +467,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA43D49B16CF167300104BBF /* TvhClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA43D4AD16CF167300104BBF /* Build configuration list for PBXNativeTarget "TvhClientTests" */;
+			buildPhases = (
+				AA43D49716CF167300104BBF /* Sources */,
+				AA43D49816CF167300104BBF /* Frameworks */,
+				AA43D49916CF167300104BBF /* Resources */,
+				AA43D49A16CF167300104BBF /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA43D4B516CF230400104BBF /* PBXTargetDependency */,
+			);
+			name = TvhClientTests;
+			productName = TvhClientTests;
+			productReference = AA43D49C16CF167300104BBF /* TvhClientTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		AAB399EF16BDB21900973F88 /* TVHeadend iPhone Client */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAB39A1616BDB21900973F88 /* Build configuration list for PBXNativeTarget "TVHeadend iPhone Client" */;
@@ -436,11 +526,21 @@
 			projectRoot = "";
 			targets = (
 				AAB399EF16BDB21900973F88 /* TVHeadend iPhone Client */,
+				AA43D49B16CF167300104BBF /* TvhClientTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA43D49916CF167300104BBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA43D4A616CF167300104BBF /* InfoPlist.strings in Resources */,
+				AA43D4B316CF1A7600104BBF /* Log.287 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAB399EE16BDB21900973F88 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,7 +572,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AA43D49A16CF167300104BBF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		AA43D49716CF167300104BBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA43D4A916CF167300104BBF /* TvhClientTests.m in Sources */,
+				AA43D4B016CF189A00104BBF /* TVHEpgStoreTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAB399EC16BDB21900973F88 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,7 +641,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AA43D4B516CF230400104BBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAB399EF16BDB21900973F88 /* TVHeadend iPhone Client */;
+			targetProxy = AA43D4B416CF230400104BBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		AA43D4A416CF167300104BBF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA43D4A516CF167300104BBF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		AAB399FC16BDB21900973F88 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -544,6 +685,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AA43D4AB16CF167300104BBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVHeadend iPhone Client.app/TVHeadend iPhone Client";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TvhClientTests/TvhClientTests-Prefix.pch";
+				INFOPLIST_FILE = "TvhClientTests/TvhClientTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		AA43D4AC16CF167300104BBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVHeadend iPhone Client.app/TVHeadend iPhone Client";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TvhClientTests/TvhClientTests-Prefix.pch";
+				INFOPLIST_FILE = "TvhClientTests/TvhClientTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		AAB39A1416BDB21900973F88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -635,6 +812,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA43D4AD16CF167300104BBF /* Build configuration list for PBXNativeTarget "TvhClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA43D4AB16CF167300104BBF /* Debug */,
+				AA43D4AC16CF167300104BBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		AAB399EB16BDB21900973F88 /* Build configuration list for PBXProject "TVHeadend iPhone Client" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

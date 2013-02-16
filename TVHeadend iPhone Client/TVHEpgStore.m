@@ -10,7 +10,8 @@
 #import "TVHEpg.h"
 #import "TVHSettings.h"
 
-@interface TVHEpgStore() @property (nonatomic, strong) NSArray *epgList;
+@interface TVHEpgStore()
+@property (nonatomic, strong) NSArray *epgList;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
 @property (nonatomic) NSInteger lastEventCount;
 
