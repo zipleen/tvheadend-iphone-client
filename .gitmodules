@@ -7,3 +7,6 @@
 [submodule "NoticeView"]
 	path = NoticeView
 	url = https://github.com/tciuro/NoticeView
+[submodule "kxmovie"]
+	path = kxmovie
+	url = https://github.com/kolyvan/kxmovie.git

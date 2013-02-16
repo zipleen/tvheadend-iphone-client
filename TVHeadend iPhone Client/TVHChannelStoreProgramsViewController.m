@@ -10,6 +10,7 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
 #import "WBErrorNoticeView.h"
+#import "KxMovieViewController.h"
 
 @interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
 
@@ -110,14 +111,35 @@
     NSString *other2 = @"GoodPlayer";
     NSString *other3 = @"Oplayer";
     NSString *cancelTitle = @"Cancel";
+    NSString *stream = @"Stream Channel";
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:actionSheetTitle
                                   delegate:self
                                   cancelButtonTitle:cancelTitle
-                                  destructiveButtonTitle:nil
+                                  destructiveButtonTitle:stream
                                   otherButtonTitles:actionSheetTitle, other1, other2, other3, nil];
     //[actionSheet showFromToolbar:self.navigationController.toolbar];
     [actionSheet showFromBarButtonItem:sender  animated:YES];
+}
+
+- (void)streamChannel:(NSString*) path {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    
+    // increase buffering for .wmv, it solves problem with delaying audio frames
+    //if ([path.pathExtension isEqualToString:@"wmv"])
+    // //   parameters[KxMovieParameterMinBufferedDuration] = @(5.0);
+    
+    // disable deinterlacing for iPhone, because it's complex operation can cause stuttering
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        parameters[KxMovieParameterDisableDeinterlacing] = @(YES);
+    
+    // disable buffering
+    // parameters[KxMovieParameterMinBufferedDuration] = @(0.0f);
+    
+    KxMovieViewController *vc = [KxMovieViewController movieViewControllerWithContentPath:path
+                                                                               parameters:parameters];
+    [self presentViewController:vc animated:YES completion:nil];
+    //[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -140,6 +162,10 @@
         NSString *url = [NSString stringWithFormat:@"oplayer://%@", [self.channel streamURL] ];
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
+    }
+    if ([buttonTitle isEqualToString:@"Stream Channel"]) {
+        NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.channel streamURL] ];
+        [self streamChannel:url];
     }
     
 }

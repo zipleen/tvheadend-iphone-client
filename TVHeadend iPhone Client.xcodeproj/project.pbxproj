@@ -66,6 +66,19 @@
 		AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */; };
 		AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */; };
 		AAB39A1B16BDB29C00973F88 /* TVHChannelStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB39A1A16BDB29C00973F88 /* TVHChannelStoreViewController.m */; };
+		AACA611E16CFDB10002C6DE1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */; };
+		AACA612016CFDB18002C6DE1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA611F16CFDB18002C6DE1 /* Accelerate.framework */; };
+		AACA612216CFDB1E002C6DE1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */; };
+		AACA612416CFDB28002C6DE1 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612316CFDB28002C6DE1 /* CoreAudio.framework */; };
+		AACA612616CFDB36002C6DE1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612516CFDB36002C6DE1 /* AudioToolbox.framework */; };
+		AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613716CFDBE8002C6DE1 /* libz.dylib */; };
+		AACA613F16CFDC2B002C6DE1 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613916CFDC2B002C6DE1 /* libavcodec.a */; };
+		AACA614016CFDC2B002C6DE1 /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613A16CFDC2B002C6DE1 /* libavformat.a */; };
+		AACA614116CFDC2B002C6DE1 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613B16CFDC2B002C6DE1 /* libavutil.a */; };
+		AACA614216CFDC2B002C6DE1 /* libkxmovie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613C16CFDC2B002C6DE1 /* libkxmovie.a */; };
+		AACA614316CFDC2B002C6DE1 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613D16CFDC2B002C6DE1 /* libswresample.a */; };
+		AACA614416CFDC2B002C6DE1 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613E16CFDC2B002C6DE1 /* libswscale.a */; };
+		AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */; };
 		AACE488D16CC30F700FE928B /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE488C16CC30F700FE928B /* SDURLCache.m */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
@@ -185,6 +198,22 @@
 		AAB39A0F16BDB21900973F88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		AAB39A1916BDB29C00973F88 /* TVHChannelStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreViewController.h; sourceTree = "<group>"; };
 		AAB39A1A16BDB29C00973F88 /* TVHChannelStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStoreViewController.m; sourceTree = "<group>"; };
+		AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		AACA611F16CFDB18002C6DE1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		AACA612316CFDB28002C6DE1 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		AACA612516CFDB36002C6DE1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AACA613716CFDBE8002C6DE1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		AACA613916CFDC2B002C6DE1 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = kxmovie/output/libavcodec.a; sourceTree = "<group>"; };
+		AACA613A16CFDC2B002C6DE1 /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavformat.a; path = kxmovie/output/libavformat.a; sourceTree = "<group>"; };
+		AACA613B16CFDC2B002C6DE1 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = kxmovie/output/libavutil.a; sourceTree = "<group>"; };
+		AACA613C16CFDC2B002C6DE1 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = kxmovie/output/libkxmovie.a; sourceTree = "<group>"; };
+		AACA613D16CFDC2B002C6DE1 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = kxmovie/output/libswresample.a; sourceTree = "<group>"; };
+		AACA613E16CFDC2B002C6DE1 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswscale.a; path = kxmovie/output/libswscale.a; sourceTree = "<group>"; };
+		AACA614516CFDDD0002C6DE1 /* KxAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxAudioManager.h; path = kxmovie/output/KxAudioManager.h; sourceTree = SOURCE_ROOT; };
+		AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = kxmovie/output/kxmovie.bundle; sourceTree = SOURCE_ROOT; };
+		AACA614716CFDDD0002C6DE1 /* KxMovieDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieDecoder.h; path = kxmovie/output/KxMovieDecoder.h; sourceTree = SOURCE_ROOT; };
+		AACA614816CFDDD0002C6DE1 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = kxmovie/output/KxMovieViewController.h; sourceTree = SOURCE_ROOT; };
 		AACE488B16CC30F700FE928B /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = SDURLCache/SDURLCache.h; sourceTree = SOURCE_ROOT; };
 		AACE488C16CC30F700FE928B /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = SDURLCache/SDURLCache.m; sourceTree = SOURCE_ROOT; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
@@ -219,6 +248,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACA613F16CFDC2B002C6DE1 /* libavcodec.a in Frameworks */,
+				AACA614016CFDC2B002C6DE1 /* libavformat.a in Frameworks */,
+				AACA614116CFDC2B002C6DE1 /* libavutil.a in Frameworks */,
+				AACA614216CFDC2B002C6DE1 /* libkxmovie.a in Frameworks */,
+				AACA614316CFDC2B002C6DE1 /* libswresample.a in Frameworks */,
+				AACA614416CFDC2B002C6DE1 /* libswscale.a in Frameworks */,
+				AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */,
+				AACA612616CFDB36002C6DE1 /* AudioToolbox.framework in Frameworks */,
+				AACA612416CFDB28002C6DE1 /* CoreAudio.framework in Frameworks */,
+				AACA612216CFDB1E002C6DE1 /* MediaPlayer.framework in Frameworks */,
+				AACA612016CFDB18002C6DE1 /* Accelerate.framework in Frameworks */,
+				AACA611E16CFDB10002C6DE1 /* OpenGLES.framework in Frameworks */,
 				AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */,
 				AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */,
 				AA91023316C6B6F800673DF5 /* MobileCoreServices.framework in Frameworks */,
@@ -367,6 +408,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AACA614A16CFDDDA002C6DE1 /* kxmovie */,
 				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 				AACE488B16CC30F700FE928B /* SDURLCache.h */,
 				AACE488C16CC30F700FE928B /* SDURLCache.m */,
@@ -424,6 +466,7 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AACA614B16CFDE03002C6DE1 /* kxmovie frameworks */,
 				AA43D46F16CEFC5400104BBF /* QuartzCore.framework */,
 				AA91023416C6B72500673DF5 /* SystemConfiguration.framework */,
 				AA91023216C6B6F800673DF5 /* MobileCoreServices.framework */,
@@ -453,8 +496,8 @@
 		AAB399FA16BDB21900973F88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AA2AEB1D16CB0839006B071C /* images */,
 				AA7C3FCA16C6C9870057E4C4 /* Resources */,
+				AA2AEB1D16CB0839006B071C /* images */,
 				AA9101AA16C6B2C500673DF5 /* Framework */,
 				AAB399FB16BDB21900973F88 /* TVHeadend iPhone Client-Info.plist */,
 				AAB399FC16BDB21900973F88 /* InfoPlist.strings */,
@@ -462,6 +505,36 @@
 				AAB39A0116BDB21900973F88 /* TVHeadend iPhone Client-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AACA614A16CFDDDA002C6DE1 /* kxmovie */ = {
+			isa = PBXGroup;
+			children = (
+				AACA614516CFDDD0002C6DE1 /* KxAudioManager.h */,
+				AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */,
+				AACA614716CFDDD0002C6DE1 /* KxMovieDecoder.h */,
+				AACA614816CFDDD0002C6DE1 /* KxMovieViewController.h */,
+			);
+			name = kxmovie;
+			sourceTree = "<group>";
+		};
+		AACA614B16CFDE03002C6DE1 /* kxmovie frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AACA613916CFDC2B002C6DE1 /* libavcodec.a */,
+				AACA613A16CFDC2B002C6DE1 /* libavformat.a */,
+				AACA613B16CFDC2B002C6DE1 /* libavutil.a */,
+				AACA613C16CFDC2B002C6DE1 /* libkxmovie.a */,
+				AACA613D16CFDC2B002C6DE1 /* libswresample.a */,
+				AACA613E16CFDC2B002C6DE1 /* libswscale.a */,
+				AACA613716CFDBE8002C6DE1 /* libz.dylib */,
+				AACA612516CFDB36002C6DE1 /* AudioToolbox.framework */,
+				AACA612316CFDB28002C6DE1 /* CoreAudio.framework */,
+				AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */,
+				AACA611F16CFDB18002C6DE1 /* Accelerate.framework */,
+				AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */,
+			);
+			name = "kxmovie frameworks";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -567,6 +640,7 @@
 				AACE489016CC6F1900FE928B /* tv2.png in Resources */,
 				AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */,
 				AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */,
+				AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +866,10 @@
 				GCC_PREFIX_HEADER = "TVHeadend iPhone Client/TVHeadend iPhone Client-Prefix.pch";
 				INFOPLIST_FILE = "TVHeadend iPhone Client/TVHeadend iPhone Client-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/kxmovie/output\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -804,6 +882,10 @@
 				GCC_PREFIX_HEADER = "TVHeadend iPhone Client/TVHeadend iPhone Client-Prefix.pch";
 				INFOPLIST_FILE = "TVHeadend iPhone Client/TVHeadend iPhone Client-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/kxmovie/output\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -819,6 +901,7 @@
 				AA43D4AC16CF167300104BBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAB399EB16BDB21900973F88 /* Build configuration list for PBXProject "TVHeadend iPhone Client" */ = {
 			isa = XCConfigurationList;
