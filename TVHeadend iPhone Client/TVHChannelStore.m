@@ -59,27 +59,16 @@
     NSArray *entries = [json objectForKey:@"entries"];
     NSMutableArray *channels = [[NSMutableArray alloc] init];
     
-    NSEnumerator *e = [entries objectEnumerator];
-    id channel;
-    //for (NSEnumerator *channel in entries) {
-    while (channel = [e nextObject]) {
-        //NSLog(@"json : %@", channel);
-        TVHChannel *c = [[TVHChannel alloc] init];
+    [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        TVHChannel *channel = [[TVHChannel alloc] init];
+        [obj enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [channel setValue:obj forKey:key];
+        }];
         
-        NSInteger ch_id = [[channel objectForKey:@"chid"] intValue];
-        NSString *ch_icon = [channel objectForKey:@"ch_icon"];
-        NSString *name = [channel objectForKey:@"name"];
-        NSString *number = [channel objectForKey:@"number"];
-        NSString *tags = [channel objectForKey:@"tags"];
-        
-        [c setName:name];
-        [c setNumber:number];
-        [c setImageUrl:ch_icon];
-        [c setChid:ch_id];
-        [c setTags:[tags componentsSeparatedByString:@","]];
-                
-        [channels addObject:c];
-    }
+        [channels addObject:channel];
+
+    }];
+    
     self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByName:)];
     //self.channels = [channels copy];
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);

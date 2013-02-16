@@ -39,6 +39,22 @@
     //self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
 }
 
+// unfortunaly we can't do the (id) trick with a NSInteger, because it's just an int =)
+-(void)setCh_id:(NSString*)value {
+    [self setChid: [value intValue]];
+}
+
+// notice that setTags has (id) instead of NSArray*, which means we can test for a NSString and convert it !
+-(void)setTags:(id)tags {
+    if([tags isKindOfClass:[NSString class]]) {
+        _tags = [tags componentsSeparatedByString:@","];
+    }
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+    
+}
+
 -(bool)hasTag:(NSInteger)tag {
     return [self.tags containsObject:[NSString stringWithFormat:@"%d",tag]];
 }
