@@ -4,3 +4,6 @@
 [submodule "SDURLCache"]
 	path = SDURLCache
 	url = https://github.com/steipete/SDURLCache.git
+[submodule "NoticeView"]
+	path = NoticeView
+	url = https://github.com/tciuro/NoticeView
