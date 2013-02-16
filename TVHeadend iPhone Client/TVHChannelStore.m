@@ -62,7 +62,11 @@
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHChannel *channel = [[TVHChannel alloc] init];
         [obj enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [channel setValue:obj forKey:key];
+            if([key isEqualToString:@"chid"]) {
+                [channel setChid:[obj intValue]];
+            } else {
+                [channel setValue:obj forKey:key];
+            }
         }];
         
         [channels addObject:channel];

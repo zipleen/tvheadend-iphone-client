@@ -26,7 +26,7 @@
 @property (nonatomic) NSInteger chid;
 @property (nonatomic, strong) NSArray *tags;
 
--(void)setCh_id:(NSString*)value;
+-(void)setCh_icon:(NSString*)icon;
 -(bool) hasTag:(NSInteger)tag;
 -(NSString*) streamURL;
 -(void) addEpg:(TVHEpg*)epg;
