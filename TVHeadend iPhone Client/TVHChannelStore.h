@@ -14,7 +14,7 @@
 @protocol TVHChannelStoreDelegate <NSObject>
 
 -(void) didLoadChannels;
--(void) didErrorLoading;
+-(void) didErrorLoadingChannelStore:(NSError*)error;
 @end
 
 @interface TVHChannelStore : AFHTTPClient <TVHEpgStoreDelegate>

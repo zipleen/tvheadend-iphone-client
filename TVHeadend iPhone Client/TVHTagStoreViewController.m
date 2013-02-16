@@ -8,6 +8,7 @@
 
 #import "TVHTagStoreViewController.h"
 #import "TVHChannelStoreViewController.h"
+#import "WBErrorNoticeView.h"
 
 @interface TVHTagStoreViewController ()
 @property (strong, nonatomic) TVHTagStore *tagList;
@@ -94,13 +95,11 @@
     [self.tableView reloadData];
 }
 
-- (void)didErrorLoading {
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                         message:@"Error connecting to server - this should redirect you to settings app"
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil];
-    [errorAlert show];
+- (void)didErrorLoadingTagStore:(NSError*) error {
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
+    [notice setSticky:true];
+    [notice show];
 }
+
 
 @end

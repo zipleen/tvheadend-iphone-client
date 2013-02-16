@@ -130,6 +130,7 @@
     return [[[self.schedulePrograms objectAtIndex:section] programs] count];
 }
 
+#pragma delegate stuff
 - (void) didLoadEpg:(TVHEpgStore*)epgList {
     NSArray *list = [epgList getEpgList];
     NSEnumerator *e = [list objectEnumerator];
@@ -138,6 +139,12 @@
         [self addEpg:epg];
     }
     [self.delegate didLoadEpgChannel];
+}
+
+-(void) didErrorLoadingEpgStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgChannel:)]) {
+        [self.delegate didErrorLoadingEpgChannel:error];
+    }
 }
 
 - (void)setDelegate:(id <TVHChannelDelegate>)delegate {

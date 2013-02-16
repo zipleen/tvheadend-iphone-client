@@ -39,6 +39,9 @@
     
     if( error ) {
         NSLog(@"[JSON Error]: %@", error.description);
+        if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
+            [self.delegate didErrorLoadingTagStore:error];
+        }
         return ;
     }
     
@@ -94,7 +97,9 @@
             //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             //NSLog(@"Request Successful, response '%@'", responseStr);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self.delegate didErrorLoading];
+            if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
+                [self.delegate didErrorLoadingTagStore:error];
+            }
             NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
         }];
     }

@@ -13,6 +13,8 @@
 
 @protocol TVHChannelDelegate <NSObject>
 - (void) didLoadEpgChannel;
+@optional
+-(void) didErrorLoadingEpgChannel:(NSError*)error;
 @end
 
 @interface TVHChannel : NSObject

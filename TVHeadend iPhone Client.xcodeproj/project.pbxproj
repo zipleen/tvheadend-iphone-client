@@ -24,6 +24,18 @@
 		AA2AEB3B16CB0CC5006B071C /* tv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3516CB0CC5006B071C /* tv@2x.png */; };
 		AA2AEB3C16CB0CC5006B071C /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3616CB0CC5006B071C /* play@2x.png */; };
 		AA2AEB3D16CB0CC5006B071C /* comp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3716CB0CC5006B071C /* comp@2x.png */; };
+		AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43D46F16CEFC5400104BBF /* QuartzCore.framework */; };
+		AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA43D47216CEFDB700104BBF /* NoticeView.bundle */; };
+		AA43D48916CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47416CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m */; };
+		AA43D48A16CEFDB700104BBF /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47616CEFDB700104BBF /* UILabel+WBExtensions.m */; };
+		AA43D48B16CEFDB700104BBF /* WBBlueGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47816CEFDB700104BBF /* WBBlueGradientView.m */; };
+		AA43D48C16CEFDB700104BBF /* WBErrorNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47A16CEFDB700104BBF /* WBErrorNoticeView.m */; };
+		AA43D48D16CEFDB700104BBF /* WBGrayGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47C16CEFDB700104BBF /* WBGrayGradientView.m */; };
+		AA43D48E16CEFDB700104BBF /* WBNoticeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47E16CEFDB700104BBF /* WBNoticeOperation.m */; };
+		AA43D48F16CEFDB700104BBF /* WBNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D48116CEFDB700104BBF /* WBNoticeView.m */; };
+		AA43D49016CEFDB700104BBF /* WBRedGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D48316CEFDB700104BBF /* WBRedGradientView.m */; };
+		AA43D49116CEFDB700104BBF /* WBStickyNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D48516CEFDB700104BBF /* WBStickyNoticeView.m */; };
+		AA43D49216CEFDB700104BBF /* WBSuccessNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D48716CEFDB700104BBF /* WBSuccessNoticeView.m */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
@@ -79,6 +91,29 @@
 		AA2AEB3516CB0CC5006B071C /* tv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv@2x.png"; sourceTree = "<group>"; };
 		AA2AEB3616CB0CC5006B071C /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
 		AA2AEB3716CB0CC5006B071C /* comp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comp@2x.png"; sourceTree = "<group>"; };
+		AA43D46F16CEFC5400104BBF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AA43D47216CEFDB700104BBF /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
+		AA43D47316CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+WBNoticeExtensions.h"; sourceTree = "<group>"; };
+		AA43D47416CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOperationQueue+WBNoticeExtensions.m"; sourceTree = "<group>"; };
+		AA43D47516CEFDB700104BBF /* UILabel+WBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WBExtensions.h"; sourceTree = "<group>"; };
+		AA43D47616CEFDB700104BBF /* UILabel+WBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WBExtensions.m"; sourceTree = "<group>"; };
+		AA43D47716CEFDB700104BBF /* WBBlueGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBBlueGradientView.h; sourceTree = "<group>"; };
+		AA43D47816CEFDB700104BBF /* WBBlueGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBlueGradientView.m; sourceTree = "<group>"; };
+		AA43D47916CEFDB700104BBF /* WBErrorNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBErrorNoticeView.h; sourceTree = "<group>"; };
+		AA43D47A16CEFDB700104BBF /* WBErrorNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBErrorNoticeView.m; sourceTree = "<group>"; };
+		AA43D47B16CEFDB700104BBF /* WBGrayGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBGrayGradientView.h; sourceTree = "<group>"; };
+		AA43D47C16CEFDB700104BBF /* WBGrayGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBGrayGradientView.m; sourceTree = "<group>"; };
+		AA43D47D16CEFDB700104BBF /* WBNoticeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNoticeOperation.h; sourceTree = "<group>"; };
+		AA43D47E16CEFDB700104BBF /* WBNoticeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNoticeOperation.m; sourceTree = "<group>"; };
+		AA43D47F16CEFDB700104BBF /* WBNoticeView+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBNoticeView+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
+		AA43D48016CEFDB700104BBF /* WBNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNoticeView.h; sourceTree = "<group>"; };
+		AA43D48116CEFDB700104BBF /* WBNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNoticeView.m; sourceTree = "<group>"; };
+		AA43D48216CEFDB700104BBF /* WBRedGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRedGradientView.h; sourceTree = "<group>"; };
+		AA43D48316CEFDB700104BBF /* WBRedGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRedGradientView.m; sourceTree = "<group>"; };
+		AA43D48416CEFDB700104BBF /* WBStickyNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStickyNoticeView.h; sourceTree = "<group>"; };
+		AA43D48516CEFDB700104BBF /* WBStickyNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStickyNoticeView.m; sourceTree = "<group>"; };
+		AA43D48616CEFDB700104BBF /* WBSuccessNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSuccessNoticeView.h; sourceTree = "<group>"; };
+		AA43D48716CEFDB700104BBF /* WBSuccessNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSuccessNoticeView.m; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
@@ -147,6 +182,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */,
 				AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */,
 				AA91023316C6B6F800673DF5 /* MobileCoreServices.framework in Frameworks */,
 				AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */,
@@ -205,6 +241,36 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		AA43D47116CEFDB700104BBF /* WBNoticeView */ = {
+			isa = PBXGroup;
+			children = (
+				AA43D47216CEFDB700104BBF /* NoticeView.bundle */,
+				AA43D47316CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.h */,
+				AA43D47416CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m */,
+				AA43D47516CEFDB700104BBF /* UILabel+WBExtensions.h */,
+				AA43D47616CEFDB700104BBF /* UILabel+WBExtensions.m */,
+				AA43D47716CEFDB700104BBF /* WBBlueGradientView.h */,
+				AA43D47816CEFDB700104BBF /* WBBlueGradientView.m */,
+				AA43D47916CEFDB700104BBF /* WBErrorNoticeView.h */,
+				AA43D47A16CEFDB700104BBF /* WBErrorNoticeView.m */,
+				AA43D47B16CEFDB700104BBF /* WBGrayGradientView.h */,
+				AA43D47C16CEFDB700104BBF /* WBGrayGradientView.m */,
+				AA43D47D16CEFDB700104BBF /* WBNoticeOperation.h */,
+				AA43D47E16CEFDB700104BBF /* WBNoticeOperation.m */,
+				AA43D47F16CEFDB700104BBF /* WBNoticeView+ForSubclassEyesOnly.h */,
+				AA43D48016CEFDB700104BBF /* WBNoticeView.h */,
+				AA43D48116CEFDB700104BBF /* WBNoticeView.m */,
+				AA43D48216CEFDB700104BBF /* WBRedGradientView.h */,
+				AA43D48316CEFDB700104BBF /* WBRedGradientView.m */,
+				AA43D48416CEFDB700104BBF /* WBStickyNoticeView.h */,
+				AA43D48516CEFDB700104BBF /* WBStickyNoticeView.m */,
+				AA43D48616CEFDB700104BBF /* WBSuccessNoticeView.h */,
+				AA43D48716CEFDB700104BBF /* WBSuccessNoticeView.m */,
+			);
+			name = WBNoticeView;
+			path = NoticeView/NoticeView/WBNoticeView;
+			sourceTree = SOURCE_ROOT;
+		};
 		AA7C3FCA16C6C9870057E4C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +299,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 				AACE488B16CC30F700FE928B /* SDURLCache.h */,
 				AACE488C16CC30F700FE928B /* SDURLCache.m */,
 				AA91021516C6B41700673DF5 /* AFNetworking */,
@@ -287,6 +354,7 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA43D46F16CEFC5400104BBF /* QuartzCore.framework */,
 				AA91023416C6B72500673DF5 /* SystemConfiguration.framework */,
 				AA91023216C6B6F800673DF5 /* MobileCoreServices.framework */,
 				AAB399F316BDB21900973F88 /* UIKit.framework */,
@@ -398,6 +466,7 @@
 				AA2AEB3D16CB0CC5006B071C /* comp@2x.png in Resources */,
 				AACE489016CC6F1900FE928B /* tv2.png in Resources */,
 				AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */,
+				AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +501,16 @@
 				AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */,
 				AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */,
 				AACE488D16CC30F700FE928B /* SDURLCache.m in Sources */,
+				AA43D48916CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m in Sources */,
+				AA43D48A16CEFDB700104BBF /* UILabel+WBExtensions.m in Sources */,
+				AA43D48B16CEFDB700104BBF /* WBBlueGradientView.m in Sources */,
+				AA43D48C16CEFDB700104BBF /* WBErrorNoticeView.m in Sources */,
+				AA43D48D16CEFDB700104BBF /* WBGrayGradientView.m in Sources */,
+				AA43D48E16CEFDB700104BBF /* WBNoticeOperation.m in Sources */,
+				AA43D48F16CEFDB700104BBF /* WBNoticeView.m in Sources */,
+				AA43D49016CEFDB700104BBF /* WBRedGradientView.m in Sources */,
+				AA43D49116CEFDB700104BBF /* WBStickyNoticeView.m in Sources */,
+				AA43D49216CEFDB700104BBF /* WBSuccessNoticeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

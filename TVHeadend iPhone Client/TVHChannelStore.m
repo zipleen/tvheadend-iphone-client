@@ -50,6 +50,9 @@
     
     if( error ) {
         NSLog(@"[JSON Error]: %@", error.description);
+        if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
+            [self.delegate didErrorLoadingChannelStore:error];
+        }
         return ;
     }
     
@@ -100,7 +103,9 @@
            // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
            // NSLog(@"Request Successful, response '%@'", responseStr);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self.delegate didErrorLoading];
+            if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
+                [self.delegate didErrorLoadingChannelStore:error];
+            }
             NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
         }];
     } 
@@ -129,6 +134,12 @@
         [channel addEpg:epg];
     }
     [self.delegate didLoadChannels];
+}
+
+-(void) didErrorLoadingEpgStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
+        [self.delegate didErrorLoadingChannelStore:error];
+    }
 }
 
 #pragma mark Controller delegate stuff

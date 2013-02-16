@@ -46,6 +46,9 @@
         NSLog(@"%@",documentsDirectory);
         */
         NSLog(@"[JSON Error]: %@", error.description);
+        if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
+            [self.delegate didErrorLoadingEpgStore:error];
+        }
         return ;
     }
     
@@ -115,6 +118,9 @@
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[EpgList HTTPClient Error]: %@", error.localizedDescription);
+        if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
+            [self.delegate didErrorLoadingEpgStore:error];
+        }
     }];
     
 }

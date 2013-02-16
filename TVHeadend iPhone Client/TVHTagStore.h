@@ -13,7 +13,7 @@
 @protocol TVHTagStoreDelegate <NSObject>
 
 -(void) didLoadTags;
--(void) didErrorLoading;
+-(void) didErrorLoadingTagStore:(NSError*)error;
 @end
 
 @interface TVHTagStore : AFHTTPClient

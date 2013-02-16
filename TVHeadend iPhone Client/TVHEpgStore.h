@@ -13,6 +13,8 @@
 @class TVHEpgStore;
 @protocol TVHEpgStoreDelegate <NSObject>
 - (void) didLoadEpg:(TVHEpgStore*)epgList;
+@optional
+-(void) didErrorLoadingEpgStore:(NSError*)error;
 @end
 
 @interface TVHEpgStore : NSObject

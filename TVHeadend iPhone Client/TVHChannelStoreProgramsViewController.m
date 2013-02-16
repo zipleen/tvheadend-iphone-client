@@ -9,6 +9,7 @@
 #import "TVHChannelStoreProgramsViewController.h"
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
+#import "WBErrorNoticeView.h"
 
 @interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
 
@@ -95,6 +96,12 @@
 
 - (void)didLoadEpgChannel {
     [self.tableView reloadData];
+}
+
+- (void)didErrorLoadingEpgChannel:(NSError*) error {
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
+    [notice setSticky:true];
+    [notice show];
 }
 
 - (IBAction)playStream:(UIBarButtonItem*)sender {

@@ -9,6 +9,7 @@
 #import "TVHChannelStoreViewController.h"
 #import "TVHChannelStoreProgramsViewController.h"
 #import "TVHChannel.h"
+#import "WBErrorNoticeView.h"
 
 @interface TVHChannelStoreViewController ()
 @property (strong, nonatomic) TVHChannelStore *channelList;
@@ -122,13 +123,10 @@
     [self.tableView reloadData];
 }
 
-- (void)didErrorLoading {
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                         message:@"Error connecting to server - this should redirect you to settings app"
-                                                        delegate:nil
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil];
-    [errorAlert show];
+- (void)didErrorLoadingChannelStore:(NSError*) error {
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
+    [notice setSticky:true];
+    [notice show];
 }
 
 @end
