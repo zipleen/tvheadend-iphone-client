@@ -10,3 +10,6 @@
 [submodule "kxmovie"]
 	path = kxmovie
 	url = https://github.com/kolyvan/kxmovie.git
+[submodule "PullToRefresh"]
+	path = PullToRefresh
+	url = https://github.com/sonnyparlin/PullToRefresh.git

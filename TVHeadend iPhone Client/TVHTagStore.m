@@ -105,6 +105,10 @@
     }
 }
 
+- (void) resetTagStore {
+    self.tags = nil;
+}
+
 - (TVHTagStore *) objectAtIndex:(int) row {
     return [self.tags objectAtIndex:row];
 }

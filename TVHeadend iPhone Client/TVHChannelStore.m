@@ -72,6 +72,9 @@
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);
 }
 
+- (void)resetChannelStore {
+    self.channels = nil;
+}
 
 - (void)fetchChannelList {
     if( [self.channels count] == 0 ) {
@@ -149,8 +152,11 @@
         return [self.channels objectAtIndex:row];
     } else {
         NSArray *filteredTag = [self getFilteredChannelList];
-        return [filteredTag objectAtIndex:row];
+        if (row < [filteredTag count]){
+            return [filteredTag objectAtIndex:row];
+        }
     }
+    return nil;
 }
 
 - (int) count {

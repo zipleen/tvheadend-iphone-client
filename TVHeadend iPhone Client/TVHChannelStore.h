@@ -22,6 +22,7 @@
 @property (nonatomic) NSInteger filterTag;
 + (id)sharedInstance;
 - (void)fetchChannelList;
+- (void)resetChannelStore;
 
 - (TVHChannel *) objectAtIndex:(int) row;
 - (int) count;

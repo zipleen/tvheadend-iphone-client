@@ -13,15 +13,15 @@
 +(NSDictionary*) convertFromJsonToObjectFixUtf8:(NSData*)responseData error:(NSError*)error {
     
     NSMutableData *FileData = [NSMutableData dataWithLength:[responseData length]];
-	for (int i = 0; i < [responseData length]; ++i)
-	{
+    for (int i = 0; i < [responseData length]; ++i)
+    {
         char *a = &((char*)[responseData bytes])[i];
         if( ((int)*a >0 && (int)*a < 0x20)  ) {
             ((char*)[FileData mutableBytes])[i] = 0x20;
         } else {
             ((char*)[FileData mutableBytes])[i] = ((char*)[responseData bytes])[i];
         }
-	}
+    }
     
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:FileData //1
                                                          options:kNilOptions

@@ -11,13 +11,15 @@
 #import "TVHEpg.h"
 #import "WBErrorNoticeView.h"
 #import "KxMovieViewController.h"
+#import "PullToRefreshView.h"
 
-@interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
+@interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate, PullToRefreshViewDelegate>
 
 @end
 
-@implementation TVHChannelStoreProgramsViewController
-
+@implementation TVHChannelStoreProgramsViewController{
+    PullToRefreshView *pull;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,12 +35,23 @@
     [super viewDidLoad];
     [self.channel setDelegate:self];
     [self.channel downloadRestOfEpg];
+    
+    //pull to refresh
+    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+{
+    [self.channel resetChannelEpgStore];
+    [self.channel downloadRestOfEpg];
 }
 
 #pragma mark - Table view data source
@@ -97,6 +110,7 @@
 
 - (void)didLoadEpgChannel {
     [self.tableView reloadData];
+    [pull finishedLoading];
 }
 
 - (void)didErrorLoadingEpgChannel:(NSError*) error {
@@ -106,10 +120,11 @@
 }
 
 - (IBAction)playStream:(UIBarButtonItem*)sender {
-    NSString *actionSheetTitle = @"Copy to Clipboard"; //Action Sheet Title
-    NSString *other1 = @"Buzz Player";
-    NSString *other2 = @"GoodPlayer";
-    NSString *other3 = @"Oplayer";
+    NSString *actionSheetTitle = @"Play Stream Options";
+    NSString *copy = @"Copy to Clipboard";
+    NSString *buzz = @"Buzz Player";
+    NSString *good = @"GoodPlayer";
+    NSString *oplayer = @"Oplayer";
     NSString *cancelTitle = @"Cancel";
     NSString *stream = @"Stream Channel";
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
@@ -117,7 +132,7 @@
                                   delegate:self
                                   cancelButtonTitle:cancelTitle
                                   destructiveButtonTitle:stream
-                                  otherButtonTitles:actionSheetTitle, other1, other2, other3, nil];
+                                  otherButtonTitles:copy, buzz, good, oplayer, nil];
     //[actionSheet showFromToolbar:self.navigationController.toolbar];
     [actionSheet showFromBarButtonItem:sender  animated:YES];
 }

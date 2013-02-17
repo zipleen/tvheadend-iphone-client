@@ -33,6 +33,7 @@
 -(TVHEpg*) currentPlayingProgram;
 
 -(void) downloadRestOfEpg;
+-(void) resetChannelEpgStore;
 -(NSInteger) countEpg;
 -(NSString*) dateStringForDay:(NSInteger)day;
 -(NSArray*) programsForDay:(NSInteger)day;

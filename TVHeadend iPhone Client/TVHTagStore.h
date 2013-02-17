@@ -21,6 +21,7 @@
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate;
 
 - (void)fetchTagList;
+- (void) resetTagStore;
 - (TVHTag *) objectAtIndex:(int) row;
 - (int) count;
 @end

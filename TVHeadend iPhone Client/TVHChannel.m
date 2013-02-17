@@ -104,6 +104,10 @@
     return [self.name compare:otherObject.name];
 }
 
+- (void)resetChannelEpgStore {
+    self.schedulePrograms = nil;
+}
+
 - (NSInteger) countEpg {
     NSInteger count = 0;
     TVHChannelEpg *epg;
@@ -123,6 +127,8 @@
     [epgList downloadEpgList];
 }
 
+#pragma Table Call Methods
+
 -(NSArray*) programsForDay:(NSInteger)day {
     if ( [self.schedulePrograms count] == 0 ) {
         return nil;
@@ -133,7 +139,12 @@
 }
 
 -(TVHEpg*) programDetailForDay:(NSInteger)day index:(NSInteger)program {
-    return [[[self.schedulePrograms objectAtIndex:day] programs] objectAtIndex:program];
+    if ( day < [self.schedulePrograms count] ) {
+        if ( program < [[[self.schedulePrograms objectAtIndex:day] programs] count] ){
+            return [[[self.schedulePrograms objectAtIndex:day] programs] objectAtIndex:program];
+        }
+    }
+    return nil;
 }
 
 -(NSInteger) totalCountOfDaysEpg {

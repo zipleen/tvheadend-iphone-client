@@ -9,12 +9,15 @@
 #import "TVHTagStoreViewController.h"
 #import "TVHChannelStoreViewController.h"
 #import "WBErrorNoticeView.h"
+#import "PullToRefreshView.h"
 
-@interface TVHTagStoreViewController ()
+@interface TVHTagStoreViewController () <PullToRefreshViewDelegate>
 @property (strong, nonatomic) TVHTagStore *tagList;
 @end
 
-@implementation TVHTagStoreViewController
+@implementation TVHTagStoreViewController{
+    PullToRefreshView *pull;
+}
 @synthesize tagList = _tagList;
 
 - (TVHTagStore*) tagList {
@@ -39,12 +42,23 @@
 
     [self.tagList setDelegate:self];
     [self.tagList fetchTagList];
+    
+    //pull to refresh
+    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+{
+    [self.tagList resetTagStore];
+    [self.tagList fetchTagList];
 }
 
 #pragma mark - Table view data source
@@ -93,6 +107,7 @@
 
 - (void)didLoadTags {
     [self.tableView reloadData];
+    [pull finishedLoading];
 }
 
 - (void)didErrorLoadingTagStore:(NSError*) error {

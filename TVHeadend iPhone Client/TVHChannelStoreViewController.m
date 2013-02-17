@@ -10,15 +10,19 @@
 #import "TVHChannelStoreProgramsViewController.h"
 #import "TVHChannel.h"
 #import "WBErrorNoticeView.h"
+#import "PullToRefreshView.h"
 
-@interface TVHChannelStoreViewController ()
+@interface TVHChannelStoreViewController () <PullToRefreshViewDelegate>
 @property (strong, nonatomic) TVHChannelStore *channelList;
 @end
 
-@implementation TVHChannelStoreViewController
+@implementation TVHChannelStoreViewController {
+    PullToRefreshView *pull;
+}
 @synthesize channelList = _channelList;
 @synthesize filterTagId = _filterTagId;
 
+// if we're called from tagstore, we'll set the filter of the channelStore to only get channels from the selected tag
 - (NSInteger) filterTagId {
     if(!_filterTagId) {
         return 0;
@@ -49,12 +53,23 @@
     [self.channelList setDelegate:self];
     [self.channelList setFilterTag: self.filterTagId];
     [self.channelList fetchChannelList];
+    
+    //pull to refresh
+    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
+    [pull setDelegate:self];
+    [self.tableView addSubview:pull];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+{
+    [self.channelList resetChannelStore];
+    [self.channelList fetchChannelList];
 }
 
 #pragma mark - Table view data source
@@ -121,6 +136,7 @@
 
 - (void)didLoadChannels {
     [self.tableView reloadData];
+    [pull finishedLoading];
 }
 
 - (void)didErrorLoadingChannelStore:(NSError*) error {
