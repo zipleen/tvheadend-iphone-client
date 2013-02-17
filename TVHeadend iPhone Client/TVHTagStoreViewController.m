@@ -9,15 +9,14 @@
 #import "TVHTagStoreViewController.h"
 #import "TVHChannelStoreViewController.h"
 #import "WBErrorNoticeView.h"
-#import "PullToRefreshView.h"
+#import "CKRefreshControl.h"
 
-@interface TVHTagStoreViewController () <PullToRefreshViewDelegate>
+@interface TVHTagStoreViewController ()
 @property (strong, nonatomic) TVHTagStore *tagList;
 @end
 
-@implementation TVHTagStoreViewController{
-    PullToRefreshView *pull;
-}
+@implementation TVHTagStoreViewController
+
 @synthesize tagList = _tagList;
 
 - (TVHTagStore*) tagList {
@@ -44,9 +43,9 @@
     [self.tagList fetchTagList];
     
     //pull to refresh
-    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    //self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +54,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+- (void)pullToRefreshViewShouldRefresh
 {
     [self.tagList resetTagStore];
     [self.tableView reloadData];
@@ -108,7 +107,7 @@
 
 - (void)didLoadTags {
     [self.tableView reloadData];
-    [pull finishedLoading];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didErrorLoadingTagStore:(NSError*) error {
@@ -116,7 +115,7 @@
     [notice setSticky:true];
     [notice show];
     
-    [pull finishedLoading];
+    [self.refreshControl endRefreshing];
 }
 
 

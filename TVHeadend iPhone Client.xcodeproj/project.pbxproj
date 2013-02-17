@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA10AA8416D1304D00BBDFEA /* CKParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA7E16D1304D00BBDFEA /* CKParagraphStyle.m */; };
+		AA10AA8516D1304D00BBDFEA /* CKRefreshArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA8016D1304D00BBDFEA /* CKRefreshArrowView.m */; };
+		AA10AA8616D1304D00BBDFEA /* CKRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA8316D1304D00BBDFEA /* CKRefreshControl.m */; };
 		AA1D426D16BEC2BA00F42F7E /* TVHChannelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */; };
 		AA2AEB2416CB0839006B071C /* comp.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB1E16CB0839006B071C /* comp.png */; };
@@ -80,11 +83,6 @@
 		AACA614416CFDC2B002C6DE1 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613E16CFDC2B002C6DE1 /* libswscale.a */; };
 		AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */; };
 		AACA615016D05E48002C6DE1 /* TVHJsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */; };
-		AACA615A16D07BF4002C6DE1 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA615216D07BF4002C6DE1 /* arrow.png */; };
-		AACA615B16D07BF4002C6DE1 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACA615316D07BF4002C6DE1 /* arrow@2x.png */; };
-		AACA615C16D07BF4002C6DE1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = AACA615416D07BF4002C6DE1 /* LICENSE */; };
-		AACA615F16D07BF4002C6DE1 /* PullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA615816D07BF4002C6DE1 /* PullToRefreshView.m */; };
-		AACA616016D07BF4002C6DE1 /* README in Resources */ = {isa = PBXBuildFile; fileRef = AACA615916D07BF4002C6DE1 /* README */; };
 		AACE488D16CC30F700FE928B /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE488C16CC30F700FE928B /* SDURLCache.m */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
@@ -108,6 +106,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA10AA7D16D1304D00BBDFEA /* CKParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKParagraphStyle.h; sourceTree = "<group>"; };
+		AA10AA7E16D1304D00BBDFEA /* CKParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKParagraphStyle.m; sourceTree = "<group>"; };
+		AA10AA7F16D1304D00BBDFEA /* CKRefreshArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKRefreshArrowView.h; sourceTree = "<group>"; };
+		AA10AA8016D1304D00BBDFEA /* CKRefreshArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKRefreshArrowView.m; sourceTree = "<group>"; };
+		AA10AA8116D1304D00BBDFEA /* CKRefreshControl-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKRefreshControl-Prefix.pch"; sourceTree = "<group>"; };
+		AA10AA8216D1304D00BBDFEA /* CKRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKRefreshControl.h; sourceTree = "<group>"; };
+		AA10AA8316D1304D00BBDFEA /* CKRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKRefreshControl.m; sourceTree = "<group>"; };
 		AA1D426B16BEC2BA00F42F7E /* TVHChannelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStore.h; sourceTree = "<group>"; };
 		AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStore.m; sourceTree = "<group>"; };
 		AA21F11416C7F6A10041C505 /* TVHChannelStoreProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreProgramsViewController.h; sourceTree = "<group>"; };
@@ -222,12 +227,6 @@
 		AACA614816CFDDD0002C6DE1 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = kxmovie/output/KxMovieViewController.h; sourceTree = SOURCE_ROOT; };
 		AACA614E16D05E48002C6DE1 /* TVHJsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHJsonHelper.h; sourceTree = "<group>"; };
 		AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHJsonHelper.m; sourceTree = "<group>"; };
-		AACA615216D07BF4002C6DE1 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
-		AACA615316D07BF4002C6DE1 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
-		AACA615416D07BF4002C6DE1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		AACA615716D07BF4002C6DE1 /* PullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshView.h; sourceTree = "<group>"; };
-		AACA615816D07BF4002C6DE1 /* PullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshView.m; sourceTree = "<group>"; };
-		AACA615916D07BF4002C6DE1 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		AACE488B16CC30F700FE928B /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = SDURLCache/SDURLCache.h; sourceTree = SOURCE_ROOT; };
 		AACE488C16CC30F700FE928B /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = SDURLCache/SDURLCache.m; sourceTree = SOURCE_ROOT; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
@@ -286,6 +285,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA10AA7C16D1304D00BBDFEA /* CKRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				AA10AA7D16D1304D00BBDFEA /* CKParagraphStyle.h */,
+				AA10AA7E16D1304D00BBDFEA /* CKParagraphStyle.m */,
+				AA10AA7F16D1304D00BBDFEA /* CKRefreshArrowView.h */,
+				AA10AA8016D1304D00BBDFEA /* CKRefreshArrowView.m */,
+				AA10AA8116D1304D00BBDFEA /* CKRefreshControl-Prefix.pch */,
+				AA10AA8216D1304D00BBDFEA /* CKRefreshControl.h */,
+				AA10AA8316D1304D00BBDFEA /* CKRefreshControl.m */,
+			);
+			name = CKRefreshControl;
+			path = CKRefreshControl/CKRefreshControl;
+			sourceTree = SOURCE_ROOT;
+		};
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,7 +438,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				AACA615116D07BF4002C6DE1 /* PullToRefresh */,
+				AA10AA7C16D1304D00BBDFEA /* CKRefreshControl */,
 				AACA614A16CFDDDA002C6DE1 /* kxmovie */,
 				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 				AACE488B16CC30F700FE928B /* SDURLCache.h */,
@@ -554,19 +568,6 @@
 			name = "kxmovie frameworks";
 			sourceTree = "<group>";
 		};
-		AACA615116D07BF4002C6DE1 /* PullToRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				AACA615216D07BF4002C6DE1 /* arrow.png */,
-				AACA615316D07BF4002C6DE1 /* arrow@2x.png */,
-				AACA615416D07BF4002C6DE1 /* LICENSE */,
-				AACA615716D07BF4002C6DE1 /* PullToRefreshView.h */,
-				AACA615816D07BF4002C6DE1 /* PullToRefreshView.m */,
-				AACA615916D07BF4002C6DE1 /* README */,
-			);
-			path = PullToRefresh;
-			sourceTree = SOURCE_ROOT;
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -671,10 +672,6 @@
 				AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */,
 				AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */,
 				AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */,
-				AACA615A16D07BF4002C6DE1 /* arrow.png in Resources */,
-				AACA615B16D07BF4002C6DE1 /* arrow@2x.png in Resources */,
-				AACA615C16D07BF4002C6DE1 /* LICENSE in Resources */,
-				AACA616016D07BF4002C6DE1 /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,7 +742,9 @@
 				AA43D49116CEFDB700104BBF /* WBStickyNoticeView.m in Sources */,
 				AA43D49216CEFDB700104BBF /* WBSuccessNoticeView.m in Sources */,
 				AACA615016D05E48002C6DE1 /* TVHJsonHelper.m in Sources */,
-				AACA615F16D07BF4002C6DE1 /* PullToRefreshView.m in Sources */,
+				AA10AA8416D1304D00BBDFEA /* CKParagraphStyle.m in Sources */,
+				AA10AA8516D1304D00BBDFEA /* CKRefreshArrowView.m in Sources */,
+				AA10AA8616D1304D00BBDFEA /* CKRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

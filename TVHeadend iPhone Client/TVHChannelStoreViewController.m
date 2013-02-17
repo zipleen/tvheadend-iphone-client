@@ -10,15 +10,14 @@
 #import "TVHChannelStoreProgramsViewController.h"
 #import "TVHChannel.h"
 #import "WBErrorNoticeView.h"
-#import "PullToRefreshView.h"
+#import "CKRefreshControl.h"
 
-@interface TVHChannelStoreViewController () <PullToRefreshViewDelegate>
+@interface TVHChannelStoreViewController () 
 @property (strong, nonatomic) TVHChannelStore *channelList;
 @end
 
-@implementation TVHChannelStoreViewController {
-    PullToRefreshView *pull;
-}
+@implementation TVHChannelStoreViewController
+
 @synthesize channelList = _channelList;
 @synthesize filterTagId = _filterTagId;
 
@@ -55,9 +54,8 @@
     [self.channelList fetchChannelList];
     
     //pull to refresh
-    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +64,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+- (void)pullToRefreshViewShouldRefresh
 {
     [self.channelList resetChannelStore];
     [self.tableView reloadData];
@@ -137,14 +135,14 @@
 
 - (void)didLoadChannels {
     [self.tableView reloadData];
-    [pull finishedLoading];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didErrorLoadingChannelStore:(NSError*) error {
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
     [notice setSticky:true];
     [notice show];
-    [pull finishedLoading];
+    [self.refreshControl endRefreshing];
 }
 
 @end

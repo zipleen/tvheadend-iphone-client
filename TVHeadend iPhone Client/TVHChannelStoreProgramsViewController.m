@@ -11,15 +11,13 @@
 #import "TVHEpg.h"
 #import "WBErrorNoticeView.h"
 #import "KxMovieViewController.h"
-#import "PullToRefreshView.h"
+#import "CKRefreshControl.h"
 
-@interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate, PullToRefreshViewDelegate>
+@interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
 
 @end
 
-@implementation TVHChannelStoreProgramsViewController{
-    PullToRefreshView *pull;
-}
+@implementation TVHChannelStoreProgramsViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,9 +35,8 @@
     [self.channel downloadRestOfEpg];
     
     //pull to refresh
-    pull = [[PullToRefreshView alloc] initWithScrollView:(UIScrollView *) self.tableView];
-    [pull setDelegate:self];
-    [self.tableView addSubview:pull];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +45,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
+- (void)pullToRefreshViewShouldRefresh
 {
     [self.channel resetChannelEpgStore];
     [self.tableView reloadData];
@@ -111,14 +108,14 @@
 
 - (void)didLoadEpgChannel {
     [self.tableView reloadData];
-    [pull finishedLoading];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didErrorLoadingEpgChannel:(NSError*) error {
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
     [notice setSticky:true];
     [notice show];
-    [pull finishedLoading];
+    [self.refreshControl endRefreshing];
 }
 
 - (IBAction)playStream:(UIBarButtonItem*)sender {

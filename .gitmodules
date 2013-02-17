@@ -13,3 +13,6 @@
 [submodule "PullToRefresh"]
 	path = PullToRefresh
 	url = https://github.com/sonnyparlin/PullToRefresh.git
+[submodule "CKRefreshControl"]
+	path = CKRefreshControl
+	url = https://github.com/instructure/CKRefreshControl.git
