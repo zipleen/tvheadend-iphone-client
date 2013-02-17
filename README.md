@@ -10,6 +10,17 @@ It allows you to view channels by tags, view channel EPG's, add and view recordi
     git clone https://github.com/zipleen/tvheadend-iphone-client.git
     cd tvheadend-iphone-client/
     git submodule update --init
+    
+    # configure kxmovie and ffmpeg
+    cd kxmovie/
+    git submodule update --init
+    rake
+    
+    # you need to have gas-preprocessor.pl in /usr/local/bin and have it 777, so 
+    cp gas-preprocessor.pl /usr/local/bin
+    sudo chmod 777 /usr/local/bin/gas-preprocessor.pl 
+
+To work without kxmovie, remove "kxmovie frameworks" from "Frameworks" and "kxmovie" from Supporting Files/Framework. Then edit TVHChannelListProgramsViewController.m and remove #import "KxMovieViewController.h" and comment the whole "-(void)streamChannel:(NSString*) path" method.
 
 #### Background
 
