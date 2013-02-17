@@ -69,6 +69,7 @@
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
 {
     [self.channelList resetChannelStore];
+    [self.tableView reloadData];
     [self.channelList fetchChannelList];
 }
 
@@ -143,6 +144,7 @@
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
     [notice setSticky:true];
     [notice show];
+    [pull finishedLoading];
 }
 
 @end

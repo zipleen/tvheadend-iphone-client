@@ -12,4 +12,5 @@
 @property (nonatomic, strong, readonly) NSString *ip;
 @property (nonatomic, strong, readonly) NSURL *baseURL;
 + (id)sharedInstance;
+- (void)resetSettings;
 @end

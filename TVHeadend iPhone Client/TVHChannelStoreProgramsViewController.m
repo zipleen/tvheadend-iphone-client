@@ -51,6 +51,7 @@
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
 {
     [self.channel resetChannelEpgStore];
+    [self.tableView reloadData];
     [self.channel downloadRestOfEpg];
 }
 
@@ -117,6 +118,7 @@
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
     [notice setSticky:true];
     [notice show];
+    [pull finishedLoading];
 }
 
 - (IBAction)playStream:(UIBarButtonItem*)sender {

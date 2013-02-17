@@ -58,6 +58,7 @@
 - (void)pullToRefreshViewShouldRefresh:(PullToRefreshView *)view;
 {
     [self.tagList resetTagStore];
+    [self.tableView reloadData];
     [self.tagList fetchTagList];
 }
 
@@ -114,6 +115,8 @@
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
     [notice setSticky:true];
     [notice show];
+    
+    [pull finishedLoading];
 }
 
 

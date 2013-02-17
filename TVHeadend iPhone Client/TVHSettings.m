@@ -43,6 +43,11 @@
     return _baseURL;
 }
 
+- (void) resetSettings {
+    _ip = nil;
+    _baseURL = nil;
+}
+
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
     static dispatch_once_t onceToken;
