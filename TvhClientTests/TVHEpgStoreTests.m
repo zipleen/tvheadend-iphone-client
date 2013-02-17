@@ -46,6 +46,10 @@
     STAssertNotNil(tvhe, @"creating tvepg store object");
     [tvhe fetchedData:data];
     STAssertTrue( ([tvhe.epgList count] == 1), @"Failed parsing json data");
+    
+    TVHEpg *epg = [tvhe.epgList objectAtIndex:0];
+    STAssertEqualObjects(epg.title, @"Nacional x Benfica - Primeira Liga", @"epg title doesnt match");
+    STAssertEquals(epg.channelId, 131, @"epg title doesnt match");
 }
 
 @end

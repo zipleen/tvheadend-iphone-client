@@ -9,6 +9,7 @@
 #import "TVHChannelStore.h"
 #import "TVHEpg.h"
 #import "TVHSettings.h"
+#import "TVHJsonHelper.h"
 
 @interface TVHChannelStore ()
 @property (nonatomic, strong) NSArray *channels;
@@ -39,17 +40,10 @@
     return _epgList;
 }
 
-
-
 - (void)fetchedData:(NSData *)responseData {
-    //parse out the json data
     NSError* error;
-    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData //1
-                                                         options:kNilOptions
-                                                           error:&error];
-    
+    NSDictionary *json = [TVHJsonHelper convertFromJsonToObject:responseData error:error];
     if( error ) {
-        NSLog(@"[JSON Error]: %@", error.description);
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
             [self.delegate didErrorLoadingChannelStore:error];
         }

@@ -79,6 +79,7 @@
 		AACA614316CFDC2B002C6DE1 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613D16CFDC2B002C6DE1 /* libswresample.a */; };
 		AACA614416CFDC2B002C6DE1 /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613E16CFDC2B002C6DE1 /* libswscale.a */; };
 		AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */; };
+		AACA615016D05E48002C6DE1 /* TVHJsonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */; };
 		AACE488D16CC30F700FE928B /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE488C16CC30F700FE928B /* SDURLCache.m */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
@@ -214,6 +215,8 @@
 		AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = kxmovie/output/kxmovie.bundle; sourceTree = SOURCE_ROOT; };
 		AACA614716CFDDD0002C6DE1 /* KxMovieDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieDecoder.h; path = kxmovie/output/KxMovieDecoder.h; sourceTree = SOURCE_ROOT; };
 		AACA614816CFDDD0002C6DE1 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = kxmovie/output/KxMovieViewController.h; sourceTree = SOURCE_ROOT; };
+		AACA614E16D05E48002C6DE1 /* TVHJsonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHJsonHelper.h; sourceTree = "<group>"; };
+		AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHJsonHelper.m; sourceTree = "<group>"; };
 		AACE488B16CC30F700FE928B /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = SDURLCache/SDURLCache.h; sourceTree = SOURCE_ROOT; };
 		AACE488C16CC30F700FE928B /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = SDURLCache/SDURLCache.m; sourceTree = SOURCE_ROOT; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				AAF54A2416C735960076DF17 /* TVHEpgStore.m */,
 				AAF54A2016C735710076DF17 /* TVHEpg.h */,
 				AAF54A2116C735710076DF17 /* TVHEpg.m */,
+				AACA614E16D05E48002C6DE1 /* TVHJsonHelper.h */,
+				AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -710,6 +715,7 @@
 				AA43D49016CEFDB700104BBF /* WBRedGradientView.m in Sources */,
 				AA43D49116CEFDB700104BBF /* WBStickyNoticeView.m in Sources */,
 				AA43D49216CEFDB700104BBF /* WBSuccessNoticeView.m in Sources */,
+				AACA615016D05E48002C6DE1 /* TVHJsonHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

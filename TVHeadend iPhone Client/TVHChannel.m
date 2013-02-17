@@ -88,11 +88,15 @@
 
 -(TVHEpg*) currentPlayingProgram {
     if ([self.schedulePrograms count]==0) {
+#if DEBUG
         NSLog(@"No EPG for %@", self.name);
+#endif
         return nil;
     }
     TVHChannelEpg *p = [self.schedulePrograms objectAtIndex:0];
+#if DEBUG
     NSLog(@"Has %d for %@", [p.programs count] ,self.name);
+#endif
     return [p.programs objectAtIndex:0];
 }
 

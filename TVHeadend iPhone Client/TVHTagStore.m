@@ -8,6 +8,7 @@
 
 #import "TVHTagStore.h"
 #import "TVHSettings.h"
+#import "TVHJsonHelper.h"
 
 @interface TVHTagStore()
 @property (nonatomic, strong) NSArray *tags;
@@ -31,14 +32,9 @@
 }
 
 - (void)fetchedData:(NSData *)responseData {
-    //parse out the json data
     NSError* error;
-    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData //1
-                                                         options:kNilOptions
-                                                           error:&error];
-    
+    NSDictionary *json = [TVHJsonHelper convertFromJsonToObject:responseData error:error];
     if( error ) {
-        NSLog(@"[JSON Error]: %@", error.description);
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
             [self.delegate didErrorLoadingTagStore:error];
         }
@@ -80,7 +76,9 @@
     [orderedTags insertObject:t atIndex:0];
     
     self.tags = [orderedTags copy];
+#if DEBUG
     NSLog(@"[Loaded Tags]: %d", [self.tags count]);
+#endif
 }
 
 - (void)fetchTagList {
@@ -100,7 +98,9 @@
             if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
                 [self.delegate didErrorLoadingTagStore:error];
             }
+#if DEBUG
             NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
+#endif
         }];
     }
 }

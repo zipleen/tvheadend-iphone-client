@@ -9,6 +9,7 @@
 #import "TVHEpgStore.h"
 #import "TVHEpg.h"
 #import "TVHSettings.h"
+#import "TVHJsonHelper.h"
 
 @interface TVHEpgStore()
 @property (nonatomic, strong) NSArray *epgList;
@@ -33,20 +34,10 @@
 }
 
 - (void)fetchedData:(NSData *)responseData {
-    //parse out the json data
-    NSError* error;
-    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData //1
-                                                         options:kNilOptions
-                                                           error:&error];
     
+    NSError* error;
+    NSDictionary *json = [TVHJsonHelper convertFromJsonToObject:responseData error:error];
     if( error ) {
-        /*NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *appFile = [documentsDirectory stringByAppendingPathComponent:@"MyFile"];
-        [responseData writeToFile:appFile atomically:YES];
-        NSLog(@"%@",documentsDirectory);
-        */
-        NSLog(@"[JSON Error]: %@", error.description);
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
             [self.delegate didErrorLoadingEpgStore:error];
         }
@@ -85,8 +76,9 @@
     } else {
         self.epgList = [epgList copy];
     }
-   
+#if DEBUG
     NSLog(@"[Loaded EPG programs]: %d", [self.epgList count]);
+#endif
 }
 
 - (NSDictionary*) getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
@@ -118,7 +110,9 @@
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+#if DEBUG
         NSLog(@"[EpgList HTTPClient Error]: %@", error.localizedDescription);
+#endif
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
             [self.delegate didErrorLoadingEpgStore:error];
         }
@@ -134,7 +128,9 @@
     TVHEpg *last = [self.epgList lastObject];
     if ( last ) {
         NSDate *localDate = [NSDate date];
+#if DEBUG
         NSLog(@"localdate: %@ | last start date: %@", localDate, last.start);
+#endif
         if ( localDate > last.start && self.lastEventCount<(start+limit) ) {
             [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50];
         }
