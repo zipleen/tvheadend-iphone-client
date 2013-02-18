@@ -80,10 +80,13 @@
     
     // Configure the cell...
     TVHTag *tag = [self.tagList objectAtIndex:indexPath.row];
-    cell.textLabel.text = tag.name;
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:tag.imageUrl] placeholderImage:[UIImage imageNamed:@"tag.png"]];
-    
+    UILabel *tagNameLabel = (UILabel *)[cell viewWithTag:100];
+	UILabel *tagNumberLabel = (UILabel *)[cell viewWithTag:101];
+	UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
+    tagNameLabel.text = tag.name;
+    tagNumberLabel.text = nil;
+    [channelImage setImageWithURL:[NSURL URLWithString:tag.imageUrl] placeholderImage:[UIImage imageNamed:@"tag.png"]];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
