@@ -86,16 +86,18 @@
     UILabel *name = (UILabel *)[cell viewWithTag:100];
 	UILabel *description = (UILabel *)[cell viewWithTag:101];
     UILabel *hour = (UILabel *)[cell viewWithTag:102];
-
+    UIProgressView *progress = (UIProgressView *)[cell viewWithTag:103];
+    
     hour.text = [timeFormatter stringFromDate: epg.start];
     name.text = epg.title;
     description.text = epg.description;
     
     if( epg == self.channel.currentPlayingProgram ) {
         description.text = nil;
-        UIProgressView *progress = (UIProgressView *)[cell viewWithTag:103];
         progress.progress = epg.progress;
         progress.hidden = NO;
+    } else {
+        progress.hidden = YES;
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
