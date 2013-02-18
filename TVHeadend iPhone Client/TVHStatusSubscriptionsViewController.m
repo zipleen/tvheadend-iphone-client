@@ -72,13 +72,24 @@
     // Configure the cell...
     TVHStatusSubscription *subscription = [self.statusStore objectAtIndex:indexPath.row];
     
-    UILabel *channelLabel = (UILabel *)[cell viewWithTag:100];
-	UILabel *serviceLabel = (UILabel *)[cell viewWithTag:101];
+    UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
+    // username
+	UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
+    UILabel *channelLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+    UILabel *startLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *stateLabel = (UILabel *)[cell viewWithTag:106];
+    UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
+    //UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
 	
+    hostnameLabel.text = subscription.hostname;
+    titleLabel.text = subscription.title;
     channelLabel.text = subscription.channel;
     serviceLabel.text = subscription.service;
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    startLabel.text = [subscription.start description];
+    stateLabel.text = subscription.state;
+    //errorsLabel.text = subscription.errors;
+    //bandwidthLabel.text = subscription.
     
     return cell;
 }
