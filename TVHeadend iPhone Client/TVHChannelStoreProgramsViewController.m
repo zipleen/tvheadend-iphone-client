@@ -39,6 +39,12 @@
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    self.channel = nil;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

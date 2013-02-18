@@ -23,6 +23,9 @@
     self.programTitle.text = self.epg.title;
     self.programDescription.text = self.epg.description;
     [self.programImage setImageWithURL:[NSURL URLWithString:self.channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm";
+    self.time.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:self.epg.start], [dateFormatter stringFromDate:self.epg.end]];
     //self.programImage.image = [UIImage imageNamed:@"tv.png"];
 }
 
@@ -36,10 +39,18 @@
     [self setProgramDescription:nil];
     [self setProgramTitle:nil];
     [self setProgramImage:nil];
+    [self setProgramDescription:nil];
+    [self setTime:nil];
+    self.epg = nil;
+    self.channel = nil;
     [super viewDidUnload];
 }
 
 - (IBAction)addRecordToTVHeadend:(id)sender {
+    
+}
+
+- (IBAction)playStream:(id)sender {
     
 }
 

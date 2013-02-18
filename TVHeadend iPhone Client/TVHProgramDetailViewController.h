@@ -15,8 +15,11 @@
 @property (weak, nonatomic) TVHEpg *epg;
 @property (weak, nonatomic) TVHChannel *channel;
 @property (weak, nonatomic) IBOutlet UIImageView *programImage;
-@property (weak, nonatomic) IBOutlet UILabel *programDescription;
+@property (weak, nonatomic) IBOutlet UITextView *programDescription;
 @property (weak, nonatomic) IBOutlet UILabel *programTitle;
+@property (weak, nonatomic) IBOutlet UILabel *time;
 
 - (IBAction)addRecordToTVHeadend:(id)sender;
+- (IBAction)playStream:(id)sender;
+
 @end
