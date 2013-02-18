@@ -48,6 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setTitle:NSLocalizedString(@"Channels", nil)];
     
     [self.channelList setDelegate:self];
     [self.channelList setFilterTag: self.filterTagId];
@@ -139,7 +140,7 @@
 }
 
 - (void)didErrorLoadingChannelStore:(NSError*) error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.description];
     [notice setSticky:true];
     [notice show];
     [self.refreshControl endRefreshing];

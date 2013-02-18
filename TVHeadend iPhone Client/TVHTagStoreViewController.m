@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self.tagList setDelegate:self];
     [self.tagList fetchTagList];
     
@@ -111,7 +111,7 @@
 }
 
 - (void)didErrorLoadingTagStore:(NSError*) error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.description];
     [notice setSticky:true];
     [notice show];
     

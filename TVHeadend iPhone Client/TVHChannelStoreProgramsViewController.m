@@ -124,20 +124,20 @@
 }
 
 - (void)didErrorLoadingEpgChannel:(NSError*) error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:error.description];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error",nil) message:error.description];
     [notice setSticky:true];
     [notice show];
     [self.refreshControl endRefreshing];
 }
 
 - (IBAction)playStream:(UIBarButtonItem*)sender {
-    NSString *actionSheetTitle = @"Play Stream Options";
-    NSString *copy = @"Copy to Clipboard";
+    NSString *actionSheetTitle = NSLocalizedString(@"Play Stream Options", nil);
+    NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
     NSString *buzz = @"Buzz Player";
     NSString *good = @"GoodPlayer";
     NSString *oplayer = @"Oplayer";
-    NSString *cancelTitle = @"Cancel";
-    NSString *stream = @"Stream Channel";
+    NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
+    NSString *stream = NSLocalizedString(@"Stream Channel", nil);
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:actionSheetTitle
                                   delegate:self
@@ -170,7 +170,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if  ([buttonTitle isEqualToString:@"Copy to Clipboard"]) {
+    if  ([buttonTitle isEqualToString:NSLocalizedString(@"Copy to Clipboard", nil)]) {
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         [pb setString:[self.channel streamURL]];
     }
@@ -189,7 +189,7 @@
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
     }
-    if ([buttonTitle isEqualToString:@"Stream Channel"]) {
+    if ([buttonTitle isEqualToString:NSLocalizedString(@"Stream Channel", nil)]) {
         NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.channel streamURL] ];
         [self streamChannel:url];
     }

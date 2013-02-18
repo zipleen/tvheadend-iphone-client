@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         self.tagid = 0;
-        self.name = @"All Channels";
+        self.name = NSLocalizedString(@"All Channels", nil);
 
     }
     return self;
