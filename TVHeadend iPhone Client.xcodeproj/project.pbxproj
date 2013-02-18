@@ -29,6 +29,9 @@
 		AA407E3616D1B85500451E6F /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3316D1B85500451E6F /* forward.png */; };
 		AA407E3716D1B85500451E6F /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3416D1B85500451E6F /* forward@2x.png */; };
 		AA407E3816D1B85500451E6F /* tag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3516D1B85500451E6F /* tag@2x.png */; };
+		AA407E3B16D1C77300451E6F /* TVHStatusSubscriptionsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E3A16D1C77200451E6F /* TVHStatusSubscriptionsStore.m */; };
+		AA407E3E16D1CA6700451E6F /* TVHStatusSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */; };
+		AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */; };
 		AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43D46F16CEFC5400104BBF /* QuartzCore.framework */; };
 		AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA43D47216CEFDB700104BBF /* NoticeView.bundle */; };
 		AA43D48916CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47416CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m */; };
@@ -138,6 +141,12 @@
 		AA407E3316D1B85500451E6F /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		AA407E3416D1B85500451E6F /* forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forward@2x.png"; sourceTree = "<group>"; };
 		AA407E3516D1B85500451E6F /* tag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tag@2x.png"; sourceTree = "<group>"; };
+		AA407E3916D1C77200451E6F /* TVHStatusSubscriptionsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusSubscriptionsStore.h; sourceTree = "<group>"; };
+		AA407E3A16D1C77200451E6F /* TVHStatusSubscriptionsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSubscriptionsStore.m; sourceTree = "<group>"; };
+		AA407E3C16D1CA6700451E6F /* TVHStatusSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusSubscription.h; sourceTree = "<group>"; };
+		AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSubscription.m; sourceTree = "<group>"; };
+		AA407E3F16D1CE5600451E6F /* TVHStatusSubscriptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusSubscriptionsViewController.h; sourceTree = "<group>"; };
+		AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSubscriptionsViewController.m; sourceTree = "<group>"; };
 		AA43D46F16CEFC5400104BBF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA43D47216CEFDB700104BBF /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
 		AA43D47316CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+WBNoticeExtensions.h"; sourceTree = "<group>"; };
@@ -327,6 +336,10 @@
 				AAF54A2116C735710076DF17 /* TVHEpg.m */,
 				AACA614E16D05E48002C6DE1 /* TVHJsonHelper.h */,
 				AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */,
+				AA407E3916D1C77200451E6F /* TVHStatusSubscriptionsStore.h */,
+				AA407E3A16D1C77200451E6F /* TVHStatusSubscriptionsStore.m */,
+				AA407E3C16D1CA6700451E6F /* TVHStatusSubscription.h */,
+				AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -438,6 +451,8 @@
 				AAB39A1A16BDB29C00973F88 /* TVHChannelStoreViewController.m */,
 				AAF54A1D16C7137B0076DF17 /* TVHTagStoreViewController.h */,
 				AAF54A1E16C7137B0076DF17 /* TVHTagStoreViewController.m */,
+				AA407E3F16D1CE5600451E6F /* TVHStatusSubscriptionsViewController.h */,
+				AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -757,6 +772,9 @@
 				AA10AA8416D1304D00BBDFEA /* CKParagraphStyle.m in Sources */,
 				AA10AA8516D1304D00BBDFEA /* CKRefreshArrowView.m in Sources */,
 				AA10AA8616D1304D00BBDFEA /* CKRefreshControl.m in Sources */,
+				AA407E3B16D1C77300451E6F /* TVHStatusSubscriptionsStore.m in Sources */,
+				AA407E3E16D1CA6700451E6F /* TVHStatusSubscription.m in Sources */,
+				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

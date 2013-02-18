@@ -127,27 +127,43 @@
             </objects>
             <point key="canvasLocation" x="-687" y="-705"/>
         </scene>
-        <!--Table View Controller - Root View Controller-->
+        <!--Status Subscriptions View Controller - Status-->
         <scene sceneID="45W-Ov-3jU">
             <objects>
-                <tableViewController id="pq9-s6-D4Q" sceneMemberID="viewController">
+                <tableViewController id="pq9-s6-D4Q" customClass="TVHStatusSubscriptionsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lpG-82-MC2">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="1r4-r7-fGy">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubscriptionStoreTableItems" id="1r4-r7-fGy">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ah7-QB-1iq">
+                                            <rect key="frame" x="20" y="2" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XwI-oU-DT6">
+                                            <rect key="frame" x="20" y="20" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="85R-tJ-fMT"/>
+                    <navigationItem key="navigationItem" title="Status" id="85R-tJ-fMT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBX-pW-VWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -431,6 +447,9 @@
                 <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
             </relationships>
+        </class>
+        <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
         </class>
         <class className="TVHTagStoreViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagStoreViewController.h"/>
