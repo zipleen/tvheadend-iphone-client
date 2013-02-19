@@ -1,15 +1,15 @@
 [submodule "AFNetworking"]
 	path = AFNetworking
-	url = https://github.com/AFNetworking/AFNetworking.git
+	url = git://github.com/AFNetworking/AFNetworking.git
 [submodule "SDURLCache"]
 	path = SDURLCache
-	url = https://github.com/steipete/SDURLCache.git
+	url = git://github.com/steipete/SDURLCache.git
 [submodule "NoticeView"]
 	path = NoticeView
-	url = https://github.com/tciuro/NoticeView
+	url = git://github.com/tciuro/NoticeView.git
 [submodule "kxmovie"]
 	path = kxmovie
-	url = https://github.com/kolyvan/kxmovie.git
+	url = git://github.com/kolyvan/kxmovie.git
 [submodule "CKRefreshControl"]
 	path = CKRefreshControl
-	url = https://github.com/instructure/CKRefreshControl.git
+	url = git://github.com/instructure/CKRefreshControl.git
