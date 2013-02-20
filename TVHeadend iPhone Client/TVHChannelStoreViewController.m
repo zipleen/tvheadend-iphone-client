@@ -12,7 +12,9 @@
 #import "WBErrorNoticeView.h"
 #import "CKRefreshControl.h"
 
-@interface TVHChannelStoreViewController () 
+@interface TVHChannelStoreViewController () {
+    NSDateFormatter *dateFormatter;
+}
 @property (strong, nonatomic) TVHChannelStore *channelList;
 @end
 
@@ -57,6 +59,9 @@
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm";
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,8 +95,6 @@
     
     // Configure the cell...
     TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH:mm";
     TVHEpg *currentPlayingProgram = [ch currentPlayingProgram];
     
     UILabel *channelNameLabel = (UILabel *)[cell viewWithTag:100];

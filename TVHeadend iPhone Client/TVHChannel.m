@@ -11,7 +11,9 @@
 #import "TVHChannelEpg.h"
 #import "TVHSettings.h"
 
-@interface TVHChannel() <TVHEpgStoreDelegate>
+@interface TVHChannel() <TVHEpgStoreDelegate> {
+    NSDateFormatter *dateFormatter;
+}
 @property (nonatomic, strong) NSMutableArray *schedulePrograms;
 @property (nonatomic, weak) id <TVHChannelDelegate> delegate;
 @end
@@ -77,9 +79,11 @@
 }
 
 -(void) addEpg:(TVHEpg*)epg {
+    if(!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"MM/dd/yy";
+    }
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"MM/dd/yy";
     NSString *dateString = [dateFormatter stringFromDate:epg.start];
     
     TVHChannelEpg *tvhepg = [self getObjectInsideSchedulePrograms:dateString];
@@ -151,9 +155,10 @@
     return [self.schedulePrograms count];
 }
 
--(NSString*) dateStringForDay:(NSInteger)day {
+-(NSDate*) dateForDay:(NSInteger)day {
     TVHChannelEpg *epg = [self.schedulePrograms objectAtIndex:day];
-    return [epg date];
+    TVHEpg *realEpg = [[epg programs] objectAtIndex:0];
+    return [realEpg start];
 }
 
 -(NSInteger) numberOfProgramsInDay:(NSInteger)section{

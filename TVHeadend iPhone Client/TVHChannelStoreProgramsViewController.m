@@ -13,20 +13,14 @@
 #import "KxMovieViewController.h"
 #import "CKRefreshControl.h"
 
-@interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate>
+@interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate> {
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *timeFormatter;
+}
 
 @end
 
 @implementation TVHChannelStoreProgramsViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -37,6 +31,11 @@
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterFullStyle];
+    timeFormatter = [[NSDateFormatter alloc] init];
+    timeFormatter.dateFormat = @"HH:mm";
 }
 
 - (void)viewDidUnload
@@ -67,7 +66,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
 {
-    return [self.channel dateStringForDay:section];
+    NSDate *date = [self.channel dateForDay:section];
+    return [dateFormatter stringFromDate:date];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -86,8 +86,7 @@
     // Configure the cell...
     TVHEpg *epg = [self.channel programDetailForDay:indexPath.section index:indexPath.row];
     
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    timeFormatter.dateFormat = @"HH:mm";
+    
     
     UILabel *name = (UILabel *)[cell viewWithTag:100];
 	UILabel *description = (UILabel *)[cell viewWithTag:101];

@@ -79,7 +79,7 @@
     UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
     UILabel *startLabel = (UILabel *)[cell viewWithTag:105];
     UILabel *stateLabel = (UILabel *)[cell viewWithTag:106];
-    UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
+    //UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
     //UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
 	
     hostnameLabel.text = subscription.hostname;
