@@ -18,11 +18,22 @@
 @synthesize start = _start;
 @synthesize state = _state;
 @synthesize title = _title;
+@synthesize bw = _bw;
 
 -(void)setStart:(id)startDate {
     if([startDate isKindOfClass:[NSString class]]) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];
     }
+}
+
+- (void) updateValuesFromDictionary:(NSDictionary*) values {
+    [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self setValue:obj forKey:key];
+    }];
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+    
 }
 
 @end

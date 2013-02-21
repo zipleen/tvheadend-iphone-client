@@ -18,6 +18,39 @@
 @implementation TVHStatusSubscriptionsStore
 @synthesize subscriptions = _subscriptions;
 
+- (id) init {
+    self = [super init];
+    if (!self) return nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveSubscriptionNotification:)
+                                                 name:@"subscriptionsNotificationClassReceived"
+                                               object:nil];
+    
+    return self;
+}
+
+- (void) dealloc {
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) receiveSubscriptionNotification:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"subscriptionsNotificationClassReceived"]) {
+        NSDictionary *message = (NSDictionary*)[notification object];
+        
+        [self.subscriptions enumerateObjectsUsingBlock:^(TVHStatusSubscription* obj, NSUInteger idx, BOOL *stop) {
+            
+            if ( obj.id == [[message objectForKey:@"id"] intValue] ) {
+                [obj updateValuesFromDictionary:message];
+            }
+        }];
+        [self.delegate didLoadStatusSubscriptions];
+    }
+}
+
 + (id)sharedInstance {
     static TVHStatusSubscriptionsStore *__sharedInstance;
     static dispatch_once_t onceToken;
@@ -43,9 +76,7 @@
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHStatusSubscription *subscription = [[TVHStatusSubscription alloc] init];
-        [obj enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [subscription setValue:obj forKey:key];
-        }];
+        [subscription updateValuesFromDictionary:obj];
         
         [subscriptions addObject:subscription];
     }];

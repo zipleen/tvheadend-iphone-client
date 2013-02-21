@@ -9,9 +9,11 @@
 #import "TVHStatusSubscriptionsViewController.h"
 #import "CKRefreshControl.h"
 #import "WBErrorNoticeView.h"
+#import "TVHCometPollStore.h"
 
 @interface TVHStatusSubscriptionsViewController ()
 @property (strong, nonatomic) TVHStatusSubscriptionsStore *statusStore;
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation TVHStatusSubscriptionsViewController
@@ -79,17 +81,17 @@
     UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
     UILabel *startLabel = (UILabel *)[cell viewWithTag:105];
     UILabel *stateLabel = (UILabel *)[cell viewWithTag:106];
-    //UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
-    //UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
-	
+    UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
+	UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
+    
     hostnameLabel.text = subscription.hostname;
     titleLabel.text = subscription.title;
     channelLabel.text = subscription.channel;
     serviceLabel.text = subscription.service;
     startLabel.text = [subscription.start description];
     stateLabel.text = subscription.state;
-    //errorsLabel.text = subscription.errors;
-    //bandwidthLabel.text = subscription.
+    errorsLabel.text = [NSString stringWithFormat:@"Errors: %d", subscription.errors];
+    bandwidthLabel.text = [NSString stringWithFormat:@"Bw: %d", subscription.bw];
     
     return cell;
 }
@@ -110,4 +112,14 @@
 }
 
 
+- (IBAction)toggleStatusRefreshing:(UIBarButtonItem *)sender {
+    if(self.timer) {
+        sender.style = UIBarButtonItemStyleBordered;
+        [self.timer invalidate];
+        self.timer = nil;
+    } else {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:[TVHCometPollStore sharedInstance] selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
+        sender.style = UIBarButtonItemStyleDone;
+    }
+}
 @end

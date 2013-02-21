@@ -10,5 +10,6 @@
 #import "TVHStatusSubscriptionsStore.h"
 
 @interface TVHStatusSubscriptionsViewController : UITableViewController <TVHStatusSubscriptionsDelegate>
+- (IBAction)toggleStatusRefreshing:(UIBarButtonItem *)sender;
 
 @end

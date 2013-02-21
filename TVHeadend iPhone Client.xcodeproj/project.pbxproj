@@ -74,6 +74,7 @@
 		AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */; };
 		AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */; };
 		AAB39A1B16BDB29C00973F88 /* TVHChannelStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB39A1A16BDB29C00973F88 /* TVHChannelStoreViewController.m */; };
+		AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */; };
 		AACA611E16CFDB10002C6DE1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */; };
 		AACA612016CFDB18002C6DE1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA611F16CFDB18002C6DE1 /* Accelerate.framework */; };
 		AACA612216CFDB1E002C6DE1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */; };
@@ -224,6 +225,8 @@
 		AAB39A0F16BDB21900973F88 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		AAB39A1916BDB29C00973F88 /* TVHChannelStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreViewController.h; sourceTree = "<group>"; };
 		AAB39A1A16BDB29C00973F88 /* TVHChannelStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStoreViewController.m; sourceTree = "<group>"; };
+		AAB7F5BA16D6B64100EB979B /* TVHCometPollStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPollStore.h; sourceTree = "<group>"; };
+		AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPollStore.m; sourceTree = "<group>"; };
 		AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		AACA611F16CFDB18002C6DE1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -340,6 +343,8 @@
 				AA407E3A16D1C77200451E6F /* TVHStatusSubscriptionsStore.m */,
 				AA407E3C16D1CA6700451E6F /* TVHStatusSubscription.h */,
 				AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */,
+				AAB7F5BA16D6B64100EB979B /* TVHCometPollStore.h */,
+				AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -775,6 +780,7 @@
 				AA407E3B16D1C77300451E6F /* TVHStatusSubscriptionsStore.m in Sources */,
 				AA407E3E16D1CA6700451E6F /* TVHStatusSubscription.m in Sources */,
 				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
+				AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

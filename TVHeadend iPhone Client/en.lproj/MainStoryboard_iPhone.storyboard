@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C2037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="GXe-3y-tE2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="GXe-3y-tE2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -210,7 +210,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Status" id="85R-tJ-fMT"/>
+                    <navigationItem key="navigationItem" title="Status" id="85R-tJ-fMT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="O9b-a4-mqC">
+                            <connections>
+                                <action selector="toggleStatusRefreshing:" destination="pq9-s6-D4Q" id="a3c-VN-AQm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBX-pW-VWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -521,34 +527,6 @@
         <image name="rec.png" width="32" height="32"/>
         <image name="stat.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="TVHChannelStoreProgramsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreProgramsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="playStream:"/>
-            </relationships>
-        </class>
-        <class className="TVHChannelStoreViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreViewController.h"/>
-        </class>
-        <class className="TVHProgramDetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addRecordToTVHeadend:"/>
-                <relationship kind="action" name="playStream:"/>
-                <relationship kind="outlet" name="programDescription" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="time" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
-        </class>
-        <class className="TVHTagStoreViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagStoreViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

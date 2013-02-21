@@ -10,11 +10,13 @@
 
 @interface TVHStatusSubscription : NSObject
 @property (strong, nonatomic) NSString *channel;
-@property (strong, nonatomic) NSString *errors;
+@property NSInteger errors;
 @property (strong, nonatomic) NSString *hostname;
-@property (strong, nonatomic) NSString *id;
+@property NSInteger id;
 @property (strong, nonatomic) NSString *service;
 @property (strong, nonatomic) NSDate *start;
 @property (strong, nonatomic) NSString *state;
 @property (strong, nonatomic) NSString *title;
+@property NSInteger bw;
+- (void) updateValuesFromDictionary:(NSDictionary*) values;
 @end
