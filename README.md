@@ -1,7 +1,7 @@
-TVHeadend iPhone Client
+TVHeadend iOS Client
 =======================
 
-TvhClient is a TVHeadend iPhone Client app, which allows you to get information from a TVHeadend server ( https://github.com/tvheadend/tvheadend ).
+TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to get information from a TVHeadend server ( https://github.com/tvheadend/tvheadend ).
 
 It allows you to view channels by tags, view channel EPG's, add and view recordings and view the status of the server.
 
