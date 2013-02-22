@@ -7,7 +7,6 @@
 //
 
 #import "TVHStatusSubscriptionsStore.h"
-#import "TVHJsonHelper.h"
 #import "TVHJsonClient.h"
 
 @interface TVHStatusSubscriptionsStore()
@@ -63,7 +62,7 @@
 
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
-    NSDictionary *json = [TVHJsonHelper convertFromJsonToObject:responseData error:error];
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
         if ([self.delegate respondsToSelector:@selector(didErrorStatusSubscriptionsStore:)]) {
             [self.delegate didErrorStatusSubscriptionsStore:error];

@@ -8,7 +8,6 @@
 
 #import "TVHCometPollStore.h"
 #import "TVHSettings.h"
-#import "TVHJsonHelper.h"
 #import "TVHJsonClient.h"
 
 @interface TVHCometPollStore()
@@ -30,7 +29,7 @@
 
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
-    NSDictionary *json = [TVHJsonHelper convertFromJsonToObject:responseData error:error];
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
         [[NSNotificationCenter defaultCenter]
             postNotificationName:@"didErrorCometPollStore"

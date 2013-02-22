@@ -11,4 +11,6 @@
 @interface TVHJsonClient : AFHTTPClient
 + (TVHJsonClient*)sharedInstance;
 - (void)setUsername:(NSString *)username password:(NSString *)password;
+
++ (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(NSError*)error;
 @end
