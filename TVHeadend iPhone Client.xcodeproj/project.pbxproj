@@ -30,6 +30,8 @@
 		AA3E5CCF16D804E500CE444C /* TVHTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CCE16D804E500CE444C /* TVHTestHelper.m */; };
 		AA3E5CD216D809F200CE444C /* TVHChannelStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CD116D809F200CE444C /* TVHChannelStoreTests.m */; };
 		AA3E5CD416D80A6B00CE444C /* Log.channels in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CD316D80A6B00CE444C /* Log.channels */; };
+		AA3E5CD716D8161900CE444C /* TVHChannelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CD616D8161900CE444C /* TVHChannelTests.m */; };
+		AA3E5CD916D819B000CE444C /* Log.oneChannelEpg in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */; };
 		AA407E2D16D1A0EE00451E6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA407E2F16D1A0EE00451E6F /* Localizable.strings */; };
 		AA407E3616D1B85500451E6F /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3316D1B85500451E6F /* forward.png */; };
 		AA407E3716D1B85500451E6F /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3416D1B85500451E6F /* forward@2x.png */; };
@@ -149,6 +151,9 @@
 		AA3E5CD016D809F200CE444C /* TVHChannelStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreTests.h; sourceTree = "<group>"; };
 		AA3E5CD116D809F200CE444C /* TVHChannelStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStoreTests.m; sourceTree = "<group>"; };
 		AA3E5CD316D80A6B00CE444C /* Log.channels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.channels; sourceTree = "<group>"; };
+		AA3E5CD516D8161800CE444C /* TVHChannelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelTests.h; sourceTree = "<group>"; };
+		AA3E5CD616D8161900CE444C /* TVHChannelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelTests.m; sourceTree = "<group>"; };
+		AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.oneChannelEpg; sourceTree = "<group>"; };
 		AA407E2E16D1A0EE00451E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA407E3016D1A10400451E6F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA407E3116D1A10400451E6F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -430,6 +435,8 @@
 				AA3E5CCB16D804A900CE444C /* TVHTagStoreTests.m */,
 				AA3E5CD016D809F200CE444C /* TVHChannelStoreTests.h */,
 				AA3E5CD116D809F200CE444C /* TVHChannelStoreTests.m */,
+				AA3E5CD516D8161800CE444C /* TVHChannelTests.h */,
+				AA3E5CD616D8161900CE444C /* TVHChannelTests.m */,
 				AA3E5CCD16D804E500CE444C /* TVHTestHelper.h */,
 				AA3E5CCE16D804E500CE444C /* TVHTestHelper.m */,
 			);
@@ -452,6 +459,7 @@
 				AA43D4B216CF1A7600104BBF /* Log.287 */,
 				AA3E5CC816D8046200CE444C /* Log.tags */,
 				AA3E5CD316D80A6B00CE444C /* Log.channels */,
+				AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -695,6 +703,7 @@
 				AA43D4B316CF1A7600104BBF /* Log.287 in Resources */,
 				AA3E5CC916D8046200CE444C /* Log.tags in Resources */,
 				AA3E5CD416D80A6B00CE444C /* Log.channels in Resources */,
+				AA3E5CD916D819B000CE444C /* Log.oneChannelEpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +767,7 @@
 				AA3E5CCC16D804A900CE444C /* TVHTagStoreTests.m in Sources */,
 				AA3E5CCF16D804E500CE444C /* TVHTestHelper.m in Sources */,
 				AA3E5CD216D809F200CE444C /* TVHChannelStoreTests.m in Sources */,
+				AA3E5CD716D8161900CE444C /* TVHChannelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

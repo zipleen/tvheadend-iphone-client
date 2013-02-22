@@ -11,20 +11,25 @@
 #import "TVHTagStore.h"
 #import "TVHTag.h"
 
-@interface TVHTagStore (MyPrivateMethodsUsedForTesting)
+@interface TVHTagStore (MyPrivateMethodsUsedForTesting) 
+
 @property (nonatomic, strong) NSArray *tags;
 - (void)fetchedData:(NSData *)responseData;
 @end
 
 @implementation TVHTagStoreTests
 
-
+- (void)tearDown {
+    TVHTagStore *store = [TVHTagStore sharedInstance];
+    store.tags = nil;
+    [super tearDown];
+}
 
 - (void)testJsonTagsParsing {
     NSData *data = [TVHTestHelper loadFixture:@"Log.tags"];
     TVHTagStore *store = [TVHTagStore sharedInstance];
     STAssertNotNil(store, @"creating tvhtag store object");
-    
+    NSLog(@"olha aqui: %d", [store.tags count]);
     [store fetchedData:data];
     STAssertTrue( ([store.tags count] == 13+1), @"tag count does not match");
     
