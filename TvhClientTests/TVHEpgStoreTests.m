@@ -7,6 +7,7 @@
 //
 
 #import "TVHEpgStoreTests.h"
+#import "TVHTestHelper.h"
 #import "TVHEpgStore.h"
 
 @interface TVHEpgStore (MyPrivateMethodsUsedForTesting)
@@ -31,17 +32,9 @@
     [super tearDown];
 }
 
--(NSData *)loadFixture:(NSString *)name
-{
-    NSBundle *unitTestBundle = [NSBundle bundleForClass:[self class]];
-    NSString *pathForFile    = [unitTestBundle pathForResource:name ofType:nil];
-    NSData   *data           = [[NSData alloc] initWithContentsOfFile:pathForFile];
-    return data;
-}
-
 - (void)testJsonCharacterBug
 {
-    NSData *data = [self loadFixture:@"Log.287"];
+    NSData *data = [TVHTestHelper loadFixture:@"Log.287"];
     TVHEpgStore *tvhe = [TVHEpgStore sharedInstance];
     STAssertNotNil(tvhe, @"creating tvepg store object");
     [tvhe fetchedData:data];
@@ -51,5 +44,7 @@
     STAssertEqualObjects(epg.title, @"Nacional x Benfica - Primeira Liga", @"epg title doesnt match");
     STAssertEquals(epg.channelId, 131, @"epg title doesnt match");
 }
+
+
 
 @end

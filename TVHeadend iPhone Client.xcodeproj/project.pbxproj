@@ -25,6 +25,9 @@
 		AA2AEB3A16CB0CC5006B071C /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3416CB0CC5006B071C /* search@2x.png */; };
 		AA2AEB3B16CB0CC5006B071C /* tv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3516CB0CC5006B071C /* tv@2x.png */; };
 		AA2AEB3D16CB0CC5006B071C /* comp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3716CB0CC5006B071C /* comp@2x.png */; };
+		AA3E5CC916D8046200CE444C /* Log.tags in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CC816D8046200CE444C /* Log.tags */; };
+		AA3E5CCC16D804A900CE444C /* TVHTagStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CCB16D804A900CE444C /* TVHTagStoreTests.m */; };
+		AA3E5CCF16D804E500CE444C /* TVHTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CCE16D804E500CE444C /* TVHTestHelper.m */; };
 		AA407E2D16D1A0EE00451E6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA407E2F16D1A0EE00451E6F /* Localizable.strings */; };
 		AA407E3616D1B85500451E6F /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3316D1B85500451E6F /* forward.png */; };
 		AA407E3716D1B85500451E6F /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3416D1B85500451E6F /* forward@2x.png */; };
@@ -136,6 +139,11 @@
 		AA2AEB3416CB0CC5006B071C /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		AA2AEB3516CB0CC5006B071C /* tv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv@2x.png"; sourceTree = "<group>"; };
 		AA2AEB3716CB0CC5006B071C /* comp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comp@2x.png"; sourceTree = "<group>"; };
+		AA3E5CC816D8046200CE444C /* Log.tags */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.tags; sourceTree = "<group>"; };
+		AA3E5CCA16D804A900CE444C /* TVHTagStoreTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStoreTests.h; sourceTree = "<group>"; };
+		AA3E5CCB16D804A900CE444C /* TVHTagStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStoreTests.m; sourceTree = "<group>"; };
+		AA3E5CCD16D804E500CE444C /* TVHTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTestHelper.h; sourceTree = "<group>"; };
+		AA3E5CCE16D804E500CE444C /* TVHTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTestHelper.m; sourceTree = "<group>"; };
 		AA407E2E16D1A0EE00451E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA407E3016D1A10400451E6F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA407E3116D1A10400451E6F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -407,12 +415,16 @@
 		AA43D4A116CF167300104BBF /* TvhClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				AA43D4A216CF167300104BBF /* Supporting Files */,
 				AA43D4B116CF1A7600104BBF /* TestData */,
 				AA43D4A716CF167300104BBF /* TvhClientTests.h */,
 				AA43D4A816CF167300104BBF /* TvhClientTests.m */,
 				AA43D4AE16CF189A00104BBF /* TVHEpgStoreTests.h */,
 				AA43D4AF16CF189A00104BBF /* TVHEpgStoreTests.m */,
-				AA43D4A216CF167300104BBF /* Supporting Files */,
+				AA3E5CCA16D804A900CE444C /* TVHTagStoreTests.h */,
+				AA3E5CCB16D804A900CE444C /* TVHTagStoreTests.m */,
+				AA3E5CCD16D804E500CE444C /* TVHTestHelper.h */,
+				AA3E5CCE16D804E500CE444C /* TVHTestHelper.m */,
 			);
 			path = TvhClientTests;
 			sourceTree = "<group>";
@@ -431,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				AA43D4B216CF1A7600104BBF /* Log.287 */,
+				AA3E5CC816D8046200CE444C /* Log.tags */,
 			);
 			path = TestData;
 			sourceTree = "<group>";
@@ -672,6 +685,7 @@
 			files = (
 				AA43D4A616CF167300104BBF /* InfoPlist.strings in Resources */,
 				AA43D4B316CF1A7600104BBF /* Log.287 in Resources */,
+				AA3E5CC916D8046200CE444C /* Log.tags in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +746,8 @@
 			files = (
 				AA43D4A916CF167300104BBF /* TvhClientTests.m in Sources */,
 				AA43D4B016CF189A00104BBF /* TVHEpgStoreTests.m in Sources */,
+				AA3E5CCC16D804A900CE444C /* TVHTagStoreTests.m in Sources */,
+				AA3E5CCF16D804E500CE444C /* TVHTestHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

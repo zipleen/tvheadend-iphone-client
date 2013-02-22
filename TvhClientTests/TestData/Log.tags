@@ -1,0 +1,130 @@
+{
+  "entries": [
+    {
+      "enabled": 0,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "TV channels",
+      "comment": "",
+      "icon": "",
+      "id": 20
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Missing from",
+      "comment": "",
+      "icon": "",
+      "id": 57
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "HDTV",
+      "comment": "",
+      "icon": "http://alta_definicao.png",
+      "id": 16
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Desporto",
+      "comment": "",
+      "icon": "http://desporto.png",
+      "id": 17
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Nacionais",
+      "comment": "",
+      "icon": "http://nacionais.png",
+      "id": 50
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Noticias",
+      "comment": "",
+      "icon": "http://informacao.png",
+      "id": 51
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Musica",
+      "comment": "",
+      "icon": "http://musica.png",
+      "id": 53
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Documentarios / Ciencia",
+      "comment": "",
+      "icon": "http://documentarios.png",
+      "id": 52
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Generalistas Internacionais",
+      "comment": "",
+      "icon": "http://gener_internacionais.png",
+      "id": 56
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Cinema",
+      "comment": "",
+      "icon": "http://filmes_series.png",
+      "id": 32
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Series",
+      "comment": "",
+      "icon": "http://filmes_series.png",
+      "id": 19
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Entretimento",
+      "comment": "",
+      "icon": "http://entretenimento.png",
+      "id": 54
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Desenhos Animados",
+      "comment": "",
+      "icon": "http://infantil.png",
+      "id": 55
+    },
+    {
+      "enabled": 1,
+      "internal": 0,
+      "titledIcon": 0,
+      "name": "Z",
+      "comment": "",
+      "icon": "",
+      "id": 8
+    }
+  ]
+}
