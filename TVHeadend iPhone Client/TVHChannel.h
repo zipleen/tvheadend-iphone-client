@@ -10,6 +10,7 @@
 #import "TVHEpg.h"
 
 @class TVHEpg;
+@class TVHEpgStore;
 
 @protocol TVHChannelDelegate <NSObject>
 - (void) didLoadEpgChannel;
@@ -26,20 +27,22 @@
 @property (nonatomic) NSInteger chid;
 @property (nonatomic, strong) NSArray *tags;
 
--(void)setCh_icon:(NSString*)icon;
--(bool) hasTag:(NSInteger)tag;
--(NSString*) streamURL;
--(void) addEpg:(TVHEpg*)epg;
--(TVHEpg*) currentPlayingProgram;
+- (void)setCh_icon:(NSString*)icon;
+- (bool) hasTag:(NSInteger)tag;
+- (NSString*) streamURL;
+- (void) addEpg:(TVHEpg*)epg;
+- (TVHEpg*) currentPlayingProgram;
 
--(void) downloadRestOfEpg;
--(void) resetChannelEpgStore;
--(NSInteger) countEpg;
--(NSDate*) dateForDay:(NSInteger)day;
--(NSArray*) programsForDay:(NSInteger)day;
--(TVHEpg*) programDetailForDay:(NSInteger)day index:(NSInteger)program;
--(NSInteger) numberOfProgramsInDay:(NSInteger)section;
--(NSInteger) totalCountOfDaysEpg;
+- (void)downloadRestOfEpg;
+- (void)resetChannelEpgStore;
+- (NSInteger)countEpg;
 
--(void)setDelegate:(id <TVHChannelDelegate>) delegate;
+- (NSDate*)dateForDay:(NSInteger)day;
+- (NSArray*)programsForDay:(NSInteger)day;
+- (TVHEpg*)programDetailForDay:(NSInteger)day index:(NSInteger)program;
+- (NSInteger)numberOfProgramsInDay:(NSInteger)section;
+- (NSInteger)totalCountOfDaysEpg;
+
+- (void)setDelegate:(id <TVHChannelDelegate>) delegate;
+- (void)didLoadEpg:(TVHEpgStore*)epgList;
 @end
