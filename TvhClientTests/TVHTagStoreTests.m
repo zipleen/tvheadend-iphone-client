@@ -20,17 +20,16 @@
 
 
 
-- (void)testJsonTagsParsing
-{
+- (void)testJsonTagsParsing {
     NSData *data = [TVHTestHelper loadFixture:@"Log.tags"];
     TVHTagStore *store = [TVHTagStore sharedInstance];
     STAssertNotNil(store, @"creating tvhtag store object");
     
     [store fetchedData:data];
-    STAssertTrue( ([store.tags count] == 13+1), @"Failed parsing json data");
+    STAssertTrue( ([store.tags count] == 13+1), @"tag count does not match");
     
     TVHTag *tag = [store.tags lastObject];
-    STAssertEqualObjects(tag.name, @"Zon", @"tag name does not match");
+    STAssertEqualObjects(tag.name, @"Z", @"tag name does not match");
     STAssertEquals(tag.tagid, 8, @"tag id doesnt match");
     
     tag = [store.tags objectAtIndex:0];
@@ -42,6 +41,11 @@
     STAssertEquals(tag.tagid, 55, @"tag id doesnt match");
     STAssertEqualObjects(tag.imageUrl, @"http://infantil.png", @"tag id doesnt match");
 
+}
+
+- (void)testJsonTagsParsingDuplicate {
+    [self testJsonTagsParsing];
+    [self testJsonTagsParsing];
 }
 
 @end

@@ -1,0 +1,70 @@
+{
+  "entries": [
+    {
+      "name": "AXX",
+      "chid": 15,
+      "ch_icon": "http:///ajpg",
+      "tags": "32,8,20",
+      "epg_pre_start": 0,
+      "epg_post_end": 0,
+      "number": 60,
+      "epggrabsrc": "xmltv|7"
+    },
+    {
+      "name": "AXX HD",
+      "chid": 114,
+      "tags": "16,19,8",
+      "epg_pre_start": 0,
+      "epg_post_end": 0,
+      "number": 0
+    },
+    {
+      "name": "AXX B HD",
+      "chid": 37,
+      "ch_icon": "http:///ad.png",
+      "tags": "20,16,32",
+      "epg_pre_start": 0,
+      "epg_post_end": 0,
+      "number": 61,
+      "epggrabsrc": "xml61"
+    },
+    {
+      "name": "BBBB eee",
+      "chid": 92,
+      "ch_icon": "http:///b_eupe.jpg",
+      "tags": "19,8",
+      "epg_pre_start": 0,
+      "epg_post_end": 0,
+      "number": 0,
+      "epggrabsrc": "xmltv|8"
+    },
+        {
+      "name": "Tranel HD",
+      "chid": 123,
+      "tags": "16,57,8",
+      "epg_pre_start": 0,
+      "epg_post_end": 0,
+      "number": 0
+    },
+    {
+      "name": "VH",
+      "chid": 60,
+      "ch_icon": "http:///vh.jpg",
+      "tags": "8,53",
+      "epg_pre_start": 0,
+      "epg_post_end": 0,
+      "number": 143,
+      "epggrabsrc": "xmltv|35"
+    },
+    {
+      "name": "BLA Classic",
+      "chid": 80,
+      "ch_icon": "http:///bla_classic_europe.jpg",
+      "tags": "8,53",
+      "epg_pre_start": 0,
+      "epg_post_end": 0,
+      "number": 144,
+      "epggrabsrc": "xmltv|93"
+    }
+  ]
+}
