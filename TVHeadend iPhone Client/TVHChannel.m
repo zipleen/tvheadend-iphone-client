@@ -87,7 +87,15 @@
     NSString *dateString = [dateFormatter stringFromDate:epg.start];
     
     TVHChannelEpg *tvhepg = [self getChannelEpgDataByDayString:dateString];
-    [tvhepg.programs addObject:epg];
+    
+    // don't add duplicate epg - need to search in the array!
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start == %@", epg.start];
+    NSArray *filteredArray = [tvhepg.programs filteredArrayUsingPredicate:predicate];
+    
+    if ([filteredArray count] == 0) {
+        [tvhepg.programs addObject:epg];
+
+    }
 }
 
 -(TVHEpg*) currentPlayingProgram {
