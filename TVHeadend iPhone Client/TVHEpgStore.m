@@ -8,8 +8,8 @@
 
 #import "TVHEpgStore.h"
 #import "TVHEpg.h"
-#import "TVHSettings.h"
 #import "TVHJsonHelper.h"
+#import "TVHJsonClient.h"
 
 @interface TVHEpgStore()
 @property (nonatomic, strong) NSArray *epgList;
@@ -96,8 +96,7 @@
 }
 
 - (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
+    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
     

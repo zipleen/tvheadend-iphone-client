@@ -9,6 +9,7 @@
 #import "TVHCometPollStore.h"
 #import "TVHSettings.h"
 #import "TVHJsonHelper.h"
+#import "TVHJsonClient.h"
 
 @interface TVHCometPollStore()
 @property (nonatomic, strong) NSString *boxid;
@@ -59,8 +60,7 @@
 }
 
 - (void)fetchCometPollStatus {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
+    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     

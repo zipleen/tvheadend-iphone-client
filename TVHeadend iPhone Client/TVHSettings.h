@@ -13,4 +13,6 @@
 @property (nonatomic, strong, readonly) NSURL *baseURL;
 + (id)sharedInstance;
 - (void)resetSettings;
+- (NSString*)username;
+- (NSString*)password;
 @end

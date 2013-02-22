@@ -8,8 +8,8 @@
 
 #import "TVHChannelStore.h"
 #import "TVHEpg.h"
-#import "TVHSettings.h"
 #import "TVHJsonHelper.h"
+#import "TVHJsonClient.h"
 
 @interface TVHChannelStore ()
 @property (nonatomic, strong) NSArray *channels;
@@ -78,8 +78,7 @@
 
 - (void)fetchChannelList {
     if( [self.channels count] == 0 ) {
-        TVHSettings *settings = [TVHSettings sharedInstance];
-        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
+        TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
        

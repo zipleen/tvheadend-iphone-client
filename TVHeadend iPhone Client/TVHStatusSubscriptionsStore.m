@@ -8,7 +8,7 @@
 
 #import "TVHStatusSubscriptionsStore.h"
 #import "TVHJsonHelper.h"
-#import "TVHSettings.h"
+#import "TVHJsonClient.h"
 
 @interface TVHStatusSubscriptionsStore()
 @property (nonatomic, strong) NSArray *subscriptions;
@@ -89,8 +89,7 @@
 }
 
 - (void)fetchStatusSubscriptions {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
+    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     [httpClient getPath:@"/subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];

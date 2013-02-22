@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
 #import "TVHEpgStore.h"
-#import "AFNetworking.h"
 
 @protocol TVHChannelStoreDelegate <NSObject>
 
@@ -17,7 +16,7 @@
 -(void) didErrorLoadingChannelStore:(NSError*)error;
 @end
 
-@interface TVHChannelStore : AFHTTPClient <TVHEpgStoreDelegate>
+@interface TVHChannelStore : NSObject <TVHEpgStoreDelegate>
 
 @property (nonatomic) NSInteger filterTag;
 + (id)sharedInstance;

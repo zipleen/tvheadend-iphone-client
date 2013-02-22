@@ -6,9 +6,7 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "AFHTTPClient.h"
-
-@interface TVHCometPollStore : AFHTTPClient
+@interface TVHCometPollStore : NSObject
 + (id)sharedInstance;
 - (void)fetchCometPollStatus;
 @end

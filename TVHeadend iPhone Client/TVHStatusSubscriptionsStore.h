@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
 #import "TVHStatusSubscription.h"
 
 @protocol TVHStatusSubscriptionsDelegate <NSObject>
@@ -15,7 +14,7 @@
 -(void) didErrorStatusSubscriptionsStore:(NSError*)error;
 @end
 
-@interface TVHStatusSubscriptionsStore : AFHTTPClient
+@interface TVHStatusSubscriptionsStore : NSObject
 
 +(id)sharedInstance;
 -(void)setDelegate:(id <TVHStatusSubscriptionsDelegate>)delegate;

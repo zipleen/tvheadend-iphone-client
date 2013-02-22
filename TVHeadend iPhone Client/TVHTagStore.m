@@ -7,8 +7,8 @@
 //
 
 #import "TVHTagStore.h"
-#import "TVHSettings.h"
 #import "TVHJsonHelper.h"
+#import "TVHJsonClient.h"
 
 @interface TVHTagStore()
 @property (nonatomic, strong) NSArray *tags;
@@ -83,8 +83,7 @@
 
 - (void)fetchTagList {
     if( [self.tags count] == 0 ) {
-        TVHSettings *settings = [TVHSettings sharedInstance];
-        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[settings baseURL] ];
+        TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
         
@@ -99,7 +98,7 @@
                 [self.delegate didErrorLoadingTagStore:error];
             }
 #if DEBUG
-            NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
+            NSLog(@"[TagList HTTPClient Error]: %@", error.description);
 #endif
         }];
     }

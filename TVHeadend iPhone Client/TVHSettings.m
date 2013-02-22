@@ -15,6 +15,8 @@
 @implementation TVHSettings
 #define IP_KEY @"IP"
 #define PORT_KEY @"PORT"
+#define USERNAME_KEY @"USERNAME"
+#define PASSWORD_KEY @"PASSWORD"
 @synthesize baseURL = _baseURL;
 @synthesize ip = _ip;
 
@@ -41,6 +43,17 @@
         _baseURL = url;
     }
     return _baseURL;
+}
+
+- (NSString*) username {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:USERNAME_KEY];
+}
+
+// FIX: Password in cleartext!!! NEEDS TO USE KEYCHAIN!!!!!
+- (NSString*) password {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:PASSWORD_KEY];
 }
 
 - (void) resetSettings {

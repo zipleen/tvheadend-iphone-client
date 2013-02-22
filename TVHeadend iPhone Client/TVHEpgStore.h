@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
-#import "AFNetworking.h"
 
 @class TVHEpgStore;
 @protocol TVHEpgStoreDelegate <NSObject>

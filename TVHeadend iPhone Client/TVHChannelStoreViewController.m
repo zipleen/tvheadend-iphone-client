@@ -11,6 +11,7 @@
 #import "TVHChannel.h"
 #import "WBErrorNoticeView.h"
 #import "CKRefreshControl.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
 #import "TVHTag.h"
 
 @protocol TVHTagStoreDelegate <NSObject>
@@ -16,7 +15,7 @@
 -(void) didErrorLoadingTagStore:(NSError*)error;
 @end
 
-@interface TVHTagStore : AFHTTPClient
+@interface TVHTagStore : NSObject
 + (id)sharedInstance;
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate;
 

@@ -32,6 +32,7 @@
 		AA3E5CD416D80A6B00CE444C /* Log.channels in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CD316D80A6B00CE444C /* Log.channels */; };
 		AA3E5CD716D8161900CE444C /* TVHChannelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CD616D8161900CE444C /* TVHChannelTests.m */; };
 		AA3E5CD916D819B000CE444C /* Log.oneChannelEpg in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */; };
+		AA3E5CDC16D8267200CE444C /* TVHJsonClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */; };
 		AA407E2D16D1A0EE00451E6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA407E2F16D1A0EE00451E6F /* Localizable.strings */; };
 		AA407E3616D1B85500451E6F /* forward.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3316D1B85500451E6F /* forward.png */; };
 		AA407E3716D1B85500451E6F /* forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA407E3416D1B85500451E6F /* forward@2x.png */; };
@@ -154,6 +155,8 @@
 		AA3E5CD516D8161800CE444C /* TVHChannelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelTests.h; sourceTree = "<group>"; };
 		AA3E5CD616D8161900CE444C /* TVHChannelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelTests.m; sourceTree = "<group>"; };
 		AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.oneChannelEpg; sourceTree = "<group>"; };
+		AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHJsonClient.h; sourceTree = "<group>"; };
+		AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHJsonClient.m; sourceTree = "<group>"; };
 		AA407E2E16D1A0EE00451E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA407E3016D1A10400451E6F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA407E3116D1A10400451E6F /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -355,14 +358,16 @@
 				AAF54A2416C735960076DF17 /* TVHEpgStore.m */,
 				AAF54A2016C735710076DF17 /* TVHEpg.h */,
 				AAF54A2116C735710076DF17 /* TVHEpg.m */,
-				AACA614E16D05E48002C6DE1 /* TVHJsonHelper.h */,
-				AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */,
 				AA407E3916D1C77200451E6F /* TVHStatusSubscriptionsStore.h */,
 				AA407E3A16D1C77200451E6F /* TVHStatusSubscriptionsStore.m */,
 				AA407E3C16D1CA6700451E6F /* TVHStatusSubscription.h */,
 				AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */,
 				AAB7F5BA16D6B64100EB979B /* TVHCometPollStore.h */,
 				AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */,
+				AACA614E16D05E48002C6DE1 /* TVHJsonHelper.h */,
+				AACA614F16D05E48002C6DE1 /* TVHJsonHelper.m */,
+				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
+				AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -817,6 +822,7 @@
 				AA407E3E16D1CA6700451E6F /* TVHStatusSubscription.m in Sources */,
 				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
 				AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */,
+				AA3E5CDC16D8267200CE444C /* TVHJsonClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
