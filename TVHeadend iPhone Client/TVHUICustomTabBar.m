@@ -27,9 +27,9 @@
 }
 
 - (void)customize {
-    UIImage *tabbarBg = [UIImage imageNamed:@"bg_tab_bar.png"];
-    UIImage *tabBarSelected = [UIImage imageNamed:@"bg_tab_bar_selected.png"];
-    [self setBackgroundImage:tabbarBg ]; // setBackgroundImage:tabbarBg
+    UIImage *tabbarBg = [UIImage imageNamed:@"tabbar.png"];
+    UIImage *tabBarSelected = [UIImage imageNamed:@"tabbar_selected.png"];
+    [self setBackgroundImage:tabbarBg ]; 
     [self setSelectionIndicatorImage:tabBarSelected];
 }
 
