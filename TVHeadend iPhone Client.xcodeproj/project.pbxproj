@@ -10,6 +10,12 @@
 		AA10AA8416D1304D00BBDFEA /* CKParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA7E16D1304D00BBDFEA /* CKParagraphStyle.m */; };
 		AA10AA8516D1304D00BBDFEA /* CKRefreshArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA8016D1304D00BBDFEA /* CKRefreshArrowView.m */; };
 		AA10AA8616D1304D00BBDFEA /* CKRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA8316D1304D00BBDFEA /* CKRefreshControl.m */; };
+		AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA132E9C16D91EDC0074FAB8 /* TVHUICustomTabBar.m */; };
+		AA132EBB16D9594B0074FAB8 /* TVHUICustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA132EBA16D9594B0074FAB8 /* TVHUICustomNavigationBar.m */; };
+		AA132EBE16D95A000074FAB8 /* navigationbar.png in Resources */ = {isa = PBXBuildFile; fileRef = AA132EBC16D959FF0074FAB8 /* navigationbar.png */; };
+		AA132EBF16D95A000074FAB8 /* navigationbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA132EBD16D959FF0074FAB8 /* navigationbar@2x.png */; };
+		AA132EC416D971A70074FAB8 /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA132EC216D971A70074FAB8 /* tabbar@2x.png */; };
+		AA132EC516D971A70074FAB8 /* tabbar_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA132EC316D971A70074FAB8 /* tabbar_selected@2x.png */; };
 		AA1D426D16BEC2BA00F42F7E /* TVHChannelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */; };
 		AA2AEB2416CB0839006B071C /* comp.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB1E16CB0839006B071C /* comp.png */; };
@@ -126,6 +132,14 @@
 		AA10AA8116D1304D00BBDFEA /* CKRefreshControl-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKRefreshControl-Prefix.pch"; sourceTree = "<group>"; };
 		AA10AA8216D1304D00BBDFEA /* CKRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKRefreshControl.h; sourceTree = "<group>"; };
 		AA10AA8316D1304D00BBDFEA /* CKRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKRefreshControl.m; sourceTree = "<group>"; };
+		AA132E9B16D91EDC0074FAB8 /* TVHUICustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHUICustomTabBar.h; sourceTree = "<group>"; };
+		AA132E9C16D91EDC0074FAB8 /* TVHUICustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHUICustomTabBar.m; sourceTree = "<group>"; };
+		AA132EB916D9594B0074FAB8 /* TVHUICustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHUICustomNavigationBar.h; sourceTree = "<group>"; };
+		AA132EBA16D9594B0074FAB8 /* TVHUICustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHUICustomNavigationBar.m; sourceTree = "<group>"; };
+		AA132EBC16D959FF0074FAB8 /* navigationbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationbar.png; sourceTree = "<group>"; };
+		AA132EBD16D959FF0074FAB8 /* navigationbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar@2x.png"; sourceTree = "<group>"; };
+		AA132EC216D971A70074FAB8 /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
+		AA132EC316D971A70074FAB8 /* tabbar_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_selected@2x.png"; sourceTree = "<group>"; };
 		AA1D426B16BEC2BA00F42F7E /* TVHChannelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStore.h; sourceTree = "<group>"; };
 		AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStore.m; sourceTree = "<group>"; };
 		AA21F11416C7F6A10041C505 /* TVHChannelStoreProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreProgramsViewController.h; sourceTree = "<group>"; };
@@ -336,6 +350,17 @@
 			path = CKRefreshControl/CKRefreshControl;
 			sourceTree = SOURCE_ROOT;
 		};
+		AA132E9A16D91EA60074FAB8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA132E9B16D91EDC0074FAB8 /* TVHUICustomTabBar.h */,
+				AA132E9C16D91EDC0074FAB8 /* TVHUICustomTabBar.m */,
+				AA132EB916D9594B0074FAB8 /* TVHUICustomNavigationBar.h */,
+				AA132EBA16D9594B0074FAB8 /* TVHUICustomNavigationBar.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +395,10 @@
 		AA2AEB1D16CB0839006B071C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AA132EC216D971A70074FAB8 /* tabbar@2x.png */,
+				AA132EC316D971A70074FAB8 /* tabbar_selected@2x.png */,
+				AA132EBC16D959FF0074FAB8 /* navigationbar.png */,
+				AA132EBD16D959FF0074FAB8 /* navigationbar@2x.png */,
 				AA2AEB2E16CB0A9B006B071C /* calendar.png */,
 				AA2AEB1E16CB0839006B071C /* comp.png */,
 				AA2AEB3716CB0CC5006B071C /* comp@2x.png */,
@@ -568,6 +597,7 @@
 		AAB399F916BDB21900973F88 /* TVHeadend iPhone Client */ = {
 			isa = PBXGroup;
 			children = (
+				AA132E9A16D91EA60074FAB8 /* View */,
 				AA1D426A16BEC1B700F42F7E /* Model */,
 				AA7C3FD016C709380057E4C4 /* Controller */,
 				AAB39A0216BDB21900973F88 /* TVHAppDelegate.h */,
@@ -736,6 +766,10 @@
 				AA407E3616D1B85500451E6F /* forward.png in Resources */,
 				AA407E3716D1B85500451E6F /* forward@2x.png in Resources */,
 				AA407E3816D1B85500451E6F /* tag@2x.png in Resources */,
+				AA132EBE16D95A000074FAB8 /* navigationbar.png in Resources */,
+				AA132EBF16D95A000074FAB8 /* navigationbar@2x.png in Resources */,
+				AA132EC416D971A70074FAB8 /* tabbar@2x.png in Resources */,
+				AA132EC516D971A70074FAB8 /* tabbar_selected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +851,8 @@
 				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
 				AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */,
 				AA3E5CDC16D8267200CE444C /* TVHJsonClient.m in Sources */,
+				AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */,
+				AA132EBB16D9594B0074FAB8 /* TVHUICustomNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
