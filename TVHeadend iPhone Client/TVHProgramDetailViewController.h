@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *programDescription;
 @property (weak, nonatomic) IBOutlet UILabel *programTitle;
 @property (weak, nonatomic) IBOutlet UILabel *time;
+@property (weak, nonatomic) IBOutlet UIButton *record;
 
 - (IBAction)addRecordToTVHeadend:(id)sender;
 - (IBAction)playStream:(id)sender;

@@ -8,6 +8,7 @@
 
 #import "TVHProgramDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 
@@ -26,7 +27,25 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm";
     self.time.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:self.epg.start], [dateFormatter stringFromDate:self.epg.end]];
-    //self.programImage.image = [UIImage imageNamed:@"tv.png"];
+    
+    // shadown
+    self.programImage.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.programImage.layer.shadowOffset = CGSizeMake(0, 2);
+    self.programImage.layer.shadowOpacity = 0.7f;
+    self.programImage.layer.shadowRadius = 1.5;
+    self.programImage.clipsToBounds = NO;
+    
+    
+    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0] forState:UIControlStateNormal];
+    
+    
+    /*[self.programImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.channel.imageUrl]] placeholderImage:[UIImage imageNamed:@"tv.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        NSLog(@"Your image request succeeded!");
+        self.programImage.image = [self imageWithShadow:image BlurSize:5.0f];
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"Your image request failed...");
+    }];*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,8 +62,10 @@
     [self setTime:nil];
     self.epg = nil;
     self.channel = nil;
+    [self setRecord:nil];
     [super viewDidUnload];
 }
+
 
 - (IBAction)addRecordToTVHeadend:(id)sender {
     

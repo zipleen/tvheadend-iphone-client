@@ -12,6 +12,7 @@
 #import "WBErrorNoticeView.h"
 #import "CKRefreshControl.h"
 #import "UIImageView+AFNetworking.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
@@ -109,6 +110,13 @@
     
     channelNameLabel.text = ch.name;
     [channelImage setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    
+    // rouding corners
+    channelImage.layer.cornerRadius = 5.0;
+    channelImage.layer.masksToBounds = YES;
+    channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    channelImage.layer.borderWidth = 0.2;
+    
     if(currentPlayingProgram) {
         currentProgramLabel.text = currentPlayingProgram.title;
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
