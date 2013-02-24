@@ -27,10 +27,13 @@
 }
 
 - (void)customize {
-    UIImage *tabbarBg = [UIImage imageNamed:@"tabbar.png"];
-    UIImage *tabBarSelected = [UIImage imageNamed:@"tabbar_selected.png"];
-    [self setBackgroundImage:tabbarBg ]; 
-    [self setSelectionIndicatorImage:tabBarSelected];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        UIImage *tabbarBg = [UIImage imageNamed:@"tabbar.png"];
+        UIImage *tabBarSelected = [UIImage imageNamed:@"tabbar_selected.png"];
+        [self setBackgroundImage:tabbarBg ]; 
+        [self setSelectionIndicatorImage:tabBarSelected];
+    }
 }
 
 @end

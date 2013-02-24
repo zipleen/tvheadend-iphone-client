@@ -122,7 +122,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="OaY-Sr-1K6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Recordings" image="rec.png" id="eeC-mw-QS2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="WWf-v7-Bn6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackTranslucent" id="WWf-v7-Bn6" customClass="TVHUICustomNavigationBar">
                         <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -229,8 +229,9 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="HH2-ic-xdM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Status" image="stat.png" id="Fbv-LJ-tYa"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kNY-v7-cgJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kNY-v7-cgJ" customClass="TVHUICustomNavigationBar">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="pq9-s6-D4Q" kind="relationship" relationship="rootViewController" id="TYN-Az-DmJ"/>

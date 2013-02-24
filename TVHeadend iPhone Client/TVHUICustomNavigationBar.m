@@ -11,7 +11,7 @@
 @implementation TVHUICustomNavigationBar
 
 + (void)initialize {
-    const CGFloat ArrowLeftCap = 14.0f;
+    /*const CGFloat ArrowLeftCap = 14.0f;
     UIImage *back = [UIImage imageNamed:@"nav-backbutton.png"];
     back = [back stretchableImageWithLeftCapWidth:ArrowLeftCap
                                      topCapHeight:0];
@@ -20,7 +20,7 @@
                                                                                                       forState:UIControlStateNormal
                                                                                                     barMetrics:UIBarMetricsDefault];
     
-    /*const CGFloat TextOffset = 3.0f;
+    const CGFloat TextOffset = 3.0f;
     [[UIBarButtonItem appearanceWhenContainedIn:[TVHUICustomNavigationBar class], nil] setBackButtonTitlePositionAdjustment:UIOffsetMake(TextOffset, 0)
                                                                                                          forBarMetrics:UIBarMetricsDefault];
      */
@@ -46,10 +46,9 @@
     UIImage *navBarBg = [UIImage imageNamed:@"navigationbar.png"];
     [self setBackgroundImage:navBarBg forBarMetrics:UIBarMetricsDefault];
     [self setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                  
-                                  [UIColor lightGrayColor], UITextAttributeTextColor,
-                                  
+                                  [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0], UITextAttributeTextColor,
                                   nil]];
+    
 }
 
 
