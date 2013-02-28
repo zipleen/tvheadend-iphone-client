@@ -16,6 +16,7 @@
 
 @implementation TVHStatusSubscriptionsStore
 @synthesize subscriptions = _subscriptions;
+@synthesize delegate = _delegate;
 
 - (id) init {
     self = [super init];

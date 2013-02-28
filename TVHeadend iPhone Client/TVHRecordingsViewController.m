@@ -7,11 +7,23 @@
 //
 
 #import "TVHRecordingsViewController.h"
+#import "CKRefreshControl.h"
+#import "WBErrorNoticeView.h"
 
 @interface TVHRecordingsViewController ()
+@property (weak, nonatomic) TVHDvrStore *dvrStore;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation TVHRecordingsViewController
+@synthesize dvrStore = _dvrStore;
+
+- (TVHDvrStore*) dvrStore {
+    if ( _dvrStore == nil) {
+        _dvrStore = [TVHDvrStore sharedInstance];
+    }
+    return _dvrStore;
+}
 
 - (void)viewDidLoad
 {
@@ -19,11 +31,16 @@
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
     
+    [self.dvrStore setDelegate:self];
+    [self.dvrStore fetchDvr];
+    
+    //pull to refresh
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+
+    
     //self.segmentedControl.arrowHeightFactor *= -1.0;
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -36,29 +53,10 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    switch ( self.segmentedControl.selectedSegmentIndex ) {
-        case 0:
-        case 2:
-            NSLog(@"bla1: %d", self.segmentedControl.selectedSegmentIndex);
-            return 1;
-            break;
-            
-        case 1:
-            NSLog(@"bla2: %d", self.segmentedControl.selectedSegmentIndex);
-            return 2;
-            break;
-            
-    }
-    // Return the number of sections.
-    return 0;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return [self.dvrStore count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,40 +67,10 @@
     if(cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = @"bla";
+    TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = dvrItem.title;
     return cell;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if ( self.segmentedControl.selectedSegmentIndex == 1  ) {
-        return 30;
-    }
-    return 0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
-        
-    UILabel *label = [[UILabel alloc] initWithFrame:headerView.frame] ;
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont fontWithName:@"Helvetica Neue" size:20];
-    label.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    label.opaque = true;
-    
-    if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
-        if( section == 0 ) {
-            label.text = @"Finished";
-        }
-        if( section == 1 ) {
-            label.text = @"Failed";
-            
-        }
-    }
-    
-    [headerView addSubview:label];
-    return headerView;
 }
 
 
@@ -163,8 +131,26 @@
     [self setTableView:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)segmentedDidChange:(id)sender {
     
     [self.tableView reloadData];
+}
+
+- (void)pullToRefreshViewShouldRefresh
+{
+    [self.dvrStore fetchDvr];
+}
+
+- (void)didLoadDvr {
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
+- (void)didErrorDvrStore:(NSError *)error {
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.description];
+    [notice setSticky:true];
+    [notice show];
+    [self.refreshControl endRefreshing];
 }
 @end

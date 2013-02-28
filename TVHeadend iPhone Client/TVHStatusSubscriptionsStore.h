@@ -16,9 +16,9 @@
 
 @interface TVHStatusSubscriptionsStore : NSObject
 
-+(id)sharedInstance;
--(void)setDelegate:(id <TVHStatusSubscriptionsDelegate>)delegate;
--(void)fetchStatusSubscriptions;
++ (id)sharedInstance;
+- (void)setDelegate:(id <TVHStatusSubscriptionsDelegate>)delegate;
+- (void)fetchStatusSubscriptions;
 
 - (TVHStatusSubscription *) objectAtIndex:(int) row;
 - (int) count;

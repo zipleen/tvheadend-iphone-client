@@ -91,6 +91,7 @@
                                 <segments>
                                     <segment title="Upcoming"/>
                                     <segment title="Completed"/>
+                                    <segment title="Failed"/>
                                     <segment title="AutoRec"/>
                                 </segments>
                                 <connections>
@@ -133,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1V-73-ZOb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-169" y="-705"/>
+            <point key="canvasLocation" x="-218" y="-705"/>
         </scene>
         <!--Navigation Controller - Recordings-->
         <scene sceneID="GFR-GP-9JM">
@@ -564,6 +565,55 @@
         <image name="rec.png" width="32" height="32"/>
         <image name="stat.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="SDSegmentedControl" superclassName="UISegmentedControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
+        </class>
+        <class className="TVHChannelStoreProgramsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreProgramsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playStream:"/>
+            </relationships>
+        </class>
+        <class className="TVHChannelStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreViewController.h"/>
+        </class>
+        <class className="TVHProgramDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addRecordToTVHeadend:"/>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="outlet" name="programDescription" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="time" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TVHRecordingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="toggleStatusRefreshing:" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TVHTagStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagStoreViewController.h"/>
+        </class>
+        <class className="TVHUICustomNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomNavigationBar.h"/>
+        </class>
+        <class className="TVHUICustomTabBar" superclassName="UITabBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomTabBar.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

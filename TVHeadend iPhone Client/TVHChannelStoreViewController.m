@@ -17,7 +17,7 @@
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
 }
-@property (strong, nonatomic) TVHChannelStore *channelList;
+@property (weak, nonatomic) TVHChannelStore *channelList;
 @end
 
 @implementation TVHChannelStoreViewController
