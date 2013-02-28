@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "TVHDvrItem.h"
 
+#define RECORDING_UPCOMING 0
+#define RECORDING_FINISHED 1
+#define RECORDING_FAILED 2
+
+
 @protocol TVHDvrStoreDelegate <NSObject>
 -(void) didLoadDvr;
 -(void) didErrorDvrStore:(NSError*)error;
@@ -19,6 +24,6 @@
 - (void)setDelegate:(id <TVHDvrStoreDelegate>)delegate;
 - (void)fetchDvr;
 
-- (TVHDvrItem *) objectAtIndex:(int) row;
-- (int) count;
+- (TVHDvrItem *) objectAtIndex:(int)row forType:(NSInteger)type;
+- (int) count:(NSInteger)type;
 @end

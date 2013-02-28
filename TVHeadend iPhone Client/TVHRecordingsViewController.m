@@ -55,8 +55,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [self.dvrStore count];
+    return [self.dvrStore count:self.segmentedControl.selectedSegmentIndex];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,7 +66,7 @@
     if(cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row];
+    TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
     
     cell.textLabel.text = dvrItem.title;
     return cell;

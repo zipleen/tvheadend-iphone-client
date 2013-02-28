@@ -12,12 +12,14 @@
 @interface TVHDvrStore()
 @property (nonatomic, strong) NSArray *dvrItems;
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
+@property (nonatomic, strong) NSArray *cachedDvrItems; // because the table delegate will ask for the items in this array only
+@property (nonatomic) NSInteger cachedType;
 @end
 
 @implementation TVHDvrStore
 @synthesize dvrItems = _dvrItems;
 @synthesize delegate = _delegate;
-
+@synthesize cachedDvrItems = _cachedDvrItems;
 
 + (id)sharedInstance {
     static TVHDvrStore *__sharedInstance;
@@ -29,7 +31,13 @@
     return __sharedInstance;
 }
 
-- (void)fetchedData:(NSData *)responseData {
+- (id)init {
+    self = [super init];
+    self.cachedType = -1;
+    return self;
+}
+
+- (void)fetchedData:(NSData *)responseData withType:(NSInteger)type {
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
@@ -45,6 +53,7 @@
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHDvrItem *dvritem = [[TVHDvrItem alloc] init];
         [dvritem updateValuesFromDictionary:obj];
+        dvritem.dvrType = type;
         
         [dvrItems addObject:dvritem];
     }];
@@ -60,11 +69,11 @@
 #endif
 }
 
-- (void)fetchDvrItemsFromServer: (NSString*)url {
+- (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type {
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     [httpClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self fetchedData:responseObject];
+        [self fetchedData:responseObject withType:type];
         [self.delegate didLoadDvr];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -80,17 +89,43 @@
 
 - (void)fetchDvr {
     self.dvrItems = nil;
-    [self fetchDvrItemsFromServer:@"/dvrlist_upcoming"];
-    [self fetchDvrItemsFromServer:@"/dvrlist_finished"];
-    [self fetchDvrItemsFromServer:@"/dvrlist_failed"];
+    self.cachedDvrItems = nil;
+    
+    [self fetchDvrItemsFromServer:@"/dvrlist_upcoming" withType:RECORDING_UPCOMING];
+    [self fetchDvrItemsFromServer:@"/dvrlist_finished" withType:RECORDING_FINISHED];
+    [self fetchDvrItemsFromServer:@"/dvrlist_failed" withType:RECORDING_FAILED];
 }
 
-- (TVHDvrItem *) objectAtIndex:(int) row {
-    return [self.dvrItems objectAtIndex:row];
+- (NSArray*) dvrItemsForType:(NSInteger)type {
+    NSMutableArray *itemsForType = [[NSMutableArray alloc] init];
+    
+    [self.dvrItems enumerateObjectsUsingBlock:^(TVHDvrItem* obj, NSUInteger idx, BOOL *stop) {
+        if ( obj.dvrType == type ) {
+            [itemsForType addObject:obj];
+        }
+    }];
+    self.cachedType = -1;
+    self.cachedDvrItems = nil;
+    return [itemsForType copy];
 }
 
-- (int) count {
-    return [self.dvrItems count];
+- (void)checkCachedDvrItemsForType:(NSInteger)type {
+    if( self.cachedType != type ) {
+        self.cachedType = type;
+        self.cachedDvrItems = [self dvrItemsForType:type];
+    }
+}
+
+- (TVHDvrItem *) objectAtIndex:(int)row forType:(NSInteger)type{
+    [self checkCachedDvrItemsForType:type];
+    
+    return [self.cachedDvrItems objectAtIndex:row];
+}
+
+- (int) count:(NSInteger)type {
+    [self checkCachedDvrItemsForType:type];
+    
+    return [self.cachedDvrItems count];
 }
 
 @end

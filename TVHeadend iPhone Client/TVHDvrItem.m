@@ -22,6 +22,7 @@
 @synthesize pri = _pri;
 @synthesize status = _status;
 @synthesize schedstate = _schedstate;
+@synthesize dvrType = _dvrType;
 
 -(void)setStart:(id)startDate {
     if([startDate isKindOfClass:[NSString class]]) {

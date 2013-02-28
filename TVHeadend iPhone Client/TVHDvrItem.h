@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *pri;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *schedstate;
+@property (nonatomic) NSInteger dvrType;
 
 - (void) updateValuesFromDictionary:(NSDictionary*) values;
 @end
