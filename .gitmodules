@@ -1,9 +1,6 @@
 [submodule "AFNetworking"]
 	path = AFNetworking
 	url = git://github.com/AFNetworking/AFNetworking.git
-[submodule "SDURLCache"]
-	path = SDURLCache
-	url = git://github.com/steipete/SDURLCache.git
 [submodule "NoticeView"]
 	path = NoticeView
 	url = git://github.com/tciuro/NoticeView.git
