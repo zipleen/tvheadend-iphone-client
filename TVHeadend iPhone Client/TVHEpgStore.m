@@ -76,7 +76,7 @@
         self.epgList = [epgList copy];
     }
 #if DEBUG
-    NSLog(@"[Loaded EPG programs]: %d", [self.epgList count]);
+    NSLog(@"[EpgStore: Loaded EPG programs (%@)]: %d", self.filterToChannelName,[self.epgList count]);
 #endif
 }
 
@@ -109,7 +109,7 @@
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 #if DEBUG
-        NSLog(@"[EpgList HTTPClient Error]: %@", error.localizedDescription);
+        NSLog(@"[EpgStore HTTPClient Error]: %@", error.localizedDescription);
 #endif
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
             [self.delegate didErrorLoadingEpgStore:error];

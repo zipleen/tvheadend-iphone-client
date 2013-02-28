@@ -13,3 +13,6 @@
 [submodule "CKRefreshControl"]
 	path = CKRefreshControl
 	url = git://github.com/instructure/CKRefreshControl.git
+[submodule "SDSegmentedControl"]
+	path = SDSegmentedControl
+	url = git://github.com/rs/SDSegmentedControl.git
