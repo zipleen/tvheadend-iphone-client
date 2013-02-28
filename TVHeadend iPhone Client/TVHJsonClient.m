@@ -10,7 +10,6 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "TVHSettings.h"
 #import "AFJSONRequestOperation.h"
-#import "SDURLCache.h"
 
 @implementation TVHJsonClient
 
@@ -49,11 +48,6 @@
     //[self setParameterEncoding:AFJSONParameterEncoding];
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
-    
-    SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
-                                                         diskCapacity:1024*1024*5 // 5MB disk cache
-                                                             diskPath:[SDURLCache defaultCachePath]];
-    [NSURLCache setSharedURLCache:urlCache];
     
     return self;
 }

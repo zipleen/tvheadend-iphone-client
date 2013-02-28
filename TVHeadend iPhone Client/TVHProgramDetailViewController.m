@@ -7,7 +7,7 @@
 //
 
 #import "TVHProgramDetailViewController.h"
-#import "UIImageView+AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>

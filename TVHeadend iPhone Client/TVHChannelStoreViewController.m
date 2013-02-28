@@ -11,7 +11,7 @@
 #import "TVHChannel.h"
 #import "WBErrorNoticeView.h"
 #import "CKRefreshControl.h"
-#import "UIImageView+AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 
 @interface TVHChannelStoreViewController () {

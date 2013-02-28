@@ -10,7 +10,7 @@
 #import "TVHChannelStoreViewController.h"
 #import "WBErrorNoticeView.h"
 #import "CKRefreshControl.h"
-#import "UIImageView+AFNetworking.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface TVHTagStoreViewController ()
 @property (strong, nonatomic) TVHTagStore *tagList;

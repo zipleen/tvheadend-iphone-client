@@ -16,3 +16,6 @@
 [submodule "SDSegmentedControl"]
 	path = SDSegmentedControl
 	url = git://github.com/rs/SDSegmentedControl.git
+[submodule "SDWebImage"]
+	path = SDWebImage
+	url = git://github.com/rs/SDWebImage.git
