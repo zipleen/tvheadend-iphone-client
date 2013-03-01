@@ -12,12 +12,12 @@
 
 @implementation TVHDvrActions
 
-+ (void)doDvrAction:(NSString*)action withEventId:(NSInteger)eventId withConfigName:(NSString*)configName {
++ (void)doDvrAction:(NSString*)action withId:(NSInteger)idint withIdName:(NSString*)idName withConfigName:(NSString*)configName {
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   [NSString stringWithFormat:@"%d", eventId ],
-                                   @"eventId",
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSString stringWithFormat:@"%d", idint ],
+                                   idName,
                                    action,
                                    @"op",
                                    configName,
@@ -64,15 +64,15 @@
 }
 
 + (void)addRecording:(NSInteger)eventId withConfigName:(NSString*)configName {
-    [TVHDvrActions doDvrAction:@"recordEvent" withEventId:eventId withConfigName:configName];
+    [TVHDvrActions doDvrAction:@"recordEvent" withId:eventId withIdName:@"eventId" withConfigName:configName];
 }
 
-+ (void)cancelRecording:(NSInteger)eventId{
-    [TVHDvrActions doDvrAction:@"cancelEntry" withEventId:eventId withConfigName:nil];
++ (void)cancelRecording:(NSInteger)entryId{
+    [TVHDvrActions doDvrAction:@"cancelEntry" withId:entryId withIdName:@"entryId" withConfigName:nil];
 }
 
-+ (void)deleteRecording:(NSInteger)eventId{
-    [TVHDvrActions doDvrAction:@"deleteEntry" withEventId:eventId withConfigName:nil];
++ (void)deleteRecording:(NSInteger)entryId{
+    [TVHDvrActions doDvrAction:@"deleteEntry" withId:entryId withIdName:@"entryId" withConfigName:nil];
 }
 
 @end

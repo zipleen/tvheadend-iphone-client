@@ -9,6 +9,8 @@
 #import "TVHRecordingsViewController.h"
 #import "CKRefreshControl.h"
 #import "WBErrorNoticeView.h"
+#import "WBSuccessNoticeView.h"
+#import "TVHDvrItem.h"
 
 @interface TVHRecordingsViewController ()
 @property (weak, nonatomic) TVHDvrStore *dvrStore;
@@ -25,6 +27,19 @@
     return _dvrStore;
 }
 
+- (void) receiveDvrNotification:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"didSuccessDvrAction"] ) {
+        if ( [notification.object isEqualToString:@"deleteEntry"]) {
+            WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Recording", nil)];
+            [notice show];
+        }
+        else if([notification.object isEqualToString:@"cancelEntry"]) {
+            WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Canceled Recording", nil)];
+            [notice show];
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,11 +53,12 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveDvrNotification:)
+                                                 name:@"didSuccessDvrAction"
+                                               object:nil];
     
     //self.segmentedControl.arrowHeightFactor *= -1.0;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,44 +89,34 @@
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
+        if ( self.segmentedControl.selectedSegmentIndex == 0 ) {
+            [dvrItem cancelRecording];
+        }
+        if ( self.segmentedControl.selectedSegmentIndex == 1 || self.segmentedControl.selectedSegmentIndex == 2 ) {
+            [dvrItem deleteRecording];
+        }
+        
+        
+        // because our recordings aren't really deleted right away, we won't have cute animations because we want confirmation that the recording was in fact removed
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+     
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
