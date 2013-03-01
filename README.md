@@ -7,13 +7,12 @@ It allows you to view channels by tags, view channel EPG's, add and view recordi
 
 ## Getting the code
 
-    git clone https://github.com/zipleen/tvheadend-iphone-client.git
+    git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
     cd tvheadend-iphone-client/
-    git submodule update --init
     
     # configure kxmovie and ffmpeg
+    cd tvheadend-iphone-client/
     cd kxmovie/
-    git submodule update --init
     rake
     
     # you need to have gas-preprocessor.pl in /usr/local/bin and have it 777, so 
