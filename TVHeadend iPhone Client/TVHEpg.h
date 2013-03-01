@@ -16,8 +16,10 @@
 @property (nonatomic, strong) NSDate *start;
 @property (nonatomic, strong) NSDate *end;
 @property (nonatomic) NSInteger duration;
+@property (nonatomic) NSInteger id;
 
-- (void) setStartFromInteger:(NSInteger)start;
-- (void) setEndFromInteger:(NSInteger)end;
-- (float) progress;
+- (void)setStartFromInteger:(NSInteger)start;
+- (void)setEndFromInteger:(NSInteger)end;
+- (float)progress;
+- (void)addRecording;
 @end

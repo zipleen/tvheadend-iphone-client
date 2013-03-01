@@ -24,5 +24,7 @@
 @property (nonatomic, strong) NSString *schedstate;
 @property (nonatomic) NSInteger dvrType;
 
-- (void) updateValuesFromDictionary:(NSDictionary*) values;
+- (void)updateValuesFromDictionary:(NSDictionary*) values;
+- (void)cancelRecording;
+- (void)deleteRecording;
 @end

@@ -60,6 +60,7 @@
         NSInteger start = [[channel objectForKey:@"start"] intValue];
         NSInteger end = [[channel objectForKey:@"end"] intValue];
         NSInteger duration = [[channel objectForKey:@"duration"] intValue];
+        NSInteger id = [[channel objectForKey:@"id"] intValue];
         
         [e setChannelId:channelId];
         [e setTitle:title];
@@ -67,6 +68,7 @@
         [e setDuration:duration];
         [e setStartFromInteger:start];
         [e setEndFromInteger:end];
+        [e setId:id];
                 
         [epgList addObject:e];
     }

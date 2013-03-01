@@ -7,6 +7,7 @@
 //
 
 #import "TVHEpg.h"
+#import "TVHDvrActions.h"
 
 @implementation TVHEpg
 @synthesize channelId = _channelId;
@@ -15,6 +16,7 @@
 @synthesize start = _start;
 @synthesize end = _end;
 @synthesize duration = _duration;
+@synthesize id = _id;
 
 - (void) setStartFromInteger:(NSInteger)start {
     NSDate *localDate = [NSDate dateWithTimeIntervalSince1970:start];
@@ -45,6 +47,10 @@
     }
     
     return actualLength / programLength;
+}
+
+- (void)addRecording {
+    [TVHDvrActions addRecording:self.id withConfigName:nil];
 }
 
 @end

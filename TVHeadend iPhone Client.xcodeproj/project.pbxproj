@@ -45,6 +45,7 @@
 		AA407E3B16D1C77300451E6F /* TVHStatusSubscriptionsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E3A16D1C77200451E6F /* TVHStatusSubscriptionsStore.m */; };
 		AA407E3E16D1CA6700451E6F /* TVHStatusSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */; };
 		AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */; };
+		AA42371216E01ADA00D469A0 /* TVHDvrActions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA42371116E01ADA00D469A0 /* TVHDvrActions.m */; };
 		AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43D46F16CEFC5400104BBF /* QuartzCore.framework */; };
 		AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA43D47216CEFDB700104BBF /* NoticeView.bundle */; };
 		AA43D48916CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47416CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m */; };
@@ -208,6 +209,8 @@
 		AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSubscription.m; sourceTree = "<group>"; };
 		AA407E3F16D1CE5600451E6F /* TVHStatusSubscriptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusSubscriptionsViewController.h; sourceTree = "<group>"; };
 		AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSubscriptionsViewController.m; sourceTree = "<group>"; };
+		AA42371016E01ADA00D469A0 /* TVHDvrActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrActions.h; sourceTree = "<group>"; };
+		AA42371116E01ADA00D469A0 /* TVHDvrActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrActions.m; sourceTree = "<group>"; };
 		AA43D46F16CEFC5400104BBF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA43D47216CEFDB700104BBF /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
 		AA43D47316CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+WBNoticeExtensions.h"; sourceTree = "<group>"; };
@@ -406,6 +409,8 @@
 		AA132E9A16D91EA60074FAB8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */,
+				AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */,
 				AA132E9B16D91EDC0074FAB8 /* TVHUICustomTabBar.h */,
 				AA132E9C16D91EDC0074FAB8 /* TVHUICustomTabBar.m */,
 				AA132EB916D9594B0074FAB8 /* TVHUICustomNavigationBar.h */,
@@ -445,6 +450,8 @@
 				AA575E3316DFF18300D80F8C /* TVHDvrStore.m */,
 				AA575E3816DFF19500D80F8C /* TVHDvrItem.h */,
 				AA575E3916DFF19500D80F8C /* TVHDvrItem.m */,
+				AA42371016E01ADA00D469A0 /* TVHDvrActions.h */,
+				AA42371116E01ADA00D469A0 /* TVHDvrActions.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -703,9 +710,7 @@
 				AA7C3FD016C709380057E4C4 /* Controller */,
 				AAB39A0216BDB21900973F88 /* TVHAppDelegate.h */,
 				AAB39A0316BDB21900973F88 /* TVHAppDelegate.m */,
-				AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */,
 				AAF54A5516C73A200076DF17 /* Settings.bundle */,
-				AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */,
 				AAB399FA16BDB21900973F88 /* Supporting Files */,
 			);
 			path = "TVHeadend iPhone Client";
@@ -987,6 +992,7 @@
 				AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */,
 				AA575E3416DFF18300D80F8C /* TVHDvrStore.m in Sources */,
 				AA575E3A16DFF19500D80F8C /* TVHDvrItem.m in Sources */,
+				AA42371216E01ADA00D469A0 /* TVHDvrActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

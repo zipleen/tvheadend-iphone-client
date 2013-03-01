@@ -9,6 +9,7 @@
 #import "TVHProgramDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "WBSuccessNoticeView.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 
@@ -17,6 +18,13 @@
 @implementation TVHProgramDetailViewController
 @synthesize epg = _epg;
 @synthesize channel = _channel;
+
+- (void) receiveDvrNotification:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"didSuccessDvrAction"] && [notification.object isEqualToString:@"recordEvent"]) {
+        WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
+        [notice show];
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -38,7 +46,10 @@
     
     [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0] forState:UIControlStateNormal];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveDvrNotification:)
+                                                 name:@"didSuccessDvrAction"
+                                               object:nil];
     /*[self.programImage setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.channel.imageUrl]] placeholderImage:[UIImage imageNamed:@"tv.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
         NSLog(@"Your image request succeeded!");
         self.programImage.image = [self imageWithShadow:image BlurSize:5.0f];
@@ -63,12 +74,13 @@
     self.epg = nil;
     self.channel = nil;
     [self setRecord:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
 }
 
 
 - (IBAction)addRecordToTVHeadend:(id)sender {
-    
+    [self.epg addRecording];
 }
 
 - (IBAction)playStream:(id)sender {

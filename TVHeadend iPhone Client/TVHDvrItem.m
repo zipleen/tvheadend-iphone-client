@@ -7,6 +7,7 @@
 //
 
 #import "TVHDvrItem.h"
+#import "TVHDvrActions.h"
 
 @implementation TVHDvrItem
 @synthesize channel = _channel;
@@ -44,6 +45,14 @@
 
 -(void)setValue:(id)value forUndefinedKey:(NSString*)key {
     
+}
+
+- (void)cancelRecording {
+    [TVHDvrActions cancelRecording:self.id];
+}
+
+- (void)deleteRecording {
+    [TVHDvrActions deleteRecording:self.id];
 }
 
 @end
