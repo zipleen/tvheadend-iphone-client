@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHChannel.h"
 
 @interface TVHDvrItem : NSObject
 @property (nonatomic, strong) NSString *channel;
@@ -29,4 +30,5 @@
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)cancelRecording;
 - (void)deleteRecording;
+- (TVHChannel*)channelObject;
 @end

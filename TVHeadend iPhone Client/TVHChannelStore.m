@@ -157,6 +157,17 @@
     return nil;
 }
 
+- (TVHChannel*) channelWithName:(NSString*) name {
+    NSEnumerator *e = [self.channels objectEnumerator];
+    TVHChannel *channel;
+    while (channel = [e nextObject]) {
+        if( [channel.name isEqualToString:name] ) {
+            return channel;
+        }
+    }
+    return nil;
+}
+
 - (int) count {
     if(self.filterTag == 0) {
         return [self.channels count];

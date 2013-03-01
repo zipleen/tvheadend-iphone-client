@@ -26,5 +26,5 @@
 - (TVHChannel *) objectAtIndex:(int) row;
 - (int) count;
 - (void)setDelegate:(id <TVHChannelStoreDelegate>)delegate;
-
+- (TVHChannel*) channelWithName:(NSString*) name;
 @end

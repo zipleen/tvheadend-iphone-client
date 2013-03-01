@@ -11,13 +11,17 @@
 #import "WBErrorNoticeView.h"
 #import "WBSuccessNoticeView.h"
 #import "TVHDvrItem.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface TVHRecordingsViewController ()
 @property (weak, nonatomic) TVHDvrStore *dvrStore;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
-@implementation TVHRecordingsViewController
+@implementation TVHRecordingsViewController {
+    NSDateFormatter *dateFormatter;
+}
 @synthesize dvrStore = _dvrStore;
 
 - (TVHDvrStore*) dvrStore {
@@ -59,6 +63,9 @@
                                                  name:@"didSuccessDvrAction"
                                                object:nil];
     
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"E d MMM, HH:mm"];
+    
     //self.segmentedControl.arrowHeightFactor *= -1.0;
 }
 
@@ -85,11 +92,24 @@
     }
     TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
     
-    cell.textLabel.text = dvrItem.title;
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
+	UILabel *dateLabel = (UILabel *)[cell viewWithTag:101];
+    UILabel *statusLabel = (UILabel *)[cell viewWithTag:102];
+    UIImageView *channelImage = (UIImageView *)[cell viewWithTag:103];
+    
+    titleLabel.text = dvrItem.title;
+    dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
+    statusLabel.text = dvrItem.status;
+    [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    
+    // rouding corners
+    channelImage.layer.cornerRadius = 5.0;
+    channelImage.layer.masksToBounds = YES;
+    channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    channelImage.layer.borderWidth = 0.2;
+    
     return cell;
 }
-
-
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

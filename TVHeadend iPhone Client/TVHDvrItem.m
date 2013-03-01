@@ -8,6 +8,7 @@
 
 #import "TVHDvrItem.h"
 #import "TVHDvrActions.h"
+#import "TVHChannelStore.h"
 
 @implementation TVHDvrItem
 @synthesize channel = _channel;
@@ -26,13 +27,13 @@
 @synthesize dvrType = _dvrType;
 
 -(void)setStart:(id)startDate {
-    if([startDate isKindOfClass:[NSString class]]) {
+    if( ! [startDate isKindOfClass:[NSString class]] ) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];
     }
 }
 
 -(void)setEnd:(id)endDate {
-    if([endDate isKindOfClass:[NSString class]]) {
+    if( ! [endDate isKindOfClass:[NSString class]] ) {
         _end = [NSDate dateWithTimeIntervalSince1970:[endDate intValue]];
     }
 }
@@ -53,6 +54,12 @@
 
 - (void)deleteRecording {
     [TVHDvrActions deleteRecording:self.id];
+}
+
+- (TVHChannel*)channelObject {
+    TVHChannelStore *store = [TVHChannelStore sharedInstance];
+    TVHChannel *channel = [store channelWithName:self.channel];
+    return channel;
 }
 
 @end
