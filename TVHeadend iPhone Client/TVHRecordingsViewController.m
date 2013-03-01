@@ -51,8 +51,9 @@
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
-
+    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDvrNotification:)
                                                  name:@"didSuccessDvrAction"
@@ -142,7 +143,7 @@
     [self.tableView reloadData];
 }
 
-- (void)pullToRefreshViewShouldRefresh
+- (void)pullToRefreshViewShouldRefresh:(UIRefreshControl *)sender
 {
     [self.dvrStore fetchDvr];
 }
