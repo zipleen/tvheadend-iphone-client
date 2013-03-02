@@ -15,7 +15,6 @@
 @end
 
 @implementation TVHCometPollStore
-@synthesize boxid = _boxid;
 
 + (id)sharedInstance {
     static TVHCometPollStore *__sharedInstance;

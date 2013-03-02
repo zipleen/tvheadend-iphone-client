@@ -18,9 +18,6 @@
 @end
 
 @implementation TVHEpgStore
-@synthesize epgList = _epgList;
-@synthesize lastEventCount = _lastEventCount;
-@synthesize filterToChannelName = _filterToChannelName;
 
 + (id)sharedInstance {
     static TVHEpgStore *__sharedInstance;

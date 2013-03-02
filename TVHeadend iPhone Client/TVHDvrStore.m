@@ -17,9 +17,6 @@
 @end
 
 @implementation TVHDvrStore
-@synthesize dvrItems = _dvrItems;
-@synthesize delegate = _delegate;
-@synthesize cachedDvrItems = _cachedDvrItems;
 
 + (id)sharedInstance {
     static TVHDvrStore *__sharedInstance;

@@ -17,9 +17,6 @@
 
 @implementation TVHTagStore
 
-@synthesize tags = _tags;
-@synthesize delegate = _delegate;
-
 + (id)sharedInstance {
     static TVHTagStore *__sharedInstance;
     static dispatch_once_t onceToken;

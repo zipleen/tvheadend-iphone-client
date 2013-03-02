@@ -9,8 +9,6 @@
 #import "TVHChannelEpg.h"
 
 @implementation TVHChannelEpg
-@synthesize date = _date;
-@synthesize programs = _programs;
 
 - (NSMutableArray*) programs {
     if (!_programs) {

@@ -10,13 +10,6 @@
 #import "TVHDvrActions.h"
 
 @implementation TVHEpg
-@synthesize channelId = _channelId;
-@synthesize title = _title;
-@synthesize description = _description;
-@synthesize start = _start;
-@synthesize end = _end;
-@synthesize duration = _duration;
-@synthesize id = _id;
 
 - (void) setStartFromInteger:(NSInteger)start {
     NSDate *localDate = [NSDate dateWithTimeIntervalSince1970:start];

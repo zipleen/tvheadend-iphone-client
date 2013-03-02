@@ -13,7 +13,6 @@
 @end
 
 @implementation TVHDvrDetailViewController
-@synthesize dvrItem = _dvrItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

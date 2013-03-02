@@ -14,7 +14,6 @@
 @end
 
 @implementation TVHDebugLogViewController
-@synthesize timer = _timer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

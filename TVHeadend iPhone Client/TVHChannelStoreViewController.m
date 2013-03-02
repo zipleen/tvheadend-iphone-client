@@ -22,9 +22,6 @@
 
 @implementation TVHChannelStoreViewController
 
-@synthesize channelList = _channelList;
-@synthesize filterTagId = _filterTagId;
-
 // if we're called from tagstore, we'll set the filter of the channelStore to only get channels from the selected tag
 - (NSInteger) filterTagId {
     if(!_filterTagId) {

@@ -16,8 +16,6 @@
 @end
 
 @implementation TVHProgramDetailViewController
-@synthesize epg = _epg;
-@synthesize channel = _channel;
 
 - (void) receiveDvrNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"didSuccessDvrAction"] && [notification.object isEqualToString:@"recordEvent"]) {

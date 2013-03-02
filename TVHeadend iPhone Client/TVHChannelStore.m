@@ -17,10 +17,6 @@
 @end
 
 @implementation TVHChannelStore 
-@synthesize channels = _channels;
-@synthesize delegate = _delegate;
-@synthesize filterTag = _filterTag;
-@synthesize epgList = _epgList;
 
 + (id)sharedInstance {
     static TVHChannelStore *__sharedInstance;

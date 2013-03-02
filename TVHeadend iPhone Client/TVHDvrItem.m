@@ -11,20 +11,6 @@
 #import "TVHChannelStore.h"
 
 @implementation TVHDvrItem
-@synthesize channel = _channel;
-@synthesize chicon = _chicon;
-@synthesize config_name = _config_name;
-@synthesize title = _title;
-@synthesize description = _description;
-@synthesize id = _id;
-@synthesize start = _start;
-@synthesize end = _end;
-@synthesize duration = _duration;
-@synthesize creator = _creator;
-@synthesize pri = _pri;
-@synthesize status = _status;
-@synthesize schedstate = _schedstate;
-@synthesize dvrType = _dvrType;
 
 -(void)setStart:(id)startDate {
     if( ! [startDate isKindOfClass:[NSString class]] ) {

@@ -18,8 +18,6 @@
 
 @implementation TVHTagStoreViewController
 
-@synthesize tagList = _tagList;
-
 - (TVHTagStore*) tagList {
     if ( _tagList == nil) {
         _tagList = [TVHTagStore sharedInstance];

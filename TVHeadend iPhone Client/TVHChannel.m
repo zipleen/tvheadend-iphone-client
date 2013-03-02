@@ -19,14 +19,6 @@
 @end
 
 @implementation TVHChannel
-@synthesize name = _name;
-@synthesize detail = _detail;
-@synthesize imageUrl = _imageUrl;
-@synthesize number = _number;
-@synthesize chid = _chid;
-@synthesize tags = _tags;
-@synthesize image = _image;
-@synthesize channelEpgDataByDay = _channelEpgDataByDay;
 
 -(NSMutableArray*) channelEpgDataByDay{
     if(!_channelEpgDataByDay) {

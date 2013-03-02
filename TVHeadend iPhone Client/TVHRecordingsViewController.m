@@ -23,7 +23,6 @@
 @implementation TVHRecordingsViewController {
     NSDateFormatter *dateFormatter;
 }
-@synthesize dvrStore = _dvrStore;
 
 - (TVHDvrStore*) dvrStore {
     if ( _dvrStore == nil) {

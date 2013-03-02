@@ -10,16 +10,6 @@
 
 @implementation TVHStatusSubscription
 
-@synthesize channel = _channel;
-@synthesize errors = _errors;
-@synthesize hostname = _hostname;
-@synthesize id = _id;
-@synthesize service = _service;
-@synthesize start = _start;
-@synthesize state = _state;
-@synthesize title = _title;
-@synthesize bw = _bw;
-
 -(void)setStart:(id)startDate {
     if([startDate isKindOfClass:[NSString class]]) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];
