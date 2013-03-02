@@ -70,6 +70,8 @@
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
+		AA8DC11C16E1762E00F93BD7 /* TVHDvrDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DC11B16E1762E00F93BD7 /* TVHDvrDetailViewController.m */; };
+		AA8DC12216E1802B00F93BD7 /* TVHDebugLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DC12116E1802B00F93BD7 /* TVHDebugLogViewController.m */; };
 		AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */; };
 		AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DED0016DEDB3B00AF6A51 /* SDSegmentedControl.m */; };
 		AA8DED2416DEDFB300AF6A51 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */; };
@@ -254,6 +256,10 @@
 		AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelEpg.m; sourceTree = "<group>"; };
 		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
 		AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettings.m; sourceTree = "<group>"; };
+		AA8DC11A16E1762E00F93BD7 /* TVHDvrDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrDetailViewController.h; sourceTree = "<group>"; };
+		AA8DC11B16E1762E00F93BD7 /* TVHDvrDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrDetailViewController.m; sourceTree = "<group>"; };
+		AA8DC12016E1802B00F93BD7 /* TVHDebugLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDebugLogViewController.h; sourceTree = "<group>"; };
+		AA8DC12116E1802B00F93BD7 /* TVHDebugLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDebugLogViewController.m; sourceTree = "<group>"; };
 		AA8DECFC16DEBFAE00AF6A51 /* TVHRecordingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHRecordingsViewController.h; sourceTree = "<group>"; };
 		AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHRecordingsViewController.m; sourceTree = "<group>"; };
 		AA8DECFF16DEDB3B00AF6A51 /* SDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDSegmentedControl.h; path = SDSegmentedControl/SDSegmentedControl.h; sourceTree = SOURCE_ROOT; };
@@ -625,6 +631,8 @@
 			children = (
 				AA407E3F16D1CE5600451E6F /* TVHStatusSubscriptionsViewController.h */,
 				AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */,
+				AA8DC12016E1802B00F93BD7 /* TVHDebugLogViewController.h */,
+				AA8DC12116E1802B00F93BD7 /* TVHDebugLogViewController.m */,
 			);
 			name = Status;
 			sourceTree = "<group>";
@@ -634,6 +642,8 @@
 			children = (
 				AA8DECFC16DEBFAE00AF6A51 /* TVHRecordingsViewController.h */,
 				AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */,
+				AA8DC11A16E1762E00F93BD7 /* TVHDvrDetailViewController.h */,
+				AA8DC11B16E1762E00F93BD7 /* TVHDvrDetailViewController.m */,
 			);
 			name = DVR;
 			sourceTree = "<group>";
@@ -1041,6 +1051,8 @@
 				AA575E3416DFF18300D80F8C /* TVHDvrStore.m in Sources */,
 				AA575E3A16DFF19500D80F8C /* TVHDvrItem.m in Sources */,
 				AA42371216E01ADA00D469A0 /* TVHDvrActions.m in Sources */,
+				AA8DC11C16E1762E00F93BD7 /* TVHDvrDetailViewController.m in Sources */,
+				AA8DC12216E1802B00F93BD7 /* TVHDebugLogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@
 #import "TVHDvrItem.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TVHDvrDetailViewController.h"
 
 @interface TVHRecordingsViewController ()
 @property (weak, nonatomic) TVHDvrStore *dvrStore;
@@ -141,15 +142,15 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"DvrDetailSegue"]) {
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        TVHDvrItem *item = [self.dvrStore objectAtIndex:path.row forType:self.segmentedControl.selectedSegmentIndex];
+        
+        TVHDvrDetailViewController *vc = segue.destinationViewController;
+        [vc setDvrItem:item];
+    }
 }
 
 - (void)viewDidUnload {

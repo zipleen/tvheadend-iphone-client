@@ -53,6 +53,12 @@
                 postNotificationName:@"subscriptionsNotificationClassReceived"
                 object:obj];
         }
+        
+        if( [notificationClass isEqualToString:@"logmessage"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"logmessageNotificationClassReceived"
+             object:obj];
+        }
     }];
     
     
