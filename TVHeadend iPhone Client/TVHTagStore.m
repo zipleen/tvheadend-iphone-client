@@ -1,5 +1,5 @@
 //
-//  TVHTagList.m
+//  TVHTagStore.m
 //  TVHeadend iPhone Client
 //
 //  Created by zipleen on 2/9/13.

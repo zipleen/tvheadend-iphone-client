@@ -13,7 +13,7 @@
 @interface TVHChannelStore ()
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
-@property (nonatomic, weak) TVHEpgStore *epgList;
+@property (nonatomic, weak) TVHEpgStore *epgStore;
 @end
 
 @implementation TVHChannelStore 
@@ -28,11 +28,11 @@
     return __sharedInstance;
 }
 
-- (TVHEpgStore*) epgList {
-    if(!_epgList){
-        _epgList = [TVHEpgStore sharedInstance];
+- (TVHEpgStore*) epgStore {
+    if(!_epgStore){
+        _epgStore = [TVHEpgStore sharedInstance];
     }
-    return _epgList;
+    return _epgStore;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -81,8 +81,8 @@
             [self fetchedData:responseObject];
             [self.delegate didLoadChannels];
             
-            [self.epgList setDelegate:self];
-            [self.epgList downloadEpgList];
+            [self.epgStore setDelegate:self];
+            [self.epgStore downloadEpgList];
             
            // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
            // NSLog(@"Request Successful, response '%@'", responseStr);
@@ -108,9 +108,9 @@
 
 #pragma mark EPG delegatee stuff
 
-- (void) didLoadEpg:(TVHEpgStore*)epgList {
+- (void) didLoadEpg:(TVHEpgStore*)epgStore {
     // for each epg
-    NSArray *list = [epgList getEpgList];
+    NSArray *list = [epgStore getEpgList];
     NSEnumerator *e = [list objectEnumerator];
     TVHEpg *epg;
     while (epg = [e nextObject]) {

@@ -1,5 +1,5 @@
 //
-//  TVHEpgList.m
+//  TVHEpgStore.m
 //  TVHeadend iPhone Client
 //
 //  Created by zipleen on 2/10/13.
@@ -11,7 +11,7 @@
 #import "TVHJsonClient.h"
 
 @interface TVHEpgStore()
-@property (nonatomic, strong) NSArray *epgList;
+@property (nonatomic, strong) NSArray *epgStore;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
 @property (nonatomic) NSInteger lastEventCount;
 
@@ -42,7 +42,7 @@
     
     self.lastEventCount = [[json objectForKey:@"totalCount"] intValue];
     NSArray *entries = [json objectForKey:@"entries"];
-    NSMutableArray *epgList = [[NSMutableArray alloc] init];
+    NSMutableArray *epgStore = [[NSMutableArray alloc] init];
     
     NSEnumerator *e = [entries objectEnumerator];
     id channel;
@@ -67,15 +67,15 @@
         [e setEndFromInteger:end];
         [e setId:id];
                 
-        [epgList addObject:e];
+        [epgStore addObject:e];
     }
-    if ( [self.epgList count] > 0) {
-        self.epgList = [self.epgList arrayByAddingObjectsFromArray:[epgList copy]];
+    if ( [self.epgStore count] > 0) {
+        self.epgStore = [self.epgStore arrayByAddingObjectsFromArray:[epgStore copy]];
     } else {
-        self.epgList = [epgList copy];
+        self.epgStore = [epgStore copy];
     }
 #if DEBUG
-    NSLog(@"[EpgStore: Loaded EPG programs (%@)]: %d", self.filterToChannelName,[self.epgList count]);
+    NSLog(@"[EpgStore: Loaded EPG programs (%@)]: %d", self.filterToChannelName,[self.epgStore count]);
 #endif
 }
 
@@ -122,7 +122,7 @@
     // check date
     // if date > datenow, get more 50
     
-    TVHEpg *last = [self.epgList lastObject];
+    TVHEpg *last = [self.epgStore lastObject];
     if ( last ) {
         NSDate *localDate = [NSDate date];
 #if DEBUG
@@ -139,7 +139,7 @@
 }
 
 - (NSArray*)getEpgList{
-    return self.epgList;
+    return self.epgStore;
 }
 
 - (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate {

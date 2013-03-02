@@ -11,7 +11,7 @@
 #import "TVHEpgStore.h"
 
 @interface TVHEpgStore (MyPrivateMethodsUsedForTesting)
-@property (nonatomic, strong) NSArray *epgList;
+@property (nonatomic, strong) NSArray *epgStore;
 - (void)fetchedData:(NSData *)responseData;
 @end
 
@@ -38,9 +38,9 @@
     TVHEpgStore *tvhe = [TVHEpgStore sharedInstance];
     STAssertNotNil(tvhe, @"creating tvepg store object");
     [tvhe fetchedData:data];
-    STAssertTrue( ([tvhe.epgList count] == 1), @"Failed parsing json data");
+    STAssertTrue( ([tvhe.epgStore count] == 1), @"Failed parsing json data");
     
-    TVHEpg *epg = [tvhe.epgList objectAtIndex:0];
+    TVHEpg *epg = [tvhe.epgStore objectAtIndex:0];
     STAssertEqualObjects(epg.title, @"Nacional x Benfica - Primeira Liga", @"epg title doesnt match");
     STAssertEquals(epg.channelId, 131, @"epg title doesnt match");
 }
