@@ -72,10 +72,6 @@
 {
     static NSString *CellIdentifier = @"TagListTableItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-   
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     
     // Configure the cell...
     TVHTag *tag = [self.tagList objectAtIndex:indexPath.row];
@@ -89,7 +85,14 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+    [cell.contentView addSubview: separator];
+    
     return cell;
+}
+
+- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
 }
 
 #pragma mark - Table view delegate

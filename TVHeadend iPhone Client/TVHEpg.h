@@ -22,4 +22,5 @@
 - (void)setEndFromInteger:(NSInteger)end;
 - (float)progress;
 - (void)addRecording;
+- (BOOL)isEqual: (TVHEpg*)other;
 @end

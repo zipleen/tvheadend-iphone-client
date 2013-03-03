@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0F56B816E3869000E07DF3 /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56B716E3869000E07DF3 /* separator@2x.png */; };
+		AA0F56C016E38C9400E07DF3 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56BF16E38C9400E07DF3 /* separator.png */; };
 		AA10AA8416D1304D00BBDFEA /* CKParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA7E16D1304D00BBDFEA /* CKParagraphStyle.m */; };
 		AA10AA8516D1304D00BBDFEA /* CKRefreshArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA8016D1304D00BBDFEA /* CKRefreshArrowView.m */; };
 		AA10AA8616D1304D00BBDFEA /* CKRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA10AA8316D1304D00BBDFEA /* CKRefreshControl.m */; };
@@ -155,6 +157,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA0F56B716E3869000E07DF3 /* separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator@2x.png"; sourceTree = "<group>"; };
+		AA0F56BF16E38C9400E07DF3 /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		AA10AA7D16D1304D00BBDFEA /* CKParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKParagraphStyle.h; sourceTree = "<group>"; };
 		AA10AA7E16D1304D00BBDFEA /* CKParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKParagraphStyle.m; sourceTree = "<group>"; };
 		AA10AA7F16D1304D00BBDFEA /* CKRefreshArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKRefreshArrowView.h; sourceTree = "<group>"; };
@@ -442,6 +446,8 @@
 		AA2AEB1D16CB0839006B071C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AA0F56BF16E38C9400E07DF3 /* separator.png */,
+				AA0F56B716E3869000E07DF3 /* separator@2x.png */,
 				AABD859016D9BA4300C8245C /* nav-button@2x.png */,
 				AABD859116D9BA4300C8245C /* nav-button.png */,
 				AABD858C16D97FDA00C8245C /* tabbar.png */,
@@ -964,6 +970,8 @@
 				AABD858F16D97FDA00C8245C /* tabbar.png in Resources */,
 				AABD859216D9BA4300C8245C /* nav-button@2x.png in Resources */,
 				AABD859316D9BA4300C8245C /* nav-button.png in Resources */,
+				AA0F56B816E3869000E07DF3 /* separator@2x.png in Resources */,
+				AA0F56C016E38C9400E07DF3 /* separator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

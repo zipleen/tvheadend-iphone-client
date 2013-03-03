@@ -11,13 +11,14 @@
 
 @class TVHEpgStore;
 @protocol TVHEpgStoreDelegate <NSObject>
-- (void) didLoadEpg:(TVHEpgStore*)epgList;
+- (void) didLoadEpg:(TVHEpgStore*)epgStore;
 @optional
 -(void) didErrorLoadingEpgStore:(NSError*)error;
 @end
 
 @interface TVHEpgStore : NSObject
-@property (nonatomic, strong) NSString* filterToChannelName;
+@property (nonatomic, strong) NSString *filterToChannelName;
+@property (nonatomic, strong) NSString *filterToProgramTitle;
 + (id)sharedInstance;
 - (void)downloadEpgList;
 - (NSArray*)getEpgList;

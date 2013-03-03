@@ -88,9 +88,6 @@
 {
     static NSString *CellIdentifier = @"ChannelListTableItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    } 
     
     // Configure the cell...
     TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
@@ -121,7 +118,14 @@
         currentTimeProgress.progress = [currentPlayingProgram progress];
     }
     
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+    [cell.contentView addSubview: separator];
+    
     return cell;
+}
+
+- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
 }
 
 #pragma mark - Table view delegate

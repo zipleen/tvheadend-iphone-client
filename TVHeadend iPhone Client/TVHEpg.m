@@ -46,4 +46,13 @@
     [TVHDvrActions addRecording:self.id withConfigName:nil];
 }
 
+- (BOOL)isEqual: (id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    TVHEpg *otherCast = other;
+    return self.id == otherCast.id;
+}
+
 @end

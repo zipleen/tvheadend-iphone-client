@@ -9,18 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "TVHEpg.h"
 #import "TVHChannel.h"
+#import "SDSegmentedControl.h"
+#import "TVHEpgStore.h"
 
-@interface TVHProgramDetailViewController : UIViewController
+@interface TVHProgramDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TVHEpgStoreDelegate>
 
 @property (weak, nonatomic) TVHEpg *epg;
 @property (weak, nonatomic) TVHChannel *channel;
 @property (weak, nonatomic) IBOutlet UIImageView *programImage;
-@property (weak, nonatomic) IBOutlet UITextView *programDescription;
 @property (weak, nonatomic) IBOutlet UILabel *programTitle;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UIButton *record;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
+- (IBAction)segmentedDidChange:(id)sender;
 - (IBAction)addRecordToTVHeadend:(id)sender;
 - (IBAction)playStream:(id)sender;
+- (IBAction)addRecordMoreItemsToTVHeadend:(id)sender;
 
 @end

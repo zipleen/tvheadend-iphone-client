@@ -67,10 +67,6 @@
     static NSString *CellIdentifier = @"SubscriptionStoreTableItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
     
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
     // Configure the cell...
     TVHStatusSubscription *subscription = [self.statusStore objectAtIndex:indexPath.row];
     
@@ -92,6 +88,9 @@
     stateLabel.text = subscription.state;
     errorsLabel.text = [NSString stringWithFormat:@"Errors: %d", subscription.errors];
     bandwidthLabel.text = [NSString stringWithFormat:@"Bw: %d", subscription.bw];
+    
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+    [cell.contentView addSubview: separator];
     
     return cell;
 }

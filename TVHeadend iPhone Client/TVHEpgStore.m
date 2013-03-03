@@ -80,6 +80,7 @@
 }
 
 - (NSDictionary*) getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    [NSString stringWithFormat:@"%d", start ],
                                    @"start",
@@ -88,6 +89,10 @@
     
     if( self.filterToChannelName != nil ) {
         [params setObject:self.filterToChannelName forKey:@"channel"];
+    }
+    
+    if( self.filterToProgramTitle != nil ) {
+        [params setObject:self.filterToProgramTitle forKey:@"title"];
     }
     
     return [params copy];

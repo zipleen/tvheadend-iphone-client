@@ -108,6 +108,9 @@
     channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
     channelImage.layer.borderWidth = 0.2;
     
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+    [cell.contentView addSubview: separator];
+    
     return cell;
 }
 
@@ -138,8 +141,16 @@
      
 }
 
+- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
 
 #pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"DvrDetailSegue"]) {
