@@ -42,7 +42,6 @@
     hourFormatter.dateFormat = @"HH:mm";
     
     self.programTitle.text = self.epg.title;
-    self.dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:self.epg.start], self.epg.duration/60 ];
     [self.programImage setImageWithURL:[NSURL URLWithString:self.channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
     
     
@@ -55,7 +54,8 @@
     
     self.view.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
     
-    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0] forState:UIControlStateNormal];
+    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
+    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDvrNotification:)
@@ -80,16 +80,11 @@
     [self setTableView:nil];
     [self setSegmentedControl:nil];
     self.moreTimes = nil;
-    [self setDateLabel:nil];
     [super viewDidUnload];
 }
 
 
-- (IBAction)addRecordToTVHeadend:(id)sender {
-    [self.epg addRecording];
-}
-
-- (IBAction)playStream:(id)sender {
+- (IBAction)addAutoRecordToTVHeadend:(id)sender {
     
 }
 
@@ -117,7 +112,11 @@
         return 2;
     }
     if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
-        return [self.moreTimesItems count];
+        int count = [self.moreTimesItems count];
+        if ( count == 0 ) {
+            return 1;
+        }
+        return count;
     }
     return 0;
 }
@@ -125,6 +124,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TVHEpg *epg;
     static NSString *CellIdentifier = @"ProgramDetailViewTableItem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -134,31 +134,40 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *descLabel = (UILabel *)[cell viewWithTag:101];
     UIButton *recordButton = (UIButton *)[cell viewWithTag:103];
+    [recordButton setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
+    [recordButton setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
+    
     descLabel.numberOfLines = 0;
+    recordButton.hidden = NO;
     
     if( self.segmentedControl.selectedSegmentIndex == 0 ) {
-        recordButton.hidden = YES;
+        epg = self.epg;
         if ( indexPath.row == 0 ) {
-            titleLabel.text = @"Running Time";
-            
-            
-            descLabel.text = [NSString stringWithFormat:@"%@ | %@", [hourFormatter stringFromDate:self.epg.start], [hourFormatter stringFromDate:self.epg.end]];
+            titleLabel.text = NSLocalizedString(@"Time", nil);
         }
         
         if ( indexPath.row == 1 ) {
-            titleLabel.text = @"Description";
+            titleLabel.text = NSLocalizedString(@"Description", nil);
             descLabel.text = self.epg.description;
+            recordButton.hidden = YES;
+        }
+    } else if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
+        // we have !self.moreTimes so the message is not shown before knowing in fact that there are no more programs available
+        if ( [self.moreTimesItems count] == 0 && self.moreTimes ) {
+            titleLabel.text = NSLocalizedString(@"No more programs available.", nil);
+            recordButton.hidden = YES;
+            descLabel.text = @"";
+        } else if( [self.moreTimesItems count] > 0 ) {
+            epg = self.moreTimesItems[indexPath.row];
+            titleLabel.text = epg.title;
         }
     }
-
-    if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
-        TVHEpg *epg = self.moreTimesItems[indexPath.row];
-        titleLabel.text = epg.title;
-        descLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:epg.start], epg.duration/60 ];
-        
-        // we need the button =)
-        recordButton.hidden = NO;
-        [recordButton setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:5.0 topCapHeight:0.0] forState:UIControlStateNormal];
+    
+    // index = 0 and row = 1 is the description label
+    if ( ! (self.segmentedControl.selectedSegmentIndex == 0 && indexPath.row == 1) ) {
+        if( epg ) {
+            descLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+        }
     }
     
     // resize the "description" label
@@ -167,6 +176,7 @@
               constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
     descLabel.frame = CGRectMake(20, 20, size.width, size.height);
     
+    // line separator
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
     [cell.contentView addSubview:separator];
     
@@ -210,9 +220,13 @@
 }
 
 - (IBAction)addRecordMoreItemsToTVHeadend:(id)sender {
-    UIView *senderButton = (UIView*) sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
-    TVHEpg *epg = self.moreTimesItems[indexPath.row];
-    [epg addRecording];
+    if( self.segmentedControl.selectedSegmentIndex == 0 ) {
+        [self.epg addRecording];
+    } else if( self.segmentedControl.selectedSegmentIndex == 1 ){
+        UIView *senderButton = (UIView*) sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
+        TVHEpg *epg = self.moreTimesItems[indexPath.row];
+        [epg addRecording];
+    }
 }
 @end

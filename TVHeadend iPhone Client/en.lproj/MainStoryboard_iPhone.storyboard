@@ -494,7 +494,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Program Title gerewegwgewgewwegewgewgewgegwwegwegewgweg" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="N1f-DE-0vy">
-                                <rect key="frame" x="83" y="9" width="222" height="44"/>
+                                <rect key="frame" x="83" y="12" width="222" height="34"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -502,21 +502,10 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="5BI-Dl-xQb">
                                 <rect key="frame" x="15" y="12" width="60" height="50"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G09-IA-7ne">
-                                <rect key="frame" x="194" y="63" width="111" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
-                                <state key="normal" title="Record">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="addRecordToTVHeadend:" destination="R7y-nK-jpx" eventType="touchUpInside" id="cWT-Mh-AaI"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="J9E-6r-vmb" customClass="SDSegmentedControl">
-                                <rect key="frame" x="0.0" y="97" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="79" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Details"/>
@@ -527,14 +516,14 @@
                                 </connections>
                             </segmentedControl>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" id="KxJ-zt-v5P">
-                                <rect key="frame" x="0.0" y="144" width="320" height="223"/>
+                                <rect key="frame" x="0.0" y="126" width="320" height="241"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ProgramDetailViewTableItem" id="VJI-sb-Hb9">
                                         <rect key="frame" x="0.0" y="22" width="320" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -553,11 +542,12 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dEZ-Mo-L1n">
-                                                    <rect key="frame" x="234" y="10" width="66" height="28"/>
+                                                    <rect key="frame" x="234" y="10" width="66" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <state key="normal" title="Record">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="addRecordMoreItemsToTVHeadend:" destination="R7y-nK-jpx" eventType="touchUpInside" id="Myo-4w-ziO"/>
@@ -569,22 +559,26 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tqn-E9-nV7">
-                                <rect key="frame" x="15" y="64" width="171" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5nk-sh-81y">
+                                <rect key="frame" x="222" y="50" width="78" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="AutoRec">
+                                    <color key="titleColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addAutoRecordToTVHeadend:" destination="R7y-nK-jpx" eventType="touchUpInside" id="TtW-OG-fe6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="PhW-5B-ZXX"/>
                     <connections>
-                        <outlet property="dateLabel" destination="tqn-E9-nV7" id="5al-NS-qpT"/>
                         <outlet property="programImage" destination="5BI-Dl-xQb" id="Gaq-uL-WFe"/>
                         <outlet property="programTitle" destination="N1f-DE-0vy" id="ZeC-x4-AeO"/>
-                        <outlet property="record" destination="G09-IA-7ne" id="gRj-fv-rSF"/>
+                        <outlet property="record" destination="5nk-sh-81y" id="R85-IT-QMQ"/>
                         <outlet property="segmentedControl" destination="J9E-6r-vmb" id="F0F-Hc-Lfr"/>
                         <outlet property="tableView" destination="KxJ-zt-v5P" id="oh4-3Z-bnV"/>
                     </connections>
@@ -716,11 +710,9 @@
         <class className="TVHProgramDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addAutoRecordToTVHeadend:"/>
                 <relationship kind="action" name="addRecordMoreItemsToTVHeadend:"/>
-                <relationship kind="action" name="addRecordToTVHeadend:"/>
-                <relationship kind="action" name="playStream:"/>
                 <relationship kind="action" name="segmentedDidChange:"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="record" candidateClass="UIButton"/>

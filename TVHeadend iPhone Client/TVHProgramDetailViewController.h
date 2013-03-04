@@ -22,11 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *record;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 - (IBAction)segmentedDidChange:(id)sender;
-- (IBAction)addRecordToTVHeadend:(id)sender;
-- (IBAction)playStream:(id)sender;
+- (IBAction)addAutoRecordToTVHeadend:(id)sender;
 - (IBAction)addRecordMoreItemsToTVHeadend:(id)sender;
 
 @end
