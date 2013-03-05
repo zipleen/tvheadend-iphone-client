@@ -10,14 +10,14 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
 #import "WBErrorNoticeView.h"
-#import "KxMovieViewController.h"
 #import "CKRefreshControl.h"
+#import "TVHPlayStreamHelpController.h"
 
 @interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate> {
     NSDateFormatter *dateFormatter;
     NSDateFormatter *timeFormatter;
 }
-
+@property (strong, nonatomic) TVHPlayStreamHelpController *help;
 @end
 
 @implementation TVHChannelStoreProgramsViewController
@@ -42,6 +42,9 @@
 {
     [super viewDidUnload];
     self.channel = nil;
+    dateFormatter = nil;
+    timeFormatter = nil;
+    self.help = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -141,69 +144,11 @@
 }
 
 - (IBAction)playStream:(UIBarButtonItem*)sender {
-    NSString *actionSheetTitle = NSLocalizedString(@"Play Stream Options", nil);
-    NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
-    NSString *buzz = @"Buzz Player";
-    NSString *good = @"GoodPlayer";
-    NSString *oplayer = @"Oplayer";
-    NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
-    NSString *stream = NSLocalizedString(@"Stream Channel", nil);
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:actionSheetTitle
-                                  delegate:self
-                                  cancelButtonTitle:cancelTitle
-                                  destructiveButtonTitle:stream
-                                  otherButtonTitles:copy, buzz, good, oplayer, nil];
-    //[actionSheet showFromToolbar:self.navigationController.toolbar];
-    [actionSheet showFromBarButtonItem:sender  animated:YES];
-}
-
-- (void)streamChannel:(NSString*) path {
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    
-    // increase buffering for .wmv, it solves problem with delaying audio frames
-    //if ([path.pathExtension isEqualToString:@"wmv"])
-    // //   parameters[KxMovieParameterMinBufferedDuration] = @(5.0);
-    
-    // disable deinterlacing for iPhone, because it's complex operation can cause stuttering
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        parameters[KxMovieParameterDisableDeinterlacing] = @(YES);
-    
-    // disable buffering
-    // parameters[KxMovieParameterMinBufferedDuration] = @(0.0f);
-    
-    KxMovieViewController *vc = [KxMovieViewController movieViewControllerWithContentPath:path
-                                                                               parameters:parameters];
-    [self presentViewController:vc animated:YES completion:nil];
-    //[self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if  ([buttonTitle isEqualToString:NSLocalizedString(@"Copy to Clipboard", nil)]) {
-        UIPasteboard *pb = [UIPasteboard generalPasteboard];
-        [pb setString:[self.channel streamURL]];
-    }
-    if ([buttonTitle isEqualToString:@"Buzz Player"]) {
-        NSString *url = [NSString stringWithFormat:@"buzzplayer://%@", [self.channel streamURL] ];
-        NSURL *myURL = [NSURL URLWithString:url ];
-        [[UIApplication sharedApplication] openURL:myURL];
-    }
-    if ([buttonTitle isEqualToString:@"GoodPlayer"]) {
-        NSString *url = [NSString stringWithFormat:@"goodplayer://%@", [self.channel streamURL] ];
-        NSURL *myURL = [NSURL URLWithString:url ];
-        [[UIApplication sharedApplication] openURL:myURL];
-    }
-    if ([buttonTitle isEqualToString:@"Oplayer"]) {
-        NSString *url = [NSString stringWithFormat:@"oplayer://%@", [self.channel streamURL] ];
-        NSURL *myURL = [NSURL URLWithString:url ];
-        [[UIApplication sharedApplication] openURL:myURL];
-    }
-    if ([buttonTitle isEqualToString:NSLocalizedString(@"Stream Channel", nil)]) {
-        NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.channel streamURL] ];
-        [self streamChannel:url];
+    if(!self.help) {
+        self.help = [[TVHPlayStreamHelpController alloc] init];
     }
     
+    [self.help playStream:sender withChannel:self.channel withVC:self];
 }
 
 @end

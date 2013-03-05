@@ -26,5 +26,6 @@
 - (IBAction)segmentedDidChange:(id)sender;
 - (IBAction)addAutoRecordToTVHeadend:(id)sender;
 - (IBAction)addRecordMoreItemsToTVHeadend:(id)sender;
+- (IBAction)playStream:(id)sender;
 
 @end

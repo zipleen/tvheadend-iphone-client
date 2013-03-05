@@ -10,10 +10,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "WBSuccessNoticeView.h"
+#import "TVHPlayStreamHelpController.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) TVHEpgStore *moreTimes;
 @property (strong, nonatomic) NSArray *moreTimesItems;
+@property (strong, nonatomic) TVHPlayStreamHelpController *help;
 @end
 
 @implementation TVHProgramDetailViewController {
@@ -80,6 +82,8 @@
     [self setTableView:nil];
     [self setSegmentedControl:nil];
     self.moreTimes = nil;
+    self.moreTimesItems = nil;
+    self.help = nil;
     [super viewDidUnload];
 }
 
@@ -228,5 +232,13 @@
         TVHEpg *epg = self.moreTimesItems[indexPath.row];
         [epg addRecording];
     }
+}
+
+- (IBAction)playStream:(id)sender {
+    if(!self.help) {
+        self.help = [[TVHPlayStreamHelpController alloc] init];
+    }
+    
+    [self.help playStream:sender withChannel:self.channel withVC:self];
 }
 @end

@@ -539,7 +539,13 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PhW-5B-ZXX"/>
+                    <navigationItem key="navigationItem" id="PhW-5B-ZXX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="bpN-dL-zLM">
+                            <connections>
+                                <action selector="playStream:" destination="R7y-nK-jpx" id="mfy-jv-60i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="programImage" destination="5BI-Dl-xQb" id="Gaq-uL-WFe"/>
                         <outlet property="programTitle" destination="N1f-DE-0vy" id="ZeC-x4-AeO"/>
@@ -760,6 +766,7 @@
             <relationships>
                 <relationship kind="action" name="addAutoRecordToTVHeadend:"/>
                 <relationship kind="action" name="addRecordMoreItemsToTVHeadend:"/>
+                <relationship kind="action" name="playStream:"/>
                 <relationship kind="action" name="segmentedDidChange:"/>
                 <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
