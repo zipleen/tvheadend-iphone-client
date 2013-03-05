@@ -123,6 +123,7 @@
         TVHProgramDetailViewController *programDetail = segue.destinationViewController;
         [programDetail setChannel:self.channel];
         [programDetail setEpg:epg];
+        [programDetail setTitle:self.channel.name];
         
     }
 }

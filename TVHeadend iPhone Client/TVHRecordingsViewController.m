@@ -13,7 +13,7 @@
 #import "TVHDvrItem.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
-#import "TVHDvrDetailViewController.h"
+#import "TVHRecordingsDetailViewController.h"
 
 @interface TVHRecordingsViewController ()
 @property (weak, nonatomic) TVHDvrStore *dvrStore;
@@ -158,7 +158,7 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHDvrItem *item = [self.dvrStore objectAtIndex:path.row forType:self.segmentedControl.selectedSegmentIndex];
         
-        TVHDvrDetailViewController *vc = segue.destinationViewController;
+        TVHRecordingsDetailViewController *vc = segue.destinationViewController;
         [vc setDvrItem:item];
     }
 }
