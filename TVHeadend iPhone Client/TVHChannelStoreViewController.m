@@ -105,12 +105,14 @@
     channelNameLabel.text = ch.name;
     [channelImage setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     
-    // rouding corners
-    channelImage.layer.cornerRadius = 5.0;
-    channelImage.layer.masksToBounds = YES;
-    channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    channelImage.layer.borderWidth = 0.2;
     
+    // rouding corners - this makes the animation in ipad become VERY SLOW!!!
+    //channelImage.layer.cornerRadius = 5.0f;
+    channelImage.layer.masksToBounds = NO;
+    channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    channelImage.layer.borderWidth = 0.4;
+    channelImage.layer.shouldRasterize = YES;
+        
     if(currentPlayingProgram) {
         currentProgramLabel.text = currentPlayingProgram.title;
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
