@@ -103,7 +103,7 @@
 }
 
 - (void)didErrorStatusSubscriptionsStore:(NSError *)error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.description];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
     [notice setSticky:true];
     [notice show];
     
