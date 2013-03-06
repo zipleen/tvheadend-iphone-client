@@ -12,6 +12,7 @@
 
 @interface TVHCometPollStore()
 @property (nonatomic, strong) NSString *boxid;
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation TVHCometPollStore
@@ -88,5 +89,12 @@
     
 }
 
+- (void)startRefreshingCometPoll {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:[TVHCometPollStore sharedInstance] selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
+}
+
+- (void)stopRefreshingCometPoll {
+    [self.timer invalidate];
+}
 
 @end

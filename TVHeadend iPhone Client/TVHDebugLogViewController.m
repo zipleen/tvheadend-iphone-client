@@ -10,7 +10,6 @@
 #import "TVHCometPollStore.h"
 
 @interface TVHDebugLogViewController ()
-@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation TVHDebugLogViewController
@@ -32,7 +31,8 @@
                                                  name:@"logmessageNotificationClassReceived"
                                                object:nil];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:[TVHCometPollStore sharedInstance] selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
+    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
+    [comet startRefreshingCometPoll];
 }
 
 - (void) receiveDebugLogNotification:(NSNotification *) notification {

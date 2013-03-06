@@ -255,13 +255,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Status" id="85R-tJ-fMT">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="O9b-a4-mqC">
-                            <connections>
-                                <action selector="toggleStatusRefreshing:" destination="pq9-s6-D4Q" id="a3c-VN-AQm"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Status" id="85R-tJ-fMT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBX-pW-VWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -570,8 +564,8 @@
                     <connections>
                         <segue destination="oHm-oh-kZN" kind="relationship" relationship="viewControllers" id="s5W-Pl-Rem"/>
                         <segue destination="OaY-Sr-1K6" kind="relationship" relationship="viewControllers" id="Vbq-3l-lnR"/>
-                        <segue destination="HH2-ic-xdM" kind="relationship" relationship="viewControllers" id="PY5-FI-a0g"/>
                         <segue destination="tFx-kh-QHr" kind="relationship" relationship="viewControllers" id="ikf-uc-2Nl"/>
+                        <segue destination="HH2-ic-xdM" kind="relationship" relationship="viewControllers" id="PY5-FI-a0g"/>
                         <segue destination="cCU-Qu-eRi" kind="relationship" relationship="viewControllers" id="EMW-so-14g"/>
                     </connections>
                 </tabBarController>
@@ -748,6 +742,74 @@
         <image name="search.png" width="32" height="32"/>
         <image name="stat.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="SDSegmentedControl" superclassName="UISegmentedControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
+        </class>
+        <class className="TVHChannelStoreProgramsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreProgramsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playStream:"/>
+            </relationships>
+        </class>
+        <class className="TVHChannelStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreViewController.h"/>
+        </class>
+        <class className="TVHDebugLogViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHDebugLogViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="debugLog" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="TVHProgramDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAutoRecordToTVHeadend:"/>
+                <relationship kind="action" name="addRecordMoreItemsToTVHeadend:"/>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="time" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TVHRecordingsDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="removeRecording:"/>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHRecordingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
+        </class>
+        <class className="TVHTagStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagStoreViewController.h"/>
+        </class>
+        <class className="TVHUICustomNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomNavigationBar.h"/>
+        </class>
+        <class className="TVHUICustomTabBar" superclassName="UITabBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomTabBar.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

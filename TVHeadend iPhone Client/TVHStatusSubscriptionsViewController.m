@@ -15,7 +15,6 @@
 @interface TVHStatusSubscriptionsViewController ()
 @property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
 @property (strong, nonatomic) TVHAdaptersStore *adapterStore;
-@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation TVHStatusSubscriptionsViewController
@@ -42,6 +41,9 @@
     [self.adapterStore fetchAdapters];
     [self.statusSubscriptionsStore setDelegate:self];
     [self.statusSubscriptionsStore fetchStatusSubscriptions];
+    
+    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
+    [comet startRefreshingCometPoll];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -160,15 +162,4 @@
     [self.refreshControl endRefreshing];
 }
 
-
-- (IBAction)toggleStatusRefreshing:(UIBarButtonItem *)sender {
-    if(self.timer) {
-        sender.style = UIBarButtonItemStyleBordered;
-        [self.timer invalidate];
-        self.timer = nil;
-    } else {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:[TVHCometPollStore sharedInstance] selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
-        sender.style = UIBarButtonItemStyleDone;
-    }
-}
 @end

@@ -9,4 +9,7 @@
 @interface TVHCometPollStore : NSObject
 + (id)sharedInstance;
 - (void)fetchCometPollStatus;
+
+- (void)startRefreshingCometPoll;
+- (void)stopRefreshingCometPoll;
 @end
