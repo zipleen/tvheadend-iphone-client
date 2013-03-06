@@ -70,7 +70,7 @@
     }
     
     if ( self.dvrItem.filesize ) {
-        [p setObject:[NSString stringWithFormat:@"%d", self.dvrItem.filesize] forKey:@"File Size"];
+        [p setObject:[NSString stringWithFormat:@"%ld", self.dvrItem.filesize] forKey:@"File Size"];
     }
     
     return [p copy];
