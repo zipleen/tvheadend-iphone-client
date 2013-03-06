@@ -44,7 +44,7 @@
     hourFormatter.dateFormat = @"HH:mm";
     
     self.programTitle.text = self.epg.title;
-    [self.programImage setImageWithURL:[NSURL URLWithString:self.channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv.png"]];
+    [self.programImage setImageWithURL:[NSURL URLWithString:self.channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     
     
     // shadown

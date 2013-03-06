@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSString *pri;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *schedstate;
-@property (nonatomic) unsigned long filesize;
+@property (nonatomic) unsigned long long filesize;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic) NSInteger dvrType;
 

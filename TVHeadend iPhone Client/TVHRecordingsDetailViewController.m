@@ -41,6 +41,25 @@
     }
 }
 
+- (NSString *)stringFromFileSize:(unsigned long long)theSize {
+    float floatSize = (float)theSize;
+    if (theSize<1023)
+        return ([NSString stringWithFormat:@"%llul bytes",theSize]);
+    
+    floatSize = floatSize / 1024;
+    if (floatSize<1023)
+        return ([NSString stringWithFormat:@"%1.1f KB",floatSize]);
+    floatSize = floatSize / 1024;
+    if (floatSize<1023)
+        return ([NSString stringWithFormat:@"%1.1f MB",floatSize]);
+    floatSize = floatSize / 1024;
+    if (floatSize<1023)
+        return ([NSString stringWithFormat:@"%1.1f GB",floatSize]);
+    floatSize = floatSize / 1024;
+    
+    return([NSString stringWithFormat:@"%1.1f TB",floatSize]);
+}
+
 - (NSDictionary*)propertiesDict {
     NSMutableDictionary *p = [[NSMutableDictionary alloc] init];
     
@@ -70,7 +89,7 @@
     }
     
     if ( self.dvrItem.filesize ) {
-        [p setObject:[NSString stringWithFormat:@"%ld", self.dvrItem.filesize] forKey:@"File Size"];
+        [p setObject:[self stringFromFileSize:self.dvrItem.filesize] forKey:@"File Size"];
     }
     
     return [p copy];
@@ -91,9 +110,9 @@
     hourFormatter.dateFormat = @"HH:mm";
     
     self.programTitle.text = self.dvrItem.title;
-    [self.programImage setImageWithURL:[NSURL URLWithString:self.dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv.png"]];
+    [self.programImage setImageWithURL:[NSURL URLWithString:self.dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     self.properties = [self propertiesDict];
-    self.propertiesKeys = [self.properties allKeys];
+    self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     
     // shadown
