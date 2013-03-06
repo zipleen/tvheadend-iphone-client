@@ -10,27 +10,38 @@
 #import "CKRefreshControl.h"
 #import "WBErrorNoticeView.h"
 #import "TVHCometPollStore.h"
+#import "TVHStringHelper.h"
 
 @interface TVHStatusSubscriptionsViewController ()
-@property (strong, nonatomic) TVHStatusSubscriptionsStore *statusStore;
+@property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
+@property (strong, nonatomic) TVHAdaptersStore *adapterStore;
 @property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation TVHStatusSubscriptionsViewController
 
-- (TVHStatusSubscriptionsStore*) statusStore {
-    if ( _statusStore == nil) {
-        _statusStore = [TVHStatusSubscriptionsStore sharedInstance];
+- (TVHStatusSubscriptionsStore*) statusSubscriptionsStore {
+    if ( _statusSubscriptionsStore == nil) {
+        _statusSubscriptionsStore = [TVHStatusSubscriptionsStore sharedInstance];
     }
-    return _statusStore;
+    return _statusSubscriptionsStore;
+}
+
+- (TVHAdaptersStore*) adapterStore {
+    if ( _adapterStore == nil) {
+        _adapterStore = [TVHAdaptersStore sharedInstance];
+    }
+    return _adapterStore;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
-    [self.statusStore setDelegate:self];
-    [self.statusStore fetchStatusSubscriptions];
+    [self.adapterStore setDelegate:self];
+    [self.adapterStore fetchAdapters];
+    [self.statusSubscriptionsStore setDelegate:self];
+    [self.statusSubscriptionsStore fetchStatusSubscriptions];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -48,18 +59,45 @@
     [self.refreshControl endRefreshing];
 }
 
+- (void)didLoadAdapters {
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+}
+
 - (void)pullToRefreshViewShouldRefresh
 {
     [self.tableView reloadData];
-    [self.statusStore fetchStatusSubscriptions];
+    [self.statusSubscriptionsStore fetchStatusSubscriptions];
+    [self.adapterStore fetchAdapters];
 }
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return NSLocalizedString(@"Active Subscriptions", nil);
+    }
+    if (section == 1) {
+        return NSLocalizedString(@"Adapters", nil);
+    }
+    return nil;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.statusStore count];
+    if ( section == 0 ) {
+        return [self.statusSubscriptionsStore count];
+    }
+    if ( section == 1 ) {
+        return [self.adapterStore count];
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,11 +105,7 @@
     static NSString *CellIdentifier = @"SubscriptionStoreTableItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
     
-    // Configure the cell...
-    TVHStatusSubscription *subscription = [self.statusStore objectAtIndex:indexPath.row];
-    
     UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
-    // username
 	UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
     UILabel *channelLabel = (UILabel *)[cell viewWithTag:103];
     UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
@@ -80,29 +114,45 @@
     UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
 	UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
     
-    hostnameLabel.text = subscription.hostname;
-    titleLabel.text = subscription.title;
-    channelLabel.text = subscription.channel;
-    serviceLabel.text = subscription.service;
-    startLabel.text = [subscription.start description];
-    stateLabel.text = subscription.state;
-    errorsLabel.text = [NSString stringWithFormat:@"Errors: %d", subscription.errors];
-    bandwidthLabel.text = [NSString stringWithFormat:@"Bw: %d", subscription.bw];
-    
-    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
-    [cell.contentView addSubview: separator];
+    if ( indexPath.section == 0 ) {
+        TVHStatusSubscription *subscription = [self.statusSubscriptionsStore objectAtIndex:indexPath.row];
+        
+        hostnameLabel.text = subscription.hostname;
+        titleLabel.text = subscription.title;
+        channelLabel.text = subscription.channel;
+        serviceLabel.text = subscription.service;
+        startLabel.text = [subscription.start description];
+        stateLabel.text = subscription.state;
+        errorsLabel.text = [NSString stringWithFormat:@"Errors: %d", subscription.errors];
+        bandwidthLabel.text = [NSString stringWithFormat:@"Bw: %@", [TVHStringHelper stringFromFileSize:subscription.bw]];
+    }
+    if ( indexPath.section == 1 ) {
+        TVHAdapter *adapter = [self.adapterStore objectAtIndex:indexPath.row];
+        
+        hostnameLabel.text = adapter.devicename;
+        titleLabel.text = adapter.path;
+        channelLabel.text = [NSString stringWithFormat:@"Bw %@", [TVHStringHelper stringFromFileSize:adapter.bw]];
+        serviceLabel.text = adapter.currentMux;
+        startLabel.text = [NSString stringWithFormat:@"Snr %.1f dB", adapter.snr];
+        stateLabel.text = [NSString stringWithFormat:@"Unc %d", adapter.uncavg];
+        errorsLabel.text = [NSString stringWithFormat:@"Ber %d", adapter.ber];
+        bandwidthLabel.text = [NSString stringWithFormat:@"Signal %d %%", adapter.signal];
+    }
     
     return cell;
 }
 
 #pragma mark - Table view delegate
 
-- (void)didLoadTags {
-    [self.tableView reloadData];
+- (void)didErrorStatusSubscriptionsStore:(NSError *)error {
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
+    [notice setSticky:true];
+    [notice show];
+    
     [self.refreshControl endRefreshing];
 }
 
-- (void)didErrorStatusSubscriptionsStore:(NSError *)error {
+- (void)didErrorAdaptersStore:(NSError *)error {
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
     [notice setSticky:true];
     [notice show];

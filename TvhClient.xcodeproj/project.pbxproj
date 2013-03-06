@@ -20,6 +20,9 @@
 		AA132EC416D971A70074FAB8 /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA132EC216D971A70074FAB8 /* tabbar@2x.png */; };
 		AA132EC516D971A70074FAB8 /* tabbar_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA132EC316D971A70074FAB8 /* tabbar_selected@2x.png */; };
 		AA1D426D16BEC2BA00F42F7E /* TVHChannelStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */; };
+		AA21878216E7EE04005D95EF /* TVHAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21878116E7EE04005D95EF /* TVHAdapter.m */; };
+		AA21878516E7EE12005D95EF /* TVHAdaptersStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21878416E7EE12005D95EF /* TVHAdaptersStore.m */; };
+		AA21878816E7F6D9005D95EF /* TVHStringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21878716E7F6D9005D95EF /* TVHStringHelper.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */; };
 		AA28BA4816E6A12A0029A723 /* TVHPlayStreamHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */; };
 		AA2AEB2416CB0839006B071C /* comp.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB1E16CB0839006B071C /* comp.png */; };
@@ -180,6 +183,12 @@
 		AA132EC316D971A70074FAB8 /* tabbar_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_selected@2x.png"; sourceTree = "<group>"; };
 		AA1D426B16BEC2BA00F42F7E /* TVHChannelStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStore.h; sourceTree = "<group>"; };
 		AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStore.m; sourceTree = "<group>"; };
+		AA21878016E7EE04005D95EF /* TVHAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAdapter.h; sourceTree = "<group>"; };
+		AA21878116E7EE04005D95EF /* TVHAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAdapter.m; sourceTree = "<group>"; };
+		AA21878316E7EE12005D95EF /* TVHAdaptersStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAdaptersStore.h; sourceTree = "<group>"; };
+		AA21878416E7EE12005D95EF /* TVHAdaptersStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAdaptersStore.m; sourceTree = "<group>"; };
+		AA21878616E7F6D9005D95EF /* TVHStringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStringHelper.h; sourceTree = "<group>"; };
+		AA21878716E7F6D9005D95EF /* TVHStringHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStringHelper.m; sourceTree = "<group>"; };
 		AA21F11416C7F6A10041C505 /* TVHChannelStoreProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreProgramsViewController.h; sourceTree = "<group>"; };
 		AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStoreProgramsViewController.m; sourceTree = "<group>"; };
 		AA28BA4616E6A1290029A723 /* TVHPlayStreamHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayStreamHelpController.h; sourceTree = "<group>"; };
@@ -448,6 +457,8 @@
 				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
 				AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */,
 				AA28BA4916E6CC580029A723 /* TVHPlayStreamDelegate.h */,
+				AA21878616E7F6D9005D95EF /* TVHStringHelper.h */,
+				AA21878716E7F6D9005D95EF /* TVHStringHelper.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -613,6 +624,10 @@
 				AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */,
 				AAB7F5BA16D6B64100EB979B /* TVHCometPollStore.h */,
 				AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */,
+				AA21878016E7EE04005D95EF /* TVHAdapter.h */,
+				AA21878116E7EE04005D95EF /* TVHAdapter.m */,
+				AA21878316E7EE12005D95EF /* TVHAdaptersStore.h */,
+				AA21878416E7EE12005D95EF /* TVHAdaptersStore.m */,
 			);
 			name = "Comet Poll / Status";
 			sourceTree = "<group>";
@@ -1077,6 +1092,9 @@
 				AA8DC11C16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m in Sources */,
 				AA8DC12216E1802B00F93BD7 /* TVHDebugLogViewController.m in Sources */,
 				AA28BA4816E6A12A0029A723 /* TVHPlayStreamHelpController.m in Sources */,
+				AA21878216E7EE04005D95EF /* TVHAdapter.m in Sources */,
+				AA21878516E7EE12005D95EF /* TVHAdaptersStore.m in Sources */,
+				AA21878816E7F6D9005D95EF /* TVHStringHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

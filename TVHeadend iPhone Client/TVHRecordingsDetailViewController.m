@@ -10,6 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "WBSuccessNoticeView.h"
+#import "TVHStringHelper.h"
 
 @interface TVHRecordingsDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
@@ -41,25 +42,6 @@
     }
 }
 
-- (NSString *)stringFromFileSize:(unsigned long long)theSize {
-    float floatSize = (float)theSize;
-    if (theSize<1023)
-        return ([NSString stringWithFormat:@"%llul bytes",theSize]);
-    
-    floatSize = floatSize / 1024;
-    if (floatSize<1023)
-        return ([NSString stringWithFormat:@"%1.1f KB",floatSize]);
-    floatSize = floatSize / 1024;
-    if (floatSize<1023)
-        return ([NSString stringWithFormat:@"%1.1f MB",floatSize]);
-    floatSize = floatSize / 1024;
-    if (floatSize<1023)
-        return ([NSString stringWithFormat:@"%1.1f GB",floatSize]);
-    floatSize = floatSize / 1024;
-    
-    return([NSString stringWithFormat:@"%1.1f TB",floatSize]);
-}
-
 - (NSDictionary*)propertiesDict {
     NSMutableDictionary *p = [[NSMutableDictionary alloc] init];
     
@@ -89,7 +71,7 @@
     }
     
     if ( self.dvrItem.filesize ) {
-        [p setObject:[self stringFromFileSize:self.dvrItem.filesize] forKey:@"File Size"];
+        [p setObject:[TVHStringHelper stringFromFileSize:self.dvrItem.filesize] forKey:@"File Size"];
     }
     
     return [p copy];

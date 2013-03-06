@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TVHStatusSubscriptionsStore.h"
+#import "TVHAdaptersStore.h"
 
-@interface TVHStatusSubscriptionsViewController : UITableViewController <TVHStatusSubscriptionsDelegate>
+@interface TVHStatusSubscriptionsViewController : UITableViewController <TVHStatusSubscriptionsDelegate, TVHAdaptersDelegate>
 - (IBAction)toggleStatusRefreshing:(UIBarButtonItem *)sender;
 
 @end

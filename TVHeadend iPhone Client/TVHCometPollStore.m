@@ -53,6 +53,12 @@
                 object:obj];
         }
         
+        if( [notificationClass isEqualToString:@"tvAdapter"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"adaptersNotificationClassReceived"
+             object:obj];
+        }
+        
         if( [notificationClass isEqualToString:@"logmessage"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"logmessageNotificationClassReceived"
