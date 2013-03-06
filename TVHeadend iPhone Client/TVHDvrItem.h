@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
+#import "TVHPlayStreamDelegate.h"
 
-@interface TVHDvrItem : NSObject
+@interface TVHDvrItem : NSObject <TVHPlayStreamDelegate>
 @property (nonatomic, strong) NSString *channel;
 @property (nonatomic, strong) NSString *chicon;
 @property (nonatomic, strong) NSString *config_name;
@@ -31,4 +32,5 @@
 - (void)cancelRecording;
 - (void)deleteRecording;
 - (TVHChannel*)channelObject;
+- (NSString*)streamURL;
 @end

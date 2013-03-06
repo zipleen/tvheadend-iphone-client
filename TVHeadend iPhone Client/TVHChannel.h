@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHEpg.h"
+#import "TVHPlayStreamDelegate.h"
 
 @class TVHEpg;
 @class TVHEpgStore;
@@ -18,7 +19,7 @@
 -(void) didErrorLoadingEpgChannel:(NSError*)error;
 @end
 
-@interface TVHChannel : NSObject
+@interface TVHChannel : NSObject <TVHPlayStreamDelegate>
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, strong) NSString *imageUrl;

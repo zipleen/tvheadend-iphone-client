@@ -10,6 +10,7 @@
 #import "TVHDvrItem.h"
 #import "SDSegmentedControl.h"
 #import "TVHEpgStore.h"
+#import "TVHPlayStreamHelpController.h"
 
 @interface TVHRecordingsDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TVHEpgStoreDelegate>
 @property (weak, nonatomic) TVHDvrItem *dvrItem;
@@ -22,6 +23,7 @@
 
 - (IBAction)segmentedDidChange:(id)sender;
 - (IBAction)removeRecording:(id)sender;
+- (IBAction)playStream:(id)sender;
 
 
 @end

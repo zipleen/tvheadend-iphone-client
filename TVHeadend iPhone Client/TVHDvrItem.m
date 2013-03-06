@@ -9,6 +9,7 @@
 #import "TVHDvrItem.h"
 #import "TVHDvrActions.h"
 #import "TVHChannelStore.h"
+#import "TVHSettings.h"
 
 @implementation TVHDvrItem
 
@@ -46,6 +47,14 @@
     TVHChannelStore *store = [TVHChannelStore sharedInstance];
     TVHChannel *channel = [store channelWithName:self.channel];
     return channel;
+}
+
+- (NSString*)streamURL {
+    if ( self.url && ![self.url isEqualToString:@"(null)"]) {
+        TVHSettings *tvh = [TVHSettings sharedInstance];
+        return [NSString stringWithFormat:@"%@/%@", tvh.baseURL, self.url];
+    }
+    return nil;
 }
 
 @end

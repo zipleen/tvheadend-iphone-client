@@ -10,23 +10,20 @@
 #import "KxMovieViewController.h"
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate>
-@property (weak, nonatomic) TVHChannel *channel;
+@property (weak, nonatomic) id<TVHPlayStreamDelegate> streamObject;
 @property (weak, nonatomic) UIViewController *vc;
 @end
 
 @implementation TVHPlayStreamHelpController
 
-- (void)playStream:(UIBarButtonItem*)sender withChannel:(TVHChannel*)channel withVC:(UIViewController*)vc {
-    self.channel = channel;
-    self.vc = vc;
-    
-    NSString *actionSheetTitle = NSLocalizedString(@"Play Stream Options", nil);
+- (void)showMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle{
+    NSString *actionSheetTitle = NSLocalizedString(@"Playback", nil);
     NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
     NSString *buzz = @"Buzz Player";
     NSString *good = @"GoodPlayer";
     NSString *oplayer = @"Oplayer";
     NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
-    NSString *stream = NSLocalizedString(@"Stream Channel", nil);
+    NSString *stream = NSLocalizedString(actionTitle, nil);
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:actionSheetTitle
                                   delegate:self
@@ -35,34 +32,51 @@
                                   otherButtonTitles:copy, buzz, good, oplayer, nil];
     //[actionSheet showFromToolbar:self.navigationController.toolbar];
     [actionSheet showFromBarButtonItem:sender animated:YES];
+
 }
+
+- (void)playStream:(UIBarButtonItem*)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc {
+    self.streamObject = channel;
+    self.vc = vc;
+    [self showMenu:sender withVC:vc withActionSheet:@"Stream Channel"];
+}
+
+- (void)playDvr:(UIBarButtonItem*)sender withDvrItem:(id<TVHPlayStreamDelegate>)dvrItem withVC:(UIViewController*)vc {
+    self.streamObject = dvrItem;
+    self.vc = vc;
+    [self showMenu:sender withVC:vc withActionSheet:@"Play Dvr File"];
+}
+
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     if  ([buttonTitle isEqualToString:NSLocalizedString(@"Copy to Clipboard", nil)]) {
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
-        [pb setString:[self.channel streamURL]];
+        [pb setString:[self.streamObject streamURL]];
     }
     if ([buttonTitle isEqualToString:@"Buzz Player"]) {
-        NSString *url = [NSString stringWithFormat:@"buzzplayer://%@", [self.channel streamURL] ];
+        NSString *url = [NSString stringWithFormat:@"buzzplayer://%@", [self.streamObject streamURL] ];
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
     }
     if ([buttonTitle isEqualToString:@"GoodPlayer"]) {
-        NSString *url = [NSString stringWithFormat:@"goodplayer://%@", [self.channel streamURL] ];
+        NSString *url = [NSString stringWithFormat:@"goodplayer://%@", [self.streamObject streamURL] ];
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
     }
     if ([buttonTitle isEqualToString:@"Oplayer"]) {
-        NSString *url = [NSString stringWithFormat:@"oplayer://%@", [self.channel streamURL] ];
+        NSString *url = [NSString stringWithFormat:@"oplayer://%@", [self.streamObject streamURL] ];
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
     }
     if ([buttonTitle isEqualToString:NSLocalizedString(@"Stream Channel", nil)]) {
-        NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.channel streamURL] ];
+        NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.streamObject streamURL] ];
         [self streamChannel:url];
     }
-    
+    if ([buttonTitle isEqualToString:NSLocalizedString(@"Play Dvr File", nil)]) {
+        NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.streamObject streamURL] ];
+        [self streamChannel:url];
+    }
 }
 
 - (void)streamChannel:(NSString*) path {

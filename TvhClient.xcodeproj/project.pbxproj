@@ -184,6 +184,7 @@
 		AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStoreProgramsViewController.m; sourceTree = "<group>"; };
 		AA28BA4616E6A1290029A723 /* TVHPlayStreamHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayStreamHelpController.h; sourceTree = "<group>"; };
 		AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHPlayStreamHelpController.m; sourceTree = "<group>"; };
+		AA28BA4916E6CC580029A723 /* TVHPlayStreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayStreamDelegate.h; sourceTree = "<group>"; };
 		AA2AEB1E16CB0839006B071C /* comp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comp.png; sourceTree = "<group>"; };
 		AA2AEB2016CB0839006B071C /* rec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rec.png; sourceTree = "<group>"; };
 		AA2AEB2116CB0839006B071C /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -446,6 +447,7 @@
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
 				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
 				AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */,
+				AA28BA4916E6CC580029A723 /* TVHPlayStreamDelegate.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";

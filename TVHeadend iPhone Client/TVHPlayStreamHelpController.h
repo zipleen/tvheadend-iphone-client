@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TVHChannel.h"
+#import "TVHPlayStreamDelegate.h"
 
 @interface TVHPlayStreamHelpController : NSObject
-- (void)playStream:(UIBarButtonItem*)sender withChannel:(TVHChannel*)channel withVC:(UIViewController*)vc;
+- (void)playStream:(UIBarButtonItem*)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc;
+- (void)playDvr:(UIBarButtonItem*)sender withDvrItem:(id<TVHPlayStreamDelegate>)dvrItem withVC:(UIViewController*)vc;
 @end

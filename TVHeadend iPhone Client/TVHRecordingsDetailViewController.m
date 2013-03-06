@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSArray *propertiesKeys;
 @property (strong, nonatomic) TVHEpgStore *moreTimes;
 @property (strong, nonatomic) NSArray *moreTimesItems;
-
+@property (strong, nonatomic) TVHPlayStreamHelpController *help;
 @end
 
 @implementation TVHRecordingsDetailViewController{
@@ -73,9 +73,6 @@
         [p setObject:[NSString stringWithFormat:@"%d", self.dvrItem.filesize] forKey:@"File Size"];
     }
     
-    if ( self.dvrItem.url && ![self.dvrItem.url isEqualToString:@"(null)"] ) {
-        [p setObject:self.dvrItem.url forKey:@"URL"];
-    }
     return [p copy];
 }
 
@@ -134,12 +131,23 @@
     self.moreTimes = nil;
     self.properties = nil;
     self.propertiesKeys = nil;
+    self.help = nil;
     [super viewDidUnload];
 }
 
 - (IBAction)removeRecording:(id)sender {
     [self.dvrItem deleteRecording];
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (IBAction)playStream:(id)sender {
+    
+    if(!self.help) {
+        self.help = [[TVHPlayStreamHelpController alloc] init];
+    }
+    
+    [self.help playDvr:sender withDvrItem:self.dvrItem withVC:self];
+    
 }
 
 #pragma MARK table view delegate

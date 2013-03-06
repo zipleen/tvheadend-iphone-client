@@ -721,7 +721,13 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="88h-Te-M3m"/>
+                    <navigationItem key="navigationItem" id="88h-Te-M3m">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="AuT-LS-VvO">
+                            <connections>
+                                <action selector="playStream:" destination="Vx1-qU-321" id="lG9-kv-By8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="programImage" destination="fdy-iT-byX" id="pCS-3b-wkl"/>
                         <outlet property="programTitle" destination="VuT-SB-yNz" id="znB-Sd-N0P"/>
@@ -779,6 +785,7 @@
         <class className="TVHRecordingsDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="playStream:"/>
                 <relationship kind="action" name="removeRecording:"/>
                 <relationship kind="action" name="segmentedDidChange:"/>
                 <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
