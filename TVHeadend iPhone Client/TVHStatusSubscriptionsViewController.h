@@ -11,5 +11,7 @@
 #import "TVHAdaptersStore.h"
 
 @interface TVHStatusSubscriptionsViewController : UITableViewController <TVHStatusSubscriptionsDelegate, TVHAdaptersDelegate>
+- (IBAction)switchPolling:(UISwitch*)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *switchPolling;
 
 @end

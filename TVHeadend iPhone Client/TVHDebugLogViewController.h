@@ -10,5 +10,6 @@
 
 @interface TVHDebugLogViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextView *debugLog;
-
+@property (weak, nonatomic) IBOutlet UISwitch *switchPolling;
+- (IBAction)switchPolling:(UISwitch *)sender;
 @end

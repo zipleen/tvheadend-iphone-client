@@ -53,6 +53,21 @@
 
 - (void)viewDidUnload {
     [self setDebugLog:nil];
+    [self setSwitchPolling:nil];
     [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
+    [self.switchPolling setOn:[comet isTimerStarted] ];
+}
+
+- (IBAction)switchPolling:(UISwitch *)sender {
+    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
+    if ( sender.on ) {
+        [comet startRefreshingCometPoll];
+    } else {
+        [comet stopRefreshingCometPoll];
+    }
 }
 @end

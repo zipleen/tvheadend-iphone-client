@@ -50,6 +50,11 @@
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
+    [self.switchPolling setOn:[comet isTimerStarted] ];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -162,4 +167,16 @@
     [self.refreshControl endRefreshing];
 }
 
+- (IBAction)switchPolling:(UISwitch*)sender {
+    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
+    if ( sender.on ) {
+        [comet startRefreshingCometPoll];
+    } else {
+        [comet stopRefreshingCometPoll];
+    }
+}
+- (void)viewDidUnload {
+    [self setSwitchPolling:nil];
+    [super viewDidUnload];
+}
 @end

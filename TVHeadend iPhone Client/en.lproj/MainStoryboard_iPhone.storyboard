@@ -255,7 +255,21 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Status" id="85R-tJ-fMT"/>
+                    <navigationItem key="navigationItem" title="Status" id="85R-tJ-fMT">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Xjv-JW-CjK">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="pi2-TL-y3B">
+                                <rect key="frame" x="238" y="8" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="switchPolling:" destination="pq9-s6-D4Q" eventType="valueChanged" id="QBg-Sl-xW7"/>
+                                </connections>
+                            </switch>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="switchPolling" destination="pi2-TL-y3B" id="yTl-rB-GXN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBX-pW-VWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -582,6 +596,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hqf-wx-qm6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -610,9 +625,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Log" id="c5v-cm-zy3"/>
+                    <navigationItem key="navigationItem" title="Log" id="c5v-cm-zy3">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="POf-gP-0kH">
+                            <switch key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Poa-kd-ZXe">
+                                <rect key="frame" x="238" y="8" width="79" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="switchPolling:" destination="7N2-CJ-Qxo" eventType="valueChanged" id="gUV-8P-Fbj"/>
+                                </connections>
+                            </switch>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="debugLog" destination="4CR-L3-6iu" id="wj5-4U-AYs"/>
+                        <outlet property="switchPolling" destination="Poa-kd-ZXe" id="h74-TM-ydO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zp4-Ap-uEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -628,6 +656,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F9V-oV-KKo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -758,7 +787,10 @@
         <class className="TVHDebugLogViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHDebugLogViewController.h"/>
             <relationships>
+                <relationship kind="action" name="switchPolling:" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="debugLog" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="switchP" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="switchPolling" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHProgramDetailViewController" superclassName="UIViewController">
@@ -799,6 +831,10 @@
         </class>
         <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchPolling:" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="switchPolling" candidateClass="UISwitch"/>
+            </relationships>
         </class>
         <class className="TVHTagStoreViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagStoreViewController.h"/>

@@ -12,4 +12,5 @@
 
 - (void)startRefreshingCometPoll;
 - (void)stopRefreshingCometPoll;
+- (BOOL)isTimerStarted;
 @end

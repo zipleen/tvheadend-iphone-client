@@ -10,7 +10,9 @@
 #import "TVHSettings.h"
 #import "TVHJsonClient.h"
 
-@interface TVHCometPollStore()
+@interface TVHCometPollStore() {
+    bool timerStarted;
+}
 @property (nonatomic, strong) NSString *boxid;
 @property (strong, nonatomic) NSTimer *timer;
 @end
@@ -91,10 +93,16 @@
 
 - (void)startRefreshingCometPoll {
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:[TVHCometPollStore sharedInstance] selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
+    timerStarted = YES;
 }
 
 - (void)stopRefreshingCometPoll {
     [self.timer invalidate];
+    timerStarted = NO;
+}
+
+- (BOOL)isTimerStarted {
+    return timerStarted;
 }
 
 @end
