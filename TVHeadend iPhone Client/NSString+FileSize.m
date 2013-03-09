@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHStringHelper.h"
+#import "NSString+FileSize.h"
 
-@implementation TVHStringHelper
+@implementation NSString (NSStringWithFileSize)
+
 + (NSString *)stringFromFileSize:(unsigned long long)theSize {
     float floatSize = (float)theSize;
     

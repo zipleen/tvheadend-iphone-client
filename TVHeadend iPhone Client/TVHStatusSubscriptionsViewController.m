@@ -10,7 +10,7 @@
 #import "CKRefreshControl.h"
 #import "WBErrorNoticeView.h"
 #import "TVHCometPollStore.h"
-#import "TVHStringHelper.h"
+#import "NSString+FileSize.h"
 
 @interface TVHStatusSubscriptionsViewController ()
 @property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
@@ -131,14 +131,14 @@
         startLabel.text = [subscription.start description];
         stateLabel.text = subscription.state;
         errorsLabel.text = [NSString stringWithFormat:@"Errors: %d", subscription.errors];
-        bandwidthLabel.text = [NSString stringWithFormat:@"Bw: %@", [TVHStringHelper stringFromFileSize:subscription.bw]];
+        bandwidthLabel.text = [NSString stringWithFormat:@"Bw: %@", [NSString stringFromFileSize:subscription.bw]];
     }
     if ( indexPath.section == 1 ) {
         TVHAdapter *adapter = [self.adapterStore objectAtIndex:indexPath.row];
         
         hostnameLabel.text = adapter.devicename;
         titleLabel.text = adapter.path;
-        channelLabel.text = [NSString stringWithFormat:@"Bw %@", [TVHStringHelper stringFromFileSize:adapter.bw]];
+        channelLabel.text = [NSString stringWithFormat:@"Bw %@", [NSString stringFromFileSize:adapter.bw]];
         serviceLabel.text = adapter.currentMux;
         startLabel.text = [NSString stringWithFormat:@"Snr %.1f dB", adapter.snr];
         stateLabel.text = [NSString stringWithFormat:@"Unc %d", adapter.uncavg];

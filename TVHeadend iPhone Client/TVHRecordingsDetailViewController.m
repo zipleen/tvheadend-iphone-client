@@ -10,7 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "WBSuccessNoticeView.h"
-#import "TVHStringHelper.h"
+#import "NSString+FileSize.h"
 
 @interface TVHRecordingsDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
@@ -71,7 +71,7 @@
     }
     
     if ( self.dvrItem.filesize ) {
-        [p setObject:[TVHStringHelper stringFromFileSize:self.dvrItem.filesize] forKey:@"File Size"];
+        [p setObject:[NSString stringFromFileSize:self.dvrItem.filesize] forKey:@"File Size"];
     }
     
     return [p copy];

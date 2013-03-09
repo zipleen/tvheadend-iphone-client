@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TVHStringHelper : NSObject
+@interface NSString (NSStringWithFileSize)
 + (NSString *)stringFromFileSize:(unsigned long long)theSize;
 @end
