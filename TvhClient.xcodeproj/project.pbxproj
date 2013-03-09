@@ -762,7 +762,7 @@
 		AAB399E716BDB21900973F88 = {
 			isa = PBXGroup;
 			children = (
-				AAB399F916BDB21900973F88 /* TVHeadend iPhone Client */,
+				AAB399F916BDB21900973F88 /* TvhClient */,
 				AA43D4A116CF167300104BBF /* TvhClientTests */,
 				AAB399F216BDB21900973F88 /* Frameworks */,
 				AAB399F116BDB21900973F88 /* Products */,
@@ -794,7 +794,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AAB399F916BDB21900973F88 /* TVHeadend iPhone Client */ = {
+		AAB399F916BDB21900973F88 /* TvhClient */ = {
 			isa = PBXGroup;
 			children = (
 				AA1D426A16BEC1B700F42F7E /* Model */,
@@ -805,7 +805,7 @@
 				AAF54A5516C73A200076DF17 /* Settings.bundle */,
 				AAB399FA16BDB21900973F88 /* Supporting Files */,
 			);
-			path = "TVHeadend iPhone Client";
+			path = TvhClient;
 			sourceTree = "<group>";
 		};
 		AAB399FA16BDB21900973F88 /* Supporting Files */ = {
@@ -888,7 +888,7 @@
 			dependencies = (
 			);
 			name = TvhClient;
-			productName = "TVHeadend iPhone Client";
+			productName = "TVHeadend iOS Client";
 			productReference = AAB399F016BDB21900973F88 /* TvhClient.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1157,7 +1157,7 @@
 		AA43D4AB16CF167300104BBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVHeadend iPhone Client.app/TVHeadend iPhone Client";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TvhClient.app/TvhClient";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -1175,7 +1175,7 @@
 		AA43D4AC16CF167300104BBF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TVHeadend iPhone Client.app/TVHeadend iPhone Client";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TvhClient.app/TvhClient";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
@@ -1260,8 +1260,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TVHeadend iPhone Client/TvhClient-Prefix.pch";
-				INFOPLIST_FILE = "TVHeadend iPhone Client/TvhClient-Info.plist";
+				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
+				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1281,8 +1281,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TVHeadend iPhone Client/TvhClient-Prefix.pch";
-				INFOPLIST_FILE = "TVHeadend iPhone Client/TvhClient-Info.plist";
+				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
+				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
