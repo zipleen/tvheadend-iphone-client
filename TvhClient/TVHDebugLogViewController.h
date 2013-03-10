@@ -10,5 +10,8 @@
 #import "TVHLogStore.h"
 
 @interface TVHDebugLogViewController : UITableViewController <TVHLogDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *debugButton;
+- (IBAction)debugButton:(UIBarButtonItem *)sender;
+- (IBAction)clearLog:(id)sender;
 
 @end

@@ -7,6 +7,9 @@
 //
 
 #import "TVHLogStore.h"
+#import "TVHJsonClient.h"
+
+#define MAXLOGLINES 500
 
 @interface TVHLogStore()
 @property (nonatomic, strong) NSMutableArray *logLines;
@@ -25,6 +28,13 @@
     return __sharedInstance;
 }
 
+- (NSMutableArray*)logLines {
+    if ( ! _logLines ) {
+        _logLines = [[NSMutableArray alloc] init];
+    }
+    return _logLines;
+}
+
 - (id) init {
     self = [super init];
     if (!self) return nil;
@@ -33,8 +43,6 @@
                                              selector:@selector(receiveDebugLogNotification:)
                                                  name:@"logmessageNotificationClassReceived"
                                                object:nil];
-
-    
     return self;
 }
 
@@ -45,12 +53,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)addLogLine:(NSString*) line {
+    if ( [self.logLines count] > MAXLOGLINES ) {
+        [self.logLines removeObjectAtIndex:0];
+    }
+    [self.logLines addObject:line];
+}
+
 - (void) receiveDebugLogNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"logmessageNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         
         NSString *log = [message objectForKey:@"logtxt"];
-        [self.logLines addObject:log];
+        [self addLogLine:log];
         [self.delegate didLoadLog];
     }
 }
@@ -68,4 +83,9 @@
         _delegate = delegate;
     }
 }
+
+- (void)clearLog {
+    [self.logLines removeAllObjects];
+}
+
 @end

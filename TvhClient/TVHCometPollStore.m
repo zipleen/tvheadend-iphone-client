@@ -15,6 +15,7 @@
 }
 @property (nonatomic, strong) NSString *boxid;
 @property (strong, nonatomic) NSTimer *timer;
+@property (nonatomic) BOOL debugActive;
 @end
 
 @implementation TVHCometPollStore
@@ -28,6 +29,15 @@
     
     return __sharedInstance;
 }
+
+- (id) init {
+    self = [super init];
+    if (!self) return nil;
+    
+    self.debugActive = false;
+    return self;
+}
+
 
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
@@ -85,6 +95,19 @@
     
 }
 
+- (void)toggleDebug {
+    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
+    self.debugActive = !self.debugActive;
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
+    
+    [httpClient postPath:@"/comet/debug" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }];
+    
+}
+
 - (void)fetchCometPollStatus {
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
@@ -118,4 +141,7 @@
     return timerStarted;
 }
 
+- (BOOL)isDebugActive {
+    return self.debugActive;
+}
 @end

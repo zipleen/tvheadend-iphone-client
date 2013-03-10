@@ -15,6 +15,7 @@
 @interface TVHStatusSubscriptionsViewController ()
 @property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
 @property (strong, nonatomic) TVHAdaptersStore *adapterStore;
+@property (strong, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
 @implementation TVHStatusSubscriptionsViewController
@@ -38,12 +39,9 @@
     [super viewDidLoad];
 	
     [self.adapterStore setDelegate:self];
-    [self.adapterStore fetchAdapters];
     [self.statusSubscriptionsStore setDelegate:self];
-    [self.statusSubscriptionsStore fetchStatusSubscriptions];
     
-    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
-    [comet startRefreshingCometPoll];
+    self.cometPoll = [TVHCometPollStore sharedInstance];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -51,8 +49,9 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
-    [self.switchPolling setOn:[comet isTimerStarted] ];
+    [self.adapterStore fetchAdapters];
+    [self.statusSubscriptionsStore fetchStatusSubscriptions];
+    [self.switchPolling setOn:[self.cometPoll isTimerStarted] ];
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,11 +167,10 @@
 }
 
 - (IBAction)switchPolling:(UISwitch*)sender {
-    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
     if ( sender.on ) {
-        [comet startRefreshingCometPoll];
+        [self.cometPoll startRefreshingCometPoll];
     } else {
-        [comet stopRefreshingCometPoll];
+        [self.cometPoll stopRefreshingCometPoll];
     }
 }
 - (void)viewDidUnload {

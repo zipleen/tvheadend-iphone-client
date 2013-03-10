@@ -16,6 +16,7 @@
 + (id)sharedInstance;
 - (void)setDelegate:(id <TVHLogDelegate>)delegate;
 
-- (NSString *) objectAtIndex:(int) row;
-- (int) count;
+- (NSString *)objectAtIndex:(int) row;
+- (int)count;
+- (void)clearLog;
 @end
