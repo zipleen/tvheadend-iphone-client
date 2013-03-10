@@ -40,6 +40,9 @@
         NSDictionary *message = (NSDictionary*)[notification object];
         
         [self.subscriptions enumerateObjectsUsingBlock:^(TVHStatusSubscription* obj, NSUInteger idx, BOOL *stop) {
+            if ( [[message objectForKey:@"reload"] intValue] == 1 ) {
+                [self fetchStatusSubscriptions];
+            }
             
             if ( obj.id == [[message objectForKey:@"id"] intValue] ) {
                 [obj updateValuesFromDictionary:message];

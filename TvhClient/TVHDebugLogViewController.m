@@ -1,22 +1,22 @@
 //
 //  TVHDebugLogViewController.m
-//  TVHeadend iPhone Client
+//  TvhClient
 //
-//  Created by zipleen on 02/03/13.
+//  Created by zipleen on 09/03/13.
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
 #import "TVHDebugLogViewController.h"
-#import "TVHCometPollStore.h"
 
 @interface TVHDebugLogViewController ()
+@property (strong, nonatomic) TVHLogStore *logStore;
 @end
 
 @implementation TVHDebugLogViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
@@ -26,23 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveDebugLogNotification:)
-                                                 name:@"logmessageNotificationClassReceived"
-                                               object:nil];
-    
-    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
-    [comet startRefreshingCometPoll];
-}
-
-- (void) receiveDebugLogNotification:(NSNotification *) notification {
-    if ([[notification name] isEqualToString:@"logmessageNotificationClassReceived"]) {
-        NSDictionary *message = (NSDictionary*)[notification object];
-        
-        NSString *log = [message objectForKey:@"logtxt"];
-        self.debugLog.text = [NSString stringWithFormat:@"%@\n%@", self.debugLog.text , log];
-        
-    }
+    self.logStore = [TVHLogStore sharedInstance];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,23 +35,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidUnload {
-    [self setDebugLog:nil];
-    [self setSwitchPolling:nil];
-    [super viewDidUnload];
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.logStore count];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
-    [self.switchPolling setOn:[comet isTimerStarted] ];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    cell.textLabel.text = [self.logStore objectAtIndex:indexPath.row];
+    
+    return cell;
 }
 
-- (IBAction)switchPolling:(UISwitch *)sender {
-    TVHCometPollStore *comet = [TVHCometPollStore sharedInstance];
-    if ( sender.on ) {
-        [comet startRefreshingCometPoll];
-    } else {
-        [comet stopRefreshingCometPoll];
-    }
+- (void)didLoadLog {
+    [self.tableView reloadData];
 }
+
 @end

@@ -1,15 +1,14 @@
 //
 //  TVHDebugLogViewController.h
-//  TVHeadend iPhone Client
+//  TvhClient
 //
-//  Created by zipleen on 02/03/13.
+//  Created by zipleen on 09/03/13.
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "TVHLogStore.h"
 
-@interface TVHDebugLogViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITextView *debugLog;
-@property (weak, nonatomic) IBOutlet UISwitch *switchPolling;
-- (IBAction)switchPolling:(UISwitch *)sender;
+@interface TVHDebugLogViewController : UITableViewController <TVHLogDelegate>
+
 @end

@@ -21,7 +21,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveSubscriptionNotification:)
-                                                 name:@"adaptersNotificationClassReceived"
+                                                 name:@"tvAdapterNotificationClassReceived"
                                                object:nil];
     
     return self;
@@ -35,7 +35,7 @@
 }
 
 - (void) receiveSubscriptionNotification:(NSNotification *) notification {
-    if ([[notification name] isEqualToString:@"adaptersNotificationClassReceived"]) {
+    if ([[notification name] isEqualToString:@"tvAdapterNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         
         [self.adapters enumerateObjectsUsingBlock:^(TVHAdapter* obj, NSUInteger idx, BOOL *stop) {

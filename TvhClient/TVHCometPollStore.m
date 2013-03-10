@@ -47,26 +47,39 @@
     [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *notificationClass = [obj objectForKey:@"notificationClass"];
 #if DEBUG
-        NSLog(@"[Comet Poll Received notificationClass]: %@", notificationClass);
+        //NSLog(@"[Comet Poll Received notificationClass]: %@", notificationClass);
 #endif
-        
+        BOOL print = YES;
         if( [notificationClass isEqualToString:@"subscriptions"] ) {
             [[NSNotificationCenter defaultCenter]
                 postNotificationName:@"subscriptionsNotificationClassReceived"
                 object:obj];
+            print = NO;
         }
         
         if( [notificationClass isEqualToString:@"tvAdapter"] ) {
             [[NSNotificationCenter defaultCenter]
-             postNotificationName:@"adaptersNotificationClassReceived"
+             postNotificationName:@"tvAdapterNotificationClassReceived"
              object:obj];
+            print = NO;
         }
         
         if( [notificationClass isEqualToString:@"logmessage"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"logmessageNotificationClassReceived"
              object:obj];
+            print = NO;
         }
+        
+        if( [notificationClass isEqualToString:@"dvbMux"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"dvbMuxNotificationClassReceived"
+             object:obj];
+            print = NO;
+        }
+
+        if(print)
+            NSLog(@"[CometPollStore log]: %@", obj);
     }];
     
     

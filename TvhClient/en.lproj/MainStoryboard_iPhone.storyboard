@@ -607,46 +607,6 @@
             </objects>
             <point key="canvasLocation" x="-687" y="563"/>
         </scene>
-        <!--Debug Log View Controller - Log-->
-        <scene sceneID="mDl-Aj-qr7">
-            <objects>
-                <viewController id="7N2-CJ-Qxo" customClass="TVHDebugLogViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6oa-Wn-eYI">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="4CR-L3-6iu">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Log" id="c5v-cm-zy3">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="POf-gP-0kH">
-                            <switch key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Poa-kd-ZXe">
-                                <rect key="frame" x="238" y="8" width="79" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="switchPolling:" destination="7N2-CJ-Qxo" eventType="valueChanged" id="gUV-8P-Fbj"/>
-                                </connections>
-                            </switch>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="debugLog" destination="4CR-L3-6iu" id="wj5-4U-AYs"/>
-                        <outlet property="switchPolling" destination="Poa-kd-ZXe" id="h74-TM-ydO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zp4-Ap-uEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-218" y="1134"/>
-        </scene>
         <!--Navigation Controller - Log-->
         <scene sceneID="i7D-JP-Upi">
             <objects>
@@ -660,12 +620,51 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="7N2-CJ-Qxo" kind="relationship" relationship="rootViewController" id="fvV-jE-Zb1"/>
+                        <segue destination="25m-BF-sPI" kind="relationship" relationship="rootViewController" id="OK5-Eo-ie9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6v-6s-6wW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-689" y="1134"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="aam-Ug-J16">
+            <objects>
+                <tableViewController id="25m-BF-sPI" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Piu-Os-p2I">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="VOo-8f-b43" style="IBUITableViewCellStyleDefault" id="3ki-fg-smf">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VOo-8f-b43">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="25m-BF-sPI" id="FNm-3j-25s"/>
+                            <outlet property="delegate" destination="25m-BF-sPI" id="mlU-NC-xFM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Gwd-gz-HCX"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gHR-eI-edI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-218" y="1134"/>
         </scene>
         <!--Recordings Detail View Controller-->
         <scene sceneID="pyN-O0-WQS">
@@ -783,15 +782,6 @@
         </class>
         <class className="TVHChannelStoreViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreViewController.h"/>
-        </class>
-        <class className="TVHDebugLogViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHDebugLogViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="switchPolling:" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="debugLog" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="switchP" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="switchPolling" candidateClass="UISwitch"/>
-            </relationships>
         </class>
         <class className="TVHProgramDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
