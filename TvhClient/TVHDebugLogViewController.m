@@ -56,7 +56,7 @@
     
     CGSize size = [str
                    sizeWithFont:[UIFont systemFontOfSize:12]
-                   constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
+                   constrainedToSize:CGSizeMake(310, CGFLOAT_MAX)];
     return size.height + 3;
 }
 
@@ -75,7 +75,7 @@
     
     CGSize size = [logCell.text
                    sizeWithFont:[UIFont systemFontOfSize:12]
-                   constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
+                   constrainedToSize:CGSizeMake(310, CGFLOAT_MAX)];
     logCell.frame = CGRectMake(0, 0, 320, size.height);
     logCell.text = [self.logStore objectAtIndex:indexPath.row];
     return cell;

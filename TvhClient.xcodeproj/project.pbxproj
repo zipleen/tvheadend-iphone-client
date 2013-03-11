@@ -95,6 +95,7 @@
 		AA91023116C6B41700673DF5 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91022816C6B41700673DF5 /* UIImageView+AFNetworking.m */; };
 		AA91023316C6B6F800673DF5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA91023216C6B6F800673DF5 /* MobileCoreServices.framework */; };
 		AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA91023416C6B72500673DF5 /* SystemConfiguration.framework */; };
+		AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */; };
 		AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
 		AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F716BDB21900973F88 /* CoreGraphics.framework */; };
@@ -318,6 +319,8 @@
 		AA91022816C6B41700673DF5 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		AA91023216C6B6F800673DF5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AA91023416C6B72500673DF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AA99BC5D16ED54290087060A /* TVHEpgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgTableViewController.h; sourceTree = "<group>"; };
+		AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgTableViewController.m; sourceTree = "<group>"; };
 		AAB399F016BDB21900973F88 /* TvhClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TvhClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB399F316BDB21900973F88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAB399F516BDB21900973F88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -588,6 +591,7 @@
 		AA7C3FD016C709380057E4C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AA99BC5916ED537A0087060A /* EPG */,
 				AA8DC11616E140C800F93BD7 /* Channels */,
 				AA8DC11716E140D600F93BD7 /* Status */,
 				AA8DC11816E140DE00F93BD7 /* DVR */,
@@ -756,6 +760,15 @@
 			name = AFNetworking;
 			path = AFNetworking/AFNetworking;
 			sourceTree = SOURCE_ROOT;
+		};
+		AA99BC5916ED537A0087060A /* EPG */ = {
+			isa = PBXGroup;
+			children = (
+				AA99BC5D16ED54290087060A /* TVHEpgTableViewController.h */,
+				AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */,
+			);
+			name = EPG;
+			sourceTree = "<group>";
 		};
 		AAB399E716BDB21900973F88 = {
 			isa = PBXGroup;
@@ -1125,6 +1138,7 @@
 				AA21878816E7F6D9005D95EF /* NSString+FileSize.m in Sources */,
 				AABE682716EBAE84003E8F92 /* TVHLogStore.m in Sources */,
 				AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */,
+				AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -206,7 +206,7 @@
         descLabel.text = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
         recordButton.hidden = YES;
     } else if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
-        // we have !self.moreTimes so the message is not shown before knowing in fact that there are no more programs available
+        // we have self.moreTimes so the message is not shown before knowing in fact that there are no more programs available
         if ( [self.moreTimesItems count] == 0 && self.moreTimes ) {
             titleLabel.text = NSLocalizedString(@"No more programs available.", nil);
             recordButton.hidden = YES;

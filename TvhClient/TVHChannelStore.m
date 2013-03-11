@@ -164,6 +164,17 @@
     return nil;
 }
 
+- (TVHChannel*) channelWithId:(NSInteger) channelId {
+    NSEnumerator *e = [self.channels objectEnumerator];
+    TVHChannel *channel;
+    while (channel = [e nextObject]) {
+        if( channel.chid == channelId ) {
+            return channel;
+        }
+    }
+    return nil;
+}
+
 - (int) count {
     if(self.filterTag == 0) {
         return [self.channels count];

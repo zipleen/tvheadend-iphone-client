@@ -8,6 +8,7 @@
 
 #import "TVHEpg.h"
 #import "TVHDvrActions.h"
+#import "TVHChannelStore.h"
 
 @implementation TVHEpg
 
@@ -53,6 +54,12 @@
         return NO;
     TVHEpg *otherCast = other;
     return self.id == otherCast.id;
+}
+
+- (TVHChannel*)channelObject {
+    TVHChannelStore *store = [TVHChannelStore sharedInstance];
+    TVHChannel *channel = [store channelWithId:self.channelId];
+    return channel;
 }
 
 @end

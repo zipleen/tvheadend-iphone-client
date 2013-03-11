@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
 
+@class TVHChannel;
+
 @interface TVHEpg : NSObject
 @property (nonatomic) NSInteger channelId;
 @property (nonatomic, strong) NSString *title;
@@ -22,5 +24,6 @@
 - (void)setEndFromInteger:(NSInteger)end;
 - (float)progress;
 - (void)addRecording;
-- (BOOL)isEqual: (TVHEpg*)other;
+- (BOOL)isEqual:(TVHEpg*)other;
+- (TVHChannel*)channelObject;
 @end
