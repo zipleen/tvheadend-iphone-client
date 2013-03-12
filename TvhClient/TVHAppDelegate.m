@@ -13,7 +13,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [TestFlight takeOff:@""];
+#ifdef TESTING
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+#endif
+    
     TVHSettings *set = [TVHSettings sharedInstance];
     if( [set.ip isEqualToString:@""] ) {
         UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"

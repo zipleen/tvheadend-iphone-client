@@ -28,7 +28,7 @@
         NSError* error;
         NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseObject error:error];
         if( error ) {
-#if DEBUG
+#ifdef TESTING
             NSLog(@"[DVR ACTIONS ERROR processing JSON]: %@", error.localizedDescription);
 #endif
             [[NSNotificationCenter defaultCenter]
@@ -53,7 +53,7 @@
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-#if DEBUG
+#ifdef TESTING
         NSLog(@"[DVR ACTIONS ERROR]: %@", error.localizedDescription);
 #endif
         [[NSNotificationCenter defaultCenter]

@@ -80,7 +80,7 @@
     
     self.adapters = [adapters copy];
     
-#if DEBUG
+#ifdef TESTING
     NSLog(@"[Loaded Adapters]: %d", [self.adapters count]);
 #endif
 }
@@ -96,7 +96,7 @@
         if ([self.delegate respondsToSelector:@selector(didErrorAdaptersStore:)]) {
             [self.delegate didErrorAdaptersStore:error];
         }
-#if DEBUG
+#ifdef TESTING
         NSLog(@"[Adapter Store HTTPClient Error]: %@", error.localizedDescription);
 #endif
     }];

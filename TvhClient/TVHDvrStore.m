@@ -61,7 +61,7 @@
         self.dvrItems = [dvrItems copy];
     }
     
-#if DEBUG
+#ifdef TESTING
     NSLog(@"[Loaded DVR Items, Count]: %d", [self.dvrItems count]);
 #endif
 }
@@ -77,7 +77,7 @@
         if ([self.delegate respondsToSelector:@selector(didErrorDvrStore:)]) {
             [self.delegate didErrorDvrStore:error];
         }
-#if DEBUG
+#ifdef TESTING
         NSLog(@"[DVR Items HTTPClient Error]: %@", error.localizedDescription);
 #endif
     }];

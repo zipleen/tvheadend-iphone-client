@@ -74,7 +74,7 @@
     } else {
         self.epgStore = [epgStore copy];
     }
-#if DEBUG
+#ifdef TESTING
     NSLog(@"[EpgStore: Loaded EPG programs (%@)]: %d", self.filterToChannelName,[self.epgStore count]);
 #endif
 }
@@ -112,7 +112,7 @@
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-#if DEBUG
+#ifdef TESTING
         NSLog(@"[EpgStore HTTPClient Error]: %@", error.localizedDescription);
 #endif
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
@@ -130,7 +130,7 @@
     TVHEpg *last = [self.epgStore lastObject];
     if ( last ) {
         NSDate *localDate = [NSDate date];
-#if DEBUG
+#ifdef TESTING
         NSLog(@"localdate: %@ | last start date: %@", localDate, last.start);
 #endif
         if ( localDate > last.start && self.lastEventCount<(start+limit) ) {

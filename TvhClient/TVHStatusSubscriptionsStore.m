@@ -84,7 +84,7 @@
     
     self.subscriptions = [subscriptions copy];
     
-#if DEBUG
+#ifdef TESTING
     NSLog(@"[Loaded Subscription]: %d", [self.subscriptions count]);
 #endif
 }
@@ -100,7 +100,7 @@
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
             [self.delegate didErrorStatusSubscriptionsStore:error];
         }
-#if DEBUG
+#ifdef TESTING
         NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
 #endif
     }];

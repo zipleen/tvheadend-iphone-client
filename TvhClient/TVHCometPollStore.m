@@ -56,7 +56,7 @@
     
     [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *notificationClass = [obj objectForKey:@"notificationClass"];
-#if DEBUG
+#ifdef TESTING
         //NSLog(@"[Comet Poll Received notificationClass]: %@", notificationClass);
 #endif
         BOOL print = YES;
@@ -120,7 +120,7 @@
         [[NSNotificationCenter defaultCenter]
             postNotificationName:@"didErrorCometPollStore"
             object:error];
-#if DEBUG
+#ifdef TESTING
         NSLog(@"[CometPollStore HTTPClient Error]: %@", error.localizedDescription);
 #endif
     }];

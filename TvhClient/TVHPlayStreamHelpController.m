@@ -80,8 +80,9 @@
 }
 
 - (void)streamChannel:(NSString*) path {
+/*
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    
+
     // increase buffering for .wmv, it solves problem with delaying audio frames
     //if ([path.pathExtension isEqualToString:@"wmv"])
     // //   parameters[KxMovieParameterMinBufferedDuration] = @(5.0);
@@ -97,6 +98,7 @@
                                                                                parameters:parameters];
     [self.vc presentViewController:vc animated:YES completion:nil];
     //[self.navigationController pushViewController:vc animated:YES];
+ */
 }
 
 @end

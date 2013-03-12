@@ -72,7 +72,7 @@
     [orderedTags insertObject:t atIndex:0];
     
     self.tags = [orderedTags copy];
-#if DEBUG
+#ifdef TESTING
     NSLog(@"[Loaded Tags]: %d", [self.tags count]);
 #endif
 }
@@ -93,7 +93,7 @@
             if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
                 [self.delegate didErrorLoadingTagStore:error];
             }
-#if DEBUG
+#ifdef TESTING
             NSLog(@"[TagList HTTPClient Error]: %@", error.description);
 #endif
         }];
