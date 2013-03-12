@@ -13,6 +13,8 @@
 #import "TVHPlayStreamHelpController.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
+@property (strong, nonatomic) NSDictionary *properties;
+@property (strong, nonatomic) NSArray *propertiesKeys;
 @property (strong, nonatomic) TVHEpgStore *moreTimes;
 @property (strong, nonatomic) NSArray *moreTimesItems;
 @property (strong, nonatomic) TVHPlayStreamHelpController *help;
@@ -30,6 +32,41 @@
     }
 }
 
+- (NSDictionary*)propertiesDict {
+    NSMutableDictionary *p = [[NSMutableDictionary alloc] init];
+    
+    if ( self.epg.start ) {
+        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:self.epg.start], [hourFormatter stringFromDate:self.epg.end], self.epg.duration/60 ];
+        [p setObject:str forKey:@"Time"];
+    }
+    
+    if ( self.epg.description && ![self.epg.description isEqualToString:@"(null)"] ) {
+        [p setObject:self.epg.description forKey:@"Description"];
+    }
+    
+    if ( self.epg.subtitle && ![self.epg.subtitle isEqualToString:@"(null)"] ) {
+        [p setObject:self.epg.subtitle forKey:@"Subtitle"];
+    }
+    
+    if ( self.epg.episode && ![self.epg.episode isEqualToString:@"(null)"] ) {
+        [p setObject:self.epg.episode forKey:@"Episode"];
+    }
+    
+    if ( self.epg.schedstate && ![self.epg.schedstate isEqualToString:@"(null)"] ) {
+        [p setObject:self.epg.schedstate forKey:@"Schedule State"];
+    }
+    
+    if ( self.epg.serieslink && ![self.epg.serieslink isEqualToString:@"(null)"] ) {
+        [p setObject:self.epg.serieslink forKey:@"Series Link"];
+    }
+    
+    if ( self.epg.contenttype && ![self.epg.contenttype isEqualToString:@"(null)"] ) {
+        [p setObject:self.epg.contenttype forKey:@"Content Type"];
+    }
+    
+    return [p copy];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,7 +82,8 @@
     
     self.programTitle.text = self.epg.title;
     [self.programImage setImageWithURL:[NSURL URLWithString:self.channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
-    
+    self.properties = [self propertiesDict];
+    self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     // shadown
     self.programImage.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -84,6 +122,8 @@
     self.moreTimes = nil;
     self.moreTimesItems = nil;
     self.help = nil;
+    self.properties = nil;
+    self.propertiesKeys = nil;
     [super viewDidUnload];
 }
 
@@ -96,15 +136,12 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if( self.segmentedControl.selectedSegmentIndex == 0 ) {
-        if ( indexPath.row == 1 ) {
-            if( !self.epg.description ) {
-                return 0;
-            }
-            CGSize size = [self.epg.description
-                           sizeWithFont:[UIFont systemFontOfSize:14]
-                           constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
-            return size.height + 25;
-        }
+        NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
+        
+        CGSize size = [str
+                       sizeWithFont:[UIFont systemFontOfSize:14]
+                       constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
+        return size.height + 25;
     }
     return 48;
 }
@@ -113,7 +150,7 @@
 {
     if ( self.segmentedControl.selectedSegmentIndex == 0 )
     {
-        return 2;
+        return [self.propertiesKeys count];
     }
     if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
         int count = [self.moreTimesItems count];
@@ -146,15 +183,14 @@
     
     if( self.segmentedControl.selectedSegmentIndex == 0 ) {
         epg = self.epg;
-        if ( indexPath.row == 0 ) {
-            titleLabel.text = NSLocalizedString(@"Time", nil);
+        titleLabel.text = NSLocalizedString([self.propertiesKeys objectAtIndex:indexPath.row] , nil);
+        descLabel.text = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
+        recordButton.hidden = YES;
+        
+        if( [titleLabel.text isEqualToString:NSLocalizedString(@"Time", nil)] ) {
+            recordButton.hidden = NO;
         }
         
-        if ( indexPath.row == 1 ) {
-            titleLabel.text = NSLocalizedString(@"Description", nil);
-            descLabel.text = self.epg.description;
-            recordButton.hidden = YES;
-        }
     } else if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
         // we have !self.moreTimes so the message is not shown before knowing in fact that there are no more programs available
         if ( [self.moreTimesItems count] == 0 && self.moreTimes ) {
@@ -164,13 +200,6 @@
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
             titleLabel.text = epg.title;
-        }
-    }
-    
-    // index = 0 and row = 1 is the description label
-    if ( ! (self.segmentedControl.selectedSegmentIndex == 0 && indexPath.row == 1) ) {
-        if( epg ) {
-            descLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
     }
     

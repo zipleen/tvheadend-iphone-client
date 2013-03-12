@@ -20,6 +20,13 @@
 @property (nonatomic) NSInteger duration;
 @property (nonatomic) NSInteger id;
 
+@property (nonatomic, strong) NSString *chicon;
+@property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, strong) NSString *episode;
+@property (nonatomic, strong) NSString *serieslink;
+@property (nonatomic, strong) NSString *contenttype;
+@property (nonatomic, strong) NSString *schedstate;
+
 - (void)setStartFromInteger:(NSInteger)start;
 - (void)setEndFromInteger:(NSInteger)end;
 - (float)progress;

@@ -64,6 +64,7 @@
 }
 
 + (void)addRecording:(NSInteger)eventId withConfigName:(NSString*)configName {
+    // there is also a recordSeries action... 
     [TVHDvrActions doDvrAction:@"recordEvent" withId:eventId withIdName:@"eventId" withConfigName:configName];
 }
 

@@ -27,6 +27,7 @@
 @property (nonatomic) unsigned long long filesize;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic) NSInteger dvrType;
+@property (nonatomic, strong) NSString *episode;
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)cancelRecording;

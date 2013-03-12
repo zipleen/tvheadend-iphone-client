@@ -74,6 +74,10 @@
         [p setObject:[NSString stringFromFileSize:self.dvrItem.filesize] forKey:@"File Size"];
     }
     
+    if ( self.dvrItem.episode && ![self.dvrItem.episode isEqualToString:@"(null)"] ) {
+        [p setObject:self.dvrItem.episode forKey:@"Episode"];
+    }
+    
     return [p copy];
 }
 
