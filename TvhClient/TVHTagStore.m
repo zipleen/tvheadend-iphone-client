@@ -105,7 +105,9 @@
 }
 
 - (TVHTagStore *) objectAtIndex:(int) row {
-    return [self.tags objectAtIndex:row];
+    if ( row < [self.tags count] ) {
+        return [self.tags objectAtIndex:row];
+    }
 }
 
 - (int) count {

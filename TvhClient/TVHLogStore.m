@@ -71,7 +71,10 @@
 }
 
 - (NSString *) objectAtIndex:(int) row {
-    return [self.logLines objectAtIndex:row];
+    if ( row < [self.logLines count] ) {
+        return [self.logLines objectAtIndex:row];
+    }
+    return nil;
 }
 
 - (int) count {

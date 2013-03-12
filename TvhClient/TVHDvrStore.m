@@ -31,7 +31,26 @@
 - (id)init {
     self = [super init];
     self.cachedType = -1;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveDvrdbNotification:)
+                                                 name:@"dvrdbNotificationClassReceived"
+                                               object:nil];
+    
     return self;
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) receiveDvrdbNotification:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"dvrdbNotificationClassReceived"]) {
+        NSDictionary *message = (NSDictionary*)[notification object];
+        if ( [[message objectForKey:@"reload"] intValue] == 1 ) {
+            [self fetchDvr];
+        }
+    }
 }
 
 - (void)fetchedData:(NSData *)responseData withType:(NSInteger)type {
@@ -116,13 +135,19 @@
 - (TVHDvrItem *) objectAtIndex:(int)row forType:(NSInteger)type{
     [self checkCachedDvrItemsForType:type];
     
-    return [self.cachedDvrItems objectAtIndex:row];
+    if ( row < [self.cachedDvrItems count] ) {
+        return [self.cachedDvrItems objectAtIndex:row];
+    }
+    return nil;
 }
 
 - (int) count:(NSInteger)type {
     [self checkCachedDvrItemsForType:type];
     
-    return [self.cachedDvrItems count];
+    if ( self.cachedDvrItems ) {
+        return [self.cachedDvrItems count];
+    }
+    return 0;
 }
 
 @end

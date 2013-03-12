@@ -16,7 +16,7 @@
 #import "TVHRecordingsDetailViewController.h"
 
 @interface TVHRecordingsViewController ()
-@property (weak, nonatomic) TVHDvrStore *dvrStore;
+@property (strong, nonatomic) TVHDvrStore *dvrStore;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -55,7 +55,7 @@
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -166,6 +166,7 @@
 - (void)viewDidUnload {
     [self setSegmentedControl:nil];
     [self setTableView:nil];
+    [self setDvrStore:nil];
     [super viewDidUnload];
 }
 
@@ -174,7 +175,7 @@
     [self.tableView reloadData];
 }
 
-- (void)pullToRefreshViewShouldRefresh:(UIRefreshControl *)sender
+- (void)pullToRefreshViewShouldRefresh
 {
     [self.dvrStore fetchDvr];
 }

@@ -39,10 +39,11 @@
     if ([[notification name] isEqualToString:@"subscriptionsNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         
+        if ( [[message objectForKey:@"reload"] intValue] == 1 ) {
+            [self fetchStatusSubscriptions];
+        }
+        
         [self.subscriptions enumerateObjectsUsingBlock:^(TVHStatusSubscription* obj, NSUInteger idx, BOOL *stop) {
-            if ( [[message objectForKey:@"reload"] intValue] == 1 ) {
-                [self fetchStatusSubscriptions];
-            }
             
             if ( obj.id == [[message objectForKey:@"id"] intValue] ) {
                 [obj updateValuesFromDictionary:message];
@@ -108,7 +109,10 @@
 }
 
 - (TVHStatusSubscription *) objectAtIndex:(int) row {
-    return [self.subscriptions objectAtIndex:row];
+    if ( row < [self.subscriptions count] ) {
+        return [self.subscriptions objectAtIndex:row];
+    }
+    return nil;
 }
 
 - (int) count {

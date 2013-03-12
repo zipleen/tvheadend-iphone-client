@@ -87,6 +87,13 @@
              object:obj];
             print = NO;
         }
+        
+        if( [notificationClass isEqualToString:@"dvrdb"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"dvrdbNotificationClassReceived"
+             object:obj];
+            print = NO;
+        }
 
         if(print)
             NSLog(@"[CometPollStore log]: %@", obj);

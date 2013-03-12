@@ -104,7 +104,10 @@
 }
 
 - (TVHAdapter *) objectAtIndex:(int) row {
-    return [self.adapters objectAtIndex:row];
+    if ( row < [self.adapters count] ) {
+        return [self.adapters objectAtIndex:row];
+    }
+    return nil;
 }
 
 - (int) count {
