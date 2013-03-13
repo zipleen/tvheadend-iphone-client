@@ -108,6 +108,7 @@
     if ( row < [self.tags count] ) {
         return [self.tags objectAtIndex:row];
     }
+    return nil;
 }
 
 - (int) count {

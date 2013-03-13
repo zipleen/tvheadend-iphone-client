@@ -702,7 +702,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Log" id="Y1L-fd-MLK">
-                        <barButtonItem key="leftBarButtonItem" title="Debug" style="plain" id="7hK-9d-Dcm">
+                        <barButtonItem key="leftBarButtonItem" title="Debug" id="7hK-9d-Dcm">
                             <connections>
                                 <action selector="debugButton:" destination="pt2-PR-5v2" id="TJm-wB-2j2"/>
                             </connections>
@@ -908,6 +908,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="S3X-J4-yWo"/>
+        <segue reference="VI1-re-6wP"/>
     </inferredMetricsTieBreakers>
 </document>
