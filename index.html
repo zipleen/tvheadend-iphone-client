@@ -37,7 +37,25 @@
 
 <p>It allows you to view channels by tags, view channel EPG's, add and view recordings and view the status of the server.</p>
 
-<h2>Getting the code</h2>
+<h2>Features</h2>
+
+<ul>
+<li>View tags</li>
+<li>View channel list by tag</li>
+<li>View channel's EPG</li>
+<li>View EPG Program details</li>
+<li>Launch Stream URL with external video app</li>
+<li>Add / view / remove recordings</li>
+<li>Add / view / remove AutoRec</li>
+<li>Status subscriptions and Status adapters</li>
+<li>Log and debug log</li>
+<li>Search EPG</li>
+</ul><h4>Future Features</h4>
+
+<ul>
+<li>Multiple Tvheadend servers</li>
+<li>SSH tunnel to access tvheadend</li>
+</ul><h2>Getting the code</h2>
 
 <pre><code>git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
 cd tvheadend-iphone-client/
@@ -54,9 +72,9 @@ sudo chmod 777 /usr/local/bin/gas-preprocessor.pl
 
 <p>To work without kxmovie, remove "kxmovie frameworks" from "Frameworks" and "kxmovie" from Supporting Files/Framework. Then edit TVHChannelListProgramsViewController.m and remove #import "KxMovieViewController.h" and comment the whole "-(void)streamChannel:(NSString*) path" method.</p>
 
-<h4>Background</h4>
+<h2>Technical Background</h2>
 
-<p>There's two ways to connect to TVHeadend: HTSP and using the web interface. This app uses the web interface, although it's not officially supported. This way we have more detailed information on some components of the software, like the Status. It was also easier for me, as this is my first iPhone App. </p>
+<p>There's two ways to connect to TVHeadend: HTSP and using the web interface. This app uses the web interface, although it's not officially supported. This way we have more detailed information on some components of the software, like the Status. It was also easier for me, as this is my first iPhone App. I hope the Tvheadend developers don't mind this. Also, with SSH tunneling this shouldn't be a problem! </p>
 
 <h2>License</h2>
 
