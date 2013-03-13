@@ -10,8 +10,13 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpgStore.h"
 #import "TVHChannelStore.h"
+#import "UIImageView+WebCache.h"
+#import <QuartzCore/QuartzCore.h>
 
-@interface TVHEpgTableViewController () <TVHEpgStoreDelegate>
+@interface TVHEpgTableViewController () <TVHEpgStoreDelegate> {
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *hourFormatter;
+}
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSArray *epgTable ;
 @end
@@ -44,6 +49,12 @@
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"E d MMM, HH:mm"];
+    
+    hourFormatter = [[NSDateFormatter alloc] init];
+    hourFormatter.dateFormat = @"HH:mm";
 }
 
 - (void)viewDidUnload
@@ -71,8 +82,31 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     TVHEpg *epg = [self.epgTable objectAtIndex:indexPath.row];
-    cell.textLabel.text = epg.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", epg.start];
+    
+    UILabel *programLabel = (UILabel *)[cell viewWithTag:100];
+    UILabel *timeLabel = (UILabel *)[cell viewWithTag:101];
+    UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
+    UIProgressView *currentTimeProgress = (UIProgressView*)[cell viewWithTag:103];
+	programLabel.text = nil;
+    timeLabel.text = nil;
+    currentTimeProgress.hidden = YES;
+    
+    NSString *episode = nil;
+    if ( episode == nil ) {
+        episode = @"";
+    }
+    
+    programLabel.text = [NSString stringWithFormat:@"%@ %@", epg.title, episode];
+    timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+    
+    [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    
+    // rouding corners - this makes the animation in ipad become VERY SLOW!!!
+    //channelImage.layer.cornerRadius = 5.0f;
+    channelImage.layer.masksToBounds = NO;
+    channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    channelImage.layer.borderWidth = 0.4;
+    channelImage.layer.shouldRasterize = YES;
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
     [cell.contentView addSubview: separator];
@@ -109,7 +143,6 @@
         [programDetail setChannel:[epg channelObject]];
         [programDetail setEpg:epg];
         [programDetail setTitle:epg.title];
-        
     }
 }
 

@@ -12,14 +12,26 @@
 
 @implementation TVHEpg
 
-- (void) setStartFromInteger:(NSInteger)start {
-    NSDate *localDate = [NSDate dateWithTimeIntervalSince1970:start];
-    _start = localDate;
+- (void)setStart:(id)startDate {
+    if([startDate isKindOfClass:[NSNumber class]]) {
+        _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];
+    }
 }
 
-- (void) setEndFromInteger:(NSInteger)end {
-    NSDate *localDate = [NSDate dateWithTimeIntervalSince1970:end];
-    _end = localDate;
+- (void)setEnd:(id)endDate {
+    if([endDate isKindOfClass:[NSNumber class]]) {
+        _end = [NSDate dateWithTimeIntervalSince1970:[endDate intValue]];
+    }
+}
+
+- (void)updateValuesFromDictionary:(NSDictionary*) values {
+    [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self setValue:obj forKey:key];
+    }];
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+    
 }
 
 - (NSComparisonResult)compareByTime:(TVHEpg *)otherObject {
@@ -27,11 +39,9 @@
 }
 
 - (float)progress {
-    
     NSDate *now = [NSDate date];
     NSTimeInterval actualLength = [now timeIntervalSinceDate:self.start];
     NSTimeInterval programLength = [self.end timeIntervalSinceDate:self.start];
-    
     
     if( [now compare:self.start] == NSOrderedAscending  ) {
         return 0;
@@ -39,7 +49,6 @@
     if( [now compare:self.end] == NSOrderedDescending ) {
         return 100;
     }
-    
     return actualLength / programLength;
 }
 

@@ -60,10 +60,6 @@
         [p setObject:self.epg.serieslink forKey:@"Series Link"];
     }
     
-    if ( self.epg.contenttype && ![self.epg.contenttype isEqualToString:@"(null)"] ) {
-        [p setObject:self.epg.contenttype forKey:@"Content Type"];
-    }
-    
     return [p copy];
 }
 
@@ -81,7 +77,7 @@
     hourFormatter.dateFormat = @"HH:mm";
     
     self.programTitle.text = self.epg.title;
-    [self.programImage setImageWithURL:[NSURL URLWithString:self.channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     self.properties = [self propertiesDict];
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
@@ -200,6 +196,7 @@
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
             titleLabel.text = epg.title;
+            descLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
     }
     

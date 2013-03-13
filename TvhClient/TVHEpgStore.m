@@ -44,31 +44,12 @@
     NSArray *entries = [json objectForKey:@"entries"];
     NSMutableArray *epgStore = [[NSMutableArray alloc] init];
     
-    NSEnumerator *e = [entries objectEnumerator];
-    id channel;
-    //for (NSEnumerator *channel in entries) {
-    while (channel = [e nextObject]) {
-        //NSLog(@"json : %@", channel);
-        TVHEpg *e = [[TVHEpg alloc] init];
-        
-        NSInteger channelId = [[channel objectForKey:@"channelid"] intValue];
-        NSString *title = [channel objectForKey:@"title"];
-        NSString *description = [channel objectForKey:@"description"];
-        NSInteger start = [[channel objectForKey:@"start"] intValue];
-        NSInteger end = [[channel objectForKey:@"end"] intValue];
-        NSInteger duration = [[channel objectForKey:@"duration"] intValue];
-        NSInteger id = [[channel objectForKey:@"id"] intValue];
-        
-        [e setChannelId:channelId];
-        [e setTitle:title];
-        [e setDescription:description];
-        [e setDuration:duration];
-        [e setStartFromInteger:start];
-        [e setEndFromInteger:end];
-        [e setId:id];
-                
-        [epgStore addObject:e];
-    }
+    [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        TVHEpg *epg = [[TVHEpg alloc] init];
+        [epg updateValuesFromDictionary:obj];
+        [epgStore addObject:epg];
+    }];
+    
     if ( [self.epgStore count] > 0) {
         self.epgStore = [self.epgStore arrayByAddingObjectsFromArray:[epgStore copy]];
     } else {

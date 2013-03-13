@@ -27,8 +27,7 @@
 @property (nonatomic, strong) NSString *contenttype;
 @property (nonatomic, strong) NSString *schedstate;
 
-- (void)setStartFromInteger:(NSInteger)start;
-- (void)setEndFromInteger:(NSInteger)end;
+- (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (float)progress;
 - (void)addRecording;
 - (BOOL)isEqual:(TVHEpg*)other;

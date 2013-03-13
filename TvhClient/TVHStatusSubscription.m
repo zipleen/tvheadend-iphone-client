@@ -11,7 +11,7 @@
 @implementation TVHStatusSubscription
 
 -(void)setStart:(id)startDate {
-    if([startDate isKindOfClass:[NSString class]]) {
+    if([startDate isKindOfClass:[NSNumber class]]) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];
     }
 }
