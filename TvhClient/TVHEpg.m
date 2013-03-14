@@ -12,6 +12,21 @@
 
 @implementation TVHEpg
 
+- (NSString*)fullTitle {
+    /*
+    NSString *subtitle = self.subtitle;
+    if ( subtitle == nil ) {
+        subtitle = @"";
+    }
+    */
+    NSString *episode = self.episode;
+    if ( episode == nil ) {
+        episode = @"";
+    }
+    
+    return [NSString stringWithFormat:@"%@ %@", self.title, episode];
+}
+
 - (void)setStart:(id)startDate {
     if([startDate isKindOfClass:[NSNumber class]]) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];

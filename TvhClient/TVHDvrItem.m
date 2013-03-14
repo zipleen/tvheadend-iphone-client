@@ -13,6 +13,15 @@
 
 @implementation TVHDvrItem
 
+- (NSString*)fullTitle {
+    NSString *episode = self.episode;
+    if ( episode == nil ) {
+        episode = @"";
+    }
+    
+    return [NSString stringWithFormat:@"%@ %@", self.title, episode];
+}
+
 -(void)setStart:(id)startDate {
     if( ! [startDate isKindOfClass:[NSString class]] ) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];

@@ -92,7 +92,7 @@
     UIProgressView *progress = (UIProgressView *)[cell viewWithTag:103];
     
     hour.text = [timeFormatter stringFromDate: epg.start];
-    name.text = epg.title;
+    name.text = epg.fullTitle;
     description.text = epg.description;
     
     if( epg == self.channel.currentPlayingProgram ) {

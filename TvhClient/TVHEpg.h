@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSString *serieslink;
 @property (nonatomic, strong) NSString *contenttype;
 @property (nonatomic, strong) NSString *schedstate;
+- (NSString*)fullTitle;
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (float)progress;

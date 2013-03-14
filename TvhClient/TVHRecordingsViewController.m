@@ -97,7 +97,7 @@
     UILabel *statusLabel = (UILabel *)[cell viewWithTag:102];
     UIImageView *channelImage = (UIImageView *)[cell viewWithTag:103];
     
-    titleLabel.text = dvrItem.title;
+    titleLabel.text = dvrItem.fullTitle;
     dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
     statusLabel.text = dvrItem.status;
     [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];

@@ -76,7 +76,7 @@
     hourFormatter = [[NSDateFormatter alloc] init];
     hourFormatter.dateFormat = @"HH:mm";
     
-    self.programTitle.text = self.epg.title;
+    self.programTitle.text = self.epg.fullTitle;
     [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     self.properties = [self propertiesDict];
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];

@@ -91,12 +91,7 @@
     timeLabel.text = nil;
     currentTimeProgress.hidden = YES;
     
-    NSString *episode = nil;
-    if ( episode == nil ) {
-        episode = @"";
-    }
-    
-    programLabel.text = [NSString stringWithFormat:@"%@ %@", epg.title, episode];
+    programLabel.text = epg.fullTitle;
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
     
     [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];

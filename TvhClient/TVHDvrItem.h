@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic) NSInteger dvrType;
 @property (nonatomic, strong) NSString *episode;
+- (NSString*)fullTitle;
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)cancelRecording;
