@@ -8,15 +8,16 @@
 
 #import "TVHAppDelegate.h"
 #import "TVHSettings.h"
+#import "TestFlight.h"
 
 @implementation TVHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [TestFlight takeOff:@""];
 #ifdef TESTING
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
+    [TestFlight takeOff:@""];
     
     TVHSettings *set = [TVHSettings sharedInstance];
     if( [set.ip isEqualToString:@""] ) {
