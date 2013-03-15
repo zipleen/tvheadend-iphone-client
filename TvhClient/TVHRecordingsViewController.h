@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TVHDvrStore.h"
+#import "TVHAutoRecStore.h"
 #import "SDSegmentedControl.h"
 
-@interface TVHRecordingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TVHDvrStoreDelegate>
+@interface TVHRecordingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TVHDvrStoreDelegate, TVHAutoRecStoreDelegate>
 @property (weak, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;
 - (IBAction)segmentedDidChange:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

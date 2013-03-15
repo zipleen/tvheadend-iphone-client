@@ -125,6 +125,10 @@
 		AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
+		AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */; };
+		AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */; };
+		AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */; };
+		AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */; };
 		AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE5E87B16EE9865007BEC40 /* libTestFlight.a */; };
 		AAF54A1916C70D1B0076DF17 /* TVHTagStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */; };
 		AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1B16C70D270076DF17 /* TVHTag.m */; };
@@ -362,6 +366,14 @@
 		AACA614816CFDDD0002C6DE1 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = kxmovie/output/KxMovieViewController.h; sourceTree = SOURCE_ROOT; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
 		AACE488F16CC6F1800FE928B /* tv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv2@2x.png"; sourceTree = "<group>"; };
+		AAE5273316F28AD0002047E4 /* TVHAutoRecStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecStore.h; sourceTree = "<group>"; };
+		AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecStore.m; sourceTree = "<group>"; };
+		AAE5273616F28AE0002047E4 /* TVHAutoRecItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecItem.h; sourceTree = "<group>"; };
+		AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecItem.m; sourceTree = "<group>"; };
+		AAE5273C16F28FEF002047E4 /* TVHAutoRecDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecDetailViewController.h; sourceTree = "<group>"; };
+		AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecDetailViewController.m; sourceTree = "<group>"; };
+		AAE5273F16F2938E002047E4 /* TVHTableMgrActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTableMgrActions.h; sourceTree = "<group>"; };
+		AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTableMgrActions.m; sourceTree = "<group>"; };
 		AAE5E87B16EE9865007BEC40 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = "../TestFlight SDK/libTestFlight.a"; sourceTree = "<group>"; };
 		AAE5E88116EE988B007BEC40 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = "TestFlight SDK/TestFlight.h"; sourceTree = SOURCE_ROOT; };
 		AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore.h; sourceTree = "<group>"; };
@@ -450,6 +462,8 @@
 				AA8DC11016E1407700F93BD7 /* Channels */,
 				AA8DC11416E1409400F93BD7 /* Comet Poll / Status */,
 				AA8DC11516E140B600F93BD7 /* DVR */,
+				AAE5273F16F2938E002047E4 /* TVHTableMgrActions.h */,
+				AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */,
 				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
 				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
@@ -629,6 +643,7 @@
 		AA8DC11516E140B600F93BD7 /* DVR */ = {
 			isa = PBXGroup;
 			children = (
+				AAE5272F16F28A9C002047E4 /* AutoRec */,
 				AA575E3216DFF18300D80F8C /* TVHDvrStore.h */,
 				AA575E3316DFF18300D80F8C /* TVHDvrStore.m */,
 				AA575E3816DFF19500D80F8C /* TVHDvrItem.h */,
@@ -672,6 +687,8 @@
 				AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */,
 				AA8DC11A16E1762E00F93BD7 /* TVHRecordingsDetailViewController.h */,
 				AA8DC11B16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m */,
+				AAE5273C16F28FEF002047E4 /* TVHAutoRecDetailViewController.h */,
+				AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */,
 			);
 			name = DVR;
 			sourceTree = "<group>";
@@ -886,6 +903,17 @@
 				AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */,
 			);
 			name = "kxmovie frameworks";
+			sourceTree = "<group>";
+		};
+		AAE5272F16F28A9C002047E4 /* AutoRec */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5273316F28AD0002047E4 /* TVHAutoRecStore.h */,
+				AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */,
+				AAE5273616F28AE0002047E4 /* TVHAutoRecItem.h */,
+				AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */,
+			);
+			name = AutoRec;
 			sourceTree = "<group>";
 		};
 		AAE5E88016EE9875007BEC40 /* TestFlight SDK */ = {
@@ -1141,6 +1169,10 @@
 				AABE682716EBAE84003E8F92 /* TVHLogStore.m in Sources */,
 				AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */,
 				AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */,
+				AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */,
+				AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */,
+				AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */,
+				AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
