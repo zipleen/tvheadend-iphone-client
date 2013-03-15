@@ -7,7 +7,10 @@
 //
 
 #import "TVHPlayStreamHelpController.h"
+//#define KXMOVIE
+#ifdef KXMOVIE
 #import "KxMovieViewController.h"
+#endif
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate>
 @property (weak, nonatomic) id<TVHPlayStreamDelegate> streamObject;
@@ -23,12 +26,18 @@
     NSString *good = @"GoodPlayer";
     NSString *oplayer = @"Oplayer";
     NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
+#ifdef KXMOVIE
     NSString *stream = NSLocalizedString(actionTitle, nil);
+#endif
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:actionSheetTitle
                                   delegate:self
                                   cancelButtonTitle:cancelTitle
+#ifdef KXMOVIE
                                   destructiveButtonTitle:stream
+#else
+                                  destructiveButtonTitle:nil
+#endif
                                   otherButtonTitles:copy, buzz, good, oplayer, nil];
     //[actionSheet showFromToolbar:self.navigationController.toolbar];
     [actionSheet showFromBarButtonItem:sender animated:YES];
@@ -69,6 +78,7 @@
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
     }
+#ifdef KXMOVIE
     if ([buttonTitle isEqualToString:NSLocalizedString(@"Stream Channel", nil)]) {
         NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.streamObject streamURL] ];
         [self streamChannel:url];
@@ -77,10 +87,12 @@
         NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.streamObject streamURL] ];
         [self streamChannel:url];
     }
+#endif
 }
 
+#ifdef KXMOVIE
 - (void)streamChannel:(NSString*) path {
-/*
+
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 
     // increase buffering for .wmv, it solves problem with delaying audio frames
@@ -98,7 +110,8 @@
                                                                                parameters:parameters];
     [self.vc presentViewController:vc animated:YES completion:nil];
     //[self.navigationController pushViewController:vc animated:YES];
- */
+ 
 }
+#endif
 
 @end

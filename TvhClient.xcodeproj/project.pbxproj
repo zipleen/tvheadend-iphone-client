@@ -122,7 +122,6 @@
 		AACA612416CFDB28002C6DE1 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612316CFDB28002C6DE1 /* CoreAudio.framework */; };
 		AACA612616CFDB36002C6DE1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612516CFDB36002C6DE1 /* AudioToolbox.framework */; };
 		AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613716CFDBE8002C6DE1 /* libz.dylib */; };
-		AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
 		AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */; };
@@ -360,10 +359,6 @@
 		AACA613C16CFDC2B002C6DE1 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = kxmovie/output/libkxmovie.a; sourceTree = "<group>"; };
 		AACA613D16CFDC2B002C6DE1 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = kxmovie/output/libswresample.a; sourceTree = "<group>"; };
 		AACA613E16CFDC2B002C6DE1 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswscale.a; path = kxmovie/output/libswscale.a; sourceTree = "<group>"; };
-		AACA614516CFDDD0002C6DE1 /* KxAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxAudioManager.h; path = kxmovie/output/KxAudioManager.h; sourceTree = SOURCE_ROOT; };
-		AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = kxmovie.bundle; path = kxmovie/output/kxmovie.bundle; sourceTree = SOURCE_ROOT; };
-		AACA614716CFDDD0002C6DE1 /* KxMovieDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieDecoder.h; path = kxmovie/output/KxMovieDecoder.h; sourceTree = SOURCE_ROOT; };
-		AACA614816CFDDD0002C6DE1 /* KxMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KxMovieViewController.h; path = kxmovie/output/KxMovieViewController.h; sourceTree = SOURCE_ROOT; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
 		AACE488F16CC6F1800FE928B /* tv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv2@2x.png"; sourceTree = "<group>"; };
 		AAE5273316F28AD0002047E4 /* TVHAutoRecStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecStore.h; sourceTree = "<group>"; };
@@ -737,7 +732,6 @@
 				AA8DED3D16DEE35900AF6A51 /* SDWebImage */,
 				AA8DECF816DEBD7A00AF6A51 /* SDSegmentedControl */,
 				AA10AA7C16D1304D00BBDFEA /* CKRefreshControl */,
-				AACA614A16CFDDDA002C6DE1 /* kxmovie */,
 				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 				AA91021516C6B41700673DF5 /* AFNetworking */,
 			);
@@ -873,17 +867,6 @@
 				AABE682616EBAE84003E8F92 /* TVHLogStore.m */,
 			);
 			name = Logs;
-			sourceTree = "<group>";
-		};
-		AACA614A16CFDDDA002C6DE1 /* kxmovie */ = {
-			isa = PBXGroup;
-			children = (
-				AACA614516CFDDD0002C6DE1 /* KxAudioManager.h */,
-				AACA614616CFDDD0002C6DE1 /* kxmovie.bundle */,
-				AACA614716CFDDD0002C6DE1 /* KxMovieDecoder.h */,
-				AACA614816CFDDD0002C6DE1 /* KxMovieViewController.h */,
-			);
-			name = kxmovie;
 			sourceTree = "<group>";
 		};
 		AACA614B16CFDE03002C6DE1 /* kxmovie frameworks */ = {
@@ -1054,7 +1037,6 @@
 				AACE489016CC6F1900FE928B /* tv2.png in Resources */,
 				AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */,
 				AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */,
-				AACA614916CFDDD0002C6DE1 /* kxmovie.bundle in Resources */,
 				AA407E2D16D1A0EE00451E6F /* Localizable.strings in Resources */,
 				AA407E3616D1B85500451E6F /* forward.png in Resources */,
 				AA407E3716D1B85500451E6F /* forward@2x.png in Resources */,

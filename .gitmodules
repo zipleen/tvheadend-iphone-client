@@ -4,9 +4,6 @@
 [submodule "NoticeView"]
 	path = NoticeView
 	url = git://github.com/tciuro/NoticeView.git
-[submodule "kxmovie"]
-	path = kxmovie
-	url = git://github.com/kolyvan/kxmovie.git
 [submodule "CKRefreshControl"]
 	path = CKRefreshControl
 	url = git://github.com/instructure/CKRefreshControl.git
