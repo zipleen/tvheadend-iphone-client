@@ -12,7 +12,7 @@
 #import "WBSuccessNoticeView.h"
 #import "NSString+FileSize.h"
 
-@interface TVHRecordingsDetailViewController () <UIActionSheetDelegate>
+@interface TVHRecordingsDetailViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
 @property (strong, nonatomic) NSArray *propertiesKeys;
 @property (strong, nonatomic) TVHEpgStore *moreTimes;
@@ -140,9 +140,20 @@
     [super viewDidUnload];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [alertView cancelButtonIndex]) {
+        [self.dvrItem deleteRecording];
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
+}
+
 - (IBAction)removeRecording:(id)sender {
-    [self.dvrItem deleteRecording];
-    [[self navigationController] popViewControllerAnimated:YES];
+    UIAlertView *questionAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Remove recording", nil)
+                                                         message:NSLocalizedString(@"Are your sure you want to remove the recording?", nil)
+                                                        delegate:self
+                                               cancelButtonTitle:NSLocalizedString(@"No", nil)
+                                               otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];
+    [questionAlert show];
 }
 
 - (IBAction)playStream:(id)sender {
