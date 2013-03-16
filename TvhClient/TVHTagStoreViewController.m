@@ -55,8 +55,6 @@
 
 - (void)pullToRefreshViewShouldRefresh
 {
-    [self.tagList resetTagStore];
-    [self.tableView reloadData];
     [self.tagList fetchTagList];
 }
 

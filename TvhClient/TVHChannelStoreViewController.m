@@ -71,8 +71,6 @@
 
 - (void)pullToRefreshViewShouldRefresh
 {
-    [self.channelList resetChannelStore];
-    [self.tableView reloadData];
     [self.channelList fetchChannelList];
 }
 

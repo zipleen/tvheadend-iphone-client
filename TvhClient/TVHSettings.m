@@ -61,6 +61,10 @@
     _baseURL = nil;
 }
 
+- (NSTimeInterval)cacheTime {
+    return 300;
+}
+
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
     static dispatch_once_t onceToken;

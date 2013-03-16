@@ -8,10 +8,12 @@
 
 #import "TVHTagStore.h"
 #import "TVHJsonClient.h"
+#import "TVHSettings.h"
 
 @interface TVHTagStore()
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
+@property (nonatomic, strong) NSDate *lastFetchedData;
 @end
 
 
@@ -65,8 +67,19 @@
 #endif
 }
 
+- (BOOL)isDataOld {
+    if ( [self.tags count] == 0 ) {
+        return YES;
+    }
+    if ( !self.lastFetchedData ) {
+        return YES;
+    }
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    return ( [[NSDate date] compare:[self.lastFetchedData dateByAddingTimeInterval:[settings cacheTime]]] == NSOrderedDescending );
+}
+
 - (void)fetchTagList {
-    if( [self.tags count] == 0 ) {
+    if( [self isDataOld] ) {
         TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
@@ -74,6 +87,7 @@
         [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self fetchedData:responseObject];
             [self.delegate didLoadTags];
+            self.lastFetchedData = [NSDate date];
             
             //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             //NSLog(@"Request Successful, response '%@'", responseStr);
@@ -85,6 +99,8 @@
             NSLog(@"[TagList HTTPClient Error]: %@", error.description);
 #endif
         }];
+    } else {
+        [self.delegate didLoadTags];
     }
 }
 

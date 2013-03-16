@@ -9,6 +9,8 @@
 #import "TVHAppDelegate.h"
 #import "TVHSettings.h"
 #import "TestFlight.h"
+#import "TVHChannelStore.h"
+#import "TVHTagStore.h"
 
 @implementation TVHAppDelegate
 
@@ -28,6 +30,14 @@
                                                    otherButtonTitles:nil];
         [errorAlert show];
         
+    } else {
+        // fetch tags
+        TVHTagStore *tagStore = [TVHTagStore sharedInstance];
+        [tagStore fetchTagList];
+        
+        // and fetch channel data - we need it for a lot of things, channels should always be loaded!
+        TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
+        [channelStore fetchChannelList];
     }
     return YES;
 }

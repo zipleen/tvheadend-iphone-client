@@ -9,11 +9,13 @@
 #import "TVHChannelStore.h"
 #import "TVHEpg.h"
 #import "TVHJsonClient.h"
+#import "TVHSettings.h"
 
 @interface TVHChannelStore ()
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, weak) TVHEpgStore *epgStore;
+@property (nonatomic, strong) NSDate *lastFetchedData;
 @end
 
 @implementation TVHChannelStore 
@@ -71,8 +73,19 @@
     self.channels = nil;
 }
 
+- (BOOL)isDataOld {
+    if ( [self.channels count] == 0 ) {
+        return YES;
+    }
+    if ( !self.lastFetchedData ) {
+        return YES;
+    }
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    return ( [[NSDate date] compare:[self.lastFetchedData dateByAddingTimeInterval:[settings cacheTime]]] == NSOrderedDescending );
+}
+
 - (void)fetchChannelList {
-    if( [self.channels count] == 0 ) {
+    if( [self isDataOld] ) {
         TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
@@ -80,6 +93,7 @@
         [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self fetchedData:responseObject];
             [self.delegate didLoadChannels];
+            self.lastFetchedData = [NSDate date];
             
             [self.epgStore setDelegate:self];
             [self.epgStore downloadEpgList];
@@ -92,7 +106,9 @@
             }
             NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
         }];
-    } 
+    } else {
+        [self.delegate didLoadChannels];
+    }
 }
 
 - (TVHChannel*) getChannelById:(NSInteger)channelId {

@@ -15,4 +15,5 @@
 - (void)resetSettings;
 - (NSString*)username;
 - (NSString*)password;
+- (NSTimeInterval)cacheTime;
 @end
