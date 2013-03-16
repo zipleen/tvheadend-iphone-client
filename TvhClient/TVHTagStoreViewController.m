@@ -81,7 +81,7 @@
 	UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     tagNameLabel.text = tag.name;
     tagNumberLabel.text = nil;
-    [channelImage setImageWithURL:[NSURL URLWithString:tag.imageUrl] placeholderImage:[UIImage imageNamed:@"tag.png"]];
+    [channelImage setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"]];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -104,7 +104,7 @@
         TVHTag *tag = [self.tagList objectAtIndex:path.row];
         
         TVHChannelStoreViewController *ChannelList = segue.destinationViewController;
-        [ChannelList setFilterTagId: tag.tagid];
+        [ChannelList setFilterTagId: tag.id];
         
         [segue.destinationViewController setTitle:tag.name];
     }

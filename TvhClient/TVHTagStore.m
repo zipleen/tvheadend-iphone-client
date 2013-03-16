@@ -42,26 +42,14 @@
     
     
     NSEnumerator *e = [entries objectEnumerator];
-    id tag;
+    id entry;
     //for (NSEnumerator *channel in entries) {
-    while (tag = [e nextObject]) {
-        NSInteger enabled = [[tag objectForKey:@"enabled"] intValue];
+    while (entry = [e nextObject]) {
+        NSInteger enabled = [[entry objectForKey:@"enabled"] intValue];
         if( enabled ) {
-        
-            //NSLog(@"json : %@", channel);
-            TVHTag *t = [[TVHTag alloc] init];
-            
-            NSInteger tagid = [[tag objectForKey:@"id"] intValue];
-            NSString *name = [tag objectForKey:@"name"];
-            NSString *comment = [tag objectForKey:@"comment"];
-            NSString *imageUrl = [tag objectForKey:@"icon"];
-            
-            [t setTagid:tagid];
-            [t setName:name];
-            [t setComment:comment];
-            [t setImageUrl:imageUrl];
-            
-            [tags addObject:t];
+            TVHTag *tag = [[TVHTag alloc] init];
+            [tag updateValuesFromDictionary:entry];
+            [tags addObject:tag];
         }
     }
      

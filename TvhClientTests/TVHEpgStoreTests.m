@@ -28,7 +28,8 @@
 - (void)tearDown
 {
     // Tear-down code here.
-    
+    TVHEpgStore *tvhe = [TVHEpgStore sharedInstance];
+    tvhe.epgStore = nil;
     [super tearDown];
 }
 

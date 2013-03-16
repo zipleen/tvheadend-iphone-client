@@ -35,16 +35,16 @@
     
     TVHTag *tag = [store.tags lastObject];
     STAssertEqualObjects(tag.name, @"Z", @"tag name does not match");
-    STAssertEquals(tag.tagid, 8, @"tag id doesnt match");
+    STAssertEquals(tag.id, 8, @"tag id doesnt match");
     
     tag = [store.tags objectAtIndex:0];
     STAssertEqualObjects(tag.name, @"All Channels", @"tag name does not match");
-    STAssertEquals(tag.tagid, 0, @"tag id doesnt match");
+    STAssertEquals(tag.id, 0, @"tag id doesnt match");
     
     tag = [store.tags objectAtIndex:2];
     STAssertEqualObjects(tag.name, @"Desenhos Animados", @"tag name does not match");
-    STAssertEquals(tag.tagid, 55, @"tag id doesnt match");
-    STAssertEqualObjects(tag.imageUrl, @"http://infantil.png", @"tag id doesnt match");
+    STAssertEquals(tag.id, 55, @"tag id doesnt match");
+    STAssertEqualObjects(tag.icon, @"http://infantil.png", @"tag id doesnt match");
 
 }
 
