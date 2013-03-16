@@ -114,7 +114,7 @@
     NSEnumerator *e = [list objectEnumerator];
     TVHEpg *epg;
     while (epg = [e nextObject]) {
-        TVHChannel *channel = [self getChannelById:epg.channelId];
+        TVHChannel *channel = [self getChannelById:epg.channelid];
         [channel addEpg:epg];
     }
     [self.delegate didLoadChannels];

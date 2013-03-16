@@ -31,12 +31,13 @@
 
 - (TVHEpg*)epg {
     TVHEpg *epg = [[TVHEpg alloc] init];
-    [epg setChannelId:27];
-    [epg setTitle:@"Jornal das 8"];
-    [epg setDescription:@"Episodio 1.\n"];
-    [epg setDuration:6120];
-    [epg setStartFromInteger:1361563200];
-    [epg setEndFromInteger:1361569320];
+    [epg updateValuesFromDictionary:@{
+        @"channelid":@27,
+        @"title":@"Jornal das 8",
+        @"description":@"Episodio 1.\n",
+        @"duration":@6120,
+        @"start":@1361563200,
+        @"end":@1361569320 }];
     return epg;
 }
 

@@ -82,7 +82,7 @@
 
 - (TVHChannel*)channelObject {
     TVHChannelStore *store = [TVHChannelStore sharedInstance];
-    TVHChannel *channel = [store channelWithId:self.channelId];
+    TVHChannel *channel = [store channelWithId:self.channelid];
     return channel;
 }
 

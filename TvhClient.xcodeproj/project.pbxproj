@@ -541,7 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				AA43D4A216CF167300104BBF /* Supporting Files */,
-				AA43D4B116CF1A7600104BBF /* TestData */,
+				AA43D4B116CF1A7600104BBF /* Fixtures */,
 				AA43D4A716CF167300104BBF /* TvhClientTests.h */,
 				AA43D4A816CF167300104BBF /* TvhClientTests.m */,
 				AA43D4AE16CF189A00104BBF /* TVHEpgStoreTests.h */,
@@ -568,7 +568,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AA43D4B116CF1A7600104BBF /* TestData */ = {
+		AA43D4B116CF1A7600104BBF /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
 				AA43D4B216CF1A7600104BBF /* Log.287 */,
@@ -576,6 +576,7 @@
 				AA3E5CD316D80A6B00CE444C /* Log.channels */,
 				AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */,
 			);
+			name = Fixtures;
 			path = TestData;
 			sourceTree = "<group>";
 		};
@@ -1325,7 +1326,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/kxmovie/output\"",
 					"\"$(SRCROOT)/TestFlight SDK\"",
 				);
 				OTHER_LDFLAGS = "";
@@ -1348,7 +1348,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/kxmovie/output\"",
 					"\"$(SRCROOT)/TestFlight SDK\"",
 				);
 				OTHER_LDFLAGS = "";

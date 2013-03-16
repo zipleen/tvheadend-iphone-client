@@ -42,7 +42,14 @@
     
     TVHEpg *epg = [tvhe.epgStore objectAtIndex:0];
     STAssertEqualObjects(epg.title, @"Nacional x Benfica - Primeira Liga", @"epg title doesnt match");
-    STAssertEquals(epg.channelId, 131, @"epg title doesnt match");
+    STAssertEquals(epg.channelid, 131, @"epg channel id doesnt match");
+    STAssertEqualObjects(epg.channel, @"Sport TV 1 Meo", @"channel name does not match" );
+    STAssertEqualObjects(epg.chicon, @"https://dl.dropbox.com/u/a/TVLogos/sport_tv1_pt.jpg", @"channel name does not match" );
+    STAssertFalse([epg.description isEqualToString:@""], @"description empty");
+    STAssertEquals(epg.id, 400297, @"epg id does not match" );
+    STAssertEquals(epg.duration, 8100, @"epg id does not match" );
+    STAssertEqualObjects(epg.start, [NSDate dateWithTimeIntervalSince1970:1360519200], @"start date does not match" );
+    STAssertEqualObjects(epg.end, [NSDate dateWithTimeIntervalSince1970:1360527300], @"end date does not match" );
 }
 
 

@@ -12,21 +12,25 @@
 @class TVHChannel;
 
 @interface TVHEpg : NSObject
-@property (nonatomic) NSInteger channelId;
+// channel
+@property (nonatomic) NSInteger channelid;
+@property (nonatomic, strong) NSString *channel;
+@property (nonatomic, strong) NSString *chicon;
+// titles
+@property (nonatomic) NSInteger id;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, strong) NSString *episode;
+- (NSString*)fullTitle;
+// dates
 @property (nonatomic, strong) NSDate *start;
 @property (nonatomic, strong) NSDate *end;
 @property (nonatomic) NSInteger duration;
-@property (nonatomic) NSInteger id;
-
-@property (nonatomic, strong) NSString *chicon;
-@property (nonatomic, strong) NSString *subtitle;
-@property (nonatomic, strong) NSString *episode;
+// recording and metadata
+@property (nonatomic, strong) NSString *schedstate;
 @property (nonatomic, strong) NSString *serieslink;
 @property (nonatomic, strong) NSString *contenttype;
-@property (nonatomic, strong) NSString *schedstate;
-- (NSString*)fullTitle;
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (float)progress;
