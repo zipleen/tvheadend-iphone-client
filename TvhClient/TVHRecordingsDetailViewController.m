@@ -96,6 +96,7 @@
     hourFormatter.dateFormat = @"HH:mm";
     
     self.programTitle.text = self.dvrItem.fullTitle;
+    self.channelTitle.text = self.dvrItem.channel;
     [self.programImage setImageWithURL:[NSURL URLWithString:self.dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     self.properties = [self propertiesDict];
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
@@ -137,6 +138,7 @@
     self.properties = nil;
     self.propertiesKeys = nil;
     self.help = nil;
+    [self setChannelTitle:nil];
     [super viewDidUnload];
 }
 
@@ -229,6 +231,7 @@
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
             titleLabel.text = epg.title;
+            descLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
     }
     

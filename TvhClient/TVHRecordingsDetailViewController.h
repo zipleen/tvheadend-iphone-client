@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *record;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UILabel *channelTitle;
 
 - (IBAction)segmentedDidChange:(id)sender;
 - (IBAction)removeRecording:(id)sender;

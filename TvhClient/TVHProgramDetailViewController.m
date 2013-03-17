@@ -77,6 +77,7 @@
     hourFormatter.dateFormat = @"HH:mm";
     
     self.programTitle.text = self.epg.fullTitle;
+    self.channelTitle.text = self.epg.channel;
     [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     self.properties = [self propertiesDict];
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
@@ -120,6 +121,7 @@
     self.help = nil;
     self.properties = nil;
     self.propertiesKeys = nil;
+    [self setChannelTitle:nil];
     [super viewDidUnload];
 }
 
