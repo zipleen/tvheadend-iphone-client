@@ -10,4 +10,5 @@
 
 @interface NSString (NSStringWithFileSize)
 + (NSString *)stringFromFileSize:(unsigned long long)theSize;
++ (NSString *)stringFromFileSizeInBits:(unsigned long long)theSize;
 @end

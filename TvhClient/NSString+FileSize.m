@@ -40,4 +40,8 @@
     return([NSString stringWithFormat:@"%1.1f TB",floatSize]);
 }
 
++ (NSString *)stringFromFileSizeInBits:(unsigned long long)theSize {
+    return [NSString stringFromFileSize: theSize*8];
+}
+
 @end
