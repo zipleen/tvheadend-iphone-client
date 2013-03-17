@@ -25,6 +25,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TVHRecordingsDetailViewController.h"
+#import "NSString+FileSize.h"
 
 #define SEGMENT_UPCOMING_REC 0
 #define SEGMENT_COMPLETED_REC 1
@@ -131,7 +132,7 @@
         TVHAutoRecItem *autoRecItem = [self.autoRecStore objectAtIndex:indexPath.row];
         titleLabel.text = autoRecItem.title;
         dateLabel.text = autoRecItem.channel;
-        statusLabel.text = autoRecItem.weekdays;
+        statusLabel.text = [NSString stringOfWeekdaysLocalizedFromArray:[autoRecItem.weekdays componentsSeparatedByString:@","] joinedByString:@","];
         [channelImage setImage:[UIImage imageNamed:@"tv2.png"]];
 
     } else {
@@ -244,4 +245,5 @@
 - (void)didErrorDvrAutoStore:(NSError *)error {
     [self didErrorDvrStore:error];
 }
+
 @end
