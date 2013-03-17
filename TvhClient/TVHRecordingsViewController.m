@@ -160,12 +160,7 @@
             [autoRecItem deleteAutoRec];
         } else {
             TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
-            if ( self.segmentedControl.selectedSegmentIndex == 0 ) {
-                [dvrItem cancelRecording];
-            }
-            if ( self.segmentedControl.selectedSegmentIndex == 1 || self.segmentedControl.selectedSegmentIndex == 2 ) {
-                [dvrItem deleteRecording];
-            }
+            [dvrItem deleteRecording];
         }
 
         // because our recordings aren't really deleted right away, we won't have cute animations because we want confirmation that the recording was in fact removed

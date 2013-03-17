@@ -59,12 +59,12 @@
     
 }
 
-- (void)cancelRecording {
-    [TVHDvrActions cancelRecording:self.id];
-}
-
 - (void)deleteRecording {
-    [TVHDvrActions deleteRecording:self.id];
+    if ( [self.schedstate isEqualToString:@"scheduled"] ) {
+        [TVHDvrActions cancelRecording:self.id];
+    } else {
+        [TVHDvrActions deleteRecording:self.id];
+    }
 }
 
 - (TVHChannel*)channelObject {

@@ -31,7 +31,6 @@
 - (NSString*)fullTitle;
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
-- (void)cancelRecording;
 - (void)deleteRecording;
 - (TVHChannel*)channelObject;
 - (NSString*)streamURL;
