@@ -10,13 +10,13 @@
 
 @implementation TVHAdapter
 
-- (void) updateValuesFromDictionary:(NSDictionary*) values {
+- (void)updateValuesFromDictionary:(NSDictionary*) values {
     [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self setValue:obj forKey:key];
     }];
 }
 
--(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString*)key {
     
 }
 

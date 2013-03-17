@@ -22,6 +22,6 @@
 @property (nonatomic, strong) NSString *tag;
 @property (nonatomic, strong) NSString *weekdays; // mon 1, sun 7
 
--(void)updateValuesFromDictionary:(NSDictionary*) values;
--(void)deleteAutoRec;
+- (void)updateValuesFromDictionary:(NSDictionary*) values;
+- (void)deleteAutoRec;
 @end

@@ -30,7 +30,7 @@
     return __sharedInstance;
 }
 
-- (id) init {
+- (id)init {
     self = [super init];
     if (!self) return nil;
     
@@ -38,6 +38,10 @@
     return self;
 }
 
+- (void)dealloc {
+    self.boxid = nil;
+    self.timer = nil;
+}
 
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;

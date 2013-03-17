@@ -30,11 +30,16 @@
     return __sharedInstance;
 }
 
-- (TVHEpgStore*) epgStore {
+- (TVHEpgStore*)epgStore {
     if(!_epgStore){
         _epgStore = [TVHEpgStore sharedInstance];
     }
     return _epgStore;
+}
+
+- (void)dealloc {
+    self.channels = nil;
+    self.lastFetchedData = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -111,7 +116,7 @@
     }
 }
 
-- (TVHChannel*) getChannelById:(NSInteger)channelId {
+- (TVHChannel*)getChannelById:(NSInteger)channelId {
     NSEnumerator *e = [self.channels objectEnumerator];
     TVHChannel *channel;
     while (channel = [e nextObject]) {
@@ -124,7 +129,7 @@
 
 #pragma mark EPG delegatee stuff
 
-- (void) didLoadEpg:(TVHEpgStore*)epgStore {
+- (void)didLoadEpg:(TVHEpgStore*)epgStore {
     // for each epg
     NSArray *list = [epgStore getEpgList];
     NSEnumerator *e = [list objectEnumerator];
@@ -136,7 +141,7 @@
     [self.delegate didLoadChannels];
 }
 
--(void) didErrorLoadingEpgStore:(NSError*)error {
+- (void)didErrorLoadingEpgStore:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
         [self.delegate didErrorLoadingChannelStore:error];
     }
@@ -144,7 +149,7 @@
 
 #pragma mark Controller delegate stuff
 
-- (NSArray*) getFilteredChannelList {
+- (NSArray*)getFilteredChannelList {
     NSMutableArray *filteredChannels = [[NSMutableArray alloc] init];
     
     NSEnumerator *e = [self.channels objectEnumerator];
@@ -157,7 +162,7 @@
     return [filteredChannels copy];
 }
 
-- (TVHChannel*) objectAtIndex:(int) row {
+- (TVHChannel*)objectAtIndex:(int) row {
     if(self.filterTag == 0) {
         return [self.channels objectAtIndex:row];
     } else {
@@ -180,7 +185,7 @@
     return nil;
 }
 
-- (TVHChannel*) channelWithId:(NSInteger) channelId {
+- (TVHChannel*)channelWithId:(NSInteger) channelId {
     NSEnumerator *e = [self.channels objectEnumerator];
     TVHChannel *channel;
     while (channel = [e nextObject]) {
@@ -191,7 +196,7 @@
     return nil;
 }
 
-- (int) count {
+- (int)count {
     if(self.filterTag == 0) {
         return [self.channels count];
     } else {

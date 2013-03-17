@@ -10,11 +10,16 @@
 
 @implementation TVHChannelEpg
 
-- (NSMutableArray*) programs {
+- (NSMutableArray*)programs {
     if (!_programs) {
         _programs = [[NSMutableArray alloc] init];
     }
     return _programs;
+}
+
+- (void)dealloc {
+    self.programs = nil;
+    self.date = nil;
 }
 
 @end

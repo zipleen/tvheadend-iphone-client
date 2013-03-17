@@ -34,5 +34,5 @@
 @property NSInteger uncavg;
 @property NSInteger bw;
 
-- (void) updateValuesFromDictionary:(NSDictionary*) values;
+- (void)updateValuesFromDictionary:(NSDictionary*) values;
 @end

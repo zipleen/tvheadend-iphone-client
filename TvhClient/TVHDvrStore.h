@@ -24,6 +24,6 @@
 - (void)setDelegate:(id <TVHDvrStoreDelegate>)delegate;
 - (void)fetchDvr;
 
-- (TVHDvrItem *) objectAtIndex:(int)row forType:(NSInteger)type;
-- (int) count:(NSInteger)type;
+- (TVHDvrItem *)objectAtIndex:(int)row forType:(NSInteger)type;
+- (int)count:(NSInteger)type;
 @end

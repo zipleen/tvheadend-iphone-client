@@ -12,6 +12,19 @@
 
 @implementation TVHEpg
 
+- (void)dealloc {
+    self.channel = nil;
+    self.chicon = nil;
+    self.title = nil;
+    self.subtitle = nil;
+    self.episode = nil;
+    self.start = nil;
+    self.end = nil;
+    self.schedstate = nil;
+    self.serieslink = nil;
+    self.contenttype = nil;
+}
+
 - (NSString*)fullTitle {
     /*
     NSString *subtitle = self.subtitle;
@@ -45,7 +58,7 @@
     }];
 }
 
--(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString*)key {
     
 }
 

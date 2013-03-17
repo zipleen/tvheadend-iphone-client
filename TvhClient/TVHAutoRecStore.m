@@ -36,11 +36,11 @@
     return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void) receiveDvrdbNotification:(NSNotification *) notification {
+- (void)receiveDvrdbNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"dvrdbNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         if ( [[message objectForKey:@"reload"] intValue] == 1 ) {
@@ -96,14 +96,14 @@
     
 }
 
-- (TVHAutoRecItem *) objectAtIndex:(int)row {
+- (TVHAutoRecItem *)objectAtIndex:(int)row {
     if ( row < [self.dvrAutoRecItems count] ) {
         return [self.dvrAutoRecItems objectAtIndex:row];
     }
     return nil;
 }
 
-- (int) count {
+- (int)count {
     if ( self.dvrAutoRecItems ) {
         return [self.dvrAutoRecItems count];
     }

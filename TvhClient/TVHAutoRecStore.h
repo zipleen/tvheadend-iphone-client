@@ -10,9 +10,9 @@
 #import "TVHAutoRecItem.h"
 
 @protocol TVHAutoRecStoreDelegate <NSObject>
--(void) didLoadDvrAutoRec;
+- (void)didLoadDvrAutoRec;
 @optional
--(void) didErrorDvrAutoStore:(NSError*)error;
+- (void)didErrorDvrAutoStore:(NSError*)error;
 @end
 
 @interface TVHAutoRecStore : NSObject
@@ -20,6 +20,6 @@
 - (void)setDelegate:(id <TVHAutoRecStoreDelegate>)delegate;
 - (void)fetchDvrAutoRec;
 
-- (TVHAutoRecItem *) objectAtIndex:(int)row;
-- (int) count;
+- (TVHAutoRecItem *)objectAtIndex:(int)row;
+- (int)count;
 @end

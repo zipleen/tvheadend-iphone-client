@@ -29,6 +29,10 @@
     return __sharedInstance;
 }
 
+- (void)dealloc {
+    self.epgStore = nil;
+}
+
 - (void)fetchedData:(NSData *)responseData {
     
     NSError* error;

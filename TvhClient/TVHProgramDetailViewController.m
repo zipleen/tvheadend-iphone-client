@@ -242,7 +242,7 @@
     [self.tableView reloadData];
 }
 
-- (void) didLoadEpg:(TVHEpgStore*)epgStore {
+- (void)didLoadEpg:(TVHEpgStore*)epgStore {
     // this search will turn out to have our *current* listening program. we should delete that
     NSMutableArray *items = [[epgStore getEpgList] mutableCopy];
     [items removeObject:self.epg];

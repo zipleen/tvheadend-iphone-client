@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSString *state;
 @property (strong, nonatomic) NSString *title;
 @property NSInteger bw;
-- (void) updateValuesFromDictionary:(NSDictionary*) values;
+
+- (void)updateValuesFromDictionary:(NSDictionary*) values;
 @end

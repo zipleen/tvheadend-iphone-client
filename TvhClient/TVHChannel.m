@@ -20,44 +20,54 @@
 
 @implementation TVHChannel
 
--(NSMutableArray*) channelEpgDataByDay{
+- (void)dealloc {
+    self.name = nil;
+    self.detail = nil;
+    self.imageUrl = nil;
+    self.image = nil;
+    self.tags = nil;
+    self.channelEpgDataByDay = nil;
+    dateFormatter = nil;
+}
+
+- (NSMutableArray*)channelEpgDataByDay{
     if(!_channelEpgDataByDay) {
         _channelEpgDataByDay = [[NSMutableArray alloc] init];
     }
     return _channelEpgDataByDay;
 }
 
--(void)setImageUrl:(NSString *)imageUrl {
+- (void)setImageUrl:(NSString *)imageUrl {
     _imageUrl = imageUrl;
     self.image = nil;
     //self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
 }
 
 // notice that setTags has (id) instead of NSArray*, which means we can test for a NSString and convert it !
--(void)setTags:(id)tags {
+- (void)setTags:(id)tags {
     if([tags isKindOfClass:[NSString class]]) {
         _tags = [tags componentsSeparatedByString:@","];
     }
 }
 
--(void)setCh_icon:(NSString*)icon {
+- (void)setCh_icon:(NSString*)icon {
     [self setImageUrl:icon];
 }
 
--(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString*)key {
     
 }
 
--(bool)hasTag:(NSInteger)tag {
+- (bool)hasTag:(NSInteger)tag {
     return [self.tags containsObject:[NSString stringWithFormat:@"%d",tag]];
 }
 
--(NSString*)streamURL {
+- (NSString*)streamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
     return [NSString stringWithFormat:@"%@/stream/channelid/%d", tvh.baseURL, self.chid];
 }
 
--(TVHChannelEpg*) getChannelEpgDataByDayString:(NSString*)dateString {
+- (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date == %@", dateString];
     NSArray *filteredArray = [self.channelEpgDataByDay filteredArrayUsingPredicate:predicate];
     if ([filteredArray count] > 0) {
@@ -70,7 +80,7 @@
     }
 }
 
--(void) addEpg:(TVHEpg*)epg {
+- (void)addEpg:(TVHEpg*)epg {
     if(!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"MM/dd/yy";
@@ -90,7 +100,7 @@
     }
 }
 
--(TVHEpg*) currentPlayingProgram {
+- (TVHEpg*)currentPlayingProgram {
     if ([self.channelEpgDataByDay count]==0) {
 #ifdef TESTING
         NSLog(@"No EPG for %@", self.name);
@@ -112,7 +122,7 @@
     self.channelEpgDataByDay = nil;
 }
 
-- (NSInteger) countEpg {
+- (NSInteger)countEpg {
     NSInteger count = 0;
     TVHChannelEpg *epg;
     NSEnumerator *e = [self.channelEpgDataByDay objectEnumerator];
@@ -122,7 +132,7 @@
     return count;
 }
 
--(void) downloadRestOfEpg {
+- (void)downloadRestOfEpg {
     // spawn a new epgList so we can set a filter to the channel
     TVHEpgStore *epgList = [[TVHEpgStore alloc] init];
     [epgList setDelegate:self];
@@ -133,7 +143,7 @@
 
 #pragma Table Call Methods
 
--(NSArray*) programsForDay:(NSInteger)day {
+- (NSArray*)programsForDay:(NSInteger)day {
     if ( [self.channelEpgDataByDay count] == 0 ) {
         return nil;
     }
@@ -142,7 +152,7 @@
     //NSArray *ordered = [self.channelEpgDataByDay sortedArrayUsingSelector:@selector(compareByTime:)];
 }
 
--(TVHEpg*) programDetailForDay:(NSInteger)day index:(NSInteger)program {
+- (TVHEpg*)programDetailForDay:(NSInteger)day index:(NSInteger)program {
     if ( day < [self.channelEpgDataByDay count] ) {
         if ( program < [[[self.channelEpgDataByDay objectAtIndex:day] programs] count] ){
             return [[[self.channelEpgDataByDay objectAtIndex:day] programs] objectAtIndex:program];
@@ -151,22 +161,22 @@
     return nil;
 }
 
--(NSInteger) totalCountOfDaysEpg {
+- (NSInteger)totalCountOfDaysEpg {
     return [self.channelEpgDataByDay count];
 }
 
--(NSDate*) dateForDay:(NSInteger)day {
+- (NSDate*)dateForDay:(NSInteger)day {
     TVHChannelEpg *epg = [self.channelEpgDataByDay objectAtIndex:day];
     TVHEpg *realEpg = [[epg programs] objectAtIndex:0];
     return [realEpg start];
 }
 
--(NSInteger) numberOfProgramsInDay:(NSInteger)section{
+- (NSInteger)numberOfProgramsInDay:(NSInteger)section{
     return [[[self.channelEpgDataByDay objectAtIndex:section] programs] count];
 }
 
 #pragma delegate stuff
-- (void) didLoadEpg:(TVHEpgStore*)epgList {
+- (void)didLoadEpg:(TVHEpgStore*)epgList {
     NSArray *list = [epgList getEpgList];
     NSEnumerator *e = [list objectEnumerator];
     TVHEpg *epg;
@@ -176,7 +186,7 @@
     [self.delegate didLoadEpgChannel];
 }
 
--(void) didErrorLoadingEpgStore:(NSError*)error {
+- (void)didErrorLoadingEpgStore:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgChannel:)]) {
         [self.delegate didErrorLoadingEpgChannel:error];
     }

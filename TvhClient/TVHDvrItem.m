@@ -13,6 +13,21 @@
 
 @implementation TVHDvrItem
 
+- (void)dealloc {
+    self.channel = nil;
+    self.chicon = nil;
+    self.config_name = nil;
+    self.description = nil;
+    self.start = nil;
+    self.end = nil;
+    self.creator = nil;
+    self.pri = nil;
+    self.status = nil;
+    self.schedstate = nil;
+    self.url = nil;
+    self.episode = nil;
+}
+
 - (NSString*)fullTitle {
     NSString *episode = self.episode;
     if ( episode == nil ) {
@@ -22,25 +37,25 @@
     return [NSString stringWithFormat:@"%@ %@", self.title, episode];
 }
 
--(void)setStart:(id)startDate {
+- (void)setStart:(id)startDate {
     if( ! [startDate isKindOfClass:[NSString class]] ) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];
     }
 }
 
--(void)setEnd:(id)endDate {
+- (void)setEnd:(id)endDate {
     if( ! [endDate isKindOfClass:[NSString class]] ) {
         _end = [NSDate dateWithTimeIntervalSince1970:[endDate intValue]];
     }
 }
 
-- (void) updateValuesFromDictionary:(NSDictionary*) values {
+- (void)updateValuesFromDictionary:(NSDictionary*) values {
     [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self setValue:obj forKey:key];
     }];
 }
 
--(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString*)key {
     
 }
 

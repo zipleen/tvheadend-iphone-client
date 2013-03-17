@@ -12,7 +12,7 @@
 @interface TVHDvrStore()
 @property (nonatomic, strong) NSArray *dvrItems;
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
-@property (nonatomic, strong) NSArray *cachedDvrItems; // because the table delegate will ask for the items in this array only
+@property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
 @property (nonatomic) NSInteger cachedType;
 @end
 
@@ -40,11 +40,13 @@
     return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.dvrItems = nil;
+    self.cachedDvrItems = nil;
 }
 
-- (void) receiveDvrdbNotification:(NSNotification *) notification {
+- (void)receiveDvrdbNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"dvrdbNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         if ( [[message objectForKey:@"reload"] intValue] == 1 ) {
@@ -112,7 +114,7 @@
     [self fetchDvrItemsFromServer:@"/dvrlist_failed" withType:RECORDING_FAILED];
 }
 
-- (NSArray*) dvrItemsForType:(NSInteger)type {
+- (NSArray*)dvrItemsForType:(NSInteger)type {
     NSMutableArray *itemsForType = [[NSMutableArray alloc] init];
     
     [self.dvrItems enumerateObjectsUsingBlock:^(TVHDvrItem* obj, NSUInteger idx, BOOL *stop) {
@@ -132,7 +134,7 @@
     }
 }
 
-- (TVHDvrItem *) objectAtIndex:(int)row forType:(NSInteger)type{
+- (TVHDvrItem *)objectAtIndex:(int)row forType:(NSInteger)type{
     [self checkCachedDvrItemsForType:type];
     
     if ( row < [self.cachedDvrItems count] ) {
@@ -141,7 +143,7 @@
     return nil;
 }
 
-- (int) count:(NSInteger)type {
+- (int)count:(NSInteger)type {
     [self checkCachedDvrItemsForType:type];
     
     if ( self.cachedDvrItems ) {

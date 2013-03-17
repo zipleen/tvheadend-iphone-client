@@ -20,7 +20,7 @@
 @synthesize baseURL = _baseURL;
 @synthesize ip = _ip;
 
-- (NSString*) ip {
+- (NSString*)ip {
     if(!_ip) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _ip = [defaults objectForKey:IP_KEY];
@@ -28,7 +28,7 @@
     return _ip;
 }
 
-- (NSURL*) baseURL {
+- (NSURL*)baseURL {
     if( !_baseURL) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
@@ -45,18 +45,18 @@
     return _baseURL;
 }
 
-- (NSString*) username {
+- (NSString*)username {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults objectForKey:USERNAME_KEY];
 }
 
 // FIX: Password in cleartext!!! NEEDS TO USE KEYCHAIN!!!!!
-- (NSString*) password {
+- (NSString*)password {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults objectForKey:PASSWORD_KEY];
 }
 
-- (void) resetSettings {
+- (void)resetSettings {
     _ip = nil;
     _baseURL = nil;
 }

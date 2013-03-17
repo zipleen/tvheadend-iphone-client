@@ -10,7 +10,13 @@
 
 @implementation TVHTag
 
--(id) initWithAllChannels {
+- (void)dealloc {
+    self.name = nil;
+    self.comment = nil;
+    self.icon = nil;
+}
+
+- (id)initWithAllChannels {
     self = [super init];
     if (self) {
         self.id = 0;
@@ -20,7 +26,7 @@
     return self;
 }
 
-- (void) updateValuesFromDictionary:(NSDictionary*) values {
+- (void)updateValuesFromDictionary:(NSDictionary*) values {
     [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self setValue:obj forKey:key];
     }];

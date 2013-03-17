@@ -11,8 +11,8 @@
 
 @protocol TVHTagStoreDelegate <NSObject>
 
--(void) didLoadTags;
--(void) didErrorLoadingTagStore:(NSError*)error;
+- (void)didLoadTags;
+- (void)didErrorLoadingTagStore:(NSError*)error;
 @end
 
 @interface TVHTagStore : NSObject
@@ -20,7 +20,7 @@
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate;
 
 - (void)fetchTagList;
-- (void) resetTagStore;
-- (TVHTag *) objectAtIndex:(int) row;
-- (int) count;
+- (void)resetTagStore;
+- (TVHTag *)objectAtIndex:(int) row;
+- (int)count;
 @end

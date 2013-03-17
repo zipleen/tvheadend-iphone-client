@@ -14,6 +14,6 @@
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) NSString *icon;
 
--(id)initWithAllChannels;
--(void)updateValuesFromDictionary:(NSDictionary*) values;
+- (id)initWithAllChannels;
+- (void)updateValuesFromDictionary:(NSDictionary*) values;
 @end

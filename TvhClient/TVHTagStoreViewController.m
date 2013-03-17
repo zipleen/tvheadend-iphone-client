@@ -47,6 +47,11 @@
     //self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
 }
 
+- (void)viewDidUnload {
+    self.tagList = nil;
+    [super viewDidUnload];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

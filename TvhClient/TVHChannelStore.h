@@ -17,7 +17,6 @@
 @end
 
 @interface TVHChannelStore : NSObject <TVHEpgStoreDelegate>
-
 @property (nonatomic) NSInteger filterTag;
 + (id)sharedInstance;
 - (void)fetchChannelList;
@@ -28,5 +27,5 @@
 - (void)setDelegate:(id <TVHChannelStoreDelegate>)delegate;
 - (TVHChannel*)channelWithName:(NSString*) name;
 - (TVHChannel*)channelWithId:(NSInteger) channelId;
-- (NSArray*) getFilteredChannelList;
+- (NSArray*)getFilteredChannelList;
 @end

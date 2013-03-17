@@ -29,21 +29,21 @@
     NSDateFormatter *dateFormatter;
 }
 
-- (TVHDvrStore*) dvrStore {
+- (TVHDvrStore*)dvrStore {
     if ( _dvrStore == nil) {
         _dvrStore = [TVHDvrStore sharedInstance];
     }
     return _dvrStore;
 }
 
-- (TVHAutoRecStore*) autoRecStore {
+- (TVHAutoRecStore*)autoRecStore {
     if ( _autoRecStore == nil) {
         _autoRecStore = [TVHAutoRecStore sharedInstance];
     }
     return _autoRecStore;
 }
 
-- (void) receiveDvrNotification:(NSNotification *) notification {
+- (void)receiveDvrNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"didSuccessDvrAction"] ) {
         if ( [notification.object isEqualToString:@"deleteEntry"]) {
             WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Recording", nil)];

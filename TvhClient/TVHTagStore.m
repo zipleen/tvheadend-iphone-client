@@ -29,6 +29,11 @@
     return __sharedInstance;
 }
 
+- (void)dealloc {
+    self.tags = nil;
+    self.lastFetchedData = nil;
+}
+
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
@@ -104,18 +109,18 @@
     }
 }
 
-- (void) resetTagStore {
+- (void)resetTagStore {
     self.tags = nil;
 }
 
-- (TVHTagStore *) objectAtIndex:(int) row {
+- (TVHTagStore *)objectAtIndex:(int) row {
     if ( row < [self.tags count] ) {
         return [self.tags objectAtIndex:row];
     }
     return nil;
 }
 
-- (int) count {
+- (int)count {
     return [self.tags count];
 }
 

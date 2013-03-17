@@ -65,7 +65,7 @@
 
 #pragma JsonHelper
 
-+(NSDictionary*) convertFromJsonToObjectFixUtf8:(NSData*)responseData error:(NSError*)error {
++ (NSDictionary*)convertFromJsonToObjectFixUtf8:(NSData*)responseData error:(NSError*)error {
     
     NSMutableData *FileData = [NSMutableData dataWithLength:[responseData length]];
     for (int i = 0; i < [responseData length]; ++i)
@@ -90,7 +90,7 @@
     return json;
 }
 
-+(NSDictionary*) convertFromJsonToObject:(NSData*)responseData error:(NSError*)error {
++ (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(NSError*)error {
     NSError *errorForThisMethod;
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData
                                                          options:kNilOptions

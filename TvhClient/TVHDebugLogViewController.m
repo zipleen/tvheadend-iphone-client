@@ -92,7 +92,8 @@
 
 - (void)viewDidUnload {
     [self setDebugButton:nil];
-    [self setDebugButton:nil];
+    self.logStore = nil;
+    self.cometPoll = nil;
     [super viewDidUnload];
 }
 

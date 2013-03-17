@@ -10,7 +10,16 @@
 
 @implementation TVHStatusSubscription
 
--(void)setStart:(id)startDate {
+- (void)dealloc {
+    self.channel = nil;
+    self.hostname = nil;
+    self.service = nil;
+    self.start = nil;
+    self.state = nil;
+    self.title = nil;
+}
+
+- (void)setStart:(id)startDate {
     if([startDate isKindOfClass:[NSNumber class]]) {
         _start = [NSDate dateWithTimeIntervalSince1970:[startDate intValue]];
     }
@@ -22,7 +31,7 @@
     }];
 }
 
--(void)setValue:(id)value forUndefinedKey:(NSString*)key {
+- (void)setValue:(id)value forUndefinedKey:(NSString*)key {
     
 }
 

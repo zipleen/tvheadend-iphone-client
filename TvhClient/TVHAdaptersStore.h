@@ -10,8 +10,8 @@
 #import "TVHAdapter.h"
 
 @protocol TVHAdaptersDelegate <NSObject>
--(void) didLoadAdapters;
--(void) didErrorAdaptersStore:(NSError*)error;
+- (void)didLoadAdapters;
+- (void)didErrorAdaptersStore:(NSError*)error;
 @end
 
 @interface TVHAdaptersStore : NSObject
@@ -19,6 +19,6 @@
 - (void)setDelegate:(id <TVHAdaptersDelegate>)delegate;
 - (void)fetchAdapters;
 
-- (TVHAdapter *) objectAtIndex:(int) row;
-- (int) count;
+- (TVHAdapter *)objectAtIndex:(int) row;
+- (int)count;
 @end

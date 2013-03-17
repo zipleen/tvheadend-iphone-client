@@ -15,7 +15,7 @@
 @end
 
 @implementation TVHAdaptersStore
-- (id) init {
+- (id)init {
     self = [super init];
     if (!self) return nil;
     
@@ -27,14 +27,11 @@
     return self;
 }
 
-- (void) dealloc {
-    // If you don't remove yourself as an observer, the Notification Center
-    // will continue to try and send notification objects to the deallocated
-    // object.
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void) receiveSubscriptionNotification:(NSNotification *) notification {
+- (void)receiveSubscriptionNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"tvAdapterNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         

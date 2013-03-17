@@ -10,8 +10,8 @@
 #import "TVHStatusSubscription.h"
 
 @protocol TVHStatusSubscriptionsDelegate <NSObject>
--(void) didLoadStatusSubscriptions;
--(void) didErrorStatusSubscriptionsStore:(NSError*)error;
+- (void)didLoadStatusSubscriptions;
+- (void)didErrorStatusSubscriptionsStore:(NSError*)error;
 @end
 
 @interface TVHStatusSubscriptionsStore : NSObject
@@ -21,5 +21,5 @@
 - (void)fetchStatusSubscriptions;
 
 - (TVHStatusSubscription *) objectAtIndex:(int) row;
-- (int) count;
+- (int)count;
 @end

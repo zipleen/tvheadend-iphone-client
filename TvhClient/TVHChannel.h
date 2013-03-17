@@ -14,9 +14,9 @@
 @class TVHEpgStore;
 
 @protocol TVHChannelDelegate <NSObject>
-- (void) didLoadEpgChannel;
+- (void)didLoadEpgChannel;
 @optional
--(void) didErrorLoadingEpgChannel:(NSError*)error;
+- (void)didErrorLoadingEpgChannel:(NSError*)error;
 @end
 
 @interface TVHChannel : NSObject <TVHPlayStreamDelegate>
@@ -29,10 +29,10 @@
 @property (nonatomic, strong) NSArray *tags;
 
 - (void)setCh_icon:(NSString*)icon;
-- (bool) hasTag:(NSInteger)tag;
-- (NSString*) streamURL;
-- (void) addEpg:(TVHEpg*)epg;
-- (TVHEpg*) currentPlayingProgram;
+- (bool)hasTag:(NSInteger)tag;
+- (NSString*)streamURL;
+- (void)addEpg:(TVHEpg*)epg;
+- (TVHEpg*)currentPlayingProgram;
 
 - (void)downloadRestOfEpg;
 - (void)resetChannelEpgStore;

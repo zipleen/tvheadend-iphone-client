@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface TVHTableMgrActions : NSObject
-+(void)doTableMgrAction:(NSString*)action inTable:(NSString*)table withEntries:(id)entries;
++ (void)doTableMgrAction:(NSString*)action inTable:(NSString*)table withEntries:(id)entries;
 @end

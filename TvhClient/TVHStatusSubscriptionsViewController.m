@@ -48,6 +48,14 @@
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
 }
 
+- (void)viewDidUnload {
+    self.adapterStore = nil;
+    self.cometPoll = nil;
+    self.statusSubscriptionsStore = nil;
+    [self setSwitchPolling:nil];
+    [super viewDidUnload];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [self.adapterStore fetchAdapters];
     [self.statusSubscriptionsStore fetchStatusSubscriptions];
@@ -173,8 +181,5 @@
         [self.cometPoll stopRefreshingCometPoll];
     }
 }
-- (void)viewDidUnload {
-    [self setSwitchPolling:nil];
-    [super viewDidUnload];
-}
+
 @end

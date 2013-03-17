@@ -63,6 +63,11 @@
     dateFormatter.dateFormat = @"HH:mm";
 }
 
+- (void)viewDidUnload {
+    self.channelList = nil;
+    [super viewDidUnload];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
