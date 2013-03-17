@@ -116,11 +116,6 @@
 		AABD859316D9BA4300C8245C /* nav-button.png in Resources */ = {isa = PBXBuildFile; fileRef = AABD859116D9BA4300C8245C /* nav-button.png */; };
 		AABE682716EBAE84003E8F92 /* TVHLogStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AABE682616EBAE84003E8F92 /* TVHLogStore.m */; };
 		AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABE682916EBB0FE003E8F92 /* TVHDebugLogViewController.m */; };
-		AACA611E16CFDB10002C6DE1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */; };
-		AACA612016CFDB18002C6DE1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA611F16CFDB18002C6DE1 /* Accelerate.framework */; };
-		AACA612216CFDB1E002C6DE1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */; };
-		AACA612416CFDB28002C6DE1 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612316CFDB28002C6DE1 /* CoreAudio.framework */; };
-		AACA612616CFDB36002C6DE1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA612516CFDB36002C6DE1 /* AudioToolbox.framework */; };
 		AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613716CFDBE8002C6DE1 /* libz.dylib */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
@@ -347,18 +342,7 @@
 		AABE682616EBAE84003E8F92 /* TVHLogStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHLogStore.m; sourceTree = "<group>"; };
 		AABE682816EBB0FE003E8F92 /* TVHDebugLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDebugLogViewController.h; sourceTree = "<group>"; };
 		AABE682916EBB0FE003E8F92 /* TVHDebugLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDebugLogViewController.m; sourceTree = "<group>"; };
-		AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		AACA611F16CFDB18002C6DE1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		AACA612316CFDB28002C6DE1 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		AACA612516CFDB36002C6DE1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AACA613716CFDBE8002C6DE1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		AACA613916CFDC2B002C6DE1 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = kxmovie/output/libavcodec.a; sourceTree = "<group>"; };
-		AACA613A16CFDC2B002C6DE1 /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavformat.a; path = kxmovie/output/libavformat.a; sourceTree = "<group>"; };
-		AACA613B16CFDC2B002C6DE1 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = kxmovie/output/libavutil.a; sourceTree = "<group>"; };
-		AACA613C16CFDC2B002C6DE1 /* libkxmovie.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkxmovie.a; path = kxmovie/output/libkxmovie.a; sourceTree = "<group>"; };
-		AACA613D16CFDC2B002C6DE1 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = kxmovie/output/libswresample.a; sourceTree = "<group>"; };
-		AACA613E16CFDC2B002C6DE1 /* libswscale.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswscale.a; path = kxmovie/output/libswscale.a; sourceTree = "<group>"; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
 		AACE488F16CC6F1800FE928B /* tv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv2@2x.png"; sourceTree = "<group>"; };
 		AAE5273316F28AD0002047E4 /* TVHAutoRecStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecStore.h; sourceTree = "<group>"; };
@@ -406,11 +390,6 @@
 				AA8DED3116DEE2EC00AF6A51 /* libSDWebImage+MKAnnotation.a in Frameworks */,
 				AA8DED2416DEDFB300AF6A51 /* ImageIO.framework in Frameworks */,
 				AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */,
-				AACA612616CFDB36002C6DE1 /* AudioToolbox.framework in Frameworks */,
-				AACA612416CFDB28002C6DE1 /* CoreAudio.framework in Frameworks */,
-				AACA612216CFDB1E002C6DE1 /* MediaPlayer.framework in Frameworks */,
-				AACA612016CFDB18002C6DE1 /* Accelerate.framework in Frameworks */,
-				AACA611E16CFDB10002C6DE1 /* OpenGLES.framework in Frameworks */,
 				AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */,
 				AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */,
 				AA91023316C6B6F800673DF5 /* MobileCoreServices.framework in Frameworks */,
@@ -797,8 +776,8 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AACA613716CFDBE8002C6DE1 /* libz.dylib */,
 				AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */,
-				AACA614B16CFDE03002C6DE1 /* kxmovie frameworks */,
 				AA43D46F16CEFC5400104BBF /* QuartzCore.framework */,
 				AA91023416C6B72500673DF5 /* SystemConfiguration.framework */,
 				AA91023216C6B6F800673DF5 /* MobileCoreServices.framework */,
@@ -868,25 +847,6 @@
 				AABE682616EBAE84003E8F92 /* TVHLogStore.m */,
 			);
 			name = Logs;
-			sourceTree = "<group>";
-		};
-		AACA614B16CFDE03002C6DE1 /* kxmovie frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AACA613916CFDC2B002C6DE1 /* libavcodec.a */,
-				AACA613A16CFDC2B002C6DE1 /* libavformat.a */,
-				AACA613B16CFDC2B002C6DE1 /* libavutil.a */,
-				AACA613C16CFDC2B002C6DE1 /* libkxmovie.a */,
-				AACA613D16CFDC2B002C6DE1 /* libswresample.a */,
-				AACA613E16CFDC2B002C6DE1 /* libswscale.a */,
-				AACA613716CFDBE8002C6DE1 /* libz.dylib */,
-				AACA612516CFDB36002C6DE1 /* AudioToolbox.framework */,
-				AACA612316CFDB28002C6DE1 /* CoreAudio.framework */,
-				AACA612116CFDB1E002C6DE1 /* MediaPlayer.framework */,
-				AACA611F16CFDB18002C6DE1 /* Accelerate.framework */,
-				AACA611D16CFDB10002C6DE1 /* OpenGLES.framework */,
-			);
-			name = "kxmovie frameworks";
 			sourceTree = "<group>";
 		};
 		AAE5272F16F28A9C002047E4 /* AutoRec */ = {
