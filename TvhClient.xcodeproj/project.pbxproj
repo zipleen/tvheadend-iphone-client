@@ -54,6 +54,7 @@
 		AA407E3E16D1CA6700451E6F /* TVHStatusSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E3D16D1CA6700451E6F /* TVHStatusSubscription.m */; };
 		AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */; };
 		AA42371216E01ADA00D469A0 /* TVHDvrActions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA42371116E01ADA00D469A0 /* TVHDvrActions.m */; };
+		AA424AF416F6797C00D20F12 /* TVHSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA424AF316F6797B00D20F12 /* TVHSettingsViewController.m */; };
 		AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43D46F16CEFC5400104BBF /* QuartzCore.framework */; };
 		AA43D48816CEFDB700104BBF /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA43D47216CEFDB700104BBF /* NoticeView.bundle */; };
 		AA43D48916CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D47416CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.m */; };
@@ -129,7 +130,7 @@
 		AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagStoreViewController.m */; };
 		AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2116C735710076DF17 /* TVHEpg.m */; };
 		AAF54A2516C735960076DF17 /* TVHEpgStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2416C735960076DF17 /* TVHEpgStore.m */; };
-		AAF54A5616C73A200076DF17 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAF54A5516C73A200076DF17 /* Settings.bundle */; };
+		AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */; };
 		AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -229,6 +230,8 @@
 		AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSubscriptionsViewController.m; sourceTree = "<group>"; };
 		AA42371016E01ADA00D469A0 /* TVHDvrActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrActions.h; sourceTree = "<group>"; };
 		AA42371116E01ADA00D469A0 /* TVHDvrActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrActions.m; sourceTree = "<group>"; };
+		AA424AF216F6797A00D20F12 /* TVHSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsViewController.h; sourceTree = "<group>"; };
+		AA424AF316F6797B00D20F12 /* TVHSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsViewController.m; sourceTree = "<group>"; };
 		AA43D46F16CEFC5400104BBF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA43D47216CEFDB700104BBF /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
 		AA43D47316CEFDB700104BBF /* NSOperationQueue+WBNoticeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOperationQueue+WBNoticeExtensions.h"; sourceTree = "<group>"; };
@@ -365,7 +368,8 @@
 		AAF54A2116C735710076DF17 /* TVHEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpg.m; sourceTree = "<group>"; };
 		AAF54A2316C735960076DF17 /* TVHEpgStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgStore.h; sourceTree = "<group>"; };
 		AAF54A2416C735960076DF17 /* TVHEpgStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgStore.m; sourceTree = "<group>"; };
-		AAF54A5516C73A200076DF17 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		AAFC2A0816FB34B500194DFF /* TVHSettingsServersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsServersViewController.h; sourceTree = "<group>"; };
+		AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsServersViewController.m; sourceTree = "<group>"; };
 		AAFCB6BF16C86EC800A64434 /* TVHProgramDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHProgramDetailViewController.h; sourceTree = "<group>"; };
 		AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHProgramDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -486,6 +490,17 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		AA424AF516F67CA900D20F12 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AA424AF216F6797A00D20F12 /* TVHSettingsViewController.h */,
+				AA424AF316F6797B00D20F12 /* TVHSettingsViewController.m */,
+				AAFC2A0816FB34B500194DFF /* TVHSettingsServersViewController.h */,
+				AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		AA43D47116CEFDB700104BBF /* WBNoticeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +587,7 @@
 		AA7C3FD016C709380057E4C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AA424AF516F67CA900D20F12 /* Settings */,
 				AA99BC5916ED537A0087060A /* EPG */,
 				AA8DC11616E140C800F93BD7 /* Channels */,
 				AA8DC11716E140D600F93BD7 /* Status */,
@@ -797,7 +813,6 @@
 				AA7C3FD016C709380057E4C4 /* Controller */,
 				AAB39A0216BDB21900973F88 /* TVHAppDelegate.h */,
 				AAB39A0316BDB21900973F88 /* TVHAppDelegate.m */,
-				AAF54A5516C73A200076DF17 /* Settings.bundle */,
 				AAB399FA16BDB21900973F88 /* Supporting Files */,
 			);
 			path = TvhClient;
@@ -897,6 +912,7 @@
 			buildPhases = (
 				AAB399EC16BDB21900973F88 /* Sources */,
 				AAB399ED16BDB21900973F88 /* Frameworks */,
+				AAFC2A0B16FBA52900194DFF /* ShellScript */,
 				AAB399EE16BDB21900973F88 /* Resources */,
 			);
 			buildRules = (
@@ -981,7 +997,6 @@
 				AAB399FE16BDB21900973F88 /* InfoPlist.strings in Resources */,
 				AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */,
 				AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */,
-				AAF54A5616C73A200076DF17 /* Settings.bundle in Resources */,
 				AA2AEB2416CB0839006B071C /* comp.png in Resources */,
 				AA2AEB2616CB0839006B071C /* rec.png in Resources */,
 				AA2AEB2716CB0839006B071C /* search.png in Resources */,
@@ -1035,6 +1050,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		AAFC2A0B16FBA52900194DFF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\n\n# This script automatically sets the version and short version string of\n# an Xcode project from the Git repository containing the project.\n#\n# To use this script in Xcode 4, add the contents to a \"Run Script\" build\n# phase for your application target.\n\nset -o errexit\nset -o nounset\n\nINFO_PLIST=\"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Info\"\n\n# Get git tag and hash in the FulLVersion\n#FULL_VERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}/\" describe --dirty | sed -e 's/^v//' -e 's/g//')\n\n# Use the latest tag for short version (You'll have to make sure that all your tags are of the format 0.0.0,\n# this is to satisfy Apple's rule that short version be three integers separated by dots)\n#SHORT_VERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}/\" describe --abbrev=0)\n\n# I'd like to use the Git commit hash for CFBundleVersion.\n# VERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" rev-parse --short HEAD)\n\n# But Apple wants this value to be a monotonically increasing integer, so\n# instead use the number of commits on the master branch. If you like to\n# play fast and loose with your Git history, this may cause you problems.\n# Thanks to @amrox for pointing out the issue and fix.\nVERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}/\" rev-list master | wc -l)\n\n#defaults write $INFO_PLIST CFBundleShortVersionString $SHORT_VERSION\ndefaults write $INFO_PLIST CFBundleVersion $VERSION\n#defaults write $INFO_PLIST FullVersion $KAHAF_VERSION";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1116,6 +1144,8 @@
 				AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */,
 				AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */,
 				AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */,
+				AA424AF416F6797C00D20F12 /* TVHSettingsViewController.m in Sources */,
+				AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

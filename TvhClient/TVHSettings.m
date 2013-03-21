@@ -19,34 +19,136 @@
 //
 
 #import "TVHSettings.h"
+#import "TVHJsonClient.h"
+#define TVHS_CACHING_TIME @"CachingTime"
 
 @interface TVHSettings()
 
 @end
 
 @implementation TVHSettings
-#define IP_KEY @"IP"
-#define PORT_KEY @"PORT"
-#define USERNAME_KEY @"USERNAME"
-#define PASSWORD_KEY @"PASSWORD"
 @synthesize baseURL = _baseURL;
-@synthesize ip = _ip;
+@synthesize username = _username;
+@synthesize password = _password;
+@synthesize selectedServer = _selectedServer;
+@synthesize cacheTime = _cacheTime;
 
-- (NSString*)ip {
-    if(!_ip) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        _ip = [defaults objectForKey:IP_KEY];
-    }
-    return _ip;
++ (id)sharedInstance {
+    static TVHSettings *__sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __sharedInstance = [[TVHSettings alloc] init];
+    });
+    
+    return __sharedInstance;
 }
 
-- (NSURL*)baseURL {
-    if( !_baseURL) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+#pragma MARK Servers
+
+- (NSArray*)availableServers {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *servers = [defaults objectForKey:TVHS_SERVERS];
+    if (servers == nil) {
+        servers = [[NSArray alloc] init];
+    }
+    return servers;
+}
+
+- (NSString*)serverProperty:(NSString*)key forServer:(NSInteger)serverId {
+    NSArray *servers = self.availableServers;
+    if ( serverId < [servers count] ) {
+        NSDictionary *myServer = [servers objectAtIndex:serverId];
+        return [myServer objectForKey:key];
+    }
+    return nil;
+}
+
+- (void)setServerProperty:(NSString*)property forServer:(NSInteger)serverId ForKey:(NSString*)key {
+    NSMutableArray *servers = [self.availableServers mutableCopy];
+    if ( serverId < [servers count] ) {
+        NSMutableDictionary *server = [[servers objectAtIndex:serverId] mutableCopy];
         
-        NSString *ip = [defaults objectForKey:IP_KEY];
-        NSString *port = [defaults objectForKey:PORT_KEY];
-        if(!port) {
+        // set property on server and replace it in servers array
+        [server setObject:property forKey:key];
+        [servers replaceObjectAtIndex:serverId withObject:server];
+        
+        // save all servers
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:servers forKey:TVHS_SERVERS];
+        [defaults synchronize];
+    }
+}
+
+- (NSString*)currentServerProperty:(NSString*)key {
+    return [self serverProperty:key forServer:self.selectedServer];
+}
+
+- (NSInteger)addNewServer {
+    NSMutableArray *servers = [self.availableServers mutableCopy];
+    NSDictionary *newServer = @{TVHS_SERVER_NAME:@"", TVHS_IP_KEY:@"", TVHS_PORT_KEY:@"", TVHS_USERNAME_KEY:@"", TVHS_PASSWORD_KEY:@""};
+    
+    [servers addObject:newServer];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[servers copy] forKey:TVHS_SERVERS];
+    [defaults synchronize];
+    
+    return [servers count] - 1;
+}
+
+- (NSInteger)selectedServer {
+    if ( !_selectedServer ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSInteger selectedServer = [defaults integerForKey:TVHS_SELECTED_SERVER];
+        if ( selectedServer < 0 || selectedServer >= [self.availableServers count]  ) {
+            return NSNotFound;
+        }
+        _selectedServer = selectedServer;
+    }
+    return _selectedServer;
+}
+
+- (void)setSelectedServer:(NSInteger)serverId {
+    if ( serverId >= 0 && serverId < [self.availableServers count] ) {
+        _selectedServer = serverId;
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:serverId forKey:TVHS_SELECTED_SERVER];
+        [defaults synchronize];
+        
+        [self resetSettings];
+    }
+}
+
+- (void)removeServer:(NSInteger)serverId {
+    NSMutableArray *servers = [self.availableServers mutableCopy];
+    [servers removeObjectAtIndex:serverId];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[servers copy] forKey:TVHS_SERVERS];
+    [defaults synchronize];
+    
+    if ( [self.availableServers count] > 0 ) {
+        NSDictionary *selectedServer = [self.availableServers objectAtIndex:self.selectedServer];
+        NSInteger newSelectedServer = [servers indexOfObject:selectedServer];
+        if ( newSelectedServer == NSNotFound ) {
+            [self setSelectedServer:0];
+        } else if ( newSelectedServer != self.selectedServer ) {
+            [self setSelectedServer:newSelectedServer];
+        }
+    }
+}
+
+#pragma MARK Properties
+
+- (NSURL*)baseURL {
+    if( !_baseURL ) {
+        if ( self.selectedServer == NSNotFound ) {
+            return nil;
+        }
+        NSString *ip = [self currentServerProperty:TVHS_IP_KEY];
+        NSString *port = [self currentServerProperty:TVHS_PORT_KEY];
+        if( [port isEqualToString:@""] ) {
             port = @"9981";
         }
         
@@ -58,33 +160,44 @@
 }
 
 - (NSString*)username {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:USERNAME_KEY];
+    if ( !_username ) {
+        _username = [self currentServerProperty:TVHS_USERNAME_KEY];
+    }
+    return _username;
 }
 
 // FIX: Password in cleartext!!! NEEDS TO USE KEYCHAIN!!!!!
 - (NSString*)password {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:PASSWORD_KEY];
+    if ( !_password ) {
+        _password = [self currentServerProperty:TVHS_PASSWORD_KEY];
+    }
+    return _password;
 }
 
 - (void)resetSettings {
-    _ip = nil;
     _baseURL = nil;
+    _username = nil;
+    _password = nil;
+    
+    [[[TVHJsonClient sharedInstance] operationQueue] cancelAllOperations];
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"resetAllObjects"
+     object:nil];
 }
 
 - (NSTimeInterval)cacheTime {
-    return 300;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSTimeInterval time = [defaults integerForKey:TVHS_CACHING_TIME];
+    if ( time <= 0 ) {
+        time = 300;
+    }
+    return time;
 }
 
-+ (id)sharedInstance {
-    static TVHSettings *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHSettings alloc] init];
-    });
-    
-    return __sharedInstance;
+- (void)setCacheTime:(NSTimeInterval)time {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:time forKey:TVHS_CACHING_TIME];
 }
 
 

@@ -32,25 +32,6 @@
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
     [TestFlight takeOff:@""];
-    
-    TVHSettings *set = [TVHSettings sharedInstance];
-    if( [set.ip isEqualToString:@""] ) {
-        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                             message:@"Set ip and port in Settings!!"
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
-        [errorAlert show];
-        
-    } else {
-        // fetch tags
-        TVHTagStore *tagStore = [TVHTagStore sharedInstance];
-        [tagStore fetchTagList];
-        
-        // and fetch channel data - we need it for a lot of things, channels should always be loaded!
-        TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
-        [channelStore fetchChannelList];
-    }
     return YES;
 }
 							

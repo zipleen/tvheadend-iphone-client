@@ -41,7 +41,24 @@
     return __sharedInstance;
 }
 
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetEpgStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
+    
+    return self;
+}
+
+- (void)resetEpgStore {
+    self.epgStore = nil;
+}
+
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
 }
 

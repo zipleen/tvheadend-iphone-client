@@ -19,13 +19,29 @@
 //
 
 #import <Foundation/Foundation.h>
+#define TVHS_SERVER_NAME @"ServerName"
+#define TVHS_IP_KEY @"ServerIp"
+#define TVHS_PORT_KEY @"ServerPort"
+#define TVHS_USERNAME_KEY @"Username"
+#define TVHS_PASSWORD_KEY @"Password"
+#define TVHS_SELECTED_SERVER @"SelectedServer"
+#define TVHS_SERVERS @"Servers"
+
+#define TVHS_SERVER_KEYS @[TVHS_SERVER_NAME, TVHS_IP_KEY, TVHS_PORT_KEY, TVHS_USERNAME_KEY, TVHS_PASSWORD_KEY]
 
 @interface TVHSettings : NSObject
-@property (nonatomic, strong, readonly) NSString *ip;
-@property (nonatomic, strong, readonly) NSURL *baseURL;
 + (id)sharedInstance;
+@property (nonatomic, strong, readonly) NSURL *baseURL;
+@property (nonatomic, strong, readonly) NSString *username;
+@property (nonatomic, strong, readonly) NSString *password;
+@property (nonatomic) NSInteger selectedServer;
+@property (nonatomic) NSTimeInterval cacheTime;
+
+- (NSString*)serverProperty:(NSString*)key forServer:(NSInteger)serverId;
+- (void)setServerProperty:(NSString*)property forServer:(NSInteger)serverId ForKey:(NSString*)key;
+- (void)removeServer:(NSInteger)serverId;
+- (NSString*)currentServerProperty:(NSString*)key;
+- (NSArray*)availableServers;
+- (NSInteger)addNewServer;
 - (void)resetSettings;
-- (NSString*)username;
-- (NSString*)password;
-- (NSTimeInterval)cacheTime;
 @end

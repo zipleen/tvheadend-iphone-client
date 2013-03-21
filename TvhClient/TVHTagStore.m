@@ -41,7 +41,20 @@
     return __sharedInstance;
 }
 
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetTagStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
+    
+    return self;
+}
+
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.tags = nil;
     self.lastFetchedData = nil;
 }
@@ -123,6 +136,7 @@
 
 - (void)resetTagStore {
     self.tags = nil;
+    self.lastFetchedData = nil;
 }
 
 - (TVHTagStore *)objectAtIndex:(int) row {

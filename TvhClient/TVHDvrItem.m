@@ -72,7 +72,7 @@
 }
 
 - (void)deleteRecording {
-    if ( [self.schedstate isEqualToString:@"scheduled"] ) {
+    if ( [self.schedstate isEqualToString:@"scheduled"] || [self.schedstate isEqualToString:@"recording"] ) {
         [TVHDvrActions cancelRecording:self.id];
     } else {
         [TVHDvrActions deleteRecording:self.id];

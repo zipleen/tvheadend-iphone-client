@@ -49,7 +49,20 @@
     return _epgStore;
 }
 
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetChannelStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
+    
+    return self;
+}
+
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.channels = nil;
     self.lastFetchedData = nil;
 }
@@ -88,6 +101,8 @@
 
 - (void)resetChannelStore {
     self.channels = nil;
+    self.epgStore = nil;
+    self.lastFetchedData = nil;
 }
 
 - (BOOL)isDataOld {
@@ -186,7 +201,7 @@
     return nil;
 }
 
-- (TVHChannel*) channelWithName:(NSString*) name {
+- (TVHChannel*)channelWithName:(NSString*) name {
     NSEnumerator *e = [self.channels objectEnumerator];
     TVHChannel *channel;
     while (channel = [e nextObject]) {

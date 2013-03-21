@@ -23,6 +23,8 @@
 #import "WBErrorNoticeView.h"
 #import "CKRefreshControl.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "TVHChannelStore.h"
+#import "TVHSettings.h"
 
 @interface TVHTagStoreViewController ()
 @property (strong, nonatomic) TVHTagStore *tagList;
@@ -49,14 +51,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.tagList setDelegate:self];
-    [self.tagList fetchTagList];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
     //self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+    
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    if( [settings selectedServer] == NSNotFound ) {
+        [self performSegueWithIdentifier:@"ShowSettings" sender:self];
+    } else {
+        // fetch tags
+        [self.tagList fetchTagList];
+        
+        // and fetch channel data - we need it for a lot of things, channels should always be loaded!
+        [[TVHChannelStore sharedInstance] fetchChannelList];
+    }
 }
 
 - (void)viewDidUnload {
