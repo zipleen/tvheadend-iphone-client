@@ -36,6 +36,7 @@
 @property (nonatomic, strong, readonly) NSString *password;
 @property (nonatomic) NSInteger selectedServer;
 @property (nonatomic) NSTimeInterval cacheTime;
+@property (nonatomic) BOOL autoStartPolling;
 
 - (NSString*)serverProperty:(NSString*)key forServer:(NSInteger)serverId;
 - (void)setServerProperty:(NSString*)property forServer:(NSInteger)serverId ForKey:(NSString*)key;

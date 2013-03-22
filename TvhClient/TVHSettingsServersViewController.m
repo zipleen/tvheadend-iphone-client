@@ -14,7 +14,9 @@
 @property (nonatomic, weak) TVHSettings *settings;
 @end
 
-@implementation TVHSettingsServersViewController
+@implementation TVHSettingsServersViewController {
+    BOOL newServer;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,9 +31,22 @@
 {
     [super viewDidLoad];
     self.settings = [TVHSettings sharedInstance];
+    newServer = NO;
     
     if ( self.selectedServer == -1 ) {
+        newServer = YES;
         self.selectedServer = [self.settings addNewServer];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    if ( newServer ) {
+        for (NSString *str in TVHS_SERVER_KEYS) {
+            if ( ![[self.settings serverProperty:str forServer:self.selectedServer] isEqualToString:@""] ) {
+                return ;
+            }
+        }
+        [self.settings removeServer:self.selectedServer];
     }
 }
 
@@ -66,54 +81,46 @@
     static NSString *CellIdentifier = @"ServerPropertiesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    UITextField *playerTextField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
-    playerTextField.adjustsFontSizeToFitWidth = YES;
-    playerTextField.textColor = [UIColor blackColor];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+    textField.adjustsFontSizeToFitWidth = YES;
+    textField.textColor = [UIColor blackColor];
+    textField.secureTextEntry = NO;
+    textField.returnKeyType = UIReturnKeyDone;
     if ( indexPath.row == 0 ) {
         cell.textLabel.text = NSLocalizedString(@"Name", nil);
-        playerTextField.placeholder = @"Name";
-        playerTextField.keyboardType = UIKeyboardTypeDefault;
-        playerTextField.returnKeyType = UIReturnKeyDone;
-        playerTextField.secureTextEntry = NO;
+        textField.placeholder = @"Name";
     }
     if ( indexPath.row == 1 ) {
         cell.textLabel.text = NSLocalizedString(@"IP", nil);
-        playerTextField.placeholder = @"Server Address";
-        playerTextField.keyboardType = UIKeyboardTypeAlphabet;
-        playerTextField.returnKeyType = UIReturnKeyDone;
-        playerTextField.secureTextEntry = NO;
+        textField.placeholder = @"Server Address";
+        textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 2 ) {
         cell.textLabel.text = NSLocalizedString(@"Port", nil);
-        playerTextField.placeholder = @"9981";
-        playerTextField.keyboardType = UIKeyboardTypeNumberPad;
-        playerTextField.returnKeyType = UIReturnKeyDefault; //UIReturnKeyDone
-        playerTextField.secureTextEntry = NO;
+        textField.placeholder = @"9981";
+        textField.keyboardType = UIKeyboardTypeNumberPad;
     }
     if ( indexPath.row == 3) {
         cell.textLabel.text = NSLocalizedString(@"Username", nil);
-        playerTextField.placeholder = @"";
-        playerTextField.keyboardType = UIKeyboardTypeDefault;
-        playerTextField.returnKeyType = UIReturnKeyDefault;
-        playerTextField.secureTextEntry = NO;
+        textField.placeholder = @"";
+        textField.keyboardType = UIKeyboardTypeDefault;
     }
     if ( indexPath.row == 4) {
         cell.textLabel.text = NSLocalizedString(@"Password", nil);
-        playerTextField.placeholder = @"";
-        playerTextField.keyboardType = UIKeyboardTypeDefault;
-        playerTextField.returnKeyType = UIReturnKeyDone;
-        playerTextField.secureTextEntry = YES;
+        textField.placeholder = @"";
+        textField.keyboardType = UIKeyboardTypeDefault;
+        textField.secureTextEntry = YES;
     }
-    playerTextField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
-    playerTextField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-    playerTextField.textAlignment = UITextAlignmentLeft;
-    playerTextField.tag = indexPath.row;
-    playerTextField.delegate = self;
-    playerTextField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-    [playerTextField setEnabled: YES];
-    playerTextField.text = [self.settings serverProperty:TVHS_SERVER_KEYS[indexPath.row] forServer:self.selectedServer] ;
+    textField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
+    textField.textAlignment = UITextAlignmentLeft;
+    textField.tag = indexPath.row;
+    textField.delegate = self;
+    textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+    [textField setEnabled: YES];
+    textField.text = [self.settings serverProperty:TVHS_SERVER_KEYS[indexPath.row] forServer:self.selectedServer] ;
     
-    [cell.contentView addSubview:playerTextField];
+    [cell.contentView addSubview:textField];
     
     return cell;
 }

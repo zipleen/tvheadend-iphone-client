@@ -8,9 +8,11 @@
 
 #import "TVHSettingsViewController.h"
 #import "TVHSettingsServersViewController.h"
+#import "TVHSettingsGenericTextViewController.h"
 #import "TVHSettings.h"
+#import "TestFlight.h"
 
-@interface TVHSettingsViewController ()
+@interface TVHSettingsViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) TVHSettings *settings;
 @property (nonatomic, weak) NSArray *servers;
 @end
@@ -56,7 +58,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    if ( section == 1 ) {
+    if ( section == 2 ) {
         NSString *shortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
         NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         return [NSString stringWithFormat:@"TvhClient Version: %@ (%@)", shortVersion, version];
@@ -77,7 +79,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -86,17 +88,20 @@
         return [self.servers count] + 1;
     }
     if ( section == 1 ) {
-        return 0;
+        return 2;
+    }
+    if ( section == 2 ) {
+        return 3;
     }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"SettingsServerList";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell;
     
     if ( indexPath.section == 0 ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
         if ( indexPath.row < [self.servers count] ) {
             cell.textLabel.text = [self.settings serverProperty:TVHS_SERVER_NAME forServer:indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -110,9 +115,44 @@
         }
     }
     if ( indexPath.section == 1 ) {
-        
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsCell"];
+        if ( indexPath.row == 0 ) {
+            // cacheTime
+            cell.textLabel.text = NSLocalizedString(@"Cache Time", nil);
+            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, 185, 30)];
+            textField.adjustsFontSizeToFitWidth = YES;
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.textAlignment = UITextAlignmentLeft;
+            textField.tag = indexPath.row;
+            textField.delegate = self;
+            textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
+            [textField setEnabled: YES];
+            textField.text = [NSString stringWithFormat:@"%.0f", [self.settings cacheTime]] ;
+            
+            [cell.contentView addSubview:textField];
+        }
+        if ( indexPath.row == 1 ) {
+            UISwitch *switchfield = [[UISwitch alloc] initWithFrame:CGRectMake(210, 9, 185, 30)];
+            [switchfield setOn:[self.settings autoStartPolling]];
+            switchfield.tag = indexPath.row;
+            cell.textLabel.text = NSLocalizedString(@"Auto Start Polling", nil);
+            [cell.contentView addSubview:switchfield];
+        }
     }
-    
+    if ( indexPath.section == 2 ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if ( indexPath.row == 0 ) {
+            cell.textLabel.text = NSLocalizedString(@"Support", nil);
+        }
+        if ( indexPath.row == 1 ) {
+            cell.textLabel.text = NSLocalizedString(@"About", nil);
+        }
+        if ( indexPath.row == 2 ) {
+            cell.textLabel.text = NSLocalizedString(@"Licenses", nil);
+        }
+    }
     return cell;
 }
 
@@ -170,8 +210,12 @@
     // edit server
     if ( indexPath.section == 0 ) {
         [self performSegueWithIdentifier:@"SettingsServers" sender:self];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
+    
+    if ( indexPath.section == 2 ) {
+        [self performSegueWithIdentifier:@"SettingsGenericText" sender:self];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -184,9 +228,29 @@
             [vc setSelectedServer:-1];
         }
     }
+    if([segue.identifier isEqualToString:@"SettingsGenericText"]) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        TVHSettingsGenericTextViewController *vc = segue.destinationViewController;
+        if ( path.row == 1 ) {
+            [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
+        }
+        if ( path.row == 2 ) {
+            [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"licenses" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
+        }
+    }
 }
 
 - (IBAction)doneSettings:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [self.settings setCacheTime:[textField.text doubleValue]];
+    return YES;
 }
 @end

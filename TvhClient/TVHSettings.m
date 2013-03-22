@@ -21,6 +21,7 @@
 #import "TVHSettings.h"
 #import "TVHJsonClient.h"
 #define TVHS_CACHING_TIME @"CachingTime"
+#define TVHS_AUTO_START_COMET_POOL @"AutoStartCometPool"
 
 @interface TVHSettings()
 
@@ -43,7 +44,7 @@
     return __sharedInstance;
 }
 
-#pragma MARK Servers
+#pragma mark Servers
 
 - (NSArray*)availableServers {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -139,7 +140,7 @@
     }
 }
 
-#pragma MARK Properties
+#pragma mark Properties
 
 - (NSURL*)baseURL {
     if( !_baseURL ) {
@@ -200,6 +201,18 @@
     [defaults setInteger:time forKey:TVHS_CACHING_TIME];
 }
 
+- (BOOL)autoStartPolling {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id test = [defaults objectForKey:TVHS_AUTO_START_COMET_POOL];
+    if ( test == nil ) {
+        return YES;
+    }
+    return [defaults boolForKey:TVHS_AUTO_START_COMET_POOL];
+}
 
+- (void)setAutoStartPolling:(BOOL)autoStart {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:autoStart forKey:TVHS_AUTO_START_COMET_POOL];
+}
 @end
 
