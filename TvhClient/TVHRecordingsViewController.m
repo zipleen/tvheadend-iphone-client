@@ -137,6 +137,29 @@
     return nil;
 }
 
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    //create the uiview container
+    UIView *tfooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.frame.size.width, 45)];
+    tfooterView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    //create the uilabel for the text
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(_tableView.frame.size.width/2-120, 0, 240, 35)];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:17];
+    label.numberOfLines = 2;
+    label.lineBreakMode = UILineBreakModeWordWrap;
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor colorWithRed:0.298039 green:0.337255 blue:0.423529 alpha:1];
+    label.shadowColor = [UIColor whiteColor];
+    label.text = [self tableView:self.tableView titleForFooterInSection:section];
+    label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
+    //add the label to the view
+    [tfooterView addSubview:label];
+    
+    return tfooterView;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
