@@ -87,7 +87,7 @@
     textField.secureTextEntry = NO;
     textField.returnKeyType = UIReturnKeyDone;
     if ( indexPath.row == 0 ) {
-        cell.textLabel.text = NSLocalizedString(@"Name", nil);
+        cell.textLabel.text = NSLocalizedString(@"Label", nil);
         textField.placeholder = @"Name";
     }
     if ( indexPath.row == 1 ) {
@@ -117,7 +117,7 @@
     textField.tag = indexPath.row;
     textField.delegate = self;
     textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-    [textField setEnabled: YES];
+    textField.enabled = YES;
     textField.text = [self.settings serverProperty:TVHS_SERVER_KEYS[indexPath.row] forServer:self.selectedServer] ;
     
     [cell.contentView addSubview:textField];

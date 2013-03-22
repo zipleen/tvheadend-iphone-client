@@ -119,7 +119,7 @@
         if ( indexPath.row == 0 ) {
             // cacheTime
             cell.textLabel.text = NSLocalizedString(@"Cache Time", nil);
-            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(120, 10, 185, 30)];
+            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
             textField.adjustsFontSizeToFitWidth = YES;
             textField.keyboardType = UIKeyboardTypeNumberPad;
             textField.returnKeyType = UIReturnKeyDone;
@@ -127,16 +127,16 @@
             textField.tag = indexPath.row;
             textField.delegate = self;
             textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-            [textField setEnabled: YES];
+            textField.enabled = YES;
             textField.text = [NSString stringWithFormat:@"%.0f", [self.settings cacheTime]] ;
             
             [cell.contentView addSubview:textField];
         }
         if ( indexPath.row == 1 ) {
+            cell.textLabel.text = NSLocalizedString(@"Auto Start Polling", nil);
             UISwitch *switchfield = [[UISwitch alloc] initWithFrame:CGRectMake(210, 9, 185, 30)];
             [switchfield setOn:[self.settings autoStartPolling]];
-            switchfield.tag = indexPath.row;
-            cell.textLabel.text = NSLocalizedString(@"Auto Start Polling", nil);
+            [switchfield addTarget:self action: @selector(autoStartPolling:) forControlEvents:UIControlEventValueChanged];
             [cell.contentView addSubview:switchfield];
         }
     }
@@ -253,4 +253,9 @@
     [self.settings setCacheTime:[textField.text doubleValue]];
     return YES;
 }
+
+- (IBAction)autoStartPolling: (UISwitch*) sender {
+    [self.settings setAutoStartPolling:sender.on];
+}
+
 @end

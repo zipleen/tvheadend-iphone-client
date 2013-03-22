@@ -51,7 +51,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsOptionsCell" editingAccessoryType="disclosureIndicator" textLabel="PtY-c6-99E" style="IBUITableViewCellStyleDefault" id="Pn5-Te-5oz">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingsOptionsCell" editingAccessoryType="disclosureIndicator" textLabel="PtY-c6-99E" style="IBUITableViewCellStyleDefault" id="Pn5-Te-5oz">
                                 <rect key="frame" x="0.0" y="91" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -89,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFb-6o-BTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="-2081"/>
+            <point key="canvasLocation" x="876" y="-2641"/>
         </scene>
         <!--Settings Generic Text View Controller-->
         <scene sceneID="Ya7-MK-DWM">
@@ -117,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tlg-D1-Dab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1349" y="-1959"/>
+            <point key="canvasLocation" x="1413" y="-2641"/>
         </scene>
         <!--Settings Servers View Controller-->
         <scene sceneID="h27-xn-XEm">
@@ -147,7 +147,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGw-W7-SbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1349" y="-2572"/>
+            <point key="canvasLocation" x="1413" y="-3348"/>
         </scene>
         <!--Tag Store View Controller - Tags-->
         <scene sceneID="9w5-0r-HFn">
@@ -814,7 +814,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-218" y="563"/>
+            <point key="canvasLocation" x="246" y="563"/>
         </scene>
         <!--Navigation Controller - Log-->
         <scene sceneID="i7D-JP-Upi">
@@ -1010,7 +1010,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7n-dp-EVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="324" y="-2081"/>
+            <point key="canvasLocation" x="316" y="-2641"/>
         </scene>
     </scenes>
     <resources>

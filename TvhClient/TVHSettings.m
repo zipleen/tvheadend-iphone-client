@@ -33,6 +33,7 @@
 @synthesize password = _password;
 @synthesize selectedServer = _selectedServer;
 @synthesize cacheTime = _cacheTime;
+@synthesize autoStartPolling = _autoStartPolling;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -205,14 +206,18 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id test = [defaults objectForKey:TVHS_AUTO_START_COMET_POOL];
     if ( test == nil ) {
-        return YES;
+        _autoStartPolling = YES;
+        return _autoStartPolling;
     }
-    return [defaults boolForKey:TVHS_AUTO_START_COMET_POOL];
+    _autoStartPolling = [defaults boolForKey:TVHS_AUTO_START_COMET_POOL];
+    return _autoStartPolling;
 }
 
 - (void)setAutoStartPolling:(BOOL)autoStart {
+    _autoStartPolling = autoStart;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:autoStart forKey:TVHS_AUTO_START_COMET_POOL];
+    [defaults synchronize];
 }
 @end
 

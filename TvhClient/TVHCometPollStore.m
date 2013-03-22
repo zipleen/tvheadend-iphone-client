@@ -37,6 +37,9 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[TVHCometPollStore alloc] init];
+        if ( [[TVHSettings sharedInstance] autoStartPolling] ) {
+            [__sharedInstance startRefreshingCometPoll];
+        }
     });
     
     return __sharedInstance;
@@ -151,7 +154,7 @@
 }
 
 - (void)startRefreshingCometPoll {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:[TVHCometPollStore sharedInstance] selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
     timerStarted = YES;
 }
 
