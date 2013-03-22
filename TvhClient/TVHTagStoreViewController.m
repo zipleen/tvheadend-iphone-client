@@ -39,13 +39,9 @@
     return _tagList;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)resetControllerData {
+    [self.tagList fetchTagList];
+    [[TVHChannelStore sharedInstance] fetchChannelList];
 }
 
 - (void)viewDidLoad
@@ -68,10 +64,16 @@
         // and fetch channel data - we need it for a lot of things, channels should always be loaded!
         [[TVHChannelStore sharedInstance] fetchChannelList];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetControllerData)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
 }
 
 - (void)viewDidUnload {
     self.tagList = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super viewDidUnload];
 }
 

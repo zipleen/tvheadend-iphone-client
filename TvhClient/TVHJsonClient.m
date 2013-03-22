@@ -61,18 +61,27 @@
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetJsonClient)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
+    */
     return self;
 }
 
+- (void)dealloc {
+    //[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 + (TVHJsonClient*)sharedInstance {
-    static TVHJsonClient *__sharedInstance;
+    /*static TVHJsonClient *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[TVHJsonClient alloc] init];
     });
     
-    return __sharedInstance;
+    return __sharedInstance;*/
+    return [[TVHJsonClient alloc] init];
 }
 
 #pragma JsonHelper
