@@ -69,6 +69,11 @@
     }
 }
 
+- (void)resetRecordingsStore {
+    [self.dvrStore fetchDvr];
+    [self.autoRecStore fetchDvrAutoRec];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -94,7 +99,20 @@
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"E d MMM, HH:mm"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetRecordingsStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
+    
     //self.segmentedControl.arrowHeightFactor *= -1.0;
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self setSegmentedControl:nil];
+    [self setTableView:nil];
+    [self setDvrStore:nil];
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning
@@ -207,13 +225,6 @@
         TVHRecordingsDetailViewController *vc = segue.destinationViewController;
         [vc setDvrItem:item];
     }
-}
-
-- (void)viewDidUnload {
-    [self setSegmentedControl:nil];
-    [self setTableView:nil];
-    [self setDvrStore:nil];
-    [super viewDidUnload];
 }
 
 - (IBAction)segmentedDidChange:(id)sender {

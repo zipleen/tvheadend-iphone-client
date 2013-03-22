@@ -37,6 +37,10 @@
                                                  name:@"subscriptionsNotificationClassReceived"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetStatusSubscriptionsStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
     return self;
 }
 
@@ -61,6 +65,10 @@
         }];
         [self.delegate didLoadStatusSubscriptions];
     }
+}
+
+- (void)resetStatusSubscriptionsStore {
+    self.subscriptions = nil;
 }
 
 + (id)sharedInstance {

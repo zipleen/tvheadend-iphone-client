@@ -55,6 +55,8 @@
 
 - (void)resetEpgStore {
     self.epgStore = nil;
+    self.filterToChannelName = nil;
+    self.filterToProgramTitle = nil;
 }
 
 - (void)dealloc {

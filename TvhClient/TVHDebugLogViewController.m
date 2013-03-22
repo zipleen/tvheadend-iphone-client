@@ -44,12 +44,27 @@
     [self.logStore setDelegate:self];
     
     self.cometPoll = [TVHCometPollStore sharedInstance];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearLog:)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self setDebugButton:nil];
+    self.logStore = nil;
+    self.cometPoll = nil;
+    [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if ( [self.cometPoll isDebugActive] ) {
+        self.debugButton.style = UIBarButtonItemStyleDone;
+    } else {
+        self.debugButton.style = UIBarButtonItemStyleBordered;
+    }
 }
 
 #pragma mark - Table view data source
@@ -99,21 +114,6 @@
     if ( countLines > 0 ) {
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: countLines-1 inSection: 0];
         [self.tableView scrollToRowAtIndexPath:ipath atScrollPosition:UITableViewScrollPositionTop animated: YES];
-    }
-}
-
-- (void)viewDidUnload {
-    [self setDebugButton:nil];
-    self.logStore = nil;
-    self.cometPoll = nil;
-    [super viewDidUnload];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    if ( [self.cometPoll isDebugActive] ) {
-        self.debugButton.style = UIBarButtonItemStyleDone;
-    } else {
-        self.debugButton.style = UIBarButtonItemStyleBordered;
     }
 }
 

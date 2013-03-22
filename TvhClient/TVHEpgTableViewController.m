@@ -35,24 +35,23 @@
 
 @implementation TVHEpgTableViewController 
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+- (TVHEpgStore*)epgStore {
+    if ( !_epgStore ) {
+        // we need a DIFFERENT epgstore, because of the delegate
+        // should we change this to a notification? this epgstore SHOULD be shared!!
+        _epgStore = [[TVHEpgStore alloc] init];
     }
-    return self;
+    return _epgStore;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // we need a DIFFERENT epgstore, because of the delegate
-    // should we change this to a notification? this epgstore SHOULD be shared!!
-    self.epgStore = [[TVHEpgStore alloc] init];
+    
     [self.epgStore setDelegate:self];
     [self.epgStore downloadEpgList];
     
+    // I shouldn't have this here, it should be smart to know it needs channels!
     TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
     if ( [[channelStore getFilteredChannelList] count] == 0 ) {
         [channelStore fetchChannelList];
@@ -67,18 +66,30 @@
     
     hourFormatter = [[NSDateFormatter alloc] init];
     hourFormatter.dateFormat = @"HH:mm";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetEpgStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if ( [self.epgTable count] == 0 ) {
+        [self.epgStore getEpgList];
+    }
 }
 
 - (void)viewDidUnload
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
     self.epgTable = nil;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)resetEpgStore {
+    self.epgTable = nil;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -126,8 +137,8 @@
 }
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
-    self.epgTable = [epgStore getEpgList];
     [self.refreshControl endRefreshing];
+    self.epgTable = [epgStore getEpgList];
     [self.tableView reloadData];
 }
 

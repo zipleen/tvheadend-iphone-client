@@ -55,14 +55,20 @@
                                              selector:@selector(receiveDebugLogNotification:)
                                                  name:@"logmessageNotificationClassReceived"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetLogStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
     return self;
 }
 
 - (void)dealloc {
-    // If you don't remove yourself as an observer, the Notification Center
-    // will continue to try and send notification objects to the deallocated
-    // object.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.logLines = nil;
+}
+
+- (void)resetLogStore {
     self.logLines = nil;
 }
 
@@ -73,7 +79,7 @@
     [self.logLines addObject:line];
 }
 
-- (void) receiveDebugLogNotification:(NSNotification *) notification {
+- (void)receiveDebugLogNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"logmessageNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         
@@ -83,7 +89,7 @@
     }
 }
 
-- (NSString *) objectAtIndex:(int) row {
+- (NSString *)objectAtIndex:(int) row {
     if ( row < [self.logLines count] ) {
         return [self.logLines objectAtIndex:row];
     }

@@ -36,6 +36,10 @@
                                                  name:@"tvAdapterNotificationClassReceived"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetAdapterStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
     return self;
 }
 
@@ -55,6 +59,10 @@
         }];
         [self.delegate didLoadAdapters];
     }
+}
+
+- (void)resetAdapterStore {
+    self.adapters = nil;
 }
 
 + (id)sharedInstance {

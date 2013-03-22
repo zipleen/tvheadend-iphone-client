@@ -49,6 +49,10 @@
                                                  name:@"dvrdbNotificationClassReceived"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetDvrStore)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
     return self;
 }
 
@@ -65,6 +69,11 @@
             [self fetchDvr];
         }
     }
+}
+
+- (void)resetDvrStore {
+    self.dvrItems = nil;
+    self.cachedDvrItems = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData withType:(NSInteger)type {
