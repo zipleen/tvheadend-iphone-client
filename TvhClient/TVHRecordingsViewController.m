@@ -123,6 +123,20 @@
 
 #pragma mark - Table view data source
 
+- (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
+        if ( [self.autoRecStore count] == 0 ) {
+            return NSLocalizedString(@"No recordings found.", nil);
+        }
+    } else {
+        if ( [self.dvrStore count:self.segmentedControl.selectedSegmentIndex] == 0 ) {
+            return NSLocalizedString(@"No recordings found.", nil);
+        }
+    }
+    return nil;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {

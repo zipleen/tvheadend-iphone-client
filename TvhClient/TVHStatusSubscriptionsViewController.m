@@ -106,11 +106,26 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if ( section == 0 ) {
         return NSLocalizedString(@"Active Subscriptions", nil);
     }
-    if (section == 1) {
+    if ( section == 1 ) {
         return NSLocalizedString(@"Adapters", nil);
+    }
+    return nil;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if ( section == 0 ) {
+        if ( [self.statusSubscriptionsStore count] == 0 ) {
+            return NSLocalizedString(@"No active subscriptions.", nil);
+        }
+    }
+    if ( section == 1 ) {
+        if ( [self.adapterStore count] == 0 ) {
+            return NSLocalizedString(@"No adapters found.", nil);
+        }
     }
     return nil;
 }
