@@ -115,29 +115,30 @@
         }
     }
     if ( indexPath.section == 1 ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsCell"];
+        
         if ( indexPath.row == 0 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
             // cacheTime
-            cell.textLabel.text = NSLocalizedString(@"Cache Time", nil);
-            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+            UITextField *textField = (UITextField *)[cell viewWithTag:200];
             textField.adjustsFontSizeToFitWidth = YES;
             textField.keyboardType = UIKeyboardTypeNumberPad;
             textField.returnKeyType = UIReturnKeyDone;
             textField.textAlignment = UITextAlignmentLeft;
-            textField.tag = indexPath.row;
             textField.delegate = self;
             textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
-            textField.enabled = YES;
             textField.text = [NSString stringWithFormat:@"%.0f", [self.settings cacheTime]] ;
             
-            [cell.contentView addSubview:textField];
+            UILabel *textLabel = (UILabel *)[cell viewWithTag:201];
+            textLabel.text = NSLocalizedString(@"Cache Time", nil);
         }
         if ( indexPath.row == 1 ) {
-            cell.textLabel.text = NSLocalizedString(@"Auto Start Polling", nil);
-            UISwitch *switchfield = [[UISwitch alloc] initWithFrame:CGRectMake(210, 9, 185, 30)];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
+            UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
             [switchfield setOn:[self.settings autoStartPolling]];
             [switchfield addTarget:self action: @selector(autoStartPolling:) forControlEvents:UIControlEventValueChanged];
-            [cell.contentView addSubview:switchfield];
+            
+            UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
+            textLabel.text = NSLocalizedString(@"Auto Start Polling", nil);
         }
     }
     if ( indexPath.section == 2 ) {
