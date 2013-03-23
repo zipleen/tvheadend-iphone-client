@@ -22,6 +22,7 @@
 #import "TVHJsonClient.h"
 #define TVHS_CACHING_TIME @"CachingTime"
 #define TVHS_AUTO_START_COMET_POOL @"AutoStartCometPool"
+#define TVHS_CUSTOM_PREFIX @"CustomAppPrefix"
 
 @interface TVHSettings()
 
@@ -217,6 +218,17 @@
     _autoStartPolling = autoStart;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:autoStart forKey:TVHS_AUTO_START_COMET_POOL];
+    [defaults synchronize];
+}
+
+- (NSString*)customPrefix {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults stringForKey:TVHS_CUSTOM_PREFIX];
+}
+
+- (void)setCustomPrefix:(NSString*)customPrefix {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:customPrefix forKey:TVHS_CUSTOM_PREFIX];
     [defaults synchronize];
 }
 @end

@@ -37,6 +37,8 @@
 @property (nonatomic) NSInteger selectedServer;
 @property (nonatomic) NSTimeInterval cacheTime;
 @property (nonatomic) BOOL autoStartPolling;
+- (NSString*)customPrefix;
+- (void)setCustomPrefix:(NSString*)customPrefix;
 
 - (NSString*)serverProperty:(NSString*)key forServer:(NSInteger)serverId;
 - (void)setServerProperty:(NSString*)property forServer:(NSInteger)serverId ForKey:(NSString*)key;

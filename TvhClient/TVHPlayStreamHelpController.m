@@ -19,6 +19,8 @@
 //
 
 #import "TVHPlayStreamHelpController.h"
+#import "TVHSettings.h"
+
 //#define KXMOVIE
 #ifdef KXMOVIE
 #import "KxMovieViewController.h"
@@ -38,10 +40,14 @@
     NSString *good = @"GoodPlayer";
     NSString *oplayer = @"Oplayer";
     NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
+    NSString *custom = NSLocalizedString(@"Custom Player", nil);
+    NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
 #ifdef KXMOVIE
     NSString *stream = NSLocalizedString(actionTitle, nil);
 #endif
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+    UIActionSheet *actionSheet;
+    if ( [customPrefix isEqualToString:@""] ) {
+        actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:actionSheetTitle
                                   delegate:self
                                   cancelButtonTitle:cancelTitle
@@ -51,6 +57,19 @@
                                   destructiveButtonTitle:nil
 #endif
                                   otherButtonTitles:copy, buzz, good, oplayer, nil];
+    } else {
+        actionSheet = [[UIActionSheet alloc]
+                               initWithTitle:actionSheetTitle
+                               delegate:self
+                               cancelButtonTitle:cancelTitle
+#ifdef KXMOVIE
+                               destructiveButtonTitle:stream
+#else
+                               destructiveButtonTitle:nil
+#endif
+                               otherButtonTitles:copy, buzz, good, oplayer, custom, nil];
+    }
+    
     //[actionSheet showFromToolbar:self.navigationController.toolbar];
     [actionSheet showFromBarButtonItem:sender animated:YES];
 
@@ -87,6 +106,12 @@
     }
     if ([buttonTitle isEqualToString:@"Oplayer"]) {
         NSString *url = [NSString stringWithFormat:@"oplayer://%@", [self.streamObject streamURL] ];
+        NSURL *myURL = [NSURL URLWithString:url ];
+        [[UIApplication sharedApplication] openURL:myURL];
+    }
+    if ([buttonTitle isEqualToString:NSLocalizedString(@"Custom Player", nil)]) {
+        NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
+        NSString *url = [NSString stringWithFormat:@"%@://%@", customPrefix, [self.streamObject streamURL] ];
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
     }

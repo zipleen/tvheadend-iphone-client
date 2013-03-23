@@ -88,7 +88,7 @@
         return [self.servers count] + 1;
     }
     if ( section == 1 ) {
-        return 2;
+        return 3;
     }
     if ( section == 2 ) {
         return 3;
@@ -124,8 +124,8 @@
             textField.keyboardType = UIKeyboardTypeNumberPad;
             textField.returnKeyType = UIReturnKeyDone;
             textField.textAlignment = UITextAlignmentLeft;
+            textField.clearButtonMode = UITextFieldViewModeNever;
             textField.delegate = self;
-            textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
             textField.text = [NSString stringWithFormat:@"%.0f", [self.settings cacheTime]] ;
             
             UILabel *textLabel = (UILabel *)[cell viewWithTag:201];
@@ -139,6 +139,22 @@
             
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
             textLabel.text = NSLocalizedString(@"Auto Start Polling", nil);
+        }
+        if ( indexPath.row == 2 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
+            // cacheTime
+            UITextField *textField = (UITextField *)[cell viewWithTag:200];
+            textField.adjustsFontSizeToFitWidth = YES;
+            textField.keyboardType = UIKeyboardTypeDefault;
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.textAlignment = UITextAlignmentLeft;
+            textField.delegate = self;
+            textField.clearButtonMode = UITextFieldViewModeNever;
+            textField.text = [self.settings customPrefix];
+            
+            UILabel *textLabel = (UILabel *)[cell viewWithTag:201];
+            textLabel.text = NSLocalizedString(@"Custom prefix", nil);
+            textLabel.adjustsFontSizeToFitWidth = YES;
         }
     }
     if ( indexPath.section == 2 ) {
@@ -251,7 +267,13 @@
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    [self.settings setCacheTime:[textField.text doubleValue]];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[textField superview]superview]];
+    if ( indexPath.row == 0 ) {
+        [self.settings setCacheTime:[textField.text doubleValue]];
+    }
+    if ( indexPath.row == 2 ) {
+        [self.settings setCustomPrefix:textField.text];
+    }
     return YES;
 }
 
