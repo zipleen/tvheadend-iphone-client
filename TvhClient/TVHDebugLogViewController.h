@@ -23,6 +23,7 @@
 
 @interface TVHDebugLogViewController : UITableViewController <TVHLogDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *debugButton;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 - (IBAction)debugButton:(UIBarButtonItem *)sender;
 - (IBAction)clearLog:(id)sender;
 

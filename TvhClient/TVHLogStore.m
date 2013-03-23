@@ -89,15 +89,26 @@
     }
 }
 
+- (NSArray*)filteredLogLines {
+    if ( !self.filter || [self.filter isEqualToString:@""] ) {
+        return [self.logLines copy];
+    }
+    NSPredicate *sPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", self.filter];
+    NSArray *logLinesFiltered = [self.logLines filteredArrayUsingPredicate:sPredicate];
+    return logLinesFiltered;
+}
+
 - (NSString *)objectAtIndex:(int) row {
-    if ( row < [self.logLines count] ) {
-        return [self.logLines objectAtIndex:[self.logLines count]-1-row];
+    NSArray *logLines = [self filteredLogLines];
+    if ( row < [logLines count] ) {
+        return [logLines objectAtIndex:[logLines count]-1-row];
     }
     return nil;
 }
 
 - (int) count {
-    return [self.logLines count];
+    NSArray *logLines = [self filteredLogLines];
+    return [logLines count];
 }
 
 - (void)setDelegate:(id <TVHLogDelegate>)delegate {

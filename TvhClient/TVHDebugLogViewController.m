@@ -21,12 +21,14 @@
 #import "TVHDebugLogViewController.h"
 #import "TVHCometPollStore.h"
 
-@interface TVHDebugLogViewController ()
+@interface TVHDebugLogViewController () <UISearchBarDelegate>
 @property (strong, nonatomic) TVHLogStore *logStore;
 @property (strong, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
-@implementation TVHDebugLogViewController
+@implementation TVHDebugLogViewController {
+    BOOL shouldBeginEditing;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,13 +44,15 @@
     [super viewDidLoad];
     self.logStore = [TVHLogStore sharedInstance];
     [self.logStore setDelegate:self];
-    
     self.cometPoll = [TVHCometPollStore sharedInstance];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearLog:)
                                                  name:@"resetAllObjects"
                                                object:nil];
+    
+    self.searchBar.delegate = self;
+    shouldBeginEditing = YES;
 }
 
 - (void)viewDidUnload {
@@ -56,6 +60,7 @@
     [self setDebugButton:nil];
     self.logStore = nil;
     self.cometPoll = nil;
+    [self setSearchBar:nil];
     [super viewDidUnload];
 }
 
@@ -65,6 +70,7 @@
     } else {
         self.debugButton.style = UIBarButtonItemStyleBordered;
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -110,11 +116,11 @@
 
 - (void)didLoadLog {
     [self.tableView reloadData];
-    int countLines = [self.logStore count];
+    /*int countLines = [self.logStore count];
     if ( countLines > 0 ) {
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: countLines-1 inSection: 0];
         [self.tableView scrollToRowAtIndexPath:ipath atScrollPosition:UITableViewScrollPositionTop animated: YES];
-    }
+    }*/
 }
 
 - (IBAction)debugButton:(UIBarButtonItem *)sender {
@@ -130,4 +136,29 @@
     [self.logStore clearLog];
     [self.tableView reloadData];
 }
+
+#pragma mark search bar
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if(![searchBar isFirstResponder]) {
+        // user tapped the 'clear' button - from http://stackoverflow.com/questions/1092246/uisearchbar-clearbutton-forces-the-keyboard-to-appear
+        shouldBeginEditing = NO;
+        [self.logStore setFilter:@""];
+    }
+    [self.logStore setFilter:searchBar.text];
+    [self.tableView reloadData];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)bar {
+    BOOL boolToReturn = shouldBeginEditing;
+    shouldBeginEditing = YES;
+    return boolToReturn;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+}
+
 @end
