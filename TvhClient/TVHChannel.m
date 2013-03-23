@@ -119,11 +119,15 @@
 #endif
         return nil;
     }
-    TVHChannelEpg *p = [self.channelEpgDataByDay objectAtIndex:0];
-#ifdef TESTING
-    NSLog(@"Has %d for %@", [p.programs count] ,self.name);
-#endif
-    return [p.programs objectAtIndex:0];
+    
+    for ( TVHChannelEpg *epgByDay in self.channelEpgDataByDay ) {
+        for ( TVHEpg *epg in [epgByDay programs] ) {
+            if ( [epg progress] > 0 && [epg progress] < 100 ) {
+                return epg;
+            }
+        }
+    }
+    return nil;
 }
 
 - (NSComparisonResult)compareByName:(TVHChannel *)otherObject {

@@ -129,7 +129,7 @@
     channelImage.layer.shouldRasterize = YES;
         
     if(currentPlayingProgram) {
-        currentProgramLabel.text = currentPlayingProgram.title;
+        currentProgramLabel.text = [currentPlayingProgram fullTitle];
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
         currentTimeProgress.hidden = false;
         currentTimeProgress.progress = [currentPlayingProgram progress];
