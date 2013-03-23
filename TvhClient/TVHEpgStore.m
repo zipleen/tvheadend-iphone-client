@@ -169,4 +169,14 @@
     }
 }
 
+- (void)setFilterToProgramTitle:(NSString *)filterToProgramTitle {
+    _filterToProgramTitle = filterToProgramTitle;
+    self.epgStore = nil;
+}
+
+- (void)setFilterToChannelName:(NSString *)filterToChannelName {
+    _filterToChannelName = filterToChannelName;
+    self.epgStore = nil;
+}
+
 @end

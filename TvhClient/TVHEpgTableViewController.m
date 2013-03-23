@@ -25,7 +25,7 @@
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface TVHEpgTableViewController () <TVHEpgStoreDelegate> {
+@interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;
     NSDateFormatter *hourFormatter;
 }
@@ -33,7 +33,9 @@
 @property (nonatomic, strong) NSArray *epgTable ;
 @end
 
-@implementation TVHEpgTableViewController 
+@implementation TVHEpgTableViewController {
+    BOOL shouldBeginEditing;
+}
 
 - (TVHEpgStore*)epgStore {
     if ( !_epgStore ) {
@@ -71,7 +73,8 @@
                                              selector:@selector(resetEpgStore)
                                                  name:@"resetAllObjects"
                                                object:nil];
-
+    self.searchBar.delegate = self;
+    shouldBeginEditing = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -82,6 +85,7 @@
 
 - (void)viewDidUnload
 {
+    [self setSearchBar:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
     self.epgTable = nil;
@@ -162,6 +166,31 @@
         [programDetail setEpg:epg];
         [programDetail setTitle:epg.title];
     }
+}
+
+#pragma mark - search bar
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if( ![searchBar isFirstResponder] ) {
+        shouldBeginEditing = NO;
+        [self.epgStore setFilterToProgramTitle:@""];
+        [self.epgStore downloadEpgList];
+    }
+    [self.epgStore setFilterToProgramTitle:searchBar.text];
+    [self.epgStore downloadEpgList];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    BOOL boolToReturn = shouldBeginEditing;
+    shouldBeginEditing = YES;
+    return boolToReturn;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
 }
 
 @end

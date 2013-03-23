@@ -21,5 +21,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TVHEpgTableViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
