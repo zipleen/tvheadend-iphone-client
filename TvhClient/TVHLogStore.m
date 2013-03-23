@@ -91,7 +91,7 @@
 
 - (NSString *)objectAtIndex:(int) row {
     if ( row < [self.logLines count] ) {
-        return [self.logLines objectAtIndex:row];
+        return [self.logLines objectAtIndex:[self.logLines count]-1-row];
     }
     return nil;
 }
