@@ -33,6 +33,6 @@
 @property (nonatomic, strong) NSString *filterToProgramTitle;
 + (id)sharedInstance;
 - (void)downloadEpgList;
-- (NSArray*)getEpgList;
+- (NSArray*)epgStoreItems;
 - (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate;
 @end

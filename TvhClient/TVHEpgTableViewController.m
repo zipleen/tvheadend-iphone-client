@@ -79,7 +79,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if ( [self.epgTable count] == 0 ) {
-        [self.epgStore getEpgList];
+        [self.epgStore epgStoreItems];
     }
 }
 
@@ -149,7 +149,7 @@
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     [self.refreshControl endRefreshing];
-    self.epgTable = [epgStore getEpgList];
+    self.epgTable = [epgStore epgStoreItems];
     [self.tableView reloadData];
 }
 

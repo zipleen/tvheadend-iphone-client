@@ -158,7 +158,7 @@
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     // for each epg
-    NSArray *list = [epgStore getEpgList];
+    NSArray *list = [epgStore epgStoreItems];
     NSEnumerator *e = [list objectEnumerator];
     TVHEpg *epg;
     while (epg = [e nextObject]) {

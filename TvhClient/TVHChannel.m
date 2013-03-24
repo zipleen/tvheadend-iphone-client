@@ -193,7 +193,7 @@
 
 #pragma delegate stuff
 - (void)didLoadEpg:(TVHEpgStore*)epgList {
-    NSArray *list = [epgList getEpgList];
+    NSArray *list = [epgList epgStoreItems];
     NSEnumerator *e = [list objectEnumerator];
     TVHEpg *epg;
     while( epg = [e nextObject]) {

@@ -95,7 +95,7 @@
 #endif
 }
 
-- (NSDictionary*) getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
+- (NSDictionary*)getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    [NSString stringWithFormat:@"%d", start ],
@@ -159,7 +159,7 @@
     [self retrieveEpgDataFromTVHeadend:0 limit:50];
 }
 
-- (NSArray*)getEpgList{
+- (NSArray*)epgStoreItems{
     return self.epgStore;
 }
 

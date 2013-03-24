@@ -288,7 +288,7 @@
 }
 
 - (void) didLoadEpg:(TVHEpgStore*)epgStore {
-    self.moreTimesItems = [epgStore getEpgList];
+    self.moreTimesItems = [epgStore epgStoreItems];
     [self.tableView reloadData];
 }
 
