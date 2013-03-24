@@ -22,6 +22,7 @@
 #import "TVHTestHelper.h"
 #import "TVHChannelStore.h"
 #import "TVHChannel.h"
+#import "TVHSettings.h"
 
 @interface TVHChannelStore (MyPrivateMethodsUsedForTesting)
 @property (nonatomic, strong) NSArray *channels;
@@ -30,13 +31,19 @@
 
 @implementation TVHChannelStoreTests
 
+- (void)setUp
+{
+    [super setUp];
+    [[TVHSettings sharedInstance] setSortChannel:TVHS_SORT_CHANNEL_BY_NAME];
+}
+
 - (void)tearDown {
     TVHChannelStore *store = [TVHChannelStore sharedInstance];
     store.channels = nil;
     [super tearDown];
 }
 
-- (void)testJsonTagsParsing
+- (void)testJsonChannelParsing
 {
     NSData *data = [TVHTestHelper loadFixture:@"Log.channels"];
     TVHChannelStore *store = [TVHChannelStore sharedInstance];

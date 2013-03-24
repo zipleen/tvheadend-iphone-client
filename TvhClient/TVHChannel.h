@@ -35,7 +35,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, strong) NSString *imageUrl;
-@property int number;
+@property (nonatomic) int number;
 @property (nonatomic, strong) NSData *image;
 @property (nonatomic) NSInteger chid;
 @property (nonatomic, strong) NSArray *tags;
