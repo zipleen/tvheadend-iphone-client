@@ -30,7 +30,6 @@
 @property (weak, nonatomic) TVHChannel *channel;
 @property (weak, nonatomic) IBOutlet UIImageView *programImage;
 @property (weak, nonatomic) IBOutlet UILabel *programTitle;
-@property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UIButton *record;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;

@@ -49,4 +49,5 @@
 - (void)addRecording;
 - (BOOL)isEqual:(TVHEpg*)other;
 - (TVHChannel*)channelObject;
+- (void)addAutoRec;
 @end

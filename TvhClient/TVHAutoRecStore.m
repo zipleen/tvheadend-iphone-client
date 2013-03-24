@@ -41,8 +41,8 @@
     self = [super init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveDvrdbNotification:)
-                                                 name:@"dvrdbNotificationClassReceived"
+                                             selector:@selector(receiveAutoRecNotification:)
+                                                 name:@"autorecNotificationClassReceived"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -56,8 +56,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)receiveDvrdbNotification:(NSNotification *) notification {
-    if ([[notification name] isEqualToString:@"dvrdbNotificationClassReceived"]) {
+- (void)receiveAutoRecNotification:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"autorecNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         if ( [[message objectForKey:@"reload"] intValue] == 1 ) {
             [self fetchDvrAutoRec];

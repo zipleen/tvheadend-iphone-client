@@ -76,7 +76,6 @@
 }
 
 + (void)addRecording:(NSInteger)eventId withConfigName:(NSString*)configName {
-    // there is also a recordSeries action... 
     [TVHDvrActions doDvrAction:@"recordEvent" withId:eventId withIdName:@"eventId" withConfigName:configName];
 }
 
@@ -86,6 +85,10 @@
 
 + (void)deleteRecording:(NSInteger)entryId{
     [TVHDvrActions doDvrAction:@"deleteEntry" withId:entryId withIdName:@"entryId" withConfigName:nil];
+}
+
++ (void)addAutoRecording:(NSInteger)eventId withConfigName:(NSString*)configName {
+    [TVHDvrActions doDvrAction:@"recordSeries" withId:eventId withIdName:@"eventId" withConfigName:configName];
 }
 
 @end

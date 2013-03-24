@@ -45,6 +45,6 @@
 }
 
 - (void)deleteAutoRec {
-    [TVHTableMgrActions doTableMgrAction:@"delete" inTable:@"autorec" withEntries:@[ [NSString stringWithFormat:@"\"%d\"",self.id] ] ];
+    [TVHTableMgrActions doTableMgrAction:@"delete" inTable:@"autorec" withEntries:[NSString stringWithFormat:@"[\"%d\"]",self.id] ];
 }
 @end

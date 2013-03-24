@@ -24,4 +24,5 @@
 + (void)addRecording:(NSInteger)eventId withConfigName:(NSString*)configName;
 + (void)cancelRecording:(NSInteger)eventId;
 + (void)deleteRecording:(NSInteger)eventId;
++ (void)addAutoRecording:(NSInteger)eventId withConfigName:(NSString*)configName;
 @end

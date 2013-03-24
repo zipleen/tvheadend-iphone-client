@@ -76,7 +76,7 @@
     [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *notificationClass = [obj objectForKey:@"notificationClass"];
 #ifdef TESTING
-        //NSLog(@"[Comet Poll Received notificationClass]: %@", notificationClass);
+        //NSLog(@"[Comet Poll Received notificationClass]: %@ {%@}", notificationClass, obj);
 #endif
         BOOL print = YES;
         if( [notificationClass isEqualToString:@"subscriptions"] ) {
@@ -113,9 +113,17 @@
              object:obj];
             print = NO;
         }
-
-        if(print)
+        
+        if( [notificationClass isEqualToString:@"autorec"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"autorecNotificationClassReceived"
+             object:obj];
+            print = NO;
+        }
+        
+        if(print) {
             NSLog(@"[CometPollStore log]: %@", obj);
+        }
     }];
     
     

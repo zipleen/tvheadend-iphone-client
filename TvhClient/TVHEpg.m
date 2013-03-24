@@ -111,4 +111,8 @@
     return channel;
 }
 
+- (void)addAutoRec {
+    [TVHDvrActions addAutoRecording:self.id withConfigName:nil];
+}
+
 @end

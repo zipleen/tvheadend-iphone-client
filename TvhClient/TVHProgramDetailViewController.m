@@ -121,7 +121,6 @@
 - (void)viewDidUnload {
     [self setProgramTitle:nil];
     [self setProgramImage:nil];
-    [self setTime:nil];
     self.epg = nil;
     self.channel = nil;
     [self setRecord:nil];
@@ -135,11 +134,6 @@
     self.propertiesKeys = nil;
     [self setChannelTitle:nil];
     [super viewDidUnload];
-}
-
-
-- (IBAction)addAutoRecordToTVHeadend:(id)sender {
-    
 }
 
 #pragma MARK table view delegate
@@ -272,6 +266,10 @@
         TVHEpg *epg = self.moreTimesItems[indexPath.row];
         [epg addRecording];
     }
+}
+
+- (IBAction)addAutoRecordToTVHeadend:(id)sender {
+    [self.epg addAutoRec];
 }
 
 - (IBAction)playStream:(id)sender {
