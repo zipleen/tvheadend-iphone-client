@@ -94,9 +94,14 @@
 
     }];
     
-    self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByName:)];
-    //self.channels = [channels copy];
+    if ( [[TVHSettings sharedInstance] sortChannel] == TVHS_SORT_CHANNEL_BY_NAME ) {
+        self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByName:)];
+    } else {
+        self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByNumber:)];
+    }
+#ifdef TESTING
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);
+#endif
 }
 
 - (void)resetChannelStore {
@@ -136,7 +141,9 @@
             if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
                 [self.delegate didErrorLoadingChannelStore:error];
             }
+#ifdef TESTING
             NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
+#endif
         }];
     } else {
         [self.delegate didLoadChannels];
@@ -159,9 +166,7 @@
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     // for each epg
     NSArray *list = [epgStore epgStoreItems];
-    NSEnumerator *e = [list objectEnumerator];
-    TVHEpg *epg;
-    while (epg = [e nextObject]) {
+    for (TVHEpg *epg in list) {
         TVHChannel *channel = [self getChannelById:epg.channelid];
         [channel addEpg:epg];
     }
@@ -207,7 +212,7 @@
     return nil;
 }
 
-- (TVHChannel*)channelWithId:(NSInteger) channelId {
+- (TVHChannel*)channelWithId:(NSInteger)channelId {
     // not using a predicate because if I find one channel then I'll return it right away
     for (TVHChannel *channel in self.channels) {
         if( channel.chid == channelId ) {

@@ -35,6 +35,7 @@
 @synthesize selectedServer = _selectedServer;
 @synthesize cacheTime = _cacheTime;
 @synthesize autoStartPolling = _autoStartPolling;
+@synthesize sortChannel = _sortChannel;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -230,6 +231,26 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:customPrefix forKey:TVHS_CUSTOM_PREFIX];
     [defaults synchronize];
+}
+
+- (NSInteger)sortChannel {
+    if ( !_sortChannel ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        id test = [defaults objectForKey:TVHS_SORT_CHANNEL];
+        if ( test == nil ) {
+            _sortChannel = TVHS_SORT_CHANNEL_BY_NAME;
+        } else {
+            _sortChannel = [defaults integerForKey:TVHS_SORT_CHANNEL];
+        }
+    }
+    return _sortChannel;
+}
+
+- (void)setSortChannel:(NSInteger)sortChannel {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:sortChannel forKey:TVHS_SORT_CHANNEL];
+    [defaults synchronize];
+    _sortChannel = sortChannel;
 }
 @end
 

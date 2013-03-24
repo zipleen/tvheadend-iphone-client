@@ -26,8 +26,11 @@
 #define TVHS_PASSWORD_KEY @"Password"
 #define TVHS_SELECTED_SERVER @"SelectedServer"
 #define TVHS_SERVERS @"Servers"
+#define TVHS_SORT_CHANNEL @"SortChannelBy"
 
 #define TVHS_SERVER_KEYS @[TVHS_SERVER_NAME, TVHS_IP_KEY, TVHS_PORT_KEY, TVHS_USERNAME_KEY, TVHS_PASSWORD_KEY]
+#define TVHS_SORT_CHANNEL_BY_NAME 0
+#define TVHS_SORT_CHANNEL_BY_NUMBER 1
 
 @interface TVHSettings : NSObject
 + (id)sharedInstance;
@@ -37,6 +40,7 @@
 @property (nonatomic) NSInteger selectedServer;
 @property (nonatomic) NSTimeInterval cacheTime;
 @property (nonatomic) BOOL autoStartPolling;
+@property (nonatomic) NSInteger sortChannel;
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;
 

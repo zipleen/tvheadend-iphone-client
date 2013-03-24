@@ -129,6 +129,15 @@
     return [self.name compare:otherObject.name];
 }
 
+- (NSComparisonResult)compareByNumber:(TVHChannel *)otherObject {
+    if ( self.number < otherObject.number ) {
+        return NSOrderedAscending;
+    } else if ( self.number > otherObject.number ) {
+        return NSOrderedDescending;
+    }
+    return NSOrderedSame;
+}
+
 - (void)resetChannelEpgStore {
     self.channelEpgDataByDay = nil;
 }
@@ -192,7 +201,7 @@
     if (!other || ![other isKindOfClass:[self class]])
         return NO;
     TVHChannel *otherCast = other;
-    return self.id == otherCast.id;
+    return self.chid == otherCast.chid;
 }
 
 #pragma delegate stuff
