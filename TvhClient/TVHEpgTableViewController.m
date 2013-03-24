@@ -140,6 +140,13 @@
     return 0.01f;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if( indexPath.row == [self.epgTable count] - 1 ) {
+        [self.epgStore downloadEpgList];
+    }
+}
+
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     [self.refreshControl endRefreshing];
     self.epgTable = [epgStore getEpgList];
