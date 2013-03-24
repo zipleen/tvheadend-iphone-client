@@ -32,6 +32,7 @@
 @end
 
 @interface TVHChannel : NSObject <TVHPlayStreamDelegate>
+@property (nonatomic) NSInteger id;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, strong) NSString *imageUrl;

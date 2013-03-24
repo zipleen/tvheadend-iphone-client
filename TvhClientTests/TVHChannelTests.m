@@ -45,6 +45,7 @@
     TVHEpg *epg = [[TVHEpg alloc] init];
     [epg updateValuesFromDictionary:@{
         @"channelid":@27,
+        @"id":@442521,
         @"title":@"Jornal das 8",
         @"description":@"Episodio 1.\n",
         @"duration":@6120,
@@ -88,11 +89,11 @@
     
     [channel didLoadEpg:store];
     chepg = [channel.channelEpgDataByDay objectAtIndex:0];
-    STAssertTrue( ([chepg.programs count] == 4), @"programs == %d should be 20", [chepg.programs count]);
-
+    STAssertTrue( ([chepg.programs count] == 4), @"programs == %d should be 4", [chepg.programs count]);
+    
     [channel didLoadEpg:store];
     chepg = [channel.channelEpgDataByDay objectAtIndex:0];
-    STAssertTrue( ([chepg.programs count] == 4), @"programs == %d should be 20", [chepg.programs count]);
+    STAssertTrue( ([chepg.programs count] == 4), @"programs == %d should be 4", [chepg.programs count]);
 }
 
 @end

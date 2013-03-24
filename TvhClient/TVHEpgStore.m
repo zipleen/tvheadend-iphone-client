@@ -53,6 +53,13 @@
     return self;
 }
 
+- (NSArray*)epgStore {
+    if ( !_epgStore ) {
+        _epgStore = [[NSArray alloc] init];
+    }
+    return _epgStore;
+}
+
 - (void)resetEpgStore {
     self.epgStore = nil;
     self.filterToChannelName = nil;
@@ -62,6 +69,13 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
+}
+
+- (void)addEpgItemToStore:(TVHEpg*)epgItem {
+    // don't add duplicate items - need to search in the array!
+    if ( [self.epgStore indexOfObject:epgItem] == NSNotFound ) {
+        self.epgStore = [self.epgStore arrayByAddingObject:epgItem];
+    }
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -77,19 +91,13 @@
     
     self.lastEventCount = [[json objectForKey:@"totalCount"] intValue];
     NSArray *entries = [json objectForKey:@"entries"];
-    NSMutableArray *epgStore = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHEpg *epg = [[TVHEpg alloc] init];
         [epg updateValuesFromDictionary:obj];
-        [epgStore addObject:epg];
+        [self addEpgItemToStore:epg];
     }];
     
-    if ( [self.epgStore count] > 0) {
-        self.epgStore = [self.epgStore arrayByAddingObjectsFromArray:[epgStore copy]];
-    } else {
-        self.epgStore = [epgStore copy];
-    }
 #ifdef TESTING
     NSLog(@"[EpgStore: Loaded EPG programs (%@)]: %d", self.filterToChannelName,[self.epgStore count]);
 #endif
@@ -156,7 +164,7 @@
 }
 
 - (void)downloadEpgList {
-    [self retrieveEpgDataFromTVHeadend:0 limit:50];
+    [self retrieveEpgDataFromTVHeadend:[self.epgStore count] limit:50];
 }
 
 - (NSArray*)epgStoreItems{

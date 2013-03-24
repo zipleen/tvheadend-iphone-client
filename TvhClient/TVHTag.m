@@ -51,4 +51,13 @@
 - (NSComparisonResult)compareByName:(TVHTag *)otherObject {
     return [self.name compare:otherObject.name];
 }
+
+- (BOOL)isEqual: (id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    TVHTag *otherCast = other;
+    return self.id == otherCast.id;
+}
 @end

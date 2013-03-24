@@ -93,22 +93,17 @@
 }
 
 - (void)addEpg:(TVHEpg*)epg {
-    if(!dateFormatter) {
+    if( !dateFormatter ) {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"MM/dd/yy";
     }
     
-    NSString *dateString = [dateFormatter stringFromDate:epg.start];
-    
+    NSString *dateString = [dateFormatter stringFromDate:epg.start];    
     TVHChannelEpg *tvhepg = [self getChannelEpgDataByDayString:dateString];
     
     // don't add duplicate epg - need to search in the array!
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"start == %@", epg.start];
-    NSArray *filteredArray = [tvhepg.programs filteredArrayUsingPredicate:predicate];
-    
-    if ([filteredArray count] == 0) {
+    if ( [tvhepg.programs indexOfObject:epg] == NSNotFound ) {
         [tvhepg.programs addObject:epg];
-
     }
 }
 
@@ -150,11 +145,11 @@
 
 - (void)downloadRestOfEpg {
     // spawn a new epgList so we can set a filter to the channel
-    TVHEpgStore *epgList = [[TVHEpgStore alloc] init];
-    [epgList setDelegate:self];
-    [epgList setFilterToChannelName:self.name];
+    TVHEpgStore *restOfEpgStore = [[TVHEpgStore alloc] init];
+    [restOfEpgStore setDelegate:self];
+    [restOfEpgStore setFilterToChannelName:self.name];
     
-    [epgList downloadEpgList];
+    [restOfEpgStore downloadEpgList];
 }
 
 #pragma Table Call Methods
@@ -191,12 +186,19 @@
     return [[[self.channelEpgDataByDay objectAtIndex:section] programs] count];
 }
 
+- (BOOL)isEqual: (id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    TVHChannel *otherCast = other;
+    return self.id == otherCast.id;
+}
+
 #pragma delegate stuff
-- (void)didLoadEpg:(TVHEpgStore*)epgList {
-    NSArray *list = [epgList epgStoreItems];
-    NSEnumerator *e = [list objectEnumerator];
-    TVHEpg *epg;
-    while( epg = [e nextObject]) {
+- (void)didLoadEpg:(TVHEpgStore*)epgStore {
+    NSArray *epgItems = [epgStore epgStoreItems];
+    for (TVHEpg *epg in epgItems) {
         [self addEpg:epg];
     }
     [self.delegate didLoadEpgChannel];

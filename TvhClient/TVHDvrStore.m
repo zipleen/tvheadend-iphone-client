@@ -76,6 +76,20 @@
     self.cachedDvrItems = nil;
 }
 
+- (NSArray*)dvrItems {
+    if ( !_dvrItems ) {
+        _dvrItems = [[NSArray alloc] init];
+    }
+    return _dvrItems;
+}
+
+- (void)addDvrItemToStore:(TVHDvrItem*)dvritem {
+    // don't add duplicate items - need to search in the array!
+    if ( [self.dvrItems indexOfObject:dvritem] == NSNotFound ) {
+        self.dvrItems = [self.dvrItems arrayByAddingObject:dvritem];
+    }
+}
+
 - (void)fetchedData:(NSData *)responseData withType:(NSInteger)type {
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
@@ -87,21 +101,21 @@
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
-    NSMutableArray *dvrItems = [[NSMutableArray alloc] init];
+    //NSMutableArray *dvrItems = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHDvrItem *dvritem = [[TVHDvrItem alloc] init];
         [dvritem updateValuesFromDictionary:obj];
         dvritem.dvrType = type;
         
-        [dvrItems addObject:dvritem];
+        [self addDvrItemToStore:dvritem];
     }];
     
-    if ( [self.dvrItems count] > 0) {
+    /*if ( [self.dvrItems count] > 0) {
         self.dvrItems = [self.dvrItems arrayByAddingObjectsFromArray:[dvrItems copy]];
     } else {
         self.dvrItems = [dvrItems copy];
-    }
+    }*/
     
 #ifdef TESTING
     NSLog(@"[Loaded DVR Items, Count]: %d", [self.dvrItems count]);

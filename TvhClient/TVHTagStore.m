@@ -72,11 +72,7 @@
     NSArray *entries = [json objectForKey:@"entries"];
     NSMutableArray *tags = [[NSMutableArray alloc] init];
     
-    
-    NSEnumerator *e = [entries objectEnumerator];
-    id entry;
-    //for (NSEnumerator *channel in entries) {
-    while (entry = [e nextObject]) {
+    for (id entry in entries) {
         NSInteger enabled = [[entry objectForKey:@"enabled"] intValue];
         if( enabled ) {
             TVHTag *tag = [[TVHTag alloc] init];

@@ -178,10 +178,7 @@
 
 - (NSArray*)getFilteredChannelList {
     NSMutableArray *filteredChannels = [[NSMutableArray alloc] init];
-    
-    NSEnumerator *e = [self.channels objectEnumerator];
-    TVHChannel *channel;
-    while (channel = [e nextObject]) {
+    for (TVHChannel *channel in self.channels) {
         if( [channel hasTag:self.filterTag] ) {
             [filteredChannels addObject:channel];
         }
@@ -202,20 +199,17 @@
 }
 
 - (TVHChannel*)channelWithName:(NSString*) name {
-    NSEnumerator *e = [self.channels objectEnumerator];
-    TVHChannel *channel;
-    while (channel = [e nextObject]) {
-        if( [channel.name isEqualToString:name] ) {
-            return channel;
-        }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", name];
+    NSArray *filteredArray = [self.channels filteredArrayUsingPredicate:predicate];
+    if ([filteredArray count] > 0) {
+        return [filteredArray objectAtIndex:0];
     }
     return nil;
 }
 
 - (TVHChannel*)channelWithId:(NSInteger) channelId {
-    NSEnumerator *e = [self.channels objectEnumerator];
-    TVHChannel *channel;
-    while (channel = [e nextObject]) {
+    // not using a predicate because if I find one channel then I'll return it right away
+    for (TVHChannel *channel in self.channels) {
         if( channel.chid == channelId ) {
             return channel;
         }
@@ -224,7 +218,7 @@
 }
 
 - (int)count {
-    if(self.filterTag == 0) {
+    if (self.filterTag == 0) {
         return [self.channels count];
     } else {
         NSArray *filteredTag = [self getFilteredChannelList];
