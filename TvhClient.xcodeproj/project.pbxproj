@@ -135,6 +135,7 @@
 		AAF54A2516C735960076DF17 /* TVHEpgStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2416C735960076DF17 /* TVHEpgStore.m */; };
 		AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */; };
 		AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */; };
+		AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,6 +380,8 @@
 		AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsServersViewController.m; sourceTree = "<group>"; };
 		AAFCB6BF16C86EC800A64434 /* TVHProgramDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHProgramDetailViewController.h; sourceTree = "<group>"; };
 		AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHProgramDetailViewController.m; sourceTree = "<group>"; };
+		AAFD3630170106DA00448059 /* TVHSettingsGenericFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsGenericFieldViewController.h; sourceTree = "<group>"; };
+		AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsGenericFieldViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +519,8 @@
 				AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */,
 				AA3721BD16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.h */,
 				AA3721BE16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.m */,
+				AAFD3630170106DA00448059 /* TVHSettingsGenericFieldViewController.h */,
+				AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1168,6 +1173,7 @@
 				AA424AF416F6797C00D20F12 /* TVHSettingsViewController.m in Sources */,
 				AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */,
 				AA3721BF16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.m in Sources */,
+				AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

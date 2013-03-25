@@ -9,6 +9,8 @@
 #import "TVHSettingsViewController.h"
 #import "TVHSettingsServersViewController.h"
 #import "TVHSettingsGenericTextViewController.h"
+#import "TVHSettingsGenericFieldViewController.h"
+#import "TVHChannelStore.h"
 #import "TVHSettings.h"
 #import "TestFlight.h"
 
@@ -72,7 +74,7 @@
         return NSLocalizedString(@"TVHeadend Servers", nil);
     }
     if (section == 1) {
-        return NSLocalizedString(@"Settings", nil);
+        return NSLocalizedString(@"Advanced Settings", nil);
     }
     return nil;
 }
@@ -88,7 +90,7 @@
         return [self.servers count] + 1;
     }
     if ( section == 1 ) {
-        return 3;
+        return 4;
     }
     if ( section == 2 ) {
         return 3;
@@ -155,6 +157,16 @@
             UILabel *textLabel = (UILabel *)[cell viewWithTag:201];
             textLabel.text = NSLocalizedString(@"Custom prefix", nil);
             textLabel.adjustsFontSizeToFitWidth = YES;
+        }
+        if ( indexPath.row == 3 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
+            cell.textLabel.text = NSLocalizedString(@"Order Channels", nil);
+            if ( [self.settings sortChannel] == TVHS_SORT_CHANNEL_BY_NAME ) {
+                cell.detailTextLabel.text = NSLocalizedString(@"by Name", nil);
+            } else {
+                cell.detailTextLabel.text = NSLocalizedString(@"by Number", nil);
+            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
     if ( indexPath.section == 2 ) {
@@ -229,6 +241,10 @@
         [self performSegueWithIdentifier:@"SettingsServers" sender:self];
     }
     
+    if ( indexPath.section == 1 && indexPath.row == 3 ) {
+        [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
+    }
+    
     if ( indexPath.section == 2 ) {
         [self performSegueWithIdentifier:@"SettingsGenericText" sender:self];
     }
@@ -236,7 +252,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"SettingsServers"]) {
+    if ( [segue.identifier isEqualToString:@"SettingsServers"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsServersViewController *vc = segue.destinationViewController;
         if ( path.row < [self.servers count] ) {
@@ -245,7 +261,7 @@
             [vc setSelectedServer:-1];
         }
     }
-    if([segue.identifier isEqualToString:@"SettingsGenericText"]) {
+    if ( [segue.identifier isEqualToString:@"SettingsGenericText"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsGenericTextViewController *vc = segue.destinationViewController;
         if ( path.row == 1 ) {
@@ -254,6 +270,21 @@
         if ( path.row == 2 ) {
             [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"licenses" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
         }
+    }
+    if ( [segue.identifier isEqualToString:@"SettingsGenericField"] ) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        if ( path.section == 1 && path.row == 3 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Order Channels", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Order Channels", nil)];
+            [vc setOptions:@[NSLocalizedString(@"by Name", nil), NSLocalizedString(@"by Number", nil)] ];
+            [vc setSelectedOption:[self.settings sortChannel]];
+            [vc setResponseBack:^(NSInteger order) {
+                [[TVHSettings sharedInstance] setSortChannel:order];
+                [[TVHChannelStore sharedInstance] resetChannelStore];
+            }];
+        }
+        
     }
 }
 
