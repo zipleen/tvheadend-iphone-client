@@ -146,12 +146,10 @@
 }
 
 - (TVHChannel*)getChannelById:(NSInteger)channelId {
-    NSEnumerator *e = [self.channels objectEnumerator];
-    TVHChannel *channel;
-    while (channel = [e nextObject]) {
-        if ( [channel chid] == channelId ) {
-            return channel;
-        }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"chid == %d", channelId];
+    NSArray *filteredArray = [self.channels filteredArrayUsingPredicate:predicate];
+    if ([filteredArray count] > 0) {
+        return [filteredArray objectAtIndex:0];
     }
     return nil;
 }
