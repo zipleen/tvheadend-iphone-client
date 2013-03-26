@@ -38,7 +38,6 @@
 		AA2AEB3A16CB0CC5006B071C /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3416CB0CC5006B071C /* search@2x.png */; };
 		AA2AEB3B16CB0CC5006B071C /* tv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3516CB0CC5006B071C /* tv@2x.png */; };
 		AA2AEB3D16CB0CC5006B071C /* comp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2AEB3716CB0CC5006B071C /* comp@2x.png */; };
-		AA3721BF16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3721BE16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.m */; };
 		AA3721C216FBF18500C21F09 /* about.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.txt */; };
 		AA3721C416FBF19100C21F09 /* licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.txt */; };
 		AA3E5CC916D8046200CE444C /* Log.tags in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CC816D8046200CE444C /* Log.tags */; };
@@ -136,6 +135,7 @@
 		AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */; };
 		AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */; };
 		AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */; };
+		AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD36371701232000448059 /* TVHSettingsGenericTextViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,8 +207,6 @@
 		AA2AEB3416CB0CC5006B071C /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		AA2AEB3516CB0CC5006B071C /* tv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv@2x.png"; sourceTree = "<group>"; };
 		AA2AEB3716CB0CC5006B071C /* comp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comp@2x.png"; sourceTree = "<group>"; };
-		AA3721BD16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVHSettingsGenericTextViewController.h; path = ../TVHSettingsGenericTextViewController.h; sourceTree = "<group>"; };
-		AA3721BE16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVHSettingsGenericTextViewController.m; path = ../TVHSettingsGenericTextViewController.m; sourceTree = "<group>"; };
 		AA3721C116FBF18500C21F09 /* about.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = about.txt; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = licenses.txt; sourceTree = "<group>"; };
 		AA3E5CC816D8046200CE444C /* Log.tags */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.tags; sourceTree = "<group>"; };
@@ -382,6 +380,8 @@
 		AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHProgramDetailViewController.m; sourceTree = "<group>"; };
 		AAFD3630170106DA00448059 /* TVHSettingsGenericFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsGenericFieldViewController.h; sourceTree = "<group>"; };
 		AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsGenericFieldViewController.m; sourceTree = "<group>"; };
+		AAFD36361701232000448059 /* TVHSettingsGenericTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsGenericTextViewController.h; sourceTree = "<group>"; };
+		AAFD36371701232000448059 /* TVHSettingsGenericTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsGenericTextViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,8 +517,8 @@
 				AA424AF316F6797B00D20F12 /* TVHSettingsViewController.m */,
 				AAFC2A0816FB34B500194DFF /* TVHSettingsServersViewController.h */,
 				AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */,
-				AA3721BD16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.h */,
-				AA3721BE16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.m */,
+				AAFD36361701232000448059 /* TVHSettingsGenericTextViewController.h */,
+				AAFD36371701232000448059 /* TVHSettingsGenericTextViewController.m */,
 				AAFD3630170106DA00448059 /* TVHSettingsGenericFieldViewController.h */,
 				AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */,
 			);
@@ -1172,8 +1172,8 @@
 				AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */,
 				AA424AF416F6797C00D20F12 /* TVHSettingsViewController.m in Sources */,
 				AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */,
-				AA3721BF16FBEAEA00C21F09 /* TVHSettingsGenericTextViewController.m in Sources */,
 				AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */,
+				AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
