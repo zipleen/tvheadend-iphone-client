@@ -255,6 +255,7 @@
     if ( [segue.identifier isEqualToString:@"SettingsServers"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsServersViewController *vc = segue.destinationViewController;
+        [vc setTitle:NSLocalizedString(@"TVHeadend Server", nil)];
         if ( path.row < [self.servers count] ) {
             [vc setSelectedServer:path.row];
         } else {
@@ -265,9 +266,11 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsGenericTextViewController *vc = segue.destinationViewController;
         if ( path.row == 1 ) {
+            [vc setTitle:NSLocalizedString(@"About", nil)];
             [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
         }
         if ( path.row == 2 ) {
+            [vc setTitle:NSLocalizedString(@"Licenses", nil)];
             [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"licenses" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
         }
     }
