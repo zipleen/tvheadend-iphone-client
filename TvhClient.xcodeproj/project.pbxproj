@@ -69,6 +69,7 @@
 		AA575E3416DFF18300D80F8C /* TVHDvrStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA575E3316DFF18300D80F8C /* TVHDvrStore.m */; };
 		AA575E3A16DFF19500D80F8C /* TVHDvrItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA575E3916DFF19500D80F8C /* TVHDvrItem.m */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
+		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
 		AA8DC11C16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DC11B16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m */; };
@@ -284,6 +285,8 @@
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA65421D1705C4BD00BA20C1 /* TVHTestFlightKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTestFlightKey.h; sourceTree = "<group>"; };
+		AA6542211706196800BA20C1 /* TVHShowNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHShowNotice.h; sourceTree = "<group>"; };
+		AA6542221706196800BA20C1 /* TVHShowNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHShowNotice.m; sourceTree = "<group>"; };
 		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
 		AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelEpg.m; sourceTree = "<group>"; };
 		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 				AA8DC11816E140DE00F93BD7 /* DVR */,
 				AA28BA4616E6A1290029A723 /* TVHPlayStreamHelpController.h */,
 				AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */,
+				AA6542211706196800BA20C1 /* TVHShowNotice.h */,
+				AA6542221706196800BA20C1 /* TVHShowNotice.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1240,6 +1245,7 @@
 				AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */,
 				AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */,
 				AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */,
+				AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

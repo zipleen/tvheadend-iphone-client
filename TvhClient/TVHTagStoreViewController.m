@@ -20,12 +20,12 @@
 
 #import "TVHTagStoreViewController.h"
 #import "TVHChannelStoreViewController.h"
-#import "WBErrorNoticeView.h"
 #import "CKRefreshControl.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "TVHChannelStore.h"
 #import "TVHSettings.h"
 #import "TVHCometPollStore.h"
+#import "TVHShowNotice.h"
 
 @interface TVHTagStoreViewController ()
 @property (strong, nonatomic) TVHTagStore *tagList;
@@ -141,9 +141,7 @@
 }
 
 - (void)didErrorLoadingTagStore:(NSError*) error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    [notice setSticky:true];
-    [notice show];
+    [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
     
     [self.refreshControl endRefreshing];
 }

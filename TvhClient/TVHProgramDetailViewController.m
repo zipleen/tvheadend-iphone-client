@@ -21,7 +21,7 @@
 #import "TVHProgramDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
-#import "WBSuccessNoticeView.h"
+#import "TVHShowNotice.h"
 #import "TVHPlayStreamHelpController.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
@@ -39,8 +39,7 @@
 
 - (void) receiveDvrNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"didSuccessDvrAction"] && [notification.object isEqualToString:@"recordEvent"]) {
-        WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
-        [notice show];
+        [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
     }
 }
 

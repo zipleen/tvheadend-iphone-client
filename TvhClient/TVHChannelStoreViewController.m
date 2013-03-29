@@ -21,7 +21,7 @@
 #import "TVHChannelStoreViewController.h"
 #import "TVHChannelStoreProgramsViewController.h"
 #import "TVHChannel.h"
-#import "WBErrorNoticeView.h"
+#import "TVHShowNotice.h"
 #import "CKRefreshControl.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
@@ -173,9 +173,8 @@
 }
 
 - (void)didErrorLoadingChannelStore:(NSError*) error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    [notice setSticky:true];
-    [notice show];
+    [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
+    
     [self.refreshControl endRefreshing];
 }
 

@@ -21,7 +21,7 @@
 #import "TVHChannelStoreProgramsViewController.h"
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
-#import "WBErrorNoticeView.h"
+#import "TVHShowNotice.h"
 #import "CKRefreshControl.h"
 #import "TVHPlayStreamHelpController.h"
 
@@ -151,9 +151,8 @@
 }
 
 - (void)didErrorLoadingEpgChannel:(NSError*) error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error",nil) message:error.localizedDescription];
-    [notice setSticky:true];
-    [notice show];
+    [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error",nil) message:error.localizedDescription];
+    
     [self.refreshControl endRefreshing];
 }
 

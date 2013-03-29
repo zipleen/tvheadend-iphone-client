@@ -20,7 +20,7 @@
 
 #import "TVHStatusSubscriptionsViewController.h"
 #import "CKRefreshControl.h"
-#import "WBErrorNoticeView.h"
+#import "TVHShowNotice.h"
 #import "TVHCometPollStore.h"
 #import "NSString+FileSize.h"
 
@@ -186,17 +186,13 @@
 #pragma mark - Table view delegate
 
 - (void)didErrorStatusSubscriptionsStore:(NSError *)error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    [notice setSticky:true];
-    [notice show];
+    [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
     
     [self.refreshControl endRefreshing];
 }
 
 - (void)didErrorAdaptersStore:(NSError *)error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    [notice setSticky:true];
-    [notice show];
+    [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
     
     [self.refreshControl endRefreshing];
 }

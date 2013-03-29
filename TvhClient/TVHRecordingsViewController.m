@@ -20,8 +20,8 @@
 
 #import "TVHRecordingsViewController.h"
 #import "CKRefreshControl.h"
-#import "WBErrorNoticeView.h"
-#import "WBSuccessNoticeView.h"
+#import "TVHShowNotice.h"
+#import "TVHShowNotice.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TVHRecordingsDetailViewController.h"
@@ -59,12 +59,10 @@
 - (void)receiveDvrNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"didSuccessDvrAction"] ) {
         if ( [notification.object isEqualToString:@"deleteEntry"]) {
-            WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Recording", nil)];
-            [notice show];
+            [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Recording", nil)];
         }
         else if([notification.object isEqualToString:@"cancelEntry"]) {
-            WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Canceled Recording", nil)];
-            [notice show];
+            [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Canceled Recording", nil)];
         }
     }
 }
@@ -284,9 +282,8 @@
 }
 
 - (void)didErrorDvrStore:(NSError *)error {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    [notice setSticky:true];
-    [notice show];
+    [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
+    
     [self.refreshControl endRefreshing];
 }
 
