@@ -590,7 +590,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <progressView hidden="YES" opaque="NO" tag="104" contentMode="scaleToFill" progress="0.5" id="g7o-4I-Bjb">
-                                            <rect key="frame" x="144" y="42" width="156" height="9"/>
+                                            <rect key="frame" x="144" y="43" width="156" height="9"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         </progressView>
                                     </subviews>

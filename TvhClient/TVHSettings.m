@@ -23,6 +23,7 @@
 #define TVHS_CACHING_TIME @"CachingTime"
 #define TVHS_AUTO_START_COMET_POOL @"AutoStartCometPool"
 #define TVHS_CUSTOM_PREFIX @"CustomAppPrefix"
+#define TVHS_SEND_ANONSTATS @"sendAnonymousStatistics"
 
 @interface TVHSettings()
 
@@ -36,6 +37,7 @@
 @synthesize cacheTime = _cacheTime;
 @synthesize autoStartPolling = _autoStartPolling;
 @synthesize sortChannel = _sortChannel;
+@synthesize sendAnonymousStatistics = _sendAnonymousStatistics;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -251,6 +253,24 @@
     [defaults setInteger:sortChannel forKey:TVHS_SORT_CHANNEL];
     [defaults synchronize];
     _sortChannel = sortChannel;
+}
+
+- (BOOL)sendAnonymousStatistics {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id test = [defaults objectForKey:TVHS_SEND_ANONSTATS];
+    if ( test == nil ) {
+        _sendAnonymousStatistics = YES;
+        return _sendAnonymousStatistics;
+    }
+    _sendAnonymousStatistics = [defaults boolForKey:TVHS_SEND_ANONSTATS];
+    return _sendAnonymousStatistics;
+}
+
+- (void)setSendAnonymousStatistics:(BOOL)sendAnonymousStatistics {
+    _sendAnonymousStatistics = sendAnonymousStatistics;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:sendAnonymousStatistics forKey:TVHS_SEND_ANONSTATS];
+    [defaults synchronize];
 }
 @end
 

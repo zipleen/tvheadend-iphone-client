@@ -41,6 +41,7 @@
 @property (nonatomic) NSTimeInterval cacheTime;
 @property (nonatomic) BOOL autoStartPolling;
 @property (nonatomic) NSInteger sortChannel;
+@property (nonatomic) BOOL sendAnonymousStatistics;
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;
 

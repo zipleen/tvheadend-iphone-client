@@ -21,17 +21,20 @@
 #import "TVHAppDelegate.h"
 #import "TVHSettings.h"
 #import "TestFlight.h"
-#import "TVHChannelStore.h"
-#import "TVHTagStore.h"
+#import "TVHTestFlightKey.h"
 
 @implementation TVHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    BOOL sendAnonymousStats = [[TVHSettings sharedInstance] sendAnonymousStatistics];
+    if ( sendAnonymousStats ) {
+        NSString *testFlightKey = TVH_TESTFLIGHT_KEY;
 #ifdef TESTING
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
-    [TestFlight takeOff:@"3fbee019-fc2f-4e8c-967f-1f235f909d88"];
+        [TestFlight takeOff:testFlightKey];
+    }
     return YES;
 }
 							

@@ -90,7 +90,7 @@
         return [self.servers count] + 1;
     }
     if ( section == 1 ) {
-        return 4;
+        return 5;
     }
     if ( section == 2 ) {
         return 3;
@@ -167,6 +167,15 @@
                 cell.detailTextLabel.text = NSLocalizedString(@"by Number", nil);
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        if ( indexPath.row == 4 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
+            UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
+            [switchfield setOn:[self.settings sendAnonymousStatistics]];
+            [switchfield addTarget:self action: @selector(sendAnonymousStatistics:) forControlEvents:UIControlEventValueChanged];
+            
+            UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
+            textLabel.text = NSLocalizedString(@"Anonymous Statistics", nil);
         }
     }
     if ( indexPath.section == 2 ) {
@@ -313,6 +322,10 @@
 
 - (IBAction)autoStartPolling: (UISwitch*) sender {
     [self.settings setAutoStartPolling:sender.on];
+}
+
+- (IBAction)sendAnonymousStatistics: (UISwitch*) sender {
+    [self.settings setSendAnonymousStatistics:sender.on];
 }
 
 @end
