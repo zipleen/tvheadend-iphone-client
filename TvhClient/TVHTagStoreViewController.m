@@ -110,7 +110,7 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"] ];
     [cell.contentView addSubview: separator];
     
     return cell;

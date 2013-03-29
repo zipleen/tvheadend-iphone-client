@@ -534,7 +534,7 @@
         <scene sceneID="ZhY-Zp-32P">
             <objects>
                 <navigationController definesPresentationContext="YES" id="HH2-ic-xdM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Status" image="stat.png" id="Fbv-LJ-tYa"/>
+                    <tabBarItem key="tabBarItem" title="Status" image="status.png" id="Fbv-LJ-tYa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kNY-v7-cgJ" customClass="TVHUICustomNavigationBar">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -821,7 +821,7 @@
         <scene sceneID="A1e-kY-opM">
             <objects>
                 <navigationController id="tFx-kh-QHr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="EPG" image="calendar.png" id="S2M-vE-ACF"/>
+                    <tabBarItem key="tabBarItem" title="EPG" image="epg.png" id="S2M-vE-ACF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hqf-wx-qm6" customClass="TVHUICustomNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -848,7 +848,7 @@
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Program Title" id="8ht-Gv-UGk">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <scopeButtonTitles>
                                 <string>Title</string>
@@ -907,7 +907,7 @@
         <scene sceneID="i7D-JP-Upi">
             <objects>
                 <navigationController id="cCU-Qu-eRi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Log" image="search.png" id="2R7-xB-HMS"/>
+                    <tabBarItem key="tabBarItem" title="Log" image="log.png" id="2R7-xB-HMS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F9V-oV-KKo" customClass="TVHUICustomNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -934,7 +934,7 @@
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Filter Log" id="Oax-ru-heF">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                         </searchBar>
                         <prototypes>
@@ -1108,11 +1108,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar.png" width="36" height="34"/>
-        <image name="comp.png" width="32" height="32"/>
-        <image name="rec.png" width="32" height="32"/>
-        <image name="search.png" width="32" height="32"/>
-        <image name="stat.png" width="32" height="32"/>
+        <image name="comp.png" width="30" height="30"/>
+        <image name="epg.png" width="30" height="30"/>
+        <image name="log.png" width="30" height="30"/>
+        <image name="rec.png" width="30" height="30"/>
+        <image name="status.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="SDSegmentedControl" superclassName="UISegmentedControl">
@@ -1194,7 +1194,6 @@
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="autoStartPolling:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="doneSettings:"/>
             </relationships>
         </class>

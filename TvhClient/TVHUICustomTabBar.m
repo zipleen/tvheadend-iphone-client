@@ -41,10 +41,13 @@
 - (void)customize {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        UIImage *tabbarBg = [UIImage imageNamed:@"tabbar.png"];
+        /*UIImage *tabbarBg = [UIImage imageNamed:@"tabbar.png"];
         UIImage *tabBarSelected = [UIImage imageNamed:@"tabbar_selected.png"];
         [self setBackgroundImage:tabbarBg ]; 
-        [self setSelectionIndicatorImage:tabBarSelected];
+        [self setSelectionIndicatorImage:tabBarSelected];*/
+        
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabbar.png"]];
+        [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar_selected.png"] ];
     }
 }
 

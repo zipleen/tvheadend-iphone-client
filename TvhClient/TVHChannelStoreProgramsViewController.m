@@ -102,6 +102,8 @@
 	UILabel *description = (UILabel *)[cell viewWithTag:101];
     UILabel *hour = (UILabel *)[cell viewWithTag:102];
     UIProgressView *progress = (UIProgressView *)[cell viewWithTag:103];
+    [progress setTrackImage:[[UIImage imageNamed:@"BarTrack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+    [progress setProgressImage:[[UIImage imageNamed:@"BarFill.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
     
     hour.text = [timeFormatter stringFromDate: epg.start];
     name.text = epg.fullTitle;

@@ -113,6 +113,9 @@
 	UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     UILabel *currentTimeProgramLabel = (UILabel *)[cell viewWithTag:103];
     UIProgressView *currentTimeProgress = (UIProgressView*)[cell viewWithTag:104];
+    [currentTimeProgress setTrackImage:[[UIImage imageNamed:@"BarTrack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+    [currentTimeProgress setProgressImage:[[UIImage imageNamed:@"BarFill.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+    
 	currentProgramLabel.text = nil;
     currentTimeProgramLabel.text = nil;
     currentTimeProgress.hidden = true;
@@ -134,8 +137,8 @@
         currentTimeProgress.hidden = false;
         currentTimeProgress.progress = [currentPlayingProgram progress];
     }
-    
-    UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
+     
+    UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"separator.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
     [cell.contentView addSubview: separator];
     
     return cell;
