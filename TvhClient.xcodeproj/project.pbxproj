@@ -89,6 +89,9 @@
 		AA91023116C6B41700673DF5 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91022816C6B41700673DF5 /* UIImageView+AFNetworking.m */; };
 		AA91023316C6B6F800673DF5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA91023216C6B6F800673DF5 /* MobileCoreServices.framework */; };
 		AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA91023416C6B72500673DF5 /* SystemConfiguration.framework */; };
+		AA97AA5A170642FE0068702E /* PDKeychainBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA97AA57170642FD0068702E /* PDKeychainBindings.m */; };
+		AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA97AA59170642FD0068702E /* PDKeychainBindingsController.m */; };
+		AA97AA5D17065B540068702E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA97AA5C17065B540068702E /* Security.framework */; };
 		AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */; };
 		AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
 		AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
@@ -331,6 +334,11 @@
 		AA91022816C6B41700673DF5 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		AA91023216C6B6F800673DF5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		AA91023416C6B72500673DF5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AA97AA56170642FD0068702E /* PDKeychainBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDKeychainBindings.h; path = PDKeychainBindingsController/PDKeychainBindingsController/PDKeychainBindings.h; sourceTree = SOURCE_ROOT; };
+		AA97AA57170642FD0068702E /* PDKeychainBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDKeychainBindings.m; path = PDKeychainBindingsController/PDKeychainBindingsController/PDKeychainBindings.m; sourceTree = SOURCE_ROOT; };
+		AA97AA58170642FD0068702E /* PDKeychainBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDKeychainBindingsController.h; path = PDKeychainBindingsController/PDKeychainBindingsController/PDKeychainBindingsController.h; sourceTree = SOURCE_ROOT; };
+		AA97AA59170642FD0068702E /* PDKeychainBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDKeychainBindingsController.m; path = PDKeychainBindingsController/PDKeychainBindingsController/PDKeychainBindingsController.m; sourceTree = SOURCE_ROOT; };
+		AA97AA5C17065B540068702E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AA99BC5D16ED54290087060A /* TVHEpgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgTableViewController.h; sourceTree = "<group>"; };
 		AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgTableViewController.m; sourceTree = "<group>"; };
 		AAB399F016BDB21900973F88 /* TvhClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TvhClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -435,6 +443,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA97AA5D17065B540068702E /* Security.framework in Frameworks */,
 				AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */,
 				AA8DED3016DEE2EC00AF6A51 /* libSDWebImage.a in Frameworks */,
 				AA8DED3116DEE2EC00AF6A51 /* libSDWebImage+MKAnnotation.a in Frameworks */,
@@ -802,6 +811,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA97AA52170642E10068702E /* PDKeychainBindingsController */,
 				AAE5E88016EE9875007BEC40 /* TestFlight SDK */,
 				AA8DED3D16DEE35900AF6A51 /* SDWebImage */,
 				AA8DECF816DEBD7A00AF6A51 /* SDSegmentedControl */,
@@ -839,6 +849,17 @@
 			path = AFNetworking/AFNetworking;
 			sourceTree = SOURCE_ROOT;
 		};
+		AA97AA52170642E10068702E /* PDKeychainBindingsController */ = {
+			isa = PBXGroup;
+			children = (
+				AA97AA56170642FD0068702E /* PDKeychainBindings.h */,
+				AA97AA57170642FD0068702E /* PDKeychainBindings.m */,
+				AA97AA58170642FD0068702E /* PDKeychainBindingsController.h */,
+				AA97AA59170642FD0068702E /* PDKeychainBindingsController.m */,
+			);
+			name = PDKeychainBindingsController;
+			sourceTree = "<group>";
+		};
 		AA99BC5916ED537A0087060A /* EPG */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +891,7 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA97AA5C17065B540068702E /* Security.framework */,
 				AACA613716CFDBE8002C6DE1 /* libz.dylib */,
 				AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */,
 				AA43D46F16CEFC5400104BBF /* QuartzCore.framework */,
@@ -1246,6 +1268,8 @@
 				AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */,
 				AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */,
 				AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */,
+				AA97AA5A170642FE0068702E /* PDKeychainBindings.m in Sources */,
+				AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,3 +13,6 @@
 [submodule "SDWebImage"]
 	path = SDWebImage
 	url = git://github.com/rs/SDWebImage.git
+[submodule "PDKeychainBindingsController"]
+	path = PDKeychainBindingsController
+	url = git://github.com/carlbrown/PDKeychainBindingsController.git

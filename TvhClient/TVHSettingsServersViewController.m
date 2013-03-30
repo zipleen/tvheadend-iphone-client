@@ -12,11 +12,10 @@
 
 @interface TVHSettingsServersViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) TVHSettings *settings;
+@property (nonatomic, strong) NSMutableDictionary *server;
 @end
 
-@implementation TVHSettingsServersViewController {
-    BOOL newServer;
-}
+@implementation TVHSettingsServersViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -31,23 +30,17 @@
 {
     [super viewDidLoad];
     self.settings = [TVHSettings sharedInstance];
-    newServer = NO;
     
     if ( self.selectedServer == -1 ) {
-        newServer = YES;
-        self.selectedServer = [self.settings addNewServer];
+        self.server = [[self.settings newServer] mutableCopy];
+    } else {
+        self.server = [[self.settings serverProperties:self.selectedServer] mutableCopy];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    if ( newServer ) {
-        for (NSString *str in TVHS_SERVER_KEYS) {
-            if ( ![[self.settings serverProperty:str forServer:self.selectedServer] isEqualToString:@""] ) {
-                return ;
-            }
-        }
-        [self.settings removeServer:self.selectedServer];
-    }
+    [self.settings setServerProperties:[self.server copy] forServerId:self.selectedServer];
+    [self.settings setSelectedServer:[self.settings selectedServer]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,7 +128,7 @@
     textField.delegate = self;
     textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
     textField.enabled = YES;
-    textField.text = [self.settings serverProperty:TVHS_SERVER_KEYS[[self indexOfSettingsArray:indexPath.section row:indexPath.row]] forServer:self.selectedServer] ;
+    textField.text = [self.server objectForKey:TVHS_SERVER_KEYS[[self indexOfSettingsArray:indexPath.section row:indexPath.row]] ] ;
     
     [cell.contentView addSubview:textField];
     
@@ -151,7 +144,12 @@
     UITableViewCell* myCell = (UITableViewCell*)textField.superview.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell: myCell];
     
-    [self.settings setServerProperty:textField.text forServer:self.selectedServer ForKey:TVHS_SERVER_KEYS[[self indexOfSettingsArray:indexPath.section row:indexPath.row]]];
+    [self.server setValue:textField.text
+                   forKey:TVHS_SERVER_KEYS[ [self indexOfSettingsArray:indexPath.section
+                                                                  row:indexPath.row]
+                                           ]
+     ];
+    
     return YES;
 }
 

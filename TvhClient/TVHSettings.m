@@ -20,6 +20,8 @@
 
 #import "TVHSettings.h"
 #import "TVHJsonClient.h"
+#import "PDKeychainBindings.h"
+#import <CommonCrypto/CommonDigest.h>
 #define TVHS_CACHING_TIME @"CachingTime"
 #define TVHS_AUTO_START_COMET_POOL @"AutoStartCometPool"
 #define TVHS_CUSTOM_PREFIX @"CustomAppPrefix"
@@ -49,7 +51,49 @@
     return __sharedInstance;
 }
 
+#pragma mark crypto
+
+- (NSString *)md5:(NSString *)input {
+    const char *cStr = [input UTF8String];
+    unsigned char digest[16];
+    CC_MD5( cStr, strlen(cStr), digest ); // This is the md5 call
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [output appendFormat:@"%02x", digest[i]];
+    
+    return output;
+    
+}
+
+- (void)setProtectedString:(NSString*)string forKey:(NSString*)key {
+    PDKeychainBindings *protectedSettings = [PDKeychainBindings sharedKeychainBindings];
+    [protectedSettings setString:string forKey:key];
+}
+
+- (NSString*)protectedString:(NSString*)key {
+    PDKeychainBindings *protectedSettings = [PDKeychainBindings sharedKeychainBindings];
+    return [protectedSettings stringForKey:key];
+}
+
 #pragma mark Servers
+
+- (NSString*)md5ForServer:(NSString*)server withPort:(NSString*)port withUser:(NSString*)username {
+    return [NSString stringWithFormat:@"%@|%@|%@", server, port, username];
+}
+
+- (void)setPasswordForServer:(NSString*)server withPort:(NSString*)port withUser:(NSString*)username
+withPassword:(NSString*)password {
+    [self setProtectedString:password forKey:[self md5ForServer:server withPort:port withUser:username]];
+}
+
+- (NSString*)passwordForServer:(NSString*)server withPort:(NSString*)port withUser:(NSString*)username {
+    return [self protectedString:[self md5ForServer:server
+                                           withPort:port
+                                           withUser:username]
+            ];
+}
 
 - (NSArray*)availableServers {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -64,42 +108,62 @@
     NSArray *servers = self.availableServers;
     if ( serverId < [servers count] ) {
         NSDictionary *myServer = [servers objectAtIndex:serverId];
-        return [myServer objectForKey:key];
+        if ( [key isEqualToString:TVHS_PASSWORD_KEY] ) {
+            return [self passwordForServer:[myServer objectForKey:TVHS_IP_KEY]
+                                  withPort:[myServer objectForKey:TVHS_PORT_KEY]
+                                  withUser:[myServer objectForKey:TVHS_USERNAME_KEY]];
+        } else {
+            return [myServer objectForKey:key];
+        }
     }
     return nil;
 }
 
-- (void)setServerProperty:(NSString*)property forServer:(NSInteger)serverId ForKey:(NSString*)key {
+- (void)setServerProperties:(NSDictionary*)properties forServerId:(NSInteger)serverId {
     NSMutableArray *servers = [self.availableServers mutableCopy];
+    NSString *password = [properties objectForKey:TVHS_PASSWORD_KEY];
+    
+    // remove password from saved array
+    NSMutableDictionary *server = [properties mutableCopy];
+    [server removeObjectForKey:TVHS_PASSWORD_KEY];
+    
+    // save password in keychain
+    [self setProtectedString:password
+                      forKey:[self md5ForServer:[server objectForKey:TVHS_IP_KEY]
+                                       withPort:[server objectForKey:TVHS_PORT_KEY]
+                                       withUser:[server objectForKey:TVHS_USERNAME_KEY]]
+     ];
+    
+    if ( serverId == -1 ) {
+        [servers addObject:server];
+    } else {
+        [servers replaceObjectAtIndex:serverId withObject:server];
+    }
+    
+    // save all servers
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:servers forKey:TVHS_SERVERS];
+    [defaults synchronize];
+}
+
+- (NSDictionary*)serverProperties:(NSInteger)serverId {
+    NSArray *servers = self.availableServers;
     if ( serverId < [servers count] ) {
         NSMutableDictionary *server = [[servers objectAtIndex:serverId] mutableCopy];
-        
-        // set property on server and replace it in servers array
-        [server setObject:property forKey:key];
-        [servers replaceObjectAtIndex:serverId withObject:server];
-        
-        // save all servers
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:servers forKey:TVHS_SERVERS];
-        [defaults synchronize];
+        [server setValue:[self serverProperty:TVHS_PASSWORD_KEY forServer:serverId] forKey:TVHS_PASSWORD_KEY];
+        return [server copy];
     }
+    return nil;
 }
 
 - (NSString*)currentServerProperty:(NSString*)key {
     return [self serverProperty:key forServer:self.selectedServer];
 }
 
-- (NSInteger)addNewServer {
-    NSMutableArray *servers = [self.availableServers mutableCopy];
-    NSDictionary *newServer = @{TVHS_SERVER_NAME:@"", TVHS_IP_KEY:@"", TVHS_PORT_KEY:@"", TVHS_USERNAME_KEY:@"", TVHS_PASSWORD_KEY:@""};
+- (NSDictionary*)newServer {
+    NSDictionary *newServer = @{TVHS_SERVER_NAME:@"", TVHS_IP_KEY:@"", TVHS_PORT_KEY:@"9981", TVHS_USERNAME_KEY:@"", TVHS_PASSWORD_KEY:@""};
     
-    [servers addObject:newServer];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[servers copy] forKey:TVHS_SERVERS];
-    [defaults synchronize];
-    
-    return [servers count] - 1;
+    return newServer;
 }
 
 - (NSInteger)selectedServer {
@@ -128,12 +192,24 @@
 
 - (void)removeServer:(NSInteger)serverId {
     NSMutableArray *servers = [self.availableServers mutableCopy];
+    if ( [servers count] > serverId ) {
+        return ;
+    }
+    
+    // remove protected password
+    NSDictionary *serverToRemove = [servers objectAtIndex:serverId];
+    [self setProtectedString:nil
+                      forKey:[self md5ForServer:[serverToRemove objectForKey:TVHS_IP_KEY]
+                                       withPort:[serverToRemove objectForKey:TVHS_PORT_KEY]
+                                       withUser:[serverToRemove objectForKey:TVHS_USERNAME_KEY]]];
+    
     [servers removeObjectAtIndex:serverId];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[servers copy] forKey:TVHS_SERVERS];
     [defaults synchronize];
     
+    // reset server connection
     if ( [self.availableServers count] > 0 ) {
         NSDictionary *selectedServer = [self.availableServers objectAtIndex:self.selectedServer];
         NSInteger newSelectedServer = [servers indexOfObject:selectedServer];
@@ -172,7 +248,6 @@
     return _username;
 }
 
-// FIX: Password in cleartext!!! NEEDS TO USE KEYCHAIN!!!!!
 - (NSString*)password {
     if ( !_password ) {
         _password = [self currentServerProperty:TVHS_PASSWORD_KEY];

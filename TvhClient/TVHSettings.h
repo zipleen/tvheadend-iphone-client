@@ -45,11 +45,12 @@
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;
 
-- (NSString*)serverProperty:(NSString*)key forServer:(NSInteger)serverId;
-- (void)setServerProperty:(NSString*)property forServer:(NSInteger)serverId ForKey:(NSString*)key;
+- (NSDictionary*)serverProperties:(NSInteger)serverId;
+- (void)setServerProperties:(NSDictionary*)properties forServerId:(NSInteger)serverId;
+- (NSDictionary*)newServer;
 - (void)removeServer:(NSInteger)serverId;
+- (NSString*)serverProperty:(NSString*)key forServer:(NSInteger)serverId;
 - (NSString*)currentServerProperty:(NSString*)key;
 - (NSArray*)availableServers;
-- (NSInteger)addNewServer;
 - (void)resetSettings;
 @end
