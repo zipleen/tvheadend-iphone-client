@@ -139,9 +139,6 @@ withPassword:(NSString*)password {
                       withUser:[server objectForKey:TVHS_USERNAME_KEY]
                   withPassword:password];
     
-    if ( ! [[server objectForKey:TVHS_SSH_PF_HOST] isEqualToString:@""] ) {
-        [server setObject:@YES forKey:TVHS_SSH_PF_ENABLE];
-    }
     [self setPasswordForServer:[server objectForKey:TVHS_SSH_PF_HOST]
                       withPort:[server objectForKey:TVHS_SSH_PF_PORT]
                       withUser:[server objectForKey:TVHS_SSH_PF_USERNAME]
@@ -180,7 +177,6 @@ withPassword:(NSString*)password {
                                 TVHS_PORT_KEY:@"9981",
                                 TVHS_USERNAME_KEY:@"",
                                 TVHS_PASSWORD_KEY:@"",
-                                TVHS_SSH_PF_ENABLE:@NO,
                                 TVHS_SSH_PF_HOST:@"",
                                 TVHS_SSH_PF_PORT:@"",
                                 TVHS_SSH_PF_USERNAME:@"",
@@ -254,7 +250,7 @@ withPassword:(NSString*)password {
             return nil;
         }
         
-        if ( [self currentServerProperty:TVHS_SSH_PF_ENABLE] ) {
+        if ( ![[self currentServerProperty:TVHS_SSH_PF_HOST] isEqualToString:@""] ) {
             ip = @"127.0.0.1";
             port = [NSString stringWithFormat:@"%@", TVHS_SSH_PF_LOCAL_PORT];
         } else {

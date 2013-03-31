@@ -51,7 +51,7 @@ static TVHJsonClient *__jsonClient;
     NSURL *baseUrl = [settings baseURL];
     
     // setup port forward
-    if ( [settings currentServerProperty:TVHS_SSH_PF_ENABLE] ) {
+    if ( ! [[settings currentServerProperty:TVHS_SSH_PF_HOST] isEqualToString:@""] ) {
         [self setupPortForwardToHost:[settings currentServerProperty:TVHS_SSH_PF_HOST]
                            onSSHPort:[[settings currentServerProperty:TVHS_SSH_PF_PORT] intValue]
                         withUsername:[settings currentServerProperty:TVHS_SSH_PF_USERNAME]
@@ -120,10 +120,7 @@ static TVHJsonClient *__jsonClient;
      parameters:(NSDictionary *)parameters
         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    // rude implementation until I have time to handle this correctly! - and it does not work either lol
-    while ( ! [self readyToUse] ) {
-        sleep(1);
-    }
+    
     return [super getPath:path parameters:parameters success:success failure:failure];
 }
 
@@ -132,9 +129,7 @@ static TVHJsonClient *__jsonClient;
       parameters:(NSDictionary *)parameters
          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-    while ( ! [self readyToUse] ) {
-        sleep(1);
-    }
+    
     return [super postPath:path parameters:parameters success:success failure:failure];
 }
 
@@ -200,12 +195,14 @@ static TVHJsonClient *__jsonClient;
     dispatch_async(queue, ^{
         NSError *error = nil;
         sshPortForwardWrapper = [[SSHWrapper alloc] init];
-        [sshPortForwardWrapper connectToHost:hostAddress port:22 user:username password:password error:&error];
+        [sshPortForwardWrapper connectToHost:hostAddress port:sshHostPort user:username password:password error:&error];
         if ( !error ) {
             _readyToUse = YES;
             [sshPortForwardWrapper setPortForwardFromPort:localPort toHost:remoteIp onPort:remotePort];
             _readyToUse = NO;
-        } 
+        } else {
+            NSLog(@"erro ssh pf: ", error.localizedDescription);
+        }
     });
 }
 

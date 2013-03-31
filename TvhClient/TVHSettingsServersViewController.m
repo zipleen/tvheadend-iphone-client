@@ -104,55 +104,58 @@
     static NSString *CellIdentifier = @"ServerPropertiesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(110, 10, 185, 30)];
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(136, 10, 160, 30)];
+    //UITextField *textField = (UITextField *)[cell viewWithTag:201];
+    UILabel *textLabel = (UILabel *)[cell viewWithTag:200];
     textField.adjustsFontSizeToFitWidth = YES;
     textField.textColor = [UIColor blackColor];
     textField.secureTextEntry = NO;
     textField.returnKeyType = UIReturnKeyDone;
     if ( indexPath.row == 0 && indexPath.section == 0 ) {
-        cell.textLabel.text = NSLocalizedString(@"Label", nil);
-        textField.placeholder = @"Name";
+        textLabel.text = NSLocalizedString(@"Name", nil);
+        textField.placeholder = @"";
     }
     if ( indexPath.row == 1 && indexPath.section == 0  ) {
-        cell.textLabel.text = NSLocalizedString(@"Server Address", nil);
+        textLabel.text = NSLocalizedString(@"Server Address", nil);
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 2 && indexPath.section == 0  ) {
-        cell.textLabel.text = NSLocalizedString(@"Port", nil);
+        textLabel.text = NSLocalizedString(@"Port", nil);
         textField.placeholder = @"9981";
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }
     if ( indexPath.row == 0 && indexPath.section == 1 ) {
-        cell.textLabel.text = NSLocalizedString(@"Username", nil);
+        textLabel.text = NSLocalizedString(@"Username", nil);
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeDefault;
     }
     if ( indexPath.row == 1 && indexPath.section == 1 ) {
-        cell.textLabel.text = NSLocalizedString(@"Password", nil);
+        textLabel.text = NSLocalizedString(@"Password", nil);
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeDefault;
         textField.secureTextEntry = YES;
     }
     if ( indexPath.row == 0 && indexPath.section == 2  ) {
-        cell.textLabel.text = NSLocalizedString(@"SSH IP", nil);
+        textLabel.text = NSLocalizedString(@"SSH IP", nil);
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 1 && indexPath.section == 2  ) {
-        cell.textLabel.text = NSLocalizedString(@"SSH Port", nil);
+        textLabel.text = NSLocalizedString(@"SSH Port", nil);
         textField.placeholder = @"22";
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }
     if ( indexPath.row == 2 && indexPath.section == 2  ) {
-        cell.textLabel.text = NSLocalizedString(@"SSH Username", nil);
+        textLabel.text = NSLocalizedString(@"SSH Username", nil);
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 3 && indexPath.section == 2  ) {
-        cell.textLabel.text = NSLocalizedString(@"SSH Password", nil);
+        textLabel.text = NSLocalizedString(@"SSH Password", nil);
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
+        textField.secureTextEntry = YES;
     }
     textField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
