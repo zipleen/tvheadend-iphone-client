@@ -147,6 +147,11 @@
 		AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */; };
 		AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */; };
 		AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE5E87B16EE9865007BEC40 /* libTestFlight.a */; };
+		AAE7B798170781AB0052E6F3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B797170781AB0052E6F3 /* CFNetwork.framework */; };
+		AAE7B79F170782200052E6F3 /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79C170782200052E6F3 /* libssh2.a */; };
+		AAE7B7A0170782200052E6F3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79D170782200052E6F3 /* libcrypto.a */; };
+		AAE7B7A1170782200052E6F3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79E170782200052E6F3 /* libssl.a */; };
+		AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */; };
 		AAF54A1916C70D1B0076DF17 /* TVHTagStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */; };
 		AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1B16C70D270076DF17 /* TVHTag.m */; };
 		AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagStoreViewController.m */; };
@@ -408,6 +413,12 @@
 		AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTableMgrActions.m; sourceTree = "<group>"; };
 		AAE5E87B16EE9865007BEC40 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = "../TestFlight SDK/libTestFlight.a"; sourceTree = "<group>"; };
 		AAE5E88116EE988B007BEC40 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = "TestFlight SDK/TestFlight.h"; sourceTree = SOURCE_ROOT; };
+		AAE7B797170781AB0052E6F3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		AAE7B79C170782200052E6F3 /* libssh2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssh2.a; path = "libssh2-for-iOS/lib/libssh2.a"; sourceTree = "<group>"; };
+		AAE7B79D170782200052E6F3 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "libssh2-for-iOS/lib/libcrypto.a"; sourceTree = "<group>"; };
+		AAE7B79E170782200052E6F3 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "libssh2-for-iOS/lib/libssl.a"; sourceTree = "<group>"; };
+		AAE7B7A31707825D0052E6F3 /* SSHWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHWrapper.h; sourceTree = "<group>"; };
+		AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHWrapper.m; sourceTree = "<group>"; };
 		AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore.h; sourceTree = "<group>"; };
 		AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore.m; sourceTree = "<group>"; };
 		AAF54A1A16C70D270076DF17 /* TVHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTag.h; sourceTree = "<group>"; };
@@ -443,6 +454,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE7B79F170782200052E6F3 /* libssh2.a in Frameworks */,
+				AAE7B7A0170782200052E6F3 /* libcrypto.a in Frameworks */,
+				AAE7B7A1170782200052E6F3 /* libssl.a in Frameworks */,
+				AAE7B798170781AB0052E6F3 /* CFNetwork.framework in Frameworks */,
 				AA97AA5D17065B540068702E /* Security.framework in Frameworks */,
 				AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */,
 				AA8DED3016DEE2EC00AF6A51 /* libSDWebImage.a in Frameworks */,
@@ -492,6 +507,7 @@
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AAE7B7A2170782500052E6F3 /* SSH */,
 				AA8DC11016E1407700F93BD7 /* Channels */,
 				AA8DC11416E1409400F93BD7 /* Comet Poll / Status */,
 				AA8DC11516E140B600F93BD7 /* DVR */,
@@ -891,6 +907,10 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAE7B79C170782200052E6F3 /* libssh2.a */,
+				AAE7B79D170782200052E6F3 /* libcrypto.a */,
+				AAE7B79E170782200052E6F3 /* libssl.a */,
+				AAE7B797170781AB0052E6F3 /* CFNetwork.framework */,
 				AA97AA5C17065B540068702E /* Security.framework */,
 				AACA613716CFDBE8002C6DE1 /* libz.dylib */,
 				AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */,
@@ -983,6 +1003,15 @@
 				AAE5E87B16EE9865007BEC40 /* libTestFlight.a */,
 			);
 			name = "TestFlight SDK";
+			sourceTree = "<group>";
+		};
+		AAE7B7A2170782500052E6F3 /* SSH */ = {
+			isa = PBXGroup;
+			children = (
+				AAE7B7A31707825D0052E6F3 /* SSHWrapper.h */,
+				AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */,
+			);
+			name = SSH;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1270,6 +1299,7 @@
 				AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */,
 				AA97AA5A170642FE0068702E /* PDKeychainBindings.m in Sources */,
 				AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */,
+				AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,11 +1469,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libssh2-for-iOS/include\"/**";
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight SDK\"",
+					"\"$(SRCROOT)/libssh2-for-iOS/lib\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TvhClient;
@@ -1465,11 +1497,13 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libssh2-for-iOS/include\"/**";
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlight SDK\"",
+					"\"$(SRCROOT)/libssh2-for-iOS/lib\"",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TvhClient;

@@ -39,8 +39,12 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [self.settings setServerProperties:[self.server copy] forServerId:self.selectedServer];
-    [self.settings setSelectedServer:[self.settings selectedServer]];
+    NSDictionary *new = [self.settings newServer];
+    NSDictionary *server = [self.server copy];
+    if ( ! [new isEqualToDictionary:server] ) {
+        [self.settings setServerProperties:server forServerId:self.selectedServer];
+        [self.settings setSelectedServer:[self.settings selectedServer]];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,12 +63,15 @@
     if (section == 1) {
         return NSLocalizedString(@"Authentication", nil);
     }
+    if (section == 2) {
+        return NSLocalizedString(@"SSH Port Forward", nil);
+    }
     return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -75,6 +82,9 @@
     if ( section == 1 ) {
         return 2;
     }
+    if ( section == 2 ) {
+        return 4;
+    }
     return 0;
 }
 
@@ -82,6 +92,9 @@
     NSInteger c = 0;
     if ( section == 1 ) {
         c = c + 3;
+    }
+    if ( section == 2 ) {
+        c = c + 3 + 2;
     }
     return c + row;
 }
@@ -101,8 +114,8 @@
         textField.placeholder = @"Name";
     }
     if ( indexPath.row == 1 && indexPath.section == 0  ) {
-        cell.textLabel.text = NSLocalizedString(@"IP", nil);
-        textField.placeholder = @"Server Address";
+        cell.textLabel.text = NSLocalizedString(@"Server Address", nil);
+        textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 2 && indexPath.section == 0  ) {
@@ -120,6 +133,26 @@
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeDefault;
         textField.secureTextEntry = YES;
+    }
+    if ( indexPath.row == 0 && indexPath.section == 2  ) {
+        cell.textLabel.text = NSLocalizedString(@"SSH IP", nil);
+        textField.placeholder = @"";
+        textField.keyboardType = UIKeyboardTypeAlphabet;
+    }
+    if ( indexPath.row == 1 && indexPath.section == 2  ) {
+        cell.textLabel.text = NSLocalizedString(@"SSH Port", nil);
+        textField.placeholder = @"22";
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    if ( indexPath.row == 2 && indexPath.section == 2  ) {
+        cell.textLabel.text = NSLocalizedString(@"SSH Username", nil);
+        textField.placeholder = @"";
+        textField.keyboardType = UIKeyboardTypeAlphabet;
+    }
+    if ( indexPath.row == 3 && indexPath.section == 2  ) {
+        cell.textLabel.text = NSLocalizedString(@"SSH Password", nil);
+        textField.placeholder = @"";
+        textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     textField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support

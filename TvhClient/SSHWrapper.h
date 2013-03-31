@@ -1,9 +1,9 @@
 //
-//  TVHJsonClient.h
-//  TVHeadend iPhone Client
+//  SSHWrapper.h
+//  libssh2-for-iOS
 //
-//  Created by zipleen on 2/22/13.
-//  Copyright 2013 Luis Fernandes
+//  Created by Felix Schulze on 01.02.11.
+//  Copyright 2010 Felix Schulze. All rights reserved.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,14 +16,17 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
-#import "AFHTTPClient.h"
+#import <Foundation/Foundation.h>
 
-@interface TVHJsonClient : AFHTTPClient
-@property (nonatomic, readonly) BOOL readyToUse;
-+ (TVHJsonClient*)sharedInstance;
-- (void)setUsername:(NSString *)username password:(NSString *)password;
 
-+ (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(NSError*)error;
+@interface SSHWrapper : NSObject {
+
+}
+
+- (void)connectToHost:(NSString *)host port:(int)port user:(NSString *)user password:(NSString *)password error:(NSError **)error;
+- (void)closeConnection;
+- (NSString *)executeCommand:(NSString *)command error:(NSError **)error;
+-(void) setPortForwardFromPort:(unsigned int)localPort toHost:(NSString*)remoteHost onPort:(unsigned int)remotePort;
+
 @end

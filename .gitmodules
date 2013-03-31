@@ -16,3 +16,6 @@
 [submodule "PDKeychainBindingsController"]
 	path = PDKeychainBindingsController
 	url = git://github.com/carlbrown/PDKeychainBindingsController.git
+[submodule "libssh2-for-iOS"]
+	path = libssh2-for-iOS
+	url = git://github.com/x2on/libssh2-for-iOS.git

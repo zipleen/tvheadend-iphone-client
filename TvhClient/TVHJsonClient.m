@@ -22,8 +22,12 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "TVHSettings.h"
 #import "AFJSONRequestOperation.h"
+#import "SSHWrapper.h"
+static TVHJsonClient *__jsonClient;
 
-@implementation TVHJsonClient
+@implementation TVHJsonClient {
+    SSHWrapper *sshPortForwardWrapper;
+}
 
 #pragma mark - Methods
 
@@ -44,7 +48,24 @@
 
 - (id)init {
     TVHSettings *settings = [TVHSettings sharedInstance];
-    self = [super initWithBaseURL:[settings baseURL]];
+    NSURL *baseUrl = [settings baseURL];
+    
+    // setup port forward
+    if ( [settings currentServerProperty:TVHS_SSH_PF_ENABLE] ) {
+        [self setupPortForwardToHost:[settings currentServerProperty:TVHS_SSH_PF_HOST]
+                           onSSHPort:[[settings currentServerProperty:TVHS_SSH_PF_PORT] intValue]
+                        withUsername:[settings currentServerProperty:TVHS_SSH_PF_USERNAME]
+                        withPassword:[settings currentServerProperty:TVHS_SSH_PF_PASSWORD]
+                         onLocalPort:[TVHS_SSH_PF_LOCAL_PORT intValue]
+                              toHost:[settings currentServerProperty:TVHS_IP_KEY]
+                        onRemotePort:[[settings currentServerProperty:TVHS_PORT_KEY] intValue]
+         ];
+        _readyToUse = NO;
+    } else {
+        _readyToUse = YES;
+    }
+    
+    self = [super initWithBaseURL:baseUrl];
     if( !self ) {
         return nil;
     }
@@ -61,16 +82,21 @@
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
-    /*[[NSNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetJsonClient)
                                                  name:@"resetAllObjects"
                                                object:nil];
-    */
+        
     return self;
 }
 
 - (void)dealloc {
-    //[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)resetJsonClient {
+    [self stopPortForward];
+    __jsonClient = nil;
 }
 
 + (TVHJsonClient*)sharedInstance {
@@ -81,8 +107,37 @@
     });
     
     return __sharedInstance;*/
-    return [[TVHJsonClient alloc] init];
+    if ( ! __jsonClient ) {
+        __jsonClient = [[TVHJsonClient alloc] init];
+    }
+    return __jsonClient;
 }
+
+#pragma mark replace
+
+
+- (void)getPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    // rude implementation until I have time to handle this correctly! - and it does not work either lol
+    while ( ! [self readyToUse] ) {
+        sleep(1);
+    }
+    return [super getPath:path parameters:parameters success:success failure:failure];
+}
+
+
+- (void)postPath:(NSString *)path
+      parameters:(NSDictionary *)parameters
+         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    while ( ! [self readyToUse] ) {
+        sleep(1);
+    }
+    return [super postPath:path parameters:parameters success:success failure:failure];
+}
+
 
 #pragma JsonHelper
 
@@ -131,4 +186,34 @@
     return json;
 }
 
+#pragma mark SSH
+
+- (void)setupPortForwardToHost:(NSString*)hostAddress
+                     onSSHPort:(unsigned int)sshHostPort
+                  withUsername:(NSString*)username
+                  withPassword:(NSString*)password
+                   onLocalPort:(unsigned int)localPort
+                        toHost:(NSString*)remoteIp
+                  onRemotePort:(unsigned int)remotePort  {
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSError *error = nil;
+        sshPortForwardWrapper = [[SSHWrapper alloc] init];
+        [sshPortForwardWrapper connectToHost:hostAddress port:22 user:username password:password error:&error];
+        if ( !error ) {
+            _readyToUse = YES;
+            [sshPortForwardWrapper setPortForwardFromPort:localPort toHost:remoteIp onPort:remotePort];
+            _readyToUse = NO;
+        } 
+    });
+}
+
+- (void)stopPortForward {
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        [sshPortForwardWrapper closeConnection];
+        sshPortForwardWrapper = nil;
+    });
+}
 @end
