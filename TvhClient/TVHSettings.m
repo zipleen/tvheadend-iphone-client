@@ -211,7 +211,7 @@ withPassword:(NSString*)password {
 
 - (void)removeServer:(NSInteger)serverId {
     NSMutableArray *servers = [self.availableServers mutableCopy];
-    if ( [servers count] > serverId ) {
+    if ( serverId > [servers count] ) {
         return ;
     }
     
