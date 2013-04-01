@@ -121,6 +121,9 @@ static TVHJsonClient *__jsonClient;
         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     
+    if ( ! [self readyToUse] ) {
+        return;
+    }
     return [super getPath:path parameters:parameters success:success failure:failure];
 }
 
@@ -130,6 +133,9 @@ static TVHJsonClient *__jsonClient;
          success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
          failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     
+    if ( ! [self readyToUse] ) {
+        return;
+    }
     return [super postPath:path parameters:parameters success:success failure:failure];
 }
 

@@ -26,6 +26,7 @@
 #include "libssh2_sftp.h"
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <netdb.h>
 
 static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
 {
@@ -70,13 +71,21 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     channel = nil;
 }
 
+- (const char*)addressesForHostname:(NSString *)hostname {
+	const char* hostnameC = [hostname cStringUsingEncoding:NSUTF8StringEncoding];
+    struct hostent *host_entry = gethostbyname(hostnameC);
+    const char *buff;
+    buff = inet_ntoa(*((struct in_addr *)host_entry->h_addr_list[0]));
+    return buff;
+}
 
-- (void)connectToHost:(NSString *)host port:(int)port user:(NSString *)user password:(NSString *)password error:(NSError **)error {
+- (BOOL)connectToHost:(NSString *)host port:(int)port user:(NSString *)user password:(NSString *)password error:(NSError **)error {
     if (host.length == 0) {
         *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:300 userInfo:@{NSLocalizedDescriptionKey:@"No host"}];
-        return;
+        return false;
     }
-	const char* hostChar = [host cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    const char* hostChar = [self addressesForHostname:host];
 	const char* userChar = [user cStringUsingEncoding:NSUTF8StringEncoding];
 	const char* passwordChar = [password cStringUsingEncoding:NSUTF8StringEncoding];
     struct sockaddr_in sock_serv_addr;
@@ -88,14 +97,14 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     sock_serv_addr.sin_addr.s_addr = hostaddr;
     if (connect(sock, (struct sockaddr *) (&sock_serv_addr), sizeof(sock_serv_addr)) != 0) {
         *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:400 userInfo:@{NSLocalizedDescriptionKey:@"Failed to connect"}];
-        return;
+        return false;
     }
 	
     /* Create a session instance */
     session = libssh2_session_init();
     if (!session) {
         *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:401 userInfo:@{NSLocalizedDescriptionKey : @"Create session failed"}];
-        return;
+        return false;
     }
 	
     /* tell libssh2 we want it all done non-blocking */
@@ -108,7 +117,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
            LIBSSH2_ERROR_EAGAIN);
     if (rc) {
         *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:402 userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"Failure establishing SSH session: %d", rc]}];
-        return;
+        return false;
     }
 
     if ( strlen(passwordChar) != 0 ) {
@@ -116,9 +125,11 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
         while ((rc = libssh2_userauth_password(session, userChar, passwordChar)) == LIBSSH2_ERROR_EAGAIN);
 		if (rc) {
             *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:403 userInfo:@{NSLocalizedDescriptionKey : @"Authentication by password failed."}];
-            return;
+            return false;
 		}
 	}
+    
+    return true;
 }
 
 - (NSString *)executeCommand:(NSString *)command error:(NSError **)error {
