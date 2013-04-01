@@ -56,7 +56,7 @@
     static NSString *CellIdentifier = @"OptionCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.textLabel.text = [self.options objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.options objectAtIndex:indexPath.row] ];
     if ( self.selectedOption == indexPath.row ) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {

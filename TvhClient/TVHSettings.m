@@ -296,8 +296,8 @@ withPassword:(NSString*)password {
 - (NSTimeInterval)cacheTime {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSTimeInterval time = [defaults integerForKey:TVHS_CACHING_TIME];
-    if ( time <= 0 ) {
-        time = 300;
+    if ( time < 0 ) {
+        time = 180;
     }
     return time;
 }

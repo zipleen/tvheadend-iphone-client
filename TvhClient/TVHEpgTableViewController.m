@@ -51,7 +51,6 @@
     [super viewDidLoad];
     
     [self.epgStore setDelegate:self];
-    [self.epgStore downloadEpgList];
     
     // I shouldn't have this here, it should be smart to know it needs channels!
     TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
@@ -79,7 +78,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     if ( [self.epgTable count] == 0 ) {
-        [self.epgStore epgStoreItems];
+        [self.epgStore downloadEpgList];
     }
 }
 

@@ -119,19 +119,11 @@
     if ( indexPath.section == 1 ) {
         
         if ( indexPath.row == 0 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
-            // cacheTime
-            UITextField *textField = (UITextField *)[cell viewWithTag:200];
-            textField.adjustsFontSizeToFitWidth = YES;
-            textField.keyboardType = UIKeyboardTypeNumberPad;
-            textField.returnKeyType = UIReturnKeyDone;
-            textField.textAlignment = UITextAlignmentLeft;
-            textField.clearButtonMode = UITextFieldViewModeNever;
-            textField.delegate = self;
-            textField.text = [NSString stringWithFormat:@"%.0f", [self.settings cacheTime]] ;
-            
-            UILabel *textLabel = (UILabel *)[cell viewWithTag:201];
-            textLabel.text = NSLocalizedString(@"Cache Time", nil);
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
+            cell.textLabel.text = NSLocalizedString(@"Cache Data for", nil);
+            NSInteger minutes = [self.settings cacheTime];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@", (minutes/60) ,NSLocalizedString(@"minutes", nil)];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         if ( indexPath.row == 1 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
@@ -155,7 +147,7 @@
             textField.text = [self.settings customPrefix];
             
             UILabel *textLabel = (UILabel *)[cell viewWithTag:201];
-            textLabel.text = NSLocalizedString(@"Custom prefix", nil);
+            textLabel.text = NSLocalizedString(@"Custom Player URL", nil);
             textLabel.adjustsFontSizeToFitWidth = YES;
         }
         if ( indexPath.row == 3 ) {
@@ -250,6 +242,10 @@
         [self performSegueWithIdentifier:@"SettingsServers" sender:self];
     }
     
+    if ( indexPath.section == 1 && indexPath.row == 0 ) {
+        [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
+    }
+    
     if ( indexPath.section == 1 && indexPath.row == 3 ) {
         [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
     }
@@ -296,7 +292,16 @@
                 [[TVHChannelStore sharedInstance] resetChannelStore];
             }];
         }
-        
+        if ( path.section == 1 && path.row == 0 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Cache Data", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Cache Data for", nil)];
+            [vc setOptions:@[@"0 minutes", @"3 minute", @"6 minutes", @"9 minutes", @"12 minutes"]];
+            [vc setSelectedOption:[self.settings cacheTime]/3/60];
+            [vc setResponseBack:^(NSInteger order) {
+                [[TVHSettings sharedInstance] setCacheTime:order*3*60];
+            }];
+        }
     }
 }
 
