@@ -137,7 +137,7 @@
         textField.secureTextEntry = YES;
     }
     if ( indexPath.row == 0 && indexPath.section == 2  ) {
-        textLabel.text = NSLocalizedString(@"SSH IP", nil);
+        textLabel.text = NSLocalizedString(@"Server Address", nil);
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
