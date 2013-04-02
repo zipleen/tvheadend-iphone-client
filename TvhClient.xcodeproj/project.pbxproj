@@ -125,12 +125,8 @@
 		AAC3937717050449002590C7 /* BarTrack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937317050448002590C7 /* BarTrack@2x.png */; };
 		AAC3938017050C22002590C7 /* UINavigationBarBlackOpaqueBack.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937817050C19002590C7 /* UINavigationBarBlackOpaqueBack.png */; };
 		AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */; };
-		AAC3938217050C22002590C7 /* UINavigationBarBlackOpaqueBackPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937A17050C1B002590C7 /* UINavigationBarBlackOpaqueBackPressed.png */; };
-		AAC3938317050C22002590C7 /* UINavigationBarBlackOpaqueBackPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937B17050C1C002590C7 /* UINavigationBarBlackOpaqueBackPressed@2x.png */; };
 		AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */; };
 		AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */; };
-		AAC3938617050C22002590C7 /* UINavigationBarBlackOpaqueButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937E17050C1F002590C7 /* UINavigationBarBlackOpaqueButtonPressed.png */; };
-		AAC3938717050C22002590C7 /* UINavigationBarBlackOpaqueButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937F17050C21002590C7 /* UINavigationBarBlackOpaqueButtonPressed@2x.png */; };
 		AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613716CFDBE8002C6DE1 /* libz.dylib */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
@@ -386,12 +382,8 @@
 		AAC3937317050448002590C7 /* BarTrack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarTrack@2x.png"; sourceTree = "<group>"; };
 		AAC3937817050C19002590C7 /* UINavigationBarBlackOpaqueBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueBack.png; sourceTree = "<group>"; };
 		AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueBack@2x.png"; sourceTree = "<group>"; };
-		AAC3937A17050C1B002590C7 /* UINavigationBarBlackOpaqueBackPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueBackPressed.png; sourceTree = "<group>"; };
-		AAC3937B17050C1C002590C7 /* UINavigationBarBlackOpaqueBackPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueBackPressed@2x.png"; sourceTree = "<group>"; };
 		AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueButton.png; sourceTree = "<group>"; };
 		AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueButton@2x.png"; sourceTree = "<group>"; };
-		AAC3937E17050C1F002590C7 /* UINavigationBarBlackOpaqueButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueButtonPressed.png; sourceTree = "<group>"; };
-		AAC3937F17050C21002590C7 /* UINavigationBarBlackOpaqueButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueButtonPressed@2x.png"; sourceTree = "<group>"; };
 		AACA613716CFDBE8002C6DE1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
 		AACE488F16CC6F1800FE928B /* tv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv2@2x.png"; sourceTree = "<group>"; };
@@ -559,12 +551,8 @@
 				AAC3935E1704ED3A002590C7 /* status@2x.png */,
 				AAC3937817050C19002590C7 /* UINavigationBarBlackOpaqueBack.png */,
 				AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */,
-				AAC3937A17050C1B002590C7 /* UINavigationBarBlackOpaqueBackPressed.png */,
-				AAC3937B17050C1C002590C7 /* UINavigationBarBlackOpaqueBackPressed@2x.png */,
 				AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */,
 				AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */,
-				AAC3937E17050C1F002590C7 /* UINavigationBarBlackOpaqueButtonPressed.png */,
-				AAC3937F17050C21002590C7 /* UINavigationBarBlackOpaqueButtonPressed@2x.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -1174,12 +1162,8 @@
 				AAC3937717050449002590C7 /* BarTrack@2x.png in Resources */,
 				AAC3938017050C22002590C7 /* UINavigationBarBlackOpaqueBack.png in Resources */,
 				AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */,
-				AAC3938217050C22002590C7 /* UINavigationBarBlackOpaqueBackPressed.png in Resources */,
-				AAC3938317050C22002590C7 /* UINavigationBarBlackOpaqueBackPressed@2x.png in Resources */,
 				AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */,
 				AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */,
-				AAC3938617050C22002590C7 /* UINavigationBarBlackOpaqueButtonPressed.png in Resources */,
-				AAC3938717050C22002590C7 /* UINavigationBarBlackOpaqueButtonPressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

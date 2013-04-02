@@ -64,10 +64,10 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationbar.png"] forBarMetrics:UIBarMetricsDefault];
     
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBackPressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    //[[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBackPressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     
     [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButtonPressed.png"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    //[[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButtonPressed.png"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 }
 
 
