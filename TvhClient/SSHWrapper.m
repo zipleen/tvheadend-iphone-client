@@ -75,8 +75,11 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
 	const char* hostnameC = [hostname cStringUsingEncoding:NSUTF8StringEncoding];
     struct hostent *host_entry = gethostbyname(hostnameC);
     const char *buff;
-    buff = inet_ntoa(*((struct in_addr *)host_entry->h_addr_list[0]));
-    return buff;
+    if ( host_entry != NULL ) {
+        buff = inet_ntoa(*((struct in_addr *)host_entry->h_addr_list[0]));
+        return buff;
+    }
+    return NULL;
 }
 
 - (BOOL)connectToHost:(NSString *)host port:(int)port user:(NSString *)user password:(NSString *)password error:(NSError **)error {
@@ -89,6 +92,10 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
 	const char* userChar = [user cStringUsingEncoding:NSUTF8StringEncoding];
 	const char* passwordChar = [password cStringUsingEncoding:NSUTF8StringEncoding];
     struct sockaddr_in sock_serv_addr;
+    if ( hostChar == NULL ) {
+        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:400 userInfo:@{NSLocalizedDescriptionKey:@"Failed to resolve DNS name"}];
+        return false;
+    }
     unsigned long hostaddr = inet_addr(hostChar);
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
