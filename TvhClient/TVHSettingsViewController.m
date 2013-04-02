@@ -13,8 +13,12 @@
 #import "TVHChannelStore.h"
 #import "TVHSettings.h"
 #import "TestFlight.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
-@interface TVHSettingsViewController () <UITextFieldDelegate>
+@interface TVHSettingsViewController () <UITextFieldDelegate> {
+    NIKFontAwesomeIconFactory *factory;
+}
 @property (nonatomic, weak) TVHSettings *settings;
 @property (nonatomic, weak) NSArray *servers;
 @end
@@ -38,6 +42,7 @@
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.allowsSelectionDuringEditing = YES;
+    factory = [NIKFontAwesomeIconFactory buttonIconFactory];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -101,8 +106,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
+    NIKFontAwesomeIcon icon = NIKFontAwesomeIconHdd;
     
     if ( indexPath.section == 0 ) {
+        icon = NIKFontAwesomeIconDesktop;
         cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
         if ( indexPath.row < [self.servers count] ) {
             cell.textLabel.text = [self.settings serverProperty:TVHS_SERVER_NAME forServer:indexPath.row];
@@ -110,10 +117,12 @@
             if ( indexPath.row == [self.settings selectedServer] ) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
+            [cell.imageView setImage:[factory createImageForIcon:icon]];
         }
         if ( indexPath.row == [self.servers count] ) {
             cell.textLabel.text = NSLocalizedString(@"Add New TVHeadend", nil);
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            [cell.imageView setImage:nil];
         }
     }
     if ( indexPath.section == 1 ) {
@@ -171,17 +180,22 @@
         }
     }
     if ( indexPath.section == 2 ) {
+        
         cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if ( indexPath.row == 0 ) {
+            icon = NIKFontAwesomeIconHeart;
             cell.textLabel.text = NSLocalizedString(@"Support", nil);
         }
         if ( indexPath.row == 1 ) {
+            icon = NIKFontAwesomeIconInfoSign;
             cell.textLabel.text = NSLocalizedString(@"About", nil);
         }
         if ( indexPath.row == 2 ) {
+            icon = NIKFontAwesomeIconFileAlt;
             cell.textLabel.text = NSLocalizedString(@"Licenses", nil);
         }
+        [cell.imageView setImage:[factory createImageForIcon:icon]];
     }
     return cell;
 }

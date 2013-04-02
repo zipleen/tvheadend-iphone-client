@@ -138,6 +138,13 @@
 		AAD4C3CD1703C6A900AE67B6 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD4C3C91703C6A900AE67B6 /* Icon-Small-50@2x.png */; };
 		AAD4C3CE1703C6A900AE67B6 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD4C3CA1703C6A900AE67B6 /* Icon-Small.png */; };
 		AAD4C3CF1703C6A900AE67B6 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD4C3CB1703C6A900AE67B6 /* Icon-Small@2x.png */; };
+		AAE1EAC2170B6471006DE2BE /* NIKFontAwesomeIconFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EAB9170B6471006DE2BE /* NIKFontAwesomeIconFactory.m */; };
+		AAE1EAC3170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABB170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.m */; };
+		AAE1EAC4170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABD170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m */; };
+		AAE1EAC5170B6471006DE2BE /* NIKFontAwesomePathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABF170B6471006DE2BE /* NIKFontAwesomePathFactory.m */; };
+		AAE1EAC6170B6471006DE2BE /* NIKFontAwesomePathRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EAC1170B6471006DE2BE /* NIKFontAwesomePathRenderer.m */; };
+		AAE1EAC8170B6488006DE2BE /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAE1EAC7170B6488006DE2BE /* FontAwesome.otf */; };
+		AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */; };
 		AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */; };
 		AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */; };
 		AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */; };
@@ -395,6 +402,19 @@
 		AAD4C3C91703C6A900AE67B6 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50@2x.png"; path = "../Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		AAD4C3CA1703C6A900AE67B6 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../Icon-Small.png"; sourceTree = "<group>"; };
 		AAD4C3CB1703C6A900AE67B6 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "../Icon-Small@2x.png"; sourceTree = "<group>"; };
+		AAE1EAB7170B6471006DE2BE /* NIKFontAwesomeIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKFontAwesomeIcon.h; path = FontAwesomeIconFactory/NIKFontAwesomeIcon.h; sourceTree = SOURCE_ROOT; };
+		AAE1EAB8170B6471006DE2BE /* NIKFontAwesomeIconFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKFontAwesomeIconFactory.h; path = FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h; sourceTree = SOURCE_ROOT; };
+		AAE1EAB9170B6471006DE2BE /* NIKFontAwesomeIconFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKFontAwesomeIconFactory.m; path = FontAwesomeIconFactory/NIKFontAwesomeIconFactory.m; sourceTree = SOURCE_ROOT; };
+		AAE1EABA170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIKFontAwesomeIconFactory+iOS.h"; path = "FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.h"; sourceTree = SOURCE_ROOT; };
+		AAE1EABB170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NIKFontAwesomeIconFactory+iOS.m"; path = "FontAwesomeIconFactory/NIKFontAwesomeIconFactory+iOS.m"; sourceTree = SOURCE_ROOT; };
+		AAE1EABC170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NIKFontAwesomeIconFactory+OSX.h"; path = "FontAwesomeIconFactory/NIKFontAwesomeIconFactory+OSX.h"; sourceTree = SOURCE_ROOT; };
+		AAE1EABD170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NIKFontAwesomeIconFactory+OSX.m"; path = "FontAwesomeIconFactory/NIKFontAwesomeIconFactory+OSX.m"; sourceTree = SOURCE_ROOT; };
+		AAE1EABE170B6471006DE2BE /* NIKFontAwesomePathFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKFontAwesomePathFactory.h; path = FontAwesomeIconFactory/NIKFontAwesomePathFactory.h; sourceTree = SOURCE_ROOT; };
+		AAE1EABF170B6471006DE2BE /* NIKFontAwesomePathFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKFontAwesomePathFactory.m; path = FontAwesomeIconFactory/NIKFontAwesomePathFactory.m; sourceTree = SOURCE_ROOT; };
+		AAE1EAC0170B6471006DE2BE /* NIKFontAwesomePathRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKFontAwesomePathRenderer.h; path = FontAwesomeIconFactory/NIKFontAwesomePathRenderer.h; sourceTree = SOURCE_ROOT; };
+		AAE1EAC1170B6471006DE2BE /* NIKFontAwesomePathRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKFontAwesomePathRenderer.m; path = FontAwesomeIconFactory/NIKFontAwesomePathRenderer.m; sourceTree = SOURCE_ROOT; };
+		AAE1EAC7170B6488006DE2BE /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.otf; path = "FontAwesomeIconFactory/Font-Awesome/font/FontAwesome.otf"; sourceTree = SOURCE_ROOT; };
+		AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		AAE5273316F28AD0002047E4 /* TVHAutoRecStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecStore.h; sourceTree = "<group>"; };
 		AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecStore.m; sourceTree = "<group>"; };
 		AAE5273616F28AE0002047E4 /* TVHAutoRecItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecItem.h; sourceTree = "<group>"; };
@@ -446,6 +466,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */,
 				AAE7B79F170782200052E6F3 /* libssh2.a in Frameworks */,
 				AAE7B7A0170782200052E6F3 /* libcrypto.a in Frameworks */,
 				AAE7B7A1170782200052E6F3 /* libssl.a in Frameworks */,
@@ -815,6 +836,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */,
 				AA97AA52170642E10068702E /* PDKeychainBindingsController */,
 				AAE5E88016EE9875007BEC40 /* TestFlight SDK */,
 				AA8DED3D16DEE35900AF6A51 /* SDWebImage */,
@@ -895,6 +917,7 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */,
 				AAE7B79C170782200052E6F3 /* libssh2.a */,
 				AAE7B79D170782200052E6F3 /* libcrypto.a */,
 				AAE7B79E170782200052E6F3 /* libssl.a */,
@@ -971,6 +994,25 @@
 				AABE682616EBAE84003E8F92 /* TVHLogStore.m */,
 			);
 			name = Logs;
+			sourceTree = "<group>";
+		};
+		AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */ = {
+			isa = PBXGroup;
+			children = (
+				AAE1EAC7170B6488006DE2BE /* FontAwesome.otf */,
+				AAE1EAB7170B6471006DE2BE /* NIKFontAwesomeIcon.h */,
+				AAE1EAB8170B6471006DE2BE /* NIKFontAwesomeIconFactory.h */,
+				AAE1EAB9170B6471006DE2BE /* NIKFontAwesomeIconFactory.m */,
+				AAE1EABA170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.h */,
+				AAE1EABB170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.m */,
+				AAE1EABC170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.h */,
+				AAE1EABD170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m */,
+				AAE1EABE170B6471006DE2BE /* NIKFontAwesomePathFactory.h */,
+				AAE1EABF170B6471006DE2BE /* NIKFontAwesomePathFactory.m */,
+				AAE1EAC0170B6471006DE2BE /* NIKFontAwesomePathRenderer.h */,
+				AAE1EAC1170B6471006DE2BE /* NIKFontAwesomePathRenderer.m */,
+			);
+			name = FontAwesomeIcon;
 			sourceTree = "<group>";
 		};
 		AAE5272F16F28A9C002047E4 /* AutoRec */ = {
@@ -1164,6 +1206,7 @@
 				AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */,
 				AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */,
 				AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */,
+				AAE1EAC8170B6488006DE2BE /* FontAwesome.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1284,6 +1327,11 @@
 				AA97AA5A170642FE0068702E /* PDKeychainBindings.m in Sources */,
 				AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */,
 				AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */,
+				AAE1EAC2170B6471006DE2BE /* NIKFontAwesomeIconFactory.m in Sources */,
+				AAE1EAC3170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.m in Sources */,
+				AAE1EAC4170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m in Sources */,
+				AAE1EAC5170B6471006DE2BE /* NIKFontAwesomePathFactory.m in Sources */,
+				AAE1EAC6170B6471006DE2BE /* NIKFontAwesomePathRenderer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
