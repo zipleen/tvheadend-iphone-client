@@ -18,10 +18,17 @@
 //  limitations under the License.
 //
 
+/*
+ // create file TVHApiKeys.h with
+ #define TVH_TESTFLIGHT_KEY @""
+ #define TVH_CRASHLYTICS_KEY @""
+ */
+
 #import "TVHAppDelegate.h"
 #import "TVHSettings.h"
 #import "TestFlight.h"
-#import "TVHTestFlightKey.h"
+#import <Crashlytics/Crashlytics.h>
+#import "TVHApiKeys.h"
 
 @implementation TVHAppDelegate
 
@@ -34,6 +41,9 @@
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
         [TestFlight takeOff:testFlightKey];
+#ifdef TVH_CRASHLYTICS_KEY
+        [Crashlytics startWithAPIKey:TVH_CRASHLYTICS_KEY];
+#endif
     }
     return YES;
 }

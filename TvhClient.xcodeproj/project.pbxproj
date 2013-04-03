@@ -71,6 +71,7 @@
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
+		AA779C9D170CD05600B7DDB4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA779C9C170CD05600B7DDB4 /* Crashlytics.framework */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
 		AA8DC11C16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DC11B16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m */; };
 		AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */; };
@@ -295,11 +296,12 @@
 		AA575E3916DFF19500D80F8C /* TVHDvrItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrItem.m; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
-		AA65421D1705C4BD00BA20C1 /* TVHTestFlightKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTestFlightKey.h; sourceTree = "<group>"; };
 		AA6542211706196800BA20C1 /* TVHShowNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHShowNotice.h; sourceTree = "<group>"; };
 		AA6542221706196800BA20C1 /* TVHShowNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHShowNotice.m; sourceTree = "<group>"; };
 		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
 		AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelEpg.m; sourceTree = "<group>"; };
+		AA779C9C170CD05600B7DDB4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		AA779C9E170CD70400B7DDB4 /* TVHApiKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiKeys.h; sourceTree = "<group>"; };
 		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
 		AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettings.m; sourceTree = "<group>"; };
 		AA8DC11A16E1762E00F93BD7 /* TVHRecordingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHRecordingsDetailViewController.h; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */,
 				AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */,
 				AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */,
+				AA779C9D170CD05600B7DDB4 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,6 +920,7 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA779C9C170CD05600B7DDB4 /* Crashlytics.framework */,
 				AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */,
 				AAE7B79C170782200052E6F3 /* libssh2.a */,
 				AAE7B79D170782200052E6F3 /* libcrypto.a */,
@@ -944,7 +948,7 @@
 				AA7C3FD016C709380057E4C4 /* Controller */,
 				AAB39A0216BDB21900973F88 /* TVHAppDelegate.h */,
 				AAB39A0316BDB21900973F88 /* TVHAppDelegate.m */,
-				AA65421D1705C4BD00BA20C1 /* TVHTestFlightKey.h */,
+				AA779C9E170CD70400B7DDB4 /* TVHApiKeys.h */,
 				AAB399FA16BDB21900973F88 /* Supporting Files */,
 			);
 			path = TvhClient;
@@ -1070,10 +1074,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAB39A1616BDB21900973F88 /* Build configuration list for PBXNativeTarget "TvhClient" */;
 			buildPhases = (
+				AAFC2A0B16FBA52900194DFF /* ShellScript */,
 				AAB399EC16BDB21900973F88 /* Sources */,
 				AAB399ED16BDB21900973F88 /* Frameworks */,
-				AAFC2A0B16FBA52900194DFF /* ShellScript */,
 				AAB399EE16BDB21900973F88 /* Resources */,
+				AA779C9B170CCFBF00B7DDB4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1225,6 +1230,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		AA779C9B170CCFBF00B7DDB4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`";
 		};
 		AAFC2A0B16FBA52900194DFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1499,6 +1517,10 @@
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libssh2-for-iOS/include\"/**";
@@ -1527,6 +1549,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libssh2-for-iOS/include\"/**";
