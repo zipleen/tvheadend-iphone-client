@@ -19,7 +19,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TVHAutoRecItem.h"
 
 @interface TVHAutoRecDetailViewController : UITableViewController
-
+@property (nonatomic, weak) TVHAutoRecItem *item;
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemChannel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemTag;
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemWeekdays;
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemPriority;
+@property (weak, nonatomic) IBOutlet UITextField *itemCreatedBy;
+@property (weak, nonatomic) IBOutlet UITextField *itemComment;
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemDvrConfig;
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemGenre;
+@property (weak, nonatomic) IBOutlet UITableViewCell *itemStartAround;
+@property (weak, nonatomic) IBOutlet UITextField *itemTitle;
 @end

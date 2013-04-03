@@ -31,6 +31,7 @@
 + (id)sharedInstance;
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate;
 
+- (NSArray*)tags;
 - (void)fetchTagList;
 - (void)resetTagStore;
 - (TVHTag *)objectAtIndex:(int) row;

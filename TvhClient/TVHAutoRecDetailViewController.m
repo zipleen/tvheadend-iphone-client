@@ -19,8 +19,13 @@
 //
 
 #import "TVHAutoRecDetailViewController.h"
+#import "TVHSettingsGenericFieldViewController.h"
+#import "NSString+FileSize.h"
 
-@interface TVHAutoRecDetailViewController ()
+#import "TVHChannelStore.h"
+#import "TVHTagStore.h"
+
+@interface TVHAutoRecDetailViewController () <UITextFieldDelegate>
 
 @end
 
@@ -38,12 +43,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.itemTitle setText:[self.item title]];
+    [self.itemTitle setDelegate:self];
+    
+    [self.itemChannel.detailTextLabel setText:[self.item channel]];
+    [self.itemTag.detailTextLabel setText:[self.item tag]];
+    [self.itemGenre.detailTextLabel setText:[self.item genre]];
+    [self.itemWeekdays.detailTextLabel
+     setText:[NSString stringOfWeekdaysLocalizedFromArray:[self.item.weekdays componentsSeparatedByString:@","] joinedByString:@","]];
+    [self.itemStartAround.detailTextLabel setText:[NSString stringWithFormat:@"%d",[self.item approx_time]]];
+    [self.itemPriority.detailTextLabel setText:[self.item pri]];
+    [self.itemDvrConfig.detailTextLabel setText:[self.item config_name]];
+    
+    [self.itemCreatedBy setText:[self.item creator]];
+    [self.itemCreatedBy setDelegate:self];
+    
+    [self.itemComment setText:[self.item comment]];
+    [self.itemComment setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,22 +68,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark text field delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    return YES;
+}
+
+
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -77,57 +91,74 @@
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
 */
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    if ( indexPath.row > 0 && indexPath.row < 8 ) {
+        [self performSegueWithIdentifier:@"AutoRecSelectField" sender:self];
+    }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ( [segue.identifier isEqualToString:@"AutoRecSelectField"] ) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        // channel
+        if ( path.section == 0 && path.row == 1 ) {
+            TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
+            NSArray *objectChannelList = [channelStore channels];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [objectChannelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Channel", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Channel", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:self.itemChannel.detailTextLabel.text]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self.itemChannel.detailTextLabel setText:text];
+            }];
+        }
+        
+        // tag
+        if ( path.section == 0 && path.row == 2 ) {
+            TVHTagStore *tagStore = [TVHTagStore sharedInstance];
+            NSArray *objectTagList = [tagStore tags];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [objectTagList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Tag", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Tag", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self.itemTag.detailTextLabel setText:text];
+            }];
+        }
+    }
+}
+
+
+- (void)viewDidUnload {
+    [self setItemTitle:nil];
+    [self setItemChannel:nil];
+    [self setItemTag:nil];
+    [self setItemGenre:nil];
+    [self setItemWeekdays:nil];
+    [self setItemStartAround:nil];
+    [self setItemPriority:nil];
+    [self setItemDvrConfig:nil];
+    [self setItemCreatedBy:nil];
+    [self setItemComment:nil];
+    [super viewDidUnload];
+}
 @end

@@ -25,6 +25,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TVHRecordingsDetailViewController.h"
+#import "TVHAutoRecDetailViewController.h"
 #import "NSString+FileSize.h"
 
 #define SEGMENT_UPCOMING_REC 0
@@ -259,6 +260,15 @@
         
         TVHRecordingsDetailViewController *vc = segue.destinationViewController;
         [vc setDvrItem:item];
+    }
+    if([segue.identifier isEqualToString:@"DvrAutoRecDetailSegue"]) {
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        TVHAutoRecItem *item = [self.autoRecStore objectAtIndex:path.row];
+        
+        TVHAutoRecDetailViewController *vc = segue.destinationViewController;
+        [vc setTitle:[item title]];
+        [vc setItem:item];
     }
 }
 

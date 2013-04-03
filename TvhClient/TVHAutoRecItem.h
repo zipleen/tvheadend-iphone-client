@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSString *pri;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *tag;
+@property (nonatomic, strong) NSString *genre;
 @property (nonatomic, strong) NSString *weekdays; // mon 1, sun 7
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
