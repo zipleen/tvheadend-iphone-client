@@ -145,12 +145,12 @@
 		AAE1EAC5170B6471006DE2BE /* NIKFontAwesomePathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABF170B6471006DE2BE /* NIKFontAwesomePathFactory.m */; };
 		AAE1EAC6170B6471006DE2BE /* NIKFontAwesomePathRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EAC1170B6471006DE2BE /* NIKFontAwesomePathRenderer.m */; };
 		AAE1EAC8170B6488006DE2BE /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAE1EAC7170B6488006DE2BE /* FontAwesome.otf */; };
-		AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */; };
+		AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */; };
 		AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */; };
 		AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */; };
 		AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */; };
-		AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE5E87B16EE9865007BEC40 /* libTestFlight.a */; };
+		AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE5E87B16EE9865007BEC40 /* libTestFlight.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AAE7B798170781AB0052E6F3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B797170781AB0052E6F3 /* CFNetwork.framework */; };
 		AAE7B79F170782200052E6F3 /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79C170782200052E6F3 /* libssh2.a */; };
 		AAE7B7A0170782200052E6F3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79D170782200052E6F3 /* libcrypto.a */; };

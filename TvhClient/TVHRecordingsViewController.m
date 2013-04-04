@@ -181,6 +181,7 @@
 	UILabel *dateLabel = (UILabel *)[cell viewWithTag:101];
     UILabel *statusLabel = (UILabel *)[cell viewWithTag:102];
     UIImageView *channelImage = (UIImageView *)[cell viewWithTag:103];
+    titleLabel.textColor = [UIColor blackColor];
     
     if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
         TVHAutoRecItem *autoRecItem = [self.autoRecStore objectAtIndex:indexPath.row];
@@ -188,7 +189,11 @@
         dateLabel.text = autoRecItem.channel;
         statusLabel.text = [NSString stringOfWeekdaysLocalizedFromArray:[autoRecItem.weekdays componentsSeparatedByString:@","] joinedByString:@","];
         [channelImage setImage:[UIImage imageNamed:@"tv2.png"]];
-
+        if ( [autoRecItem enabled] ) {
+            titleLabel.textColor = [UIColor blackColor];
+        } else {
+            titleLabel.textColor = [UIColor grayColor];
+        }
     } else {
         TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
         titleLabel.text = dvrItem.fullTitle;

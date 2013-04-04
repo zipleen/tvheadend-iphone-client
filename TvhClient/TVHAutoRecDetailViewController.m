@@ -46,6 +46,7 @@
     [self.itemTitle setText:[self.item title]];
     [self.itemTitle setDelegate:self];
     
+    [self.itemEnable setOn:[self.item enabled]];
     [self.itemChannel.detailTextLabel setText:[self.item channel]];
     [self.itemTag.detailTextLabel setText:[self.item tag]];
     [self.itemGenre.detailTextLabel setText:[self.item genre]];
@@ -159,6 +160,7 @@
     [self setItemDvrConfig:nil];
     [self setItemCreatedBy:nil];
     [self setItemComment:nil];
+    [self setItemEnable:nil];
     [super viewDidUnload];
 }
 @end

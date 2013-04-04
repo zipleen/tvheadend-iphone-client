@@ -26,9 +26,14 @@
 
 #import "TVHAppDelegate.h"
 #import "TVHSettings.h"
-#import "TestFlight.h"
-#import <Crashlytics/Crashlytics.h>
 #import "TVHApiKeys.h"
+
+#ifdef TVH_TESTFLIGHT_KEY
+#import "TestFlight.h"
+#endif
+#ifdef TVH_CRASHLYTICS_KEY
+#import <Crashlytics/Crashlytics.h>
+#endif
 
 @implementation TVHAppDelegate
 
@@ -37,10 +42,12 @@
     BOOL sendAnonymousStats = [[TVHSettings sharedInstance] sendAnonymousStatistics];
     if ( sendAnonymousStats ) {
         NSString *testFlightKey = TVH_TESTFLIGHT_KEY;
-#ifdef TESTING
+#if defined TESTING && defined TVH_TESTFLIGHT_KEY
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
+#ifdef TVH_TESTFLIGHT_KEY
         [TestFlight takeOff:testFlightKey];
+#endif
 #ifdef TVH_CRASHLYTICS_KEY
         [Crashlytics startWithAPIKey:TVH_CRASHLYTICS_KEY];
 #endif
