@@ -68,6 +68,10 @@
 		AA43D4B316CF1A7600104BBF /* Log.287 in Resources */ = {isa = PBXBuildFile; fileRef = AA43D4B216CF1A7600104BBF /* Log.287 */; };
 		AA575E3416DFF18300D80F8C /* TVHDvrStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AA575E3316DFF18300D80F8C /* TVHDvrStore.m */; };
 		AA575E3A16DFF19500D80F8C /* TVHDvrItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA575E3916DFF19500D80F8C /* TVHDvrItem.m */; };
+		AA5E8A16170F5B3100779AC6 /* satellite.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5E8A14170F5B3100779AC6 /* satellite.png */; };
+		AA5E8A17170F5B3100779AC6 /* satellite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5E8A15170F5B3100779AC6 /* satellite@2x.png */; };
+		AA5E8A1D170F61E200779AC6 /* hardware.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5E8A1B170F61E200779AC6 /* hardware.png */; };
+		AA5E8A1E170F61E200779AC6 /* hardware@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5E8A1C170F61E200779AC6 /* hardware@2x.png */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
@@ -294,6 +298,10 @@
 		AA575E3316DFF18300D80F8C /* TVHDvrStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrStore.m; sourceTree = "<group>"; };
 		AA575E3816DFF19500D80F8C /* TVHDvrItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrItem.h; sourceTree = "<group>"; };
 		AA575E3916DFF19500D80F8C /* TVHDvrItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrItem.m; sourceTree = "<group>"; };
+		AA5E8A14170F5B3100779AC6 /* satellite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = satellite.png; sourceTree = "<group>"; };
+		AA5E8A15170F5B3100779AC6 /* satellite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "satellite@2x.png"; sourceTree = "<group>"; };
+		AA5E8A1B170F61E200779AC6 /* hardware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hardware.png; sourceTree = "<group>"; };
+		AA5E8A1C170F61E200779AC6 /* hardware@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hardware@2x.png"; sourceTree = "<group>"; };
 		AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannel.h; sourceTree = "<group>"; };
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA6542211706196800BA20C1 /* TVHShowNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHShowNotice.h; sourceTree = "<group>"; };
@@ -543,6 +551,10 @@
 		AA2AEB1D16CB0839006B071C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AA5E8A1B170F61E200779AC6 /* hardware.png */,
+				AA5E8A1C170F61E200779AC6 /* hardware@2x.png */,
+				AA5E8A14170F5B3100779AC6 /* satellite.png */,
+				AA5E8A15170F5B3100779AC6 /* satellite@2x.png */,
 				AAC3937017050446002590C7 /* BarFill.png */,
 				AAC3937117050447002590C7 /* BarFill@2x.png */,
 				AAC3937217050448002590C7 /* BarTrack.png */,
@@ -1212,6 +1224,10 @@
 				AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */,
 				AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */,
 				AAE1EAC8170B6488006DE2BE /* FontAwesome.otf in Resources */,
+				AA5E8A16170F5B3100779AC6 /* satellite.png in Resources */,
+				AA5E8A17170F5B3100779AC6 /* satellite@2x.png in Resources */,
+				AA5E8A1D170F61E200779AC6 /* hardware.png in Resources */,
+				AA5E8A1E170F61E200779AC6 /* hardware@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

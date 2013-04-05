@@ -22,9 +22,15 @@
 #import "CKRefreshControl.h"
 #import "TVHShowNotice.h"
 #import "TVHCometPollStore.h"
+#import "TVHChannelStore.h"
 #import "NSString+FileSize.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
-@interface TVHStatusSubscriptionsViewController ()
+@interface TVHStatusSubscriptionsViewController (){
+    NIKFontAwesomeIconFactory *factory;
+}
+
 @property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
 @property (strong, nonatomic) TVHAdaptersStore *adapterStore;
 @property (strong, nonatomic) TVHCometPollStore *cometPoll;
@@ -58,6 +64,10 @@
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    factory = [NIKFontAwesomeIconFactory buttonIconFactory];
+    factory.size = 32;
+    factory.square = YES;
 }
 
 - (void)viewDidUnload {
@@ -143,41 +153,75 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"SubscriptionStoreTableItems";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+    UITableViewCell *cell;
     
-    UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
-	UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
-    UILabel *channelLabel = (UILabel *)[cell viewWithTag:103];
-    UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
-    UILabel *startLabel = (UILabel *)[cell viewWithTag:105];
-    UILabel *stateLabel = (UILabel *)[cell viewWithTag:106];
-    UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
-	UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
     
     if ( indexPath.section == 0 ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" ];
+        
+        UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
+        UILabel *programLabel = (UILabel *)[cell viewWithTag:110];
+        UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
+        UILabel *channelLabel = (UILabel *)[cell viewWithTag:103];
+        UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+        //UILabel *startLabel = (UILabel *)[cell viewWithTag:105];
+        UILabel *stateLabel = (UILabel *)[cell viewWithTag:106];
+        UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
+        UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
+        UIImageView *channelIcon = (UIImageView *)[cell viewWithTag:120];
+        UIImageView *stateIcon = (UIImageView *)[cell viewWithTag:121];
+        UIImageView *errorIcon = (UIImageView *)[cell viewWithTag:122];
+        UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:123];
+        UIImageView *clientIcon = (UIImageView *)[cell viewWithTag:124];
+        
         TVHStatusSubscription *subscription = [self.statusSubscriptionsStore objectAtIndex:indexPath.row];
+        TVHChannel *channel = [[TVHChannelStore sharedInstance] channelWithName:subscription.channel];
         
         hostnameLabel.text = subscription.hostname;
+        programLabel.text = [channel.currentPlayingProgram title];
         titleLabel.text = subscription.title;
         channelLabel.text = subscription.channel;
         serviceLabel.text = subscription.service;
-        startLabel.text = [subscription.start description];
+        //startLabel.text = [subscription.start description];
         stateLabel.text = subscription.state;
-        errorsLabel.text = [NSString stringWithFormat:@"Errors: %d", subscription.errors];
-        bandwidthLabel.text = [NSString stringWithFormat:@"Bw: %@", [NSString stringFromFileSizeInBits:subscription.bw]];
+        errorsLabel.text = [NSString stringWithFormat:@"%d", subscription.errors];
+        bandwidthLabel.text = [NSString stringWithFormat:@"%@", [NSString stringFromFileSizeInBits:subscription.bw]];
+        
+        [channelIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconDesktop]];
+        [stateIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconSignal]];
+        [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign]];
+        [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+        [clientIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconHdd]];
+        
     }
     if ( indexPath.section == 1 ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+        
+        UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
+        UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
+        UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
+        UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+        UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
+        UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
+        UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
+        UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];
+        UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
+        UIProgressView *progress = (UIProgressView *)[cell viewWithTag:110];
+        
         TVHAdapter *adapter = [self.adapterStore objectAtIndex:indexPath.row];
         
-        hostnameLabel.text = adapter.devicename;
-        titleLabel.text = adapter.path;
-        channelLabel.text = [NSString stringWithFormat:@"Bw %@", [NSString stringFromFileSizeInBits:adapter.bw]];
+        deviceNameLabel.text = adapter.devicename;
+        adapterPathLabel.text = adapter.path;
+        bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
         serviceLabel.text = adapter.currentMux;
-        startLabel.text = [NSString stringWithFormat:@"Snr %.1f dB", adapter.snr];
-        stateLabel.text = [NSString stringWithFormat:@"Unc %d", adapter.uncavg];
-        errorsLabel.text = [NSString stringWithFormat:@"Ber %d", adapter.ber];
-        bandwidthLabel.text = [NSString stringWithFormat:@"Signal %d %%", adapter.signal];
+        snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
+        uncLabel.text = [NSString stringWithFormat:@"%d", adapter.uncavg];
+        berLabel.text = [NSString stringWithFormat:@"%d", adapter.ber];
+        signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
+        progress.progress = (float)adapter.signal/100;
+        [progress setTrackImage:[[UIImage imageNamed:@"BarTrack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+        [progress setProgressImage:[[UIImage imageNamed:@"BarFill.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+        [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
     }
     
     return cell;
