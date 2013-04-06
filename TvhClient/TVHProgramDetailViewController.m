@@ -140,10 +140,10 @@
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if( self.segmentedControl.selectedSegmentIndex == 0 ) {
         NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
-        
+        unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
         CGSize size = [str
                        sizeWithFont:[UIFont systemFontOfSize:14]
-                       constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
+                       constrainedToSize:CGSizeMake(screenWidth-20, CGFLOAT_MAX)];
         return size.height + 25;
     }
     return 48;
@@ -208,9 +208,10 @@
     }
     
     // resize the "description" label
+    unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGSize size = [descLabel.text
               sizeWithFont:[UIFont systemFontOfSize:14]
-              constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
+              constrainedToSize:CGSizeMake(screenWidth-20, CGFLOAT_MAX)];
     descLabel.frame = CGRectMake(20, 20, size.width, size.height);
     
     // line separator

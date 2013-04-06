@@ -86,10 +86,10 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *str = [self.logStore objectAtIndex:indexPath.row];
-    
+    unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGSize size = [str
                    sizeWithFont:[UIFont systemFontOfSize:12]
-                   constrainedToSize:CGSizeMake(310, CGFLOAT_MAX)];
+                   constrainedToSize:CGSizeMake(screenWidth-10, CGFLOAT_MAX)];
     return size.height + 3;
 }
 
@@ -105,11 +105,12 @@
     
     UILabel *logCell = (UILabel *)[cell viewWithTag:100];
     
+    unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     
     CGSize size = [logCell.text
                    sizeWithFont:[UIFont systemFontOfSize:12]
-                   constrainedToSize:CGSizeMake(310, CGFLOAT_MAX)];
-    logCell.frame = CGRectMake(0, 0, 320, size.height);
+                   constrainedToSize:CGSizeMake(screenWidth-10, CGFLOAT_MAX)];
+    logCell.frame = CGRectMake(0, 0, screenWidth, size.height);
     logCell.text = [self.logStore objectAtIndex:indexPath.row];
     return cell;
 }
