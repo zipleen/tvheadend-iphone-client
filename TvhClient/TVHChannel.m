@@ -158,7 +158,7 @@
     [restOfEpgStore setDelegate:self];
     [restOfEpgStore setFilterToChannelName:self.name];
     
-    [restOfEpgStore downloadEpgList];
+    [restOfEpgStore downloadAllEpgItems];
 }
 
 #pragma Table Call Methods

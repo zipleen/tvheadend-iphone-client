@@ -177,11 +177,17 @@
 }
 
 - (void)startRefreshingCometPoll {
+#ifdef TESTING
+    NSLog(@"[Comet Poll Timer]: Starting comet poll refresh");
+#endif
     self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
     timerStarted = YES;
 }
 
 - (void)stopRefreshingCometPoll {
+#ifdef TESTING
+    NSLog(@"[Comet Poll Timer]: Stopped comet poll refresh");
+#endif
     [self.timer invalidate];
     timerStarted = NO;
 }

@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSString *filterToChannelName;
 @property (nonatomic, strong) NSString *filterToProgramTitle;
 + (id)sharedInstance;
+- (void)downloadAllEpgItems;
 - (void)downloadEpgList;
 - (NSArray*)epgStoreItems;
 - (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate;

@@ -122,7 +122,7 @@
     return [params copy];
 }
 
-- (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit {
+- (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
@@ -133,7 +133,7 @@
             [self.delegate didLoadEpg:self];
         }
         
-        [self getMoreEpg:start limit:limit];
+        [self getMoreEpg:start limit:limit fetchAll:fetchAll];
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
@@ -148,25 +148,34 @@
     
 }
 
-- (void)getMoreEpg:(NSInteger)start limit:(NSInteger)limit {
+- (void)getMoreEpg:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
     // get last epg
     // check date
     // if date > datenow, get more 50
-    
-    TVHEpg *last = [self.epgStore lastObject];
-    if ( last ) {
-        NSDate *localDate = [NSDate date];
-#ifdef TESTING
-        NSLog(@"localdate: %@ | last start date: %@ %i %i", localDate, last.start);
-#endif
-        if ( [localDate compare:last.start] == NSOrderedDescending && (start+limit) < self.totalEventCount ) {
-            [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50];
+    if ( fetchAll ) {
+        if ( (start+limit) < self.totalEventCount ) {
+            [self retrieveEpgDataFromTVHeadend:(start+limit) limit:300 fetchAll:true];
+        }
+    } else {
+        TVHEpg *last = [self.epgStore lastObject];
+        if ( last ) {
+            NSDate *localDate = [NSDate date];
+    #ifdef TESTING
+            NSLog(@"localdate: %@ | last start date: %@ %i %i", localDate, last.start);
+    #endif
+            if ( [localDate compare:last.start] == NSOrderedDescending && (start+limit) < self.totalEventCount ) {
+                [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50 fetchAll:false];
+            }
         }
     }
 }
 
+- (void)downloadAllEpgItems {
+    [self retrieveEpgDataFromTVHeadend:0 limit:30 fetchAll:true];
+}
+
 - (void)downloadEpgList {
-    [self retrieveEpgDataFromTVHeadend:[self.epgStore count] limit:50];
+    [self retrieveEpgDataFromTVHeadend:[self.epgStore count] limit:50 fetchAll:false];
 }
 
 - (NSArray*)epgStoreItems{
