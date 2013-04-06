@@ -50,10 +50,25 @@
     if (!self) return nil;
     
     self.debugActive = false;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     return self;
 }
 
+-(void)appWillResignActive:(NSNotification*)note {
+    if ( timerStarted ) {
+        [self.timer invalidate];
+    }
+}
+-(void)appWillEnterForeground:(NSNotification*)note {
+    if ( timerStarted ) {
+        [self startRefreshingCometPoll];
+    }
+}
+
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
     self.boxid = nil;
     self.timer = nil;
 }
@@ -162,7 +177,7 @@
 }
 
 - (void)startRefreshingCometPoll {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
     timerStarted = YES;
 }
 
