@@ -106,6 +106,9 @@
 {
     static NSString *CellIdentifier = @"EpgTableCellItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     TVHEpg *epg = [self.epgTable objectAtIndex:indexPath.row];
     

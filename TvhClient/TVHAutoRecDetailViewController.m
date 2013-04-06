@@ -145,6 +145,46 @@
                 [self.itemTag.detailTextLabel setText:text];
             }];
         }
+        
+        // genre - missing
+        if ( path.section == 0 && path.row == 3 ) {
+            TVHTagStore *tagStore = [TVHTagStore sharedInstance];
+            NSArray *objectTagList = [tagStore tags];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [objectTagList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Tag", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Tag", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self.itemTag.detailTextLabel setText:text];
+            }];
+        }
+        
+        // weekdays
+        if ( path.section == 0 && path.row == 4 ) {
+            TVHTagStore *tagStore = [TVHTagStore sharedInstance];
+            NSArray *objectTagList = [tagStore tags];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [objectTagList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Tag", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Tag", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self.itemTag.detailTextLabel setText:text];
+            }];
+        }
     }
 }
 
@@ -161,6 +201,7 @@
     [self setItemCreatedBy:nil];
     [self setItemComment:nil];
     [self setItemEnable:nil];
+    [self setSaveButton:nil];
     [super viewDidUnload];
 }
 @end

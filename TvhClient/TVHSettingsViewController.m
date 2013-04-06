@@ -111,6 +111,10 @@
     if ( indexPath.section == 0 ) {
         icon = NIKFontAwesomeIconDesktop;
         cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
+        if(cell==nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsServerList"];
+        }
+        
         if ( indexPath.row < [self.servers count] ) {
             cell.textLabel.text = [self.settings serverProperty:TVHS_SERVER_NAME forServer:indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -129,6 +133,10 @@
         
         if ( indexPath.row == 0 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
+            if(cell==nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
+            }
+            
             cell.textLabel.text = NSLocalizedString(@"Cache Data for", nil);
             NSInteger minutes = [self.settings cacheTime];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@", (minutes/60) ,NSLocalizedString(@"minutes", nil)];
@@ -136,6 +144,10 @@
         }
         if ( indexPath.row == 1 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
+            if(cell==nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
+            }
+            
             UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
             [switchfield setOn:[self.settings autoStartPolling]];
             [switchfield addTarget:self action: @selector(autoStartPolling:) forControlEvents:UIControlEventValueChanged];
@@ -145,6 +157,10 @@
         }
         if ( indexPath.row == 2 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
+            if(cell==nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsTextCell"];
+            }
+            
             // cacheTime
             UITextField *textField = (UITextField *)[cell viewWithTag:200];
             textField.adjustsFontSizeToFitWidth = YES;
@@ -161,6 +177,10 @@
         }
         if ( indexPath.row == 3 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
+            if(cell==nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
+            }
+            
             cell.textLabel.text = NSLocalizedString(@"Order Channels", nil);
             if ( [self.settings sortChannel] == TVHS_SORT_CHANNEL_BY_NAME ) {
                 cell.detailTextLabel.text = NSLocalizedString(@"by Name", nil);
@@ -171,6 +191,10 @@
         }
         if ( indexPath.row == 4 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
+            if(cell==nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
+            }
+            
             UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
             [switchfield setOn:[self.settings sendAnonymousStatistics]];
             [switchfield addTarget:self action: @selector(sendAnonymousStatistics:) forControlEvents:UIControlEventValueChanged];
@@ -180,8 +204,11 @@
         }
     }
     if ( indexPath.section == 2 ) {
-        
         cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
+        if(cell==nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsServerList"];
+        }
+        
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if ( indexPath.row == 0 ) {
             icon = NIKFontAwesomeIconHeart;

@@ -103,8 +103,10 @@
 {
     static NSString *CellIdentifier = @"ChannelListTableItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
-    // Configure the cell...
     TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
     TVHEpg *currentPlayingProgram = [ch currentPlayingProgram];
     

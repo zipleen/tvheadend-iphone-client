@@ -97,8 +97,10 @@
 {
     static NSString *CellIdentifier = @"TagListTableItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
-    // Configure the cell...
     TVHTag *tag = [self.tagList objectAtIndex:indexPath.row];
     
     UILabel *tagNameLabel = (UILabel *)[cell viewWithTag:100];

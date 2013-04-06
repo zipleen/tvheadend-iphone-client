@@ -151,7 +151,7 @@
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     
     [httpClient postPath:@"/comet/debug" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        [self fetchCometPollStatus];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];
     

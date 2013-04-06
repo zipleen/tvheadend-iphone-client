@@ -102,6 +102,9 @@
 {
     static NSString *CellIdentifier = @"LogCellItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     UILabel *logCell = (UILabel *)[cell viewWithTag:100];
     

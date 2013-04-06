@@ -103,6 +103,9 @@
 {
     static NSString *CellIdentifier = @"ServerPropertiesCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(136, 10, 160, 30)];
     //UITextField *textField = (UITextField *)[cell viewWithTag:201];

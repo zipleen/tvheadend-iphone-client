@@ -216,6 +216,9 @@
     TVHEpg *epg;
     static NSString *CellIdentifier = @"ProgramDetailViewTableItem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     cell.clipsToBounds = YES;

@@ -155,9 +155,11 @@
 {
     UITableViewCell *cell;
     
-    
     if ( indexPath.section == 0 ) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" ];
+        if(cell==nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreSubscriptionItems"];
+        }
         
         UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
         UILabel *programLabel = (UILabel *)[cell viewWithTag:110];
@@ -196,6 +198,9 @@
     }
     if ( indexPath.section == 1 ) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+        if(cell==nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
+        }
         
         UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
         UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];

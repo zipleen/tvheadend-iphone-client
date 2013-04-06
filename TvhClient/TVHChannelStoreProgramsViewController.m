@@ -94,8 +94,10 @@
 {
     static NSString *CellIdentifier = @"ProgramListTableItems";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
-    // Configure the cell...
     TVHEpg *epg = [self.channel programDetailForDay:indexPath.section index:indexPath.row];
     
     UILabel *name = (UILabel *)[cell viewWithTag:100];
