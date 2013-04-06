@@ -25,7 +25,7 @@
 @interface TVHEpgStore()
 @property (nonatomic, strong) NSArray *epgStore;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
-@property (nonatomic) NSInteger lastEventCount;
+@property (nonatomic) NSInteger totalEventCount;
 
 @end
 
@@ -89,7 +89,7 @@
         return ;
     }
     
-    self.lastEventCount = [[json objectForKey:@"totalCount"] intValue];
+    self.totalEventCount = [[json objectForKey:@"totalCount"] intValue];
     NSArray *entries = [json objectForKey:@"entries"];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -99,7 +99,7 @@
     }];
     
 #ifdef TESTING
-    NSLog(@"[EpgStore: Loaded EPG programs (%@)]: %d", self.filterToChannelName,[self.epgStore count]);
+    NSLog(@"[EpgStore: Loaded EPG programs (%@ | %@ | %d)]: %d", self.filterToChannelName, self.filterToProgramTitle, self.totalEventCount, [self.epgStore count]);
 #endif
 }
 
@@ -129,7 +129,9 @@
     
     [httpClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        [self.delegate didLoadEpg:self];
+        if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
+            [self.delegate didLoadEpg:self];
+        }
         
         [self getMoreEpg:start limit:limit];
         
@@ -157,7 +159,7 @@
 #ifdef TESTING
         NSLog(@"localdate: %@ | last start date: %@ %i %i", localDate, last.start);
 #endif
-        if ( [localDate compare:last.start] == NSOrderedDescending && (start+limit) < self.lastEventCount ) {
+        if ( [localDate compare:last.start] == NSOrderedDescending && (start+limit) < self.totalEventCount ) {
             [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50];
         }
     }

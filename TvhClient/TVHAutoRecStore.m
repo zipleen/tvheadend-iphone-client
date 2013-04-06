@@ -103,7 +103,9 @@
     self.dvrAutoRecItems = nil;
     [httpClient getPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        [self.delegate didLoadDvrAutoRec];
+        if ([self.delegate respondsToSelector:@selector(didLoadDvrAutoRec)]) {
+            [self.delegate didLoadDvrAutoRec];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ([self.delegate respondsToSelector:@selector(didErrorDvrAutoStore:)]) {

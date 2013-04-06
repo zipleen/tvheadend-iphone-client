@@ -112,7 +112,9 @@
         
         [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self fetchedData:responseObject];
-            [self.delegate didLoadTags];
+            if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
+                [self.delegate didLoadTags];
+            }
             self.lastFetchedData = [NSDate date];
             
             //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -126,7 +128,9 @@
 #endif
         }];
     } else {
-        [self.delegate didLoadTags];
+        if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
+            [self.delegate didLoadTags];
+        }
     }
 }
 

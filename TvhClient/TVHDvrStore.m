@@ -127,7 +127,9 @@
     
     [httpClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject withType:type];
-        [self.delegate didLoadDvr];
+        if ([self.delegate respondsToSelector:@selector(didLoadDvr)]) {
+            [self.delegate didLoadDvr];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ([self.delegate respondsToSelector:@selector(didErrorDvrStore:)]) {

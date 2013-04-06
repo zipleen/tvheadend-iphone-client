@@ -57,7 +57,9 @@
                 [obj updateValuesFromDictionary:message];
             }
         }];
-        [self.delegate didLoadAdapters];
+        if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
+            [self.delegate didLoadAdapters];
+        }
     }
 }
 
@@ -107,7 +109,9 @@
     
     [httpClient getPath:@"/tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        [self.delegate didLoadAdapters];
+        if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
+            [self.delegate didLoadAdapters];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ([self.delegate respondsToSelector:@selector(didErrorAdaptersStore:)]) {

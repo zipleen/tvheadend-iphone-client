@@ -124,7 +124,9 @@
        
         [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self fetchedData:responseObject];
-            [self.delegate didLoadChannels];
+            if ([self.delegate respondsToSelector:@selector(didLoadChannels:)]) {
+                [self.delegate didLoadChannels];
+            }
             self.lastFetchedData = [NSDate date];
             
             [self.epgStore setDelegate:self];
@@ -141,7 +143,9 @@
 #endif
         }];
     } else {
-        [self.delegate didLoadChannels];
+        if ([self.delegate respondsToSelector:@selector(didLoadChannels:)]) {
+            [self.delegate didLoadChannels];
+        }
     }
 }
 
@@ -163,7 +167,9 @@
         TVHChannel *channel = [self getChannelById:epg.channelid];
         [channel addEpg:epg];
     }
-    [self.delegate didLoadChannels];
+    if ([self.delegate respondsToSelector:@selector(didLoadChannels:)]) {
+        [self.delegate didLoadChannels];
+    }
 }
 
 - (void)didErrorLoadingEpgStore:(NSError*)error {

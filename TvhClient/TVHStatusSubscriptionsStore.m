@@ -63,7 +63,9 @@
                 [obj updateValuesFromDictionary:message];
             }
         }];
-        [self.delegate didLoadStatusSubscriptions];
+        if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
+            [self.delegate didLoadStatusSubscriptions];
+        }
     }
 }
 
@@ -113,7 +115,9 @@
     
     [httpClient getPath:@"/subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        [self.delegate didLoadStatusSubscriptions];
+        if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
+            [self.delegate didLoadStatusSubscriptions];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {

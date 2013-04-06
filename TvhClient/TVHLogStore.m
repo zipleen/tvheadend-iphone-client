@@ -85,7 +85,9 @@
         
         NSString *log = [message objectForKey:@"logtxt"];
         [self addLogLine:log];
-        [self.delegate didLoadLog];
+        if ([self.delegate respondsToSelector:@selector(didLoadLog)]) {
+            [self.delegate didLoadLog];
+        }
     }
 }
 
