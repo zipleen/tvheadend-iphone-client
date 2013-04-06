@@ -124,7 +124,7 @@
        
         [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [self fetchedData:responseObject];
-            if ([self.delegate respondsToSelector:@selector(didLoadChannels:)]) {
+            if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
                 [self.delegate didLoadChannels];
             }
             self.lastFetchedData = [NSDate date];
@@ -142,8 +142,8 @@
             NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
 #endif
         }];
-    } else {
-        if ([self.delegate respondsToSelector:@selector(didLoadChannels:)]) {
+    }   else {
+        if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
             [self.delegate didLoadChannels];
         }
     }
@@ -167,7 +167,7 @@
         TVHChannel *channel = [self getChannelById:epg.channelid];
         [channel addEpg:epg];
     }
-    if ([self.delegate respondsToSelector:@selector(didLoadChannels:)]) {
+    if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
         [self.delegate didLoadChannels];
     }
 }
