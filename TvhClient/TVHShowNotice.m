@@ -20,6 +20,7 @@ static WBSuccessNoticeView *success;
 
 + (void)errorNoticeInView:(UIView*)view title:(NSString*)title message:(NSString*)message {
     if ( notice && [notice isKindOfClass:[WBErrorNoticeView class]] ) {
+        [notice setDelay:0];
         [notice dismissNotice];
         notice = nil;
     }
@@ -31,6 +32,7 @@ static WBSuccessNoticeView *success;
 
 + (void)successNoticeInView:(UIView *)view title:(NSString *)title {
     if ( success && [success isKindOfClass:[WBSuccessNoticeView class]] ) {
+        [success setDelay:0];
         [success dismissNotice];
         success = nil;
     }
