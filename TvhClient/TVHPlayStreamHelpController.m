@@ -46,7 +46,7 @@
     NSString *stream = NSLocalizedString(actionTitle, nil);
 #endif
     UIActionSheet *actionSheet;
-    if ( [customPrefix isEqualToString:@""] ) {
+    if ( [customPrefix length] > 0 ) {
         actionSheet = [[UIActionSheet alloc]
                                   initWithTitle:actionSheetTitle
                                   delegate:self

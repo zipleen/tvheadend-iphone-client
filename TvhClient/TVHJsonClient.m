@@ -49,9 +49,12 @@ static TVHJsonClient *__jsonClient;
 - (id)init {
     TVHSettings *settings = [TVHSettings sharedInstance];
     NSURL *baseUrl = [settings baseURL];
+    if ( ! baseUrl ) {
+        return nil;
+    }
     
     // setup port forward
-    if ( ! [[settings currentServerProperty:TVHS_SSH_PF_HOST] isEqualToString:@""] ) {
+    if ( [[settings currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
         [self setupPortForwardToHost:[settings currentServerProperty:TVHS_SSH_PF_HOST]
                            onSSHPort:[[settings currentServerProperty:TVHS_SSH_PF_PORT] intValue]
                         withUsername:[settings currentServerProperty:TVHS_SSH_PF_USERNAME]
@@ -71,7 +74,7 @@ static TVHJsonClient *__jsonClient;
     }
     
     NSString *username = [settings username];
-    if( ![username isEqualToString:@""] ) {
+    if( [username length] > 0 ) {
         NSString *password = [settings password];
         [self setUsername:username password:password];
     }

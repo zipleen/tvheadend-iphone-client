@@ -90,7 +90,7 @@
 }
 
 - (NSArray*)filteredLogLines {
-    if ( !self.filter || [self.filter isEqualToString:@""] ) {
+    if ( !self.filter || [self.filter length] == 0 ) {
         return [self.logLines copy];
     }
     NSPredicate *sPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", self.filter];

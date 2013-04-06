@@ -250,13 +250,13 @@ withPassword:(NSString*)password {
             return nil;
         }
         
-        if ( ![[self currentServerProperty:TVHS_SSH_PF_HOST] isEqualToString:@""] ) {
+        if ( [[self currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
             ip = @"127.0.0.1";
             port = [NSString stringWithFormat:@"%@", TVHS_SSH_PF_LOCAL_PORT];
         } else {
             ip = [self currentServerProperty:TVHS_IP_KEY];
             port = [self currentServerProperty:TVHS_PORT_KEY];
-            if( [port isEqualToString:@""] ) {
+            if( [port length] == 0 ) {
                 port = @"9981";
             }
         }
