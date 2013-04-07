@@ -21,19 +21,24 @@
 #import "TVHRecordingsViewController.h"
 #import "CKRefreshControl.h"
 #import "TVHShowNotice.h"
-#import "TVHShowNotice.h"
+#import "TVHSettings.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TVHRecordingsDetailViewController.h"
 #import "TVHAutoRecDetailViewController.h"
 #import "NSString+FileSize.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 #define SEGMENT_UPCOMING_REC 0
 #define SEGMENT_COMPLETED_REC 1
 #define SEGMENT_FAILED_REC 2
 #define SEGMENT_AUTOREC 3
 
-@interface TVHRecordingsViewController ()
+@interface TVHRecordingsViewController () {
+    NIKFontAwesomeIconFactory *factory;
+}
+
 @property (strong, nonatomic) TVHDvrStore *dvrStore;
 @property (strong, nonatomic) TVHAutoRecStore *autoRecStore;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -114,6 +119,13 @@
                                                  name:@"resetAllObjects"
                                                object:nil];
     
+    factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factory.size = 32*2;
+    factory.colors = @[[UIColor grayColor]];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconTime] forSegmentAtIndex:0];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconOkCircle] forSegmentAtIndex:1];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconMagic] forSegmentAtIndex:3];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign] forSegmentAtIndex:2];
     //self.segmentedControl.arrowHeightFactor *= -1.0;
 }
 
@@ -123,6 +135,14 @@
     [self setTableView:nil];
     [self setDvrStore:nil];
     [super viewDidUnload];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    if ( [settings programFirstRun] ) {
+        [self.segmentedControl setSelectedSegmentIndex:3 ];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,7 +157,7 @@
 {
     if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
         if ( [self.autoRecStore count] == 0 ) {
-            return NSLocalizedString(@"No recordings found.", nil);
+            return NSLocalizedString(@"No auto recordings found.", nil);
         }
     } else {
         if ( [self.dvrStore count:self.segmentedControl.selectedSegmentIndex] == 0 ) {

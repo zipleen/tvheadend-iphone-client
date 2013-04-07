@@ -60,4 +60,5 @@
 - (NSString*)currentServerProperty:(NSString*)key;
 - (NSArray*)availableServers;
 - (void)resetSettings;
+- (BOOL)programFirstRun;
 @end

@@ -26,6 +26,7 @@
 #define TVHS_AUTO_START_COMET_POOL @"AutoStartCometPool"
 #define TVHS_CUSTOM_PREFIX @"CustomAppPrefix"
 #define TVHS_SEND_ANONSTATS @"sendAnonymousStatistics"
+#define TVHS_PROGRAM_FIRST_RUN @"programAlreadyRanOnce"
 
 @interface TVHSettings()
 
@@ -373,5 +374,17 @@ withPassword:(NSString*)password {
     [defaults setBool:sendAnonymousStatistics forKey:TVHS_SEND_ANONSTATS];
     [defaults synchronize];
 }
+
+- (BOOL)programFirstRun {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id test = [defaults objectForKey:TVHS_PROGRAM_FIRST_RUN];
+    if ( test == nil ) {
+        [defaults setBool:YES forKey:TVHS_PROGRAM_FIRST_RUN];
+        [defaults synchronize];
+        return YES;
+    }
+    return NO;
+}
+
 @end
 
