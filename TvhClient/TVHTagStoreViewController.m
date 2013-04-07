@@ -24,8 +24,12 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "TVHChannelStore.h"
 #import "TVHSettings.h"
-#import "TVHCometPollStore.h"
 #import "TVHShowNotice.h"
+
+#import "TVHStatusSubscriptionsStore.h"
+#import "TVHAdaptersStore.h"
+#import "TVHLogStore.h"
+#import "TVHCometPollStore.h"
 
 @interface TVHTagStoreViewController ()
 @property (strong, nonatomic) TVHTagStore *tagList;
@@ -65,7 +69,10 @@
         // and fetch channel data - we need it for a lot of things, channels should always be loaded!
         [[TVHChannelStore sharedInstance] fetchChannelList];
         
-        // and maybe start comet poll
+        // and maybe start comet poll - after initing status and log
+        [TVHStatusSubscriptionsStore sharedInstance];
+        [TVHAdaptersStore sharedInstance];
+        [TVHLogStore sharedInstance];
         [TVHCometPollStore sharedInstance];
     }
     
