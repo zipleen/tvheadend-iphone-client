@@ -216,8 +216,8 @@
         if ( path.section == 0 && path.row == 6 ) {
             NSArray *list = [self arrayOfDayTimes];
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-            [vc setTitle:NSLocalizedString(@"Start Around", nil)];
-            [vc setSectionHeader:NSLocalizedString(@"Start Around", nil)];
+            [vc setTitle:NSLocalizedString(@"Start Around", @"Auto rec edit - start around")];
+            [vc setSectionHeader:NSLocalizedString(@"Start Around", @"Auto rec edit - start around")];
             [vc setOptions:list];
             [vc setSelectedOption:self.item.approx_time / 10];
             [vc setResponseBack:^(NSInteger order) {

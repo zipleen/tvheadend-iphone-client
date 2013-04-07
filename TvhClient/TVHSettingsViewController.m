@@ -75,10 +75,10 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return NSLocalizedString(@"TVHeadend Servers", nil);
+        return NSLocalizedString(@"TVHeadend Servers", @"Title 1 in settings screen");
     }
     if (section == 1) {
-        return NSLocalizedString(@"Advanced Settings", nil);
+        return NSLocalizedString(@"Advanced Settings", @"Title 2 in settings screen");
     }
     return nil;
 }
@@ -123,7 +123,7 @@
             [cell.imageView setImage:[factory createImageForIcon:icon]];
         }
         if ( indexPath.row == [self.servers count] ) {
-            cell.textLabel.text = NSLocalizedString(@"Add New TVHeadend", nil);
+            cell.textLabel.text = NSLocalizedString(@"Add New TVHeadend", @".. in settings screen");
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             [cell.imageView setImage:nil];
         }
@@ -136,9 +136,9 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
             }
             
-            cell.textLabel.text = NSLocalizedString(@"Cache Data for", nil);
+            cell.textLabel.text = NSLocalizedString(@"Cache Data for", @".. in settings screen");
             NSInteger minutes = [self.settings cacheTime];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@", (minutes/60) ,NSLocalizedString(@"minutes", nil)];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@", (minutes/60) ,NSLocalizedString(@"minutes", @".. in settings screen")];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         if ( indexPath.row == 1 ) {
@@ -152,7 +152,7 @@
             [switchfield addTarget:self action: @selector(autoStartPolling:) forControlEvents:UIControlEventValueChanged];
             
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
-            textLabel.text = NSLocalizedString(@"Auto Start Polling", nil);
+            textLabel.text = NSLocalizedString(@"Auto Start Polling", @".. in settings screen");
         }
         if ( indexPath.row == 2 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
@@ -171,7 +171,7 @@
             textField.text = [self.settings customPrefix];
             
             UILabel *textLabel = (UILabel *)[cell viewWithTag:201];
-            textLabel.text = NSLocalizedString(@"Custom Player URL", nil);
+            textLabel.text = NSLocalizedString(@"Custom Player URL", @".. in settings screen");
             textLabel.adjustsFontSizeToFitWidth = YES;
         }
         if ( indexPath.row == 3 ) {
@@ -180,11 +180,11 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
             }
             
-            cell.textLabel.text = NSLocalizedString(@"Order Channels", nil);
+            cell.textLabel.text = NSLocalizedString(@"Order Channels", @".. in settings screen");
             if ( [self.settings sortChannel] == TVHS_SORT_CHANNEL_BY_NAME ) {
-                cell.detailTextLabel.text = NSLocalizedString(@"by Name", nil);
+                cell.detailTextLabel.text = NSLocalizedString(@"by Name", @".. in settings screen");
             } else {
-                cell.detailTextLabel.text = NSLocalizedString(@"by Number", nil);
+                cell.detailTextLabel.text = NSLocalizedString(@"by Number", @".. in settings screen");
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -199,7 +199,7 @@
             [switchfield addTarget:self action: @selector(sendAnonymousStatistics:) forControlEvents:UIControlEventValueChanged];
             
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
-            textLabel.text = NSLocalizedString(@"Anonymous Statistics", nil);
+            textLabel.text = NSLocalizedString(@"Anonymous Statistics", @".. in settings screen");
         }
     }
     if ( indexPath.section == 2 ) {
@@ -211,15 +211,15 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if ( indexPath.row == 0 ) {
             icon = NIKFontAwesomeIconHeart;
-            cell.textLabel.text = NSLocalizedString(@"Support", nil);
+            cell.textLabel.text = NSLocalizedString(@"Support", @".. in settings screen");
         }
         if ( indexPath.row == 1 ) {
             icon = NIKFontAwesomeIconInfoSign;
-            cell.textLabel.text = NSLocalizedString(@"About", nil);
+            cell.textLabel.text = NSLocalizedString(@"About", @".. in settings screen");
         }
         if ( indexPath.row == 2 ) {
             icon = NIKFontAwesomeIconFileAlt;
-            cell.textLabel.text = NSLocalizedString(@"Licenses", nil);
+            cell.textLabel.text = NSLocalizedString(@"Licenses", @".. in settings screen");
         }
         [cell.imageView setImage:[factory createImageForIcon:icon]];
     }
@@ -300,7 +300,7 @@
     if ( [segue.identifier isEqualToString:@"SettingsServers"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsServersViewController *vc = segue.destinationViewController;
-        [vc setTitle:NSLocalizedString(@"TVHeadend Server", nil)];
+        [vc setTitle:NSLocalizedString(@"TVHeadend Server", @".. in settings screen")];
         if ( path.row < [self.servers count] ) {
             [vc setSelectedServer:path.row];
         } else {
@@ -311,11 +311,11 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsGenericTextViewController *vc = segue.destinationViewController;
         if ( path.row == 1 ) {
-            [vc setTitle:NSLocalizedString(@"About", nil)];
+            [vc setTitle:NSLocalizedString(@"About", @".. in settings screen")];
             [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
         }
         if ( path.row == 2 ) {
-            [vc setTitle:NSLocalizedString(@"Licenses", nil)];
+            [vc setTitle:NSLocalizedString(@"Licenses", @".. in settings screen")];
             [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"licenses" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
         }
     }
@@ -323,9 +323,9 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         if ( path.section == 1 && path.row == 3 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-            [vc setTitle:NSLocalizedString(@"Order Channels", nil)];
-            [vc setSectionHeader:NSLocalizedString(@"Order Channels", nil)];
-            [vc setOptions:@[NSLocalizedString(@"by Name", nil), NSLocalizedString(@"by Number", nil)] ];
+            [vc setTitle:NSLocalizedString(@"Order Channels", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Order Channels", @".. in settings screen")];
+            [vc setOptions:@[NSLocalizedString(@"by Name", @".. in settings screen"), NSLocalizedString(@"by Number", @".. in settings screen")] ];
             [vc setSelectedOption:[self.settings sortChannel]];
             [vc setResponseBack:^(NSInteger order) {
                 [[TVHSettings sharedInstance] setSortChannel:order];
@@ -334,8 +334,8 @@
         }
         if ( path.section == 1 && path.row == 0 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-            [vc setTitle:NSLocalizedString(@"Cache Data", nil)];
-            [vc setSectionHeader:NSLocalizedString(@"Cache Data for", nil)];
+            [vc setTitle:NSLocalizedString(@"Cache Data", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Cache Data for", @".. in settings screen")];
             [vc setOptions:@[@"0 minutes", @"3 minute", @"6 minutes", @"9 minutes", @"12 minutes"]];
             [vc setSelectedOption:[self.settings cacheTime]/3/60];
             [vc setResponseBack:^(NSInteger order) {

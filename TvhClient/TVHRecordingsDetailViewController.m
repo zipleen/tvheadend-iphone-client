@@ -162,7 +162,7 @@
 
 - (IBAction)removeRecording:(id)sender {
     UIAlertView *questionAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Remove recording", nil)
-                                                         message:NSLocalizedString(@"Are your sure you want to remove the recording?", nil)
+                                                         message:NSLocalizedString(@"Are your sure you want to remove the recording?", @"Question in Alert view")
                                                         delegate:self
                                                cancelButtonTitle:NSLocalizedString(@"No", nil)
                                                otherButtonTitles:NSLocalizedString(@"Yes", nil), nil];

@@ -58,13 +58,13 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return NSLocalizedString(@"TVHeadend Server Details", nil);
+        return NSLocalizedString(@"TVHeadend Server Details", @"..in Settings server edit");
     }
     if (section == 1) {
-        return NSLocalizedString(@"Authentication", nil);
+        return NSLocalizedString(@"Authentication", @"..in Settings server edit");
     }
     if (section == 2) {
-        return NSLocalizedString(@"SSH Port Forward", nil);
+        return NSLocalizedString(@"SSH Port Forward", @"..in Settings server edit");
     }
     return nil;
 }
@@ -115,47 +115,47 @@
     textField.secureTextEntry = NO;
     textField.returnKeyType = UIReturnKeyDone;
     if ( indexPath.row == 0 && indexPath.section == 0 ) {
-        textLabel.text = NSLocalizedString(@"Name", nil);
+        textLabel.text = NSLocalizedString(@"Name", @"..in Settings server edit");
         textField.placeholder = @"";
     }
     if ( indexPath.row == 1 && indexPath.section == 0  ) {
-        textLabel.text = NSLocalizedString(@"Server Address", nil);
+        textLabel.text = NSLocalizedString(@"Server Address", @"..in Settings server edit");
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 2 && indexPath.section == 0  ) {
-        textLabel.text = NSLocalizedString(@"Port", nil);
+        textLabel.text = NSLocalizedString(@"Port", @"..in Settings server edit");
         textField.placeholder = @"9981";
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }
     if ( indexPath.row == 0 && indexPath.section == 1 ) {
-        textLabel.text = NSLocalizedString(@"Username", nil);
+        textLabel.text = NSLocalizedString(@"Username", @"..in Settings server edit");
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeDefault;
     }
     if ( indexPath.row == 1 && indexPath.section == 1 ) {
-        textLabel.text = NSLocalizedString(@"Password", nil);
+        textLabel.text = NSLocalizedString(@"Password", @"..in Settings server edit");
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeDefault;
         textField.secureTextEntry = YES;
     }
     if ( indexPath.row == 0 && indexPath.section == 2  ) {
-        textLabel.text = NSLocalizedString(@"Server Address", nil);
+        textLabel.text = NSLocalizedString(@"Server Address", @"..in Settings server edit");
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 1 && indexPath.section == 2  ) {
-        textLabel.text = NSLocalizedString(@"SSH Port", nil);
+        textLabel.text = NSLocalizedString(@"SSH Port", @"..in Settings server edit");
         textField.placeholder = @"22";
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }
     if ( indexPath.row == 2 && indexPath.section == 2  ) {
-        textLabel.text = NSLocalizedString(@"SSH Username", nil);
+        textLabel.text = NSLocalizedString(@"SSH Username", @"..in Settings server edit");
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
     }
     if ( indexPath.row == 3 && indexPath.section == 2  ) {
-        textLabel.text = NSLocalizedString(@"SSH Password", nil);
+        textLabel.text = NSLocalizedString(@"SSH Password", @"..in Settings server edit");
         textField.placeholder = @"";
         textField.keyboardType = UIKeyboardTypeAlphabet;
         textField.secureTextEntry = YES;
