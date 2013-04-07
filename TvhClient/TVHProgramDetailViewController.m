@@ -208,7 +208,7 @@
             descLabel.text = @"";
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
-            titleLabel.text = epg.title;
+            titleLabel.text = epg.fullTitle;
             descLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
     }
