@@ -272,7 +272,7 @@
         
         TVHAutoRecDetailViewController *vc = segue.destinationViewController;
         [vc setTitle:[item title]];
-        [vc setItem:item];
+        [vc setItem:[item copy]];
     }
 }
 

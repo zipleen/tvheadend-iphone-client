@@ -52,7 +52,11 @@ static TVHJsonClient *__jsonClient;
     if ( ! baseUrl ) {
         return nil;
     }
-    
+    return [self initWithBaseURL:baseUrl];
+}
+
+- (id)initWithBaseURL:(NSURL *)url {
+    TVHSettings *settings = [TVHSettings sharedInstance];
     // setup port forward
     if ( [[settings currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
         [self setupPortForwardToHost:[settings currentServerProperty:TVHS_SSH_PF_HOST]
@@ -68,7 +72,7 @@ static TVHJsonClient *__jsonClient;
         _readyToUse = YES;
     }
     
-    self = [super initWithBaseURL:baseUrl];
+    self = [super initWithBaseURL:url];
     if( !self ) {
         return nil;
     }

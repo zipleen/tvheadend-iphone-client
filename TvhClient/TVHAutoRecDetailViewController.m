@@ -85,6 +85,7 @@
 
 - (void)itemSetEnable:(UISwitch*)switchField {
     [self.item setEnabled:switchField.on];
+    [self.item updateValue:[NSNumber numberWithBool:switchField.on] forKey:@"enabled"];
 }
 
 #pragma mark - Table view data source
@@ -152,6 +153,7 @@
             [vc setSelectedOption:[list indexOfObject:self.itemChannel.detailTextLabel.text]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
+                [self.item updateValue:text forKey:@"channel"];
                 [self.item setChannel:text];
             }];
         }
@@ -172,6 +174,7 @@
             [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
+                [self.item updateValue:text forKey:@"tag"];
                 [self.item setTag:text];
             }];
         }
@@ -218,6 +221,7 @@
             [vc setOptions:list];
             [vc setSelectedOption:self.item.approx_time / 10];
             [vc setResponseBack:^(NSInteger order) {
+                [self.item updateValue:[NSNumber numberWithInt:order*10] forKey:@"approx_time"];
                 [self.item setApprox_time:order*10];
             }];
         }
@@ -232,6 +236,7 @@
             [vc setSelectedOption:[list indexOfObject:self.itemPriority.detailTextLabel.text]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
+                [self.item updateValue:text forKey:@"pri"];
                 [self.item setPri:text];
             }];
         }
@@ -274,6 +279,17 @@
     [super viewDidUnload];
 }
 - (IBAction)saveButton:(id)sender {
+    // check for the 3 titles
+    if ( ! [self.itemTitle.text isEqualToString:[self.item title]] ) {
+        [self.item updateValue:self.itemTitle.text forKey:@"title"];
+    }
+    if ( ! [self.itemComment.text isEqualToString:[self.item comment]] ) {
+        [self.item updateValue:self.itemComment.text forKey:@"comment"];
+    }
+    if ( ! [self.itemCreatedBy.text isEqualToString:[self.item creator]] ) {
+        [self.item updateValue:self.itemCreatedBy.text forKey:@"creator"];
+    }
     [self.item updateAutoRec];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

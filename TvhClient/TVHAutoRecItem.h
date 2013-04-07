@@ -35,6 +35,7 @@
 @property (nonatomic, strong) NSString *genre;
 @property (nonatomic, strong) NSString *weekdays; // mon 1, sun 7
 
+- (void)updateValue:(id)value forKey:(NSString*)key;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)deleteAutoRec;
 - (NSString*)stringFromAproxTime;

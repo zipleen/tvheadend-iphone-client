@@ -22,7 +22,7 @@
 #import "TVHAutoRecItem.h"
 
 @interface TVHAutoRecDetailViewController : UITableViewController
-@property (nonatomic, weak) TVHAutoRecItem *item;
+@property (nonatomic, strong) TVHAutoRecItem *item;
 @property (weak, nonatomic) IBOutlet UISwitch *itemEnable;
 @property (weak, nonatomic) IBOutlet UITableViewCell *itemChannel;
 @property (weak, nonatomic) IBOutlet UITableViewCell *itemTag;

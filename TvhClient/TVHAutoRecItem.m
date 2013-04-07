@@ -34,15 +34,22 @@
     return _updatedProperties;
 }
 
-- (void)dealloc {
-    self.channel = nil;
-    self.comment = nil;
-    self.config_name = nil;
-    self.creator = nil;
-    self.pri = nil;
-    self.title = nil;
-    self.tag = nil;
-    self.weekdays = nil;
+- (id)copyWithZone:(NSZone *)zone {
+    TVHAutoRecItem *item = [[[self class] allocWithZone:zone] init];
+    item.channel = self.channel;
+    item.comment = self.comment;
+    item.contenttype = self.contenttype;
+    item.config_name = self.config_name;
+    item.approx_time = self.approx_time;
+    item.enabled = self.enabled;
+    item.id = self.id;
+    item.creator = self.creator;
+    item.pri = self.pri;
+    item.title = self.title;
+    item.tag = self.tag;
+    item.weekdays = self.weekdays;
+    item.genre = self.genre;
+    return item;
 }
 
 - (void)updateValue:(id)value forKey:(NSString*)key {
@@ -72,7 +79,7 @@
 }
 
 - (void)deleteAutoRec {
-    [TVHTableMgrActions doTableMgrAction:@"delete" inTable:@"autorec" withEntries:[NSString stringWithFormat:@"[\"%d\"]",self.id] ];
+    [TVHTableMgrActions doTableMgrAction:@"delete" inTable:@"autorec" withEntries:[NSString stringWithFormat:@"%d",self.id] ];
 }
 
 - (void)updateAutoRec {

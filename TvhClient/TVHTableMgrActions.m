@@ -25,9 +25,19 @@
 
 + (void)doTableMgrAction:(NSString*)action inTable:(NSString*)table withEntries:(id)entries {
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
+    NSString *stringEntries;
+    
+    if ( [entries isKindOfClass:[NSString class]] ) {
+        stringEntries = [NSString stringWithFormat:@"\"%@\"",entries];
+    } else {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:entries
+                                                           options:0 
+                                                             error:nil];
+        stringEntries = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
-                            entries,
+                            [NSString stringWithFormat:@"[%@]", stringEntries],
                             @"entries",
                             action,
                             @"op",
@@ -35,17 +45,6 @@
                             @"table",nil];
     
     [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError* error;
-        if( error ) {
-#ifdef TESTING
-            NSLog(@"[TableMgr ACTIONS ERROR processing JSON]: %@", error.localizedDescription);
-#endif
-            [[NSNotificationCenter defaultCenter]
-             postNotificationName:@"didErrorTableMgrAction"
-             object:error];
-        }
-        
         [[NSNotificationCenter defaultCenter]
              postNotificationName:@"didSuccessTableMgrAction"
              object:action];
