@@ -161,7 +161,7 @@
         if ( last ) {
             NSDate *localDate = [NSDate date];
     #ifdef TESTING
-            NSLog(@"localdate: %@ | last start date: %@ %i %i", localDate, last.start);
+            NSLog(@"localdate: %@ | last start date: %@ ", localDate, last.start);
     #endif
             if ( [localDate compare:last.start] == NSOrderedDescending && (start+limit) < self.totalEventCount ) {
                 [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50 fetchAll:false];

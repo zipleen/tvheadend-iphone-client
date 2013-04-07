@@ -1265,8 +1265,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`";
+			shellPath = /bin/bash;
+			shellScript = "if [ \"$CURRENT_ARCH\" == \"i386\" ]; then exit 0 ; fi\n./Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`";
 		};
 		AAFC2A0B16FBA52900194DFF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -210,7 +210,7 @@ static TVHJsonClient *__jsonClient;
             [sshPortForwardWrapper setPortForwardFromPort:localPort toHost:remoteIp onPort:remotePort];
             _readyToUse = NO;
         } else {
-            NSLog(@"erro ssh pf: ", error.localizedDescription);
+            NSLog(@"erro ssh pf: %@", error.localizedDescription);
         }
     });
 }
