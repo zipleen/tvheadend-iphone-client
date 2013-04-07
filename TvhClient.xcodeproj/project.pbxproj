@@ -154,7 +154,7 @@
 		AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */; };
 		AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */; };
 		AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */; };
-		AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE5E87B16EE9865007BEC40 /* libTestFlight.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AAE5E87C16EE9865007BEC40 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE5E87B16EE9865007BEC40 /* libTestFlight.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		AAE7B798170781AB0052E6F3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B797170781AB0052E6F3 /* CFNetwork.framework */; };
 		AAE7B79F170782200052E6F3 /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79C170782200052E6F3 /* libssh2.a */; };
 		AAE7B7A0170782200052E6F3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79D170782200052E6F3 /* libcrypto.a */; };
@@ -535,8 +535,7 @@
 				AA8DC11016E1407700F93BD7 /* Channels */,
 				AA8DC11416E1409400F93BD7 /* Comet Poll / Status */,
 				AA8DC11516E140B600F93BD7 /* DVR */,
-				AAE5273F16F2938E002047E4 /* TVHTableMgrActions.h */,
-				AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */,
+				AAD8EA041710CB8E00932A0E /* Misc */,
 				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
 				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
@@ -1010,6 +1009,15 @@
 				AABE682616EBAE84003E8F92 /* TVHLogStore.m */,
 			);
 			name = Logs;
+			sourceTree = "<group>";
+		};
+		AAD8EA041710CB8E00932A0E /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				AAE5273F16F2938E002047E4 /* TVHTableMgrActions.h */,
+				AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */ = {

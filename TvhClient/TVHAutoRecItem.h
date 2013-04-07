@@ -37,4 +37,7 @@
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)deleteAutoRec;
+- (NSString*)stringFromAproxTime;
++ (NSString*)stringFromMinutes:(int)minutes;
+- (void)updateAutoRec;
 @end

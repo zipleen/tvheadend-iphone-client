@@ -12,7 +12,6 @@
 #import "TVHSettingsGenericFieldViewController.h"
 #import "TVHChannelStore.h"
 #import "TVHSettings.h"
-#import "TestFlight.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 

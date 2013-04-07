@@ -34,5 +34,6 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *itemGenre;
 @property (weak, nonatomic) IBOutlet UITableViewCell *itemStartAround;
 @property (weak, nonatomic) IBOutlet UITextField *itemTitle;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+- (IBAction)saveButton:(id)sender;
+
 @end

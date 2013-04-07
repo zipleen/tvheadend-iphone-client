@@ -43,24 +43,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.itemTitle setText:[self.item title]];
     [self.itemTitle setDelegate:self];
-    
+    [self.itemCreatedBy setDelegate:self];
+    [self.itemComment setDelegate:self];
+    [self.itemEnable addTarget:self action: @selector(itemSetEnable:) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.itemTitle setText:[self.item title]];
     [self.itemEnable setOn:[self.item enabled]];
     [self.itemChannel.detailTextLabel setText:[self.item channel]];
     [self.itemTag.detailTextLabel setText:[self.item tag]];
     [self.itemGenre.detailTextLabel setText:[self.item genre]];
     [self.itemWeekdays.detailTextLabel
      setText:[NSString stringOfWeekdaysLocalizedFromArray:[self.item.weekdays componentsSeparatedByString:@","] joinedByString:@","]];
-    [self.itemStartAround.detailTextLabel setText:[NSString stringWithFormat:@"%d",[self.item approx_time]]];
+    [self.itemStartAround.detailTextLabel setText:self.item.stringFromAproxTime];
     [self.itemPriority.detailTextLabel setText:[self.item pri]];
     [self.itemDvrConfig.detailTextLabel setText:[self.item config_name]];
-    
     [self.itemCreatedBy setText:[self.item creator]];
-    [self.itemCreatedBy setDelegate:self];
-    
     [self.itemComment setText:[self.item comment]];
-    [self.itemComment setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,6 +83,9 @@
     return YES;
 }
 
+- (void)itemSetEnable:(UISwitch*)switchField {
+    [self.item setEnabled:switchField.on];
+}
 
 #pragma mark - Table view data source
 /*
@@ -96,18 +102,42 @@
 
 #pragma mark - Table view delegate
 
+- (NSArray*)arrayOfWeekdaysLocalized
+{
+    NSMutableArray *localizedStringOfweekday = [[[[NSDateFormatter alloc] init] shortWeekdaySymbols] mutableCopy];
+    // hack for making 1==monday 7==sunday
+    [localizedStringOfweekday addObject:[localizedStringOfweekday objectAtIndex:0]];
+    [localizedStringOfweekday removeObjectAtIndex:0];
+    return [localizedStringOfweekday copy];
+}
+
+- (NSArray*)arrayOfDayTimes
+{
+    NSMutableArray *days = [[NSMutableArray alloc] init];
+    for ( int i = 0 ; i < 144; i++ ) {
+        [days addObject:[TVHAutoRecItem stringFromMinutes:i*10] ];
+    }
+    return days;
+}
+
+- (NSArray*)arrayOfImportance
+{
+    return @[@"important", @"high", @"normal", @"low", @"unimportant"];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ( indexPath.row > 0 && indexPath.row < 8 ) {
+    if ( indexPath.row > 1 && indexPath.row < 9 && indexPath.row != 4 && indexPath.row != 8 && indexPath.row != 5 ) {
         [self performSegueWithIdentifier:@"AutoRecSelectField" sender:self];
     }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ( [segue.identifier isEqualToString:@"AutoRecSelectField"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         // channel
-        if ( path.section == 0 && path.row == 1 ) {
+        if ( path.section == 0 && path.row == 2 ) {
             TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
             NSArray *objectChannelList = [channelStore channels];
             NSMutableArray *list = [[NSMutableArray alloc] init];
@@ -122,31 +152,11 @@
             [vc setSelectedOption:[list indexOfObject:self.itemChannel.detailTextLabel.text]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
-                [self.itemChannel.detailTextLabel setText:text];
+                [self.item setChannel:text];
             }];
         }
         
         // tag
-        if ( path.section == 0 && path.row == 2 ) {
-            TVHTagStore *tagStore = [TVHTagStore sharedInstance];
-            NSArray *objectTagList = [tagStore tags];
-            NSMutableArray *list = [[NSMutableArray alloc] init];
-            [objectTagList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                [list addObject:[obj name]];
-            }];
-            
-            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-            [vc setTitle:NSLocalizedString(@"Tag", nil)];
-            [vc setSectionHeader:NSLocalizedString(@"Tag", nil)];
-            [vc setOptions:list];
-            [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
-            [vc setResponseBack:^(NSInteger order) {
-                NSString *text = [list objectAtIndex:order];
-                [self.itemTag.detailTextLabel setText:text];
-            }];
-        }
-        
-        // genre - missing
         if ( path.section == 0 && path.row == 3 ) {
             TVHTagStore *tagStore = [TVHTagStore sharedInstance];
             NSArray *objectTagList = [tagStore tags];
@@ -162,12 +172,12 @@
             [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
-                [self.itemTag.detailTextLabel setText:text];
+                [self.item setTag:text];
             }];
         }
         
-        // weekdays
-        if ( path.section == 0 && path.row == 4 ) {
+        // genre - missing
+        /*if ( path.section == 0 && path.row == 4 ) {
             TVHTagStore *tagStore = [TVHTagStore sharedInstance];
             NSArray *objectTagList = [tagStore tags];
             NSMutableArray *list = [[NSMutableArray alloc] init];
@@ -176,15 +186,75 @@
             }];
             
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-            [vc setTitle:NSLocalizedString(@"Tag", nil)];
-            [vc setSectionHeader:NSLocalizedString(@"Tag", nil)];
+            [vc setTitle:NSLocalizedString(@"Genre", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Genre", nil)];
             [vc setOptions:list];
             [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
                 [self.itemTag.detailTextLabel setText:text];
             }];
+        }*/
+        
+        // weekdays
+        /*if ( path.section == 0 && path.row == 5 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Weekdays", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Weekdays", nil)];
+            [vc setOptions:[self arrayOfWeekdaysLocalized]];
+            //[vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
+            [vc setResponseBack:^(NSInteger order) {
+                //NSString *text = [list objectAtIndex:order];
+                //[self.itemTag.detailTextLabel setText:text];
+            }];
+        }*/
+        
+        // start around
+        if ( path.section == 0 && path.row == 6 ) {
+            NSArray *list = [self arrayOfDayTimes];
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Start Around", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Start Around", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:self.item.approx_time / 10];
+            [vc setResponseBack:^(NSInteger order) {
+                [self.item setApprox_time:order*10];
+            }];
         }
+        
+        // priority
+        if ( path.section == 0 && path.row == 7 ) {
+            NSArray *list = [self arrayOfImportance];
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Priority", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Priority", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:self.itemPriority.detailTextLabel.text]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self.item setPri:text];
+            }];
+        }
+        
+        // dvr config
+        /*if ( path.section == 0 && path.row == 8 ) {
+            TVHTagStore *tagStore = [TVHTagStore sharedInstance];
+            NSArray *objectTagList = [tagStore tags];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [objectTagList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Dvr Config", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Dvr Config", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:self.itemTag.detailTextLabel.text]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self.itemTag.detailTextLabel setText:text];
+            }];
+        }*/
     }
 }
 
@@ -201,7 +271,9 @@
     [self setItemCreatedBy:nil];
     [self setItemComment:nil];
     [self setItemEnable:nil];
-    [self setSaveButton:nil];
     [super viewDidUnload];
+}
+- (IBAction)saveButton:(id)sender {
+    [self.item updateAutoRec];
 }
 @end

@@ -41,11 +41,11 @@
 {
     BOOL sendAnonymousStats = [[TVHSettings sharedInstance] sendAnonymousStatistics];
     if ( sendAnonymousStats ) {
-        NSString *testFlightKey = TVH_TESTFLIGHT_KEY;
 #if defined TESTING && defined TVH_TESTFLIGHT_KEY
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
 #ifdef TVH_TESTFLIGHT_KEY
+        NSString *testFlightKey = TVH_TESTFLIGHT_KEY;
         [TestFlight takeOff:testFlightKey];
 #endif
 #ifdef TVH_CRASHLYTICS_KEY

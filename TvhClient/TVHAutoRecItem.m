@@ -21,7 +21,18 @@
 #import "TVHAutoRecItem.h"
 #import "TVHTableMgrActions.h"
 
+@interface TVHAutoRecItem () 
+@property (nonatomic, strong) NSMutableArray *updatedProperties;
+@end
+
 @implementation TVHAutoRecItem
+
+- (NSMutableArray*)updatedProperties {
+    if ( ! _updatedProperties ) {
+        _updatedProperties = [[NSMutableArray alloc] init];
+    }
+    return _updatedProperties;
+}
 
 - (void)dealloc {
     self.channel = nil;
@@ -34,10 +45,26 @@
     self.weekdays = nil;
 }
 
+- (void)updateValue:(id)value forKey:(NSString*)key {
+    [self setValue:value forKey:key];
+    [self.updatedProperties addObject:key];
+}
+
 - (void)updateValuesFromDictionary:(NSDictionary*) values {
     [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self setValue:obj forKey:key];
     }];
+}
+
++ (NSString*)stringFromMinutes:(int)dayMinutes {
+    return [NSString stringWithFormat:@"%d:%02d", (int)(dayMinutes/60), (int)(dayMinutes%60) ];
+}
+
+- (NSString*)stringFromAproxTime {
+    if ( self.approx_time == 0 ) {
+        return nil;
+    }
+    return [TVHAutoRecItem stringFromMinutes:self.approx_time];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString*)key {
@@ -46,5 +73,18 @@
 
 - (void)deleteAutoRec {
     [TVHTableMgrActions doTableMgrAction:@"delete" inTable:@"autorec" withEntries:[NSString stringWithFormat:@"[\"%d\"]",self.id] ];
+}
+
+- (void)updateAutoRec {
+    if ( [self.updatedProperties count] == 0 ) {
+        return;
+    }
+    
+    NSMutableDictionary *sendProperties = [[NSMutableDictionary alloc] init];
+    for (NSString* key in self.updatedProperties) {
+        [sendProperties setValue:[self valueForKey:key] forKey:key];
+    }
+    [sendProperties setValue:[NSString stringWithFormat:@"%d", self.id] forKey:@"id"];
+    [TVHTableMgrActions doTableMgrAction:@"update" inTable:@"autorec" withEntries:sendProperties ];
 }
 @end

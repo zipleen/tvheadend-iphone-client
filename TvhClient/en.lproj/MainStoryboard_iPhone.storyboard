@@ -936,7 +936,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ZG2-ge-fzy">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pB7-Jy-Blr"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pB7-Jy-Blr">
+                            <connections>
+                                <action selector="saveButton:" destination="4be-oi-e2d" id="KeE-mb-omW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="itemChannel" destination="25B-Yc-j94" id="ZYm-2f-ys6"/>
@@ -950,7 +954,6 @@
                         <outlet property="itemTag" destination="o0g-M4-pTK" id="vQt-Gr-14x"/>
                         <outlet property="itemTitle" destination="nRh-mI-d9O" id="7jA-fN-k7E"/>
                         <outlet property="itemWeekdays" destination="c7A-dY-j1m" id="WSL-9h-Dq9"/>
-                        <outlet property="saveButton" destination="pB7-Jy-Blr" id="dJz-Jy-zrh"/>
                         <segue destination="JAO-4d-hsi" kind="push" identifier="AutoRecSelectField" id="03u-bL-9X8"/>
                     </connections>
                 </tableViewController>
