@@ -58,12 +58,18 @@
 }
 
 - (void)receiveDvrNotification:(NSNotification *) notification {
-    if ([[notification name] isEqualToString:@"didSuccessDvrAction"] ) {
+    if ( [[notification name] isEqualToString:@"didSuccessDvrAction"] ) {
         if ( [notification.object isEqualToString:@"deleteEntry"]) {
             [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Recording", nil)];
         }
         else if([notification.object isEqualToString:@"cancelEntry"]) {
             [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Canceled Recording", nil)];
+        }
+    }
+    // this is WRONG, there should be a specific notification for the autorec deleting
+    if ( [[notification name] isEqualToString:@"didSuccessTableMgrAction"] ) {
+        if ( [notification.object isEqualToString:@"delete"]) {
+            [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Auto Recording", nil)];
         }
     }
 }
@@ -93,6 +99,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDvrNotification:)
                                                  name:@"didSuccessDvrAction"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveDvrNotification:)
+                                                 name:@"didSuccessTableMgrAction"
                                                object:nil];
     
     dateFormatter = [[NSDateFormatter alloc] init];

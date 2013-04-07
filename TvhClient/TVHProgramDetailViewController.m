@@ -41,6 +41,9 @@
     if ([[notification name] isEqualToString:@"didSuccessDvrAction"] && [notification.object isEqualToString:@"recordEvent"]) {
         [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
     }
+    if ([[notification name] isEqualToString:@"didSuccessDvrAction"] && [notification.object isEqualToString:@"recordSeries"]) {
+        [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Auto Recording", nil)];
+    }
 }
 
 - (NSDictionary*)propertiesDict {
