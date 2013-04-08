@@ -80,6 +80,9 @@
     if ( [self.epgTable count] == 0 ) {
         [self.epgStore downloadEpgList];
     }
+#ifdef TVH_GOOGLEANALYTICS_KEY
+        [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
+#endif
 }
 
 - (void)viewDidUnload

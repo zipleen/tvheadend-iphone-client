@@ -23,6 +23,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TVHShowNotice.h"
 #import "TVHPlayStreamHelpController.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
@@ -77,6 +79,13 @@
     return [p copy];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
+#endif
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -112,6 +121,11 @@
                                              selector:@selector(receiveDvrNotification:)
                                                  name:@"didSuccessDvrAction"
                                                object:nil];
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factory.size = 32*2;
+    factory.colors = @[[UIColor grayColor]];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconTime] forSegmentAtIndex:1];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconInfoSign] forSegmentAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning

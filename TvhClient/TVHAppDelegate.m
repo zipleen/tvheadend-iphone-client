@@ -34,11 +34,25 @@
 #ifdef TVH_CRASHLYTICS_KEY
 #import <Crashlytics/Crashlytics.h>
 #endif
+#ifdef TVH_GOOGLEANALYTICS_KEY
+#import "GAI.h"
+#endif
 
 @implementation TVHAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [GAI sharedInstance].trackUncaughtExceptions = NO;
+    [GAI sharedInstance].dispatchInterval = 60;
+    [GAI sharedInstance].debug = NO;
+#ifdef TESTING
+    [GAI sharedInstance].debug = YES;
+#endif
+    [[GAI sharedInstance] trackerWithTrackingId:TVH_GOOGLEANALYTICS_KEY];
+    [GAI sharedInstance].defaultTracker.useHttps = YES;
+#endif
+    
     BOOL sendAnonymousStats = [[TVHSettings sharedInstance] sendAnonymousStatistics];
     if ( sendAnonymousStats ) {
 #if defined TESTING && defined TVH_TESTFLIGHT_KEY
@@ -50,6 +64,10 @@
 #endif
 #ifdef TVH_CRASHLYTICS_KEY
         [Crashlytics startWithAPIKey:TVH_CRASHLYTICS_KEY];
+#endif
+    } else {
+#ifdef TVH_GOOGLEANALYTICS_KEY
+        [[GAI sharedInstance] setOptOut:YES];
 #endif
     }
     return YES;

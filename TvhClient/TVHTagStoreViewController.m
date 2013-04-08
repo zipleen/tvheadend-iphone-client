@@ -49,9 +49,16 @@
     [[TVHChannelStore sharedInstance] fetchChannelList];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
+#endif
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     [self.tagList setDelegate:self];
     
     //pull to refresh

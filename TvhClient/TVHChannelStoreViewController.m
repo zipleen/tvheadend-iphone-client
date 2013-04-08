@@ -58,6 +58,13 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
+#endif
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -115,8 +122,6 @@
 	UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     UILabel *currentTimeProgramLabel = (UILabel *)[cell viewWithTag:103];
     UIProgressView *currentTimeProgress = (UIProgressView*)[cell viewWithTag:104];
-    [currentTimeProgress setTrackImage:[[UIImage imageNamed:@"BarTrack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
-    [currentTimeProgress setProgressImage:[[UIImage imageNamed:@"BarFill.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
     
 	currentProgramLabel.text = nil;
     currentTimeProgramLabel.text = nil;

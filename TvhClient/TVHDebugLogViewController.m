@@ -64,13 +64,21 @@
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     if ( [self.cometPoll isDebugActive] ) {
         self.debugButton.style = UIBarButtonItemStyleDone;
     } else {
         self.debugButton.style = UIBarButtonItemStyleBordered;
     }
     [self.tableView reloadData];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
+#endif
 }
 
 #pragma mark - Table view data source

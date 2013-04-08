@@ -120,8 +120,16 @@
             if ( [epg progress] > 0 && [epg progress] < 100 ) {
                 return epg;
             }
+#ifdef TESTING
+            else {
+                NSLog(@"progress for %@ : %f", epg.title, [epg progress]);
+            }
+#endif
         }
     }
+#ifdef TESTING
+    NSLog(@"Didn't find any EPG for %@", self.name);
+#endif
     return nil;
 }
 

@@ -60,6 +60,7 @@
         [self.timer invalidate];
     }
 }
+
 -(void)appWillEnterForeground:(NSNotification*)note {
     if ( timerStarted ) {
         [self startRefreshingCometPoll];

@@ -78,10 +78,17 @@
     [super viewDidUnload];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [self.adapterStore fetchAdapters];
     [self.statusSubscriptionsStore fetchStatusSubscriptions];
     [self.switchPolling setOn:[self.cometPoll isTimerStarted] ];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
+#endif
 }
 
 - (void)didReceiveMemoryWarning
@@ -224,8 +231,6 @@
         berLabel.text = [NSString stringWithFormat:@"%d", adapter.ber];
         signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
         progress.progress = (float)adapter.signal/100;
-        [progress setTrackImage:[[UIImage imageNamed:@"BarTrack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
-        [progress setProgressImage:[[UIImage imageNamed:@"BarFill.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
         [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
     }
     
