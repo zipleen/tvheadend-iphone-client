@@ -31,9 +31,6 @@
 #ifdef TVH_TESTFLIGHT_KEY
 #import "TestFlight.h"
 #endif
-#ifdef TVH_CRASHLYTICS_KEY
-#import <Crashlytics/Crashlytics.h>
-#endif
 #ifdef TVH_GOOGLEANALYTICS_KEY
 #import "GAI.h"
 #endif
@@ -61,9 +58,6 @@
 #ifdef TVH_TESTFLIGHT_KEY
         NSString *testFlightKey = TVH_TESTFLIGHT_KEY;
         [TestFlight takeOff:testFlightKey];
-#endif
-#ifdef TVH_CRASHLYTICS_KEY
-        [Crashlytics startWithAPIKey:TVH_CRASHLYTICS_KEY];
 #endif
     } else {
 #ifdef TVH_GOOGLEANALYTICS_KEY
