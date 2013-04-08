@@ -26,7 +26,7 @@
 @interface TVHChannelStore ()
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
-@property (nonatomic, weak) TVHEpgStore *epgStore;
+@property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSDate *lastFetchedData;
 @end
 
@@ -44,7 +44,9 @@
 
 - (TVHEpgStore*)epgStore {
     if(!_epgStore){
-        _epgStore = [TVHEpgStore sharedInstance];
+        _epgStore = [[TVHEpgStore alloc] init];
+        [_epgStore setDelegate:self];
+        [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
     return _epgStore;
 }
@@ -101,6 +103,7 @@
 
 - (void)resetChannelStore {
     self.channels = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self.epgStore];
     self.epgStore = nil;
     self.lastFetchedData = nil;
 }
@@ -128,8 +131,6 @@
                 [self.delegate didLoadChannels];
             }
             self.lastFetchedData = [NSDate date];
-            
-            [self.epgStore setDelegate:self];
             [self.epgStore downloadEpgList];
             
            // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -167,6 +168,8 @@
         TVHChannel *channel = [self getChannelById:epg.channelid];
         [channel addEpg:epg];
     }
+    // instead of having this delegate here, channel could send a notification and channel controller
+    // could catch it and reload only that line if data was different ?
     if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
         [self.delegate didLoadChannels];
     }

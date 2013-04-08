@@ -31,17 +31,6 @@
 
 @implementation TVHEpgStore
 
-+ (id)sharedInstance {
-    static TVHEpgStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHEpgStore alloc] init];
-        [[NSNotificationCenter defaultCenter] addObserver:__sharedInstance selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-    });
-    
-    return __sharedInstance;
-}
-
 - (void)appWillEnterForeground:(NSNotification*)note {
     TVHEpg *last = [self.epgStore lastObject];
     if ( last && [last.start compare:[NSDate date]] == NSOrderedDescending ) {

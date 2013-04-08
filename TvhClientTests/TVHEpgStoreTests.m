@@ -40,15 +40,13 @@
 - (void)tearDown
 {
     // Tear-down code here.
-    TVHEpgStore *tvhe = [TVHEpgStore sharedInstance];
-    tvhe.epgStore = nil;
     [super tearDown];
 }
 
 - (void)testJsonCharacterBug
 {
     NSData *data = [TVHTestHelper loadFixture:@"Log.287"];
-    TVHEpgStore *tvhe = [TVHEpgStore sharedInstance];
+    TVHEpgStore *tvhe = [[TVHEpgStore alloc] init];
     STAssertNotNil(tvhe, @"creating tvepg store object");
     [tvhe fetchedData:data];
     STAssertTrue( ([tvhe.epgStore count] == 1), @"Failed parsing json data");
