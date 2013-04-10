@@ -230,7 +230,7 @@ withPassword:(NSString*)password {
     [defaults synchronize];
     
     // reset server connection
-    if ( [self.availableServers count] > 0 ) {
+    if ( [self.availableServers count] > 0 && self.selectedServer < [self.availableServers count] ) {
         NSDictionary *selectedServer = [self.availableServers objectAtIndex:self.selectedServer];
         NSInteger newSelectedServer = [servers indexOfObject:selectedServer];
         if ( newSelectedServer == NSNotFound ) {

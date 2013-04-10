@@ -25,10 +25,9 @@
 @interface TVHCometPollStore() {
     bool timerStarted;
 }
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSString *boxid;
-@property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL debugActive;
-@property (strong, atomic) NSNumber *active;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
@@ -47,34 +46,50 @@
     return __sharedInstance;
 }
 
+- (TVHJsonClient*)jsonClient {
+    if ( ! _jsonClient ) {
+        _jsonClient = [[TVHJsonClient alloc] init];
+    }
+    return _jsonClient;
+}
+
 - (id)init {
     self = [super init];
     if (!self) return nil;
     
     self.debugActive = false;
-    self.active = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(fetchCometPollStatus)
+                                                 name:@"fetchCometPollStatus"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetCometPoll)
+                                                 name:@"resetAllObjects"
+                                               object:nil];
+
     return self;
 }
 
--(void)appWillResignActive:(NSNotification*)note {
-    if ( timerStarted ) {
-        [self.timer invalidate];
-    }
+- (void)appWillResignActive:(NSNotification*)note {
+    
 }
 
--(void)appWillEnterForeground:(NSNotification*)note {
+- (void)appWillEnterForeground:(NSNotification*)note {
     if ( timerStarted ) {
         [self startRefreshingCometPoll];
     }
+}
+
+- (void)resetCometPoll {
+    self.jsonClient = nil;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
     self.boxid = nil;
-    self.timer = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -162,29 +177,28 @@
 }
 
 - (void)fetchCometPollStatus {
-    if ( [self.active intValue] > 0 ) {
-#ifdef TESTING
-        NSLog(@"[CometPollStore ignoring request]");
-#endif
-    }
-    self.active = [NSNumber numberWithInt:[self.active intValue]+1 ];
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     self.profilingDate = [NSDate date];
-    [httpClient postPath:@"/comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"/comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TESTING
         NSLog(@"[CometPoll Profiling Network]: %f", time);
 #endif
         [self fetchedData:responseObject];
-        self.active = [NSNumber numberWithInt:[self.active intValue]-1 ];
+        
+        if( timerStarted ) {
+            [[NSNotificationCenter defaultCenter]
+                postNotificationName:@"fetchCometPollStatus"
+                object:nil];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [[NSNotificationCenter defaultCenter]
-            postNotificationName:@"didErrorCometPollStore"
-            object:error];
-        self.active = [NSNumber numberWithInt:[self.active intValue]-1 ];
+        if( timerStarted ) {
+            [[NSNotificationCenter defaultCenter]
+                postNotificationName:@"fetchCometPollStatus"
+                object:nil];
+        }
 #ifdef TESTING
-        NSLog(@"[CometPollStore HTTPClient Error (%@)]: %@", self.active, error.localizedDescription);
+        NSLog(@"[CometPollStore HTTPClient Error]: %@", error.localizedDescription);
 #endif
     }];
     
@@ -194,15 +208,18 @@
 #ifdef TESTING
     NSLog(@"[Comet Poll Timer]: Starting comet poll refresh");
 #endif
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
+    //self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
     timerStarted = YES;
+    [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"fetchCometPollStatus"
+         object:nil];
 }
 
 - (void)stopRefreshingCometPoll {
 #ifdef TESTING
     NSLog(@"[Comet Poll Timer]: Stopped comet poll refresh");
 #endif
-    [self.timer invalidate];
+    //[self.timer invalidate];
     timerStarted = NO;
 }
 
