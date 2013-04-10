@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 @property (nonatomic, strong) NSDate *lastFetchedData;
+@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 
@@ -109,8 +110,12 @@
         TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
-        
+        self.profilingDate = [NSDate date];
         [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TESTING
+            NSLog(@"[TagStore Profiling Network]: %f", time);
+#endif
             [self fetchedData:responseObject];
             if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
                 [self.delegate didLoadTags];

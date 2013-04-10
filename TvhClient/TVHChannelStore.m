@@ -28,6 +28,7 @@
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSDate *lastFetchedData;
+@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHChannelStore 
@@ -124,8 +125,12 @@
         TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
         
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
-       
+        self.profilingDate = [NSDate date];
         [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TESTING
+            NSLog(@"[ChannelList Profiling Network]: %f", time);
+#endif
             [self fetchedData:responseObject];
             if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
                 [self.delegate didLoadChannels];

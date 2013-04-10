@@ -127,7 +127,6 @@
         NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
 #endif
     }];
-    
 }
 
 - (TVHStatusSubscription *) objectAtIndex:(int) row {

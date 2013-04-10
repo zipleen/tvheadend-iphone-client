@@ -24,6 +24,7 @@
 @interface TVHAutoRecStore()
 @property (nonatomic, strong) NSArray *dvrAutoRecItems;
 @property (nonatomic, weak) id <TVHAutoRecStoreDelegate> delegate;
+@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHAutoRecStore
@@ -99,9 +100,13 @@
 - (void)fetchDvrAutoRec {
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"autorec", @"table", nil];
-    
     self.dvrAutoRecItems = nil;
+    self.profilingDate = [NSDate date];
     [httpClient getPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TESTING
+        NSLog(@"[AutoRec Profiling Network]: %f", time);
+#endif
         [self fetchedData:responseObject];
         if ([self.delegate respondsToSelector:@selector(didLoadDvrAutoRec)]) {
             [self.delegate didLoadDvrAutoRec];

@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSArray *epgStore;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
 @property (nonatomic) NSInteger totalEventCount;
-
+@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHEpgStore
@@ -125,8 +125,12 @@
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
-    
+    self.profilingDate = [NSDate date];
     [httpClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TESTING
+        NSLog(@"[EpgStore Profiling Network]: %f", time);
+#endif
         [self fetchedData:responseObject];
         if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
             [self.delegate didLoadEpg:self];

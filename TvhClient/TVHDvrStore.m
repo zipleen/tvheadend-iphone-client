@@ -26,6 +26,7 @@
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
 @property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
 @property (nonatomic) NSInteger cachedType;
+@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHDvrStore
@@ -124,8 +125,13 @@
 
 - (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type {
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
-    
+    self.profilingDate = [NSDate date];
     [httpClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TESTING
+        NSLog(@"[DvrStore Profiling Network]: %f", time);
+#endif
+
         [self fetchedData:responseObject withType:type];
         if ([self.delegate respondsToSelector:@selector(didLoadDvr)]) {
             [self.delegate didLoadDvr];

@@ -44,7 +44,7 @@
     [GAI sharedInstance].dispatchInterval = 60;
     [GAI sharedInstance].debug = NO;
 #ifdef TESTING
-    [GAI sharedInstance].debug = YES;
+    [GAI sharedInstance].debug = NO;
 #endif
     [[GAI sharedInstance] trackerWithTrackingId:TVH_GOOGLEANALYTICS_KEY];
     [GAI sharedInstance].defaultTracker.useHttps = YES;

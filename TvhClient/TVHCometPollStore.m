@@ -28,6 +28,8 @@
 @property (nonatomic, strong) NSString *boxid;
 @property (strong, nonatomic) NSTimer *timer;
 @property (nonatomic) BOOL debugActive;
+@property (strong, atomic) NSNumber *active;
+@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHCometPollStore
@@ -50,6 +52,7 @@
     if (!self) return nil;
     
     self.debugActive = false;
+    self.active = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     return self;
@@ -159,19 +162,29 @@
 }
 
 - (void)fetchCometPollStatus {
+    if ( [self.active intValue] > 0 ) {
+#ifdef TESTING
+        NSLog(@"[CometPollStore ignoring request]");
+#endif
+    }
+    self.active = [NSNumber numberWithInt:[self.active intValue]+1 ];
     TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
-    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
-    
+    self.profilingDate = [NSDate date];
     [httpClient postPath:@"/comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TESTING
+        NSLog(@"[CometPoll Profiling Network]: %f", time);
+#endif
         [self fetchedData:responseObject];
-        
+        self.active = [NSNumber numberWithInt:[self.active intValue]-1 ];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [[NSNotificationCenter defaultCenter]
             postNotificationName:@"didErrorCometPollStore"
             object:error];
+        self.active = [NSNumber numberWithInt:[self.active intValue]-1 ];
 #ifdef TESTING
-        NSLog(@"[CometPollStore HTTPClient Error]: %@", error.localizedDescription);
+        NSLog(@"[CometPollStore HTTPClient Error (%@)]: %@", self.active, error.localizedDescription);
 #endif
     }];
     
