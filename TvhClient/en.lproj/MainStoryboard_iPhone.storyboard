@@ -253,7 +253,13 @@
                             <outlet property="delegate" destination="FYs-EC-yLp" id="PD4-0f-klb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EFg-rk-e4i"/>
+                    <navigationItem key="navigationItem" id="EFg-rk-e4i">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="d1h-Pp-ivW">
+                            <connections>
+                                <action selector="saveServer:" destination="FYs-EC-yLp" id="fGy-FG-9GJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGw-W7-SbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

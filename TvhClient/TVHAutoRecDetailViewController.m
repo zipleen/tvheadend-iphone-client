@@ -279,6 +279,7 @@
     [super viewDidUnload];
 }
 - (IBAction)saveButton:(id)sender {
+    [self.view.window endEditing: YES];
     // check for the 3 titles
     if ( ! [self.itemTitle.text isEqualToString:[self.item title]] ) {
         [self.item updateValue:self.itemTitle.text forKey:@"title"];

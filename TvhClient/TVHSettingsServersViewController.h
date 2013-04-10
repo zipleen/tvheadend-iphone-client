@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface TVHSettingsServersViewController : UITableViewController
+- (IBAction)saveServer:(id)sender;
 @property (nonatomic) NSInteger selectedServer;
 @end

@@ -38,15 +38,6 @@
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    NSDictionary *new = [self.settings newServer];
-    NSDictionary *server = [self.server copy];
-    if ( ! [new isEqualToDictionary:server] ) {
-        [self.settings setServerProperties:server forServerId:self.selectedServer];
-        [self.settings setSelectedServer:[self.settings selectedServer]];
-    }
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -192,4 +183,14 @@
     return YES;
 }
 
+- (IBAction)saveServer:(id)sender {
+    [self.view.window endEditing: YES];
+    NSDictionary *new = [self.settings newServer];
+    NSDictionary *server = [self.server copy];
+    if ( ! [new isEqualToDictionary:server] ) {
+        [self.settings setServerProperties:server forServerId:self.selectedServer];
+        [self.settings setSelectedServer:[self.settings selectedServer]];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
