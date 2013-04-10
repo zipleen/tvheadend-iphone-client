@@ -74,6 +74,8 @@
                                                object:nil];
     self.searchBar.delegate = self;
     shouldBeginEditing = YES;
+    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.searchBar action:@selector(resignFirstResponder)]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -188,6 +190,7 @@
         shouldBeginEditing = NO;
         [self.epgStore setFilterToProgramTitle:@""];
         [self.epgStore downloadEpgList];
+        return;
     }
     [self.epgStore setFilterToProgramTitle:searchBar.text];
     [self.epgStore downloadEpgList];
