@@ -119,14 +119,11 @@
     UILabel *programLabel = (UILabel *)[cell viewWithTag:100];
     UILabel *timeLabel = (UILabel *)[cell viewWithTag:101];
     UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
-    UIProgressView *currentTimeProgress = (UIProgressView*)[cell viewWithTag:103];
-	programLabel.text = nil;
-    timeLabel.text = nil;
-    currentTimeProgress.hidden = YES;
+    UILabel *channelName = (UILabel *)[cell viewWithTag:103];
     
     programLabel.text = epg.fullTitle;
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
-    
+    channelName.text = epg.channel;
     [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     
     // rouding corners - this makes the animation in ipad become VERY SLOW!!!
