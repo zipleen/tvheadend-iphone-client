@@ -16,20 +16,21 @@ It allows you to list channels, view channel EPG's, control recordings (DVR) and
 - Status subscriptions and Status adapters
 - Log and debug log
 - Search EPG
+- Multiple Tvheadend servers
 
 #### Future Features
-- Multiple Tvheadend servers
 - SSH tunnel to access tvheadend
-
+- iPad support
 
 
 
 ## Getting the code
 
     git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
+    cd libssh2-for-iOS
+    ./build-all openssl
 
-Go to TestFlight.com , download SDK and copy libTestFlight.a and TestFlight.h to the TestFlight SDK folder.
-
+Don't forget to have the command line tools installed from Xcode, otherwise libssh2 won't compile.
 Build and run ! Send your patches to me via a pull request ;)
 
 ### Adding KXMOVIE
