@@ -143,6 +143,9 @@
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
         currentTimeProgress.hidden = false;
         currentTimeProgress.progress = [currentPlayingProgram progress];
+        cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", ch.name, NSLocalizedString(@"currently playing",@"accessibility"), currentPlayingProgram.title, NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:currentPlayingProgram.end] ];
+    } else {
+        cell.accessibilityLabel = ch.name;
     }
      
     UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"separator.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];

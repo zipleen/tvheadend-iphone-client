@@ -124,6 +124,9 @@
     tagNumberLabel.text = nil;
     [channelImage setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"]];
     
+    cell.accessibilityLabel = NSLocalizedString(@"Tag", nil);
+    cell.accessibilityHint = tag.name;
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"] ];

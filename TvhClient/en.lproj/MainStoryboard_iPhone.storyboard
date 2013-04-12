@@ -1106,7 +1106,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ANR-A9-hX2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="v71-Gd-B58">
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="v71-Gd-B58">
                             <connections>
                                 <action selector="playStream:" destination="05s-K2-hia" id="wPo-je-wZS"/>
                             </connections>
@@ -1214,7 +1214,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="PhW-5B-ZXX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="bpN-dL-zLM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="bpN-dL-zLM">
                             <connections>
                                 <action selector="playStream:" destination="R7y-nK-jpx" id="mfy-jv-60i"/>
                             </connections>
@@ -1653,9 +1653,7 @@
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="autoStartPolling:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="doneSettings:"/>
-                <relationship kind="action" name="sendAnonymousStatistics:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
@@ -1681,7 +1679,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="S3X-J4-yWo"/>
         <segue reference="eb8-mL-0Xc"/>
+        <segue reference="VI1-re-6wP"/>
     </inferredMetricsTieBreakers>
 </document>

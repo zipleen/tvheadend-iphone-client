@@ -120,9 +120,12 @@
         description.text = nil;
         progress.progress = epg.progress;
         progress.hidden = NO;
+        
     } else {
         progress.hidden = YES;
     }
+    
+    cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@", epg.fullTitle, NSLocalizedString(@"starts at",@"accessibility"), [timeFormatter stringFromDate: epg.start]];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
