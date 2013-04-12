@@ -75,7 +75,6 @@
     self.searchBar.delegate = self;
     shouldBeginEditing = YES;
     
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.searchBar action:@selector(resignFirstResponder)]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -137,7 +136,7 @@
     channelImage.layer.borderWidth = 0.4;
     channelImage.layer.shouldRasterize = YES;
     
-    cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@", epg.fullTitle, NSLocalizedString(@"in",@"accessibility"), epg.channel,NSLocalizedString(@"starts at",@"accessibility"),[dateFormatter stringFromDate:epg.start] NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:epg.end] ];
+    cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@", epg.fullTitle, NSLocalizedString(@"in",@"accessibility"), epg.channel,NSLocalizedString(@"starts at",@"accessibility"),[dateFormatter stringFromDate:epg.start], NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:epg.end] ];
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
     [cell.contentView addSubview: separator];
@@ -194,8 +193,18 @@
         [self.epgStore downloadEpgList];
         return;
     }
+    
     [self.epgStore setFilterToProgramTitle:searchBar.text];
     [self.epgStore downloadEpgList];
+    if ( [searchText isEqualToString:@""] ) {
+        // why do I have to do this!??! if I put the resignFirstResponder here, it doesn't work...
+        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
+    }
+}
+
+- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
