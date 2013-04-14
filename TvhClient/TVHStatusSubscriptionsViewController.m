@@ -29,6 +29,8 @@
 
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;
+    NIKFontAwesomeIconFactory *factoryBar;
+    UIActivityIndicatorView *act;
 }
 
 @property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
@@ -68,20 +70,43 @@
     factory = [NIKFontAwesomeIconFactory buttonIconFactory];
     factory.size = 32;
     factory.square = YES;
+    
+    factoryBar = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factoryBar.size = 16;
+    
+    // from: http://stackoverflow.com/questions/10469550/add-uiactivityindicatorview-into-uibarbuttonitem-on-uinavigationbar-ios
+    act=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [act setFrame:CGRectMake(8, 5, 20, 20)];
+    [act setUserInteractionEnabled:NO];
+    if ([[self.navigationController.navigationBar subviews] count]>=2) {
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:2] addSubview:act];
+    }
+    [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
 }
 
 - (void)viewDidUnload {
     self.adapterStore = nil;
     self.cometPoll = nil;
     self.statusSubscriptionsStore = nil;
-    [self setSwitchPolling:nil];
+    [self setSwitchButton:nil];
     [super viewDidUnload];
+}
+
+- (void)changePollingIcon {
+    
+    if ( [self.cometPoll isTimerStarted] ) {
+        [self.navigationItem.rightBarButtonItem setImage:[UIImage imageNamed:@"empty.png"]];
+        [act startAnimating];
+    } else {
+        [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
+        [act stopAnimating];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.adapterStore fetchAdapters];
     [self.statusSubscriptionsStore fetchStatusSubscriptions];
-    [self.switchPolling setOn:[self.cometPoll isTimerStarted] ];
+    [self changePollingIcon];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -251,12 +276,13 @@
     [self.refreshControl endRefreshing];
 }
 
-- (IBAction)switchPolling:(UISwitch*)sender {
-    if ( sender.on ) {
-        [self.cometPoll startRefreshingCometPoll];
-    } else {
+- (IBAction)switchPolling:(id)sender {
+    if ( [self.cometPoll isTimerStarted] ) {
         [self.cometPoll stopRefreshingCometPoll];
+    } else {
+        [self.cometPoll startRefreshingCometPoll];
     }
+    [self changePollingIcon];
 }
 
 @end

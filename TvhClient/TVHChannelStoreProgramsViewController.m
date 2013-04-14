@@ -24,6 +24,8 @@
 #import "TVHShowNotice.h"
 #import "CKRefreshControl.h"
 #import "TVHPlayStreamHelpController.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate> {
     NSDateFormatter *dateFormatter;
@@ -55,6 +57,11 @@
     [dateFormatter setDateStyle:NSDateFormatterFullStyle];
     timeFormatter = [[NSDateFormatter alloc] init];
     timeFormatter.dateFormat = @"HH:mm";
+    
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factory.size = 16;
+    [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
+    
 }
 
 - (void)viewDidUnload

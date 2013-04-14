@@ -126,6 +126,10 @@
     factory.colors = @[[UIColor grayColor]];
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconTime] forSegmentAtIndex:1];
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconInfoSign] forSegmentAtIndex:0];
+    
+    NIKFontAwesomeIconFactory *factory1 = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factory1.size = 16;
+    [self.navigationItem.rightBarButtonItem setImage:[factory1 createImageForIcon:NIKFontAwesomeIconFilm]];
 }
 
 - (void)didReceiveMemoryWarning

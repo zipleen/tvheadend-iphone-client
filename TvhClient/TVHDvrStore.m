@@ -128,6 +128,12 @@
     self.profilingDate = [NSDate date];
     [httpClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+        [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+                                                          withValue:time
+                                                           withName:[NSString stringWithFormat:@"DvrStore-%d", type]
+                                                          withLabel:nil];
+#endif
 #ifdef TESTING
         NSLog(@"[DvrStore Profiling Network]: %f", time);
 #endif

@@ -113,6 +113,12 @@
         self.profilingDate = [NSDate date];
         [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+            [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+                                                              withValue:time
+                                                               withName:@"TagStore"
+                                                              withLabel:nil];
+#endif
 #ifdef TESTING
             NSLog(@"[TagStore Profiling Network]: %f", time);
 #endif

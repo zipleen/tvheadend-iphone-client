@@ -23,6 +23,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TVHShowNotice.h"
 #import "NSString+FileSize.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface TVHRecordingsDetailViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
@@ -129,6 +131,10 @@
                                              selector:@selector(receiveDvrNotification:)
                                                  name:@"didSuccessDvrAction"
                                                object:nil];
+    
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factory.size = 16;
+    [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
 }
 
 - (void)didReceiveMemoryWarning

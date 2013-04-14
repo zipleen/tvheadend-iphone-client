@@ -28,7 +28,7 @@
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSString *boxid;
 @property (nonatomic) BOOL debugActive;
-@property (nonatomic, strong) NSDate *profilingDate;
+//@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHCometPollStore
@@ -178,11 +178,11 @@
 
 - (void)fetchCometPollStatus {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
-    self.profilingDate = [NSDate date];
+    //self.profilingDate = [NSDate date];
     [self.jsonClient postPath:@"/comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+        //NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TESTING
-        NSLog(@"[CometPoll Profiling Network]: %f", time);
+        //NSLog(@"[CometPoll Profiling Network]: %f", time);
 #endif
         [self fetchedData:responseObject];
         

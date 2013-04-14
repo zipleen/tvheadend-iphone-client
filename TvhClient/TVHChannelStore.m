@@ -128,6 +128,12 @@
         self.profilingDate = [NSDate date];
         [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+        [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+                                                              withValue:time
+                                                               withName:@"ChannelStore"
+                                                              withLabel:nil];
+#endif
 #ifdef TESTING
             NSLog(@"[ChannelList Profiling Network]: %f", time);
 #endif
