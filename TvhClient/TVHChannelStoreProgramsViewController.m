@@ -132,7 +132,8 @@
         progress.hidden = YES;
     }
     
-    cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@", epg.fullTitle, NSLocalizedString(@"starts at",@"accessibility"), [timeFormatter stringFromDate: epg.start]];
+    cell.accessibilityLabel = epg.fullTitle;
+    cell.accessibilityHint = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"starts at",@"accessibility"), [timeFormatter stringFromDate: epg.start]];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     

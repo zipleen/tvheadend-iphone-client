@@ -187,6 +187,8 @@
     label.shadowColor = [UIColor whiteColor];
     label.text = [self tableView:self.tableView titleForFooterInSection:section];
     label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
+    
+    label.accessibilityLabel = [self tableView:self.tableView titleForFooterInSection:section];
     //add the label to the view
     [tfooterView addSubview:label];
     
