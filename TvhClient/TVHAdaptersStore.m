@@ -40,6 +40,11 @@
                                              selector:@selector(resetAdapterStore)
                                                  name:@"resetAllObjects"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(fetchAdapters)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
     return self;
 }
 

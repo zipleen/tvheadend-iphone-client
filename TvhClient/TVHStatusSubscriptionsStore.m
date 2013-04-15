@@ -41,6 +41,11 @@
                                              selector:@selector(resetStatusSubscriptionsStore)
                                                  name:@"resetAllObjects"
                                                object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(fetchStatusSubscriptions)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
     return self;
 }
 
