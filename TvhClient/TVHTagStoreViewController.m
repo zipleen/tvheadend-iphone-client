@@ -54,6 +54,8 @@
 #ifdef TVH_GOOGLEANALYTICS_KEY
     [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
+    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
+                                    self.tableView);
 }
 
 - (void)viewDidLoad

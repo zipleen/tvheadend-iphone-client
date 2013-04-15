@@ -84,6 +84,8 @@
 #ifdef TVH_GOOGLEANALYTICS_KEY
     [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
+    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
+                                    self.tableView);
 }
 
 - (void)viewDidLoad
@@ -130,6 +132,7 @@
     NIKFontAwesomeIconFactory *factory1 = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     factory1.size = 16;
     [self.navigationItem.rightBarButtonItem setImage:[factory1 createImageForIcon:NIKFontAwesomeIconFilm]];
+    [self.navigationItem.rightBarButtonItem setAccessibilityLabel:NSLocalizedString(@"Play Channel", @"accessbility")];
 }
 
 - (void)didReceiveMemoryWarning
