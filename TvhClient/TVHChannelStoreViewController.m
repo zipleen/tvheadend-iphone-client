@@ -152,7 +152,7 @@
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
         currentTimeProgress.hidden = false;
         currentTimeProgress.progress = [currentPlayingProgram progress];
-        cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", ch.name, NSLocalizedString(@"currently playing",@"accessibility"), currentPlayingProgram.title, NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:currentPlayingProgram.end] ];
+        cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", ch.name, currentPlayingProgram.title, [dateFormatter stringFromDate:currentPlayingProgram.start], NSLocalizedString(@"to",@"accessibility"), [dateFormatter stringFromDate:currentPlayingProgram.end] ];
     } else {
         cell.accessibilityLabel = ch.name;
     }

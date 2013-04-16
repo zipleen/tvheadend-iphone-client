@@ -135,7 +135,6 @@
     cell.accessibilityLabel = tag.name;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.accessibilityTraits = UIAccessibilityTraitButton;
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"] ];
     [cell.contentView addSubview: separator];
