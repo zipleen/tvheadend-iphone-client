@@ -19,7 +19,7 @@
 //
 
 #import "TVHRecordingsDetailViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHShowNotice.h"
 #import "NSString+FileSize.h"

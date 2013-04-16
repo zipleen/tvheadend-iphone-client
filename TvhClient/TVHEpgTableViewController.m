@@ -22,7 +22,7 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpgStore.h"
 #import "TVHChannelStore.h"
-#import "SDWebImage/UIImageView+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHImageCache.h"
 

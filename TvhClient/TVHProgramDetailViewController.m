@@ -19,7 +19,7 @@
 //
 
 #import "TVHProgramDetailViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHShowNotice.h"
 #import "TVHPlayStreamHelpController.h"

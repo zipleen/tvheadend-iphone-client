@@ -22,7 +22,7 @@
 #import "CKRefreshControl.h"
 #import "TVHShowNotice.h"
 #import "TVHSettings.h"
-#import "SDWebImage/UIImageView+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHRecordingsDetailViewController.h"
 #import "TVHAutoRecDetailViewController.h"
