@@ -134,8 +134,7 @@
         progress.hidden = YES;
     }
     
-    cell.accessibilityLabel = epg.fullTitle;
-    cell.accessibilityHint = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"starts at",@"accessibility"), [timeFormatter stringFromDate: epg.start]];
+    cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@", epg.fullTitle, [timeFormatter stringFromDate: epg.start]];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -160,7 +159,7 @@
         TVHProgramDetailViewController *programDetail = segue.destinationViewController;
         [programDetail setChannel:self.channel];
         [programDetail setEpg:epg];
-        [programDetail setTitle:self.channel.name];
+        [programDetail setTitle:epg.title];
         
     }
 }
