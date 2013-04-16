@@ -23,10 +23,13 @@
 #import "TVHSettings.h"
 #import "AFJSONRequestOperation.h"
 #import "SSHWrapper.h"
+#import "TVHImageCache.h"
+
 static TVHJsonClient *__jsonClient;
 
 @implementation TVHJsonClient {
     SSHWrapper *sshPortForwardWrapper;
+    TVHImageCache *imageCacheTransform;
 }
 
 #pragma mark - Methods
@@ -93,7 +96,9 @@ static TVHJsonClient *__jsonClient;
                                              selector:@selector(resetJsonClient)
                                                  name:@"resetAllObjects"
                                                object:nil];
-        
+    
+    //imageCacheTransform = [[TVHImageCache alloc] init];
+    //SDWebImageManager.sharedManager.delegate = imageCacheTransform;
     return self;
 }
 

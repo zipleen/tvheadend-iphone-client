@@ -25,6 +25,7 @@
 #import "TVHChannelStore.h"
 #import "TVHSettings.h"
 #import "TVHShowNotice.h"
+#import "TVHImageCache.h"
 
 #import "TVHStatusSubscriptionsStore.h"
 #import "TVHAdaptersStore.h"
@@ -121,14 +122,20 @@
     
     UILabel *tagNameLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *tagNumberLabel = (UILabel *)[cell viewWithTag:101];
-	UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
+	__weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     tagNameLabel.text = tag.name;
     tagNumberLabel.text = nil;
-    [channelImage setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"]];
+    channelImage.contentMode = UIViewContentModeScaleAspectFit;
+    [channelImage setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        if (!error) {
+            channelImage.image = [TVHImageCache resizeImage:image];
+        }
+    } ];
     
-    cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Tag", nil), tag.name];
+    cell.accessibilityLabel = tag.name;
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessibilityTraits = UIAccessibilityTraitButton;
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"] ];
     [cell.contentView addSubview: separator];

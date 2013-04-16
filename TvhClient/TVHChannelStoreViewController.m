@@ -23,8 +23,9 @@
 #import "TVHChannel.h"
 #import "TVHShowNotice.h"
 #import "CKRefreshControl.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "SDWebImage/UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TVHImageCache.h"
 
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
@@ -32,7 +33,7 @@
 @property (strong, nonatomic) TVHChannelStore *channelList;
 @end
 
-@implementation TVHChannelStoreViewController
+@implementation TVHChannelStoreViewController 
 
 // if we're called from tagstore, we'll set the filter of the channelStore to only get channels from the selected tag
 - (NSInteger) filterTagId {
@@ -82,6 +83,7 @@
     
     dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm";
+    
 }
 
 - (void)viewDidUnload {
@@ -121,7 +123,7 @@
     
     UILabel *channelNameLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *currentProgramLabel = (UILabel *)[cell viewWithTag:101];
-	UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
+	__weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     UILabel *currentTimeProgramLabel = (UILabel *)[cell viewWithTag:103];
     UIProgressView *currentTimeProgress = (UIProgressView*)[cell viewWithTag:104];
     
@@ -130,7 +132,12 @@
     currentTimeProgress.hidden = true;
     
     channelNameLabel.text = ch.name;
-    [channelImage setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    channelImage.contentMode = UIViewContentModeScaleAspectFit;
+    [channelImage setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        if (!error) {
+            channelImage.image = [TVHImageCache resizeImage:image];
+        }
+    } ];
     
     
     // rouding corners - this makes the animation in ipad become VERY SLOW!!!
@@ -145,8 +152,7 @@
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
         currentTimeProgress.hidden = false;
         currentTimeProgress.progress = [currentPlayingProgram progress];
-        cell.accessibilityLabel = ch.name;
-        cell.accessibilityHint = [NSString stringWithFormat:@"%@ %@ %@ %@", NSLocalizedString(@"currently playing",@"accessibility"), currentPlayingProgram.title, NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:currentPlayingProgram.end] ];
+        cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", ch.name, NSLocalizedString(@"currently playing",@"accessibility"), currentPlayingProgram.title, NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:currentPlayingProgram.end] ];
     } else {
         cell.accessibilityLabel = ch.name;
     }
@@ -190,5 +196,6 @@
     
     [self.refreshControl endRefreshing];
 }
+
 
 @end

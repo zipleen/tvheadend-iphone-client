@@ -22,13 +22,14 @@
 #import "CKRefreshControl.h"
 #import "TVHShowNotice.h"
 #import "TVHSettings.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "SDWebImage/UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHRecordingsDetailViewController.h"
 #import "TVHAutoRecDetailViewController.h"
 #import "NSString+FileSize.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "TVHImageCache.h"
 
 #define SEGMENT_UPCOMING_REC 0
 #define SEGMENT_COMPLETED_REC 1
@@ -215,8 +216,9 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *dateLabel = (UILabel *)[cell viewWithTag:101];
     UILabel *statusLabel = (UILabel *)[cell viewWithTag:102];
-    UIImageView *channelImage = (UIImageView *)[cell viewWithTag:103];
+    __weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:103];
     titleLabel.textColor = [UIColor blackColor];
+    channelImage.contentMode = UIViewContentModeScaleAspectFit;
     
     if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
         TVHAutoRecItem *autoRecItem = [self.autoRecStore objectAtIndex:indexPath.row];
@@ -234,7 +236,11 @@
         titleLabel.text = dvrItem.fullTitle;
         dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
         statusLabel.text = dvrItem.status;
-        [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+        [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            if (!error) {
+                channelImage.image = [TVHImageCache resizeImage:image];
+            }
+        } ];
     }
         
     // rouding corners - this makes the animation in ipad become VERY SLOW!!!

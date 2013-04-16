@@ -22,8 +22,9 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpgStore.h"
 #import "TVHChannelStore.h"
-#import "UIImageView+WebCache.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TVHImageCache.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;
@@ -118,13 +119,18 @@
     
     UILabel *programLabel = (UILabel *)[cell viewWithTag:100];
     UILabel *timeLabel = (UILabel *)[cell viewWithTag:101];
-    UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
+    __weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     UILabel *channelName = (UILabel *)[cell viewWithTag:103];
     
     programLabel.text = epg.fullTitle;
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
     channelName.text = epg.channel;
-    [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    channelImage.contentMode = UIViewContentModeScaleAspectFit;
+    [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        if (!error) {
+            channelImage.image = [TVHImageCache resizeImage:image];
+        }
+    } ];
     
     // rouding corners - this makes the animation in ipad become VERY SLOW!!!
     //channelImage.layer.cornerRadius = 5.0f;
