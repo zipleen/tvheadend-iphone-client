@@ -200,7 +200,10 @@
 }
 
 - (NSInteger)numberOfProgramsInDay:(NSInteger)section{
-    return [[[self.channelEpgDataByDay objectAtIndex:section] programs] count];
+    if ( [self.channelEpgDataByDay count] > section ) {
+        return [[[self.channelEpgDataByDay objectAtIndex:section] programs] count];
+    }
+    return 0;
 }
 
 - (BOOL)isEqual: (id)other {

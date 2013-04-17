@@ -32,6 +32,7 @@
     NSDateFormatter *timeFormatter;
 }
 @property (strong, nonatomic) TVHPlayStreamHelpController *help;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation TVHChannelStoreProgramsViewController
@@ -56,7 +57,7 @@
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
     
     dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterFullStyle];
+    [dateFormatter setDateFormat:@"EEE"];
     timeFormatter = [[NSDateFormatter alloc] init];
     timeFormatter.dateFormat = @"HH:mm";
     
@@ -64,10 +65,14 @@
     factory.size = 16;
     [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
     [self.navigationItem.rightBarButtonItem setAccessibilityLabel:NSLocalizedString(@"Play Channel", @"accessbility")];
+    
+    [self.segmentedControl removeAllSegments];
+    [self updateSegmentControl];
 }
 
 - (void)viewDidUnload
 {
+    [self setSegmentedControl:nil];
     [super viewDidUnload];
     self.channel = nil;
     dateFormatter = nil;
@@ -90,20 +95,30 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [self.channel totalCountOfDaysEpg];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section 
-{
-    NSDate *date = [self.channel dateForDay:section];
-    return [dateFormatter stringFromDate:date];
+- (void)updateSegmentControl {
+    for (int i=0 ; i<[self.channel totalCountOfDaysEpg]; i++) {
+        NSDate *date = [self.channel dateForDay:i];
+        NSString *dateString = [dateFormatter stringFromDate:date];
+        if ( i >= [self.segmentedControl numberOfSegments] ) {
+            [self.segmentedControl insertSegmentWithTitle:dateString atIndex:i animated:YES];
+        } else {
+            if ( ! [[self.segmentedControl titleForSegmentAtIndex:i] isEqualToString:dateString] ) {
+                [self.segmentedControl setTitle:dateString forSegmentAtIndex:i];
+            }
+        }
+    }
+    if ( self.segmentedControl.selectedSegmentIndex == -1 && [self.segmentedControl numberOfSegments] > 0 ) {
+        [self.segmentedControl setSelectedSegmentIndex:0];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.channel numberOfProgramsInDay:section];
+    uint selected = self.segmentedControl.selectedSegmentIndex;
+    if ( self.segmentedControl.selectedSegmentIndex == -1 ) {
+        selected = 0;
+    }
+    return [self.channel numberOfProgramsInDay:selected];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -114,7 +129,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    TVHEpg *epg = [self.channel programDetailForDay:indexPath.section index:indexPath.row];
+    TVHEpg *epg = [self.channel programDetailForDay:self.segmentedControl.selectedSegmentIndex index:indexPath.row];
     
     UILabel *name = (UILabel *)[cell viewWithTag:100];
 	UILabel *description = (UILabel *)[cell viewWithTag:101];
@@ -154,17 +169,17 @@
     if([segue.identifier isEqualToString:@"Show Program Detail"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHEpg *epg = [self.channel programDetailForDay:path.section index:path.row];
+        TVHEpg *epg = [self.channel programDetailForDay:self.segmentedControl.selectedSegmentIndex index:path.row];
         
         TVHProgramDetailViewController *programDetail = segue.destinationViewController;
         [programDetail setChannel:self.channel];
         [programDetail setEpg:epg];
         [programDetail setTitle:epg.title];
-        
     }
 }
 
 - (void)didLoadEpgChannel {
+    [self updateSegmentControl];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
@@ -182,5 +197,10 @@
     
     [self.help playStream:sender withChannel:self.channel withVC:self];
 }
+
+- (IBAction)segmentDidChange:(id)sender {
+    [self.tableView reloadData];
+}
+
 
 @end
