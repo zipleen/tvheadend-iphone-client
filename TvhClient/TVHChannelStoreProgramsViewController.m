@@ -68,6 +68,12 @@
     
     [self.segmentedControl removeAllSegments];
     [self updateSegmentControl];
+    
+    //pull to refresh
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+
 }
 
 - (void)viewDidUnload
