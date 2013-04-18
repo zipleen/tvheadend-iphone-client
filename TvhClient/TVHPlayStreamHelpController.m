@@ -26,6 +26,8 @@
 #import "KxMovieViewController.h"
 #endif
 
+#define TVH_PROGRAMS @{@"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Oplayer":@"oplayer"}
+
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate>
 @property (weak, nonatomic) id<TVHPlayStreamDelegate> streamObject;
 @property (weak, nonatomic) UIViewController *vc;
@@ -33,42 +35,56 @@
 
 @implementation TVHPlayStreamHelpController
 
+- (NSURL*)urlForSchema:(NSString*)schema withURL:(NSString*)url {
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", schema, url]];
+}
+
+- (NSArray*)arrayOfAvailablePrograms {
+    NSMutableArray *available = [[NSMutableArray alloc] init];
+    for (NSString* key in TVH_PROGRAMS) {
+        NSString *urlTarget = [TVH_PROGRAMS objectForKey:key];
+        NSURL *url = [self urlForSchema:urlTarget withURL:nil];
+        if( [[UIApplication sharedApplication] canOpenURL:url] ) {
+            [available addObject:key];
+        }
+    }
+    
+    // custom
+    NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
+    if( [customPrefix length] > 0 ) {
+        NSURL *url = [self urlForSchema:customPrefix withURL:nil];
+        if( [[UIApplication sharedApplication] canOpenURL:url] ) {
+            [available addObject:NSLocalizedString(@"Custom Player", nil)];
+        }
+    }
+    return [available copy];
+}
+
 - (void)showMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle{
+    int countOfItems = 0;
     NSString *actionSheetTitle = NSLocalizedString(@"Playback", nil);
     NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
-    NSString *buzz = @"Buzz Player";
-    NSString *good = @"GoodPlayer";
-    NSString *oplayer = @"Oplayer";
-    NSString *cancelTitle = NSLocalizedString(@"Cancel", nil);
-    NSString *custom = NSLocalizedString(@"Custom Player", nil);
-    NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
+    NSString *cancel = NSLocalizedString(@"Cancel", nil);
 #ifdef KXMOVIE
     NSString *stream = NSLocalizedString(actionTitle, nil);
 #endif
-    UIActionSheet *actionSheet;
-    if ( [customPrefix length] == 0 ) {
-        actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:actionSheetTitle
-                                  delegate:self
-                                  cancelButtonTitle:cancelTitle
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
+    [actionSheet setTitle:actionSheetTitle];
+    [actionSheet setDelegate:self];
 #ifdef KXMOVIE
-                                  destructiveButtonTitle:stream
-#else
-                                  destructiveButtonTitle:nil
+    [actionSheet addButtonWithTitle:stream];
+    countOfItems++;
 #endif
-                                  otherButtonTitles:copy, buzz, good, oplayer, nil];
-    } else {
-        actionSheet = [[UIActionSheet alloc]
-                               initWithTitle:actionSheetTitle
-                               delegate:self
-                               cancelButtonTitle:cancelTitle
-#ifdef KXMOVIE
-                               destructiveButtonTitle:stream
-#else
-                               destructiveButtonTitle:nil
-#endif
-                               otherButtonTitles:copy, buzz, good, oplayer, custom, nil];
+    
+    [actionSheet addButtonWithTitle:copy];
+    countOfItems++;
+    NSArray *available = [self arrayOfAvailablePrograms];
+    countOfItems += [available count];
+    for( NSString *title in available )  {
+        [actionSheet addButtonWithTitle:title];
     }
+    actionSheet.cancelButtonIndex = countOfItems;
+    [actionSheet addButtonWithTitle:cancel];
     
     //[actionSheet showFromToolbar:self.navigationController.toolbar];
     [actionSheet showFromBarButtonItem:sender animated:YES];
@@ -94,19 +110,10 @@
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         [pb setString:[self.streamObject streamURL]];
     }
-    if ([buttonTitle isEqualToString:@"Buzz Player"]) {
-        NSString *url = [NSString stringWithFormat:@"buzzplayer://%@", [self.streamObject streamURL] ];
-        NSURL *myURL = [NSURL URLWithString:url ];
-        [[UIApplication sharedApplication] openURL:myURL];
-    }
-    if ([buttonTitle isEqualToString:@"GoodPlayer"]) {
-        NSString *url = [NSString stringWithFormat:@"goodplayer://%@", [self.streamObject streamURL] ];
-        NSURL *myURL = [NSURL URLWithString:url ];
-        [[UIApplication sharedApplication] openURL:myURL];
-    }
-    if ([buttonTitle isEqualToString:@"Oplayer"]) {
-        NSString *url = [NSString stringWithFormat:@"oplayer://%@", [self.streamObject streamURL] ];
-        NSURL *myURL = [NSURL URLWithString:url ];
+    
+    NSString *prefix = [TVH_PROGRAMS objectForKey:buttonTitle];
+    if ( prefix ) {
+        NSURL *myURL = [self urlForSchema:prefix withURL:[self.streamObject streamURL]];
         [[UIApplication sharedApplication] openURL:myURL];
     }
     if ([buttonTitle isEqualToString:NSLocalizedString(@"Custom Player", nil)]) {
