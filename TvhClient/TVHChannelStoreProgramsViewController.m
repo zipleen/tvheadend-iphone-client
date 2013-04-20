@@ -169,6 +169,11 @@
     return 0.01f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - Table view delegate
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
