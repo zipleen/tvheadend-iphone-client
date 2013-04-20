@@ -29,8 +29,10 @@
 @end
 
 @interface TVHEpgStore : NSObject
+@property (nonatomic, strong) NSString *statsEpgName;
 @property (nonatomic, strong) NSString *filterToChannelName;
 @property (nonatomic, strong) NSString *filterToProgramTitle;
+- (id)initWithStatsEpgName:(NSString*)statsEpgName;
 - (void)downloadAllEpgItems;
 - (void)downloadEpgList;
 - (NSArray*)epgStoreItems;

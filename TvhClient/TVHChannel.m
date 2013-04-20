@@ -162,7 +162,7 @@
 
 - (void)downloadRestOfEpg {
     // spawn a new epgList so we can set a filter to the channel
-    TVHEpgStore *restOfEpgStore = [[TVHEpgStore alloc] init];
+    TVHEpgStore *restOfEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"ChannelEPG"];
     [restOfEpgStore setDelegate:self];
     [restOfEpgStore setFilterToChannelName:self.name];
     

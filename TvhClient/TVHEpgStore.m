@@ -48,8 +48,20 @@
                                              selector:@selector(resetEpgStore)
                                                  name:@"resetAllObjects"
                                                object:nil];
-    
+    self.statsEpgName = @"Shared";
     return self;
+}
+
+- (id)initWithStatsEpgName:(NSString*)statsEpgName {
+    self = [self init];
+    if (!self) return nil;
+    
+    self.statsEpgName = statsEpgName;
+    return self;
+}
+
+- (void)setStatsEpgName:(NSString *)statsEpgName {
+    _statsEpgName = [NSString stringWithFormat:@"EpgStore-%@", statsEpgName];
 }
 
 - (NSArray*)epgStore {
@@ -131,11 +143,11 @@
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
                                                           withValue:time
-                                                           withName:@"EpgStore"
+                                                           withName:self.statsEpgName
                                                           withLabel:nil];
 #endif
 #ifdef TESTING
-        NSLog(@"[EpgStore Profiling Network]: %f", time);
+        NSLog(@"[%@ Profiling Network]: %f", self.statsEpgName, time);
 #endif
         [self fetchedData:responseObject];
         if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {

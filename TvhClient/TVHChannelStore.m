@@ -45,7 +45,7 @@
 
 - (TVHEpgStore*)epgStore {
     if(!_epgStore){
-        _epgStore = [[TVHEpgStore alloc] init];
+        _epgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying"];
         [_epgStore setDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }

@@ -25,6 +25,7 @@
 #import "TVHPlayStreamHelpController.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "TVHImageCache.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
@@ -103,7 +104,12 @@
     
     self.programTitle.text = self.epg.fullTitle;
     self.channelTitle.text = self.epg.channel;
-    [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        if (!error) {
+            self.programImage.image = [TVHImageCache resizeImage:image];
+        }
+    } ];
+    
     self.properties = [self propertiesDict];
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
@@ -113,6 +119,7 @@
     self.programImage.layer.shadowOpacity = 0.7f;
     self.programImage.layer.shadowRadius = 1.5;
     self.programImage.clipsToBounds = NO;
+    self.programImage.contentMode = UIViewContentModeScaleAspectFit;
     
     self.view.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
     
