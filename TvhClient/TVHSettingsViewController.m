@@ -47,6 +47,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     self.servers = [self.settings availableServers];
     [self.tableView reloadData];
+    
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
+#endif
+    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
+                                    self.tableView);
 }
 
 - (void)viewDidUnload {
@@ -211,7 +217,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if ( indexPath.row == 0 ) {
             icon = NIKFontAwesomeIconHeart;
-            cell.textLabel.text = NSLocalizedString(@"Support", @".. in settings screen");
+            cell.textLabel.text = NSLocalizedString(@"Support Me", @".. in settings screen");
         }
         if ( indexPath.row == 1 ) {
             icon = NIKFontAwesomeIconInfoSign;
@@ -290,9 +296,15 @@
         [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
     }
     
-    if ( indexPath.section == 2 ) {
+    if ( indexPath.section == 2 && indexPath.row == 0 ) {
+        [self performSegueWithIdentifier:@"Settings Support Me" sender:self];
+    }
+    
+    if ( indexPath.section == 2 && !indexPath.row == 0 ) {
         [self performSegueWithIdentifier:@"SettingsGenericText" sender:self];
     }
+    
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

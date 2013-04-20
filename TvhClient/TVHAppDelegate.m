@@ -18,12 +18,6 @@
 //  limitations under the License.
 //
 
-/*
- // create file TVHApiKeys.h with
- #define TVH_TESTFLIGHT_KEY @""
- #define TVH_CRASHLYTICS_KEY @""
- */
-
 #import "TVHAppDelegate.h"
 #import "TVHSettings.h"
 #import "TVHApiKeys.h"

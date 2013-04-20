@@ -74,7 +74,7 @@ There's two ways to connect to TVHeadend: HTSP and using the web interface. This
 
 This app's source code is licensed under the Apache 2.0 License. 
 
-App Icon made by Julio Pinto, thanks =)
+App Icon made by Julio Costa Pinto, thanks =)
 
 Clean Icons from Matt Gentile, from icondeposit.com.
 

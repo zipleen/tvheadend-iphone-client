@@ -27,6 +27,7 @@
 #define TVHS_CUSTOM_PREFIX @"CustomAppPrefix"
 #define TVHS_SEND_ANONSTATS @"sendAnonymousStatistics"
 #define TVHS_PROGRAM_FIRST_RUN @"programAlreadyRanOnce"
+#define TVHS_REMOVE_ADS @"removeAds"
 
 @interface TVHSettings()
 
@@ -386,5 +387,19 @@ withPassword:(NSString*)password {
     return NO;
 }
 
+- (void)setRemoveAds {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:TVHS_REMOVE_ADS];
+    [defaults synchronize];
+}
+
+- (BOOL)removeAds {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id test = [defaults objectForKey:TVHS_REMOVE_ADS];
+    if ( test == nil ) {
+        return NO;
+    }
+    return [defaults boolForKey:TVHS_REMOVE_ADS];
+}
 @end
 

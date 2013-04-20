@@ -139,6 +139,7 @@
                         <segue destination="FYs-EC-yLp" kind="push" identifier="SettingsServers" id="t2j-X7-wjx"/>
                         <segue destination="8ta-wh-pjF" kind="push" identifier="SettingsGenericText" id="AlH-BS-jiT"/>
                         <segue destination="JAO-4d-hsi" kind="push" identifier="SettingsGenericField" id="eb8-mL-0Xc"/>
+                        <segue destination="E53-Qt-OnP" kind="push" identifier="Settings Support Me" id="Nwq-zs-SJr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFb-6o-BTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -213,6 +214,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPY-L4-5sI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1413" y="-1959"/>
+        </scene>
+        <!--Support Me View Controller-->
+        <scene sceneID="kPy-Yt-8vs">
+            <objects>
+                <viewController id="E53-Qt-OnP" customClass="TVHSupportMeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iBg-g6-5Q4">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="I9q-Mq-Cdu">
+                                <rect key="frame" x="0.0" y="42" width="320" height="383"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SupportMeTableCell" id="seL-mU-XNu">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aN3-U5-hux">
+                                                    <rect key="frame" x="186" y="8" width="108" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="Buy">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buyRemoveAd:" destination="E53-Qt-OnP" eventType="touchUpInside" id="J6q-sd-F3U"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SYv-KK-9d1">
+                                                    <rect key="frame" x="20" y="11" width="158" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="evp-fb-uhL">
+                        <barButtonItem key="rightBarButtonItem" title="Restore" id="PZl-Fg-r2Y">
+                            <connections>
+                                <action selector="restorePurchase:" destination="E53-Qt-OnP" id="LQE-Ws-QB1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="I9q-Mq-Cdu" id="tpN-iu-VYf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gPs-DC-3gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="887" y="-3323"/>
         </scene>
         <!--Settings Servers View Controller-->
         <scene sceneID="h27-xn-XEm">

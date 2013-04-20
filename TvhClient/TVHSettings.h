@@ -61,4 +61,6 @@
 - (NSArray*)availableServers;
 - (void)resetSettings;
 - (BOOL)programFirstRun;
+- (void)setRemoveAds;
+- (BOOL)removeAds;
 @end
