@@ -49,6 +49,7 @@
 @property (nonatomic) BOOL autoStartPolling;
 @property (nonatomic) NSInteger sortChannel;
 @property (nonatomic) BOOL sendAnonymousStatistics;
+@property (nonatomic) BOOL useBlackBorders;
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;
 
@@ -63,4 +64,7 @@
 - (BOOL)programFirstRun;
 - (void)setRemoveAds;
 - (BOOL)removeAds;
+- (void)setUseBlackBorders:(BOOL)useBlackBorders;
+- (BOOL)useBlackBorders;
+
 @end

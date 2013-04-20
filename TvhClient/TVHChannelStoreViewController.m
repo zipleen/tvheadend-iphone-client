@@ -26,6 +26,7 @@
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHImageCache.h"
+#import "TVHSettings.h"
 
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
@@ -141,11 +142,13 @@
     
     // rouding corners - this makes the animation in ipad become VERY SLOW!!!
     //channelImage.layer.cornerRadius = 5.0f;
-    channelImage.layer.masksToBounds = NO;
-    channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    channelImage.layer.borderWidth = 0.4;
-    channelImage.layer.shouldRasterize = YES;
-        
+    if ( [[TVHSettings sharedInstance] useBlackBorders] ) {
+        channelImage.layer.masksToBounds = NO;
+        channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        channelImage.layer.borderWidth = 0.4;
+        channelImage.layer.shouldRasterize = YES;
+    }
+    
     if(currentPlayingProgram) {
         currentProgramLabel.text = [currentPlayingProgram fullTitle];
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];

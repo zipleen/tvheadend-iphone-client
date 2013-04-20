@@ -102,7 +102,7 @@
         return [self.servers count] + 1;
     }
     if ( section == 1 ) {
-        return 5;
+        return 6;
     }
     if ( section == 2 ) {
         return 3;
@@ -208,6 +208,19 @@
             
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
             textLabel.text = NSLocalizedString(@"Anonymous Statistics", @".. in settings screen");
+        }
+        if ( indexPath.row == 5 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
+            if(cell==nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
+            }
+            
+            UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
+            [switchfield setOn:[self.settings useBlackBorders]];
+            [switchfield addTarget:self action: @selector(useBlackBorders:) forControlEvents:UIControlEventValueChanged];
+            
+            UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
+            textLabel.text = NSLocalizedString(@"Draw Image Border", @".. in settings screen");
         }
     }
     if ( indexPath.section == 2 ) {
@@ -379,12 +392,16 @@
     return YES;
 }
 
-- (IBAction)autoStartPolling: (UISwitch*) sender {
+- (IBAction)autoStartPolling:(UISwitch*)sender {
     [self.settings setAutoStartPolling:sender.on];
 }
 
-- (IBAction)sendAnonymousStatistics: (UISwitch*) sender {
+- (IBAction)sendAnonymousStatistics:(UISwitch*)sender {
     [self.settings setSendAnonymousStatistics:sender.on];
+}
+
+- (IBAction)useBlackBorders:(UISwitch*)sender {
+    [self.settings setUseBlackBorders:sender.on];
 }
 
 @end

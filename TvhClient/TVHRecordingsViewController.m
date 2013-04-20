@@ -251,10 +251,12 @@
         
     // rouding corners - this makes the animation in ipad become VERY SLOW!!!
     //channelImage.layer.cornerRadius = 5.0f;
-    channelImage.layer.masksToBounds = NO;
-    channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    channelImage.layer.borderWidth = 0.4;
-    channelImage.layer.shouldRasterize = YES;
+    if ( [[TVHSettings sharedInstance] useBlackBorders] ) {
+        channelImage.layer.masksToBounds = NO;
+        channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        channelImage.layer.borderWidth = 0.4;
+        channelImage.layer.shouldRasterize = YES;
+    }
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
     [cell.contentView addSubview: separator];

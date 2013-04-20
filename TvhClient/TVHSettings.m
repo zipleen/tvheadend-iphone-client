@@ -28,6 +28,7 @@
 #define TVHS_SEND_ANONSTATS @"sendAnonymousStatistics"
 #define TVHS_PROGRAM_FIRST_RUN @"programAlreadyRanOnce"
 #define TVHS_REMOVE_ADS @"removeAds"
+#define TVHS_USE_BLACK_BORDERS @"useBlackBorders"
 
 @interface TVHSettings()
 
@@ -42,6 +43,7 @@
 @synthesize autoStartPolling = _autoStartPolling;
 @synthesize sortChannel = _sortChannel;
 @synthesize sendAnonymousStatistics = _sendAnonymousStatistics;
+@synthesize useBlackBorders = _useBlackBorders;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -401,5 +403,24 @@ withPassword:(NSString*)password {
     }
     return [defaults boolForKey:TVHS_REMOVE_ADS];
 }
+
+- (BOOL)useBlackBorders {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id test = [defaults objectForKey:TVHS_USE_BLACK_BORDERS];
+    if ( test == nil ) {
+        _useBlackBorders = YES;
+        return _useBlackBorders;
+    }
+    _useBlackBorders = [defaults boolForKey:TVHS_USE_BLACK_BORDERS];
+    return _useBlackBorders;
+}
+
+- (void)setUseBlackBorders:(BOOL)useBlackBorders {
+    _useBlackBorders = useBlackBorders;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:useBlackBorders forKey:TVHS_USE_BLACK_BORDERS];
+    [defaults synchronize];
+}
+
 @end
 
