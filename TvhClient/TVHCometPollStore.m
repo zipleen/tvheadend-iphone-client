@@ -108,58 +108,71 @@
     self.boxid = boxid;
     
     NSArray *messages = [json objectForKey:@"messages"];
-    
     [messages enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSString *notificationClass = [obj objectForKey:@"notificationClass"];
 #ifdef TESTING
         //NSLog(@"[Comet Poll Received notificationClass]: %@ {%@}", notificationClass, obj);
-#endif
         BOOL print = YES;
+#endif
         if( [notificationClass isEqualToString:@"subscriptions"] ) {
             [[NSNotificationCenter defaultCenter]
                 postNotificationName:@"subscriptionsNotificationClassReceived"
                 object:obj];
+#ifdef TESTING
             print = NO;
+#endif
         }
         
         if( [notificationClass isEqualToString:@"tvAdapter"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"tvAdapterNotificationClassReceived"
              object:obj];
+#ifdef TESTING
             print = NO;
+#endif
         }
         
         if( [notificationClass isEqualToString:@"logmessage"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"logmessageNotificationClassReceived"
              object:obj];
+#ifdef TESTING
             print = NO;
+#endif
         }
         
         if( [notificationClass isEqualToString:@"dvbMux"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"dvbMuxNotificationClassReceived"
              object:obj];
+#ifdef TESTING
             print = NO;
+#endif
         }
         
         if( [notificationClass isEqualToString:@"dvrdb"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"dvrdbNotificationClassReceived"
              object:obj];
+#ifdef TESTING
             print = NO;
+#endif
         }
         
         if( [notificationClass isEqualToString:@"autorec"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"autorecNotificationClassReceived"
              object:obj];
+#ifdef TESTING
             print = NO;
+#endif
         }
         
+#ifdef TESTING
         if(print) {
             NSLog(@"[CometPollStore log]: %@", obj);
         }
+#endif
     }];
     
     

@@ -147,9 +147,7 @@
         if ([self.delegate respondsToSelector:@selector(didErrorDvrStore:)]) {
             [self.delegate didErrorDvrStore:error];
         }
-#ifdef TESTING
         NSLog(@"[DVR Items HTTPClient Error]: %@", error.localizedDescription);
-#endif
     }];
     
 }

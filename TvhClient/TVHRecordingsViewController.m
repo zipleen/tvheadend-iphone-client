@@ -256,6 +256,8 @@
         channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
         channelImage.layer.borderWidth = 0.4;
         channelImage.layer.shouldRasterize = YES;
+    } else {
+        channelImage.layer.borderWidth = 0;
     }
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];

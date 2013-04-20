@@ -85,13 +85,13 @@
     
     if( [now compare:self.start] == NSOrderedAscending ) {
 #ifdef TESTING
-        NSLog(@"start(0) for %@ is %@", self.title, self.start);
+        //NSLog(@"start(0) for %@ is %@", self.title, self.start);
 #endif
         return 0;
     }
     if( [now compare:self.end] == NSOrderedDescending ) {
 #ifdef TESTING
-        NSLog(@"start(100) for %@ is %@", self.title, self.start);
+        //NSLog(@"start(100) for %@ is %@", self.title, self.start);
 #endif
         return 100;
     }

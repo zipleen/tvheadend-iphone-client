@@ -110,7 +110,7 @@
 - (TVHEpg*)currentPlayingProgram {
     if ([self.channelEpgDataByDay count]==0) {
 #ifdef TESTING
-        NSLog(@"No EPG for %@", self.name);
+        NSLog(@"No EPG data on array for %@", self.name);
 #endif
         return nil;
     }

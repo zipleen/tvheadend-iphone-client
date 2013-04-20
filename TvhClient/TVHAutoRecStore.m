@@ -104,6 +104,12 @@
     self.profilingDate = [NSDate date];
     [httpClient getPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+        [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+                                                          withValue:time
+                                                           withName:@"AutoRec"
+                                                          withLabel:nil];
+#endif
 #ifdef TESTING
         NSLog(@"[AutoRec Profiling Network]: %f", time);
 #endif
@@ -116,9 +122,7 @@
         if ([self.delegate respondsToSelector:@selector(didErrorDvrAutoStore:)]) {
             [self.delegate didErrorDvrAutoStore:error];
         }
-#ifdef TESTING
         NSLog(@"[DVR AutoRec Items HTTPClient Error]: %@", error.localizedDescription);
-#endif
     }];
     
 }

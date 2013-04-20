@@ -122,9 +122,7 @@
         if ([self.delegate respondsToSelector:@selector(didErrorAdaptersStore:)]) {
             [self.delegate didErrorAdaptersStore:error];
         }
-#ifdef TESTING
         NSLog(@"[Adapter Store HTTPClient Error]: %@", error.localizedDescription);
-#endif
     }];
     
 }

@@ -141,6 +141,8 @@
         channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
         channelImage.layer.borderWidth = 0.4;
         channelImage.layer.shouldRasterize = YES;
+    } else {
+        channelImage.layer.borderWidth = 0;
     }
     
     cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@", epg.fullTitle, NSLocalizedString(@"in",@"accessibility"), epg.channel,NSLocalizedString(@"starts at",@"accessibility"),[dateFormatter stringFromDate:epg.start], NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:epg.end] ];

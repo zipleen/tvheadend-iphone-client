@@ -150,9 +150,7 @@
             if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
                 [self.delegate didErrorLoadingChannelStore:error];
             }
-#ifdef TESTING
             NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
-#endif
         }];
     }   else {
         if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {

@@ -129,9 +129,7 @@
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
             [self.delegate didErrorStatusSubscriptionsStore:error];
         }
-#ifdef TESTING
         NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
-#endif
     }];
 }
 

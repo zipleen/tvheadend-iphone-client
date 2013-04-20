@@ -105,8 +105,8 @@
 
 - (void)productPurchased:(NSNotification *)notification {
     
-    NSString * productIdentifier = notification.object;
 #ifdef TESTING
+    NSString * productIdentifier = notification.object;
     NSLog(@"buying %@", productIdentifier);
 #endif
     [[TVHSettings sharedInstance] setRemoveAds];

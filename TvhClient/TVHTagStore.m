@@ -134,9 +134,7 @@
             if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
                 [self.delegate didErrorLoadingTagStore:error];
             }
-#ifdef TESTING
             NSLog(@"[TagList HTTPClient Error]: %@", error.description);
-#endif
         }];
     } else {
         if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {

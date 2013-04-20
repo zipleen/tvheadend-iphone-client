@@ -192,7 +192,9 @@ static TVHJsonClient *__jsonClient;
          [responseData writeToFile:appFile atomically:YES];
          NSLog(@"%@",documentsDirectory);
          */
+#ifdef TESTING
         NSLog(@"[JSON Error (1st)]: %@", errorForThisMethod.description);
+#endif
         return [self convertFromJsonToObjectFixUtf8:responseData error:error];
     }
     

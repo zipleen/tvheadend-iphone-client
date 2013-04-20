@@ -159,9 +159,7 @@
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-#ifdef TESTING
         NSLog(@"[EpgStore HTTPClient Error]: %@", error.localizedDescription);
-#endif
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
             [self.delegate didErrorLoadingEpgStore:error];
         }
@@ -182,7 +180,7 @@
         if ( last ) {
             NSDate *localDate = [NSDate dateWithTimeIntervalSinceNow:3600];
     #ifdef TESTING
-            NSLog(@"localdate: %@ | last start date: %@ ", localDate, last.start);
+            //NSLog(@"localdate: %@ | last start date: %@ ", localDate, last.start);
     #endif
             if ( [localDate compare:last.start] == NSOrderedDescending && (start+limit) < self.totalEventCount ) {
                 [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50 fetchAll:false];
