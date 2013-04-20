@@ -31,6 +31,7 @@
     NIKFontAwesomeIconFactory *factory;
     NIKFontAwesomeIconFactory *factoryBar;
     UIActivityIndicatorView *act;
+    NSDate *lastTableUpdate;
 }
 
 @property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
@@ -82,6 +83,7 @@
         [[[self.navigationController.navigationBar subviews] objectAtIndex:2] addSubview:act];
     }
     [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
+    lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];
 }
 
 - (void)viewDidUnload {
@@ -123,12 +125,18 @@
 }
 
 - (void)didLoadStatusSubscriptions {
-    [self.tableView reloadData];
+    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
+        [self.tableView reloadData];
+        lastTableUpdate = [NSDate date];
+    }
     [self.refreshControl endRefreshing];
 }
 
 - (void)didLoadAdapters {
-    [self.tableView reloadData];
+    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
+        [self.tableView reloadData];
+        lastTableUpdate = [NSDate date];
+    }
     [self.refreshControl endRefreshing];
 }
 

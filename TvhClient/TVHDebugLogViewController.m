@@ -28,6 +28,7 @@
 
 @implementation TVHDebugLogViewController {
     BOOL shouldBeginEditing;
+    NSDate *lastTableUpdate;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -50,7 +51,7 @@
                                              selector:@selector(clearLog:)
                                                  name:@"resetAllObjects"
                                                object:nil];
-    
+    lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];
     self.searchBar.delegate = self;
     shouldBeginEditing = YES;
 }
@@ -127,7 +128,10 @@
 }
 
 - (void)didLoadLog {
-    [self.tableView reloadData];
+    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
+        [self.tableView reloadData];
+        lastTableUpdate = [NSDate date];
+    }
     /*int countLines = [self.logStore count];
     if ( countLines > 0 ) {
         NSIndexPath* ipath = [NSIndexPath indexPathForRow: countLines-1 inSection: 0];
@@ -157,9 +161,19 @@
         // user tapped the 'clear' button - from http://stackoverflow.com/questions/1092246/uisearchbar-clearbutton-forces-the-keyboard-to-appear
         shouldBeginEditing = NO;
         [self.logStore setFilter:@""];
+        return;
     }
     [self.logStore setFilter:searchBar.text];
     [self.tableView reloadData];
+    if ( [searchText isEqualToString:@""] ) {
+        // why do I have to do this!??! if I put the resignFirstResponder here, it doesn't work...
+        [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
+    }
+}
+
+- (void)hideKeyboardWithSearchBar:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)bar {

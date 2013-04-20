@@ -49,12 +49,12 @@
     return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.subscriptions = nil;
 }
 
-- (void) receiveSubscriptionNotification:(NSNotification *) notification {
+- (void)receiveSubscriptionNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"subscriptionsNotificationClassReceived"]) {
         NSDictionary *message = (NSDictionary*)[notification object];
         
@@ -68,7 +68,8 @@
                 [obj updateValuesFromDictionary:message];
             }
         }];
-        if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
+        
+        if ( [self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)] ) {
             [self.delegate didLoadStatusSubscriptions];
         }
     }
