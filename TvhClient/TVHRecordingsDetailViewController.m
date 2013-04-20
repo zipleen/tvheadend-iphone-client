@@ -115,7 +115,7 @@
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
     
-    // shadown
+    // shadow
     self.programImage.layer.shadowColor = [UIColor blackColor].CGColor;
     self.programImage.layer.shadowOffset = CGSizeMake(0, 2);
     self.programImage.layer.shadowOpacity = 0.7f;
@@ -190,10 +190,10 @@
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if( self.segmentedControl.selectedSegmentIndex == 0 ) {
         NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
-        
+        unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
         CGSize size = [str
-                        sizeWithFont:[UIFont systemFontOfSize:14]
-                        constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
+                        sizeWithFont:[UIFont systemFontOfSize:13]
+                        constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
         return size.height + 25;
         
     }
@@ -256,9 +256,10 @@
     }
     
     // resize the "description" label
+    unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGSize size = [descLabel.text
-                   sizeWithFont:[UIFont systemFontOfSize:14]
-                   constrainedToSize:CGSizeMake(300, CGFLOAT_MAX)];
+                   sizeWithFont:[UIFont systemFontOfSize:13]
+                   constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
     descLabel.frame = CGRectMake(20, 20, size.width, size.height);
     
     // line separator
