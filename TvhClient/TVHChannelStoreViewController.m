@@ -71,7 +71,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setTitle:NSLocalizedString(@"Channels", nil)];
     
     [self.channelList setDelegate:self];
     [self.channelList setFilterTag: self.filterTagId];

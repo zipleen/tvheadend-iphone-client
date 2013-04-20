@@ -89,7 +89,6 @@
 		AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */; };
 		AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DED0016DEDB3B00AF6A51 /* SDSegmentedControl.m */; };
 		AA8DED2416DEDFB300AF6A51 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */; };
-		AA90F93617120921004FB37E /* MainStoryboard_iPhone.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA90F93417120921004FB37E /* MainStoryboard_iPhone.strings */; };
 		AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021716C6B41700673DF5 /* AFHTTPClient.m */; };
 		AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021916C6B41700673DF5 /* AFHTTPRequestOperation.m */; };
 		AA91022B16C6B41700673DF5 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021B16C6B41700673DF5 /* AFImageRequestOperation.m */; };
@@ -343,8 +342,6 @@
 		AA8DECFF16DEDB3B00AF6A51 /* SDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDSegmentedControl.h; path = SDSegmentedControl/SDSegmentedControl.h; sourceTree = SOURCE_ROOT; };
 		AA8DED0016DEDB3B00AF6A51 /* SDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDSegmentedControl.m; path = SDSegmentedControl/SDSegmentedControl.m; sourceTree = SOURCE_ROOT; };
 		AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		AA90F93517120921004FB37E /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/MainStoryboard_iPhone.strings"; sourceTree = "<group>"; };
-		AA90F93717120959004FB37E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard_iPhone.strings; sourceTree = "<group>"; };
 		AA91021616C6B41700673DF5 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		AA91021716C6B41700673DF5 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		AA91021816C6B41700673DF5 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -566,7 +563,6 @@
 			children = (
 				AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */,
 				AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */,
-				AA90F93417120921004FB37E /* MainStoryboard_iPhone.strings */,
 				AA132E9B16D91EDC0074FAB8 /* TVHUICustomTabBar.h */,
 				AA132E9C16D91EDC0074FAB8 /* TVHUICustomTabBar.m */,
 				AA132EB916D9594B0074FAB8 /* TVHUICustomNavigationBar.h */,
@@ -1309,7 +1305,6 @@
 				AA5E8A17170F5B3100779AC6 /* satellite@2x.png in Resources */,
 				AA5E8A1D170F61E200779AC6 /* hardware.png in Resources */,
 				AA5E8A1E170F61E200779AC6 /* hardware@2x.png in Resources */,
-				AA90F93617120921004FB37E /* MainStoryboard_iPhone.strings in Resources */,
 				AA35A88E171A324A00412EFF /* empty.png in Resources */,
 				AAD98EC31721CC7700828314 /* README.txt in Resources */,
 			);
@@ -1478,15 +1473,6 @@
 				AA43D4A516CF167300104BBF /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		AA90F93417120921004FB37E /* MainStoryboard_iPhone.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA90F93517120921004FB37E /* pt-PT */,
-				AA90F93717120959004FB37E /* en */,
-			);
-			name = MainStoryboard_iPhone.strings;
 			sourceTree = "<group>";
 		};
 		AAB399FC16BDB21900973F88 /* InfoPlist.strings */ = {

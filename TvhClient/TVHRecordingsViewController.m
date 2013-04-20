@@ -127,6 +127,11 @@
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconOkCircle] forSegmentAtIndex:1];
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconMagic] forSegmentAtIndex:3];
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign] forSegmentAtIndex:2];
+    
+    [self.segmentedControl setTitle:NSLocalizedString(@"Upcoming", nil) forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:NSLocalizedString(@"Completed", nil) forSegmentAtIndex:1];
+    [self.segmentedControl setTitle:NSLocalizedString(@"Failed", nil) forSegmentAtIndex:2];
+    [self.segmentedControl setTitle:NSLocalizedString(@"AutoRec", nil) forSegmentAtIndex:3];
     //self.segmentedControl.arrowHeightFactor *= -1.0;
 }
 
