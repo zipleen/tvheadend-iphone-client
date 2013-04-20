@@ -24,6 +24,7 @@
 
 @interface TVHCometPollStore() {
     bool timerStarted;
+    int errors;
 }
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSString *boxid;
@@ -57,6 +58,7 @@
     self = [super init];
     if (!self) return nil;
     
+    errors = 0;
     self.debugActive = false;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -185,13 +187,17 @@
         //NSLog(@"[CometPoll Profiling Network]: %f", time);
 #endif
         [self fetchedData:responseObject];
-        
+        errors = 0;
         if( timerStarted ) {
             [[NSNotificationCenter defaultCenter]
                 postNotificationName:@"fetchCometPollStatus"
                 object:nil];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        errors++;
+        if ( errors > 5 ) {
+            [self stopRefreshingCometPoll];
+        }
         if( timerStarted ) {
             [[NSNotificationCenter defaultCenter]
                 postNotificationName:@"fetchCometPollStatus"

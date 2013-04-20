@@ -98,8 +98,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(136, 10, 160, 30)];
-    //UITextField *textField = (UITextField *)[cell viewWithTag:201];
+    //UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(136, 10, 160, 30)];
+    UITextField *textField = (UITextField *)[cell viewWithTag:201];
     UILabel *textLabel = (UILabel *)[cell viewWithTag:200];
     textField.adjustsFontSizeToFitWidth = YES;
     textField.textColor = [UIColor blackColor];
@@ -154,7 +154,7 @@
     textField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
     textField.textAlignment = UITextAlignmentLeft;
-    textField.tag = indexPath.row + (indexPath.section * 10);
+    //textField.tag = indexPath.row + (indexPath.section * 10) + 100;
     textField.delegate = self;
     textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
     textField.enabled = YES;
@@ -163,6 +163,12 @@
     [cell.contentView addSubview:textField];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UITextField *textField = (UITextField *)[cell viewWithTag:201];
+    [textField becomeFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
