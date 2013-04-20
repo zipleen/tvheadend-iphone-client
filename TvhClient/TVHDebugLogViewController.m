@@ -54,6 +54,7 @@
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];
     self.searchBar.delegate = self;
     shouldBeginEditing = YES;
+    self.title = NSLocalizedString(@"Log", @"");
 }
 
 - (void)viewDidUnload {

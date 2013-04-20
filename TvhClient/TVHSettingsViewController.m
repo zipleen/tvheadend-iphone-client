@@ -42,6 +42,8 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.allowsSelectionDuringEditing = YES;
     factory = [NIKFontAwesomeIconFactory buttonIconFactory];
+    
+    self.title = NSLocalizedString(@"Settings", @"");
 }
 
 - (void)viewDidAppear:(BOOL)animated {

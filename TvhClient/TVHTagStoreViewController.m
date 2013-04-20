@@ -90,11 +90,13 @@
                                              selector:@selector(resetControllerData)
                                                  name:@"resetAllObjects"
                                                object:nil];
+    self.settingsButton.title = NSLocalizedString(@"Settings", @"");
 }
 
 - (void)viewDidUnload {
     self.tagList = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self setSettingsButton:nil];
     [super viewDidUnload];
 }
 

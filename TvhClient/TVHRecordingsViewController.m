@@ -132,7 +132,8 @@
     [self.segmentedControl setTitle:NSLocalizedString(@"Completed", nil) forSegmentAtIndex:1];
     [self.segmentedControl setTitle:NSLocalizedString(@"Failed", nil) forSegmentAtIndex:2];
     [self.segmentedControl setTitle:NSLocalizedString(@"AutoRec", nil) forSegmentAtIndex:3];
-    //self.segmentedControl.arrowHeightFactor *= -1.0;
+    
+    self.title = NSLocalizedString(@"Recordings", @"");
 }
 
 - (void)viewDidUnload {

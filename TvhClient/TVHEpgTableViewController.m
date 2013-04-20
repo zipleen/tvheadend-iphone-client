@@ -75,7 +75,8 @@
                                                object:nil];
     self.searchBar.delegate = self;
     shouldBeginEditing = YES;
-    
+    self.title = NSLocalizedString(@"Now", @"");
+    self.searchBar.placeholder = NSLocalizedString(@"Search Program Title", @"");
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -22,5 +22,6 @@
 #import "TVHTagStore.h"
 
 @interface TVHTagStoreViewController : UITableViewController <TVHTagStoreDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end

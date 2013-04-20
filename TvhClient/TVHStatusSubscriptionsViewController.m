@@ -84,6 +84,8 @@
     }
     [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];
+    
+    self.title = NSLocalizedString(@"Status", @"");
 }
 
 - (void)viewDidUnload {
