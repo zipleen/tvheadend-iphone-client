@@ -8,10 +8,11 @@ Find the code at https://github.com/zipleen/tvheadend-iphone-client/
 Fixes and improvements are welcome! Just send a pull request.
 If you find a bug which you can reproduce, open an issue in https://github.com/zipleen/tvheadend-iphone-client/issues
 
-If you want to support this app, click on the Support and "remove" the ads!
+If you want to support this app, click on the Support Me and remove the ads!
 
 Thanks to:
 * Rafael Silva for beta testing, ideas and generally being there
 * my girlfriend, Rita, who puts up with me being always at the computer and whom I love very much
 * my brother for beta testing
 * my cousin, Julio Costa Pinto, for making the app icon and helping me with some icons
+* the beta testers =)
