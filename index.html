@@ -1,41 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
     <title>TvhClient by zipleen</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/zipleen/tvheadend-iphone-client">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/zipleen/tvheadend-iphone-client/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/zipleen/tvheadend-iphone-client/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-        <header>
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
           <h1>TvhClient</h1>
-          <h2>TVHeadend iOS (iPhone / iPad) Client</h2>
-        </header>
+          <p>TVHeadend iOS (iPhone / iPad) Client</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/zipleen">zipleen</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/zipleen/tvheadend-iphone-client/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/zipleen/tvheadend-iphone-client/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/zipleen/tvheadend-iphone-client" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+        <h1>TVHeadend iOS Client</h1>
 
-        <hr>
+<p>TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to remote control the TVHeadend server  ( <a href="https://github.com/tvheadend/tvheadend">https://github.com/tvheadend/tvheadend</a> ) - a DVB receiver, DVR and streaming server.</p>
 
-        <section id="main_content">
-          <h1>TVHeadend iOS Client</h1>
+<p>It allows you to list channels, view channel's EPG, search for programs, schedule recordings (DVR) and view the log / status of the server. It will also allow you to easily launch a third party video application to view the channel's streaming video.</p>
 
-<p>TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to get information from a TVHeadend server ( <a href="https://github.com/tvheadend/tvheadend">https://github.com/tvheadend/tvheadend</a> ).</p>
+<h2>Screenshots</h2>
 
-<p>It allows you to list channels, view channel EPG's, control recordings (DVR) and view the log / status of the server.</p>
+<p><img src="https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/Channels.png" alt="Channels"><img src="https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/ChannelPrograms.png" alt="ChannelPrograms"><img src="https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/ProgramDetails.png" alt="ProgramDetails"><img src="https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/Recordings.png" alt="Recordings"><img src="https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/Status.png" alt="Status"></p>
 
 <h2>Features</h2>
 
@@ -50,75 +61,55 @@
 <li>Status subscriptions and Status adapters</li>
 <li>Log and debug log</li>
 <li>Search EPG</li>
+<li>Multiple Tvheadend servers</li>
 </ul><h4>Future Features</h4>
 
 <ul>
-<li>Multiple Tvheadend servers</li>
 <li>SSH tunnel to access tvheadend</li>
+<li>iPad support</li>
+<li>Visual EPG</li>
 </ul><h2>Getting the code</h2>
 
 <pre><code>git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
+cd libssh2-for-iOS
+./build-all openssl
 </code></pre>
 
-<p>Go to TestFlight.com , download SDK and copy libTestFlight.a and TestFlight.h to the TestFlight SDK folder.</p>
+<p>Don't forget to have the command line tools installed from Xcode, otherwise libssh2 won't compile.
+Build and run ! Send your patches to me via a pull request ;)</p>
 
-<p>Build and run ! Send your patches to me via a pull request ;)</p>
+<h2>Video Streaming</h2>
 
-<h3>Adding KXMOVIE</h3>
+<p>DVB streaming is mainly MPEG2 streams for SD channels. MPEG4 is used for some HD Video streaming, although the audio codec could be MPEG2, AAC or AC3. The iOS devices have limitations that only allow them to hardware decode a MP4 stream which complies with device specifications. TVHeadend serves a TS or MKV stream, which the iOS can't handle natively.</p>
 
-<p>Kxmovie is a library which adds a ffmpeg player to the app. Adding ffmpeg has a lot of drawbacks:</p>
-
-<ul>
-<li>software only decoding of MPEG2 streams (your iOS device will drain)</li>
-<li>software only for MPEG4 - because tvheadend uses a mkv or TS container</li>
-<li>royalties for AC3</li>
-<li>royalties for MPEG2</li>
-<li>it's just slow, buggy (hangs a lot) and it's not polished enough</li>
-<li>if you can run hardware accelerated MPEG2 / MKV streams, then you can run XBMC which is the right app to do this.</li>
-</ul><p>But if you want to add kxmovie and test it:</p>
-
-<p>Get the code:</p>
-
-<pre><code>cd tvheadend-iphone-client/
-git clone --recursive git://github.com/kolyvan/kxmovie.git
-cd kxmovie
-rake
-
-# you need to have gas-preprocessor.pl in /usr/local/bin and have it 777, so 
-cp gas-preprocessor.pl /usr/local/bin
-sudo chmod 777 /usr/local/bin/gas-preprocessor.pl 
-</code></pre>
-
-<p>After the compilation is finished, drag the following files from kxmovie/kxmovie to the project</p>
+<p>In order to add video streaming, software decoding is the only solution - normally FFMPEG, but it has a lot of drawbacks:</p>
 
 <ul>
-<li>KxMovieViewController.h</li>
-<li>kxmovie.bundle </li>
-</ul><p>Go to Project / Target TvhClient / Build Phases , in the Link Binary With Libraries add all the .a files in kxmovie/output</p>
+<li>software only decoding of MPEG2 streams (your iOS device battery will drain)</li>
+<li>software only for MPEG4 - because tvheadend uses a mkv or TS container, this could (possible) be overcome</li>
+<li>need to pay royalties for AC3</li>
+<li>need to pay royalties for MPEG2</li>
+<li>it's slow, buggy (hangs a lot - only latest iPad have the processing power to handle software decoding) and it's not polished enough</li>
+</ul><p>For this reasons, I won't include ffmpeg in the app. You can experiment adding ffmpeg to the app, see some instructions in the wiki <a href="https://github.com/zipleen/tvheadend-iphone-client/wiki/Kxmovie">https://github.com/zipleen/tvheadend-iphone-client/wiki/Kxmovie</a></p>
 
-<p>Uncoment #define KXMOVIE in TVHPlayStreamHelpController.m</p>
-
-<p>"Play Stream" should popup in a red button.</p>
+<p>However, there's been some work on TVHeadend to implement a recoding feature. With recoding, it could be possible to transcode the stream to an iOS capable stream - the streaming support will be directly supported by the system.</p>
 
 <h2>Technical Background regarding connection to TVHeadend</h2>
 
-<p>There's two ways to connect to TVHeadend: HTSP and using the web interface. This app uses the web interface, although it's not officially supported. This way we have more detailed information on some components of the software, like the Status. It was also easier for me, as this is my first iPhone App. I hope the Tvheadend developers don't mind this =) Also, with SSH tunneling this shouldn't be a problem! </p>
+<p>There's two ways to connect to TVHeadend: HTSP and using the web interface. This app uses the web interface, although it's not officially supported. This way we have more detailed information on some components of the software, like the Status. It was also easier for me, as this is my first iPhone App. Also, with SSH tunneling this shouldn't be a problem! </p>
 
 <h2>License</h2>
 
 <p>This app's source code is licensed under the Apache 2.0 License. </p>
 
-<p>App Icon made by Julio Pinto, thanks =)</p>
+<p>App Icon made by Julio Costa Pinto, thanks =)</p>
 
 <p>Clean Icons from Matt Gentile, from icondeposit.com.</p>
-        </section>
+      </section>
 
-        <footer>
-          TvhClient is maintained by <a href="https://github.com/zipleen">zipleen</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-                  <script type="text/javascript">
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -129,7 +120,5 @@ sudo chmod 777 /usr/local/bin/gas-preprocessor.pl
             } catch(err) {}
           </script>
 
-      </div>
-    </div>
   </body>
 </html>
