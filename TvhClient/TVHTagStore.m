@@ -25,7 +25,6 @@
 @interface TVHTagStore()
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
-@property (nonatomic, strong) NSDate *lastFetchedData;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
@@ -62,7 +61,6 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.tags = nil;
-    self.lastFetchedData = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -99,70 +97,42 @@
 #endif
 }
 
-- (BOOL)isDataOld {
-    if ( [self.tags count] == 0 ) {
-        return YES;
-    }
-    if ( !self.lastFetchedData ) {
-        return YES;
-    }
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    return ( [[NSDate date] compare:[self.lastFetchedData dateByAddingTimeInterval:[settings cacheTime]]] == NSOrderedDescending );
-}
-
 - (void)fetchTagList {
-    if( [self isDataOld] ) {
-        TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
-        
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
-        self.profilingDate = [NSDate date];
-        [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
+    self.profilingDate = [NSDate date];
+    [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
-            [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
-                                                              withValue:time
-                                                               withName:@"TagStore"
-                                                              withLabel:nil];
+        [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+                                                          withValue:time
+                                                           withName:@"TagStore"
+                                                          withLabel:nil];
 #endif
 #ifdef TESTING
-            NSLog(@"[TagStore Profiling Network]: %f", time);
+        NSLog(@"[TagStore Profiling Network]: %f", time);
 #endif
-            [self fetchedData:responseObject];
-            if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
-                [self.delegate didLoadTags];
-            }
-            self.lastFetchedData = [NSDate date];
-            
-            //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            //NSLog(@"Request Successful, response '%@'", responseStr);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
-                [self.delegate didErrorLoadingTagStore:error];
-            }
-            NSLog(@"[TagList HTTPClient Error]: %@", error.description);
-        }];
-    } else {
+        [self fetchedData:responseObject];
         if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
             [self.delegate didLoadTags];
         }
-    }
+        
+        //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        //NSLog(@"Request Successful, response '%@'", responseStr);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
+            [self.delegate didErrorLoadingTagStore:error];
+        }
+        NSLog(@"[TagList HTTPClient Error]: %@", error.description);
+    }];
 }
 
 - (void)resetTagStore {
     self.tags = nil;
-    self.lastFetchedData = nil;
+    self.profilingDate = nil;
 }
 
-- (TVHTagStore *)objectAtIndex:(int) row {
-    if ( row < [self.tags count] ) {
-        return [self.tags objectAtIndex:row];
-    }
-    return nil;
-}
-
-- (int)count {
-    return [self.tags count];
-}
 
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate {
     if (_delegate != delegate) {

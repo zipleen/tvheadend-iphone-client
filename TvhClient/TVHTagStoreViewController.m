@@ -33,20 +33,22 @@
 #import "TVHCometPollStore.h"
 
 @interface TVHTagStoreViewController ()
-@property (strong, nonatomic) TVHTagStore *tagList;
+@property (strong, nonatomic) TVHTagStore *tagStore;
+@property (strong, nonatomic) NSArray *tags;
 @end
 
 @implementation TVHTagStoreViewController
 
-- (TVHTagStore*) tagList {
-    if ( _tagList == nil) {
-        _tagList = [TVHTagStore sharedInstance];
+- (TVHTagStore*)tagStore {
+    if ( _tagStore == nil) {
+        _tagStore = [TVHTagStore sharedInstance];
     }
-    return _tagList;
+    return _tagStore;
 }
 
 - (void)resetControllerData {
-    [self.tagList fetchTagList];
+    self.tags = nil;
+    [self.tagStore fetchTagList];
     [[TVHChannelStore sharedInstance] fetchChannelList];
 }
 
@@ -62,7 +64,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
-    [self.tagList setDelegate:self];
+    [self.tagStore setDelegate:self];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -74,7 +76,7 @@
         [self performSegueWithIdentifier:@"ShowSettings" sender:self];
     } else {
         // fetch tags
-        [self.tagList fetchTagList];
+        [self.tagStore fetchTagList];
         
         // and fetch channel data - we need it for a lot of things, channels should always be loaded!
         [[TVHChannelStore sharedInstance] fetchChannelList];
@@ -94,7 +96,7 @@
 }
 
 - (void)viewDidUnload {
-    self.tagList = nil;
+    self.tagStore = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self setSettingsButton:nil];
     [super viewDidUnload];
@@ -102,14 +104,19 @@
 
 - (void)pullToRefreshViewShouldRefresh
 {
-    [self.tagList fetchTagList];
+    [self.tagStore fetchTagList];
+}
+
+- (void)reloadData {
+    self.tags = [self.tagStore tags];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tagList count];
+    return [self.tags count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,7 +127,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    TVHTag *tag = [self.tagList objectAtIndex:indexPath.row];
+    TVHTag *tag = [self.tags objectAtIndex:indexPath.row];
     
     UILabel *tagNameLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *tagNumberLabel = (UILabel *)[cell viewWithTag:101];
@@ -135,7 +142,6 @@
     } ];
     
     cell.accessibilityLabel = tag.name;
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"] ];
@@ -154,23 +160,23 @@
     if([segue.identifier isEqualToString:@"Show Channel List"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHTag *tag = [self.tagList objectAtIndex:path.row];
+        TVHTag *tag = [self.tags objectAtIndex:path.row];
         
-        TVHChannelStoreViewController *ChannelList = segue.destinationViewController;
-        [ChannelList setFilterTagId: tag.id];
+        TVHChannelStoreViewController *ChannelStore = segue.destinationViewController;
+        [ChannelStore setFilterTagId: tag.id];
         
         [segue.destinationViewController setTitle:tag.name];
     }
 }
 
 - (void)didLoadTags {
-    [self.tableView reloadData];
+    [self reloadData];
     [self.refreshControl endRefreshing];
 }
 
 - (void)didErrorLoadingTagStore:(NSError*) error {
     [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    
+    [self reloadData];
     [self.refreshControl endRefreshing];
 }
 

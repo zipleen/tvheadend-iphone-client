@@ -26,7 +26,7 @@ static WBSuccessNoticeView *success;
     }
     notice = [WBErrorNoticeView errorNoticeInView:view title:title message:message];
     [notice setDelay:10];
-    //[success setFloating:YES];
+    [notice setFloating:YES];
     //[notice setSticky:true];
     [notice show];
 }

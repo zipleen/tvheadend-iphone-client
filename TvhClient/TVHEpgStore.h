@@ -35,6 +35,7 @@
 - (id)initWithStatsEpgName:(NSString*)statsEpgName;
 - (void)downloadAllEpgItems;
 - (void)downloadEpgList;
+- (void)downloadMoreEpgList;
 - (NSArray*)epgStoreItems;
 - (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate;
 @end

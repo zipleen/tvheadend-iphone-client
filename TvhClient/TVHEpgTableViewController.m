@@ -26,6 +26,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TVHImageCache.h"
 #import "TVHSettings.h"
+#import "TVHShowNotice.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;
@@ -78,12 +79,11 @@
     shouldBeginEditing = YES;
     self.title = NSLocalizedString(@"Now", @"");
     self.searchBar.placeholder = NSLocalizedString(@"Search Program Title", @"");
+    
+    [self.epgStore downloadEpgList];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ( [self.epgTable count] == 0 ) {
-        [self.epgStore downloadEpgList];
-    }
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
@@ -160,8 +160,14 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if( indexPath.row == [self.epgTable count] - 1 ) {
-        [self.epgStore downloadEpgList];
+        [self.epgStore downloadMoreEpgList];
     }
+}
+
+- (void)reloadData:(TVHEpgStore*)epgStore {
+    [self.refreshControl endRefreshing];
+    self.epgTable = [epgStore epgStoreItems];
+    [self.tableView reloadData];
 }
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
@@ -170,10 +176,14 @@
     [self.tableView reloadData];
 }
 
+- (void)didErrorLoadingEpgStore:(NSError *)error {
+    [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
+    [self.refreshControl endRefreshing];
+}
+
 - (void)pullToRefreshViewShouldRefresh
 {
-    [self.epgStore downloadEpgList];
-    [self.tableView reloadData];
+    [self.epgStore downloadMoreEpgList];
 }
 
 #pragma mark - Table view delegate

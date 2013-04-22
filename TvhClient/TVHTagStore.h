@@ -34,6 +34,4 @@
 - (NSArray*)tags;
 - (void)fetchTagList;
 - (void)resetTagStore;
-- (TVHTag *)objectAtIndex:(int) row;
-- (int)count;
 @end

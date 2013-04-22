@@ -194,6 +194,10 @@
 }
 
 - (void)downloadEpgList {
+    [self retrieveEpgDataFromTVHeadend:0 limit:50 fetchAll:false];
+}
+
+- (void)downloadMoreEpgList {
     [self retrieveEpgDataFromTVHeadend:[self.epgStore count] limit:50 fetchAll:false];
 }
 
