@@ -105,7 +105,7 @@
         return 5;
     }
     if ( section == 2 ) {
-        return 3;
+        return 4;
     }
     return 0;
 }
@@ -224,10 +224,14 @@
             cell.textLabel.text = NSLocalizedString(@"Support Me", @".. in settings screen");
         }
         if ( indexPath.row == 1 ) {
+            icon = NIKFontAwesomeIconQuestionSign;
+            cell.textLabel.text = NSLocalizedString(@"FAQ", @".. in settings screen");
+        }
+        if ( indexPath.row == 2 ) {
             icon = NIKFontAwesomeIconInfoSign;
             cell.textLabel.text = NSLocalizedString(@"About", @".. in settings screen");
         }
-        if ( indexPath.row == 2 ) {
+        if ( indexPath.row == 3 ) {
             icon = NIKFontAwesomeIconFileAlt;
             cell.textLabel.text = NSLocalizedString(@"Licenses", @".. in settings screen");
         }
@@ -304,10 +308,13 @@
         [self performSegueWithIdentifier:@"Settings Support Me" sender:self];
     }
     
-    if ( indexPath.section == 2 && !indexPath.row == 0 ) {
+    if ( indexPath.section == 2 && (indexPath.row == 2 || indexPath.row == 3) ) {
         [self performSegueWithIdentifier:@"SettingsGenericText" sender:self];
     }
     
+    if ( indexPath.section == 2 && indexPath.row == 1 ) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/zipleen/tvheadend-iphone-client/wiki/FAQ"]];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -326,11 +333,11 @@
     if ( [segue.identifier isEqualToString:@"SettingsGenericText"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsGenericTextViewController *vc = segue.destinationViewController;
-        if ( path.row == 1 ) {
+        if ( path.row == 2 ) {
             [vc setTitle:NSLocalizedString(@"About", @".. in settings screen")];
             [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
         }
-        if ( path.row == 2 ) {
+        if ( path.row == 3 ) {
             [vc setTitle:NSLocalizedString(@"Licenses", @".. in settings screen")];
             [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"licenses" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
         }
