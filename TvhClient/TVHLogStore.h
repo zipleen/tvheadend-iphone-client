@@ -29,7 +29,6 @@
 + (id)sharedInstance;
 - (void)setDelegate:(id <TVHLogDelegate>)delegate;
 
-- (NSString *)objectAtIndex:(int) row;
-- (int)count;
+- (NSArray*)arrayLogLines;
 - (void)clearLog;
 @end

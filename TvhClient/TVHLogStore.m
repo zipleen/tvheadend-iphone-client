@@ -100,17 +100,8 @@
     return logLinesFiltered;
 }
 
-- (NSString *)objectAtIndex:(int) row {
-    NSArray *logLines = [self filteredLogLines];
-    if ( row < [logLines count] ) {
-        return [logLines objectAtIndex:[logLines count]-1-row];
-    }
-    return nil;
-}
-
-- (int) count {
-    NSArray *logLines = [self filteredLogLines];
-    return [logLines count];
+- (NSArray*)arrayLogLines {
+    return [self filteredLogLines];
 }
 
 - (void)setDelegate:(id <TVHLogDelegate>)delegate {

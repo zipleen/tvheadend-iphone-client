@@ -23,6 +23,7 @@
 
 @interface TVHDebugLogViewController () <UISearchBarDelegate>
 @property (strong, nonatomic) TVHLogStore *logStore;
+@property (strong, nonatomic) NSArray *logLines;
 @property (strong, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
@@ -61,6 +62,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self setDebugButton:nil];
     self.logStore = nil;
+    self.logLines = nil;
     self.cometPoll = nil;
     [self setSearchBar:nil];
     [super viewDidUnload];
@@ -72,15 +74,19 @@
     } else {
         self.debugButton.style = UIBarButtonItemStyleBordered;
     }
-    [self.tableView reloadData];
+    [self reloadData];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
 #ifdef TVH_GOOGLEANALYTICS_KEY
     [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
+}
+
+- (void)reloadData {
+    self.logLines = [self.logStore arrayLogLines];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -94,8 +100,12 @@
     }
 }
 
+- (NSString*)lineAtIndex:(int)row {
+    return [self.logLines objectAtIndex:[self.logLines count]-1-row];
+}
+
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *str = [self.logStore objectAtIndex:indexPath.row];
+    NSString *str = [self lineAtIndex:indexPath.row];
     unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGSize size = [str
                    sizeWithFont:[UIFont systemFontOfSize:12]
@@ -105,7 +115,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.logStore count];
+    return [self.logLines count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,13 +134,13 @@
                    sizeWithFont:[UIFont systemFontOfSize:12]
                    constrainedToSize:CGSizeMake(screenWidth-10, CGFLOAT_MAX)];
     logCell.frame = CGRectMake(0, 0, screenWidth, size.height);
-    logCell.text = [self.logStore objectAtIndex:indexPath.row];
+    logCell.text = [self lineAtIndex:indexPath.row];
     return cell;
 }
 
 - (void)didLoadLog {
     if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
-        [self.tableView reloadData];
+        [self reloadData];
         lastTableUpdate = [NSDate date];
     }
     /*int countLines = [self.logStore count];
@@ -151,7 +161,7 @@
 
 - (IBAction)clearLog:(id)sender {
     [self.logStore clearLog];
-    [self.tableView reloadData];
+    [self reloadData];
 }
 
 #pragma mark search bar
@@ -162,10 +172,11 @@
         // user tapped the 'clear' button - from http://stackoverflow.com/questions/1092246/uisearchbar-clearbutton-forces-the-keyboard-to-appear
         shouldBeginEditing = NO;
         [self.logStore setFilter:@""];
+        [self reloadData];
         return;
     }
     [self.logStore setFilter:searchBar.text];
-    [self.tableView reloadData];
+    [self reloadData];
     if ( [searchText isEqualToString:@""] ) {
         // why do I have to do this!??! if I put the resignFirstResponder here, it doesn't work...
         [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
