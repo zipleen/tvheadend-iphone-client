@@ -121,6 +121,7 @@
     self.programImage.layer.shadowOpacity = 0.7f;
     self.programImage.layer.shadowRadius = 1.5;
     self.programImage.clipsToBounds = NO;
+    self.programImage.contentMode = UIViewContentModeScaleAspectFit;
     
     self.view.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
     
