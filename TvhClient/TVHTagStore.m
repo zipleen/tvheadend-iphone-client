@@ -51,6 +51,11 @@
                                                  name:@"resetAllObjects"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(fetchTagList)
+                                                 name:@"channeltagsNotificationClassReceived"
+                                               object:nil];
+
     return self;
 }
 

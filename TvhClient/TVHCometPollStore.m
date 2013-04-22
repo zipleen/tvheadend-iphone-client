@@ -168,6 +168,24 @@
 #endif
         }
         
+        if( [notificationClass isEqualToString:@"channels"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"channelsNotificationClassReceived"
+             object:obj];
+#ifdef TESTING
+            print = NO;
+#endif
+        }
+        
+        if( [notificationClass isEqualToString:@"channeltags"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"channeltagsNotificationClassReceived"
+             object:obj];
+#ifdef TESTING
+            print = NO;
+#endif
+        }
+        
 #ifdef TESTING
         if(print) {
             NSLog(@"[CometPollStore log]: %@", obj);
