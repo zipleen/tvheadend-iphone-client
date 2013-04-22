@@ -27,7 +27,6 @@
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, strong) TVHEpgStore *epgStore;
-@property (nonatomic, strong) NSDate *lastFetchedData;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
@@ -38,6 +37,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[TVHChannelStore alloc] init];
+        [__sharedInstance fetchChannelList];
     });
     
     return __sharedInstance;
@@ -72,7 +72,6 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.channels = nil;
-    self.lastFetchedData = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -111,66 +110,38 @@
     self.channels = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self.epgStore];
     self.epgStore = nil;
-    self.lastFetchedData = nil;
-}
-
-- (BOOL)isDataOld {
-    if ( [self.channels count] == 0 ) {
-        return YES;
-    }
-    if ( !self.lastFetchedData ) {
-        return YES;
-    }
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    return ( [[NSDate date] compare:[self.lastFetchedData dateByAddingTimeInterval:[settings cacheTime]]] == NSOrderedDescending );
 }
 
 - (void)fetchChannelList {
-    if( [self isDataOld] ) {
-        TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
-        
-        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
-        self.profilingDate = [NSDate date];
-        [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
+    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
+    self.profilingDate = [NSDate date];
+    [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
-                                                              withValue:time
-                                                               withName:@"ChannelStore"
-                                                              withLabel:nil];
+                                                          withValue:time
+                                                           withName:@"ChannelStore"
+                                                          withLabel:nil];
 #endif
 #ifdef TESTING
-            NSLog(@"[ChannelList Profiling Network]: %f", time);
+        NSLog(@"[ChannelList Profiling Network]: %f", time);
 #endif
-            [self fetchedData:responseObject];
-            if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
-                [self.delegate didLoadChannels];
-            }
-            self.lastFetchedData = [NSDate date];
-            [self.epgStore downloadEpgList];
-            
-           // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-           // NSLog(@"Request Successful, response '%@'", responseStr);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
-                [self.delegate didErrorLoadingChannelStore:error];
-            }
-            NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
-        }];
-    }   else {
+        [self fetchedData:responseObject];
         if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
             [self.delegate didLoadChannels];
         }
-    }
-}
-
-- (TVHChannel*)getChannelById:(NSInteger)channelId {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"chid == %d", channelId];
-    NSArray *filteredArray = [self.channels filteredArrayUsingPredicate:predicate];
-    if ([filteredArray count] > 0) {
-        return [filteredArray objectAtIndex:0];
-    }
-    return nil;
+        [self.epgStore downloadEpgList];
+        
+       // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+       // NSLog(@"Request Successful, response '%@'", responseStr);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
+            [self.delegate didErrorLoadingChannelStore:error];
+        }
+        NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
+    }];
 }
 
 #pragma mark EPG delegatee stuff
@@ -179,7 +150,7 @@
     // for each epg
     NSArray *list = [epgStore epgStoreItems];
     for (TVHEpg *epg in list) {
-        TVHChannel *channel = [self getChannelById:epg.channelid];
+        TVHChannel *channel = [self channelWithId:epg.channelid];
         [channel addEpg:epg];
     }
     // instead of having this delegate here, channel could send a notification and channel controller
@@ -197,7 +168,7 @@
 
 #pragma mark Controller delegate stuff
 
-- (NSArray*)getFilteredChannelList {
+- (NSArray*)filteredChannelList {
     NSMutableArray *filteredChannels = [[NSMutableArray alloc] init];
     for (TVHChannel *channel in self.channels) {
         if( [channel hasTag:self.filterTag] ) {
@@ -207,19 +178,15 @@
     return [filteredChannels copy];
 }
 
-- (TVHChannel*)objectAtIndex:(int) row {
-    if(self.filterTag == 0) {
-        return [self.channels objectAtIndex:row];
+- (NSArray*)arrayChannels {
+    if (self.filterTag == 0) {
+        return [self.channels copy];
     } else {
-        NSArray *filteredTag = [self getFilteredChannelList];
-        if (row < [filteredTag count]){
-            return [filteredTag objectAtIndex:row];
-        }
+        return [self filteredChannelList];
     }
-    return nil;
 }
 
-- (TVHChannel*)channelWithName:(NSString*) name {
+- (TVHChannel*)channelWithName:(NSString*)name {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", name];
     NSArray *filteredArray = [self.channels filteredArrayUsingPredicate:predicate];
     if ([filteredArray count] > 0) {
@@ -236,15 +203,6 @@
         }
     }
     return nil;
-}
-
-- (int)count {
-    if (self.filterTag == 0) {
-        return [self.channels count];
-    } else {
-        NSArray *filteredTag = [self getFilteredChannelList];
-        return [filteredTag count];
-    }
 }
 
 - (void)setDelegate:(id <TVHChannelStoreDelegate>)delegate {

@@ -45,7 +45,6 @@
 @property (nonatomic, strong, readonly) NSString *username;
 @property (nonatomic, strong, readonly) NSString *password;
 @property (nonatomic) NSInteger selectedServer;
-@property (nonatomic) NSTimeInterval cacheTime;
 @property (nonatomic) BOOL autoStartPolling;
 @property (nonatomic) NSInteger sortChannel;
 @property (nonatomic) BOOL sendAnonymousStatistics;

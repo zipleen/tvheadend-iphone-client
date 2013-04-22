@@ -35,10 +35,9 @@
 - (void)resetChannelStore;
 
 - (NSArray*)channels;
-- (TVHChannel *)objectAtIndex:(int) row;
-- (int)count;
+- (NSArray*)arrayChannels;
 - (void)setDelegate:(id <TVHChannelStoreDelegate>)delegate;
 - (TVHChannel*)channelWithName:(NSString*) name;
 - (TVHChannel*)channelWithId:(NSInteger) channelId;
-- (NSArray*)getFilteredChannelList;
+- (NSArray*)filteredChannelList;
 @end

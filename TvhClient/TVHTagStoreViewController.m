@@ -33,7 +33,7 @@
 #import "TVHCometPollStore.h"
 
 @interface TVHTagStoreViewController ()
-@property (strong, nonatomic) TVHTagStore *tagStore;
+@property (weak, nonatomic) TVHTagStore *tagStore;
 @property (strong, nonatomic) NSArray *tags;
 @end
 
@@ -79,7 +79,7 @@
         [self.tagStore fetchTagList];
         
         // and fetch channel data - we need it for a lot of things, channels should always be loaded!
-        [[TVHChannelStore sharedInstance] fetchChannelList];
+        [TVHChannelStore sharedInstance];
         
         // and maybe start comet poll - after initing status and log
         [TVHStatusSubscriptionsStore sharedInstance];

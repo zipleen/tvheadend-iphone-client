@@ -102,7 +102,7 @@
         return [self.servers count] + 1;
     }
     if ( section == 1 ) {
-        return 6;
+        return 5;
     }
     if ( section == 2 ) {
         return 3;
@@ -139,17 +139,6 @@
     if ( indexPath.section == 1 ) {
         
         if ( indexPath.row == 0 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
-            if(cell==nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
-            }
-            
-            cell.textLabel.text = NSLocalizedString(@"Cache Data for", @".. in settings screen");
-            NSInteger minutes = [self.settings cacheTime];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d %@", (minutes/60) ,NSLocalizedString(@"minutes", @".. in settings screen")];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        if ( indexPath.row == 1 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
             if(cell==nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
@@ -162,7 +151,7 @@
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
             textLabel.text = NSLocalizedString(@"Auto Start Polling", @".. in settings screen");
         }
-        if ( indexPath.row == 2 ) {
+        if ( indexPath.row == 1 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
             if(cell==nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsTextCell"];
@@ -182,7 +171,7 @@
             textLabel.text = NSLocalizedString(@"Custom Player URL", @".. in settings screen");
             textLabel.adjustsFontSizeToFitWidth = YES;
         }
-        if ( indexPath.row == 3 ) {
+        if ( indexPath.row == 2 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
             if(cell==nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
@@ -196,7 +185,7 @@
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        if ( indexPath.row == 4 ) {
+        if ( indexPath.row == 3 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
             if(cell==nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
@@ -209,7 +198,7 @@
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
             textLabel.text = NSLocalizedString(@"Anonymous Statistics", @".. in settings screen");
         }
-        if ( indexPath.row == 5 ) {
+        if ( indexPath.row == 4 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
             if(cell==nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
@@ -307,7 +296,7 @@
         [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
     }
     
-    if ( indexPath.section == 1 && indexPath.row == 3 ) {
+    if ( indexPath.section == 1 && indexPath.row == 2 ) {
         [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
     }
     
@@ -348,7 +337,7 @@
     }
     if ( [segue.identifier isEqualToString:@"SettingsGenericField"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        if ( path.section == 1 && path.row == 3 ) {
+        if ( path.section == 1 && path.row == 2 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Order Channels", @".. in settings screen")];
             [vc setSectionHeader:NSLocalizedString(@"Order Channels", @".. in settings screen")];
@@ -357,16 +346,6 @@
             [vc setResponseBack:^(NSInteger order) {
                 [[TVHSettings sharedInstance] setSortChannel:order];
                 [[TVHChannelStore sharedInstance] resetChannelStore];
-            }];
-        }
-        if ( path.section == 1 && path.row == 0 ) {
-            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-            [vc setTitle:NSLocalizedString(@"Cache Data", @".. in settings screen")];
-            [vc setSectionHeader:NSLocalizedString(@"Cache Data for", @".. in settings screen")];
-            [vc setOptions:@[@"0 minutes", @"3 minute", @"6 minutes", @"9 minutes", @"12 minutes"]];
-            [vc setSelectedOption:[self.settings cacheTime]/3/60];
-            [vc setResponseBack:^(NSInteger order) {
-                [[TVHSettings sharedInstance] setCacheTime:order*3*60];
             }];
         }
     }
@@ -383,10 +362,7 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[textField superview]superview]];
-    if ( indexPath.row == 0 ) {
-        [self.settings setCacheTime:[textField.text doubleValue]];
-    }
-    if ( indexPath.row == 2 ) {
+    if ( indexPath.row == 1 ) {
         [self.settings setCustomPrefix:textField.text];
     }
     return YES;

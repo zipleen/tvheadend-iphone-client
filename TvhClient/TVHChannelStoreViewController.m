@@ -31,7 +31,8 @@
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
 }
-@property (strong, nonatomic) TVHChannelStore *channelList;
+@property (weak, nonatomic) TVHChannelStore *channelStore;
+@property (strong, nonatomic) NSArray *channels;
 @end
 
 @implementation TVHChannelStoreViewController 
@@ -45,10 +46,10 @@
 }
 
 - (TVHChannelStore*) channelList {
-    if ( _channelList == nil) {
-        _channelList = [TVHChannelStore sharedInstance];
+    if ( _channelStore == nil) {
+        _channelStore = [TVHChannelStore sharedInstance];
     }
-    return _channelList;
+    return _channelStore;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -74,8 +75,7 @@
     [super viewDidLoad];
     
     [self.channelList setDelegate:self];
-    [self.channelList setFilterTag: self.filterTagId];
-    [self.channelList fetchChannelList];
+    [self.channelList setFilterTag:self.filterTagId];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -83,11 +83,12 @@
     
     dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm";
-    
+    [self didLoadChannels];
 }
 
 - (void)viewDidUnload {
-    self.channelList = nil;
+    self.channelStore = nil;
+    self.channels = nil;
     [super viewDidUnload];
 }
 
@@ -104,10 +105,9 @@
 
 #pragma mark - Table view data source
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.channelList count];
+    return [self.channels count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,7 +118,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    TVHChannel *ch = [self.channelList objectAtIndex:indexPath.row];
+    TVHChannel *ch = [self.channels objectAtIndex:indexPath.row];
     TVHEpg *currentPlayingProgram = [ch currentPlayingProgram];
     
     UILabel *channelNameLabel = (UILabel *)[cell viewWithTag:100];
@@ -179,7 +179,7 @@
     if([segue.identifier isEqualToString:@"Show Channel Programs"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHChannel *channel = [self.channelList objectAtIndex:path.row];
+        TVHChannel *channel = [self.channels objectAtIndex:path.row];
         
         TVHChannelStoreProgramsViewController *channelPrograms = segue.destinationViewController;
         [channelPrograms setChannel:channel];
@@ -189,13 +189,13 @@
 }
 
 - (void)didLoadChannels {
+    self.channels = [self.channelStore arrayChannels];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 
 - (void)didErrorLoadingChannelStore:(NSError*) error {
     [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    
     [self.refreshControl endRefreshing];
 }
 

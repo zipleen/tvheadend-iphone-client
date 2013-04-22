@@ -55,12 +55,6 @@
     
     [self.epgStore setDelegate:self];
     
-    // I shouldn't have this here, it should be smart to know it needs channels!
-    TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
-    if ( [[channelStore getFilteredChannelList] count] == 0 ) {
-        [channelStore fetchChannelList];
-    }
-    
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];

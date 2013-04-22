@@ -22,7 +22,6 @@
 #import "TVHJsonClient.h"
 #import "PDKeychainBindings.h"
 #import <CommonCrypto/CommonDigest.h>
-#define TVHS_CACHING_TIME @"CachingTime"
 #define TVHS_AUTO_START_COMET_POOL @"AutoStartCometPool"
 #define TVHS_CUSTOM_PREFIX @"CustomAppPrefix"
 #define TVHS_SEND_ANONSTATS @"sendAnonymousStatistics"
@@ -39,7 +38,6 @@
 @synthesize username = _username;
 @synthesize password = _password;
 @synthesize selectedServer = _selectedServer;
-@synthesize cacheTime = _cacheTime;
 @synthesize autoStartPolling = _autoStartPolling;
 @synthesize sortChannel = _sortChannel;
 @synthesize sendAnonymousStatistics = _sendAnonymousStatistics;
@@ -295,20 +293,6 @@ withPassword:(NSString*)password {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"resetAllObjects"
      object:nil];
-}
-
-- (NSTimeInterval)cacheTime {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSTimeInterval time = [defaults integerForKey:TVHS_CACHING_TIME];
-    if ( time < 0 ) {
-        time = 180;
-    }
-    return time;
-}
-
-- (void)setCacheTime:(NSTimeInterval)time {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:time forKey:TVHS_CACHING_TIME];
 }
 
 - (BOOL)autoStartPolling {
