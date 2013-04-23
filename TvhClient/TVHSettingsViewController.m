@@ -296,10 +296,6 @@
         [self performSegueWithIdentifier:@"SettingsServers" sender:self];
     }
     
-    if ( indexPath.section == 1 && indexPath.row == 0 ) {
-        [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
-    }
-    
     if ( indexPath.section == 1 && indexPath.row == 2 ) {
         [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
     }
@@ -376,6 +372,14 @@
 }
 
 - (IBAction)autoStartPolling:(UISwitch*)sender {
+    if ( sender.on == NO ) {
+        UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Auto Start Polling", @".. in settings screen")
+                                                             message:NSLocalizedString(@"POLLING_MESSAGE", @".. in settings screen")
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"Ok"
+                                                   otherButtonTitles:nil];
+        [errorAlert show];
+    }
     [self.settings setAutoStartPolling:sender.on];
 }
 
