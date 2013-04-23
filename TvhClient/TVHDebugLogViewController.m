@@ -94,7 +94,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ( indexPath.row % 2 ) {
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.922 green:0.922 blue:0.922 alpha:1];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.824 green:0.824 blue:0.824 alpha:1];
     } else {
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
     }
@@ -109,8 +109,8 @@
     unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGSize size = [str
                    sizeWithFont:[UIFont systemFontOfSize:12]
-                   constrainedToSize:CGSizeMake(screenWidth-10, CGFLOAT_MAX)];
-    return size.height + 3;
+                   constrainedToSize:CGSizeMake(screenWidth-20, CGFLOAT_MAX)];
+    return size.height + 10;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -132,8 +132,8 @@
     
     CGSize size = [logCell.text
                    sizeWithFont:[UIFont systemFontOfSize:12]
-                   constrainedToSize:CGSizeMake(screenWidth-10, CGFLOAT_MAX)];
-    logCell.frame = CGRectMake(0, 0, screenWidth, size.height);
+                   constrainedToSize:CGSizeMake(screenWidth-20, CGFLOAT_MAX)];
+    logCell.frame = CGRectMake(10, 5, screenWidth-20, size.height);
     logCell.text = [self lineAtIndex:indexPath.row];
     return cell;
 }
