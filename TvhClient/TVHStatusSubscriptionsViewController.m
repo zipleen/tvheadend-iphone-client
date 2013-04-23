@@ -217,6 +217,7 @@
         UIImageView *errorIcon = (UIImageView *)[cell viewWithTag:122];
         UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:123];
         UIImageView *clientIcon = (UIImageView *)[cell viewWithTag:124];
+        UIImageView *client2Icon = (UIImageView *)[cell viewWithTag:125];
         
         TVHStatusSubscription *subscription = [self.statusSubscriptionsStore objectAtIndex:indexPath.row];
         TVHChannel *channel = [[TVHChannelStore sharedInstance] channelWithName:subscription.channel];
@@ -232,11 +233,17 @@
         bandwidthLabel.text = [NSString stringWithFormat:@"%@", [NSString stringFromFileSizeInBits:subscription.bw]];
         
         [channelIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconDesktop]];
+        [channelIcon setContentMode:UIViewContentModeScaleAspectFit];
         [stateIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconSignal]];
+        [stateIcon setContentMode:UIViewContentModeScaleAspectFit];
         [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign]];
+        [errorIcon setContentMode:UIViewContentModeScaleAspectFit];
         [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+        [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
         [clientIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconHdd]];
-        
+        [clientIcon setContentMode:UIViewContentModeScaleAspectFit];
+        [client2Icon setImage:[factory createImageForIcon:NIKFontAwesomeIconPlayCircle]];
+        [client2Icon setContentMode:UIViewContentModeScaleAspectFit];
     }
     if ( indexPath.section == 1 ) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
@@ -258,7 +265,7 @@
         TVHAdapter *adapter = [self.adapterStore objectAtIndex:indexPath.row];
         
         deviceNameLabel.text = adapter.devicename;
-        adapterPathLabel.text = adapter.path;
+        adapterPathLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", adapter.name, adapter.path];
         bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
         serviceLabel.text = adapter.currentMux;
         snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
@@ -267,6 +274,7 @@
         signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
         progress.progress = (float)adapter.signal/100;
         [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+        [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
     }
     
     return cell;
