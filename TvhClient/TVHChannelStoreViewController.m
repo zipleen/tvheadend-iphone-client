@@ -189,7 +189,7 @@
 }
 
 - (void)didLoadChannels {
-    self.channels = [self.channelStore arrayChannels];
+    self.channels = [[self.channelStore arrayChannels] copy];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }

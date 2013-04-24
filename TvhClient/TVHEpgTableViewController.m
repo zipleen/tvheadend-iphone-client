@@ -166,7 +166,7 @@
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     [self.refreshControl endRefreshing];
-    self.epgTable = [epgStore epgStoreItems];
+    self.epgTable = [[epgStore epgStoreItems] copy];
     [self.tableView reloadData];
 }
 

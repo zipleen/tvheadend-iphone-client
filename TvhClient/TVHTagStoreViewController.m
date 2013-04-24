@@ -108,7 +108,7 @@
 }
 
 - (void)reloadData {
-    self.tags = [self.tagStore tags];
+    self.tags = [[self.tagStore tags] copy];
     [self.tableView reloadData];
 }
 
