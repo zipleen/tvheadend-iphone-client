@@ -78,6 +78,7 @@
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
     // 1
     [self.bannerView removeFromSuperview];
+#ifdef TVH_ADMOB
     // 2
     _admobBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
     // 3
@@ -89,6 +90,7 @@
     GADRequest *request = [GADRequest request];
     request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
     [self.admobBannerView loadRequest:request];
+#endif
 }
 
 - (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error {

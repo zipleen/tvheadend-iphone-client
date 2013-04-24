@@ -19,13 +19,34 @@
 //
 
 #import "TVHJsonClient.h"
-#import "AFNetworkActivityIndicatorManager.h"
 #import "TVHSettings.h"
 #import "AFJSONRequestOperation.h"
 #import "SSHWrapper.h"
 #import "TVHImageCache.h"
 
 static TVHJsonClient *__jsonClient;
+
+@implementation TVHNetworkActivityIndicatorManager
+
+- (void)networkingOperationDidStart:(NSNotification *)notification {
+    AFURLConnectionOperation *connectionOperation = [notification object];
+    if (connectionOperation.request.URL) {
+        if ( ! [connectionOperation.request.URL.path isEqualToString:@"/comet/poll"] ) {
+            [self incrementActivityCount];
+        }
+    }
+}
+
+- (void)networkingOperationDidFinish:(NSNotification *)notification {
+    AFURLConnectionOperation *connectionOperation = [notification object];
+    if (connectionOperation.request.URL) {
+        if ( ! [connectionOperation.request.URL.path isEqualToString:@"/comet/poll"] ) {
+            [self decrementActivityCount];
+        }
+    }
+}
+
+@end
 
 @implementation TVHJsonClient {
     SSHWrapper *sshPortForwardWrapper;
@@ -90,7 +111,7 @@ static TVHJsonClient *__jsonClient;
     //[self setDefaultHeader:@"Accept" value:@"application/json"];
     //[self setParameterEncoding:AFJSONParameterEncoding];
     
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    [[TVHNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetJsonClient)

@@ -19,6 +19,10 @@
 //
 
 #import "AFHTTPClient.h"
+#import "AFNetworkActivityIndicatorManager.h"
+
+@interface TVHNetworkActivityIndicatorManager : AFNetworkActivityIndicatorManager
+@end
 
 @interface TVHJsonClient : AFHTTPClient
 @property (nonatomic, readonly) BOOL readyToUse;
