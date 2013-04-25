@@ -27,7 +27,7 @@
 
 
 @protocol TVHDvrStoreDelegate <NSObject>
--(void) didLoadDvr;
+-(void) didLoadDvr:(NSInteger)type;
 -(void) didErrorDvrStore:(NSError*)error;
 @end
 

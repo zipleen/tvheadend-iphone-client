@@ -329,6 +329,7 @@
 }
 
 - (IBAction)segmentedDidChange:(id)sender {
+    [self.refreshControl endRefreshing];
     [self.tableView reloadData];
 }
 
@@ -338,18 +339,25 @@
     [self.dvrStore fetchDvr];
 }
 
-- (void)didLoadDvr {
+- (void)reloadData {
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 
+- (void)didLoadDvr:(NSInteger)type {
+    if ( type == self.segmentedControl.selectedSegmentIndex ) {
+        [self reloadData];
+    }
+}
+
 - (void)didLoadDvrAutoRec {
-    [self didLoadDvr];
+    if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
+        [self reloadData];
+    }
 }
 
 - (void)didErrorDvrStore:(NSError *)error {
     [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
-    
     [self.refreshControl endRefreshing];
 }
 

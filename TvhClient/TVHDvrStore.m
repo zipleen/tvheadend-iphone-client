@@ -139,8 +139,8 @@
 #endif
 
         [self fetchedData:responseObject withType:type];
-        if ([self.delegate respondsToSelector:@selector(didLoadDvr)]) {
-            [self.delegate didLoadDvr];
+        if ([self.delegate respondsToSelector:@selector(didLoadDvr:)]) {
+            [self.delegate didLoadDvr:type];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
