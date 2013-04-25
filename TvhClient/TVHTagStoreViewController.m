@@ -172,6 +172,10 @@
 - (void)didLoadTags {
     [self reloadData];
     [self.refreshControl endRefreshing];
+    if ( [self.tags count] == 1 ) {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        [self performSegueWithIdentifier:@"Show Channel List" sender:self];
+    }
 }
 
 - (void)didErrorLoadingTagStore:(NSError*) error {
