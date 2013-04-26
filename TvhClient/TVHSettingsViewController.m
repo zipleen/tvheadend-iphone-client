@@ -221,7 +221,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if ( indexPath.row == 0 ) {
             icon = NIKFontAwesomeIconHeart;
-            cell.textLabel.text = NSLocalizedString(@"Support Me", @".. in settings screen");
+            cell.textLabel.text = NSLocalizedString(@"Support", @".. in settings screen");
         }
         if ( indexPath.row == 1 ) {
             icon = NIKFontAwesomeIconQuestionSign;
@@ -301,7 +301,7 @@
     }
     
     if ( indexPath.section == 2 && indexPath.row == 0 ) {
-        [self performSegueWithIdentifier:@"Settings Support Me" sender:self];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/zipleen/tvheadend-iphone-client/wiki/Support"]];
     }
     
     if ( indexPath.section == 2 && (indexPath.row == 2 || indexPath.row == 3) ) {

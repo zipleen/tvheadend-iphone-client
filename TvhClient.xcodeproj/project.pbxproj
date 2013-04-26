@@ -41,6 +41,7 @@
 		AA3E5CD716D8161900CE444C /* TVHChannelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CD616D8161900CE444C /* TVHChannelTests.m */; };
 		AA3E5CD916D819B000CE444C /* Log.oneChannelEpg in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */; };
 		AA3E5CDC16D8267200CE444C /* TVHJsonClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */; };
+		AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3EE6F7172B008100AD60F5 /* CoreData.framework */; };
 		AA4059F6171DAA6200A5BBDB /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4059E6171DAA6200A5BBDB /* SDImageCache.m */; };
 		AA4059F7171DAA6200A5BBDB /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4059E8171DAA6200A5BBDB /* SDWebImageCompat.m */; };
 		AA4059F8171DAA6200A5BBDB /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4059EA171DAA6200A5BBDB /* SDWebImageDecoder.m */; };
@@ -148,16 +149,6 @@
 		AAD4C3CD1703C6A900AE67B6 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD4C3C91703C6A900AE67B6 /* Icon-Small-50@2x.png */; };
 		AAD4C3CE1703C6A900AE67B6 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD4C3CA1703C6A900AE67B6 /* Icon-Small.png */; };
 		AAD4C3CF1703C6A900AE67B6 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD4C3CB1703C6A900AE67B6 /* Icon-Small@2x.png */; };
-		AAD98EB01721C3DE00828314 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD98EAF1721C3DE00828314 /* TVHSupportMeViewController.m */; };
-		AAD98EB21721CBCD00828314 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD98EB11721CBCD00828314 /* AudioToolbox.framework */; };
-		AAD98EB41721CBD400828314 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD98EB31721CBD400828314 /* MessageUI.framework */; };
-		AAD98EC21721CC7700828314 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD98EC01721CC7700828314 /* libGoogleAdMobAds.a */; };
-		AAD98EC31721CC7700828314 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = AAD98EC11721CC7700828314 /* README.txt */; };
-		AAD98EC51721E1D500828314 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD98EC41721E1D500828314 /* StoreKit.framework */; };
-		AAD98EC71721E1DF00828314 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD98EC61721E1DF00828314 /* AdSupport.framework */; };
-		AAD98EF41721EE9000828314 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD98EF31721EE9000828314 /* iAd.framework */; };
-		AAD98EFA1722009400828314 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD98EF71722009400828314 /* IAPHelper.m */; };
-		AAD98EFB1722009400828314 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD98EF81722009400828314 /* TVHIAPHelper.m */; };
 		AAE1EAC2170B6471006DE2BE /* NIKFontAwesomeIconFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EAB9170B6471006DE2BE /* NIKFontAwesomeIconFactory.m */; };
 		AAE1EAC3170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABB170B6471006DE2BE /* NIKFontAwesomeIconFactory+iOS.m */; };
 		AAE1EAC4170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABD170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m */; };
@@ -176,7 +167,6 @@
 		AAE7B7A1170782200052E6F3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79E170782200052E6F3 /* libssl.a */; };
 		AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */; };
 		AAEE7A87171240AE00D0E584 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */; };
-		AAEE7A89171241DE00D0E584 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEE7A88171241DE00D0E584 /* CoreData.framework */; };
 		AAF54A1916C70D1B0076DF17 /* TVHTagStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */; };
 		AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1B16C70D270076DF17 /* TVHTag.m */; };
 		AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagStoreViewController.m */; };
@@ -254,6 +244,7 @@
 		AA3E5CD816D819B000CE444C /* Log.oneChannelEpg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.oneChannelEpg; sourceTree = "<group>"; };
 		AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHJsonClient.h; sourceTree = "<group>"; };
 		AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHJsonClient.m; sourceTree = "<group>"; };
+		AA3EE6F7172B008100AD60F5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AA4059E5171DAA6200A5BBDB /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDWebImage/SDImageCache.h; sourceTree = SOURCE_ROOT; };
 		AA4059E6171DAA6200A5BBDB /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = SDWebImage/SDWebImage/SDImageCache.m; sourceTree = SOURCE_ROOT; };
 		AA4059E7171DAA6200A5BBDB /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageCompat.h; path = SDWebImage/SDWebImage/SDWebImageCompat.h; sourceTree = SOURCE_ROOT; };
@@ -419,28 +410,6 @@
 		AAD4C3C91703C6A900AE67B6 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50@2x.png"; path = "../Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		AAD4C3CA1703C6A900AE67B6 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "../Icon-Small.png"; sourceTree = "<group>"; };
 		AAD4C3CB1703C6A900AE67B6 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "../Icon-Small@2x.png"; sourceTree = "<group>"; };
-		AAD98EAE1721C3DE00828314 /* TVHSupportMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSupportMeViewController.h; sourceTree = "<group>"; };
-		AAD98EAF1721C3DE00828314 /* TVHSupportMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSupportMeViewController.m; sourceTree = "<group>"; };
-		AAD98EB11721CBCD00828314 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		AAD98EB31721CBD400828314 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		AAD98EB71721CC7700828314 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
-		AAD98EB81721CC7700828314 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		AAD98EB91721CC7700828314 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
-		AAD98EBA1721CC7700828314 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		AAD98EBB1721CC7700828314 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		AAD98EBC1721CC7700828314 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		AAD98EBD1721CC7700828314 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		AAD98EBE1721CC7700828314 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		AAD98EBF1721CC7700828314 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		AAD98EC01721CC7700828314 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		AAD98EC11721CC7700828314 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		AAD98EC41721E1D500828314 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		AAD98EC61721E1DF00828314 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		AAD98EF31721EE9000828314 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		AAD98EF61722009400828314 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAPHelper.h; path = IAP/IAPHelper.h; sourceTree = "<group>"; };
-		AAD98EF71722009400828314 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAPHelper.m; path = IAP/IAPHelper.m; sourceTree = "<group>"; };
-		AAD98EF81722009400828314 /* TVHIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TVHIAPHelper.m; path = IAP/TVHIAPHelper.m; sourceTree = "<group>"; };
-		AAD98EF91722009400828314 /* TVHIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TVHIAPHelper.h; path = IAP/TVHIAPHelper.h; sourceTree = "<group>"; };
 		AAE1EAB7170B6471006DE2BE /* NIKFontAwesomeIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKFontAwesomeIcon.h; path = FontAwesomeIconFactory/NIKFontAwesomeIcon.h; sourceTree = SOURCE_ROOT; };
 		AAE1EAB8170B6471006DE2BE /* NIKFontAwesomeIconFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKFontAwesomeIconFactory.h; path = FontAwesomeIconFactory/NIKFontAwesomeIconFactory.h; sourceTree = SOURCE_ROOT; };
 		AAE1EAB9170B6471006DE2BE /* NIKFontAwesomeIconFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKFontAwesomeIconFactory.m; path = FontAwesomeIconFactory/NIKFontAwesomeIconFactory.m; sourceTree = SOURCE_ROOT; };
@@ -476,7 +445,6 @@
 		AAEE7A84171240AE00D0E584 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
 		AAEE7A85171240AE00D0E584 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
 		AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
-		AAEE7A88171241DE00D0E584 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore.h; sourceTree = "<group>"; };
 		AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore.m; sourceTree = "<group>"; };
 		AAF54A1A16C70D270076DF17 /* TVHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTag.h; sourceTree = "<group>"; };
@@ -514,14 +482,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAD98EF41721EE9000828314 /* iAd.framework in Frameworks */,
-				AAD98EC21721CC7700828314 /* libGoogleAdMobAds.a in Frameworks */,
-				AAD98EC71721E1DF00828314 /* AdSupport.framework in Frameworks */,
-				AAD98EC51721E1D500828314 /* StoreKit.framework in Frameworks */,
+				AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */,
 				AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */,
-				AAD98EB41721CBD400828314 /* MessageUI.framework in Frameworks */,
-				AAD98EB21721CBCD00828314 /* AudioToolbox.framework in Frameworks */,
-				AAEE7A89171241DE00D0E584 /* CoreData.framework in Frameworks */,
 				AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */,
 				AAE7B79F170782200052E6F3 /* libssh2.a in Frameworks */,
 				AAE7B7A0170782200052E6F3 /* libcrypto.a in Frameworks */,
@@ -576,7 +538,6 @@
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AAD98EF51722005700828314 /* IAP */,
 				AAE7B7A2170782500052E6F3 /* SSH */,
 				AA8DC11016E1407700F93BD7 /* Channels */,
 				AA8DC11516E140B600F93BD7 /* DVR */,
@@ -660,8 +621,6 @@
 				AAFD36371701232000448059 /* TVHSettingsGenericTextViewController.m */,
 				AAFD3630170106DA00448059 /* TVHSettingsGenericFieldViewController.h */,
 				AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */,
-				AAD98EAE1721C3DE00828314 /* TVHSupportMeViewController.h */,
-				AAD98EAF1721C3DE00828314 /* TVHSupportMeViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -895,7 +854,6 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				AAD98EB61721CC7700828314 /* GoogleAdMobAdsSdk */,
 				AAEE7A80171240AE00D0E584 /* GoogleAnalytics SDK */,
 				AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */,
 				AA97AA52170642E10068702E /* PDKeychainBindingsController */,
@@ -976,12 +934,7 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AAD98EF31721EE9000828314 /* iAd.framework */,
-				AAD98EC61721E1DF00828314 /* AdSupport.framework */,
-				AAD98EC41721E1D500828314 /* StoreKit.framework */,
-				AAD98EB31721CBD400828314 /* MessageUI.framework */,
-				AAD98EB11721CBCD00828314 /* AudioToolbox.framework */,
-				AAEE7A88171241DE00D0E584 /* CoreData.framework */,
+				AA3EE6F7172B008100AD60F5 /* CoreData.framework */,
 				AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */,
 				AAE7B79C170782200052E6F3 /* libssh2.a */,
 				AAE7B79D170782200052E6F3 /* libcrypto.a */,
@@ -1068,35 +1021,6 @@
 				AAE5274016F2938E002047E4 /* TVHTableMgrActions.m */,
 			);
 			name = Misc;
-			sourceTree = "<group>";
-		};
-		AAD98EB61721CC7700828314 /* GoogleAdMobAdsSdk */ = {
-			isa = PBXGroup;
-			children = (
-				AAD98EB71721CC7700828314 /* GADAdMobExtras.h */,
-				AAD98EB81721CC7700828314 /* GADAdNetworkExtras.h */,
-				AAD98EB91721CC7700828314 /* GADAdSize.h */,
-				AAD98EBA1721CC7700828314 /* GADBannerView.h */,
-				AAD98EBB1721CC7700828314 /* GADBannerViewDelegate.h */,
-				AAD98EBC1721CC7700828314 /* GADInterstitial.h */,
-				AAD98EBD1721CC7700828314 /* GADInterstitialDelegate.h */,
-				AAD98EBE1721CC7700828314 /* GADRequest.h */,
-				AAD98EBF1721CC7700828314 /* GADRequestError.h */,
-				AAD98EC01721CC7700828314 /* libGoogleAdMobAds.a */,
-				AAD98EC11721CC7700828314 /* README.txt */,
-			);
-			path = GoogleAdMobAdsSdk;
-			sourceTree = SOURCE_ROOT;
-		};
-		AAD98EF51722005700828314 /* IAP */ = {
-			isa = PBXGroup;
-			children = (
-				AAD98EF61722009400828314 /* IAPHelper.h */,
-				AAD98EF71722009400828314 /* IAPHelper.m */,
-				AAD98EF81722009400828314 /* TVHIAPHelper.m */,
-				AAD98EF91722009400828314 /* TVHIAPHelper.h */,
-			);
-			name = IAP;
 			sourceTree = "<group>";
 		};
 		AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */ = {
@@ -1306,7 +1230,6 @@
 				AA5E8A1D170F61E200779AC6 /* hardware.png in Resources */,
 				AA5E8A1E170F61E200779AC6 /* hardware@2x.png in Resources */,
 				AA35A88E171A324A00412EFF /* empty.png in Resources */,
-				AAD98EC31721CC7700828314 /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1440,9 +1363,6 @@
 				AA4059FC171DAA6200A5BBDB /* SDWebImagePrefetcher.m in Sources */,
 				AA4059FD171DAA6200A5BBDB /* UIImageView+WebCache.m in Sources */,
 				AAFF9301171DD73300EDC6DF /* TVHImageCache.m in Sources */,
-				AAD98EB01721C3DE00828314 /* TVHSupportMeViewController.m in Sources */,
-				AAD98EFA1722009400828314 /* IAPHelper.m in Sources */,
-				AAD98EFB1722009400828314 /* TVHIAPHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1624,7 +1544,6 @@
 					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/libssh2-for-iOS/lib\"",
 					"\"$(SRCROOT)/GoogleAnalytics SDK\"",
-					"\"$(SRCROOT)/GoogleAdMobAdsSdk\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TvhClient;
@@ -1658,7 +1577,6 @@
 					"\"$(SRCROOT)/TestFlight SDK\"",
 					"\"$(SRCROOT)/libssh2-for-iOS/lib\"",
 					"\"$(SRCROOT)/GoogleAnalytics SDK\"",
-					"\"$(SRCROOT)/GoogleAdMobAdsSdk\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TvhClient;
