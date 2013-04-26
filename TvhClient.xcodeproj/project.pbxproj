@@ -1545,7 +1545,7 @@
 					"\"$(SRCROOT)/libssh2-for-iOS/lib\"",
 					"\"$(SRCROOT)/GoogleAnalytics SDK\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1578,7 +1578,7 @@
 					"\"$(SRCROOT)/libssh2-for-iOS/lib\"",
 					"\"$(SRCROOT)/GoogleAnalytics SDK\"",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
