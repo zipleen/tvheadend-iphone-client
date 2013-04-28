@@ -82,9 +82,9 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     return NULL;
 }
 
-- (BOOL)connectToHost:(NSString *)host port:(int)port user:(NSString *)user password:(NSString *)password error:(NSError **)error {
+- (BOOL)connectToHost:(NSString *)host port:(int)port user:(NSString *)user password:(NSString *)password error:(NSError *)error {
     if (host.length == 0) {
-        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:300 userInfo:@{NSLocalizedDescriptionKey:@"No host"}];
+        error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:300 userInfo:@{NSLocalizedDescriptionKey:@"No host"}];
         return false;
     }
     
@@ -93,7 +93,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
 	const char* passwordChar = [password cStringUsingEncoding:NSUTF8StringEncoding];
     struct sockaddr_in sock_serv_addr;
     if ( hostChar == NULL ) {
-        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:400 userInfo:@{NSLocalizedDescriptionKey:@"Failed to resolve DNS name"}];
+        error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:400 userInfo:@{NSLocalizedDescriptionKey:@"Failed to resolve DNS name"}];
         return false;
     }
     unsigned long hostaddr = inet_addr(hostChar);
@@ -103,14 +103,14 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     sock_serv_addr.sin_port = htons(port);
     sock_serv_addr.sin_addr.s_addr = hostaddr;
     if (connect(sock, (struct sockaddr *) (&sock_serv_addr), sizeof(sock_serv_addr)) != 0) {
-        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:400 userInfo:@{NSLocalizedDescriptionKey:@"Failed to connect"}];
+        error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:400 userInfo:@{NSLocalizedDescriptionKey:@"Failed to connect"}];
         return false;
     }
 	
     /* Create a session instance */
     session = libssh2_session_init();
     if (!session) {
-        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:401 userInfo:@{NSLocalizedDescriptionKey : @"Create session failed"}];
+        error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:401 userInfo:@{NSLocalizedDescriptionKey : @"Create session failed"}];
         return false;
     }
 	
@@ -123,7 +123,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     while ((rc = libssh2_session_startup(session, sock)) ==
            LIBSSH2_ERROR_EAGAIN);
     if (rc) {
-        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:402 userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"Failure establishing SSH session: %d", rc]}];
+        error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:402 userInfo:@{NSLocalizedDescriptionKey : [NSString stringWithFormat:@"Failure establishing SSH session: %d", rc]}];
         return false;
     }
 
@@ -131,7 +131,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
 		/* We could authenticate via password */
         while ((rc = libssh2_userauth_password(session, userChar, passwordChar)) == LIBSSH2_ERROR_EAGAIN);
 		if (rc) {
-            *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:403 userInfo:@{NSLocalizedDescriptionKey : @"Authentication by password failed."}];
+            error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:403 userInfo:@{NSLocalizedDescriptionKey : @"Authentication by password failed."}];
             return false;
 		}
 	}
@@ -139,7 +139,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     return true;
 }
 
-- (NSString *)executeCommand:(NSString *)command error:(NSError **)error {
+- (NSString *)executeCommand:(NSString *)command error:(NSError *)error {
 	const char* commandChar = [command cStringUsingEncoding:NSUTF8StringEncoding];
 
 	NSString *result = nil;
@@ -152,7 +152,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     }
     if( channel == NULL )
     {
-        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:501 userInfo:@{NSLocalizedDescriptionKey : @"No channel found."}];
+        error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:501 userInfo:@{NSLocalizedDescriptionKey : @"No channel found."}];
         return nil;
     }
     while( (rc = libssh2_channel_exec(channel, commandChar)) == LIBSSH2_ERROR_EAGAIN )
@@ -161,7 +161,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     }
     if( rc != 0 )
     {
-        *error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:502 userInfo:@{NSLocalizedDescriptionKey : @"Error while exec command."}];
+        error = [NSError errorWithDomain:@"de.felixschulze.sshwrapper" code:502 userInfo:@{NSLocalizedDescriptionKey : @"Error while exec command."}];
         return nil;
     }
     for( ;; )
@@ -277,7 +277,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
     /* Must use non-blocking IO hereafter due to the current libssh2 API */
     libssh2_session_set_blocking(session, 0);
     
-    int rc, i;
+    int rc2, i;
     fd_set fds;
     struct timeval tv;
     ssize_t len, wr;
@@ -288,7 +288,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
         FD_SET(forwardsock, &fds);
         tv.tv_sec = 0;
         tv.tv_usec = 100000;
-        rc = select(forwardsock + 1, &fds, NULL, NULL, &tv);
+        rc2 = select(forwardsock + 1, &fds, NULL, NULL, &tv);
         if (-1 == rc) {
             perror("select");
             close(forwardsock);
@@ -296,7 +296,7 @@ static int waitsocket(int socket_fd, LIBSSH2_SESSION *session)
             if (channel) libssh2_channel_free(channel);
             return;
         }
-        if (rc && FD_ISSET(forwardsock, &fds)) {
+        if (rc2 && FD_ISSET(forwardsock, &fds)) {
             len = recv(forwardsock, buf, sizeof(buf), 0);
             if (len < 0) {
                 perror("read");

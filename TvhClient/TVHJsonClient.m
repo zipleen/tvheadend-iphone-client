@@ -234,9 +234,9 @@ static TVHJsonClient *__jsonClient;
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-        NSError *error = nil;
+        NSError *error;
         sshPortForwardWrapper = [[SSHWrapper alloc] init];
-        [sshPortForwardWrapper connectToHost:hostAddress port:sshHostPort user:username password:password error:&error];
+        [sshPortForwardWrapper connectToHost:hostAddress port:sshHostPort user:username password:password error:error];
         if ( !error ) {
             _readyToUse = YES;
             [sshPortForwardWrapper setPortForwardFromPort:localPort toHost:remoteIp onPort:remotePort];
