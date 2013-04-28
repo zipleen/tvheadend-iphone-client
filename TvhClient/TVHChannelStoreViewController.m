@@ -118,8 +118,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    TVHChannel *ch = [self.channels objectAtIndex:indexPath.row];
-    TVHEpg *currentPlayingProgram = [ch currentPlayingProgram];
+    TVHChannel *channel = [self.channels objectAtIndex:indexPath.row];
+    TVHEpg *currentPlayingProgram = [channel currentPlayingProgram];
     
     UILabel *channelNameLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *currentProgramLabel = (UILabel *)[cell viewWithTag:101];
@@ -131,9 +131,9 @@
     currentTimeProgramLabel.text = nil;
     currentTimeProgress.hidden = true;
     
-    channelNameLabel.text = ch.name;
+    channelNameLabel.text = channel.name;
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
-    [channelImage setImageWithURL:[NSURL URLWithString:ch.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+    [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         if (!error) {
             channelImage.image = [TVHImageCache resizeImage:image];
         }
@@ -154,9 +154,15 @@
         currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
         currentTimeProgress.hidden = false;
         currentTimeProgress.progress = [currentPlayingProgram progress];
-        cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", ch.name, currentPlayingProgram.title, [dateFormatter stringFromDate:currentPlayingProgram.start], NSLocalizedString(@"to",@"accessibility"), [dateFormatter stringFromDate:currentPlayingProgram.end] ];
+        cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", channel.name, currentPlayingProgram.title, [dateFormatter stringFromDate:currentPlayingProgram.start], NSLocalizedString(@"to",@"accessibility"), [dateFormatter stringFromDate:currentPlayingProgram.end] ];
     } else {
-        cell.accessibilityLabel = ch.name;
+        cell.accessibilityLabel = channel.name;
+    }
+    
+    if ( [channel countEpg] > 0 ) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
      
     UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"separator.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
@@ -171,7 +177,9 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"Show Channel Programs" sender:self]; 
+    if ( [[self.channels objectAtIndex:indexPath.row] countEpg] > 0 ) {
+        [self performSegueWithIdentifier:@"Show Channel Programs" sender:self]; 
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
