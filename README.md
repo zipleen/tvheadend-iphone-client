@@ -5,13 +5,17 @@ TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to remo
 
 It allows you to list channels, view channel's EPG, search for programs, schedule recordings (DVR) and view the log / status of the server. It will also allow you to easily launch a third party video application to view the channel's streaming video.
 
+You can now download the app directly from the App Store!
+
+[![TvhClient](http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png)](https://itunes.apple.com/gb/app/tvhclient/id638900112?mt=8&uo=4)
+
 ##Screenshots
 
-![Channels](https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/Channels.png)
-![ChannelPrograms](https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/ChannelPrograms.png)
-![ProgramDetails](https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/ProgramDetails.png)
-![Recordings](https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/Recordings.png)
-![Status](https://raw.github.com/zipleen/tvheadend-iphone-client/screenshots/Screenshots/Status.png)
+![Channels](http://a572.phobos.apple.com/us/r1000/068/Purple/v4/ed/42/4e/ed424e9c-fee9-fc23-c74f-8d9591766fbd/mzl.dthdmvhr.320x480-75.jpg)
+![ChannelPrograms](http://a1437.phobos.apple.com/us/r1000/064/Purple2/v4/08/b6/70/08b67026-50bc-bfcb-e68f-b47d0886ccd4/mzl.ekqhetuf.320x480-75.jpg)
+![ProgramDetails](http://a1542.phobos.apple.com/us/r1000/116/Purple/v4/d7/b5/8f/d7b58fb7-d360-6981-bc04-f1a4c1dd6a88/mzl.fdlipgep.320x480-75.jpg)
+![Recordings](http://a404.phobos.apple.com/us/r1000/120/Purple/v4/f2/0e/4b/f20e4b51-a2d7-0119-8ae0-99415c6c0633/mzl.xshppebg.320x480-75.jpg)
+![Status](http://a1501.phobos.apple.com/us/r1000/070/Purple2/v4/a8/ab/b8/a8abb8a1-d052-f8c8-6730-385615f12bf1/mzl.jzfxfbli.320x480-75.jpg)
 
 ##Features
 - View tags
