@@ -34,6 +34,7 @@
 @property (nonatomic, strong) NSString *tag;
 @property (nonatomic, strong) NSString *genre;
 @property (nonatomic, strong) NSString *weekdays; // mon 1, sun 7
+@property (nonatomic) NSInteger serieslink;
 
 - (void)updateValue:(id)value forKey:(NSString*)key;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;

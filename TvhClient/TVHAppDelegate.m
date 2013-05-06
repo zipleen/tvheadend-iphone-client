@@ -52,8 +52,7 @@
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
 #ifdef TVH_TESTFLIGHT_KEY
-        NSString *testFlightKey = TVH_TESTFLIGHT_KEY;
-        [TestFlight takeOff:testFlightKey];
+        [TestFlight takeOff:TVH_TESTFLIGHT_KEY];
 #endif
     } else {
 #ifdef TVH_GOOGLEANALYTICS_KEY

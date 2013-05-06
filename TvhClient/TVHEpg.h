@@ -41,7 +41,7 @@
 @property (nonatomic) NSInteger duration;
 // recording and metadata
 @property (nonatomic, strong) NSString *schedstate;
-@property (nonatomic, strong) NSString *serieslink;
+@property (nonatomic) NSInteger serieslink;
 @property (nonatomic, strong) NSString *contenttype;
 
 - (void)updateValuesFromDictionary:(NSDictionary*) values;

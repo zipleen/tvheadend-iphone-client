@@ -33,7 +33,6 @@
     self.start = nil;
     self.end = nil;
     self.schedstate = nil;
-    self.serieslink = nil;
     self.contenttype = nil;
 }
 

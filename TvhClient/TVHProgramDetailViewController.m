@@ -73,10 +73,6 @@
         [p setObject:self.epg.schedstate forKey:@"Schedule State"];
     }
     
-    if ( self.epg.serieslink && ![self.epg.serieslink isEqualToString:@"(null)"] ) {
-        [p setObject:self.epg.serieslink forKey:@"Series Link"];
-    }
-    
     return [p copy];
 }
 
@@ -89,47 +85,12 @@
                                     self.tableView);
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
-    
-    dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"E d MMM, HH:mm"];
-    
-    hourFormatter = [[NSDateFormatter alloc] init];
-    hourFormatter.dateFormat = @"HH:mm";
-    
-    self.programTitle.text = self.epg.fullTitle;
-    self.channelTitle.text = self.epg.channel;
-    [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        if (!error) {
-            self.programImage.image = [TVHImageCache resizeImage:image];
-        }
-    } ];
-    
-    self.properties = [self propertiesDict];
-    self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    
-    // shadown
-    self.programImage.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.programImage.layer.shadowOffset = CGSizeMake(0, 2);
-    self.programImage.layer.shadowOpacity = 0.7f;
-    self.programImage.layer.shadowRadius = 1.5;
-    self.programImage.clipsToBounds = NO;
-    self.programImage.contentMode = UIViewContentModeScaleAspectFit;
-    
-    self.view.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
-    
-    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveDvrNotification:)
-                                                 name:@"didSuccessDvrAction"
-                                               object:nil];
+- (void)setSegmentNames {
+    [self.segmentedControl setTitle:NSLocalizedString(@"Details", nil) forSegmentAtIndex:0];
+    [self.segmentedControl setTitle:NSLocalizedString(@"See Again", nil) forSegmentAtIndex:1];
+}
+
+- (void)setSegmentIcons {
     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     factory.size = 32*2;
     factory.colors = @[[UIColor grayColor]];
@@ -140,9 +101,76 @@
     factory1.size = 16;
     [self.navigationItem.rightBarButtonItem setImage:[factory1 createImageForIcon:NIKFontAwesomeIconFilm]];
     [self.navigationItem.rightBarButtonItem setAccessibilityLabel:NSLocalizedString(@"Play Channel", @"accessbility")];
+}
+
+- (void)setProgramImageShadow {
+    // shadow
+    self.programImage.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.programImage.layer.shadowOffset = CGSizeMake(0, 2);
+    self.programImage.layer.shadowOpacity = 0.7f;
+    self.programImage.layer.shadowRadius = 1.5;
+    self.programImage.clipsToBounds = NO;
+    self.programImage.contentMode = UIViewContentModeScaleAspectFit;
+
+}
+
+- (void)setHeaderChannelData {
+    self.programTitle.text = self.epg.fullTitle;
+    self.channelTitle.text = self.epg.channel;
+    [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        if (!error) {
+            self.programImage.image = [TVHImageCache resizeImage:image];
+        }
+    } ];
     
-    [self.segmentedControl setTitle:NSLocalizedString(@"Details", nil) forSegmentAtIndex:0];
-    [self.segmentedControl setTitle:NSLocalizedString(@"See Again", nil) forSegmentAtIndex:1];
+    [self setProgramImageShadow];
+}
+
+- (void)setScreenTheme {
+    self.view.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
+    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
+    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
+    if ( [self.epg serieslink] == 1 ) {
+        [self.record setTitle:NSLocalizedString(@"Rec Series", @"Record series button") forState:UIControlStateNormal];
+    } else {
+        [self.record setTitle:NSLocalizedString(@"AutoRec", @"Auto rec button") forState:UIControlStateNormal];
+    }
+}
+
+- (void)initFormatters {
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"E d MMM, HH:mm"];
+    
+    hourFormatter = [[NSDateFormatter alloc] init];
+    hourFormatter.dateFormat = @"HH:mm";
+
+}
+
+- (void)setChannelPropertiesFromChannel {
+    self.properties = [self propertiesDict];
+    self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveDvrNotification:)
+                                                 name:@"didSuccessDvrAction"
+                                               object:nil];
+    
+    [self initFormatters];
+    [self setHeaderChannelData];
+    [self setChannelPropertiesFromChannel];
+    [self setScreenTheme];
+    
+    [self setSegmentIcons];
+    [self setSegmentNames];
 }
 
 - (void)didReceiveMemoryWarning
@@ -152,6 +180,7 @@
 }
 
 - (void)viewDidUnload {
+    [super viewDidUnload];
     [self setProgramTitle:nil];
     [self setProgramImage:nil];
     self.epg = nil;
@@ -166,7 +195,6 @@
     self.properties = nil;
     self.propertiesKeys = nil;
     [self setChannelTitle:nil];
-    [super viewDidUnload];
 }
 
 #pragma MARK table view delegate
