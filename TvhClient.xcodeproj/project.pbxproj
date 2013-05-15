@@ -142,6 +142,7 @@
 		AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */; };
 		AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */; };
 		AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */; };
+		AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */; };
 		AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613716CFDBE8002C6DE1 /* libz.dylib */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
 		AACE489116CC6F1900FE928B /* tv2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488F16CC6F1800FE928B /* tv2@2x.png */; };
@@ -171,6 +172,11 @@
 		AAE7B7A1170782200052E6F3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79E170782200052E6F3 /* libssl.a */; };
 		AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */; };
 		AAEE7A87171240AE00D0E584 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */; };
+		AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647B17441D71006C96CE /* JASidePanelController.m */; };
+		AAF2647F17441D71006C96CE /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647D17441D71006C96CE /* UIViewController+JASidePanel.m */; };
+		AAF2648217441EC2006C96CE /* TVHMainSlidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648117441EC2006C96CE /* TVHMainSlidePanelViewController.m */; };
+		AAF2648517442010006C96CE /* TVHRecordingsSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648417442010006C96CE /* TVHRecordingsSplitViewController.m */; };
+		AAF2648817442247006C96CE /* TVHLeftMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648717442247006C96CE /* TVHLeftMainMenuViewController.m */; };
 		AAF54A1916C70D1B0076DF17 /* TVHTagStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */; };
 		AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1B16C70D270076DF17 /* TVHTag.m */; };
 		AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagStoreViewController.m */; };
@@ -407,6 +413,8 @@
 		AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueBack@2x.png"; sourceTree = "<group>"; };
 		AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueButton.png; sourceTree = "<group>"; };
 		AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueButton@2x.png"; sourceTree = "<group>"; };
+		AAC8426C172F11A5004BAB24 /* TVHChannelSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelSplitViewController.h; sourceTree = "<group>"; };
+		AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelSplitViewController.m; sourceTree = "<group>"; };
 		AACA613716CFDBE8002C6DE1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		AACE488E16CC6F1800FE928B /* tv2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tv2.png; sourceTree = "<group>"; };
 		AACE488F16CC6F1800FE928B /* tv2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tv2@2x.png"; sourceTree = "<group>"; };
@@ -453,6 +461,16 @@
 		AAEE7A84171240AE00D0E584 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
 		AAEE7A85171240AE00D0E584 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
 		AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		AAF2647A17441D71006C96CE /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = JASidePanels/JASidePanels/Source/JASidePanelController.h; sourceTree = SOURCE_ROOT; };
+		AAF2647B17441D71006C96CE /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = JASidePanels/JASidePanels/Source/JASidePanelController.m; sourceTree = SOURCE_ROOT; };
+		AAF2647C17441D71006C96CE /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JASidePanel.h"; path = "JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.h"; sourceTree = SOURCE_ROOT; };
+		AAF2647D17441D71006C96CE /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JASidePanel.m"; path = "JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.m"; sourceTree = SOURCE_ROOT; };
+		AAF2648017441EC2006C96CE /* TVHMainSlidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHMainSlidePanelViewController.h; sourceTree = "<group>"; };
+		AAF2648117441EC2006C96CE /* TVHMainSlidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHMainSlidePanelViewController.m; sourceTree = "<group>"; };
+		AAF264831744200F006C96CE /* TVHRecordingsSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHRecordingsSplitViewController.h; sourceTree = "<group>"; };
+		AAF2648417442010006C96CE /* TVHRecordingsSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHRecordingsSplitViewController.m; sourceTree = "<group>"; };
+		AAF2648617442247006C96CE /* TVHLeftMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHLeftMainMenuViewController.h; sourceTree = "<group>"; };
+		AAF2648717442247006C96CE /* TVHLeftMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHLeftMainMenuViewController.m; sourceTree = "<group>"; };
 		AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore.h; sourceTree = "<group>"; };
 		AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore.m; sourceTree = "<group>"; };
 		AAF54A1A16C70D270076DF17 /* TVHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTag.h; sourceTree = "<group>"; };
@@ -731,6 +749,7 @@
 		AA7C3FD016C709380057E4C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AAC8426B172F1087004BAB24 /* iPad */,
 				AA8DC11616E140C800F93BD7 /* Channels */,
 				AA8DC11816E140DE00F93BD7 /* DVR */,
 				AA99BC5916ED537A0087060A /* EPG */,
@@ -866,6 +885,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AAF2647917441D57006C96CE /* JASlidingPanels */,
 				AAEE7A80171240AE00D0E584 /* GoogleAnalytics SDK */,
 				AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */,
 				AA97AA52170642E10068702E /* PDKeychainBindingsController */,
@@ -1026,6 +1046,18 @@
 			name = Logs;
 			sourceTree = "<group>";
 		};
+		AAC8426B172F1087004BAB24 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				AAF264891744224E006C96CE /* SlidePanel */,
+				AAC8426C172F11A5004BAB24 /* TVHChannelSplitViewController.h */,
+				AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */,
+				AAF264831744200F006C96CE /* TVHRecordingsSplitViewController.h */,
+				AAF2648417442010006C96CE /* TVHRecordingsSplitViewController.m */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		AAD8EA041710CB8E00932A0E /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -1095,6 +1127,28 @@
 			);
 			path = "GoogleAnalytics SDK";
 			sourceTree = SOURCE_ROOT;
+		};
+		AAF2647917441D57006C96CE /* JASlidingPanels */ = {
+			isa = PBXGroup;
+			children = (
+				AAF2647A17441D71006C96CE /* JASidePanelController.h */,
+				AAF2647B17441D71006C96CE /* JASidePanelController.m */,
+				AAF2647C17441D71006C96CE /* UIViewController+JASidePanel.h */,
+				AAF2647D17441D71006C96CE /* UIViewController+JASidePanel.m */,
+			);
+			name = JASlidingPanels;
+			sourceTree = "<group>";
+		};
+		AAF264891744224E006C96CE /* SlidePanel */ = {
+			isa = PBXGroup;
+			children = (
+				AAF2648017441EC2006C96CE /* TVHMainSlidePanelViewController.h */,
+				AAF2648117441EC2006C96CE /* TVHMainSlidePanelViewController.m */,
+				AAF2648617442247006C96CE /* TVHLeftMainMenuViewController.h */,
+				AAF2648717442247006C96CE /* TVHLeftMainMenuViewController.m */,
+			);
+			name = SlidePanel;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -1379,6 +1433,12 @@
 				AA4059FC171DAA6200A5BBDB /* SDWebImagePrefetcher.m in Sources */,
 				AA4059FD171DAA6200A5BBDB /* UIImageView+WebCache.m in Sources */,
 				AAFF9301171DD73300EDC6DF /* TVHImageCache.m in Sources */,
+				AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */,
+				AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */,
+				AAF2647F17441D71006C96CE /* UIViewController+JASidePanel.m in Sources */,
+				AAF2648217441EC2006C96CE /* TVHMainSlidePanelViewController.m in Sources */,
+				AAF2648517442010006C96CE /* TVHRecordingsSplitViewController.m in Sources */,
+				AAF2648817442247006C96CE /* TVHLeftMainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

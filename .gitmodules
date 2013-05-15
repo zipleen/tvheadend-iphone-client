@@ -22,3 +22,6 @@
 [submodule "FontAwesomeIconFactory"]
 	path = FontAwesomeIconFactory
 	url = git://github.com/nschum/FontAwesomeIconFactory.git
+[submodule "JASidePanels"]
+	path = JASidePanels
+	url = git://github.com/gotosleep/JASidePanels.git
