@@ -25,7 +25,7 @@
 
 @interface TVHChannelStore ()
 @property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, strong) TVHEpgStore *epgStore;
@@ -36,7 +36,7 @@
 
 - (TVHEpgStore*)epgStore {
     if( ! _epgStore ){
-        _epgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying"];
+        _epgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying" withTvhServer:self.tvhServer];
         [_epgStore setDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
@@ -50,11 +50,6 @@
     self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetChannelStore)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(fetchChannelList)
                                                  name:@"channelsNotificationClassReceived"
                                                object:nil];
@@ -65,6 +60,9 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.channels = nil;
+    self.epgStore = nil;
+    self.jsonClient = nil;
+    self.profilingDate = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -81,7 +79,7 @@
     NSMutableArray *channels = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHChannel *channel = [[TVHChannel alloc] init];
+        TVHChannel *channel = [[TVHChannel alloc] initWithTvhServer:self.tvhServer];
         [obj enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             [channel setValue:obj forKey:key];
         }];
@@ -97,12 +95,6 @@
 #ifdef TESTING
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);
 #endif
-}
-
-- (void)resetChannelStore {
-    self.channels = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self.epgStore];
-    self.epgStore = nil;
 }
 
 - (void)fetchChannelList {

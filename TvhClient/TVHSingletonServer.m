@@ -8,16 +8,36 @@
 
 #import "TVHSingletonServer.h"
 
-@implementation TVHSingletonServer
+@implementation TVHSingletonServer {
+    TVHServer *__tvhserver;
+}
 
-+ (TVHServer*)sharedServerInstance {
-    static TVHServer *__sharedInstance;
++ (TVHSingletonServer*)sharedInstance {
+    static TVHSingletonServer *__sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHServer alloc] init];
+        __sharedInstance = [[TVHSingletonServer alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:__sharedInstance
+                                                 selector:@selector(resetServer)
+                                                     name:@"resetAllObjects"
+                                                   object:nil];
     });
     
     return __sharedInstance;
 }
 
++ (TVHServer*)sharedServerInstance {
+    return [[TVHSingletonServer sharedInstance] serverInstance];
+}
+
+- (TVHServer*)serverInstance {
+    if ( ! __tvhserver ) {
+        __tvhserver = [[TVHServer alloc] init];
+    }
+    return __tvhserver;
+}
+
+- (void)resetServer {
+    __tvhserver = nil;
+}
 @end

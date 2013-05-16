@@ -35,5 +35,4 @@
 
 - (NSArray*)tags;
 - (void)fetchTagList;
-- (void)resetTagStore;
 @end

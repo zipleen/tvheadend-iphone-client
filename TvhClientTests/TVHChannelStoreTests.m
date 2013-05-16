@@ -38,15 +38,13 @@
 }
 
 - (void)tearDown {
-    TVHChannelStore *store = [TVHChannelStore sharedInstance];
-    store.channels = nil;
     [super tearDown];
 }
 
 - (void)testJsonChannelParsing
 {
     NSData *data = [TVHTestHelper loadFixture:@"Log.channels"];
-    TVHChannelStore *store = [TVHChannelStore sharedInstance];
+    TVHChannelStore *store = [[TVHChannelStore alloc] init];
     STAssertNotNil(store, @"creating channel store object");
     
     [store fetchedData:data];

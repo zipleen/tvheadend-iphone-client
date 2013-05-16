@@ -48,16 +48,12 @@
     self.tvhServer = tvhServer;
     self.jsonClient = [self.tvhServer jsonClient];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetEpgStore)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
     self.statsEpgName = @"Shared";
     return self;
 }
 
-- (id)initWithStatsEpgName:(NSString*)statsEpgName {
-    self = [self init];
+- (id)initWithStatsEpgName:(NSString*)statsEpgName withTvhServer:(TVHServer*)tvhServer {
+    self = [self initWithTvhServer:tvhServer];
     if (!self) return nil;
     
     self.statsEpgName = statsEpgName;
@@ -75,15 +71,11 @@
     return _epgStore;
 }
 
-- (void)resetEpgStore {
-    self.epgStore = nil;
-    self.filterToChannelName = nil;
-    self.filterToProgramTitle = nil;
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
+    self.filterToChannelName = nil;
+    self.filterToProgramTitle = nil;
 }
 
 - (void)addEpgItemToStore:(TVHEpg*)epgItem {

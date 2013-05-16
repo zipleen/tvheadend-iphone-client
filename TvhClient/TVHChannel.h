@@ -24,6 +24,7 @@
 
 @class TVHEpg;
 @class TVHEpgStore;
+@class TVHServer;
 
 @protocol TVHChannelDelegate <NSObject>
 - (void)didLoadEpgChannel;
@@ -39,6 +40,7 @@
 @property (nonatomic, strong) NSData *image;
 @property (nonatomic) NSInteger chid;
 @property (nonatomic, strong) NSArray *tags;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 
 - (void)setCh_icon:(NSString*)icon;
 - (bool)hasTag:(NSInteger)tag;

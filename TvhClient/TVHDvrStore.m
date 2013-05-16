@@ -23,7 +23,7 @@
 
 @interface TVHDvrStore()
 @property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrItems;
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
 @property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
@@ -45,11 +45,6 @@
                                              selector:@selector(receiveDvrdbNotification:)
                                                  name:@"dvrdbNotificationClassReceived"
                                                object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetDvrStore)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
     return self;
 }
 
@@ -66,11 +61,6 @@
             [self fetchDvr];
         }
     }
-}
-
-- (void)resetDvrStore {
-    self.dvrItems = nil;
-    self.cachedDvrItems = nil;
 }
 
 - (NSArray*)dvrItems {

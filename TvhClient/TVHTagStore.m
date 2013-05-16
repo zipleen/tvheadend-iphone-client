@@ -24,7 +24,7 @@
 
 @interface TVHTagStore()
 @property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 @property (nonatomic, strong) NSDate *profilingDate;
@@ -40,11 +40,6 @@
     self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetTagStore)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(fetchTagList)
                                                  name:@"channeltagsNotificationClassReceived"
                                                object:nil];
@@ -55,6 +50,9 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.tags = nil;
+    self.tvhServer = nil;
+    self.jsonClient = nil;
+    self.profilingDate = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {
@@ -120,12 +118,6 @@
         NSLog(@"[TagList HTTPClient Error]: %@", error.description);
     }];
 }
-
-- (void)resetTagStore {
-    self.tags = nil;
-    self.profilingDate = nil;
-}
-
 
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate {
     if (_delegate != delegate) {

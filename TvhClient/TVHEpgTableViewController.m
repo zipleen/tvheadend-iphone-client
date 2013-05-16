@@ -25,7 +25,7 @@
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHImageCache.h"
-#import "TVHSettings.h"
+#import "TVHSingletonServer.h"
 #import "TVHShowNotice.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
@@ -44,7 +44,8 @@
     if ( !_epgStore ) {
         // we need a DIFFERENT epgstore, because of the delegate
         // should we change this to a notification? this epgstore SHOULD be shared!!
-        _epgStore = [[TVHEpgStore alloc] init];
+        _epgStore = [[TVHEpgStore alloc] initWithTvhServer:[TVHSingletonServer sharedServerInstance]];
+        [self.epgStore setDelegate:self];
     }
     return _epgStore;
 }
@@ -52,8 +53,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.epgStore setDelegate:self];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];

@@ -43,9 +43,8 @@
 
 - (void)resetControllerData {
     self.tags = nil;
-    //[self.tagStore fetchTagList];
-    // why am I getting fetchChannelList here ?!
-    //[[TVHChannelStore sharedInstance] fetchChannelList];
+    [self.tagStore setDelegate:self];
+    [self.tagStore fetchTagList];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -70,10 +69,7 @@
     TVHSettings *settings = [TVHSettings sharedInstance];
     if( [settings selectedServer] == NSNotFound ) {
         [self performSegueWithIdentifier:@"ShowSettings" sender:self];
-    } else {
-        // fetch tags
-        [self.tagStore fetchTagList];
-    }
+    } 
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetControllerData)

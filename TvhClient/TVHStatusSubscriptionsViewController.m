@@ -33,9 +33,9 @@
     NSDate *lastTableUpdate;
 }
 
-@property (strong, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
-@property (strong, nonatomic) TVHAdaptersStore *adapterStore;
-@property (strong, nonatomic) TVHCometPollStore *cometPoll;
+@property (weak, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
+@property (weak, nonatomic) TVHAdaptersStore *adapterStore;
+@property (weak, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
 @implementation TVHStatusSubscriptionsViewController
@@ -43,6 +43,7 @@
 - (TVHStatusSubscriptionsStore*) statusSubscriptionsStore {
     if ( _statusSubscriptionsStore == nil) {
         _statusSubscriptionsStore = [[TVHSingletonServer sharedServerInstance] statusStore];
+        [self.statusSubscriptionsStore setDelegate:self];
     }
     return _statusSubscriptionsStore;
 }
@@ -50,6 +51,7 @@
 - (TVHAdaptersStore*) adapterStore {
     if ( _adapterStore == nil) {
         _adapterStore = [[TVHSingletonServer sharedServerInstance] adapterStore];
+        [self.adapterStore setDelegate:self];
     }
     return _adapterStore;
 }
@@ -57,9 +59,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    [self.adapterStore setDelegate:self];
-    [self.statusSubscriptionsStore setDelegate:self];
     
     self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
     
@@ -107,8 +106,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.adapterStore fetchAdapters];
-    [self.statusSubscriptionsStore fetchStatusSubscriptions];
+    //[self.adapterStore fetchAdapters];
+    //[self.statusSubscriptionsStore fetchStatusSubscriptions];
     [self changePollingIcon];
 }
 

@@ -22,9 +22,9 @@
 #import "TVHSingletonServer.h"
 
 @interface TVHDebugLogViewController () <UISearchBarDelegate>
-@property (strong, nonatomic) TVHLogStore *logStore;
+@property (weak, nonatomic) TVHLogStore *logStore;
 @property (strong, nonatomic) NSArray *logLines;
-@property (strong, nonatomic) TVHCometPollStore *cometPoll;
+@property (weak, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
 @implementation TVHDebugLogViewController {
@@ -161,6 +161,8 @@
 
 - (IBAction)clearLog:(id)sender {
     [self.logStore clearLog];
+    self.logStore = [[TVHSingletonServer sharedServerInstance] logStore];
+    [self.logStore setDelegate:self];
     [self reloadData];
 }
 

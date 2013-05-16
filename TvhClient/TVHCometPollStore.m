@@ -27,7 +27,7 @@
     int errors;
 }
 @property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSString *boxid;
 @property (nonatomic) BOOL debugActive;
 //@property (nonatomic, strong) NSDate *profilingDate;
@@ -43,17 +43,21 @@
     
     errors = 0;
     self.debugActive = false;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(fetchCometPollStatus)
                                                  name:@"fetchCometPollStatus"
                                                object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetCometPoll)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
-
+    
     return self;
 }
 
@@ -67,13 +71,10 @@
     }
 }
 
-- (void)resetCometPoll {
-    self.jsonClient = nil;
-}
-
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"fetchCometPollStatus" object:nil];
     self.boxid = nil;
 }
 

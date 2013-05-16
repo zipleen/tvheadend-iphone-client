@@ -23,7 +23,7 @@
 
 @interface TVHStatusSubscriptionsStore()
 @property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *subscriptions;
 @property (nonatomic, weak) id <TVHStatusSubscriptionsDelegate> delegate;
 @end
@@ -39,11 +39,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveSubscriptionNotification:)
                                                  name:@"subscriptionsNotificationClassReceived"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetStatusSubscriptionsStore)
-                                                 name:@"resetAllObjects"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -77,10 +72,6 @@
             [self.delegate didLoadStatusSubscriptions];
         }
     }
-}
-
-- (void)resetStatusSubscriptionsStore {
-    self.subscriptions = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {

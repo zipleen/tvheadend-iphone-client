@@ -348,7 +348,7 @@
             [vc setSelectedOption:[self.settings sortChannel]];
             [vc setResponseBack:^(NSInteger order) {
                 [[TVHSettings sharedInstance] setSortChannel:order];
-                [[[TVHSingletonServer sharedServerInstance] channelStore] resetChannelStore];
+                
             }];
         }
     }

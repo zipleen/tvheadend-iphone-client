@@ -41,8 +41,8 @@
     NIKFontAwesomeIconFactory *factory;
 }
 
-@property (strong, nonatomic) TVHDvrStore *dvrStore;
-@property (strong, nonatomic) TVHAutoRecStore *autoRecStore;
+@property (weak, nonatomic) TVHDvrStore *dvrStore;
+@property (weak, nonatomic) TVHAutoRecStore *autoRecStore;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -82,8 +82,12 @@
 }
 
 - (void)resetRecordingsStore {
+    [self.dvrStore setDelegate:self];
     [self.dvrStore fetchDvr];
+    
+    [self.autoRecStore setDelegate:self];
     [self.autoRecStore fetchDvrAutoRec];
+
 }
 
 - (void)viewDidLoad

@@ -113,27 +113,18 @@
     
     [[TVHNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetJsonClient)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
-    
     //imageCacheTransform = [[TVHImageCache alloc] init];
     //SDWebImageManager.sharedManager.delegate = imageCacheTransform;
     return self;
 }
 
 - (void)dealloc {
+    [[self operationQueue] cancelAllOperations];
+    [self stopPortForward];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)resetJsonClient {
-    [[self operationQueue] cancelAllOperations];
-    [self stopPortForward];
-}
-
 #pragma mark replace
-
 
 - (void)getPath:(NSString *)path
      parameters:(NSDictionary *)parameters
@@ -234,6 +225,9 @@
 }
 
 - (void)stopPortForward {
+    if ( ! sshPortForwardWrapper ) {
+        return ;
+    }
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         [sshPortForwardWrapper closeConnection];

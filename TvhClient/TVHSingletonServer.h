@@ -10,5 +10,6 @@
 #import "TVHServer.h"
 
 @interface TVHSingletonServer : NSObject
++ (TVHSingletonServer*)sharedInstance;
 + (TVHServer*)sharedServerInstance;
 @end

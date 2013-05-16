@@ -24,7 +24,6 @@
 #define MAXLOGLINES 500
 
 @interface TVHLogStore()
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSMutableArray *logLines;
 @property (nonatomic, weak) id <TVHLogDelegate> delegate;
 @end
@@ -46,20 +45,11 @@
                                              selector:@selector(receiveDebugLogNotification:)
                                                  name:@"logmessageNotificationClassReceived"
                                                object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetLogStore)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
     return self;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    self.logLines = nil;
-}
-
-- (void)resetLogStore {
     self.logLines = nil;
 }
 

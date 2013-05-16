@@ -23,7 +23,7 @@
 
 @interface TVHAutoRecStore()
 @property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrAutoRecItems;
 @property (nonatomic, weak) id <TVHAutoRecStoreDelegate> delegate;
 @property (nonatomic, strong) NSDate *profilingDate;
@@ -42,15 +42,12 @@
                                                  name:@"autorecNotificationClassReceived"
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetAutorecStore)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
     return self;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.dvrAutoRecItems = nil;
 }
 
 - (void)receiveAutoRecNotification:(NSNotification *) notification {
@@ -60,10 +57,6 @@
             [self fetchDvrAutoRec];
         }
     }
-}
-
-- (void)resetAutorecStore{
-    self.dvrAutoRecItems = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {

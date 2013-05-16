@@ -34,7 +34,6 @@
 @property (nonatomic) NSInteger filterTag;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchChannelList;
-- (void)resetChannelStore;
 
 - (NSArray*)channels;
 - (NSArray*)arrayChannels;

@@ -13,24 +13,18 @@
 - (TVHServer*)init {
     self = [super init];
     if (self) {
-        
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(resetData)
-                                                     name:@"resetAllObjects"
-                                                   object:nil];
-
+        [self.tagStore fetchTagList];
+        [self.channelStore fetchChannelList];
+        [self.statusStore fetchStatusSubscriptions];
+        [self.adapterStore fetchAdapters];
+        [self.logStore clearLog];
     }
     return self;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (TVHTagStore*)tagStore {
     if( ! _tagStore ) {
-        _tagStore = [[TVHTagStore alloc] init];
+        _tagStore = [[TVHTagStore alloc] initWithTvhServer:self];
     }
     return _tagStore;
 }
@@ -38,6 +32,7 @@
 - (TVHChannelStore*)channelStore {
     if( ! _channelStore ) {
         _channelStore = [[TVHChannelStore alloc] initWithTvhServer:self];
+        [_channelStore fetchChannelList];
     }
     return _channelStore;
 }
@@ -68,6 +63,13 @@
         _adapterStore = [[TVHAdaptersStore alloc] initWithTvhServer:self];
     }
     return _adapterStore;
+}
+
+- (TVHLogStore*)logStore {
+    if( ! _logStore ) {
+        _logStore = [[TVHLogStore alloc] init];
+    }
+    return _logStore;
 }
 
 - (TVHCometPollStore*)cometStore {

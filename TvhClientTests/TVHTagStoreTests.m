@@ -32,14 +32,12 @@
 @implementation TVHTagStoreTests
 
 - (void)tearDown {
-    TVHTagStore *store = [TVHTagStore sharedInstance];
-    store.tags = nil;
     [super tearDown];
 }
 
 - (void)testJsonTagsParsing {
     NSData *data = [TVHTestHelper loadFixture:@"Log.tags"];
-    TVHTagStore *store = [TVHTagStore sharedInstance];
+    TVHTagStore *store = [[TVHTagStore alloc] init];
     STAssertNotNil(store, @"creating tvhtag store object");
     NSLog(@"olha aqui: %d", [store.tags count]);
     [store fetchedData:data];

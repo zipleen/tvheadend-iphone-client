@@ -26,6 +26,7 @@
 @interface TVHChannel() <TVHEpgStoreDelegate> {
     NSDateFormatter *dateFormatter;
 }
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSMutableArray *channelEpgDataByDay;
 @property (nonatomic, weak) id <TVHChannelDelegate> delegate;
 @end
@@ -40,6 +41,14 @@
     self.tags = nil;
     self.channelEpgDataByDay = nil;
     dateFormatter = nil;
+}
+
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
+    self = [super init];
+    if (!self) return nil;
+    self.tvhServer = tvhServer;
+
+    return self;
 }
 
 - (NSMutableArray*)channelEpgDataByDay{
@@ -162,7 +171,7 @@
 
 - (void)downloadRestOfEpg {
     // spawn a new epgList so we can set a filter to the channel
-    TVHEpgStore *restOfEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"ChannelEPG"];
+    TVHEpgStore *restOfEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"ChannelEPG" withTvhServer:self.tvhServer];
     [restOfEpgStore setDelegate:self];
     [restOfEpgStore setFilterToChannelName:self.name];
     

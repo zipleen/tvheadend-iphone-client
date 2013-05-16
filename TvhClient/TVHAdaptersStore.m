@@ -23,7 +23,7 @@
 
 @interface TVHAdaptersStore()
 @property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *adapters;
 @property (nonatomic, weak) id <TVHAdaptersDelegate> delegate;
 @end
@@ -42,11 +42,6 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(resetAdapterStore)
-                                                 name:@"resetAllObjects"
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(fetchAdapters)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
@@ -55,6 +50,7 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.adapters = nil;
 }
 
 - (void)receiveSubscriptionNotification:(NSNotification *) notification {
@@ -71,10 +67,6 @@
             [self.delegate didLoadAdapters];
         }
     }
-}
-
-- (void)resetAdapterStore {
-    self.adapters = nil;
 }
 
 - (void)fetchedData:(NSData *)responseData {
