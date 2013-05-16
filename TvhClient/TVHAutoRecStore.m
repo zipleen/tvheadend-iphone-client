@@ -19,27 +19,23 @@
 //
 
 #import "TVHAutoRecStore.h"
-#import "TVHJsonClient.h"
+#import "TVHServer.h"
 
 @interface TVHAutoRecStore()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrAutoRecItems;
 @property (nonatomic, weak) id <TVHAutoRecStoreDelegate> delegate;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHAutoRecStore
-+ (id)sharedInstance {
-    static TVHAutoRecStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHAutoRecStore alloc] init];
-    });
-    
-    return __sharedInstance;
-}
 
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
+    if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveAutoRecNotification:)
@@ -98,11 +94,10 @@
 }
 
 - (void)fetchDvrAutoRec {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"autorec", @"table", nil];
     self.dvrAutoRecItems = nil;
     self.profilingDate = [NSDate date];
-    [httpClient getPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient getPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"

@@ -30,6 +30,7 @@
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHImageCache.h"
+#import "TVHSingletonServer.h"
 
 #define SEGMENT_UPCOMING_REC 0
 #define SEGMENT_COMPLETED_REC 1
@@ -51,14 +52,14 @@
 
 - (TVHDvrStore*)dvrStore {
     if ( _dvrStore == nil) {
-        _dvrStore = [TVHDvrStore sharedInstance];
+        _dvrStore = [[TVHSingletonServer sharedServerInstance] dvrStore];
     }
     return _dvrStore;
 }
 
 - (TVHAutoRecStore*)autoRecStore {
     if ( _autoRecStore == nil) {
-        _autoRecStore = [TVHAutoRecStore sharedInstance];
+        _autoRecStore = [[TVHSingletonServer sharedServerInstance] autorecStore];
     }
     return _autoRecStore;
 }

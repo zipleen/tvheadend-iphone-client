@@ -20,9 +20,11 @@
 
 #import "TVHEpgStore.h"
 #import "TVHEpg.h"
-#import "TVHJsonClient.h"
+#import "TVHServer.h"
 
 @interface TVHEpgStore()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *epgStore;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
 @property (nonatomic) NSInteger totalEventCount;
@@ -40,9 +42,11 @@
     }
 }
 
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetEpgStore)
@@ -134,11 +138,10 @@
 }
 
 - (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
     self.profilingDate = [NSDate date];
-    [httpClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"

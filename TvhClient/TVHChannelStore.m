@@ -20,10 +20,12 @@
 
 #import "TVHChannelStore.h"
 #import "TVHEpg.h"
-#import "TVHJsonClient.h"
 #import "TVHSettings.h"
+#import "TVHServer.h"
 
 @interface TVHChannelStore ()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, strong) TVHEpgStore *epgStore;
@@ -32,19 +34,8 @@
 
 @implementation TVHChannelStore 
 
-+ (id)sharedInstance {
-    static TVHChannelStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHChannelStore alloc] init];
-        [__sharedInstance fetchChannelList];
-    });
-    
-    return __sharedInstance;
-}
-
 - (TVHEpgStore*)epgStore {
-    if(!_epgStore){
+    if( ! _epgStore ){
         _epgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying"];
         [_epgStore setDelegate:self];
         [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -52,9 +43,11 @@
     return _epgStore;
 }
 
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetChannelStore)
@@ -113,11 +106,10 @@
 }
 
 - (void)fetchChannelList {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
     self.profilingDate = [NSDate date];
-    [httpClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"

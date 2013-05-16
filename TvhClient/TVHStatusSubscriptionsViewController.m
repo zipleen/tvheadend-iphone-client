@@ -21,11 +21,10 @@
 #import "TVHStatusSubscriptionsViewController.h"
 #import "CKRefreshControl.h"
 #import "TVHShowNotice.h"
-#import "TVHCometPollStore.h"
-#import "TVHChannelStore.h"
 #import "NSString+FileSize.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "TVHSingletonServer.h"
 
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;
@@ -43,14 +42,14 @@
 
 - (TVHStatusSubscriptionsStore*) statusSubscriptionsStore {
     if ( _statusSubscriptionsStore == nil) {
-        _statusSubscriptionsStore = [TVHStatusSubscriptionsStore sharedInstance];
+        _statusSubscriptionsStore = [[TVHSingletonServer sharedServerInstance] statusStore];
     }
     return _statusSubscriptionsStore;
 }
 
 - (TVHAdaptersStore*) adapterStore {
     if ( _adapterStore == nil) {
-        _adapterStore = [TVHAdaptersStore sharedInstance];
+        _adapterStore = [[TVHSingletonServer sharedServerInstance] adapterStore];
     }
     return _adapterStore;
 }
@@ -62,7 +61,7 @@
     [self.adapterStore setDelegate:self];
     [self.statusSubscriptionsStore setDelegate:self];
     
-    self.cometPoll = [TVHCometPollStore sharedInstance];
+    self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -220,7 +219,7 @@
         UIImageView *client2Icon = (UIImageView *)[cell viewWithTag:125];
         
         TVHStatusSubscription *subscription = [self.statusSubscriptionsStore objectAtIndex:indexPath.row];
-        TVHChannel *channel = [[TVHChannelStore sharedInstance] channelWithName:subscription.channel];
+        TVHChannel *channel = [[[TVHSingletonServer sharedServerInstance] channelStore] channelWithName:subscription.channel];
         
         hostnameLabel.text = subscription.hostname;
         programLabel.text = [channel.currentPlayingProgram title];

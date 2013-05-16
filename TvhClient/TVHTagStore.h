@@ -21,6 +21,8 @@
 #import <Foundation/Foundation.h>
 #import "TVHTag.h"
 
+@class TVHServer;
+
 @protocol TVHTagStoreDelegate <NSObject>
 
 - (void)didLoadTags;
@@ -28,7 +30,7 @@
 @end
 
 @interface TVHTagStore : NSObject
-+ (id)sharedInstance;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate;
 
 - (NSArray*)tags;

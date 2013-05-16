@@ -26,7 +26,6 @@
 
 @interface TVHLogStore : NSObject
 @property (nonatomic, strong) NSString *filter;
-+ (id)sharedInstance;
 - (void)setDelegate:(id <TVHLogDelegate>)delegate;
 
 - (NSArray*)arrayLogLines;

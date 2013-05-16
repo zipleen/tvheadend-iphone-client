@@ -19,18 +19,22 @@
 //
 
 #import "TVHStatusSubscriptionsStore.h"
-#import "TVHJsonClient.h"
+#import "TVHServer.h"
 
 @interface TVHStatusSubscriptionsStore()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *subscriptions;
 @property (nonatomic, weak) id <TVHStatusSubscriptionsDelegate> delegate;
 @end
 
 @implementation TVHStatusSubscriptionsStore
 
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveSubscriptionNotification:)
@@ -79,16 +83,6 @@
     self.subscriptions = nil;
 }
 
-+ (id)sharedInstance {
-    static TVHStatusSubscriptionsStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHStatusSubscriptionsStore alloc] init];
-    });
-    
-    return __sharedInstance;
-}
-
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
@@ -117,9 +111,8 @@
 }
 
 - (void)fetchStatusSubscriptions {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
-    [httpClient getPath:@"/subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient getPath:@"/subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
         if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
             [self.delegate didLoadStatusSubscriptions];

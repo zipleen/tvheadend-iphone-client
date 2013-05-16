@@ -23,6 +23,9 @@
 #import "TVHChannelStore.h"
 #import "TVHSettings.h"
 
+// to remove
+#import "TVHSingletonServer.h"
+
 @implementation TVHDvrItem
 
 - (void)dealloc {
@@ -80,7 +83,7 @@
 }
 
 - (TVHChannel*)channelObject {
-    TVHChannelStore *store = [TVHChannelStore sharedInstance];
+    TVHChannelStore *store = [[TVHSingletonServer sharedServerInstance] channelStore];
     TVHChannel *channel = [store channelWithName:self.channel];
     return channel;
 }

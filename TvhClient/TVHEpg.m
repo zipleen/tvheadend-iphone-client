@@ -22,6 +22,9 @@
 #import "TVHDvrActions.h"
 #import "TVHChannelStore.h"
 
+// to remove
+#import "TVHSingletonServer.h"
+
 @implementation TVHEpg
 
 - (void)dealloc {
@@ -111,7 +114,7 @@
 }
 
 - (TVHChannel*)channelObject {
-    TVHChannelStore *store = [TVHChannelStore sharedInstance];
+    TVHChannelStore *store = [[TVHSingletonServer sharedServerInstance] channelStore];
     TVHChannel *channel = [store channelWithId:self.channelid];
     return channel;
 }

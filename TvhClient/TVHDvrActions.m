@@ -22,10 +22,12 @@
 #import "TVHJsonClient.h"
 #import "TVHDvrStore.h"
 
+#import "TVHSingletonServer.h"
+
 @implementation TVHDvrActions
 
 + (void)doDvrAction:(NSString*)action withId:(NSInteger)idint withIdName:(NSString*)idName withConfigName:(NSString*)configName {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
+    TVHJsonClient *httpClient = [[TVHSingletonServer sharedServerInstance] jsonClient];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSString stringWithFormat:@"%d", idint ],
@@ -59,7 +61,7 @@
         }
         
         // reload dvr
-        TVHDvrStore *store = [TVHDvrStore sharedInstance];
+        TVHDvrStore *store = [[TVHSingletonServer sharedServerInstance] dvrStore];
         [store fetchDvr];
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];

@@ -22,6 +22,8 @@
 #import "TVHChannel.h"
 #import "TVHEpgStore.h"
 
+@class TVHServer;
+
 @protocol TVHChannelStoreDelegate <NSObject>
 
 -(void) didLoadChannels;
@@ -30,7 +32,7 @@
 
 @interface TVHChannelStore : NSObject <TVHEpgStoreDelegate>
 @property (nonatomic) NSInteger filterTag;
-+ (id)sharedInstance;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchChannelList;
 - (void)resetChannelStore;
 

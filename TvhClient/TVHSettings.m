@@ -288,8 +288,6 @@ withPassword:(NSString*)password {
     _username = nil;
     _password = nil;
     
-    [[[TVHJsonClient sharedInstance] operationQueue] cancelAllOperations];
-    
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"resetAllObjects"
      object:nil];

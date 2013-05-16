@@ -27,6 +27,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TVHImageCache.h"
 #import "TVHSettings.h"
+#import "TVHSingletonServer.h"
 
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
@@ -47,7 +48,7 @@
 
 - (TVHChannelStore*) channelList {
     if ( _channelStore == nil) {
-        _channelStore = [TVHChannelStore sharedInstance];
+        _channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
     }
     return _channelStore;
 }

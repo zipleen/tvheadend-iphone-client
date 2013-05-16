@@ -21,6 +21,8 @@
 #import <Foundation/Foundation.h>
 #import "TVHAutoRecItem.h"
 
+@class TVHServer;
+
 @protocol TVHAutoRecStoreDelegate <NSObject>
 - (void)didLoadDvrAutoRec;
 @optional
@@ -28,7 +30,7 @@
 @end
 
 @interface TVHAutoRecStore : NSObject
-+ (id)sharedInstance;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)setDelegate:(id <TVHAutoRecStoreDelegate>)delegate;
 - (void)fetchDvrAutoRec;
 

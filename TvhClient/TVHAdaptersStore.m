@@ -19,17 +19,22 @@
 //
 
 #import "TVHAdaptersStore.h"
-#import "TVHJsonClient.h"
+#import "TVHServer.h"
 
 @interface TVHAdaptersStore()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *adapters;
 @property (nonatomic, weak) id <TVHAdaptersDelegate> delegate;
 @end
 
 @implementation TVHAdaptersStore
-- (id)init {
+
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveSubscriptionNotification:)
@@ -72,16 +77,6 @@
     self.adapters = nil;
 }
 
-+ (id)sharedInstance {
-    static TVHAdaptersStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHAdaptersStore alloc] init];
-    });
-    
-    return __sharedInstance;
-}
-
 - (void)fetchedData:(NSData *)responseData {
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
@@ -110,9 +105,8 @@
 }
 
 - (void)fetchAdapters {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
-    [httpClient getPath:@"/tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient getPath:@"/tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
         if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
             [self.delegate didLoadAdapters];

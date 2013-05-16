@@ -24,21 +24,12 @@
 #define MAXLOGLINES 500
 
 @interface TVHLogStore()
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSMutableArray *logLines;
 @property (nonatomic, weak) id <TVHLogDelegate> delegate;
 @end
 
 @implementation TVHLogStore
-
-+ (id)sharedInstance {
-    static TVHLogStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHLogStore alloc] init];
-    });
-    
-    return __sharedInstance;
-}
 
 - (NSMutableArray*)logLines {
     if ( ! _logLines ) {

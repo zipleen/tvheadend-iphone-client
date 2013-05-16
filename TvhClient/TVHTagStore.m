@@ -19,10 +19,12 @@
 //
 
 #import "TVHTagStore.h"
-#import "TVHJsonClient.h"
 #import "TVHSettings.h"
+#import "TVHServer.h"
 
 @interface TVHTagStore()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 @property (nonatomic, strong) NSDate *profilingDate;
@@ -31,19 +33,11 @@
 
 @implementation TVHTagStore
 
-+ (id)sharedInstance {
-    static TVHTagStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHTagStore alloc] init];
-    });
-    
-    return __sharedInstance;
-}
-
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetTagStore)
@@ -98,11 +92,10 @@
 }
 
 - (void)fetchTagList {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
     self.profilingDate = [NSDate date];
-    [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"

@@ -21,7 +21,9 @@
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
 
+@class TVHServer;
 @class TVHEpgStore;
+
 @protocol TVHEpgStoreDelegate <NSObject>
 - (void)didLoadEpg:(TVHEpgStore*)epgStore;
 @optional
@@ -32,6 +34,7 @@
 @property (nonatomic, strong) NSString *statsEpgName;
 @property (nonatomic, strong) NSString *filterToChannelName;
 @property (nonatomic, strong) NSString *filterToProgramTitle;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (id)initWithStatsEpgName:(NSString*)statsEpgName;
 - (void)downloadAllEpgItems;
 - (void)downloadEpgList;

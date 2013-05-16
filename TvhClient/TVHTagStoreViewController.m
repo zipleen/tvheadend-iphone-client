@@ -22,15 +22,10 @@
 #import "TVHChannelStoreViewController.h"
 #import "CKRefreshControl.h"
 #import "UIImageView+WebCache.h"
-#import "TVHChannelStore.h"
-#import "TVHSettings.h"
 #import "TVHShowNotice.h"
 #import "TVHImageCache.h"
 
-#import "TVHStatusSubscriptionsStore.h"
-#import "TVHAdaptersStore.h"
-#import "TVHLogStore.h"
-#import "TVHCometPollStore.h"
+#import "TVHSingletonServer.h"
 
 @interface TVHTagStoreViewController ()
 @property (weak, nonatomic) TVHTagStore *tagStore;
@@ -41,15 +36,16 @@
 
 - (TVHTagStore*)tagStore {
     if ( _tagStore == nil) {
-        _tagStore = [TVHTagStore sharedInstance];
+        _tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
     }
     return _tagStore;
 }
 
 - (void)resetControllerData {
     self.tags = nil;
-    [self.tagStore fetchTagList];
-    [[TVHChannelStore sharedInstance] fetchChannelList];
+    //[self.tagStore fetchTagList];
+    // why am I getting fetchChannelList here ?!
+    //[[TVHChannelStore sharedInstance] fetchChannelList];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -77,15 +73,6 @@
     } else {
         // fetch tags
         [self.tagStore fetchTagList];
-        
-        // and fetch channel data - we need it for a lot of things, channels should always be loaded!
-        [TVHChannelStore sharedInstance];
-        
-        // and maybe start comet poll - after initing status and log
-        [TVHStatusSubscriptionsStore sharedInstance];
-        [TVHAdaptersStore sharedInstance];
-        [TVHLogStore sharedInstance];
-        [TVHCometPollStore sharedInstance];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self

@@ -19,12 +19,12 @@
 //
 
 #import "TVHTableMgrActions.h"
-#import "TVHJsonClient.h"
+#import "TVHSingletonServer.h"
 
 @implementation TVHTableMgrActions
 
 + (void)doTableMgrAction:(NSString*)action inTable:(NSString*)table withEntries:(id)entries {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
+    TVHJsonClient *httpClient = [[TVHSingletonServer sharedServerInstance] jsonClient];
     NSString *stringEntries;
     
     if ( [entries isKindOfClass:[NSString class]] ) {

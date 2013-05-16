@@ -10,10 +10,10 @@
 #import "TVHSettingsServersViewController.h"
 #import "TVHSettingsGenericTextViewController.h"
 #import "TVHSettingsGenericFieldViewController.h"
-#import "TVHChannelStore.h"
 #import "TVHSettings.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "TVHSingletonServer.h"
 
 @interface TVHSettingsViewController () <UITextFieldDelegate> {
     NIKFontAwesomeIconFactory *factory;
@@ -348,7 +348,7 @@
             [vc setSelectedOption:[self.settings sortChannel]];
             [vc setResponseBack:^(NSInteger order) {
                 [[TVHSettings sharedInstance] setSortChannel:order];
-                [[TVHChannelStore sharedInstance] resetChannelStore];
+                [[[TVHSingletonServer sharedServerInstance] channelStore] resetChannelStore];
             }];
         }
     }

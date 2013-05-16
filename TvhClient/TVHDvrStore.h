@@ -25,6 +25,7 @@
 #define RECORDING_FINISHED 1
 #define RECORDING_FAILED 2
 
+@class TVHServer;
 
 @protocol TVHDvrStoreDelegate <NSObject>
 -(void) didLoadDvr:(NSInteger)type;
@@ -32,7 +33,7 @@
 @end
 
 @interface TVHDvrStore : NSObject
-+ (id)sharedInstance;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)setDelegate:(id <TVHDvrStoreDelegate>)delegate;
 - (void)fetchDvr;
 

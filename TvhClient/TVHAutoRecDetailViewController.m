@@ -22,8 +22,7 @@
 #import "TVHSettingsGenericFieldViewController.h"
 #import "NSString+FileSize.h"
 
-#import "TVHChannelStore.h"
-#import "TVHTagStore.h"
+#import "TVHSingletonServer.h"
 
 @interface TVHAutoRecDetailViewController () <UITextFieldDelegate>
 
@@ -139,7 +138,7 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         // channel
         if ( path.section == 0 && path.row == 2 ) {
-            TVHChannelStore *channelStore = [TVHChannelStore sharedInstance];
+            TVHChannelStore *channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
             NSArray *objectChannelList = [channelStore channels];
             NSMutableArray *list = [[NSMutableArray alloc] init];
             [objectChannelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -160,7 +159,7 @@
         
         // tag
         if ( path.section == 0 && path.row == 3 ) {
-            TVHTagStore *tagStore = [TVHTagStore sharedInstance];
+            TVHTagStore *tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
             NSArray *objectTagList = [tagStore tags];
             NSMutableArray *list = [[NSMutableArray alloc] init];
             [objectTagList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

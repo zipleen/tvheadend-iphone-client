@@ -19,7 +19,7 @@
 //
 
 #import "TVHDebugLogViewController.h"
-#import "TVHCometPollStore.h"
+#import "TVHSingletonServer.h"
 
 @interface TVHDebugLogViewController () <UISearchBarDelegate>
 @property (strong, nonatomic) TVHLogStore *logStore;
@@ -44,9 +44,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.logStore = [TVHLogStore sharedInstance];
+    self.logStore = [[TVHSingletonServer sharedServerInstance] logStore];
     [self.logStore setDelegate:self];
-    self.cometPoll = [TVHCometPollStore sharedInstance];
+    self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearLog:)

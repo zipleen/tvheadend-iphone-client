@@ -18,8 +18,10 @@
 //  limitations under the License.
 //
 
+@class TVHServer;
+
 @interface TVHCometPollStore : NSObject
-+ (id)sharedInstance;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchCometPollStatus;
 - (void)toggleDebug;
 - (BOOL)isDebugActive;

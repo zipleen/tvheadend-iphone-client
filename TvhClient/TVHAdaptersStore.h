@@ -21,13 +21,15 @@
 #import <Foundation/Foundation.h>
 #import "TVHAdapter.h"
 
+@class TVHServer;
+
 @protocol TVHAdaptersDelegate <NSObject>
 - (void)didLoadAdapters;
 - (void)didErrorAdaptersStore:(NSError*)error;
 @end
 
 @interface TVHAdaptersStore : NSObject
-+ (id)sharedInstance;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)setDelegate:(id <TVHAdaptersDelegate>)delegate;
 - (void)fetchAdapters;
 

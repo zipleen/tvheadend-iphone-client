@@ -20,12 +20,13 @@
 
 #import "TVHCometPollStore.h"
 #import "TVHSettings.h"
-#import "TVHJsonClient.h"
+#import "TVHServer.h"
 
 @interface TVHCometPollStore() {
     bool timerStarted;
     int errors;
 }
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSString *boxid;
 @property (nonatomic) BOOL debugActive;
@@ -34,29 +35,11 @@
 
 @implementation TVHCometPollStore
 
-+ (id)sharedInstance {
-    static TVHCometPollStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHCometPollStore alloc] init];
-        if ( [[TVHSettings sharedInstance] autoStartPolling] ) {
-            [__sharedInstance startRefreshingCometPoll];
-        }
-    });
-    
-    return __sharedInstance;
-}
-
-- (TVHJsonClient*)jsonClient {
-    if ( ! _jsonClient ) {
-        _jsonClient = [[TVHJsonClient alloc] init];
-    }
-    return _jsonClient;
-}
-
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     errors = 0;
     self.debugActive = false;
@@ -197,12 +180,12 @@
 }
 
 - (void)toggleDebug {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
+    
     self.debugActive = !self.debugActive;
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     
-    [httpClient postPath:@"/comet/debug" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"/comet/debug" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchCometPollStatus];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];

@@ -24,8 +24,6 @@
 #import "SSHWrapper.h"
 #import "TVHImageCache.h"
 
-static TVHJsonClient *__jsonClient;
-
 @implementation TVHNetworkActivityIndicatorManager
 
 - (void)networkingOperationDidStart:(NSNotification *)notification {
@@ -69,6 +67,8 @@ static TVHJsonClient *__jsonClient;
 }
 
 #pragma mark - Initialization
+
+// TODO: remove tvhsettings from this class!!!
 
 - (id)init {
     TVHSettings *settings = [TVHSettings sharedInstance];
@@ -128,22 +128,8 @@ static TVHJsonClient *__jsonClient;
 }
 
 - (void)resetJsonClient {
+    [[self operationQueue] cancelAllOperations];
     [self stopPortForward];
-    __jsonClient = nil;
-}
-
-+ (TVHJsonClient*)sharedInstance {
-    /*static TVHJsonClient *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHJsonClient alloc] init];
-    });
-    
-    return __sharedInstance;*/
-    if ( ! __jsonClient ) {
-        __jsonClient = [[TVHJsonClient alloc] init];
-    }
-    return __jsonClient;
 }
 
 #pragma mark replace

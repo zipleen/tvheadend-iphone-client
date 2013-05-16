@@ -21,14 +21,15 @@
 #import <Foundation/Foundation.h>
 #import "TVHStatusSubscription.h"
 
+@class TVHServer;
+
 @protocol TVHStatusSubscriptionsDelegate <NSObject>
 - (void)didLoadStatusSubscriptions;
 - (void)didErrorStatusSubscriptionsStore:(NSError*)error;
 @end
 
 @interface TVHStatusSubscriptionsStore : NSObject
-
-+ (id)sharedInstance;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)setDelegate:(id <TVHStatusSubscriptionsDelegate>)delegate;
 - (void)fetchStatusSubscriptions;
 

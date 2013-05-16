@@ -19,9 +19,11 @@
 //
 
 #import "TVHDvrStore.h"
-#import "TVHJsonClient.h"
+#import "TVHServer.h"
 
 @interface TVHDvrStore()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrItems;
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
 @property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
@@ -31,18 +33,12 @@
 
 @implementation TVHDvrStore
 
-+ (id)sharedInstance {
-    static TVHDvrStore *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHDvrStore alloc] init];
-    });
-    
-    return __sharedInstance;
-}
-
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
+    if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
+    
     self.cachedType = -1;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -124,9 +120,8 @@
 }
 
 - (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type {
-    TVHJsonClient *httpClient = [TVHJsonClient sharedInstance];
     self.profilingDate = [NSDate date];
-    [httpClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
