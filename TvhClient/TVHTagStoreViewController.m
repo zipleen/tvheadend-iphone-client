@@ -71,6 +71,8 @@
         [self performSegueWithIdentifier:@"ShowSettings" sender:self];
     } 
     
+    [self.tagStore fetchTagList];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetControllerData)
                                                  name:@"resetAllObjects"

@@ -142,6 +142,10 @@
 		AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */; };
 		AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */; };
 		AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */; };
+		AAC723E31747D9420000EA92 /* random_grey_variations@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC723E11747D9420000EA92 /* random_grey_variations@2X.png */; };
+		AAC723E41747D9420000EA92 /* random_grey_variations.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC723E21747D9420000EA92 /* random_grey_variations.png */; };
+		AAC723E71747D9E30000EA92 /* random_grey_variations_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC723E51747D9E30000EA92 /* random_grey_variations_sel.png */; };
+		AAC723E81747D9E30000EA92 /* random_grey_variations_sel@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC723E61747D9E30000EA92 /* random_grey_variations_sel@2X.png */; };
 		AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */; };
 		AACA613816CFDBE8002C6DE1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AACA613716CFDBE8002C6DE1 /* libz.dylib */; };
 		AACE489016CC6F1900FE928B /* tv2.png in Resources */ = {isa = PBXBuildFile; fileRef = AACE488E16CC6F1800FE928B /* tv2.png */; };
@@ -415,6 +419,10 @@
 		AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueBack@2x.png"; sourceTree = "<group>"; };
 		AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueButton.png; sourceTree = "<group>"; };
 		AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueButton@2x.png"; sourceTree = "<group>"; };
+		AAC723E11747D9420000EA92 /* random_grey_variations@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "random_grey_variations@2X.png"; sourceTree = "<group>"; };
+		AAC723E21747D9420000EA92 /* random_grey_variations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = random_grey_variations.png; sourceTree = "<group>"; };
+		AAC723E51747D9E30000EA92 /* random_grey_variations_sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = random_grey_variations_sel.png; sourceTree = "<group>"; };
+		AAC723E61747D9E30000EA92 /* random_grey_variations_sel@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "random_grey_variations_sel@2X.png"; sourceTree = "<group>"; };
 		AAC8426C172F11A5004BAB24 /* TVHChannelSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelSplitViewController.h; sourceTree = "<group>"; };
 		AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelSplitViewController.m; sourceTree = "<group>"; };
 		AACA613716CFDBE8002C6DE1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -563,6 +571,7 @@
 				AA132EBA16D9594B0074FAB8 /* TVHUICustomNavigationBar.m */,
 				AAFF92FF171DD73300EDC6DF /* TVHImageCache.h */,
 				AAFF9300171DD73300EDC6DF /* TVHImageCache.m */,
+				AA407E2F16D1A0EE00451E6F /* Localizable.strings */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -570,7 +579,7 @@
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AAFDEC61174549E30035D734 /* tvh connection lib */,
+				AAFDEC61174549E30035D734 /* Tvh Server */,
 				AAFDEC6217454CE80035D734 /* TVHSingletonServer.h */,
 				AAFDEC6317454CE80035D734 /* TVHSingletonServer.m */,
 				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
@@ -585,6 +594,10 @@
 		AA2AEB1D16CB0839006B071C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AAC723E51747D9E30000EA92 /* random_grey_variations_sel.png */,
+				AAC723E61747D9E30000EA92 /* random_grey_variations_sel@2X.png */,
+				AAC723E11747D9420000EA92 /* random_grey_variations@2X.png */,
+				AAC723E21747D9420000EA92 /* random_grey_variations.png */,
 				AA35A88D171A324A00412EFF /* empty.png */,
 				AA5E8A1B170F61E200779AC6 /* hardware.png */,
 				AA5E8A1C170F61E200779AC6 /* hardware@2x.png */,
@@ -1005,7 +1018,6 @@
 		AAB399FA16BDB21900973F88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AA407E2F16D1A0EE00451E6F /* Localizable.strings */,
 				AA7C3FCA16C6C9870057E4C4 /* Resources */,
 				AA2AEB1D16CB0839006B071C /* images */,
 				AA9101AA16C6B2C500673DF5 /* Framework */,
@@ -1152,7 +1164,7 @@
 			name = SlidePanel;
 			sourceTree = "<group>";
 		};
-		AAFDEC61174549E30035D734 /* tvh connection lib */ = {
+		AAFDEC61174549E30035D734 /* Tvh Server */ = {
 			isa = PBXGroup;
 			children = (
 				AAE7B7A2170782500052E6F3 /* SSH */,
@@ -1165,7 +1177,7 @@
 				AAFDEC5E174549DC0035D734 /* TVHServer.h */,
 				AAFDEC5F174549DC0035D734 /* TVHServer.m */,
 			);
-			name = "tvh connection lib";
+			name = "Tvh Server";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1318,6 +1330,10 @@
 				AA3B2512172D615900A574AA /* Default-Portrait@2x.png in Resources */,
 				AA3B2513172D616000A574AA /* Default@2x.png in Resources */,
 				AA3B2514172D616200A574AA /* Default.png in Resources */,
+				AAC723E31747D9420000EA92 /* random_grey_variations@2X.png in Resources */,
+				AAC723E41747D9420000EA92 /* random_grey_variations.png in Resources */,
+				AAC723E71747D9E30000EA92 /* random_grey_variations_sel.png in Resources */,
+				AAC723E81747D9E30000EA92 /* random_grey_variations_sel@2X.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad
 {
+    self.delegate = self;
     [super viewDidLoad];
 }
 

@@ -10,6 +10,7 @@
 #import "JASidePanelController.h"
 #import "UIViewController+JASidePanel.h"
 
-@interface TVHLeftMainMenuViewController : UITableViewController
+@interface TVHLeftMainMenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

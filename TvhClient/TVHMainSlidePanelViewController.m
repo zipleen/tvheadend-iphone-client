@@ -25,8 +25,18 @@
 
 -(void) awakeFromNib
 {
-    self.leftFixedWidth = 250 * [[UIScreen mainScreen] scale];
-    self.rightFixedWidth = 700;
+    self.leftFixedWidth = 200 * [[UIScreen mainScreen] scale];
+    //self.rightFixedWidth = 700;
+    
+    self.shouldResizeLeftPanel = YES;
+    self.shouldResizeRightPanel = YES;
+    
+    self.bounceOnSidePanelClose = YES;
+    self.bounceOnSidePanelOpen = YES;
+    self.bounceOnCenterPanelChange = NO;
+    
+    self.allowLeftOverpan = NO;
+    self.allowRightOverpan = NO;
     [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"leftMainMenu"]];
     [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"channelSplitController"]];
     [self setRightPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"debugNavigationController"]];
