@@ -110,6 +110,12 @@
 		AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA97AA59170642FD0068702E /* PDKeychainBindingsController.m */; };
 		AA97AA5D17065B540068702E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA97AA5C17065B540068702E /* Security.framework */; };
 		AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */; };
+		AAAC5AC21748FC77006B093E /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5ABD1748FC77006B093E /* MGSplitCornersView.m */; };
+		AAAC5AC31748FC77006B093E /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5ABF1748FC77006B093E /* MGSplitDividerView.m */; };
+		AAAC5AC41748FC77006B093E /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5AC11748FC77006B093E /* MGSplitViewController.m */; };
+		AAAC5AC71748FDC4006B093E /* TVHStatusSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5AC61748FDC4006B093E /* TVHStatusSplitViewController.m */; };
+		AAAC5ACE17495FD6006B093E /* low_contrast_linen.png in Resources */ = {isa = PBXBuildFile; fileRef = AAAC5ACC17495FD6006B093E /* low_contrast_linen.png */; };
+		AAAC5ACF17495FD6006B093E /* low_contrast_linen@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = AAAC5ACD17495FD6006B093E /* low_contrast_linen@2X.png */; };
 		AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
 		AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F716BDB21900973F88 /* CoreGraphics.framework */; };
@@ -379,6 +385,16 @@
 		AA97AA5C17065B540068702E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AA99BC5D16ED54290087060A /* TVHEpgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgTableViewController.h; sourceTree = "<group>"; };
 		AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgTableViewController.m; sourceTree = "<group>"; };
+		AAAC5ABC1748FC77006B093E /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitCornersView.h; path = MGSplitViewController/Classes/MGSplitCornersView.h; sourceTree = SOURCE_ROOT; };
+		AAAC5ABD1748FC77006B093E /* MGSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitCornersView.m; path = MGSplitViewController/Classes/MGSplitCornersView.m; sourceTree = SOURCE_ROOT; };
+		AAAC5ABE1748FC77006B093E /* MGSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitDividerView.h; path = MGSplitViewController/Classes/MGSplitDividerView.h; sourceTree = SOURCE_ROOT; };
+		AAAC5ABF1748FC77006B093E /* MGSplitDividerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitDividerView.m; path = MGSplitViewController/Classes/MGSplitDividerView.m; sourceTree = SOURCE_ROOT; };
+		AAAC5AC01748FC77006B093E /* MGSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitViewController.h; path = MGSplitViewController/Classes/MGSplitViewController.h; sourceTree = SOURCE_ROOT; };
+		AAAC5AC11748FC77006B093E /* MGSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitViewController.m; path = MGSplitViewController/Classes/MGSplitViewController.m; sourceTree = SOURCE_ROOT; };
+		AAAC5AC51748FDC4006B093E /* TVHStatusSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusSplitViewController.h; sourceTree = "<group>"; };
+		AAAC5AC61748FDC4006B093E /* TVHStatusSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSplitViewController.m; sourceTree = "<group>"; };
+		AAAC5ACC17495FD6006B093E /* low_contrast_linen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = low_contrast_linen.png; sourceTree = "<group>"; };
+		AAAC5ACD17495FD6006B093E /* low_contrast_linen@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "low_contrast_linen@2X.png"; sourceTree = "<group>"; };
 		AAB399F016BDB21900973F88 /* TvhClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TvhClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB399F316BDB21900973F88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAB399F516BDB21900973F88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -591,9 +607,24 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		AA24868817484E1400AB2E42 /* MGSplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AAAC5ABC1748FC77006B093E /* MGSplitCornersView.h */,
+				AAAC5ABD1748FC77006B093E /* MGSplitCornersView.m */,
+				AAAC5ABE1748FC77006B093E /* MGSplitDividerView.h */,
+				AAAC5ABF1748FC77006B093E /* MGSplitDividerView.m */,
+				AAAC5AC01748FC77006B093E /* MGSplitViewController.h */,
+				AAAC5AC11748FC77006B093E /* MGSplitViewController.m */,
+			);
+			name = MGSplitViewController;
+			sourceTree = "<group>";
+		};
 		AA2AEB1D16CB0839006B071C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AAAC5ACC17495FD6006B093E /* low_contrast_linen.png */,
+				AAAC5ACD17495FD6006B093E /* low_contrast_linen@2X.png */,
 				AAC723E51747D9E30000EA92 /* random_grey_variations_sel.png */,
 				AAC723E61747D9E30000EA92 /* random_grey_variations_sel@2X.png */,
 				AAC723E11747D9420000EA92 /* random_grey_variations@2X.png */,
@@ -900,6 +931,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA24868817484E1400AB2E42 /* MGSplitViewController */,
 				AAF2647917441D57006C96CE /* JASlidingPanels */,
 				AAEE7A80171240AE00D0E584 /* GoogleAnalytics SDK */,
 				AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */,
@@ -1068,6 +1100,8 @@
 				AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */,
 				AAF264831744200F006C96CE /* TVHRecordingsSplitViewController.h */,
 				AAF2648417442010006C96CE /* TVHRecordingsSplitViewController.m */,
+				AAAC5AC51748FDC4006B093E /* TVHStatusSplitViewController.h */,
+				AAAC5AC61748FDC4006B093E /* TVHStatusSplitViewController.m */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -1334,6 +1368,8 @@
 				AAC723E41747D9420000EA92 /* random_grey_variations.png in Resources */,
 				AAC723E71747D9E30000EA92 /* random_grey_variations_sel.png in Resources */,
 				AAC723E81747D9E30000EA92 /* random_grey_variations_sel@2X.png in Resources */,
+				AAAC5ACE17495FD6006B093E /* low_contrast_linen.png in Resources */,
+				AAAC5ACF17495FD6006B093E /* low_contrast_linen@2X.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1475,6 +1511,10 @@
 				AAF2648817442247006C96CE /* TVHLeftMainMenuViewController.m in Sources */,
 				AAFDEC60174549DC0035D734 /* TVHServer.m in Sources */,
 				AAFDEC6417454CE80035D734 /* TVHSingletonServer.m in Sources */,
+				AAAC5AC21748FC77006B093E /* MGSplitCornersView.m in Sources */,
+				AAAC5AC31748FC77006B093E /* MGSplitDividerView.m in Sources */,
+				AAAC5AC41748FC77006B093E /* MGSplitViewController.m in Sources */,
+				AAAC5AC71748FDC4006B093E /* TVHStatusSplitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,24 +8,43 @@
 
 #import "TVHMainSlidePanelViewController.h"
 
-@interface TVHMainSlidePanelViewController ()
+#import "TVHLeftMainMenuViewController.h"
+#import "TVHDebugLogViewController.h"
+#import "TVHChannelSplitViewController.h"
 
+@interface TVHMainSlidePanelViewController ()
+@property (nonatomic, strong) TVHLeftMainMenuViewController *leftMainMenu;
+@property (nonatomic, strong) TVHChannelSplitViewController *channelSplit;
+@property (nonatomic, strong) TVHDebugLogViewController *statusSplit;
 @end
 
 @implementation TVHMainSlidePanelViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+- (TVHLeftMainMenuViewController*)leftMainMenu {
+    if ( ! _leftMainMenu ) {
+        _leftMainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMainMenu"];
     }
-    return self;
+    return _leftMainMenu;
+}
+
+- (TVHChannelSplitViewController*)channelSplit {
+    if ( ! _channelSplit ) {
+        _channelSplit = [self.storyboard instantiateViewControllerWithIdentifier:@"channelSplitController"];
+    }
+    return _channelSplit;
+}
+
+- (TVHDebugLogViewController*)statusSplit {
+    if ( ! _statusSplit ) {
+        _statusSplit = [self.storyboard instantiateViewControllerWithIdentifier:@"debugNavigationController"];
+    }
+    return _statusSplit;
 }
 
 -(void) awakeFromNib
 {
     self.leftFixedWidth = 200 * [[UIScreen mainScreen] scale];
+    self.rightFixedWidth = 500 * [[UIScreen mainScreen] scale];
     //self.rightFixedWidth = 700;
     
     self.shouldResizeLeftPanel = YES;
@@ -37,9 +56,9 @@
     
     self.allowLeftOverpan = NO;
     self.allowRightOverpan = NO;
-    [self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"leftMainMenu"]];
-    [self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"channelSplitController"]];
-    [self setRightPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"debugNavigationController"]];
+    [self setLeftPanel:self.leftMainMenu];
+    [self setCenterPanel:self.channelSplit];
+    [self setRightPanel:self.statusSplit];
 }
 
 - (void)viewDidLoad
