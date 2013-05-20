@@ -34,6 +34,7 @@
 @property (nonatomic, strong) NSString *statsEpgName;
 @property (nonatomic, strong) NSString *filterToChannelName;
 @property (nonatomic, strong) NSString *filterToProgramTitle;
+@property (nonatomic, strong) NSString *filterToTagName;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (id)initWithStatsEpgName:(NSString*)statsEpgName withTvhServer:(TVHServer*)tvhServer;
 - (void)downloadAllEpgItems;

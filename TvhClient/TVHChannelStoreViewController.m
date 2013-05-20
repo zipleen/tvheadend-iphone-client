@@ -179,22 +179,28 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( [[self.channels objectAtIndex:indexPath.row] countEpg] > 0 ) {
-        [self performSegueWithIdentifier:@"Show Channel Programs" sender:self]; 
+        if ( self.splitViewController ) {
+            UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
+            [detailView popToRootViewControllerAnimated:NO];
+        }
+        [self performSegueWithIdentifier:@"Show Channel Programs" sender:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"Show Channel Programs"]) {
-        
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHChannel *channel = [self.channels objectAtIndex:path.row];
-        
         TVHChannelStoreProgramsViewController *channelPrograms = segue.destinationViewController;
-        [channelPrograms setChannel:channel];
-        
-        [segue.destinationViewController setTitle:channel.name];
+        [self prepareChannelStoreProgramsView:channelPrograms];
     }
+}
+
+- (void)prepareChannelStoreProgramsView:(TVHChannelStoreProgramsViewController*)channelPrograms {
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    TVHChannel *channel = [self.channels objectAtIndex:path.row];
+    
+    [channelPrograms setChannel:channel];
+    [channelPrograms setTitle:channel.name];
 }
 
 - (void)didLoadChannels {

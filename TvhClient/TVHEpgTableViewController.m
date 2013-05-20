@@ -201,13 +201,11 @@
 {
     if( ![searchBar isFirstResponder] ) {
         shouldBeginEditing = NO;
-        [self.epgStore setFilterToProgramTitle:@""];
-        [self.epgStore downloadEpgList];
+        [self setFilterProgramTitle:@""];
         return;
     }
     
-    [self.epgStore setFilterToProgramTitle:searchBar.text];
-    [self.epgStore downloadEpgList];
+    [self setFilterProgramTitle:searchBar.text];
     if ( [searchText isEqualToString:@""] ) {
         // why do I have to do this!??! if I put the resignFirstResponder here, it doesn't work...
         [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
@@ -229,6 +227,18 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+}
+
+#pragma mark - epg filter
+
+- (void)setFilterProgramTitle:(NSString*)programTitle {
+    [self.epgStore setFilterToProgramTitle:programTitle];
+    [self.epgStore downloadEpgList];
+}
+
+- (void)setFilterTag:(NSString *)tag {
+    [self.epgStore setFilterToTagName:tag];
+    [self.epgStore downloadEpgList];
 }
 
 @end

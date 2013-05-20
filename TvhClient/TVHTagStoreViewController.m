@@ -24,7 +24,7 @@
 #import "UIImageView+WebCache.h"
 #import "TVHShowNotice.h"
 #import "TVHImageCache.h"
-
+#import "TVHEpgTableViewController.h"
 #import "TVHSingletonServer.h"
 
 @interface TVHTagStoreViewController ()
@@ -45,6 +45,14 @@
     self.tags = nil;
     [self.tagStore setDelegate:self];
     [self.tagStore fetchTagList];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if ( self.splitViewController ) {
+        UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
+        [detailView popToRootViewControllerAnimated:YES];
+    }
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -143,14 +151,27 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"Show Channel List"]) {
-        
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHTag *tag = [self.tags objectAtIndex:path.row];
-        
-        TVHChannelStoreViewController *ChannelStore = segue.destinationViewController;
-        [ChannelStore setFilterTagId: tag.id];
-        
-        [segue.destinationViewController setTitle:tag.name];
+        TVHChannelStoreViewController *channelStore = segue.destinationViewController;
+        [self prepareChannelStoreView:channelStore];
+    }
+}
+
+- (void)prepareChannelStoreView:(TVHChannelStoreViewController*)channelStore {
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    TVHTag *tag = [self.tags objectAtIndex:path.row];
+    
+    [channelStore setFilterTagId: tag.id];
+    [channelStore setTitle:tag.name];
+    
+    [self prepareSplitViewEpg:tag];
+}
+
+- (void)prepareSplitViewEpg:(TVHTag*)tag {
+    if ( self.splitViewController ) {
+        UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
+        TVHEpgTableViewController *epgDetailView = [detailView.viewControllers lastObject];
+        [epgDetailView setFilterTag:tag.name];
+        [epgDetailView setTitle:[@[NSLocalizedString(@"Now in", nil), tag.name] componentsJoinedByString:@" "]];
     }
 }
 

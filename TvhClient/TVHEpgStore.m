@@ -76,6 +76,7 @@
     self.epgStore = nil;
     self.filterToChannelName = nil;
     self.filterToProgramTitle = nil;
+    self.filterToTagName = nil;
 }
 
 - (void)addEpgItemToStore:(TVHEpg*)epgItem {
@@ -124,6 +125,10 @@
     
     if( self.filterToProgramTitle != nil ) {
         [params setObject:self.filterToProgramTitle forKey:@"title"];
+    }
+    
+    if( self.filterToTagName != nil ) {
+        [params setObject:self.filterToTagName forKey:@"tag"];
     }
     
     return [params copy];
@@ -213,6 +218,11 @@
 
 - (void)setFilterToChannelName:(NSString *)filterToChannelName {
     _filterToChannelName = filterToChannelName;
+    self.epgStore = nil;
+}
+
+- (void)setFilterToTagName:(NSString *)filterToTagName {
+    _filterToTagName = filterToTagName;
     self.epgStore = nil;
 }
 

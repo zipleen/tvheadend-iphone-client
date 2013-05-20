@@ -22,5 +22,5 @@
 
 @interface TVHEpgTableViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+- (void)setFilterTag:(NSString*)tag;
 @end
