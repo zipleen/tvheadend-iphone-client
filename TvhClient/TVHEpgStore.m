@@ -212,18 +212,24 @@
 }
 
 - (void)setFilterToProgramTitle:(NSString *)filterToProgramTitle {
-    _filterToProgramTitle = filterToProgramTitle;
-    self.epgStore = nil;
+    if( ! [filterToProgramTitle isEqualToString:_filterToTagName] ) {
+        _filterToProgramTitle = filterToProgramTitle;
+        self.epgStore = nil;
+    }
 }
 
 - (void)setFilterToChannelName:(NSString *)filterToChannelName {
-    _filterToChannelName = filterToChannelName;
-    self.epgStore = nil;
+    if ( ! [filterToChannelName isEqualToString:_filterToTagName] ) {
+        _filterToChannelName = filterToChannelName;
+        self.epgStore = nil;
+    }
 }
 
 - (void)setFilterToTagName:(NSString *)filterToTagName {
-    _filterToTagName = filterToTagName;
-    self.epgStore = nil;
+    if ( ! [filterToTagName isEqualToString:_filterToTagName] ) {
+        _filterToTagName = filterToTagName;
+        self.epgStore = nil;
+    }
 }
 
 @end

@@ -52,6 +52,7 @@
         UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
         [detailView popToRootViewControllerAnimated:YES];
     }
+    [self prepareSplitViewEpg:nil];
     [super viewWillAppear:animated];
 }
 
@@ -160,7 +161,7 @@
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     TVHTag *tag = [self.tags objectAtIndex:path.row];
     
-    [channelStore setFilterTagId: tag.id];
+    [channelStore setFilterTagId:tag.id];
     [channelStore setTitle:tag.name];
     
     [self prepareSplitViewEpg:tag];
@@ -171,7 +172,11 @@
         UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
         TVHEpgTableViewController *epgDetailView = [detailView.viewControllers lastObject];
         [epgDetailView setFilterTag:tag.name];
-        [epgDetailView setTitle:[@[NSLocalizedString(@"Now in", nil), tag.name] componentsJoinedByString:@" "]];
+        if ( tag ) {
+            [epgDetailView setTitle:[@[NSLocalizedString(@"Now in", nil), tag.name] componentsJoinedByString:@" "]];
+        } else {
+            [epgDetailView setTitle:NSLocalizedString(@"Now", nil)];
+        }
     }
 }
 

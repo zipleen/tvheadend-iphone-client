@@ -41,10 +41,10 @@
     return _statusSplit;
 }
 
--(void) awakeFromNib
+- (void)awakeFromNib
 {
-    self.leftFixedWidth = 200 * [[UIScreen mainScreen] scale];
-    self.rightFixedWidth = 500 * [[UIScreen mainScreen] scale];
+    self.leftFixedWidth = 200;
+    self.rightFixedWidth = 500;
     //self.rightFixedWidth = 700;
     
     self.shouldResizeLeftPanel = YES;
