@@ -43,7 +43,7 @@
 
 - (void)awakeFromNib
 {
-    self.leftFixedWidth = 200;
+    self.leftFixedWidth = 160;
     self.rightFixedWidth = 500;
     //self.rightFixedWidth = 700;
     
@@ -56,6 +56,10 @@
     
     self.allowLeftOverpan = NO;
     self.allowRightOverpan = NO;
+    
+    self.shouldDelegateAutorotateToVisiblePanel = NO;
+    self.panningLimitedToTopViewController = NO;
+    self.minimumMovePercentage = 0.05f;
     [self setLeftPanel:self.leftMainMenu];
     [self setCenterPanel:self.channelSplit];
     [self setRightPanel:self.statusSplit];

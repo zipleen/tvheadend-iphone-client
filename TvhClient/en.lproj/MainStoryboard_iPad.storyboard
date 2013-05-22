@@ -1311,24 +1311,24 @@
             <objects>
                 <viewController storyboardIdentifier="leftMainMenu" modalPresentationStyle="currentContext" id="aSu-Af-t4s" customClass="TVHLeftMainMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZC0-7B-VCW">
-                        <rect key="frame" x="0.0" y="20" width="310" height="1004"/>
+                        <rect key="frame" x="0.0" y="20" width="160" height="1004"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" rowHeight="46" sectionHeaderHeight="22" sectionFooterHeight="22" id="xjX-72-adw">
-                                <rect key="frame" x="0.0" y="0.0" width="310" height="1004"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" id="xjX-72-adw">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="1004"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="leftMenuCell" id="XHl-cT-3eo">
-                                        <rect key="frame" x="0.0" y="22" width="310" height="46"/>
+                                        <rect key="frame" x="0.0" y="22" width="160" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="290" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MDW-DL-HKU">
-                                                    <rect key="frame" x="57" y="12" width="206" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MDW-DL-HKU">
+                                                    <rect key="frame" x="25" y="44" width="100" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -1337,7 +1337,7 @@
                                                     <color key="shadowColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" id="yqR-45-Gtl">
-                                                    <rect key="frame" x="19" y="8" width="30" height="30"/>
+                                                    <rect key="frame" x="60" y="12" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -1723,6 +1723,159 @@
         <image name="satellite.png" width="16" height="16"/>
         <image name="status.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="JASidePanelController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/JASidePanelController.h"/>
+        </class>
+        <class className="MGSplitViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MGSplitViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showMasterPopover:"/>
+                <relationship kind="action" name="toggleMasterBeforeDetail:"/>
+                <relationship kind="action" name="toggleMasterView:"/>
+                <relationship kind="action" name="toggleSplitOrientation:"/>
+                <relationship kind="outlet" name="delegate"/>
+                <relationship kind="outlet" name="detailViewController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="masterViewController" candidateClass="UIViewController"/>
+            </relationships>
+        </class>
+        <class className="SDSegmentedControl" superclassName="UISegmentedControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
+        </class>
+        <class className="TVHAutoRecDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHAutoRecDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveButton:"/>
+                <relationship kind="outlet" name="itemChannel" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemComment" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="itemCreatedBy" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="itemDvrConfig" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemEnable" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="itemGenre" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemPriority" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemStartAround" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemTag" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemTitle" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="itemWeekdays" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="TVHChannelSplitViewController" superclassName="UISplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelSplitViewController.h"/>
+        </class>
+        <class className="TVHChannelStoreProgramsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreProgramsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="segmentDidChange:"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHChannelStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreViewController.h"/>
+        </class>
+        <class className="TVHDebugLogViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHDebugLogViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="clearLog:"/>
+                <relationship kind="action" name="debugButton:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="debugButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="TVHEpgTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHEpgTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="TVHLeftMainMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHLeftMainMenuViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHMainSlidePanelViewController" superclassName="JASidePanelController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHMainSlidePanelViewController.h"/>
+        </class>
+        <class className="TVHProgramDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAutoRecordToTVHeadend:"/>
+                <relationship kind="action" name="addRecordMoreItemsToTVHeadend:"/>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="channelTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHRecordingsDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="removeRecording:"/>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="channelTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHRecordingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHSettingsGenericFieldViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsGenericFieldViewController.h"/>
+        </class>
+        <class className="TVHSettingsGenericTextViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsGenericTextViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="genericText" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="TVHSettingsServersViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsServersViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveServer:"/>
+            </relationships>
+        </class>
+        <class className="TVHSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneSettings:"/>
+            </relationships>
+        </class>
+        <class className="TVHStatusSplitViewController" superclassName="MGSplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSplitViewController.h"/>
+        </class>
+        <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchPolling:"/>
+                <relationship kind="outlet" name="switchButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TVHTagStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagStoreViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="settingsButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TVHUICustomNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomNavigationBar.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
