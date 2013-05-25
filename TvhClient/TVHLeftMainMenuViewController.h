@@ -10,6 +10,7 @@
 #import "JASidePanelController.h"
 #import "UIViewController+JASidePanel.h"
 #import "TVHChannelSplitViewController.h"
+#import "TVHChannelStoreViewController.h"
 #import "TVHRecordingsDetailViewController.h"
 #import "TVHStatusSplitViewController.h"
 #import "TVHStatusSubscriptionsViewController.h"
@@ -25,4 +26,6 @@
 @property (nonatomic, strong) TVHSettingsViewController *settingsController;
 @property (nonatomic, strong) TVHDebugLogViewController *debugLogController;
 @property (nonatomic, strong) TVHStatusSubscriptionsViewController *statusController;
+@property (nonatomic, strong) TVHChannelStoreViewController *channelController;
+- (void)setRightPanel:(NSInteger)row;
 @end

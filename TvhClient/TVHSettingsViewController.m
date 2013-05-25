@@ -5,6 +5,7 @@
 //  Created by zipleen on 3/17/13.
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 #import "TVHSettingsViewController.h"
 #import "TVHSettingsServersViewController.h"
@@ -102,7 +103,11 @@
         return [self.servers count] + 1;
     }
     if ( section == 1 ) {
-        return 5;
+        if ( IS_IPAD ) {
+            return 6;
+        } else {
+            return 5;
+        }
     }
     if ( section == 2 ) {
         return 4;
@@ -211,6 +216,25 @@
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
             textLabel.text = NSLocalizedString(@"Draw Image Border", @".. in settings screen");
         }
+        
+        if ( IS_IPAD ) {
+            if ( indexPath.row == 5 ) {
+                cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
+                if(cell==nil) {
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
+                }
+                
+                cell.textLabel.text = NSLocalizedString(@"Right Panel", @".. in settings screen");
+                if ( [self.settings splitRightMenu] == TVHS_SPLIT_RIGHT_MENU_DYNAMIC ) {
+                    cell.detailTextLabel.text = NSLocalizedString(@"Dynamic based on screen", @".. in settings screen");
+                } else if ( [self.settings splitRightMenu] == TVHS_SPLIT_RIGHT_MENU_STATUS ) {
+                    cell.detailTextLabel.text = NSLocalizedString(@"Show Status", @".. in settings screen");
+                } else {
+                    cell.detailTextLabel.text = NSLocalizedString(@"Show Log", @".. in settings screen");
+                }
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+        }
     }
     if ( indexPath.section == 2 ) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
@@ -300,6 +324,10 @@
         [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
     }
     
+    if ( indexPath.section == 1 && indexPath.row == 5 ) {
+        [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
+    }
+    
     if ( indexPath.section == 2 && indexPath.row == 0 ) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/zipleen/tvheadend-iphone-client/wiki/Support"]];
     }
@@ -348,6 +376,18 @@
             [vc setSelectedOption:[self.settings sortChannel]];
             [vc setResponseBack:^(NSInteger order) {
                 [[TVHSettings sharedInstance] setSortChannel:order];
+                
+            }];
+        }
+                                                    
+        if ( path.section == 1 && path.row == 5 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Right Panel", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Define what you want to see on the right panel", @".. in settings screen")];
+            [vc setOptions:@[NSLocalizedString(@"Dynamic based on screen", @".. in settings screen"), NSLocalizedString(@"Show Status", @".. in settings screen"), NSLocalizedString(@"Show Log", @".. in settings screen")] ];
+            [vc setSelectedOption:[self.settings splitRightMenu]];
+            [vc setResponseBack:^(NSInteger order) {
+                [[TVHSettings sharedInstance] setSplitRightMenu:order];
                 
             }];
         }

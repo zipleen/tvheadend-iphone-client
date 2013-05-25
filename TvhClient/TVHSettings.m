@@ -30,6 +30,7 @@
 #define TVHS_STATUS_SPLIT @"statusSplitPosition"
 #define TVHS_STATUS_SPLITPORTRAIT @"statusSplitPositionPortrait"
 #define TVHS_STATUS_SHOWLOG @"statusShowLog"
+#define TVHS_SPLIT_RIGHT_MENU @"splitRightMenu"
 
 @interface TVHSettings()
 
@@ -47,6 +48,7 @@
 @synthesize statusSplitPosition = _statusSplitPosition;
 @synthesize statusSplitPositionPortrait = _statusSplitPositionPortrait;
 @synthesize statusShowLog = _statusShowLog;
+@synthesize splitRightMenu = _splitRightMenu;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -451,6 +453,27 @@ withPassword:(NSString*)password {
     [defaults setBool:statusShowLog forKey:TVHS_STATUS_SHOWLOG];
     [defaults synchronize];
 }
+
+- (void)setSplitRightMenu:(NSInteger)splitRightMenu {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:splitRightMenu forKey:TVHS_SPLIT_RIGHT_MENU];
+    [defaults synchronize];
+    _splitRightMenu = splitRightMenu;
+}
+
+- (NSInteger)splitRightMenu {
+    if ( ! _splitRightMenu ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        id test = [defaults objectForKey:TVHS_SPLIT_RIGHT_MENU];
+        if ( test == nil ) {
+            _splitRightMenu = 0;
+        } else {
+            _splitRightMenu = [defaults integerForKey:TVHS_SPLIT_RIGHT_MENU];
+        }
+    }
+    return _splitRightMenu;
+}
+
 
 @end
 

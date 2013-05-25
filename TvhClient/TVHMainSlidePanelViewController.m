@@ -44,9 +44,10 @@
     self.shouldDelegateAutorotateToVisiblePanel = NO;
     self.panningLimitedToTopViewController = NO;
     self.minimumMovePercentage = 0.05f;
+    
     [self setLeftPanel:self.leftMainMenu];
     [self setCenterPanel:[self.leftMainMenu channelSplit] ];
-    [self setRightPanel:[self.leftMainMenu debugLogController] ];
+    [self.leftMainMenu setRightPanel:0];
 }
 
 - (void)viewDidLoad

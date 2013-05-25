@@ -182,8 +182,11 @@
         if ( self.splitViewController ) {
             UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
             [detailView popToRootViewControllerAnimated:NO];
+            
+            [self performSegueWithIdentifier:@"Show Channel Programs Detail" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"Show Channel Programs" sender:self];
         }
-        [self performSegueWithIdentifier:@"Show Channel Programs" sender:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

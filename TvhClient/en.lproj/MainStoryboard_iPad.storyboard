@@ -7,7 +7,7 @@
         <!--Navigation Controller - Channels-->
         <scene sceneID="Tuh-NU-G7h">
             <objects>
-                <navigationController id="oHm-oh-kZN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="channelController" id="oHm-oh-kZN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Channels" image="comp.png" id="C7a-O9-dd5"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="SeL-Ui-Lfb"/>
@@ -189,14 +189,14 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OptionCell" textLabel="FNW-iX-bcV" style="IBUITableViewCellStyleDefault" id="GqK-Fk-BW5">
-                                <rect key="frame" x="0.0" y="34" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="54" width="768" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <rect key="frame" x="45" y="1" width="678" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FNW-iX-bcV">
-                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <rect key="frame" x="10" y="0.0" width="658" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1094,7 +1094,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Channels" id="g8A-mr-bIp"/>
                     <connections>
-                        <segue destination="05s-K2-hia" kind="push" identifier="Show Channel Programs" splitViewControllerTargetIndex="1" id="LsT-hq-AY2"/>
+                        <segue destination="05s-K2-hia" kind="push" identifier="Show Channel Programs Detail" splitViewControllerTargetIndex="1" id="LsT-hq-AY2"/>
+                        <segue destination="05s-K2-hia" kind="push" identifier="Show Channel Programs" id="sHm-Tp-YTa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2DY-kX-Qx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1873,7 +1874,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="S3X-J4-yWo"/>
         <segue reference="03u-bL-9X8"/>
+        <segue reference="LsT-hq-AY2"/>
+        <segue reference="S3X-J4-yWo"/>
     </inferredMetricsTieBreakers>
 </document>

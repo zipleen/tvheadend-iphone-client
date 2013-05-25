@@ -37,6 +37,10 @@
 #define TVHS_SORT_CHANNEL_BY_NAME 0
 #define TVHS_SORT_CHANNEL_BY_NUMBER 1
 
+#define TVHS_SPLIT_RIGHT_MENU_DYNAMIC 0
+#define TVHS_SPLIT_RIGHT_MENU_STATUS 1
+#define TVHS_SPLIT_RIGHT_MENU_LOG 2
+
 #define TVHS_SSH_PF_LOCAL_PORT @48974
 
 @interface TVHSettings : NSObject
@@ -53,6 +57,7 @@
 @property (nonatomic) NSInteger statusSplitPosition;
 @property (nonatomic) NSInteger statusSplitPositionPortrait;
 @property (nonatomic) BOOL statusShowLog;
+@property (nonatomic) NSInteger splitRightMenu;
 
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;

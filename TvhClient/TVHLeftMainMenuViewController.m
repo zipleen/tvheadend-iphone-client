@@ -9,9 +9,15 @@
 #import "TVHLeftMainMenuViewController.h"
 #import "TVHStatusSplitViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TVHSettings.h"
 
 #define TVH_LEFT_LABELS @[ @"Channels", @"Recordings",  @"Status", @"Settings" ]
 #define TVH_LEFT_PICS @[ @"comp_ipad.png", @"rec_ipad.png",  @"status_ipad.png", @"settings_ipad.png" ]
+
+#define TVH_CENTER_CHANNELS 0
+#define TVH_CENTER_RECORDINGS 1
+#define TVH_CENTER_STATUS 2
+#define TVH_CENTER_SETTINGS 3
 
 @interface TVHLeftMainMenuViewController () 
 
@@ -58,9 +64,16 @@
 
 - (TVHStatusSubscriptionsViewController*)statusController {
     if ( ! _statusController ) {
-        _statusController = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsScreen"];
+        _statusController = [self.storyboard instantiateViewControllerWithIdentifier:@"statusViewController"];
     }
     return _statusController;
+}
+
+- (TVHChannelStoreViewController*)channelController {
+    if ( ! _channelController ) {
+        _channelController = [self.storyboard instantiateViewControllerWithIdentifier:@"channelController"];
+    }
+    return _channelController;
 }
 
 - (void)viewDidLoad
@@ -127,23 +140,46 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if( indexPath.row == 0 ) {
+    if( indexPath.row == TVH_CENTER_CHANNELS ) {
         [self.sidePanelController setCenterPanel:self.channelSplit];
     }
     
-    if( indexPath.row == 1 ) {
+    if( indexPath.row == TVH_CENTER_RECORDINGS ) {
         [self.sidePanelController setCenterPanel:self.recordController];
     }
     
-    if( indexPath.row == 2 ) {
+    if( indexPath.row == TVH_CENTER_STATUS ) {
         [self.sidePanelController setCenterPanel:self.statusSplit];
-        
     }
     
-    if( indexPath.row == 3 ) {
+    if( indexPath.row == TVH_CENTER_SETTINGS ) {
         [self.sidePanelController setCenterPanel:self.settingsController];
     }
+    [self setRightPanel:indexPath.row];
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)setRightPanel:(NSInteger)row {
+    int rightMenu = [[TVHSettings sharedInstance] splitRightMenu];
+    if ( rightMenu == TVHS_SPLIT_RIGHT_MENU_DYNAMIC ) {
+        if ( row == TVH_CENTER_CHANNELS ) {
+            [self.sidePanelController setRightPanel:self.recordController];
+        }
+        if ( row == TVH_CENTER_RECORDINGS ) {
+            [self.sidePanelController setRightPanel:self.channelController];
+        }
+        if ( row == TVH_CENTER_STATUS ) {
+            [self.sidePanelController setRightPanel:self.debugLogController];
+        }
+    }
+    
+    if ( rightMenu == TVHS_SPLIT_RIGHT_MENU_STATUS ) {
+        [self.sidePanelController setRightPanel:self.statusController];
+    }
+    
+    if ( rightMenu == TVHS_SPLIT_RIGHT_MENU_LOG ) {
+        [self.sidePanelController setRightPanel:self.debugLogController];
+    }
 }
 
 @end
