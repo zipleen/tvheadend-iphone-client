@@ -49,6 +49,7 @@
 @property (nonatomic) NSInteger sortChannel;
 @property (nonatomic) BOOL sendAnonymousStatistics;
 @property (nonatomic) BOOL useBlackBorders;
+@property (nonatomic) NSInteger statusSplitPosition;
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;
 
@@ -61,9 +62,5 @@
 - (NSArray*)availableServers;
 - (void)resetSettings;
 - (BOOL)programFirstRun;
-- (void)setRemoveAds;
-- (BOOL)removeAds;
-- (void)setUseBlackBorders:(BOOL)useBlackBorders;
-- (BOOL)useBlackBorders;
 
 @end

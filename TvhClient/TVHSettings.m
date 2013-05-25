@@ -26,8 +26,8 @@
 #define TVHS_CUSTOM_PREFIX @"CustomAppPrefix"
 #define TVHS_SEND_ANONSTATS @"sendAnonymousStatistics"
 #define TVHS_PROGRAM_FIRST_RUN @"programAlreadyRanOnce"
-#define TVHS_REMOVE_ADS @"removeAds"
 #define TVHS_USE_BLACK_BORDERS @"useBlackBorders"
+#define TVHS_STATUS_SPLIT @"statusSplitPosition"
 
 @interface TVHSettings()
 
@@ -42,6 +42,7 @@
 @synthesize sortChannel = _sortChannel;
 @synthesize sendAnonymousStatistics = _sendAnonymousStatistics;
 @synthesize useBlackBorders = _useBlackBorders;
+@synthesize statusSplitPosition = _statusSplitPosition;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -371,21 +372,6 @@ withPassword:(NSString*)password {
     return NO;
 }
 
-- (void)setRemoveAds {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:TVHS_REMOVE_ADS];
-    [defaults synchronize];
-}
-
-- (BOOL)removeAds {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    id test = [defaults objectForKey:TVHS_REMOVE_ADS];
-    if ( test == nil ) {
-        return NO;
-    }
-    return [defaults boolForKey:TVHS_REMOVE_ADS];
-}
-
 - (BOOL)useBlackBorders {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id test = [defaults objectForKey:TVHS_USE_BLACK_BORDERS];
@@ -402,6 +388,26 @@ withPassword:(NSString*)password {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:useBlackBorders forKey:TVHS_USE_BLACK_BORDERS];
     [defaults synchronize];
+}
+
+- (NSInteger)statusSplitPosition {
+    if ( ! _statusSplitPosition ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        id test = [defaults objectForKey:TVHS_STATUS_SPLIT];
+        if ( test == nil ) {
+            _statusSplitPosition = 485;
+        } else {
+            _statusSplitPosition = [defaults integerForKey:TVHS_STATUS_SPLIT];
+        }
+    }
+    return _statusSplitPosition;
+}
+
+- (void)setStatusSplitPosition:(NSInteger)statusSplitPosition {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:statusSplitPosition forKey:TVHS_STATUS_SPLIT];
+    [defaults synchronize];
+    _statusSplitPosition = statusSplitPosition;
 }
 
 @end

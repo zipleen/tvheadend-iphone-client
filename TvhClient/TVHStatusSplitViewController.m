@@ -7,6 +7,7 @@
 //
 
 #import "TVHStatusSplitViewController.h"
+#import "TVHSettings.h"
 
 @interface TVHStatusSplitViewController ()
 
@@ -14,14 +15,18 @@
 
 @implementation TVHStatusSplitViewController
 
-- (TVHDebugLogViewController*)debugController {
+- (UINavigationController*)debugController {
     if ( ! _debugController ) {
         _debugController = [self.storyboard instantiateViewControllerWithIdentifier:@"debugNavigationController"];
+        if ( [_debugController isKindOfClass:[UINavigationController class]] ) {
+            TVHDebugLogViewController *debugLog = [_debugController.childViewControllers lastObject];
+            [debugLog setSplitViewController:self];
+        }
     }
     return _debugController;
 }
 
-- (TVHStatusSubscriptionsViewController*)statusController {
+- (UINavigationController*)statusController {
     if ( ! _statusController ) {
         _statusController = [self.storyboard instantiateViewControllerWithIdentifier:@"statusViewController"];
     }
@@ -39,9 +44,9 @@
     self.vertical = NO;
     self.showsMasterInLandscape = YES;
     self.showsMasterInPortrait = YES;
-    //self.allowsDraggingDivider = YES;
-    self.splitPosition = 485;
-    //[self setDividerStyle:MGSplitViewDividerStylePaneSplitter animated:NO];
+    
+    self.splitPosition = [[TVHSettings sharedInstance] statusSplitPosition];
+    self.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,5 +54,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)splitViewController:(MGSplitViewController*)svc willMoveSplitToPosition:(float)position {
+    [[TVHSettings sharedInstance] setStatusSplitPosition:position];
+}
+
 
 @end

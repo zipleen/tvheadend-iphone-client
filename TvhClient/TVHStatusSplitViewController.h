@@ -10,7 +10,7 @@
 #import "TVHStatusSubscriptionsViewController.h"
 #import "TVHDebugLogViewController.h"
 
-@interface TVHStatusSplitViewController : MGSplitViewController
-@property (nonatomic, strong) TVHStatusSubscriptionsViewController *statusController;
-@property (nonatomic, strong) TVHDebugLogViewController *debugController;
+@interface TVHStatusSplitViewController : MGSplitViewController <MGSplitViewControllerDelegate>
+@property (nonatomic, strong) UINavigationController *statusController;
+@property (nonatomic, strong) UINavigationController *debugController;
 @end

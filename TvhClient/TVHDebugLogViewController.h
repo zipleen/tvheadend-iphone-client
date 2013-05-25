@@ -20,11 +20,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TVHLogStore.h"
+#import "MGSplitViewController.h"
 
-@interface TVHDebugLogViewController : UITableViewController <TVHLogDelegate>
+@interface TVHDebugLogViewController : UITableViewController <TVHLogDelegate, MGSplitViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *debugButton;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) MGSplitViewController *splitViewController;
 - (IBAction)debugButton:(UIBarButtonItem *)sender;
 - (IBAction)clearLog:(id)sender;
+- (IBAction)moveSplit:(id)sender;
 
 @end

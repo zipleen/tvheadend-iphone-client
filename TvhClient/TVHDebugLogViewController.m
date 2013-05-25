@@ -56,6 +56,14 @@
     self.searchBar.delegate = self;
     shouldBeginEditing = YES;
     self.title = NSLocalizedString(@"Log", @"");
+    
+    if ( self.splitViewController ) {
+        NSMutableArray *buttons = [self.navigationItem.rightBarButtonItems mutableCopy];
+        UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Resize", nil) style:UIBarButtonItemStylePlain target:self action:@selector(moveSplit:)];
+        [buttons addObject:split];
+        self.navigationItem.rightBarButtonItems = [buttons copy];
+    }
+    
 }
 
 - (void)viewDidUnload {
@@ -201,4 +209,10 @@
     [searchBar resignFirstResponder];
 }
 
+- (IBAction)moveSplit:(id)sender {
+    if( self.splitViewController ) {
+        MGSplitViewDividerStyle newStyle = ((self.splitViewController.dividerStyle == MGSplitViewDividerStyleThin) ? MGSplitViewDividerStylePaneSplitter : MGSplitViewDividerStyleThin);
+        [self.splitViewController setDividerStyle:newStyle animated:YES];
+    }
+}
 @end

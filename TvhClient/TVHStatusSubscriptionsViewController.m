@@ -78,7 +78,7 @@
     [act setFrame:CGRectMake(8, 5, 20, 20)];
     [act setUserInteractionEnabled:NO];
     if ([[self.navigationController.navigationBar subviews] count]>=2) {
-        [[[self.navigationController.navigationBar subviews] objectAtIndex:2] addSubview:act];
+        [[[self.navigationController.navigationBar subviews] lastObject] addSubview:act];
     }
     [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];

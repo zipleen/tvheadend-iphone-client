@@ -65,7 +65,7 @@
     UILabel *text = (UILabel *)[cell viewWithTag:100];
     UIImageView *image = (UIImageView *)[cell viewWithTag:101];
     
-    text.text = NSLocalizedString([TVH_LEFT_LABELS objectAtIndex:indexPath.row], nil);
+    text.text = [NSLocalizedString([TVH_LEFT_LABELS objectAtIndex:indexPath.row], nil) uppercaseString];
     image.image = [UIImage imageNamed:[TVH_LEFT_PICS objectAtIndex:indexPath.row]];
     
     image.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -90,7 +90,7 @@
     }
     
     if( indexPath.row == 1 ) {
-        [self.sidePanelController setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"recordingsSplitController"]];
+        [self.sidePanelController setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"recordingNavController"]];
     }
     
     if( indexPath.row == 2 ) {
