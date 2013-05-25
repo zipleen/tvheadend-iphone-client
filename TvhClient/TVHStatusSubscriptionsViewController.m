@@ -59,12 +59,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    int shiftButton = 0;
     
     if ( self.splitViewController ) {
         NSMutableArray *buttons = [self.navigationItem.rightBarButtonItems mutableCopy];
         UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showSplitLog:)];
         [buttons addObject:split];
         self.navigationItem.rightBarButtonItems = [buttons copy];
+        shiftButton++;
     }
     
     self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
@@ -87,7 +89,7 @@
     
     int navigationControllerCount = [[self.navigationController.navigationBar subviews] count];
     if ( navigationControllerCount >= 2 ) {
-        [[[self.navigationController.navigationBar subviews] objectAtIndex:navigationControllerCount-2] addSubview:act];
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:navigationControllerCount-(1+shiftButton)] addSubview:act];
     }
     [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];

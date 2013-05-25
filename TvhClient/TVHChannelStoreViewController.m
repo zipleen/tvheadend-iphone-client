@@ -192,7 +192,7 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"Show Channel Programs"]) {
+    if([segue.identifier isEqualToString:@"Show Channel Programs"] || [segue.identifier isEqualToString:@"Show Channel Programs Detail"]) {
         TVHChannelStoreProgramsViewController *channelPrograms = segue.destinationViewController;
         [self prepareChannelStoreProgramsView:channelPrograms];
     }
