@@ -49,7 +49,11 @@
 @property (nonatomic) NSInteger sortChannel;
 @property (nonatomic) BOOL sendAnonymousStatistics;
 @property (nonatomic) BOOL useBlackBorders;
+// ipad
 @property (nonatomic) NSInteger statusSplitPosition;
+@property (nonatomic) NSInteger statusSplitPositionPortrait;
+@property (nonatomic) BOOL statusShowLog;
+
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;
 

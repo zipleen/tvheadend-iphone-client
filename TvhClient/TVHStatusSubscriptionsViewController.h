@@ -21,9 +21,10 @@
 #import <UIKit/UIKit.h>
 #import "TVHStatusSubscriptionsStore.h"
 #import "TVHAdaptersStore.h"
+#import "MGSplitViewController.h"
 
 @interface TVHStatusSubscriptionsViewController : UITableViewController <TVHStatusSubscriptionsDelegate, TVHAdaptersDelegate>
 - (IBAction)switchPolling:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *switchButton;
-
+@property (weak, nonatomic) MGSplitViewController *splitViewController;
 @end

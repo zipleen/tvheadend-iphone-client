@@ -7,6 +7,8 @@
 //
 
 #import "TVHStatusSplitViewController.h"
+#import "TVHDebugLogViewController.h"
+#import "TVHStatusSubscriptionsViewController.h"
 #import "TVHSettings.h"
 
 @interface TVHStatusSplitViewController ()
@@ -29,24 +31,53 @@
 - (UINavigationController*)statusController {
     if ( ! _statusController ) {
         _statusController = [self.storyboard instantiateViewControllerWithIdentifier:@"statusViewController"];
+        if ( [_statusController isKindOfClass:[UINavigationController class]] ) {
+            TVHStatusSubscriptionsViewController *statusLog = [_statusController.childViewControllers lastObject];
+            [statusLog setSplitViewController:self];
+        }
     }
     return _statusController;
 }
 
+- (void)awakeFromNib {
+    
+}
+
 - (void)viewDidLoad
 {
-    CGRect divRect = self.view.bounds;
-    divRect.size.width = 400;
-    self.view.bounds = divRect;
-    
     [super viewDidLoad];
-	self.viewControllers = @[ self.statusController, self.debugController ];
+	self.viewControllers = @[ self.debugController,  self.statusController ];
     self.vertical = NO;
-    self.showsMasterInLandscape = YES;
-    self.showsMasterInPortrait = YES;
-    
-    self.splitPosition = [[TVHSettings sharedInstance] statusSplitPosition];
+    self.masterBeforeDetail = NO;
     self.delegate = self;
+    [self showStatusLog];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLogSplitPosition) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self setLogSplitPosition];
+}
+
+- (void)showStatusLog {
+    if ( [[TVHSettings sharedInstance] statusShowLog] ) {
+        self.showsMasterInLandscape = YES;
+        self.showsMasterInPortrait = YES;
+    } else {
+        self.showsMasterInLandscape = NO;
+        self.showsMasterInPortrait = NO;
+    }
+}
+
+- (void)setLogSplitPosition {
+    if ( self.landscape ) {
+        self.splitPosition = [[TVHSettings sharedInstance] statusSplitPosition];
+    } else {
+        self.splitPosition = [[TVHSettings sharedInstance] statusSplitPositionPortrait];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,8 +87,11 @@
 }
 
 - (void)splitViewController:(MGSplitViewController*)svc willMoveSplitToPosition:(float)position {
-    [[TVHSettings sharedInstance] setStatusSplitPosition:position];
+    if ( self.landscape ) {
+        [[TVHSettings sharedInstance] setStatusSplitPosition:position];
+    } else {
+        [[TVHSettings sharedInstance] setStatusSplitPositionPortrait:position];
+    }
 }
-
 
 @end

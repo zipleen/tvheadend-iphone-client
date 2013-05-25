@@ -60,6 +60,13 @@
 {
     [super viewDidLoad];
     
+    if ( self.splitViewController ) {
+        NSMutableArray *buttons = [self.navigationItem.rightBarButtonItems mutableCopy];
+        UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showSplitLog:)];
+        [buttons addObject:split];
+        self.navigationItem.rightBarButtonItems = [buttons copy];
+    }
+    
     self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
     
     //pull to refresh
@@ -77,8 +84,10 @@
     act=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [act setFrame:CGRectMake(8, 5, 20, 20)];
     [act setUserInteractionEnabled:NO];
-    if ([[self.navigationController.navigationBar subviews] count]>=2) {
-        [[[self.navigationController.navigationBar subviews] lastObject] addSubview:act];
+    
+    int navigationControllerCount = [[self.navigationController.navigationBar subviews] count];
+    if ( navigationControllerCount >= 2 ) {
+        [[[self.navigationController.navigationBar subviews] objectAtIndex:navigationControllerCount-2] addSubview:act];
     }
     [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];
@@ -299,6 +308,18 @@
         [self.cometPoll startRefreshingCometPoll];
     }
     [self changePollingIcon];
+}
+
+- (IBAction)showSplitLog:(id)sender {
+    if( self.splitViewController ) {
+        if ( [[TVHSettings sharedInstance] statusShowLog] ) {
+            [[TVHSettings sharedInstance] setStatusShowLog:NO];
+        } else {
+            [[TVHSettings sharedInstance] setStatusShowLog:YES];
+        }
+        
+        [self.splitViewController toggleMasterView:sender];
+    }
 }
 
 @end

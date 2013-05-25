@@ -104,6 +104,7 @@
 		AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */; };
 		AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DED0016DEDB3B00AF6A51 /* SDSegmentedControl.m */; };
 		AA8DED2416DEDFB300AF6A51 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */; };
+		AA8EA9801751413A008B3703 /* TVHJASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8EA97F1751413A008B3703 /* TVHJASidePanelController.m */; };
 		AA91022916C6B41700673DF5 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021716C6B41700673DF5 /* AFHTTPClient.m */; };
 		AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021916C6B41700673DF5 /* AFHTTPRequestOperation.m */; };
 		AA91022B16C6B41700673DF5 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA91021B16C6B41700673DF5 /* AFImageRequestOperation.m */; };
@@ -369,6 +370,8 @@
 		AA8DECFF16DEDB3B00AF6A51 /* SDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDSegmentedControl.h; path = SDSegmentedControl/SDSegmentedControl.h; sourceTree = SOURCE_ROOT; };
 		AA8DED0016DEDB3B00AF6A51 /* SDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDSegmentedControl.m; path = SDSegmentedControl/SDSegmentedControl.m; sourceTree = SOURCE_ROOT; };
 		AA8DED2316DEDFB300AF6A51 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		AA8EA97E1751413A008B3703 /* TVHJASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHJASidePanelController.h; sourceTree = "<group>"; };
+		AA8EA97F1751413A008B3703 /* TVHJASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHJASidePanelController.m; sourceTree = "<group>"; };
 		AA91021616C6B41700673DF5 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		AA91021716C6B41700673DF5 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		AA91021816C6B41700673DF5 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -1101,7 +1104,7 @@
 		AAC8426B172F1087004BAB24 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				AAF264891744224E006C96CE /* SlidePanel */,
+				AAF264891744224E006C96CE /* SidePanel */,
 				AAC8426C172F11A5004BAB24 /* TVHChannelSplitViewController.h */,
 				AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */,
 				AAF264831744200F006C96CE /* TVHRecordingsSplitViewController.h */,
@@ -1193,15 +1196,17 @@
 			name = JASlidingPanels;
 			sourceTree = "<group>";
 		};
-		AAF264891744224E006C96CE /* SlidePanel */ = {
+		AAF264891744224E006C96CE /* SidePanel */ = {
 			isa = PBXGroup;
 			children = (
 				AAF2648017441EC2006C96CE /* TVHMainSlidePanelViewController.h */,
 				AAF2648117441EC2006C96CE /* TVHMainSlidePanelViewController.m */,
 				AAF2648617442247006C96CE /* TVHLeftMainMenuViewController.h */,
 				AAF2648717442247006C96CE /* TVHLeftMainMenuViewController.m */,
+				AA8EA97E1751413A008B3703 /* TVHJASidePanelController.h */,
+				AA8EA97F1751413A008B3703 /* TVHJASidePanelController.m */,
 			);
-			name = SlidePanel;
+			name = SidePanel;
 			sourceTree = "<group>";
 		};
 		AAFDEC61174549E30035D734 /* Tvh Server */ = {
@@ -1523,6 +1528,7 @@
 				AAAC5AC31748FC77006B093E /* MGSplitDividerView.m in Sources */,
 				AAAC5AC41748FC77006B093E /* MGSplitViewController.m in Sources */,
 				AAAC5AC71748FDC4006B093E /* TVHStatusSplitViewController.m in Sources */,
+				AA8EA9801751413A008B3703 /* TVHJASidePanelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

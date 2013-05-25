@@ -21,6 +21,48 @@
     UIView *bgColorView;
 }
 
+- (TVHChannelSplitViewController*)channelSplit {
+    if ( ! _channelSplit ) {
+        _channelSplit = [self.storyboard instantiateViewControllerWithIdentifier:@"channelSplitController"];
+    }
+    return _channelSplit;
+}
+
+- (TVHRecordingsDetailViewController*)recordController {
+    if ( ! _recordController ) {
+        _recordController = [self.storyboard instantiateViewControllerWithIdentifier:@"recordingNavController"];
+    }
+    return _recordController;
+}
+
+- (TVHStatusSplitViewController*)statusSplit {
+    if ( ! _statusSplit ) {
+        _statusSplit = [self.storyboard instantiateViewControllerWithIdentifier:@"statusSplitViewController"];
+    }
+    return _statusSplit;
+}
+
+- (TVHSettingsViewController*)settingsController {
+    if ( ! _settingsController ) {
+        _settingsController = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsScreen"];
+    }
+    return _settingsController;
+}
+
+- (TVHDebugLogViewController*)debugLogController {
+    if ( ! _debugLogController ) {
+        _debugLogController = [self.storyboard instantiateViewControllerWithIdentifier:@"debugNavigationController"];
+    }
+    return _debugLogController;
+}
+
+- (TVHStatusSubscriptionsViewController*)statusController {
+    if ( ! _statusController ) {
+        _statusController = [self.storyboard instantiateViewControllerWithIdentifier:@"settingsScreen"];
+    }
+    return _statusController;
+}
+
 - (void)viewDidLoad
 {
     self.view.backgroundColor = [UIColor colorWithRed:0.204 green:0.204 blue:0.204 alpha:1];
@@ -86,20 +128,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if( indexPath.row == 0 ) {
-        [self.sidePanelController setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"channelSplitController"]];
+        [self.sidePanelController setCenterPanel:self.channelSplit];
     }
     
     if( indexPath.row == 1 ) {
-        [self.sidePanelController setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"recordingNavController"]];
+        [self.sidePanelController setCenterPanel:self.recordController];
     }
     
     if( indexPath.row == 2 ) {
-        [self.sidePanelController setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"statusSplitViewController"]];
+        [self.sidePanelController setCenterPanel:self.statusSplit];
         
     }
     
     if( indexPath.row == 3 ) {
-        [self.sidePanelController setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"settingsScreen"]];
+        [self.sidePanelController setCenterPanel:self.settingsController];
     }
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

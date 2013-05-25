@@ -9,8 +9,6 @@
 #import "TVHMainSlidePanelViewController.h"
 
 #import "TVHLeftMainMenuViewController.h"
-#import "TVHDebugLogViewController.h"
-#import "TVHChannelSplitViewController.h"
 
 @interface TVHMainSlidePanelViewController ()
 @property (nonatomic, strong) TVHLeftMainMenuViewController *leftMainMenu;
@@ -25,20 +23,6 @@
         _leftMainMenu = [self.storyboard instantiateViewControllerWithIdentifier:@"leftMainMenu"];
     }
     return _leftMainMenu;
-}
-
-- (TVHChannelSplitViewController*)channelSplit {
-    if ( ! _channelSplit ) {
-        _channelSplit = [self.storyboard instantiateViewControllerWithIdentifier:@"channelSplitController"];
-    }
-    return _channelSplit;
-}
-
-- (TVHDebugLogViewController*)statusSplit {
-    if ( ! _statusSplit ) {
-        _statusSplit = [self.storyboard instantiateViewControllerWithIdentifier:@"debugNavigationController"];
-    }
-    return _statusSplit;
 }
 
 - (void)awakeFromNib
@@ -61,8 +45,8 @@
     self.panningLimitedToTopViewController = NO;
     self.minimumMovePercentage = 0.05f;
     [self setLeftPanel:self.leftMainMenu];
-    [self setCenterPanel:self.channelSplit];
-    [self setRightPanel:self.statusSplit];
+    [self setCenterPanel:[self.leftMainMenu channelSplit] ];
+    [self setRightPanel:[self.leftMainMenu debugLogController] ];
 }
 
 - (void)viewDidLoad

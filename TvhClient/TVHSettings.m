@@ -28,6 +28,8 @@
 #define TVHS_PROGRAM_FIRST_RUN @"programAlreadyRanOnce"
 #define TVHS_USE_BLACK_BORDERS @"useBlackBorders"
 #define TVHS_STATUS_SPLIT @"statusSplitPosition"
+#define TVHS_STATUS_SPLITPORTRAIT @"statusSplitPositionPortrait"
+#define TVHS_STATUS_SHOWLOG @"statusShowLog"
 
 @interface TVHSettings()
 
@@ -43,6 +45,8 @@
 @synthesize sendAnonymousStatistics = _sendAnonymousStatistics;
 @synthesize useBlackBorders = _useBlackBorders;
 @synthesize statusSplitPosition = _statusSplitPosition;
+@synthesize statusSplitPositionPortrait = _statusSplitPositionPortrait;
+@synthesize statusShowLog = _statusShowLog;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -408,6 +412,44 @@ withPassword:(NSString*)password {
     [defaults setInteger:statusSplitPosition forKey:TVHS_STATUS_SPLIT];
     [defaults synchronize];
     _statusSplitPosition = statusSplitPosition;
+}
+
+- (NSInteger)statusSplitPositionPortrait {
+    if ( ! _statusSplitPositionPortrait ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        id test = [defaults objectForKey:TVHS_STATUS_SPLITPORTRAIT];
+        if ( test == nil ) {
+            _statusSplitPositionPortrait = 485;
+        } else {
+            _statusSplitPositionPortrait = [defaults integerForKey:TVHS_STATUS_SPLITPORTRAIT];
+        }
+    }
+    return _statusSplitPositionPortrait;
+}
+
+- (void)setStatusSplitPositionPortrait:(NSInteger)statusSplitPositionPortrait {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:statusSplitPositionPortrait forKey:TVHS_STATUS_SPLITPORTRAIT];
+    [defaults synchronize];
+    _statusSplitPositionPortrait = statusSplitPositionPortrait;
+}
+
+- (BOOL)statusShowLog {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    id test = [defaults objectForKey:TVHS_STATUS_SHOWLOG];
+    if ( test == nil ) {
+        _statusShowLog = YES;
+        return _statusShowLog;
+    }
+    _statusShowLog = [defaults boolForKey:TVHS_STATUS_SHOWLOG];
+    return _statusShowLog;
+}
+
+- (void)setStatusShowLog:(BOOL)statusShowLog {
+    _statusShowLog = statusShowLog;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:statusShowLog forKey:TVHS_STATUS_SHOWLOG];
+    [defaults synchronize];
 }
 
 @end

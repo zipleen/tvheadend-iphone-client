@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "JASidePanelController.h"
+#import "TVHJASidePanelController.h"
 
-@interface TVHMainSlidePanelViewController : JASidePanelController
+@interface TVHMainSlidePanelViewController : TVHJASidePanelController
 
 @end
