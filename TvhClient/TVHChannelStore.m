@@ -69,9 +69,7 @@
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
-        if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
-            [self.delegate didErrorLoadingChannelStore:error];
-        }
+        [self signalDidErrorLoadingChannelStore:error];
         return ;
     }
     
@@ -121,9 +119,7 @@
        // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
        // NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
-            [self.delegate didErrorLoadingChannelStore:error];
-        }
+        [self signalDidErrorLoadingChannelStore:error];
         NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
     }];
 }
@@ -139,15 +135,11 @@
     }
     // instead of having this delegate here, channel could send a notification and channel controller
     // could catch it and reload only that line if data was different ?
-    if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
-        [self.delegate didLoadChannels];
-    }
+    [self signalDidLoadChannels];
 }
 
 - (void)didErrorLoadingEpgStore:(NSError*)error {
-    if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
-        [self.delegate didErrorLoadingChannelStore:error];
-    }
+    [self signalDidErrorLoadingChannelStore:error];
 }
 
 #pragma mark Controller delegate stuff
@@ -192,6 +184,18 @@
 - (void)setDelegate:(id <TVHChannelStoreDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
+    }
+}
+
+- (void)signalDidLoadChannels {
+    if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
+        [self.delegate didLoadChannels];
+    }
+}
+
+- (void)signalDidErrorLoadingChannelStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
+        [self.delegate didErrorLoadingChannelStore:error];
     }
 }
 

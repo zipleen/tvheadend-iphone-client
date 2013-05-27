@@ -81,28 +81,19 @@
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
-        if ([self.delegate respondsToSelector:@selector(didErrorDvrStore:)]) {
-            [self.delegate didErrorDvrStore:error];
-        }
+        [self signalDidErrorDvrStore:error];
         return ;
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
-    //NSMutableArray *dvrItems = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHDvrItem *dvritem = [[TVHDvrItem alloc] init];
         [dvritem updateValuesFromDictionary:obj];
-        dvritem.dvrType = type;
+        [dvritem setDvrType:type];
         
         [self addDvrItemToStore:dvritem];
     }];
-    
-    /*if ( [self.dvrItems count] > 0) {
-        self.dvrItems = [self.dvrItems arrayByAddingObjectsFromArray:[dvrItems copy]];
-    } else {
-        self.dvrItems = [dvrItems copy];
-    }*/
     
 #ifdef TESTING
     NSLog(@"[Loaded DVR Items, Count]: %d", [self.dvrItems count]);
@@ -124,14 +115,10 @@
 #endif
 
         [self fetchedData:responseObject withType:type];
-        if ([self.delegate respondsToSelector:@selector(didLoadDvr:)]) {
-            [self.delegate didLoadDvr:type];
-        }
+        [self signalDidLoadDvr:type];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(didErrorDvrStore:)]) {
-            [self.delegate didErrorDvrStore:error];
-        }
+        [self signalDidErrorDvrStore:error];
         NSLog(@"[DVR Items HTTPClient Error]: %@", error.localizedDescription);
     }];
     
@@ -182,6 +169,18 @@
         return [self.cachedDvrItems count];
     }
     return 0;
+}
+
+- (void)signalDidLoadDvr:(NSInteger)type {
+    if ([self.delegate respondsToSelector:@selector(didLoadDvr:)]) {
+        [self.delegate didLoadDvr:type];
+    }
+}
+
+- (void)signalDidErrorDvrStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorDvrStore:)]) {
+        [self.delegate didErrorDvrStore:error];
+    }
 }
 
 @end

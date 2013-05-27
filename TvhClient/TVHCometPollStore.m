@@ -30,7 +30,6 @@
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSString *boxid;
 @property (nonatomic) BOOL debugActive;
-//@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHCometPollStore

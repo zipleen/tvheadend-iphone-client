@@ -63,9 +63,8 @@
                 [obj updateValuesFromDictionary:message];
             }
         }];
-        if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
-            [self.delegate didLoadAdapters];
-        }
+        
+        [self signalDidLoadAdapters];
     }
 }
 
@@ -73,9 +72,7 @@
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
-        if ([self.delegate respondsToSelector:@selector(didErrorStatusSubscriptionsStore:)]) {
-            [self.delegate didErrorAdaptersStore:error];
-        }
+        [self signalDidErrorAdaptersStore:error];
         return ;
     }
     
@@ -100,14 +97,10 @@
     
     [self.jsonClient getPath:@"/tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
-            [self.delegate didLoadAdapters];
-        }
+        [self signalDidLoadAdapters];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(didErrorAdaptersStore:)]) {
-            [self.delegate didErrorAdaptersStore:error];
-        }
+        [self signalDidErrorAdaptersStore:error];
         NSLog(@"[Adapter Store HTTPClient Error]: %@", error.localizedDescription);
     }];
     
@@ -124,10 +117,22 @@
     return [self.adapters count];
 }
 
-
 - (void)setDelegate:(id <TVHAdaptersDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
     }
 }
+
+- (void)signalDidLoadAdapters {
+    if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
+        [self.delegate didLoadAdapters];
+    }
+}
+
+- (void)signalDidErrorAdaptersStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorAdaptersStore:)]) {
+        [self.delegate didErrorAdaptersStore:error];
+    }
+}
+
 @end

@@ -24,7 +24,7 @@
 @class TVHServer;
 
 @protocol TVHTagStoreDelegate <NSObject>
-
+@optional
 - (void)didLoadTags;
 - (void)didErrorLoadingTagStore:(NSError*)error;
 @end

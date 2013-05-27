@@ -230,18 +230,28 @@
     for (TVHEpg *epg in epgItems) {
         [self addEpg:epg];
     }
-    [self.delegate didLoadEpgChannel];
+    [self signalDidLoadEpgChannel];
 }
 
 - (void)didErrorLoadingEpgStore:(NSError*)error {
-    if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgChannel:)]) {
-        [self.delegate didErrorLoadingEpgChannel:error];
-    }
+    [self signalDidErrorLoadingEpgChannel:error];
 }
 
 - (void)setDelegate:(id <TVHChannelDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
+    }
+}
+
+- (void)signalDidLoadEpgChannel {
+    if ([self.delegate respondsToSelector:@selector(didLoadEpgChannel:)]) {
+        [self.delegate didLoadEpgChannel];
+    }
+}
+
+- (void)signalDidErrorLoadingEpgChannel:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgChannel:)]) {
+        [self.delegate didErrorLoadingEpgChannel:error];
     }
 }
 @end

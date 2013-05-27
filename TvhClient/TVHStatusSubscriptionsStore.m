@@ -62,15 +62,12 @@
         }
         
         [self.subscriptions enumerateObjectsUsingBlock:^(TVHStatusSubscription* obj, NSUInteger idx, BOOL *stop) {
-            
             if ( obj.id == [[message objectForKey:@"id"] intValue] ) {
                 [obj updateValuesFromDictionary:message];
             }
         }];
         
-        if ( [self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)] ) {
-            [self.delegate didLoadStatusSubscriptions];
-        }
+        [self signalDidLoadStatusSubscriptions];
     }
 }
 
@@ -78,9 +75,7 @@
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
-        if ([self.delegate respondsToSelector:@selector(didErrorStatusSubscriptionsStore:)]) {
-            [self.delegate didErrorStatusSubscriptionsStore:error];
-        }
+        [self signalDidErrorStatusSubscriptionsStore:error];
         return ;
     }
     
@@ -105,14 +100,10 @@
     
     [self.jsonClient getPath:@"/subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
-        if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
-            [self.delegate didLoadStatusSubscriptions];
-        }
+        [self signalDidLoadStatusSubscriptions];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
-            [self.delegate didErrorStatusSubscriptionsStore:error];
-        }
+        [self signalDidErrorStatusSubscriptionsStore:error];
         NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
     }];
 }
@@ -124,14 +115,25 @@
     return nil;
 }
 
-- (int) count {
+- (int)count {
     return [self.subscriptions count];
 }
-
 
 - (void)setDelegate:(id <TVHStatusSubscriptionsDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
+    }
+}
+
+- (void)signalDidLoadStatusSubscriptions {
+    if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
+        [self.delegate didLoadStatusSubscriptions];
+    }
+}
+
+- (void)signalDidErrorStatusSubscriptionsStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
+        [self.delegate didErrorStatusSubscriptionsStore:error];
     }
 }
 

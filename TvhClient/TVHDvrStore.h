@@ -28,6 +28,7 @@
 @class TVHServer;
 
 @protocol TVHDvrStoreDelegate <NSObject>
+@optional
 -(void) didLoadDvr:(NSInteger)type;
 -(void) didErrorDvrStore:(NSError*)error;
 @end

@@ -92,6 +92,7 @@
 
 - (void)resetEpgStore {
     self.epgTable = nil;
+    self.epgStore = nil;
     [self.tableView reloadData];
 }
 

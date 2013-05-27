@@ -63,9 +63,7 @@
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
-        if ([self.delegate respondsToSelector:@selector(didErrorDvrAutoStore:)]) {
-            [self.delegate didErrorDvrAutoStore:error];
-        }
+        [self signalDidErrorDvrAutoStore:error];
         return ;
     }
     
@@ -102,14 +100,10 @@
         NSLog(@"[AutoRec Profiling Network]: %f", time);
 #endif
         [self fetchedData:responseObject];
-        if ([self.delegate respondsToSelector:@selector(didLoadDvrAutoRec)]) {
-            [self.delegate didLoadDvrAutoRec];
-        }
+        [self signalDidLoadDvrAutoRec];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(didErrorDvrAutoStore:)]) {
-            [self.delegate didErrorDvrAutoStore:error];
-        }
+        [self signalDidErrorDvrAutoStore:error];
         NSLog(@"[DVR AutoRec Items HTTPClient Error]: %@", error.localizedDescription);
     }];
     
@@ -127,6 +121,18 @@
         return [self.dvrAutoRecItems count];
     }
     return 0;
+}
+
+- (void)signalDidLoadDvrAutoRec {
+    if ([self.delegate respondsToSelector:@selector(didLoadDvrAutoRec)]) {
+        [self.delegate didLoadDvrAutoRec];
+    }
+}
+
+- (void)signalDidErrorDvrAutoStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorDvrAutoStore:)]) {
+        [self.delegate didErrorDvrAutoStore:error];
+    }
 }
 
 @end

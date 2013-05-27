@@ -59,9 +59,7 @@
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
     if( error ) {
-        if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
-            [self.delegate didErrorLoadingTagStore:error];
-        }
+        [self signalDidErrorLoadingTagStore:error];
         return ;
     }
     
@@ -105,16 +103,12 @@
         NSLog(@"[TagStore Profiling Network]: %f", time);
 #endif
         [self fetchedData:responseObject];
-        if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
-            [self.delegate didLoadTags];
-        }
+        [self signalDidLoadTags];
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
-            [self.delegate didErrorLoadingTagStore:error];
-        }
+        [self signalDidErrorLoadingTagStore:error];
         NSLog(@"[TagList HTTPClient Error]: %@", error.description);
     }];
 }
@@ -122,6 +116,18 @@
 - (void)setDelegate:(id <TVHTagStoreDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
+    }
+}
+
+- (void)signalDidLoadTags {
+    if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
+        [self.delegate didLoadTags];
+    }
+}
+
+- (void)signalDidErrorLoadingTagStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
+        [self.delegate didErrorLoadingTagStore:error];
     }
 }
 

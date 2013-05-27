@@ -66,9 +66,7 @@
         
         NSString *log = [message objectForKey:@"logtxt"];
         [self addLogLine:log];
-        if ([self.delegate respondsToSelector:@selector(didLoadLog)]) {
-            [self.delegate didLoadLog];
-        }
+        [self signalDidLoadLog];
     }
 }
 
@@ -85,14 +83,20 @@
     return [self filteredLogLines];
 }
 
+- (void)clearLog {
+    [self.logLines removeAllObjects];
+}
+
 - (void)setDelegate:(id <TVHLogDelegate>)delegate {
     if (_delegate != delegate) {
         _delegate = delegate;
     }
 }
 
-- (void)clearLog {
-    [self.logLines removeAllObjects];
+- (void)signalDidLoadLog {
+    if ([self.delegate respondsToSelector:@selector(didLoadLog)]) {
+        [self.delegate didLoadLog];
+    }
 }
 
 @end

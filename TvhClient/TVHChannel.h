@@ -27,8 +27,8 @@
 @class TVHServer;
 
 @protocol TVHChannelDelegate <NSObject>
-- (void)didLoadEpgChannel;
 @optional
+- (void)didLoadEpgChannel;
 - (void)didErrorLoadingEpgChannel:(NSError*)error;
 @end
 

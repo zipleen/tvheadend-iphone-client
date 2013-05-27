@@ -24,8 +24,8 @@
 @class TVHServer;
 
 @protocol TVHAutoRecStoreDelegate <NSObject>
-- (void)didLoadDvrAutoRec;
 @optional
+- (void)didLoadDvrAutoRec;
 - (void)didErrorDvrAutoStore:(NSError*)error;
 @end
 

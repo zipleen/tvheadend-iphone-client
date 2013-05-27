@@ -25,9 +25,9 @@
 @class TVHServer;
 
 @protocol TVHChannelStoreDelegate <NSObject>
-
--(void) didLoadChannels;
--(void) didErrorLoadingChannelStore:(NSError*)error;
+@optional
+- (void)didLoadChannels;
+- (void)didErrorLoadingChannelStore:(NSError*)error;
 @end
 
 @interface TVHChannelStore : NSObject <TVHEpgStoreDelegate>
