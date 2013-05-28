@@ -22,7 +22,6 @@
 #import "TVHServer.h"
 
 @interface TVHAdaptersStore()
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *adapters;
 @end

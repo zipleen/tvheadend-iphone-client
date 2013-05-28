@@ -22,7 +22,6 @@
 #import "TVHServer.h"
 
 @interface TVHAutoRecStore()
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrAutoRecItems;
 @property (nonatomic, strong) NSDate *profilingDate;

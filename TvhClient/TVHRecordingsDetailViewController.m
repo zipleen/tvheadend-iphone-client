@@ -295,7 +295,7 @@
     if(self.segmentedControl.selectedSegmentIndex == 1) {
         // on our first time we click more items, we'll spawn a new epgstore and filter for our channel name + program title
         if ( ! self.moreTimes ) {
-            self.moreTimes = [[TVHEpgStore alloc] init];
+            self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[[self.dvrItem channelObject] tvhServer]];
             [self.moreTimes setFilterToChannelName:self.dvrItem.channel];
             [self.moreTimes setFilterToProgramTitle:self.dvrItem.title];
             [self.moreTimes setDelegate:self];

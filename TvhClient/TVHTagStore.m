@@ -23,7 +23,6 @@
 #import "TVHServer.h"
 
 @interface TVHTagStore()
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, strong) NSDate *profilingDate;

@@ -30,6 +30,7 @@
 @end
 
 @interface TVHTagStore : NSObject
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 

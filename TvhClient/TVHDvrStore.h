@@ -34,6 +34,7 @@
 @end
 
 @interface TVHDvrStore : NSObject
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchDvr;

@@ -22,7 +22,6 @@
 #import "TVHServer.h"
 
 @interface TVHDvrStore()
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrItems;
 @property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array

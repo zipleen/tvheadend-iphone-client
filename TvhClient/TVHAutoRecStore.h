@@ -30,6 +30,7 @@
 @end
 
 @interface TVHAutoRecStore : NSObject
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHAutoRecStoreDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchDvrAutoRec;

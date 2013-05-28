@@ -29,6 +29,7 @@
 @end
 
 @interface TVHAdaptersStore : NSObject
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHAdaptersDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchAdapters;

@@ -22,7 +22,6 @@
 #import "TVHServer.h"
 
 @interface TVHStatusSubscriptionsStore()
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *subscriptions;
 @end

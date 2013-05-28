@@ -31,6 +31,7 @@
 @end
 
 @interface TVHChannelStore : NSObject <TVHEpgStoreDelegate>
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic) NSInteger filterTag;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;

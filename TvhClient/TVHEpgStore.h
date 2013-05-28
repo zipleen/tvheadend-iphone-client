@@ -31,6 +31,7 @@
 @end
 
 @interface TVHEpgStore : NSObject
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSString *statsEpgName;
 @property (nonatomic, strong) NSString *filterToChannelName;
 @property (nonatomic, strong) NSString *filterToProgramTitle;

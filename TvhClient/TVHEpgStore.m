@@ -23,7 +23,6 @@
 #import "TVHServer.h"
 
 @interface TVHEpgStore()
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *epgStore;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
@@ -107,7 +106,7 @@
     }];
     
 #ifdef TESTING
-    NSLog(@"[EpgStore: Loaded EPG programs (%@ | %@ | %d)]: %d", self.filterToChannelName, self.filterToProgramTitle, self.totalEventCount, [self.epgStore count]);
+    NSLog(@"[EpgStore: Loaded EPG programs (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %d", self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, [self.epgStore count]);
 #endif
 }
 

@@ -26,7 +26,6 @@
 @interface TVHChannel() <TVHEpgStoreDelegate> {
     NSDateFormatter *dateFormatter;
 }
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSMutableArray *channelEpgDataByDay;
 @end
 
@@ -243,7 +242,7 @@
 }
 
 - (void)signalDidLoadEpgChannel {
-    if ([self.delegate respondsToSelector:@selector(didLoadEpgChannel:)]) {
+    if ([self.delegate respondsToSelector:@selector(didLoadEpgChannel)]) {
         [self.delegate didLoadEpgChannel];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadEpgChannel"

@@ -28,6 +28,7 @@
 #import "TVHImageCache.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSDictionary *properties;
 @property (strong, nonatomic) NSArray *propertiesKeys;
 @property (strong, nonatomic) TVHEpgStore *moreTimes;
@@ -171,6 +172,9 @@
     
     [self setSegmentIcons];
     [self setSegmentNames];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    //[self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -306,13 +310,14 @@
     if(self.segmentedControl.selectedSegmentIndex == 1) {
         // on our first time we click more items, we'll spawn a new epgstore and filter for our channel name + program title
         if ( ! self.moreTimes ) {
-            self.moreTimes = [[TVHEpgStore alloc] init];
+            self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[self.channel tvhServer]];
             //[self.moreTimes setFilterToChannelName:self.channel.name];
             [self.moreTimes setFilterToProgramTitle:self.epg.title];
             [self.moreTimes setDelegate:self];
             [self.moreTimes downloadEpgList];
         }
     }
+    [self.refreshControl beginRefreshing];
     [self.tableView reloadData];
 }
 
@@ -323,6 +328,7 @@
     
     self.moreTimesItems = [items copy];
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (IBAction)addRecordMoreItemsToTVHeadend:(id)sender {

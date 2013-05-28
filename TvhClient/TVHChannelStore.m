@@ -24,7 +24,6 @@
 #import "TVHServer.h"
 
 @interface TVHChannelStore ()
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, strong) TVHEpgStore *epgStore;
