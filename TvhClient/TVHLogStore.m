@@ -25,7 +25,6 @@
 
 @interface TVHLogStore()
 @property (nonatomic, strong) NSMutableArray *logLines;
-@property (nonatomic, weak) id <TVHLogDelegate> delegate;
 @end
 
 @implementation TVHLogStore
@@ -97,6 +96,8 @@
     if ([self.delegate respondsToSelector:@selector(didLoadLog)]) {
         [self.delegate didLoadLog];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadLog"
+                                                        object:self];
 }
 
 @end

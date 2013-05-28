@@ -41,11 +41,24 @@
     return self;
 }
 
+- (void)initDelegate {
+    if( [self.logStore delegate] ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didLoadLog)
+                                                     name:@"didLoadLog"
+                                                   object:self.logStore];
+    } else {
+        [self.logStore setDelegate:self];
+    }
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.logStore = [[TVHSingletonServer sharedServerInstance] logStore];
-    [self.logStore setDelegate:self];
+    [self initDelegate];
+    
     self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
     
     [[NSNotificationCenter defaultCenter] addObserver:self

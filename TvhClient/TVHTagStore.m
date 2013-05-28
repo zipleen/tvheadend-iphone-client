@@ -26,7 +26,6 @@
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *tags;
-@property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
@@ -123,6 +122,8 @@
     if ([self.delegate respondsToSelector:@selector(didLoadTags)]) {
         [self.delegate didLoadTags];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTags"
+                                                        object:self];
 }
 
 - (void)signalDidErrorLoadingTagStore:(NSError*)error {

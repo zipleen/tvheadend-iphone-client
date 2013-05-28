@@ -81,11 +81,29 @@
     }
 }
 
+- (void)initDelegate {
+    if( [self.dvrStore delegate] ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didLoadDvr)
+                                                     name:@"didLoadDvr"
+                                                   object:self.dvrStore];
+    } else {
+        [self.dvrStore setDelegate:self];
+    }
+
+    if( [self.autoRecStore delegate] ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didLoadDvrAutoRec)
+                                                     name:@"didLoadDvrAutoRec"
+                                                   object:self.autoRecStore];
+    } else {
+        [self.autoRecStore setDelegate:self];
+    }
+}
+
 - (void)resetRecordingsStore {
-    [self.dvrStore setDelegate:self];
+    [self initDelegate];
     [self.dvrStore fetchDvr];
-    
-    [self.autoRecStore setDelegate:self];
     [self.autoRecStore fetchDvrAutoRec];
 
 }

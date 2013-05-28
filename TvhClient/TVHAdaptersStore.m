@@ -25,7 +25,6 @@
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *adapters;
-@property (nonatomic, weak) id <TVHAdaptersDelegate> delegate;
 @end
 
 @implementation TVHAdaptersStore
@@ -127,12 +126,16 @@
     if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
         [self.delegate didLoadAdapters];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadAdapters"
+                                                        object:self];
 }
 
 - (void)signalDidErrorAdaptersStore:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(didErrorAdaptersStore:)]) {
         [self.delegate didErrorAdaptersStore:error];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didErrorAdaptersStore"
+                                                        object:error];
 }
 
 @end

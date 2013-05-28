@@ -40,7 +40,7 @@
 
 // if we're called from tagstore, we'll set the filter of the channelStore to only get channels from the selected tag
 - (NSInteger) filterTagId {
-    if(!_filterTagId) {
+    if( ! _filterTagId ) {
         return 0;
     }
     return _filterTagId;
@@ -71,11 +71,23 @@
                                     self.tableView);
 }
 
+- (void)initDelegate {
+    if( [self.channelList delegate] ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didLoadChannels)
+                                                     name:@"didLoadChannels"
+                                                   object:self.channelList];
+    } else {
+        [self.channelList setDelegate:self];
+    }
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initDelegate];
     
-    [self.channelList setDelegate:self];
     [self.channelList setFilterTag:self.filterTagId];
     
     //pull to refresh
@@ -212,7 +224,7 @@
     [self.refreshControl endRefreshing];
 }
 
-- (void)didErrorLoadingChannelStore:(NSError*) error {
+- (void)didErrorLoadingChannelStore:(NSError*)error; {
     [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
     [self.refreshControl endRefreshing];
 }

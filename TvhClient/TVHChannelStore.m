@@ -27,7 +27,6 @@
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *channels;
-@property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
@@ -191,12 +190,14 @@
     if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
         [self.delegate didLoadChannels];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadChannels"
+                                                        object:self];
 }
 
 - (void)signalDidErrorLoadingChannelStore:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
         [self.delegate didErrorLoadingChannelStore:error];
-    }
+    }   
 }
 
 @end

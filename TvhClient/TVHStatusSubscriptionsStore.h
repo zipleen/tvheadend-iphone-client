@@ -29,8 +29,8 @@
 @end
 
 @interface TVHStatusSubscriptionsStore : NSObject
+@property (nonatomic, weak) id <TVHStatusSubscriptionsDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
-- (void)setDelegate:(id <TVHStatusSubscriptionsDelegate>)delegate;
 - (void)fetchStatusSubscriptions;
 
 - (TVHStatusSubscription *) objectAtIndex:(int) row;

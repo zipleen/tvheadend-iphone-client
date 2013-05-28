@@ -25,7 +25,6 @@
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *subscriptions;
-@property (nonatomic, weak) id <TVHStatusSubscriptionsDelegate> delegate;
 @end
 
 @implementation TVHStatusSubscriptionsStore
@@ -129,12 +128,16 @@
     if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
         [self.delegate didLoadStatusSubscriptions];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadStatusSubscriptions"
+                                                        object:self];
 }
 
 - (void)signalDidErrorStatusSubscriptionsStore:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
         [self.delegate didErrorStatusSubscriptionsStore:error];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didErrorStatusSubscriptionsStore"
+                                                        object:error];
 }
 
 @end

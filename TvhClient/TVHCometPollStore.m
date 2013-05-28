@@ -203,9 +203,8 @@
         [self fetchedData:responseObject];
         errors = 0;
         if( timerStarted ) {
-            [[NSNotificationCenter defaultCenter]
-                postNotificationName:@"fetchCometPollStatus"
-                object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchCometPollStatus"
+                                                                object:nil];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         errors++;
@@ -213,9 +212,8 @@
             [self stopRefreshingCometPoll];
         }
         if( timerStarted ) {
-            [[NSNotificationCenter defaultCenter]
-                postNotificationName:@"fetchCometPollStatus"
-                object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchCometPollStatus"
+                                                                object:nil];
         }
 #ifdef TESTING
         NSLog(@"[CometPollStore HTTPClient Error]: %@", error.localizedDescription);
@@ -230,9 +228,8 @@
 #endif
     //self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(fetchCometPollStatus) userInfo:nil repeats:YES];
     timerStarted = YES;
-    [[NSNotificationCenter defaultCenter]
-         postNotificationName:@"fetchCometPollStatus"
-         object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchCometPollStatus"
+                                                        object:nil];
 }
 
 - (void)stopRefreshingCometPoll {

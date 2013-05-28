@@ -65,10 +65,22 @@
                                     self.tableView);
 }
 
+- (void)initDelegate {
+    if( [self.tagStore delegate] ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didLoadTags)
+                                                     name:@"didLoadTags"
+                                                   object:self.tagStore];
+    } else {
+        [self.tagStore setDelegate:self];
+    }
+ 
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
-    [self.tagStore setDelegate:self];
+    [super viewDidLoad];
+    [self initDelegate];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -96,8 +108,7 @@
     [super viewDidUnload];
 }
 
-- (void)pullToRefreshViewShouldRefresh
-{
+- (void)pullToRefreshViewShouldRefresh {
     [self.tagStore fetchTagList];
 }
 

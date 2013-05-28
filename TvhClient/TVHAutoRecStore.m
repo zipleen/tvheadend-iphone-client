@@ -25,7 +25,6 @@
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrAutoRecItems;
-@property (nonatomic, weak) id <TVHAutoRecStoreDelegate> delegate;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
@@ -127,12 +126,16 @@
     if ([self.delegate respondsToSelector:@selector(didLoadDvrAutoRec)]) {
         [self.delegate didLoadDvrAutoRec];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadDvrAutoRec"
+                                                        object:self];
 }
 
 - (void)signalDidErrorDvrAutoStore:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(didErrorDvrAutoStore:)]) {
         [self.delegate didErrorDvrAutoStore:error];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didErrorDvrAutoStore"
+                                                        object:error];
 }
 
 @end

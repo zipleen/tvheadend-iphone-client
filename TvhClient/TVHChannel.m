@@ -28,7 +28,6 @@
 }
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSMutableArray *channelEpgDataByDay;
-@property (nonatomic, weak) id <TVHChannelDelegate> delegate;
 @end
 
 @implementation TVHChannel
@@ -247,6 +246,8 @@
     if ([self.delegate respondsToSelector:@selector(didLoadEpgChannel:)]) {
         [self.delegate didLoadEpgChannel];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadEpgChannel"
+                                                        object:self];
 }
 
 - (void)signalDidErrorLoadingEpgChannel:(NSError*)error {

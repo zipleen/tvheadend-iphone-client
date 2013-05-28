@@ -46,10 +46,21 @@
                                     self.tableView);
 }
 
+- (void)initDelegate {
+    if ( [self.channel delegate] ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didLoadEpgChannel)
+                                                     name:@"didLoadEpgChannel"
+                                                   object:self.channel];
+    } else {
+        [self.channel setDelegate:self];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.channel setDelegate:self];
+    [self initDelegate];
     [self.channel downloadRestOfEpg];
     
     //pull to refresh

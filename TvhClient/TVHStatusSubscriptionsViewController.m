@@ -40,18 +40,34 @@
 
 @implementation TVHStatusSubscriptionsViewController
 
-- (TVHStatusSubscriptionsStore*) statusSubscriptionsStore {
+- (TVHStatusSubscriptionsStore*)statusSubscriptionsStore {
     if ( _statusSubscriptionsStore == nil) {
         _statusSubscriptionsStore = [[TVHSingletonServer sharedServerInstance] statusStore];
-        [self.statusSubscriptionsStore setDelegate:self];
+        
+        if( [_statusSubscriptionsStore delegate] ) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(didLoadAdapters)
+                                                         name:@"didLoadAdapters"
+                                                       object:_statusSubscriptionsStore];
+        } else {
+            [_statusSubscriptionsStore setDelegate:self];
+        }
     }
     return _statusSubscriptionsStore;
 }
 
-- (TVHAdaptersStore*) adapterStore {
+- (TVHAdaptersStore*)adapterStore {
     if ( _adapterStore == nil) {
         _adapterStore = [[TVHSingletonServer sharedServerInstance] adapterStore];
-        [self.adapterStore setDelegate:self];
+        
+        if( [_adapterStore delegate] ) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(didLoadStatusSubscriptions)
+                                                         name:@"didLoadStatusSubscriptions"
+                                                       object:_adapterStore];
+        } else {
+            [_adapterStore setDelegate:self];
+        }
     }
     return _adapterStore;
 }
