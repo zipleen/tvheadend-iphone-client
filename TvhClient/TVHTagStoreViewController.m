@@ -181,6 +181,7 @@
 - (void)prepareSplitViewEpg:(TVHTag*)tag {
     if ( self.splitViewController ) {
         UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
+        [detailView popToRootViewControllerAnimated:YES];
         TVHEpgTableViewController *epgDetailView = [detailView.viewControllers lastObject];
         [epgDetailView setFilterTag:tag.name];
         if ( tag ) {
