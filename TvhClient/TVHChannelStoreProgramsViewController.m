@@ -30,6 +30,7 @@
 @interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate> {
     NSDateFormatter *dateFormatter;
     NSDateFormatter *timeFormatter;
+    NIKFontAwesomeIconFactory *factory;
 }
 @property (strong, nonatomic) TVHPlayStreamHelpController *help;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -72,7 +73,7 @@
     timeFormatter = [[NSDateFormatter alloc] init];
     timeFormatter.dateFormat = @"HH:mm";
     
-    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     factory.size = 16;
     [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
     [self.navigationItem.rightBarButtonItem setAccessibilityLabel:NSLocalizedString(@"Play Channel", @"accessbility")];
@@ -138,6 +139,19 @@
     return [self.channel numberOfProgramsInDay:selected];
 }
 
+- (void)setScheduledIcon:(UIImageView*)schedStatusIcon forEpg:(TVHEpg*)epg {
+    factory.size = 12;
+    factory.colors = @[[UIColor grayColor], [UIColor lightGrayColor]];
+    [schedStatusIcon setImage:nil];
+    if ( [[epg schedstate] isEqualToString:@"scheduled"] ) {
+        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconTime]];
+    }
+    if ( [[epg schedstate] isEqualToString:@"recording"] ) {
+        factory.colors = @[[UIColor redColor]];
+        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconBullseye]];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ProgramListTableItems";
@@ -152,6 +166,7 @@
 	UILabel *description = (UILabel *)[cell viewWithTag:101];
     UILabel *hour = (UILabel *)[cell viewWithTag:102];
     UIProgressView *progress = (UIProgressView *)[cell viewWithTag:103];
+    UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
     
     hour.text = [timeFormatter stringFromDate: epg.start];
     name.text = epg.fullTitle;
@@ -165,6 +180,8 @@
     } else {
         progress.hidden = YES;
     }
+    
+    [self setScheduledIcon:schedStatusImage forEpg:epg];
     
     cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@", epg.fullTitle, [timeFormatter stringFromDate: epg.start]];
     

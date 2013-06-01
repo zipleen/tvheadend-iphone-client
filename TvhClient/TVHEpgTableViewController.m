@@ -27,10 +27,12 @@
 #import "TVHImageCache.h"
 #import "TVHSingletonServer.h"
 #import "TVHShowNotice.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;
     NSDateFormatter *hourFormatter;
+    NIKFontAwesomeIconFactory *factory;
 }
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSArray *epgTable ;
@@ -63,6 +65,10 @@
     
     hourFormatter = [[NSDateFormatter alloc] init];
     hourFormatter.dateFormat = @"HH:mm";
+    
+    factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    factory.size = 16;
+    factory.colors = @[[UIColor grayColor], [UIColor lightGrayColor]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetEpgStore)
@@ -103,6 +109,18 @@
     return [self.epgTable count];
 }
 
+- (void)setScheduledIcon:(UIImageView*)schedStatusIcon forEpg:(TVHEpg*)epg {
+    factory.colors = @[[UIColor grayColor], [UIColor lightGrayColor]];
+    [schedStatusIcon setImage:nil];
+    if ( [[epg schedstate] isEqualToString:@"scheduled"] ) {
+        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconTime]];
+    }
+    if ( [[epg schedstate] isEqualToString:@"recording"] ) {
+        factory.colors = @[[UIColor redColor]];
+        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconBullseye]];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"EpgTableCellItems";
@@ -117,6 +135,7 @@
     UILabel *timeLabel = (UILabel *)[cell viewWithTag:101];
     __weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     UILabel *channelName = (UILabel *)[cell viewWithTag:103];
+    UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
     
     programLabel.text = epg.fullTitle;
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
@@ -138,6 +157,8 @@
     } else {
         channelImage.layer.borderWidth = 0;
     }
+    
+    [self setScheduledIcon:schedStatusImage forEpg:epg];
     
     cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@ %@", epg.fullTitle, NSLocalizedString(@"in",@"accessibility"), epg.channel,NSLocalizedString(@"starts at",@"accessibility"),[dateFormatter stringFromDate:epg.start], NSLocalizedString(@"finishes at",@"accessibility"),[dateFormatter stringFromDate:epg.end] ];
     

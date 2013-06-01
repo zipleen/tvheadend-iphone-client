@@ -1159,6 +1159,10 @@
                                                     <rect key="frame" x="64" y="28" width="677" height="9"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 </progressView>
+                                                <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" id="dSd-13-Zya">
+                                                    <rect key="frame" x="2" y="16" width="12" height="12"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -1462,6 +1466,10 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" id="Otf-q7-UQt">
+                                            <rect key="frame" x="727" y="21" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -1857,10 +1865,7 @@
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="autoStartPolling:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="doneSettings:"/>
-                <relationship kind="action" name="sendAnonymousStatistics:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="useBlackBorders:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHStatusSplitViewController" superclassName="MGSplitViewController">
@@ -1869,7 +1874,6 @@
         <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showSplitLog:"/>
                 <relationship kind="action" name="switchPolling:"/>
                 <relationship kind="outlet" name="switchButton" candidateClass="UIBarButtonItem"/>
             </relationships>
