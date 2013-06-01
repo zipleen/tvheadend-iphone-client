@@ -172,7 +172,6 @@
 		AAE1EAC4170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABD170B6471006DE2BE /* NIKFontAwesomeIconFactory+OSX.m */; };
 		AAE1EAC5170B6471006DE2BE /* NIKFontAwesomePathFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EABF170B6471006DE2BE /* NIKFontAwesomePathFactory.m */; };
 		AAE1EAC6170B6471006DE2BE /* NIKFontAwesomePathRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EAC1170B6471006DE2BE /* NIKFontAwesomePathRenderer.m */; };
-		AAE1EAC8170B6488006DE2BE /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAE1EAC7170B6488006DE2BE /* FontAwesome.otf */; };
 		AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */; };
 		AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */; };
@@ -184,6 +183,7 @@
 		AAE7B7A0170782200052E6F3 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79D170782200052E6F3 /* libcrypto.a */; };
 		AAE7B7A1170782200052E6F3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79E170782200052E6F3 /* libssl.a */; };
 		AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */; };
+		AAE8668D175A24B00027EE11 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAE8668C175A24B00027EE11 /* FontAwesome.otf */; };
 		AAEE7A87171240AE00D0E584 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */; };
 		AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647B17441D71006C96CE /* JASidePanelController.m */; };
 		AAF2647F17441D71006C96CE /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647D17441D71006C96CE /* UIViewController+JASidePanel.m */; };
@@ -470,7 +470,6 @@
 		AAE1EABF170B6471006DE2BE /* NIKFontAwesomePathFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKFontAwesomePathFactory.m; path = FontAwesomeIconFactory/NIKFontAwesomePathFactory.m; sourceTree = SOURCE_ROOT; };
 		AAE1EAC0170B6471006DE2BE /* NIKFontAwesomePathRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIKFontAwesomePathRenderer.h; path = FontAwesomeIconFactory/NIKFontAwesomePathRenderer.h; sourceTree = SOURCE_ROOT; };
 		AAE1EAC1170B6471006DE2BE /* NIKFontAwesomePathRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIKFontAwesomePathRenderer.m; path = FontAwesomeIconFactory/NIKFontAwesomePathRenderer.m; sourceTree = SOURCE_ROOT; };
-		AAE1EAC7170B6488006DE2BE /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.otf; path = "FontAwesomeIconFactory/Font-Awesome/font/FontAwesome.otf"; sourceTree = SOURCE_ROOT; };
 		AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		AAE5273316F28AD0002047E4 /* TVHAutoRecStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecStore.h; sourceTree = "<group>"; };
 		AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecStore.m; sourceTree = "<group>"; };
@@ -488,6 +487,7 @@
 		AAE7B79E170782200052E6F3 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "libssh2-for-iOS/lib/libssl.a"; sourceTree = "<group>"; };
 		AAE7B7A31707825D0052E6F3 /* SSHWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHWrapper.h; sourceTree = "<group>"; };
 		AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHWrapper.m; sourceTree = "<group>"; };
+		AAE8668C175A24B00027EE11 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.otf; path = "FontAwesomeIconFactory/Font-Awesome/build/assets/font-awesome/font/FontAwesome.otf"; sourceTree = SOURCE_ROOT; };
 		AAEE7A81171240AE00D0E584 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		AAEE7A82171240AE00D0E584 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		AAEE7A83171240AE00D0E584 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
@@ -1127,7 +1127,7 @@
 		AAE1EAB3170B644B006DE2BE /* FontAwesomeIcon */ = {
 			isa = PBXGroup;
 			children = (
-				AAE1EAC7170B6488006DE2BE /* FontAwesome.otf */,
+				AAE8668C175A24B00027EE11 /* FontAwesome.otf */,
 				AAE1EAB7170B6471006DE2BE /* NIKFontAwesomeIcon.h */,
 				AAE1EAB8170B6471006DE2BE /* NIKFontAwesomeIconFactory.h */,
 				AAE1EAB9170B6471006DE2BE /* NIKFontAwesomeIconFactory.m */,
@@ -1363,7 +1363,6 @@
 				AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */,
 				AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */,
 				AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */,
-				AAE1EAC8170B6488006DE2BE /* FontAwesome.otf in Resources */,
 				AA5E8A16170F5B3100779AC6 /* satellite.png in Resources */,
 				AA5E8A17170F5B3100779AC6 /* satellite@2x.png in Resources */,
 				AA5E8A1D170F61E200779AC6 /* hardware.png in Resources */,
@@ -1383,6 +1382,7 @@
 				AA41CB2D174C39C7003F3038 /* rec_ipad@2x.png in Resources */,
 				AA41CB30174C3BAB003F3038 /* settings_ipad.png in Resources */,
 				AA41CB31174C3BAB003F3038 /* settings_ipad@2x.png in Resources */,
+				AAE8668D175A24B00027EE11 /* FontAwesome.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
