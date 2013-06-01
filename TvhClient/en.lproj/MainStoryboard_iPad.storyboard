@@ -1248,7 +1248,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dEZ-Mo-L1n">
-                                                    <rect key="frame" x="682" y="10" width="66" height="25"/>
+                                                    <rect key="frame" x="658" y="10" width="90" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <state key="normal" title="Record">
@@ -1635,7 +1635,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v34-l0-kT4">
-                                                    <rect key="frame" x="682" y="12" width="66" height="25"/>
+                                                    <rect key="frame" x="658" y="12" width="90" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <state key="normal" title="Record">
@@ -1857,7 +1857,10 @@
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="autoStartPolling:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="doneSettings:"/>
+                <relationship kind="action" name="sendAnonymousStatistics:" candidateClass="UISwitch"/>
+                <relationship kind="action" name="useBlackBorders:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHStatusSplitViewController" superclassName="MGSplitViewController">

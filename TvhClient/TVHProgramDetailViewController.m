@@ -234,6 +234,15 @@
     return 0;
 }
 
+- (void)setStyleForRecordButton:(UIButton*)recordButton forEpg:(TVHEpg*)epg {
+    
+    if ( [[epg schedstate] isEqualToString:@"scheduled"] || [[epg schedstate] isEqualToString:@"recording"] ) {
+        //[recordButton setTitle:NSLocalizedString(@"Remove", nil) forState:UIControlStateNormal];
+        [recordButton setHidden:YES];
+    } else {
+        [recordButton setTitle:NSLocalizedString(@"Record", nil) forState:UIControlStateNormal];
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -264,6 +273,7 @@
         
         if( [titleLabel.text isEqualToString:NSLocalizedString(@"Time", nil)] ) {
             recordButton.hidden = NO;
+            [self setStyleForRecordButton:recordButton forEpg:epg];
         }
         
     } else if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
@@ -274,6 +284,7 @@
             descLabel.text = @"";
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
+            [self setStyleForRecordButton:recordButton forEpg:epg];
             titleLabel.text = epg.fullTitle;
             descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%d min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
@@ -282,7 +293,7 @@
     // resize the "description" label
     unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGSize size = [descLabel.text
-              sizeWithFont:[UIFont systemFontOfSize:13]
+                   sizeWithFont:[UIFont systemFontOfSize:13]
               constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
     descLabel.frame = CGRectMake(20, 20, size.width, size.height);
     
@@ -332,13 +343,20 @@
 }
 
 - (IBAction)addRecordMoreItemsToTVHeadend:(id)sender {
+    // for our program
     if( self.segmentedControl.selectedSegmentIndex == 0 ) {
-        [self.epg addRecording];
+        if ( ! [self.epg schedstate] ) {
+            [self.epg addRecording];
+        }
     } else if( self.segmentedControl.selectedSegmentIndex == 1 ){
+        // for "see again" items
         UIView *senderButton = (UIView*) sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
         TVHEpg *epg = self.moreTimesItems[indexPath.row];
-        [epg addRecording];
+        if( ! [self.epg schedstate] ) {
+            [epg addRecording];
+        }
+        
     }
 }
 
