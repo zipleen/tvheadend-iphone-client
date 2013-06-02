@@ -119,6 +119,8 @@
 		AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA97AA59170642FD0068702E /* PDKeychainBindingsController.m */; };
 		AA97AA5D17065B540068702E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA97AA5C17065B540068702E /* Security.framework */; };
 		AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */; };
+		AA9BD3C9175B94E800670C76 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BD3C8175B94E800670C76 /* Crashlytics.framework */; };
+		AA9BD3CC175B953700670C76 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BD3CB175B953700670C76 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AAAC5AC21748FC77006B093E /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5ABD1748FC77006B093E /* MGSplitCornersView.m */; };
 		AAAC5AC31748FC77006B093E /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5ABF1748FC77006B093E /* MGSplitDividerView.m */; };
 		AAAC5AC41748FC77006B093E /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5AC11748FC77006B093E /* MGSplitViewController.m */; };
@@ -408,6 +410,8 @@
 		AA97AA5C17065B540068702E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AA99BC5D16ED54290087060A /* TVHEpgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgTableViewController.h; sourceTree = "<group>"; };
 		AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgTableViewController.m; sourceTree = "<group>"; };
+		AA9BD3C8175B94E800670C76 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		AA9BD3CB175B953700670C76 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		AAAC5ABC1748FC77006B093E /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitCornersView.h; path = MGSplitViewController/Classes/MGSplitCornersView.h; sourceTree = SOURCE_ROOT; };
 		AAAC5ABD1748FC77006B093E /* MGSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitCornersView.m; path = MGSplitViewController/Classes/MGSplitCornersView.m; sourceTree = SOURCE_ROOT; };
 		AAAC5ABE1748FC77006B093E /* MGSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitDividerView.h; path = MGSplitViewController/Classes/MGSplitDividerView.h; sourceTree = SOURCE_ROOT; };
@@ -565,6 +569,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9BD3CC175B953700670C76 /* AdSupport.framework in Frameworks */,
 				AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */,
 				AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */,
 				AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */,
@@ -582,6 +587,7 @@
 				AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */,
 				AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */,
 				AAEE7A87171240AE00D0E584 /* libGoogleAnalytics.a in Frameworks */,
+				AA9BD3C9175B94E800670C76 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,6 +1058,8 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA9BD3CB175B953700670C76 /* AdSupport.framework */,
+				AA9BD3C8175B94E800670C76 /* Crashlytics.framework */,
 				AA3EE6F7172B008100AD60F5 /* CoreData.framework */,
 				AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */,
 				AAE7B79C170782200052E6F3 /* libssh2.a */,
@@ -1281,10 +1289,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAB39A1616BDB21900973F88 /* Build configuration list for PBXNativeTarget "TvhClient" */;
 			buildPhases = (
-				AAFC2A0B16FBA52900194DFF /* ShellScript */,
+				AAFC2A0B16FBA52900194DFF /* Run git version */,
 				AAB399EC16BDB21900973F88 /* Sources */,
 				AAB399ED16BDB21900973F88 /* Frameworks */,
 				AAB399EE16BDB21900973F88 /* Resources */,
+				AA9BD3CA175B94F700670C76 /* Run Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1442,13 +1451,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		AAFC2A0B16FBA52900194DFF /* ShellScript */ = {
+		AA9BD3CA175B94F700670C76 /* Run Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Crashlytics";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "releaseConfig=\"Release\"\nif [ \"$releaseConfig\" = \"${CONFIGURATION}\" ]; then\necho \"Running Crashlytics\"\n    ./Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\nfi";
+		};
+		AAFC2A0B16FBA52900194DFF /* Run git version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run git version";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

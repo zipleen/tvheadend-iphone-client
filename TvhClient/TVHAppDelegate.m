@@ -28,6 +28,9 @@
 #ifdef TVH_GOOGLEANALYTICS_KEY
 #import "GAI.h"
 #endif
+#ifdef TVH_CRASHLYTICS_KEY
+#import <Crashlytics/Crashlytics.h>
+#endif
 
 @implementation TVHAppDelegate {
     NSDate *exitTime;
@@ -59,6 +62,10 @@
         [[GAI sharedInstance] setOptOut:YES];
 #endif
     }
+#if defined TVH_CRASHLYTICS_KEY && !defined TESTING
+    [Crashlytics startWithAPIKey:TVH_CRASHLYTICS_KEY];
+#endif
+
     return YES;
 }
 							
