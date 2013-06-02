@@ -27,7 +27,7 @@
 
 - (void)awakeFromNib
 {
-    self.leftFixedWidth = 160;
+    self.leftFixedWidth = 90;
     self.rightFixedWidth = 500;
     //self.rightFixedWidth = 700;
     

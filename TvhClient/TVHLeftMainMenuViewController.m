@@ -13,6 +13,7 @@
 
 #define TVH_LEFT_LABELS @[ @"Channels", @"Recordings",  @"Status", @"Settings" ]
 #define TVH_LEFT_PICS @[ @"comp_ipad.png", @"rec_ipad.png",  @"status_ipad.png", @"settings_ipad.png" ]
+#define TVH_LEFT_PICS_SEL @[ @"comp_ipad_sel.png", @"rec_ipad_sel.png",  @"status_ipad_sel.png", @"settings_ipad_sel.png" ]
 
 #define TVH_CENTER_CHANNELS 0
 #define TVH_CENTER_RECORDINGS 1
@@ -78,20 +79,23 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor colorWithRed:0.204 green:0.204 blue:0.204 alpha:1];
+    [super viewDidLoad];
     
-    bgColorView = [[UIView alloc] init];
-    [bgColorView setBackgroundColor:[UIColor colorWithRed:0.133 green:0.133 blue:0.133 alpha:1]];
+    // 0.204
+    self.view.backgroundColor = [UIColor colorWithRed:0.129 green:0.129 blue:0.129 alpha:1];
     
-    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
-                           animated:NO
-                     scrollPosition:UITableViewScrollPositionNone];
-    
+    //bgColorView = [[UIView alloc] init];
+    //[bgColorView setBackgroundColor:[UIColor colorWithRed:0.133 green:0.133 blue:0.133 alpha:1]];
+    bgColorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"left_sel.png"] ];
+    bgColorView.contentMode = UIViewContentModeBottomLeft;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.view.layer.cornerRadius = 0;
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                                animated:NO
+                          scrollPosition:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,9 +104,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01f;
-}
+//- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return 0.01f;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -120,8 +124,9 @@
     UILabel *text = (UILabel *)[cell viewWithTag:100];
     UIImageView *image = (UIImageView *)[cell viewWithTag:101];
     
-    text.text = [NSLocalizedString([TVH_LEFT_LABELS objectAtIndex:indexPath.row], nil) uppercaseString];
+    text.text = NSLocalizedString([TVH_LEFT_LABELS objectAtIndex:indexPath.row], nil);
     image.image = [UIImage imageNamed:[TVH_LEFT_PICS objectAtIndex:indexPath.row]];
+    image.highlightedImage = [UIImage imageNamed:[TVH_LEFT_PICS_SEL objectAtIndex:indexPath.row]];
     
     image.layer.shadowColor = [UIColor blackColor].CGColor;
     image.layer.shadowOffset = CGSizeMake(0, 2);
@@ -132,9 +137,9 @@
     
     cell.selectedBackgroundView = bgColorView;
     
-    UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1 * [[UIScreen mainScreen] scale])];
-    [sepColor setBackgroundColor:[UIColor colorWithRed:0.212 green:0.212 blue:0.212 alpha:1]];
-    [cell.contentView addSubview:sepColor];
+    //UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1 * [[UIScreen mainScreen] scale])];
+    //[sepColor setBackgroundColor:[UIColor colorWithRed:0.212 green:0.212 blue:0.212 alpha:1]];
+    //[cell.contentView addSubview:sepColor];
     
     return cell;
 }
