@@ -23,5 +23,10 @@
 @interface TVHEpgTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *filterSegmentedControl;
+@property (weak, nonatomic) IBOutlet UIToolbar *filterToolBar;
+- (IBAction)filterSegmentedControlClicked:(UISegmentedControl *)sender;
+- (IBAction)showHideSegmentedBar:(UIBarButtonItem *)sender;
+
 - (void)setFilterTag:(NSString*)tag;
 @end

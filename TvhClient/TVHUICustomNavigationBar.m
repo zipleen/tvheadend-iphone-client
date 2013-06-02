@@ -58,19 +58,42 @@
     //UIImage *navBarBg = [UIImage imageNamed:@"navigationbar.png"];
     //[self setBackgroundImage:navBarBg forBarMetrics:UIBarMetricsDefault];
     [self setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                  [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0], UITextAttributeTextColor,
+                                  [UIColor colorWithRed:200.0f/255.0f
+                                                  green:200.0f/255.0f
+                                                   blue:200.0f/255.0f
+                                                  alpha:1.0],
+                                  UITextAttributeTextColor,
                                   nil]];
     
-    [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:@"navigationbar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:@"navigationbar.png"]
+                                                      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)]
+                                       forBarMetrics:UIBarMetricsDefault];
     
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBack.png"]
+                                                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)]
+                                                      forState:UIControlStateNormal
+                                                    barMetrics:UIBarMetricsDefault];
     //[[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBackPressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     
-    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButton.png"]
+                                            forState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
     //[[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButtonPressed.png"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     
-    [[UIProgressView appearance] setTrackImage:[[UIImage imageNamed:@"BarTrack.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
-    [[UIProgressView appearance] setProgressImage:[[UIImage imageNamed:@"BarFill.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+    [[UIProgressView appearance] setTrackImage:[[UIImage imageNamed:@"BarTrack.png"]
+                                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+    [[UIProgressView appearance] setProgressImage:[[UIImage imageNamed:@"BarFill.png"]
+                                                   resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
+    
+    [[UIToolbar appearance] setBackgroundImage:[[UIImage
+                                                 imageNamed:@"navigationbar_inverted.png"]
+                                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)]
+                            forToolbarPosition:UIToolbarPositionAny
+                                    barMetrics:UIBarMetricsDefault];
+    
+    [[UISearchBar appearance] setBackgroundImage:[[UIImage imageNamed:@"navigationbar.png"]
+                                                 resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)]
+                              ];
 }
 
 

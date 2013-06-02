@@ -1360,6 +1360,27 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9RK-pf-gUz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" id="vcq-gj-C3J">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" segmentControlStyle="bar" momentary="YES" id="ZDT-DC-vY8">
+                                            <rect key="frame" x="6" y="8" width="308" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <segments>
+                                                <segment title="Channel"/>
+                                                <segment title="Tag"/>
+                                                <segment title="Content Type"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="filterSegmentedControlClicked:" destination="wFS-vF-5Bx" eventType="valueChanged" id="0u5-CN-dCb"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="58" sectionHeaderHeight="22" sectionFooterHeight="22" id="b5N-0e-UTF">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1423,8 +1444,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Now" id="JMi-2O-eMt"/>
+                    <navigationItem key="navigationItem" title="Now" id="JMi-2O-eMt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="lLJ-gK-kKG">
+                            <connections>
+                                <action selector="showHideSegmentedBar:" destination="wFS-vF-5Bx" id="Xuw-Y3-pIY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="filterSegmentedControl" destination="ZDT-DC-vY8" id="q34-nU-ZPq"/>
+                        <outlet property="filterToolBar" destination="9RK-pf-gUz" id="gXU-Cj-W3h"/>
                         <outlet property="searchBar" destination="mTv-Tn-t3C" id="tDr-pU-IfN"/>
                         <outlet property="tableView" destination="b5N-0e-UTF" id="cbl-Ah-cER"/>
                     </connections>
@@ -1704,6 +1733,10 @@
         <class className="TVHEpgTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHEpgTableViewController.h"/>
             <relationships>
+                <relationship kind="action" name="filterSegmentedControlClicked:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="showHideSegmentedBar:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="filterSegmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="filterToolBar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
@@ -1763,10 +1796,7 @@
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="autoStartPolling:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="doneSettings:"/>
-                <relationship kind="action" name="sendAnonymousStatistics:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="useBlackBorders:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
@@ -1795,7 +1825,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eb8-mL-0Xc"/>
         <segue reference="cqh-rj-fhW"/>
+        <segue reference="eb8-mL-0Xc"/>
     </inferredMetricsTieBreakers>
 </document>

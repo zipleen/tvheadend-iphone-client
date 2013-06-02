@@ -72,7 +72,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.responseBack(indexPath.row);
-    [[self navigationController] popViewControllerAnimated:YES];
+    if ( self.navigationController ) {
+        [[self navigationController] popViewControllerAnimated:YES];
+    }
 }
 
 @end

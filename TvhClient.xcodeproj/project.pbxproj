@@ -121,6 +121,8 @@
 		AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */; };
 		AA9BD3C9175B94E800670C76 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BD3C8175B94E800670C76 /* Crashlytics.framework */; };
 		AA9BD3CC175B953700670C76 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BD3CB175B953700670C76 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		AA9BD3CF175BCDAC00670C76 /* navigationbar_inverted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9BD3CD175BCDAC00670C76 /* navigationbar_inverted@2x.png */; };
+		AA9BD3D0175BCDAC00670C76 /* navigationbar_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9BD3CE175BCDAC00670C76 /* navigationbar_inverted.png */; };
 		AAAC5AC21748FC77006B093E /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5ABD1748FC77006B093E /* MGSplitCornersView.m */; };
 		AAAC5AC31748FC77006B093E /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5ABF1748FC77006B093E /* MGSplitDividerView.m */; };
 		AAAC5AC41748FC77006B093E /* MGSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5AC11748FC77006B093E /* MGSplitViewController.m */; };
@@ -412,6 +414,8 @@
 		AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgTableViewController.m; sourceTree = "<group>"; };
 		AA9BD3C8175B94E800670C76 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		AA9BD3CB175B953700670C76 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		AA9BD3CD175BCDAC00670C76 /* navigationbar_inverted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_inverted@2x.png"; sourceTree = "<group>"; };
+		AA9BD3CE175BCDAC00670C76 /* navigationbar_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationbar_inverted.png; sourceTree = "<group>"; };
 		AAAC5ABC1748FC77006B093E /* MGSplitCornersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitCornersView.h; path = MGSplitViewController/Classes/MGSplitCornersView.h; sourceTree = SOURCE_ROOT; };
 		AAAC5ABD1748FC77006B093E /* MGSplitCornersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGSplitCornersView.m; path = MGSplitViewController/Classes/MGSplitCornersView.m; sourceTree = SOURCE_ROOT; };
 		AAAC5ABE1748FC77006B093E /* MGSplitDividerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGSplitDividerView.h; path = MGSplitViewController/Classes/MGSplitDividerView.h; sourceTree = SOURCE_ROOT; };
@@ -656,6 +660,8 @@
 		AA2AEB1D16CB0839006B071C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AA9BD3CD175BCDAC00670C76 /* navigationbar_inverted@2x.png */,
+				AA9BD3CE175BCDAC00670C76 /* navigationbar_inverted.png */,
 				AAE866A0175ACD420027EE11 /* left_sel@2x.png */,
 				AAE8669E175AC2E80027EE11 /* left_sel.png */,
 				AAE8668E175ABD450027EE11 /* status_ipad_sel.png */,
@@ -1432,6 +1438,8 @@
 				AAE8669D175ABD450027EE11 /* settings_ipad_sel.png in Resources */,
 				AAE8669F175AC2E80027EE11 /* left_sel.png in Resources */,
 				AAE866A1175ACD420027EE11 /* left_sel@2x.png in Resources */,
+				AA9BD3CF175BCDAC00670C76 /* navigationbar_inverted@2x.png in Resources */,
+				AA9BD3D0175BCDAC00670C76 /* navigationbar_inverted.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

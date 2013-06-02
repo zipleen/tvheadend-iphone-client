@@ -28,6 +28,7 @@
 #import "TVHSingletonServer.h"
 #import "TVHShowNotice.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "TVHSettingsGenericFieldViewController.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;
@@ -94,6 +95,8 @@
 
 - (void)viewDidUnload
 {
+    [self setFilterToolBar:nil];
+    [self setFilterSegmentedControl:nil];
     [self setSearchBar:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
@@ -225,6 +228,30 @@
         [programDetail setEpg:epg];
         [programDetail setTitle:epg.title];
     }
+    
+    if([segue.identifier isEqualToString:@"Select Filter Pref"]) {
+        TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+        int clickedFilterButton = [self.filterSegmentedControl selectedSegmentIndex];
+        if ( clickedFilterButton == 0 ) {
+            TVHChannelStore *channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
+            NSArray *objectChannelList = [channelStore channels];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [objectChannelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            [vc setTitle:NSLocalizedString(@"Channel", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Channel", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:[self.filterSegmentedControl titleForSegmentAtIndex:0]]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self setFilterChannelName:text];
+            }];
+
+
+        }
+    }
 }
 
 #pragma mark - search bar
@@ -268,9 +295,74 @@
     [self.epgStore downloadEpgList];
 }
 
+- (void)setFilterChannelName:(NSString*)channelName{
+    if( channelName ) {
+        [self.filterSegmentedControl setTitle:channelName forSegmentAtIndex:0];
+    } else {
+        [self.filterSegmentedControl setTitle:NSLocalizedString(@"Channel", nil) forSegmentAtIndex:0];
+    }
+    [self.epgStore setFilterToChannelName:channelName];
+    [self.epgStore downloadEpgList];
+}
+
 - (void)setFilterTag:(NSString *)tag {
+    if( tag ) {
+        [self.filterSegmentedControl setTitle:tag forSegmentAtIndex:1];
+    } else {
+        [self.filterSegmentedControl setTitle:NSLocalizedString(@"Tag", nil) forSegmentAtIndex:1];
+    }
     [self.epgStore setFilterToTagName:tag];
     [self.epgStore downloadEpgList];
+}
+
+- (void)setFilterContentType:(NSString *)contentType {
+    if( contentType ) {
+        [self.filterSegmentedControl setTitle:contentType forSegmentAtIndex:2];
+    } else {
+        [self.filterSegmentedControl setTitle:NSLocalizedString(@"Content Type", nil) forSegmentAtIndex:2];
+    }
+    [self.epgStore setFilterToContentTypeId:contentType];
+    [self.epgStore downloadEpgList];
+}
+
+- (IBAction)filterSegmentedControlClicked:(UISegmentedControl *)sender {
+    [self performSegueWithIdentifier:@"Select Filter Pref" sender:self];
+}
+
+- (IBAction)showHideSegmentedBar:(UIBarButtonItem *)sender {
+    if ( self.filterToolBar.hidden ) {
+        self.filterToolBar.hidden = NO;
+        [UIView animateWithDuration:.5
+                         animations:^(void) {
+                             CGRect toolbarFrame = self.filterToolBar.frame;
+                             toolbarFrame.origin.y = 0;
+                             self.filterToolBar.frame = toolbarFrame;
+                             
+                             CGRect tableFrame = self.tableView.frame;
+                             tableFrame.origin.y = 44;
+                             tableFrame.size.height = self.view.frame.size.height;
+                             self.tableView.frame = tableFrame;
+                         }
+                         completion:^(BOOL finished) {
+                         }
+         ];
+    } else {
+        [UIView animateWithDuration:.5
+                         animations:^(void) {
+                             CGRect toolbarFrame = self.filterToolBar.frame;
+                             toolbarFrame.origin.y = -44; 
+                             self.filterToolBar.frame = toolbarFrame;
+                             
+                             CGRect tableFrame = self.tableView.frame;
+                             tableFrame.origin.y = 0;
+                             tableFrame.size.height = self.view.frame.size.height;
+                             self.tableView.frame = tableFrame;
+                         }
+                         completion:^(BOOL finished) {
+                            self.filterToolBar.hidden = YES;
+                        }
+         ];
+    }
 }
 
 @end
