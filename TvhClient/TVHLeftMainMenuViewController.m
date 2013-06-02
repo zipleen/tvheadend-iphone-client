@@ -137,7 +137,7 @@
     
     cell.selectedBackgroundView = bgColorView;
     
-    //UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1 * [[UIScreen mainScreen] scale])];
+    //UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1)];
     //[sepColor setBackgroundColor:[UIColor colorWithRed:0.212 green:0.212 blue:0.212 alpha:1]];
     //[cell.contentView addSubview:sepColor];
     
