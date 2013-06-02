@@ -20,7 +20,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TVHEpgTableViewController : UITableViewController
+@interface TVHEpgTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (void)setFilterTag:(NSString*)tag;
 @end

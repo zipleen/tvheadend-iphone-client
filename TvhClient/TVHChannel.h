@@ -42,6 +42,8 @@
 @property (nonatomic, strong) NSData *image;
 @property (nonatomic) NSInteger chid;
 @property (nonatomic, strong) NSArray *tags;
+@property (nonatomic) NSInteger epg_pre_start;
+@property (nonatomic) NSInteger epg_post_end;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 
 - (void)setCh_icon:(NSString*)icon;

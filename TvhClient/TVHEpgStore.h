@@ -33,9 +33,10 @@
 @interface TVHEpgStore : NSObject
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSString *statsEpgName;
-@property (nonatomic, strong) NSString *filterToChannelName;
 @property (nonatomic, strong) NSString *filterToProgramTitle;
+@property (nonatomic, strong) NSString *filterToChannelName;
 @property (nonatomic, strong) NSString *filterToTagName;
+@property (nonatomic, strong) NSString *filterToContentTypeId;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (id)initWithStatsEpgName:(NSString*)statsEpgName withTvhServer:(TVHServer*)tvhServer;
 - (void)downloadAllEpgItems;

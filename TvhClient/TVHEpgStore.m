@@ -130,6 +130,10 @@
         [params setObject:self.filterToTagName forKey:@"tag"];
     }
     
+    if( self.filterToContentTypeId != nil ) {
+        [params setObject:self.filterToContentTypeId forKey:@"contenttype"];
+    }
+    
     return [params copy];
 }
 
@@ -227,6 +231,13 @@
 - (void)setFilterToTagName:(NSString *)filterToTagName {
     if ( ! [filterToTagName isEqualToString:_filterToTagName] ) {
         _filterToTagName = filterToTagName;
+        self.epgStore = nil;
+    }
+}
+
+- (void)setFilterToContentTypeId:(NSString *)filterToContentTypeId {
+    if ( ! [filterToContentTypeId isEqualToString:_filterToContentTypeId] ) {
+        _filterToContentTypeId = filterToContentTypeId;
         self.epgStore = nil;
     }
 }

@@ -36,6 +36,7 @@
 }
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSArray *epgTable ;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation TVHEpgTableViewController {
@@ -55,10 +56,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"E d MMM, HH:mm"];
@@ -74,7 +78,7 @@
                                              selector:@selector(resetEpgStore)
                                                  name:@"resetAllObjects"
                                                object:nil];
-    self.searchBar.delegate = self;
+    [self.searchBar setDelegate:self];
     shouldBeginEditing = YES;
     self.title = NSLocalizedString(@"Now", @"");
     self.searchBar.placeholder = NSLocalizedString(@"Search Program Title", @"");
@@ -94,12 +98,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
     self.epgTable = nil;
+    self.tableView = nil;
 }
 
 - (void)resetEpgStore {
     self.epgTable = nil;
     self.epgStore = nil;
     [self.tableView reloadData];
+    [self.epgStore downloadEpgList];
 }
 
 #pragma mark - Table view data source
