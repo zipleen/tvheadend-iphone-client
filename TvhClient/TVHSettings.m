@@ -186,6 +186,8 @@ withPassword:(NSString*)password {
                                 TVHS_PORT_KEY:@"9981",
                                 TVHS_USERNAME_KEY:@"",
                                 TVHS_PASSWORD_KEY:@"",
+                                TVHS_USE_HTTPS:@"",
+                                TVHS_SERVER_WEBROOT:@"",
                                 TVHS_SSH_PF_HOST:@"",
                                 TVHS_SSH_PF_PORT:@"",
                                 TVHS_SSH_PF_USERNAME:@"",
@@ -252,8 +254,7 @@ withPassword:(NSString*)password {
 #pragma mark Properties
 
 - (NSURL*)baseURL {
-    NSString *ip;
-    NSString *port;
+    NSString *ip, *port, *useHttps, *webroot;
     if( !_baseURL ) {
         if ( self.selectedServer == NSNotFound ) {
             return nil;
@@ -269,8 +270,17 @@ withPassword:(NSString*)password {
                 port = @"9981";
             }
         }
+        // crude hack instead of a bool, but this way I don't have to deal with different NSArray objects
+        useHttps = [self currentServerProperty:TVHS_USE_HTTPS];
+        if ( ! ([useHttps isEqualToString:@""] || [useHttps isEqualToString:@"s"]) ) {
+            useHttps = @"";
+        }
+        webroot = [self currentServerProperty:TVHS_SERVER_WEBROOT];
+        if ( ! webroot ) {
+            webroot = @"";
+        }
         
-        NSString *baseUrlString = [NSString stringWithFormat:@"http://%@:%@", ip, port];
+        NSString *baseUrlString = [NSString stringWithFormat:@"http%@://%@:%@%@", useHttps, ip, port, webroot];
         NSURL *url = [NSURL URLWithString:baseUrlString];
         _baseURL = url;
     }
