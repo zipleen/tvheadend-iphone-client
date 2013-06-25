@@ -192,6 +192,10 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void)reloadData:(TVHEpgStore*)epgStore {
     [self.refreshControl endRefreshing];
     self.epgTable = [epgStore epgStoreItems];
@@ -236,6 +240,7 @@
             TVHChannelStore *channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
             NSArray *objectChannelList = [channelStore channels];
             NSMutableArray *list = [[NSMutableArray alloc] init];
+            [list addObject:@""];
             [objectChannelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 [list addObject:[obj name]];
             }];
