@@ -10,7 +10,7 @@
 
 @implementation TVHServer
 
-- (TVHServer*)init {
+- (TVHServer*)initVersion:(NSString*)version {
     self = [super init];
     if (self) {
         [self.tagStore fetchTagList];
@@ -37,9 +37,9 @@
     return _channelStore;
 }
 
-- (TVHDvrStore*)dvrStore {
+- (id <TVHDvrStore>)dvrStore {
     if( ! _dvrStore ) {
-        _dvrStore = [[TVHDvrStore alloc] initWithTvhServer:self];
+        _dvrStore = [[TVHDvrStore34 alloc] initWithTvhServer:self];
     }
     return _dvrStore;
 }

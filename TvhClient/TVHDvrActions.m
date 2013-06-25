@@ -61,7 +61,7 @@
         }
         
         // reload dvr
-        TVHDvrStore *store = [[TVHSingletonServer sharedServerInstance] dvrStore];
+        id <TVHDvrStore> store = [[TVHSingletonServer sharedServerInstance] dvrStore];
         [store fetchDvr];
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];

@@ -21,7 +21,7 @@
 #import "TVHDvrStore.h"
 #import "TVHServer.h"
 
-@interface TVHDvrStore()
+@interface TVHDvrStore34()
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *dvrItems;
 @property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
@@ -29,7 +29,7 @@
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
-@implementation TVHDvrStore
+@implementation TVHDvrStore34
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];

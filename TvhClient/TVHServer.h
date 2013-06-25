@@ -22,10 +22,11 @@
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) TVHTagStore *tagStore;
 @property (nonatomic, strong) TVHChannelStore *channelStore;
-@property (nonatomic, strong) TVHDvrStore *dvrStore;
+@property (nonatomic, strong) id <TVHDvrStore> dvrStore;
 @property (nonatomic, strong) TVHAutoRecStore *autorecStore;
 @property (nonatomic, strong) TVHStatusSubscriptionsStore *statusStore;
 @property (nonatomic, strong) TVHAdaptersStore *adapterStore;
 @property (nonatomic, strong) TVHLogStore *logStore;
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
+- (TVHServer*)initVersion:(NSString*)version;
 @end

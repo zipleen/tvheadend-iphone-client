@@ -29,11 +29,21 @@
 
 @protocol TVHDvrStoreDelegate <NSObject>
 @optional
--(void) didLoadDvr:(NSInteger)type;
--(void) didErrorDvrStore:(NSError*)error;
+- (void)didLoadDvr:(NSInteger)type;
+- (void)didErrorDvrStore:(NSError*)error;
 @end
 
-@interface TVHDvrStore : NSObject
+@protocol TVHDvrStore <NSObject>
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
+- (void)fetchDvr;
+
+- (TVHDvrItem *)objectAtIndex:(int)row forType:(NSInteger)type;
+- (int)count:(NSInteger)type;
+@end
+
+@interface TVHDvrStore34 : NSObject <TVHDvrStore>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;

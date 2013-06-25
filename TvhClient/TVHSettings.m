@@ -191,7 +191,8 @@ withPassword:(NSString*)password {
                                 TVHS_SSH_PF_HOST:@"",
                                 TVHS_SSH_PF_PORT:@"",
                                 TVHS_SSH_PF_USERNAME:@"",
-                                TVHS_SSH_PF_PASSWORD:@""};
+                                TVHS_SSH_PF_PASSWORD:@"",
+                                TVHS_SERVER_VERSION:@"3.4"};
     
     return newServer;
 }

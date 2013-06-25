@@ -32,7 +32,7 @@
 
 - (TVHServer*)serverInstance {
     if ( ! __tvhserver ) {
-        __tvhserver = [[TVHServer alloc] init];
+        __tvhserver = [[TVHServer alloc] initVersion:@"3.4"];
     }
     return __tvhserver;
 }

@@ -41,7 +41,7 @@
     NIKFontAwesomeIconFactory *factory;
 }
 
-@property (weak, nonatomic) TVHDvrStore *dvrStore;
+@property (weak, nonatomic) id <TVHDvrStore> dvrStore;
 @property (weak, nonatomic) TVHAutoRecStore *autoRecStore;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
@@ -50,7 +50,7 @@
     NSDateFormatter *dateFormatter;
 }
 
-- (TVHDvrStore*)dvrStore {
+- (id <TVHDvrStore>)dvrStore {
     if ( _dvrStore == nil) {
         _dvrStore = [[TVHSingletonServer sharedServerInstance] dvrStore];
     }
