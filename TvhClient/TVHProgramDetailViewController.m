@@ -353,7 +353,7 @@
         }
     } else if( self.segmentedControl.selectedSegmentIndex == 1 ){
         // for "see again" items
-        UITableViewCell* myCell = [TVHControllerHelper closestParent:@"UITableViewCell" ofView:sender];
+        UITableViewCell* myCell = (UITableViewCell*)[TVHControllerHelper closestParent:@"UITableViewCell" ofView:sender];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
         TVHEpg *epg = self.moreTimesItems[indexPath.row];
         if( ! [self.epg schedstate] ) {
