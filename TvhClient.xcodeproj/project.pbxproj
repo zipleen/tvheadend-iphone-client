@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA08B241178370FB000B0E2E /* TVHiOSCheckVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */; };
 		AA0F56B816E3869000E07DF3 /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56B716E3869000E07DF3 /* separator@2x.png */; };
 		AA0F56C016E38C9400E07DF3 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56BF16E38C9400E07DF3 /* separator.png */; };
 		AA0F56C816E41F8800E07DF3 /* nav-button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56C716E41F8700E07DF3 /* nav-button_selected@2x.png */; };
@@ -231,6 +232,8 @@
 /* Begin PBXFileReference section */
 		AA00CA87171362AF00A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AA00CA8B171362D100A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		AA08B23F178370FB000B0E2E /* TVHiOSCheckVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHiOSCheckVersion.h; sourceTree = "<group>"; };
+		AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHiOSCheckVersion.m; sourceTree = "<group>"; };
 		AA0F56B716E3869000E07DF3 /* separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator@2x.png"; sourceTree = "<group>"; };
 		AA0F56BF16E38C9400E07DF3 /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		AA0F56C716E41F8700E07DF3 /* nav-button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-button_selected@2x.png"; sourceTree = "<group>"; };
@@ -1110,6 +1113,8 @@
 				AAB399FC16BDB21900973F88 /* InfoPlist.strings */,
 				AAB399FF16BDB21900973F88 /* main.m */,
 				AAB39A0116BDB21900973F88 /* TvhClient-Prefix.pch */,
+				AA08B23F178370FB000B0E2E /* TVHiOSCheckVersion.h */,
+				AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1597,6 +1602,7 @@
 				AAFDEC60174549DC0035D734 /* TVHServer.m in Sources */,
 				AAFDEC6417454CE80035D734 /* TVHSingletonServer.m in Sources */,
 				AAAC5AC21748FC77006B093E /* MGSplitCornersView.m in Sources */,
+				AA08B241178370FB000B0E2E /* TVHiOSCheckVersion.m in Sources */,
 				AAAC5AC31748FC77006B093E /* MGSplitDividerView.m in Sources */,
 				AAAC5AC41748FC77006B093E /* MGSplitViewController.m in Sources */,
 				AAAC5AC71748FDC4006B093E /* TVHStatusSplitViewController.m in Sources */,
