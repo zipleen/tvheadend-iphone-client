@@ -26,6 +26,7 @@
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHImageCache.h"
+#import "TVHControllerHelper.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -352,8 +353,8 @@
         }
     } else if( self.segmentedControl.selectedSegmentIndex == 1 ){
         // for "see again" items
-        UIView *senderButton = (UIView*) sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
+        UITableViewCell* myCell = [TVHControllerHelper closestParent:@"UITableViewCell" ofView:sender];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
         TVHEpg *epg = self.moreTimesItems[indexPath.row];
         if( ! [self.epg schedstate] ) {
             [epg addRecording];
