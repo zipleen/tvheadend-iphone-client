@@ -27,4 +27,4 @@
 	url = git://github.com/gotosleep/JASidePanels.git
 [submodule "MGSplitViewController"]
 	path = MGSplitViewController
-	url = git://github.com/JeremyAgost/MGSplitViewController.git
+	url = git@github.com:zipleen/MGSplitViewController.git
