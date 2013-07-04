@@ -256,6 +256,27 @@
 
 
         }
+        
+        if ( clickedFilterButton == 1 ) {
+            TVHTagStore *tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
+            NSArray *objectStoreList = [tagStore tags];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [list addObject:@""];
+            [objectStoreList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            [vc setTitle:NSLocalizedString(@"Tag", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Tag", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:[self.filterSegmentedControl titleForSegmentAtIndex:1]]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                [self setFilterTag:text];
+            }];
+            
+            
+        }
     }
 }
 
