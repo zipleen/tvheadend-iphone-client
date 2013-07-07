@@ -9,6 +9,7 @@
 #endif
 
 #define TESTING
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>

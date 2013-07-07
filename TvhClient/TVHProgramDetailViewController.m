@@ -184,6 +184,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.help dismissActionSheet];
+}
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     [self setProgramTitle:nil];

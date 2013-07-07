@@ -5,7 +5,6 @@
 //  Created by zipleen on 3/17/13.
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 #import "TVHSettingsViewController.h"
 #import "TVHSettingsServersViewController.h"

@@ -34,6 +34,7 @@
     NSDateFormatter *dateFormatter;
     NSDateFormatter *hourFormatter;
     NIKFontAwesomeIconFactory *factory;
+    __weak UIPopoverController *myPopover;
 }
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSArray *epgTable ;
@@ -234,6 +235,10 @@
     }
     
     if([segue.identifier isEqualToString:@"Select Filter Pref"]) {
+        if (IS_IPAD) {
+            myPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        }
+        
         TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
         int clickedFilterButton = [self.filterSegmentedControl selectedSegmentIndex];
         if ( clickedFilterButton == 0 ) {
@@ -252,6 +257,9 @@
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
                 [self setFilterChannelName:text];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                if (myPopover)
+                    [myPopover dismissPopoverAnimated:YES];
             }];
 
 
@@ -273,6 +281,9 @@
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
                 [self setFilterTag:text];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                if (myPopover)
+                    [myPopover dismissPopoverAnimated:YES];
             }];
             
             
@@ -352,7 +363,11 @@
 }
 
 - (IBAction)filterSegmentedControlClicked:(UISegmentedControl *)sender {
-    [self performSegueWithIdentifier:@"Select Filter Pref" sender:self];
+    if (myPopover) {
+        [myPopover dismissPopoverAnimated:YES];
+    } else {
+        [self performSegueWithIdentifier:@"Select Filter Pref" sender:sender];
+    }
 }
 
 - (IBAction)showHideSegmentedBar:(UIBarButtonItem *)sender {

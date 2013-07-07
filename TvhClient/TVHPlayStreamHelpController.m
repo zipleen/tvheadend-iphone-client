@@ -28,7 +28,9 @@
 
 #define TVH_PROGRAMS @{@"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Oplayer":@"oplayer"}
 
-@interface TVHPlayStreamHelpController() <UIActionSheetDelegate>
+@interface TVHPlayStreamHelpController() <UIActionSheetDelegate> {
+    UIActionSheet *myActionSheet;
+}
 @property (weak, nonatomic) id<TVHPlayStreamDelegate> streamObject;
 @property (weak, nonatomic) UIViewController *vc;
 @end
@@ -68,26 +70,27 @@
 #ifdef KXMOVIE
     NSString *stream = NSLocalizedString(actionTitle, nil);
 #endif
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] init];
-    [actionSheet setTitle:actionSheetTitle];
-    [actionSheet setDelegate:self];
+    [self dismissActionSheet];
+    myActionSheet = [[UIActionSheet alloc] init];
+    [myActionSheet setTitle:actionSheetTitle];
+    [myActionSheet setDelegate:self];
 #ifdef KXMOVIE
     [actionSheet addButtonWithTitle:stream];
     countOfItems++;
 #endif
     
-    [actionSheet addButtonWithTitle:copy];
+    [myActionSheet addButtonWithTitle:copy];
     countOfItems++;
     NSArray *available = [self arrayOfAvailablePrograms];
     countOfItems += [available count];
     for( NSString *title in available )  {
-        [actionSheet addButtonWithTitle:title];
+        [myActionSheet addButtonWithTitle:title];
     }
-    actionSheet.cancelButtonIndex = countOfItems;
-    [actionSheet addButtonWithTitle:cancel];
+    [myActionSheet setCancelButtonIndex:countOfItems];
+    [myActionSheet addButtonWithTitle:cancel];
     
     //[actionSheet showFromToolbar:self.navigationController.toolbar];
-    [actionSheet showFromBarButtonItem:sender animated:YES];
+    [myActionSheet showFromBarButtonItem:sender animated:YES];
 
 }
 
@@ -132,6 +135,13 @@
         [self streamChannel:url];
     }
 #endif
+}
+
+- (void)dismissActionSheet {
+    if ( myActionSheet ) {
+        [myActionSheet dismissWithClickedButtonIndex:0 animated:YES];
+        myActionSheet = nil;
+    }
 }
 
 #ifdef KXMOVIE
