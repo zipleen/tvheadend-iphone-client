@@ -29,6 +29,12 @@ static WBSuccessNoticeView *success;
     [notice setFloating:YES];
     //[notice setSticky:true];
     [notice show];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                    withAction:@"noticeScreens"
+                                                     withLabel:@"error"
+                                                     withValue:[NSNumber numberWithInt:0]];
+#endif
 }
 
 + (void)successNoticeInView:(UIView *)view title:(NSString *)title {
