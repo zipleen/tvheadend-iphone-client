@@ -361,10 +361,23 @@
         }
         
     }
+    
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                    withAction:@"recordings"
+                                                     withLabel:@"addRecording"
+                                                     withValue:[NSNumber numberWithInt:0]];
+#endif
 }
 
 - (IBAction)addAutoRecordToTVHeadend:(id)sender {
     [self.epg addAutoRec];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                    withAction:@"recordings"
+                                                     withLabel:@"addRecordingRec"
+                                                     withValue:[NSNumber numberWithInt:0]];
+#endif
 }
 
 - (IBAction)playStream:(id)sender {

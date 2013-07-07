@@ -309,6 +309,12 @@
         if ( indexPath.row < [self.servers count] ) {
             [self.settings setSelectedServer:indexPath.row];
             [self.tableView reloadData];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+            [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                            withAction:@"changeServer"
+                                                             withLabel:@"changeServer"
+                                                             withValue:[NSNumber numberWithInt:0]];
+#endif
         } else {
             [self performSegueWithIdentifier:@"SettingsServers" sender:self];
         }

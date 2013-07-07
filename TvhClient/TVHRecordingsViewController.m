@@ -312,7 +312,12 @@
             TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
             [dvrItem deleteRecording];
         }
-
+#ifdef TVH_GOOGLEANALYTICS_KEY
+        [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                        withAction:@"recordings"
+                                                         withLabel:@"removeRecording"
+                                                         withValue:[NSNumber numberWithInt:0]];
+#endif
         // because our recordings aren't really deleted right away, we won't have cute animations because we want confirmation that the recording was in fact removed
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }   
