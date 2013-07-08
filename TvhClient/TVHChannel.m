@@ -83,7 +83,7 @@
 
 - (NSString*)streamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
-    return [NSString stringWithFormat:@"%@/stream/channelid/%d", tvh.baseURL, self.chid];
+    return [NSString stringWithFormat:@"%@/stream/channelid/%d", [tvh fullBaseURL], self.chid];
 }
 
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {

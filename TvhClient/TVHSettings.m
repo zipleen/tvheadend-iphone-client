@@ -254,6 +254,48 @@ withPassword:(NSString*)password {
 
 #pragma mark Properties
 
+- (NSString*)useHttpsForCurrentServer {
+    NSString *useHttps;
+    // crude hack instead of a bool, but this way I don't have to deal with different NSArray objects
+    useHttps = [self currentServerProperty:TVHS_USE_HTTPS];
+    if ( ! ([useHttps isEqualToString:@""] || [useHttps isEqualToString:@"s"]) ) {
+        useHttps = @"";
+    }
+    return useHttps;
+}
+
+- (NSString*)webrootForCurrentServer {
+    NSString *webroot;
+    webroot = [self currentServerProperty:TVHS_SERVER_WEBROOT];
+    if ( ! webroot ) {
+        webroot = @"";
+    }
+    return webroot;
+}
+
+- (NSString*)ipForCurrentServer {
+    NSString *ip;
+    if ( [[self currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
+        ip = @"127.0.0.1";
+    } else {
+        ip = [self currentServerProperty:TVHS_IP_KEY];
+    }
+    return ip;
+}
+
+- (NSString*)portForCurrentServer {
+    NSString *port;
+    if ( [[self currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
+        port = [NSString stringWithFormat:@"%@", TVHS_SSH_PF_LOCAL_PORT];
+    } else {
+        port = [self currentServerProperty:TVHS_PORT_KEY];
+        if( [port length] == 0 ) {
+            port = @"9981";
+        }
+    }
+    return port;
+}
+
 - (NSURL*)baseURL {
     NSString *ip, *port, *useHttps, *webroot;
     if( !_baseURL ) {
@@ -261,25 +303,10 @@ withPassword:(NSString*)password {
             return nil;
         }
         
-        if ( [[self currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
-            ip = @"127.0.0.1";
-            port = [NSString stringWithFormat:@"%@", TVHS_SSH_PF_LOCAL_PORT];
-        } else {
-            ip = [self currentServerProperty:TVHS_IP_KEY];
-            port = [self currentServerProperty:TVHS_PORT_KEY];
-            if( [port length] == 0 ) {
-                port = @"9981";
-            }
-        }
-        // crude hack instead of a bool, but this way I don't have to deal with different NSArray objects
-        useHttps = [self currentServerProperty:TVHS_USE_HTTPS];
-        if ( ! ([useHttps isEqualToString:@""] || [useHttps isEqualToString:@"s"]) ) {
-            useHttps = @"";
-        }
-        webroot = [self currentServerProperty:TVHS_SERVER_WEBROOT];
-        if ( ! webroot ) {
-            webroot = @"";
-        }
+        ip = [self ipForCurrentServer];
+        port = [self portForCurrentServer];
+        useHttps = [self useHttpsForCurrentServer];
+        webroot = [self webrootForCurrentServer];
         
         NSString *baseUrlString = [NSString stringWithFormat:@"http%@://%@:%@%@", useHttps, ip, port, webroot];
         NSURL *url = [NSURL URLWithString:baseUrlString];
@@ -287,6 +314,29 @@ withPassword:(NSString*)password {
     }
     return _baseURL;
 }
+
+- (NSString*)fullBaseURL {
+    NSString *ip, *port, *useHttps, *webroot;
+    
+    if ( self.selectedServer == NSNotFound ) {
+        return nil;
+    }
+    
+    ip = [self ipForCurrentServer];
+    port = [self portForCurrentServer];
+    useHttps = [self useHttpsForCurrentServer];
+    webroot = [self webrootForCurrentServer];
+    
+    NSString *baseUrlString;
+    if ( [[self username] isEqualToString:@""] ) {
+        baseUrlString = [NSString stringWithFormat:@"http%@://%@:%@%@", useHttps, ip, port, webroot];
+    } else {
+        baseUrlString = [NSString stringWithFormat:@"http%@://%@:%@@%@:%@%@", useHttps, self.username, self.password, ip, port, webroot];
+    }
+    
+    return baseUrlString;
+}
+
 - (NSString*)username {
     if ( !_username ) {
         _username = [self currentServerProperty:TVHS_USERNAME_KEY];

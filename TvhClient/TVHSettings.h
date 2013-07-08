@@ -74,5 +74,5 @@
 - (NSArray*)availableServers;
 - (void)resetSettings;
 - (BOOL)programFirstRun;
-
+- (NSString*)fullBaseURL;
 @end

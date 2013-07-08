@@ -91,7 +91,7 @@
 - (NSString*)streamURL {
     if ( self.url && ![self.url isEqualToString:@"(null)"]) {
         TVHSettings *tvh = [TVHSettings sharedInstance];
-        return [NSString stringWithFormat:@"%@/%@", tvh.baseURL, self.url];
+        return [NSString stringWithFormat:@"%@/%@", [tvh fullBaseURL], self.url];
     }
     return nil;
 }
