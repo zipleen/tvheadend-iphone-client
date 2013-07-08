@@ -193,7 +193,7 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -245,7 +245,7 @@
             TVHChannelStore *channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
             NSArray *objectChannelList = [channelStore channels];
             NSMutableArray *list = [[NSMutableArray alloc] init];
-            [list addObject:@""];
+            [list addObject:NSLocalizedString(@"All Channels", nil)];
             [objectChannelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 [list addObject:[obj name]];
             }];
@@ -256,7 +256,11 @@
             [vc setSelectedOption:[list indexOfObject:[self.filterSegmentedControl titleForSegmentAtIndex:0]]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
-                [self setFilterChannelName:text];
+                if ( [text isEqualToString:NSLocalizedString(@"All Channels", nil)] ) {
+                    [self setFilterChannelName:nil];
+                } else {
+                    [self setFilterChannelName:text];
+                }
                 [self dismissViewControllerAnimated:YES completion:nil];
                 if (myPopover)
                     [myPopover dismissPopoverAnimated:YES];
@@ -269,7 +273,6 @@
             TVHTagStore *tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
             NSArray *objectStoreList = [tagStore tags];
             NSMutableArray *list = [[NSMutableArray alloc] init];
-            [list addObject:@""];
             [objectStoreList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 [list addObject:[obj name]];
             }];
@@ -280,7 +283,11 @@
             [vc setSelectedOption:[list indexOfObject:[self.filterSegmentedControl titleForSegmentAtIndex:1]]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
-                [self setFilterTag:text];
+                if ( order == 0 ) {
+                    [self setFilterTag:nil];
+                } else {
+                    [self setFilterTag:text];
+                }
                 [self dismissViewControllerAnimated:YES completion:nil];
                 if (myPopover)
                     [myPopover dismissPopoverAnimated:YES];
