@@ -13,6 +13,7 @@
 - (TVHServer*)initVersion:(NSString*)version {
     self = [super init];
     if (self) {
+        [self setVersion:version];
         [self.tagStore fetchTagList];
         [self.channelStore fetchChannelList];
         [self.statusStore fetchStatusSubscriptions];
@@ -39,7 +40,8 @@
 
 - (id <TVHDvrStore>)dvrStore {
     if( ! _dvrStore ) {
-        _dvrStore = [[TVHDvrStore34 alloc] initWithTvhServer:self];
+        Class myClass = NSClassFromString([@"TVHDvrStore" stringByAppendingString:self.version]);
+        _dvrStore = [[myClass alloc] initWithTvhServer:self];
     }
     return _dvrStore;
 }

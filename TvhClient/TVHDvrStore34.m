@@ -23,8 +23,6 @@
 
 @interface TVHDvrStore34()
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
-@property (nonatomic, strong) NSArray *dvrItems;
-@property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
 @property (nonatomic) NSInteger cachedType;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
@@ -75,6 +73,13 @@
     }
 }
 
+- (TVHDvrItem*)createDvrItemFromDictionary:(NSDictionary*)obj ofType:(NSInteger)type {
+    TVHDvrItem *dvritem = [[TVHDvrItem alloc] init];
+    [dvritem updateValuesFromDictionary:obj];
+    [dvritem setDvrType:type];
+    return dvritem;
+}
+
 - (void)fetchedData:(NSData *)responseData withType:(NSInteger)type {
     NSError* error;
     NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
@@ -86,10 +91,7 @@
     NSArray *entries = [json objectForKey:@"entries"];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHDvrItem *dvritem = [[TVHDvrItem alloc] init];
-        [dvritem updateValuesFromDictionary:obj];
-        [dvritem setDvrType:type];
-        
+        TVHDvrItem *dvritem = [self createDvrItemFromDictionary:obj ofType:type];
         [self addDvrItemToStore:dvritem];
     }];
     

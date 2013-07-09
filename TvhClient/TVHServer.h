@@ -10,6 +10,7 @@
 #import "TVHTagStore.h"
 #import "TVHChannelStore.h"
 #import "TVHDvrStore.h"
+#import "TVHDvrStore32.h"
 #import "TVHAutoRecStore.h"
 #import "TVHStatusSubscriptionsStore.h"
 #import "TVHAdaptersStore.h"
@@ -28,5 +29,6 @@
 @property (nonatomic, strong) TVHAdaptersStore *adapterStore;
 @property (nonatomic, strong) TVHLogStore *logStore;
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
+@property (nonatomic, strong) NSString *version;
 - (TVHServer*)initVersion:(NSString*)version;
 @end
