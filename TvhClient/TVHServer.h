@@ -31,4 +31,5 @@
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
 @property (nonatomic, strong) NSString *version;
 - (TVHServer*)initVersion:(NSString*)version;
+- (void)fetchServerVersion;
 @end

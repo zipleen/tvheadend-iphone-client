@@ -91,6 +91,29 @@
     return _jsonClient;
 }
 
+- (void)fetchServerVersion {
+    
+    [self.jsonClient getPath:@"/extjs.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<title>HTS Tvheadend (.*?)</title>" options:NSRegularExpressionCaseInsensitive error:nil];
+        NSTextCheckingResult *versionRange = [regex firstMatchInString:response
+                                                               options:0
+                                                                 range:NSMakeRange(0, [response length])];
+        if ( versionRange ) {
+            NSString* versionString = [response substringWithRange:[versionRange rangeAtIndex:1]];
+            versionString = [versionString stringByReplacingOccurrencesOfString:@"." withString:@""];
+            self.version = [versionString substringWithRange:NSMakeRange(0, 2)];
+#ifdef TESTING
+            NSLog(@"[TVHServer getVersion]: %@", self.version);
+#endif
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHVersion"
+                                                                object:self];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[TVHServer getVersion]: %@", error.localizedDescription);
+    }];
+}
+
 - (void)resetData {
     self.jsonClient = nil;
     self.tagStore = nil;
