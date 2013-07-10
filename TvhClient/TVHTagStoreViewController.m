@@ -92,7 +92,7 @@
         [self performSegueWithIdentifier:@"ShowSettings" sender:self];
     } 
     
-    //[self.tagStore fetchTagList];
+    [self reloadData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetControllerData)
