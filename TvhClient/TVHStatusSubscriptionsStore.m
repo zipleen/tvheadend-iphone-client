@@ -96,7 +96,7 @@
 
 - (void)fetchStatusSubscriptions {
     
-    [self.jsonClient getPath:@"/subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient getPath:@"subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
         [self signalDidLoadStatusSubscriptions];
         

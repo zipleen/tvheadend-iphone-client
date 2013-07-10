@@ -93,7 +93,7 @@
 
 - (void)fetchServerVersion {
     
-    [self.jsonClient getPath:@"/extjs.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient getPath:@"extjs.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<title>HTS Tvheadend (.*?)</title>" options:NSRegularExpressionCaseInsensitive error:nil];
         NSTextCheckingResult *versionRange = [regex firstMatchInString:response

@@ -44,7 +44,7 @@
                             table,
                             @"table",nil];
     
-    [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [httpClient postPath:@"tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[NSNotificationCenter defaultCenter]
              postNotificationName:@"didSuccessTableMgrAction"
              object:action];

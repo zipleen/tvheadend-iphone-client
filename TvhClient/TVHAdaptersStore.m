@@ -93,7 +93,7 @@
 
 - (void)fetchAdapters {
     
-    [self.jsonClient getPath:@"/tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient getPath:@"tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchedData:responseObject];
         [self signalDidLoadAdapters];
         

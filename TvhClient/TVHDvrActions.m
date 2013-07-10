@@ -37,7 +37,7 @@
                                    configName,
                                    @"configName",nil];
     
-    [httpClient postPath:@"/dvr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [httpClient postPath:@"dvr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSError* error;
         NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseObject error:error];
