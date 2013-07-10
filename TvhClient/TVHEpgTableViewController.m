@@ -92,6 +92,7 @@
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
+    [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
 
 - (void)viewDidUnload
@@ -110,6 +111,40 @@
     self.epgStore = nil;
     [self.tableView reloadData];
     [self.epgStore downloadEpgList];
+}
+
+- (void)resizeSegmentsToFitTitles:(UISegmentedControl*)segCtrl {
+    CGFloat totalWidths = 0;    // total of all label text widths
+    NSUInteger nSegments = segCtrl.subviews.count;
+    UIView* aSegment = [segCtrl.subviews objectAtIndex:0];
+    UIFont* theFont = nil;
+    
+    for (UILabel* aLabel in aSegment.subviews) {
+        if ([aLabel isKindOfClass:[UILabel class]]) {
+            theFont = aLabel.font;
+            break;
+        }
+    }
+    
+    // calculate width that all the title text takes up
+    for (NSUInteger i=0; i < nSegments; i++) {
+        CGFloat textWidth = [[segCtrl titleForSegmentAtIndex:i] sizeWithFont:theFont].width;
+        totalWidths += textWidth;
+    }
+    
+    // width not used up by text, its the space between labels
+    CGFloat spaceWidth = segCtrl.bounds.size.width - totalWidths;
+    
+    // now resize the segments to accomodate text size plus
+    // give them each an equal part of the leftover space
+    for (NSUInteger i=0; i < nSegments; i++) {
+        // size for label width plus an equal share of the space
+        CGFloat textWidth = [[segCtrl titleForSegmentAtIndex:i] sizeWithFont:theFont].width;
+        // roundf??  the control leaves 1 pixel gap between segments if width
+        // is not an integer value, the roundf fixes this
+        CGFloat segWidth = roundf(textWidth + (spaceWidth / nSegments));
+        [segCtrl setWidth:segWidth forSegmentAtIndex:i];
+    }
 }
 
 #pragma mark - Table view data source
@@ -347,6 +382,7 @@
     }
     [self.epgStore setFilterToChannelName:channelName];
     [self.epgStore downloadEpgList];
+    [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
 
 - (void)setFilterTag:(NSString *)tag {
@@ -357,6 +393,7 @@
     }
     [self.epgStore setFilterToTagName:tag];
     [self.epgStore downloadEpgList];
+    [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
 
 - (void)setFilterContentType:(NSString *)contentType {
