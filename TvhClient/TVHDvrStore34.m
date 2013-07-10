@@ -128,9 +128,9 @@
     self.dvrItems = nil;
     self.cachedDvrItems = nil;
     
-    [self fetchDvrItemsFromServer:@"/dvrlist_upcoming" withType:RECORDING_UPCOMING];
-    [self fetchDvrItemsFromServer:@"/dvrlist_finished" withType:RECORDING_FINISHED];
-    [self fetchDvrItemsFromServer:@"/dvrlist_failed" withType:RECORDING_FAILED];
+    [self fetchDvrItemsFromServer:@"dvrlist_upcoming" withType:RECORDING_UPCOMING];
+    [self fetchDvrItemsFromServer:@"dvrlist_finished" withType:RECORDING_FINISHED];
+    [self fetchDvrItemsFromServer:@"dvrlist_failed" withType:RECORDING_FAILED];
 }
 
 - (NSArray*)dvrItemsForType:(NSInteger)type {
