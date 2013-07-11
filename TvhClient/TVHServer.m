@@ -91,6 +91,16 @@
     return _jsonClient;
 }
 
+- (NSString*)version {
+    if ( _version ) {
+        int ver = [_version intValue];
+        if ( ver <= 32 ) {
+            return @"32";
+        }
+    }
+    return @"34";
+}
+
 - (void)fetchServerVersion {
     
     [self.jsonClient getPath:@"extjs.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
