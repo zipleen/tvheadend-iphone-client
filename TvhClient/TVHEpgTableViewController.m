@@ -85,7 +85,10 @@
     self.title = NSLocalizedString(@"Now", @"");
     self.searchBar.placeholder = NSLocalizedString(@"Search Program Title", @"");
     
-    [self.epgStore downloadEpgList];
+    if ( ! self.splitViewController ) {
+        // iPad has a setFilter which triggers the downloadEpgList, we don't want to call this again!
+        [self.epgStore downloadEpgList];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -386,6 +389,7 @@
 }
 
 - (void)setFilterTag:(NSString *)tag {
+    // if tag is the same, we should not redo the whole thing?
     if( tag ) {
         [self.filterSegmentedControl setTitle:tag forSegmentAtIndex:1];
     } else {

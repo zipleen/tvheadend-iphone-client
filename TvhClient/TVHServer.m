@@ -33,7 +33,6 @@
 - (TVHChannelStore*)channelStore {
     if( ! _channelStore ) {
         _channelStore = [[TVHChannelStore alloc] initWithTvhServer:self];
-        [_channelStore fetchChannelList];
     }
     return _channelStore;
 }
