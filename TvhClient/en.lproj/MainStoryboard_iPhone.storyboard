@@ -1089,7 +1089,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.83381453804347827" green="0.83381453804347827" blue="0.83381453804347827" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1831,6 +1830,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="brX-Oe-q0O"/>
-        <segue reference="cqh-rj-fhW"/>
+        <segue reference="VI1-re-6wP"/>
     </inferredMetricsTieBreakers>
 </document>
