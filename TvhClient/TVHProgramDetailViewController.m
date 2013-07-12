@@ -208,10 +208,14 @@
 
 #pragma MARK table view delegate
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.tableView reloadData];
+}
+
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( self.segmentedControl.selectedSegmentIndex == 0 ) {
         NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
-        unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        unsigned int screenWidth = [self.view bounds].size.width;
         CGSize size = [str
                        sizeWithFont:[UIFont systemFontOfSize:13]
                        constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
@@ -296,7 +300,7 @@
     }
     
     // resize the "description" label
-    unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    unsigned int screenWidth = [self.view bounds].size.width;
     CGSize size = [descLabel.text
                    sizeWithFont:[UIFont systemFontOfSize:13]
               constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
