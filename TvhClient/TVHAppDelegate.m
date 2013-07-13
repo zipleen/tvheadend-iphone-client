@@ -54,7 +54,7 @@
 #if defined TESTING && defined TVH_TESTFLIGHT_KEY
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
-#ifdef TVH_TESTFLIGHT_KEY
+#if defined TESTING && defined TVH_TESTFLIGHT_KEY
         [TestFlight takeOff:TVH_TESTFLIGHT_KEY];
 #endif
     } else {
