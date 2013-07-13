@@ -66,12 +66,12 @@
     }
 }
 
-- (void)fetchedData:(NSData *)responseData {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+- (BOOL)fetchedData:(NSData *)responseData {
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [self signalDidErrorAdaptersStore:error];
-        return ;
+        return false;
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
@@ -89,13 +89,15 @@
 #ifdef TESTING
     NSLog(@"[Loaded Adapters]: %d", [self.adapters count]);
 #endif
+    return true;
 }
 
 - (void)fetchAdapters {
     
     [self.jsonClient getPath:@"tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self fetchedData:responseObject];
-        [self signalDidLoadAdapters];
+        if ( [self fetchedData:responseObject] ) {
+            [self signalDidLoadAdapters];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self signalDidErrorAdaptersStore:error];

@@ -69,12 +69,12 @@
     }
 }
 
-- (void)fetchedData:(NSData *)responseData {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+- (BOOL)fetchedData:(NSData *)responseData {
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [self signalDidErrorStatusSubscriptionsStore:error];
-        return ;
+        return false;
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
@@ -92,13 +92,15 @@
 #ifdef TESTING
     NSLog(@"[Loaded Subscription]: %d", [self.subscriptions count]);
 #endif
+    return true;
 }
 
 - (void)fetchStatusSubscriptions {
     
     [self.jsonClient getPath:@"subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self fetchedData:responseObject];
-        [self signalDidLoadStatusSubscriptions];
+        if ( [self fetchedData:responseObject] ) {
+            [self signalDidLoadStatusSubscriptions];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self signalDidErrorStatusSubscriptionsStore:error];

@@ -58,8 +58,8 @@
 }
 
 - (void)fetchedData:(NSData *)responseData {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [self signalDidErrorDvrAutoStore:error];
         return ;

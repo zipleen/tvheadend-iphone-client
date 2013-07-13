@@ -80,12 +80,12 @@
     return dvritem;
 }
 
-- (void)fetchedData:(NSData *)responseData withType:(NSInteger)type {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+- (bool)fetchedData:(NSData *)responseData withType:(NSInteger)type {
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [self signalDidErrorDvrStore:error];
-        return ;
+        return false;
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
@@ -98,6 +98,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded DVR Items, Count]: %d", [self.dvrItems count]);
 #endif
+    return true;
 }
 
 - (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type {
@@ -114,8 +115,9 @@
         NSLog(@"[DvrStore Profiling Network]: %f", time);
 #endif
 
-        [self fetchedData:responseObject withType:type];
-        [self signalDidLoadDvr:type];
+        if ( [self fetchedData:responseObject withType:type] ) {
+            [self signalDidLoadDvr:type];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self signalDidErrorDvrStore:error];

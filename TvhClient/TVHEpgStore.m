@@ -90,15 +90,15 @@
 #endif
 }
 
-- (void)fetchedData:(NSData *)responseData {
+- (bool)fetchedData:(NSData *)responseData {
     
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
             [self.delegate didErrorLoadingEpgStore:error];
         }
-        return ;
+        return false;
     }
     
     self.totalEventCount = [[json objectForKey:@"totalCount"] intValue];
@@ -113,6 +113,7 @@
 #ifdef TESTING
     NSLog(@"[%@: Loaded EPG programs (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %d", self.statsEpgName, self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, [self.epgStore count]);
 #endif
+    return true;
 }
 
 - (NSDictionary*)getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
@@ -167,13 +168,13 @@
 #ifdef TESTING
         NSLog(@"[%@ Profiling Network]: %f", self.statsEpgName, time);
 #endif
-        [self fetchedData:responseObject];
-        if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
-            [self.delegate didLoadEpg:self];
+        if ( [self fetchedData:responseObject] ) {
+            if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
+                [self.delegate didLoadEpg:self];
+            }
+            
+            [self getMoreEpg:start limit:limit fetchAll:fetchAll];
         }
-        
-        [self getMoreEpg:start limit:limit fetchAll:fetchAll];
-        
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

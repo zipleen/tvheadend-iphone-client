@@ -53,12 +53,12 @@
     self.profilingDate = nil;
 }
 
-- (void)fetchedData:(NSData *)responseData {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+- (bool)fetchedData:(NSData *)responseData {
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [self signalDidErrorLoadingTagStore:error];
-        return ;
+        return false;
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
@@ -83,6 +83,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Tags]: %d", [self.tags count]);
 #endif
+    return true;
 }
 
 - (void)fetchTagList {
@@ -100,8 +101,9 @@
 #ifdef TESTING
         NSLog(@"[TagStore Profiling Network]: %f", time);
 #endif
-        [self fetchedData:responseObject];
-        [self signalDidLoadTags];
+        if ( [self fetchedData:responseObject] ) {
+            [self signalDidLoadTags];
+        }
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
