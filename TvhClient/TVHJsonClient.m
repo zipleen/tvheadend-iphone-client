@@ -152,7 +152,7 @@
 
 #pragma JsonHelper
 
-+ (NSDictionary*)convertFromJsonToObjectFixUtf8:(NSData*)responseData error:(NSError*)error {
++ (NSDictionary*)convertFromJsonToObjectFixUtf8:(NSData*)responseData error:(__autoreleasing NSError**)error {
     
     NSMutableData *FileData = [NSMutableData dataWithLength:[responseData length]];
     for (int i = 0; i < [responseData length]; ++i)
@@ -167,18 +167,27 @@
     
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:FileData //1
                                                          options:kNilOptions
-                                                           error:&error];
+                                                           error:error];
     
-    if( error ) {
-        NSLog(@"[JSON Error (2nd)]: %@ ", error.description);
+    if( *error ) {
+        NSLog(@"[JSON Error (2nd)]: %@ ", (*error).description);
         return nil;
     }
     
     return json;
 }
 
-+ (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(NSError*)error {
-    NSError *errorForThisMethod;
++ (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(__autoreleasing NSError**)error {
+    NSError __autoreleasing *errorForThisMethod;
+    if ( ! responseData ) {
+        NSDictionary *errorDetail = @{NSLocalizedDescriptionKey: @"No data received"};
+        if (error != NULL) {
+            *error = [[NSError alloc] initWithDomain:@"No data received"
+                                            code:-1
+                                        userInfo:errorDetail];
+        }
+        return nil;
+    }
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:responseData
                                                          options:kNilOptions
                                                            error:&errorForThisMethod];

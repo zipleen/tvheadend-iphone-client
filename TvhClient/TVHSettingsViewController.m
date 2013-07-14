@@ -5,7 +5,6 @@
 //  Created by zipleen on 3/17/13.
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 #import "TVHSettingsViewController.h"
 #import "TVHSettingsServersViewController.h"
@@ -15,6 +14,7 @@
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSingletonServer.h"
+#import "TVHControllerHelper.h"
 
 @interface TVHSettingsViewController () <UITextFieldDelegate> {
     NIKFontAwesomeIconFactory *factory;
@@ -308,6 +308,12 @@
         if ( indexPath.row < [self.servers count] ) {
             [self.settings setSelectedServer:indexPath.row];
             [self.tableView reloadData];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+            [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                            withAction:@"changeServer"
+                                                             withLabel:@"changeServer"
+                                                             withValue:[NSNumber numberWithInt:0]];
+#endif
         } else {
             [self performSegueWithIdentifier:@"SettingsServers" sender:self];
         }
@@ -404,7 +410,8 @@
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[textField superview]superview]];
+    UITableViewCell* myCell = (UITableViewCell*)[TVHControllerHelper closestParent:@"UITableViewCell" ofView:textField];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
     if ( indexPath.row == 1 ) {
         [self.settings setCustomPrefix:textField.text];
     }

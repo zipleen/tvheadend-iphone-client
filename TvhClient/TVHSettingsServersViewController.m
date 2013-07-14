@@ -8,7 +8,7 @@
 
 #import "TVHSettingsServersViewController.h"
 #import "TVHSettings.h"
-
+#import "TVHControllerHelper.h"
 
 @interface TVHSettingsServersViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) TVHSettings *settings;
@@ -209,8 +209,8 @@
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    UITableViewCell* myCell = (UITableViewCell*)textField.superview.superview;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell: myCell];
+    UITableViewCell* myCell = (UITableViewCell*)[TVHControllerHelper closestParent:@"UITableViewCell" ofView:textField];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
     
     [self.server setValue:textField.text
                    forKey:TVHS_SERVER_KEYS[ [self indexOfSettingsArray:indexPath.section

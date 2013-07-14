@@ -34,6 +34,7 @@
     NSDateFormatter *dateFormatter;
     NSDateFormatter *hourFormatter;
     NIKFontAwesomeIconFactory *factory;
+    __weak UIPopoverController *myPopover;
 }
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSArray *epgTable ;
@@ -84,13 +85,17 @@
     self.title = NSLocalizedString(@"Now", @"");
     self.searchBar.placeholder = NSLocalizedString(@"Search Program Title", @"");
     
-    [self.epgStore downloadEpgList];
+    if ( ! self.splitViewController ) {
+        // iPad has a setFilter which triggers the downloadEpgList, we don't want to call this again!
+        [self.epgStore downloadEpgList];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
+    [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
 
 - (void)viewDidUnload
@@ -109,6 +114,40 @@
     self.epgStore = nil;
     [self.tableView reloadData];
     [self.epgStore downloadEpgList];
+}
+
+- (void)resizeSegmentsToFitTitles:(UISegmentedControl*)segCtrl {
+    CGFloat totalWidths = 0;    // total of all label text widths
+    NSUInteger nSegments = segCtrl.subviews.count;
+    UIView* aSegment = [segCtrl.subviews objectAtIndex:0];
+    UIFont* theFont = nil;
+    
+    for (UILabel* aLabel in aSegment.subviews) {
+        if ([aLabel isKindOfClass:[UILabel class]]) {
+            theFont = aLabel.font;
+            break;
+        }
+    }
+    
+    // calculate width that all the title text takes up
+    for (NSUInteger i=0; i < nSegments; i++) {
+        CGFloat textWidth = [[segCtrl titleForSegmentAtIndex:i] sizeWithFont:theFont].width;
+        totalWidths += textWidth;
+    }
+    
+    // width not used up by text, its the space between labels
+    CGFloat spaceWidth = segCtrl.bounds.size.width - totalWidths;
+    
+    // now resize the segments to accomodate text size plus
+    // give them each an equal part of the leftover space
+    for (NSUInteger i=0; i < nSegments; i++) {
+        // size for label width plus an equal share of the space
+        CGFloat textWidth = [[segCtrl titleForSegmentAtIndex:i] sizeWithFont:theFont].width;
+        // roundf??  the control leaves 1 pixel gap between segments if width
+        // is not an integer value, the roundf fixes this
+        CGFloat segWidth = roundf(textWidth + (spaceWidth / nSegments));
+        [segCtrl setWidth:segWidth forSegmentAtIndex:i];
+    }
 }
 
 #pragma mark - Table view data source
@@ -192,6 +231,10 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void)reloadData:(TVHEpgStore*)epgStore {
     [self.refreshControl endRefreshing];
     self.epgTable = [epgStore epgStoreItems];
@@ -230,12 +273,17 @@
     }
     
     if([segue.identifier isEqualToString:@"Select Filter Pref"]) {
+        if (IS_IPAD) {
+            myPopover = [(UIStoryboardPopoverSegue *)segue popoverController];
+        }
+        
         TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
         int clickedFilterButton = [self.filterSegmentedControl selectedSegmentIndex];
         if ( clickedFilterButton == 0 ) {
             TVHChannelStore *channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
             NSArray *objectChannelList = [channelStore channels];
             NSMutableArray *list = [[NSMutableArray alloc] init];
+            [list addObject:NSLocalizedString(@"All Channels", nil)];
             [objectChannelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 [list addObject:[obj name]];
             }];
@@ -246,10 +294,44 @@
             [vc setSelectedOption:[list indexOfObject:[self.filterSegmentedControl titleForSegmentAtIndex:0]]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
-                [self setFilterChannelName:text];
+                if ( [text isEqualToString:NSLocalizedString(@"All Channels", nil)] ) {
+                    [self setFilterChannelName:nil];
+                } else {
+                    [self setFilterChannelName:text];
+                }
+                [self dismissViewControllerAnimated:YES completion:nil];
+                if (myPopover)
+                    [myPopover dismissPopoverAnimated:YES];
             }];
 
 
+        }
+        
+        if ( clickedFilterButton == 1 ) {
+            TVHTagStore *tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
+            NSArray *objectStoreList = [tagStore tags];
+            NSMutableArray *list = [[NSMutableArray alloc] init];
+            [objectStoreList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [list addObject:[obj name]];
+            }];
+            
+            [vc setTitle:NSLocalizedString(@"Tag", nil)];
+            [vc setSectionHeader:NSLocalizedString(@"Tag", nil)];
+            [vc setOptions:list];
+            [vc setSelectedOption:[list indexOfObject:[self.filterSegmentedControl titleForSegmentAtIndex:1]]];
+            [vc setResponseBack:^(NSInteger order) {
+                NSString *text = [list objectAtIndex:order];
+                if ( order == 0 ) {
+                    [self setFilterTag:nil];
+                } else {
+                    [self setFilterTag:text];
+                }
+                [self dismissViewControllerAnimated:YES completion:nil];
+                if (myPopover)
+                    [myPopover dismissPopoverAnimated:YES];
+            }];
+            
+            
         }
     }
 }
@@ -303,9 +385,11 @@
     }
     [self.epgStore setFilterToChannelName:channelName];
     [self.epgStore downloadEpgList];
+    [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
 
 - (void)setFilterTag:(NSString *)tag {
+    // if tag is the same, we should not redo the whole thing?
     if( tag ) {
         [self.filterSegmentedControl setTitle:tag forSegmentAtIndex:1];
     } else {
@@ -313,6 +397,7 @@
     }
     [self.epgStore setFilterToTagName:tag];
     [self.epgStore downloadEpgList];
+    [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
 
 - (void)setFilterContentType:(NSString *)contentType {
@@ -326,7 +411,11 @@
 }
 
 - (IBAction)filterSegmentedControlClicked:(UISegmentedControl *)sender {
-    [self performSegueWithIdentifier:@"Select Filter Pref" sender:self];
+    if (myPopover) {
+        [myPopover dismissPopoverAnimated:YES];
+    } else {
+        [self performSegueWithIdentifier:@"Select Filter Pref" sender:sender];
+    }
 }
 
 - (IBAction)showHideSegmentedBar:(UIBarButtonItem *)sender {

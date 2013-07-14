@@ -92,7 +92,7 @@
         [self performSegueWithIdentifier:@"ShowSettings" sender:self];
     } 
     
-    [self.tagStore fetchTagList];
+    [self reloadData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetControllerData)
@@ -200,7 +200,7 @@
     [self reloadData];
     [self.refreshControl endRefreshing];
     if ( [self.tags count] == 1 ) {
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         [self performSegueWithIdentifier:@"Show Channel List" sender:self];
     }
 }

@@ -10,9 +10,10 @@
 
 @implementation TVHServer
 
-- (TVHServer*)init {
+- (TVHServer*)initVersion:(NSString*)version {
     self = [super init];
     if (self) {
+        [self setVersion:version];
         [self.tagStore fetchTagList];
         [self.channelStore fetchChannelList];
         [self.statusStore fetchStatusSubscriptions];
@@ -32,14 +33,14 @@
 - (TVHChannelStore*)channelStore {
     if( ! _channelStore ) {
         _channelStore = [[TVHChannelStore alloc] initWithTvhServer:self];
-        [_channelStore fetchChannelList];
     }
     return _channelStore;
 }
 
-- (TVHDvrStore*)dvrStore {
+- (id <TVHDvrStore>)dvrStore {
     if( ! _dvrStore ) {
-        _dvrStore = [[TVHDvrStore alloc] initWithTvhServer:self];
+        Class myClass = NSClassFromString([@"TVHDvrStore" stringByAppendingString:self.version]);
+        _dvrStore = [[myClass alloc] initWithTvhServer:self];
     }
     return _dvrStore;
 }
@@ -87,6 +88,39 @@
         _jsonClient = [[TVHJsonClient alloc] init];
     }
     return _jsonClient;
+}
+
+- (NSString*)version {
+    if ( _version ) {
+        int ver = [_version intValue];
+        if ( ver <= 32 ) {
+            return @"32";
+        }
+    }
+    return @"34";
+}
+
+- (void)fetchServerVersion {
+    
+    [self.jsonClient getPath:@"extjs.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<title>HTS Tvheadend (.*?)</title>" options:NSRegularExpressionCaseInsensitive error:nil];
+        NSTextCheckingResult *versionRange = [regex firstMatchInString:response
+                                                               options:0
+                                                                 range:NSMakeRange(0, [response length])];
+        if ( versionRange ) {
+            NSString* versionString = [response substringWithRange:[versionRange rangeAtIndex:1]];
+            versionString = [versionString stringByReplacingOccurrencesOfString:@"." withString:@""];
+            self.version = [versionString substringWithRange:NSMakeRange(0, 2)];
+#ifdef TESTING
+            NSLog(@"[TVHServer getVersion]: %@", self.version);
+#endif
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHVersion"
+                                                                object:self];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[TVHServer getVersion]: %@", error.localizedDescription);
+    }];
 }
 
 - (void)resetData {

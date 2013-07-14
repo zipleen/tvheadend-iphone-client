@@ -88,6 +88,10 @@
 
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.help dismissActionSheet];
+}
+
 - (void)viewDidUnload
 {
     [self setSegmentedControl:nil];

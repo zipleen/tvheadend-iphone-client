@@ -63,12 +63,12 @@
     self.profilingDate = nil;
 }
 
-- (void)fetchedData:(NSData *)responseData {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+- (BOOL)fetchedData:(NSData *)responseData {
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [self signalDidErrorLoadingChannelStore:error];
-        return ;
+        return false;
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
@@ -91,13 +91,14 @@
 #ifdef TESTING
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);
 #endif
+    return true;
 }
 
 - (void)fetchChannelList {
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
     self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:@"/channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
@@ -108,11 +109,12 @@
 #ifdef TESTING
         NSLog(@"[ChannelList Profiling Network]: %f", time);
 #endif
-        [self fetchedData:responseObject];
-        if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
-            [self.delegate didLoadChannels];
+        if ( [self fetchedData:responseObject] ) {
+            if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
+                [self.delegate didLoadChannels];
+            }
+            [self.epgStore downloadEpgList];
         }
-        [self.epgStore downloadEpgList];
         
        // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
        // NSLog(@"Request Successful, response '%@'", responseStr);

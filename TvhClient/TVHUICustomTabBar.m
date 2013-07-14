@@ -45,9 +45,10 @@
         UIImage *tabBarSelected = [UIImage imageNamed:@"tabbar_selected.png"];
         [self setBackgroundImage:tabbarBg ]; 
         [self setSelectionIndicatorImage:tabBarSelected];*/
-        
-        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabbar.png"]];
-        [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar_selected.png"] ];
+        if ( ! DEVICE_HAS_IOS7 ) {
+            [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabbar.png"]];
+            [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar_selected.png"] ];
+        }
     }
     [self.items enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [obj setTitle:NSLocalizedString([obj title], @"")];

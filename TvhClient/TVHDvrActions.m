@@ -37,10 +37,10 @@
                                    configName,
                                    @"configName",nil];
     
-    [httpClient postPath:@"/dvr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [httpClient postPath:@"dvr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSError* error;
-        NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseObject error:error];
+        NSError __autoreleasing *error;
+        NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseObject error:&error];
         if( error ) {
 #ifdef TESTING
             NSLog(@"[DVR ACTIONS ERROR processing JSON]: %@", error.localizedDescription);
@@ -61,7 +61,7 @@
         }
         
         // reload dvr
-        TVHDvrStore *store = [[TVHSingletonServer sharedServerInstance] dvrStore];
+        id <TVHDvrStore> store = [[TVHSingletonServer sharedServerInstance] dvrStore];
         [store fetchDvr];
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];

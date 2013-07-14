@@ -171,6 +171,12 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex != [alertView cancelButtonIndex]) {
         [self.dvrItem deleteRecording];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+        [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                        withAction:@"recordings"
+                                                         withLabel:@"removeRecording"
+                                                         withValue:[NSNumber numberWithInt:0]];
+#endif
         [[self navigationController] popViewControllerAnimated:YES];
     }
 }

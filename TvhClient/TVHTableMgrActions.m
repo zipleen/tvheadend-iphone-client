@@ -44,13 +44,18 @@
                             table,
                             @"table",nil];
     
-    [httpClient postPath:@"/tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [httpClient postPath:@"tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[NSNotificationCenter defaultCenter]
              postNotificationName:@"didSuccessTableMgrAction"
              object:action];
                 
         NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"Request Successful, response '%@'", responseStr);
+        
+        // reload dvr
+        TVHAutoRecStore *store = [[TVHSingletonServer sharedServerInstance] autorecStore];
+        [store fetchDvrAutoRec];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 #ifdef TESTING
         NSLog(@"[TableMgr ACTIONS ERROR]: %@", error.localizedDescription);

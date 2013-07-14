@@ -83,17 +83,22 @@
     if ( [self.epgStore indexOfObject:epgItem] == NSNotFound ) {
         self.epgStore = [self.epgStore arrayByAddingObject:epgItem];
     }
+#ifdef TESTING
+    else {
+        NSLog(@"[EpgStore-%@: duplicate EPG: %@", self.statsEpgName, [epgItem title] );
+    }
+#endif
 }
 
-- (void)fetchedData:(NSData *)responseData {
+- (bool)fetchedData:(NSData *)responseData {
     
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
             [self.delegate didErrorLoadingEpgStore:error];
         }
-        return ;
+        return false;
     }
     
     self.totalEventCount = [[json objectForKey:@"totalCount"] intValue];
@@ -106,8 +111,9 @@
     }];
     
 #ifdef TESTING
-    NSLog(@"[EpgStore: Loaded EPG programs (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %d", self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, [self.epgStore count]);
+    NSLog(@"[%@: Loaded EPG programs (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %d", self.statsEpgName, self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, [self.epgStore count]);
 #endif
+    return true;
 }
 
 - (NSDictionary*)getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
@@ -140,8 +146,18 @@
 - (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
     
     NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
+#ifdef TESTING
+    NSLog(@"[%@ EPG Going to call (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %@", self.statsEpgName, self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, params);
+#endif
     self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:@"/epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if( ! [params isEqualToDictionary:[self getPostParametersStartingFrom:start limit:limit]] ) {
+#ifdef TESTING
+            NSLog(@"[%@ Wrong EPG received - discarding request.", self.statsEpgName );
+#endif
+            return ;
+        }
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
@@ -152,13 +168,13 @@
 #ifdef TESTING
         NSLog(@"[%@ Profiling Network]: %f", self.statsEpgName, time);
 #endif
-        [self fetchedData:responseObject];
-        if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
-            [self.delegate didLoadEpg:self];
+        if ( [self fetchedData:responseObject] ) {
+            if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
+                [self.delegate didLoadEpg:self];
+            }
+            
+            [self getMoreEpg:start limit:limit fetchAll:fetchAll];
         }
-        
-        [self getMoreEpg:start limit:limit fetchAll:fetchAll];
-        
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

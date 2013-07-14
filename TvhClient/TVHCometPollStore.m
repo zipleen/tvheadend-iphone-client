@@ -24,7 +24,6 @@
 
 @interface TVHCometPollStore() {
     bool timerStarted;
-    int errors;
 }
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
@@ -40,7 +39,6 @@
     self.tvhServer = tvhServer;
     self.jsonClient = [self.tvhServer jsonClient];
     
-    errors = 0;
     self.debugActive = false;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appWillResignActive:)
@@ -77,14 +75,14 @@
     self.boxid = nil;
 }
 
-- (void)fetchedData:(NSData *)responseData {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+- (BOOL)fetchedData:(NSData *)responseData {
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [[NSNotificationCenter defaultCenter]
             postNotificationName:@"didErrorCometPollStore"
             object:error];
-        return ;
+        return false;
     }
     
     NSString *boxid = [json objectForKey:@"boxid"];
@@ -176,7 +174,7 @@
 #endif
     }];
     
-    
+    return true;
 }
 
 - (void)toggleDebug {
@@ -185,7 +183,7 @@
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     
-    [self.jsonClient postPath:@"/comet/debug" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"comet/debug" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self fetchCometPollStatus];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];
@@ -195,22 +193,18 @@
 - (void)fetchCometPollStatus {
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     //self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:@"/comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:@"comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TESTING
         //NSLog(@"[CometPoll Profiling Network]: %f", time);
 #endif
-        [self fetchedData:responseObject];
-        errors = 0;
-        if( timerStarted ) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchCometPollStatus"
-                                                                object:nil];
+        if ( [self fetchedData:responseObject] ) {
+            if( timerStarted ) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchCometPollStatus"
+                                                                    object:nil];
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        errors++;
-        if ( errors > 5 ) {
-            [self stopRefreshingCometPoll];
-        }
         if( timerStarted ) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"fetchCometPollStatus"
                                                                 object:nil];

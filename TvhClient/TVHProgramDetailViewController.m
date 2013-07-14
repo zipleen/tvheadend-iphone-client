@@ -26,6 +26,7 @@
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHImageCache.h"
+#import "TVHControllerHelper.h"
 
 @interface TVHProgramDetailViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -183,6 +184,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.help dismissActionSheet];
+}
+
 - (void)viewDidUnload {
     [super viewDidUnload];
     [self setProgramTitle:nil];
@@ -203,10 +208,14 @@
 
 #pragma MARK table view delegate
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.tableView reloadData];
+}
+
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( self.segmentedControl.selectedSegmentIndex == 0 ) {
         NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
-        unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        unsigned int screenWidth = [self.view bounds].size.width;
         CGSize size = [str
                        sizeWithFont:[UIFont systemFontOfSize:13]
                        constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
@@ -291,7 +300,7 @@
     }
     
     // resize the "description" label
-    unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    unsigned int screenWidth = [self.view bounds].size.width;
     CGSize size = [descLabel.text
                    sizeWithFont:[UIFont systemFontOfSize:13]
               constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
@@ -352,18 +361,31 @@
         }
     } else if( self.segmentedControl.selectedSegmentIndex == 1 ){
         // for "see again" items
-        UIView *senderButton = (UIView*) sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
+        UITableViewCell* myCell = (UITableViewCell*)[TVHControllerHelper closestParent:@"UITableViewCell" ofView:sender];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
         TVHEpg *epg = self.moreTimesItems[indexPath.row];
         if( ! [self.epg schedstate] ) {
             [epg addRecording];
         }
         
     }
+    
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                    withAction:@"recordings"
+                                                     withLabel:@"addRecording"
+                                                     withValue:[NSNumber numberWithInt:0]];
+#endif
 }
 
 - (IBAction)addAutoRecordToTVHeadend:(id)sender {
     [self.epg addAutoRec];
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                    withAction:@"recordings"
+                                                     withLabel:@"addRecordingRec"
+                                                     withValue:[NSNumber numberWithInt:0]];
+#endif
 }
 
 - (IBAction)playStream:(id)sender {

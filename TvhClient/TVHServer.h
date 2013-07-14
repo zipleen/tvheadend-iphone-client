@@ -10,6 +10,7 @@
 #import "TVHTagStore.h"
 #import "TVHChannelStore.h"
 #import "TVHDvrStore.h"
+#import "TVHDvrStore32.h"
 #import "TVHAutoRecStore.h"
 #import "TVHStatusSubscriptionsStore.h"
 #import "TVHAdaptersStore.h"
@@ -22,10 +23,13 @@
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) TVHTagStore *tagStore;
 @property (nonatomic, strong) TVHChannelStore *channelStore;
-@property (nonatomic, strong) TVHDvrStore *dvrStore;
+@property (nonatomic, strong) id <TVHDvrStore> dvrStore;
 @property (nonatomic, strong) TVHAutoRecStore *autorecStore;
 @property (nonatomic, strong) TVHStatusSubscriptionsStore *statusStore;
 @property (nonatomic, strong) TVHAdaptersStore *adapterStore;
 @property (nonatomic, strong) TVHLogStore *logStore;
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
+@property (nonatomic, strong) NSString *version;
+- (TVHServer*)initVersion:(NSString*)version;
+- (void)fetchServerVersion;
 @end

@@ -21,15 +21,13 @@
 #import "TVHDvrStore.h"
 #import "TVHServer.h"
 
-@interface TVHDvrStore()
+@interface TVHDvrStore34()
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
-@property (nonatomic, strong) NSArray *dvrItems;
-@property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
 @property (nonatomic) NSInteger cachedType;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
-@implementation TVHDvrStore
+@implementation TVHDvrStore34
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
@@ -75,27 +73,32 @@
     }
 }
 
-- (void)fetchedData:(NSData *)responseData withType:(NSInteger)type {
-    NSError* error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:error];
+- (TVHDvrItem*)createDvrItemFromDictionary:(NSDictionary*)obj ofType:(NSInteger)type {
+    TVHDvrItem *dvritem = [[TVHDvrItem alloc] init];
+    [dvritem updateValuesFromDictionary:obj];
+    [dvritem setDvrType:type];
+    return dvritem;
+}
+
+- (bool)fetchedData:(NSData *)responseData withType:(NSInteger)type {
+    NSError __autoreleasing *error;
+    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
     if( error ) {
         [self signalDidErrorDvrStore:error];
-        return ;
+        return false;
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHDvrItem *dvritem = [[TVHDvrItem alloc] init];
-        [dvritem updateValuesFromDictionary:obj];
-        [dvritem setDvrType:type];
-        
+        TVHDvrItem *dvritem = [self createDvrItemFromDictionary:obj ofType:type];
         [self addDvrItemToStore:dvritem];
     }];
     
 #ifdef TESTING
     NSLog(@"[Loaded DVR Items, Count]: %d", [self.dvrItems count]);
 #endif
+    return true;
 }
 
 - (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type {
@@ -112,8 +115,9 @@
         NSLog(@"[DvrStore Profiling Network]: %f", time);
 #endif
 
-        [self fetchedData:responseObject withType:type];
-        [self signalDidLoadDvr:type];
+        if ( [self fetchedData:responseObject withType:type] ) {
+            [self signalDidLoadDvr:type];
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self signalDidErrorDvrStore:error];
@@ -126,9 +130,9 @@
     self.dvrItems = nil;
     self.cachedDvrItems = nil;
     
-    [self fetchDvrItemsFromServer:@"/dvrlist_upcoming" withType:RECORDING_UPCOMING];
-    [self fetchDvrItemsFromServer:@"/dvrlist_finished" withType:RECORDING_FINISHED];
-    [self fetchDvrItemsFromServer:@"/dvrlist_failed" withType:RECORDING_FAILED];
+    [self fetchDvrItemsFromServer:@"dvrlist_upcoming" withType:RECORDING_UPCOMING];
+    [self fetchDvrItemsFromServer:@"dvrlist_finished" withType:RECORDING_FINISHED];
+    [self fetchDvrItemsFromServer:@"dvrlist_failed" withType:RECORDING_FAILED];
 }
 
 - (NSArray*)dvrItemsForType:(NSInteger)type {
