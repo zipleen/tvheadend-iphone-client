@@ -17,7 +17,7 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
     #import "TVHApiKeys.h"
-    #ifdef TVH_TESTFLIGHT_KEY
+    #if defined TVH_TESTFLIGHT_KEY && defined TESTING
         #import "TestFlight.h"
         #define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
     #endif
