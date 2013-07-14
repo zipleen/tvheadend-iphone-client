@@ -110,8 +110,11 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     if  ([buttonTitle isEqualToString:NSLocalizedString(@"Copy to Clipboard", nil)]) {
-        UIPasteboard *pb = [UIPasteboard generalPasteboard];
-        [pb setString:[self.streamObject streamURL]];
+        NSString *streamUrl = [self.streamObject streamURL];
+        if ( streamUrl ) {
+            UIPasteboard *pb = [UIPasteboard generalPasteboard];
+            [pb setString:streamUrl];
+        }
     }
     
     NSString *prefix = [TVH_PROGRAMS objectForKey:buttonTitle];
