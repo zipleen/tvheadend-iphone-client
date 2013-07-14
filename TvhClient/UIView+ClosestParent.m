@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import "TVHControllerHelper.h"
+#import "UIView+ClosestParent.h"
 
-@implementation TVHControllerHelper
-+ (UIView*)closestParent:(NSString*)type ofView:(UIView*)view {
+@implementation UIView (UIViewWithFileSize)
++ (UIView*)TVHClosestParent:(NSString*)type ofView:(UIView*)view {
     while ( view != nil ) {
         if ( [view isKindOfClass:NSClassFromString(type)] ) {
             return view;
