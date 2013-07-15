@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA07D72417949D400064F9C5 /* ETProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA07D72317949D400064F9C5 /* ETProgressBar.m */; };
 		AA08B241178370FB000B0E2E /* TVHiOSCheckVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */; };
 		AA08B24717838197000B0E2E /* UIView+ClosestParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B24617838197000B0E2E /* UIView+ClosestParent.m */; };
 		AA0F56B816E3869000E07DF3 /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56B716E3869000E07DF3 /* separator@2x.png */; };
@@ -239,6 +240,8 @@
 /* Begin PBXFileReference section */
 		AA00CA87171362AF00A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AA00CA8B171362D100A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		AA07D72217949D400064F9C5 /* ETProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ETProgressBar.h; path = ETProgressBar/ETProgressBar/ETProgressBar.h; sourceTree = SOURCE_ROOT; };
+		AA07D72317949D400064F9C5 /* ETProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ETProgressBar.m; path = ETProgressBar/ETProgressBar/ETProgressBar.m; sourceTree = SOURCE_ROOT; };
 		AA08B23F178370FB000B0E2E /* TVHiOSCheckVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHiOSCheckVersion.h; sourceTree = "<group>"; };
 		AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHiOSCheckVersion.m; sourceTree = "<group>"; };
 		AA08B24517838197000B0E2E /* UIView+ClosestParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ClosestParent.h"; sourceTree = "<group>"; };
@@ -623,6 +626,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA07D72117949D2F0064F9C5 /* ETProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				AA07D72217949D400064F9C5 /* ETProgressBar.h */,
+				AA07D72317949D400064F9C5 /* ETProgressBar.m */,
+			);
+			name = ETProgressBar;
+			sourceTree = "<group>";
+		};
 		AA10AA7C16D1304D00BBDFEA /* CKRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -1022,6 +1034,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA07D72117949D2F0064F9C5 /* ETProgressBar */,
 				AA24868817484E1400AB2E42 /* MGSplitViewController */,
 				AAF2647917441D57006C96CE /* JASlidingPanels */,
 				AAEE7A80171240AE00D0E584 /* GoogleAnalytics SDK */,
@@ -1651,6 +1664,7 @@
 				AAEACB5F1792FD0600288E24 /* UIImage+MultiFormat.m in Sources */,
 				AAEACB601792FD0600288E24 /* UIImage+WebP.m in Sources */,
 				AAEACB611792FD0600288E24 /* UIImageView+WebCache.m in Sources */,
+				AA07D72417949D400064F9C5 /* ETProgressBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

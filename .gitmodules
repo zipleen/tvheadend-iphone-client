@@ -28,3 +28,6 @@
 [submodule "MGSplitViewController"]
 	path = MGSplitViewController
 	url = git@github.com:zipleen/MGSplitViewController.git
+[submodule "ETProgressBar"]
+	path = ETProgressBar
+	url = https://github.com/elitalon/ETProgressBar.git
