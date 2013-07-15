@@ -115,7 +115,7 @@
 }
 
 - (TVHEpg*)currentPlayingProgram {
-    if ([self.channelEpgDataByDay count]==0) {
+    if ( [self.channelEpgDataByDay count] == 0 ) {
 #ifdef TESTING
         NSLog(@"No EPG data on array for %@", self.name);
 #endif
@@ -138,6 +138,29 @@
     NSLog(@"Didn't find any EPG for %@", self.name);
 #endif
     return nil;
+}
+
+- (NSArray*)currentPlayingAndNextPrograms {
+    int i = 0;
+    NSMutableArray *nextPrograms = [[NSMutableArray alloc] init];
+    if ( [self.channelEpgDataByDay count] == 0 ) {
+#ifdef TESTING
+        NSLog(@"No EPG data on array for %@", self.name);
+#endif
+        return nil;
+    }
+    
+    for ( TVHChannelEpg *epgByDay in self.channelEpgDataByDay ) {
+        for ( TVHEpg *epg in [epgByDay programs] ) {
+            [nextPrograms addObject:epg];
+            i++;
+            if ( i >= 3 ) {
+                break;
+            }
+        }
+    }
+    return [nextPrograms copy];
+
 }
 
 - (NSComparisonResult)compareByName:(TVHChannel *)otherObject {
