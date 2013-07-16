@@ -14,7 +14,7 @@
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSingletonServer.h"
-#import "TVHControllerHelper.h"
+#import "UIView+ClosestParent.h"
 
 @interface TVHSettingsViewController () <UITextFieldDelegate> {
     NIKFontAwesomeIconFactory *factory;
@@ -410,7 +410,7 @@
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    UITableViewCell* myCell = (UITableViewCell*)[TVHControllerHelper closestParent:@"UITableViewCell" ofView:textField];
+    UITableViewCell* myCell = (UITableViewCell*)[UIView TVHClosestParent:@"UITableViewCell" ofView:textField];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
     if ( indexPath.row == 1 ) {
         [self.settings setCustomPrefix:textField.text];

@@ -197,7 +197,7 @@
     } else {
         TVHEpg *last = [self.epgStore lastObject];
         if ( last ) {
-            NSDate *localDate = [NSDate dateWithTimeIntervalSinceNow:3600];
+            NSDate *localDate = [NSDate dateWithTimeIntervalSinceNow:21600];
     #ifdef TESTING
             //NSLog(@"localdate: %@ | last start date: %@ ", localDate, last.start);
     #endif

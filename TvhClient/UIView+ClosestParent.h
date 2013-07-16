@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TVHControllerHelper : NSObject
-+ (UIView*)closestParent:(NSString*)type ofView:(UIView*)view;
+@interface UIView (UIViewWithFileSize)
++ (UIView*)TVHClosestParent:(NSString*)type ofView:(UIView*)view;
 @end

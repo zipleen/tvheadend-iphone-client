@@ -9,14 +9,6 @@ You can now download the app directly from the App Store!
 
 [![TvhClient](http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png)](https://itunes.apple.com/gb/app/tvhclient/id638900112?mt=8&uo=4)
 
-##Screenshots
-
-![Channels](http://a572.phobos.apple.com/us/r1000/068/Purple/v4/ed/42/4e/ed424e9c-fee9-fc23-c74f-8d9591766fbd/mzl.dthdmvhr.320x480-75.jpg)
-![ChannelPrograms](http://a1437.phobos.apple.com/us/r1000/064/Purple2/v4/08/b6/70/08b67026-50bc-bfcb-e68f-b47d0886ccd4/mzl.ekqhetuf.320x480-75.jpg)
-![ProgramDetails](http://a1542.phobos.apple.com/us/r1000/116/Purple/v4/d7/b5/8f/d7b58fb7-d360-6981-bc04-f1a4c1dd6a88/mzl.fdlipgep.320x480-75.jpg)
-![Recordings](http://a404.phobos.apple.com/us/r1000/120/Purple/v4/f2/0e/4b/f20e4b51-a2d7-0119-8ae0-99415c6c0633/mzl.xshppebg.320x480-75.jpg)
-![Status](http://a1501.phobos.apple.com/us/r1000/070/Purple2/v4/a8/ab/b8/a8abb8a1-d052-f8c8-6730-385615f12bf1/mzl.jzfxfbli.320x480-75.jpg)
-
 ##Features
 - View tags
 - View channel list by tag
@@ -29,13 +21,26 @@ You can now download the app directly from the App Store!
 - Log and debug log
 - Search EPG
 - Multiple Tvheadend servers
+- iPad support
 
 #### Future Features
 - SSH tunnel to access tvheadend
-- iPad support
 - Visual EPG
 
+##Screenshots iPhone
 
+![Channels](http://a572.phobos.apple.com/us/r1000/068/Purple/v4/ed/42/4e/ed424e9c-fee9-fc23-c74f-8d9591766fbd/mzl.dthdmvhr.320x480-75.jpg)
+![ChannelPrograms](http://a1437.phobos.apple.com/us/r1000/064/Purple2/v4/08/b6/70/08b67026-50bc-bfcb-e68f-b47d0886ccd4/mzl.ekqhetuf.320x480-75.jpg)
+![ProgramDetails](http://a1542.phobos.apple.com/us/r1000/116/Purple/v4/d7/b5/8f/d7b58fb7-d360-6981-bc04-f1a4c1dd6a88/mzl.fdlipgep.320x480-75.jpg)
+![Recordings](http://a404.phobos.apple.com/us/r1000/120/Purple/v4/f2/0e/4b/f20e4b51-a2d7-0119-8ae0-99415c6c0633/mzl.xshppebg.320x480-75.jpg)
+![Status](http://a1501.phobos.apple.com/us/r1000/070/Purple2/v4/a8/ab/b8/a8abb8a1-d052-f8c8-6730-385615f12bf1/mzl.jzfxfbli.320x480-75.jpg)
+
+##Screenshots iPad
+
+![Channels](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/channels.png?raw=true)
+![ChannelPrograms](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/channelsepg.png?raw=true)
+![Recordings](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/recordings.png?raw=true)
+![Status](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/status.png?raw=true)
 
 ## Getting the code
 
@@ -59,7 +64,7 @@ In order to add video streaming, software decoding is the only solution - normal
 
 For this reasons, I won't include ffmpeg in the app. You can experiment adding ffmpeg to the app, see some instructions in the wiki https://github.com/zipleen/tvheadend-iphone-client/wiki/Kxmovie
 
-However, there's been some work on TVHeadend to implement a recoding feature. With recoding, it could be possible to transcode the stream to an iOS capable stream - the streaming support will be directly supported by the system.
+However, there's been some work on TVHeadend to implement a transcoding feature. With transcoding, it could be possible to encode the stream to an iOS capable stream - the streaming support will be directly supported by the system.
 
 ## Technical Background regarding connection to TVHeadend
 
