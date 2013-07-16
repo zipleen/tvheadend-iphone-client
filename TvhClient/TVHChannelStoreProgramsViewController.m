@@ -26,6 +26,7 @@
 #import "TVHPlayStreamHelpController.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "ETProgressBar.h"
 
 @interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate> {
     NSDateFormatter *dateFormatter;
@@ -169,21 +170,36 @@
     UILabel *name = (UILabel *)[cell viewWithTag:100];
 	UILabel *description = (UILabel *)[cell viewWithTag:101];
     UILabel *hour = (UILabel *)[cell viewWithTag:102];
-    UIProgressView *progress = (UIProgressView *)[cell viewWithTag:103];
     UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
+    
+    // delete ETProgressBar
+    for (ETProgressBar *progressToDelete in cell.contentView.subviews) {
+        if ( [progressToDelete isKindOfClass:[ETProgressBar class]] ) {
+            [progressToDelete removeFromSuperview];
+        }
+    }
     
     hour.text = [timeFormatter stringFromDate: epg.start];
     name.text = epg.fullTitle;
     description.text = epg.description;
+    if( [description.text isEqualToString:@""] ) {
+        description.text = NSLocalizedString(@"Not Available", nil);;
+    }
     
     if( epg == self.channel.currentPlayingProgram ) {
-        description.text = nil;
+        CGRect progressBarFrame = {
+            .origin.x = 64,
+            .origin.y = 23,
+            .size.width = cell.contentView.bounds.size.width - 91,
+            .size.height = 2,
+        };
+        ETProgressBar *progress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];
+        [cell.contentView addSubview:progress];
+        
         progress.progress = epg.progress;
         progress.hidden = NO;
         
-    } else {
-        progress.hidden = YES;
-    }
+    } 
     
     [self setScheduledIcon:schedStatusImage forEpg:epg];
     

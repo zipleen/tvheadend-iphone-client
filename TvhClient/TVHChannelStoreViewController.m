@@ -140,13 +140,17 @@
     UILabel *nextProgramLabel = (UILabel *)[cell viewWithTag:110];
     UILabel *laterProgramLabel = (UILabel *)[cell viewWithTag:111];
 	__weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
-    //UILabel *currentTimeProgramLabel = (UILabel *)[cell viewWithTag:103];
-    //UIProgressView *currentTimeProgress = (UIProgressView*)[cell viewWithTag:104];
-    //ETProgressBar *currentTimeProgress = (ETProgressBar*)[cell viewWithTag:112];
+    
+    // delete ETProgressBar
+    for (ETProgressBar *progressToDelete in cell.contentView.subviews) {
+        if ( [progressToDelete isKindOfClass:[ETProgressBar class]] ) {
+            [progressToDelete removeFromSuperview];
+        }
+    }
 	CGRect progressBarFrame = {
 		.origin.x = 72,
 		.origin.y = 26,
-		.size.width = 210,
+		.size.width = cell.contentView.bounds.size.width - 110,
 		.size.height = 2,
 	};
 	ETProgressBar *currentTimeProgress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];
@@ -155,7 +159,6 @@
 	currentProgramLabel.text = NSLocalizedString(@"Not Available", nil);
     nextProgramLabel.text = nil;
     laterProgramLabel.text = nil;
-    //currentTimeProgramLabel.text = nil;
     currentTimeProgress.hidden = true;
     
     channelNameLabel.text = channel.name;
@@ -167,9 +170,9 @@
     } ];
     
     
-    // rouding corners - this makes the animation in ipad become VERY SLOW!!!
-    //channelImage.layer.cornerRadius = 2.0f;
     if ( [[TVHSettings sharedInstance] useBlackBorders] ) {
+        // rouding corners - this makes the animation in ipad become VERY SLOW!!!
+        channelImage.layer.cornerRadius = 2.0f;
         channelImage.layer.masksToBounds = NO;
         channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
         channelImage.layer.borderWidth = 0.4;
@@ -195,7 +198,6 @@
         //currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
         currentTimeProgress.hidden = false;
         [currentTimeProgress setProgress:[currentPlayingProgram progress] animated:NO];
-        //currentTimeProgress.progress = [currentPlayingProgram progress];
         cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", channel.name, currentPlayingProgram.title, [dateFormatter stringFromDate:currentPlayingProgram.start], NSLocalizedString(@"to",@"accessibility"), [dateFormatter stringFromDate:currentPlayingProgram.end] ];
     } else {
         cell.accessibilityLabel = channel.name;

@@ -29,6 +29,7 @@
 #import "TVHShowNotice.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSettingsGenericFieldViewController.h"
+#import "ETProgressBar.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;
@@ -185,6 +186,13 @@
     UILabel *channelName = (UILabel *)[cell viewWithTag:103];
     UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
     
+    // delete ETProgressBar
+    for (ETProgressBar *progressToDelete in cell.contentView.subviews) {
+        if ( [progressToDelete isKindOfClass:[ETProgressBar class]] ) {
+            [progressToDelete removeFromSuperview];
+        }
+    }
+    
     programLabel.text = epg.fullTitle;
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
     channelName.text = epg.channel;
@@ -195,15 +203,28 @@
         }
     } ];
     
-    // rouding corners - this makes the animation in ipad become VERY SLOW!!!
-    //channelImage.layer.cornerRadius = 5.0f;
     if ( [[TVHSettings sharedInstance] useBlackBorders] ) {
+        // rouding corners - this makes the animation in ipad become VERY SLOW!!!
+        channelImage.layer.cornerRadius = 2.0f;
         channelImage.layer.masksToBounds = NO;
         channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
         channelImage.layer.borderWidth = 0.4;
         channelImage.layer.shouldRasterize = YES;
     } else {
         channelImage.layer.borderWidth = 0;
+    }
+    
+    float progress = [epg progress];
+    if ( progress > 0 && progress < 100 ) {
+        CGRect progressBarFrame = {
+            .origin.x = 72,
+            .origin.y = 22,
+            .size.width = cell.contentView.bounds.size.width - 110,
+            .size.height = 2,
+        };
+        ETProgressBar *currentTimeProgress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];
+        [cell.contentView addSubview:currentTimeProgress];
+        [currentTimeProgress setProgress:progress];
     }
     
     [self setScheduledIcon:schedStatusImage forEpg:epg];
@@ -213,9 +234,6 @@
     UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1)];
     [sepColor setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     [cell.contentView addSubview:sepColor];
-    
-    //UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
-    //[cell.contentView addSubview: separator];
     
     return cell;
 }
