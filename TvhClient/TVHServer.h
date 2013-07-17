@@ -30,6 +30,8 @@
 @property (nonatomic, strong) TVHLogStore *logStore;
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
 @property (nonatomic, strong) NSString *version;
+@property (nonatomic, strong) NSString *realVersion;
+@property (nonatomic, strong) NSArray *capabilities;
 - (TVHServer*)initVersion:(NSString*)version;
 - (void)fetchServerVersion;
 @end

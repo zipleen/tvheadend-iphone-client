@@ -28,5 +28,6 @@
 @property (nonatomic, readonly) BOOL readyToUse;
 - (void)setUsername:(NSString *)username password:(NSString *)password;
 
-+ (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(NSError**)error;
++ (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(__autoreleasing NSError**)error;
++ (NSArray*)convertFromJsonToArray:(NSData*)responseData error:(__autoreleasing NSError**)error;
 @end

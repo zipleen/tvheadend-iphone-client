@@ -60,7 +60,6 @@
 - (TVHServer*)serverInstance {
     if ( ! __tvhserver ) {
         __tvhserver = [[TVHServer alloc] initVersion:[self serverVersion]];
-        [__tvhserver fetchServerVersion];
     }
     return __tvhserver;
 }

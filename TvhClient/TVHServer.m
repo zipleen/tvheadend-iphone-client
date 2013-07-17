@@ -19,6 +19,10 @@
         [self.statusStore fetchStatusSubscriptions];
         [self.adapterStore fetchAdapters];
         [self.logStore clearLog];
+        [self fetchServerVersion];
+        if ( [self.version isEqualToString:@"34"] ) {
+            [self fetchCapabilities];
+        }
     }
     return self;
 }
@@ -110,6 +114,7 @@
                                                                  range:NSMakeRange(0, [response length])];
         if ( versionRange ) {
             NSString* versionString = [response substringWithRange:[versionRange rangeAtIndex:1]];
+            _realVersion = versionString;
             versionString = [versionString stringByReplacingOccurrencesOfString:@"." withString:@""];
             self.version = [versionString substringWithRange:NSMakeRange(0, 2)];
 #ifdef TESTING
@@ -121,6 +126,26 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[TVHServer getVersion]: %@", error.localizedDescription);
     }];
+}
+
+- (void)fetchCapabilities {
+    [self.jsonClient getPath:@"capabilities" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error;
+        NSArray *json = [TVHJsonClient convertFromJsonToArray:responseObject error:&error];
+        if( error ) {
+            NSLog(@"[TVHServer fetchCapabilities]: error %@", error.description);
+            return ;
+        }
+        _capabilities = json;
+#ifdef TESTING
+        NSLog(@"[TVHServer capabilities]: %@", _capabilities);
+#endif
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHVCapabilities"
+                                                            object:self];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[TVHServer capabilities]: %@", error.localizedDescription);
+    }];
+
 }
 
 - (void)resetData {

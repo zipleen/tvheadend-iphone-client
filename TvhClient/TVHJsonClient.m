@@ -208,6 +208,23 @@
     return json;
 }
 
++ (NSArray*)convertFromJsonToArray:(NSData*)responseData error:(__autoreleasing NSError**)error {
+    if ( ! responseData ) {
+        NSDictionary *errorDetail = @{NSLocalizedDescriptionKey: @"No data received"};
+        if (error != NULL) {
+            *error = [[NSError alloc] initWithDomain:@"No data received"
+                                                code:-1
+                                            userInfo:errorDetail];
+        }
+        return nil;
+    }
+    NSArray* json = [NSJSONSerialization JSONObjectWithData:responseData
+                                                         options:kNilOptions
+                                                           error:error];
+    
+    return json;
+}
+
 #pragma mark SSH
 
 - (void)setupPortForwardToHost:(NSString*)hostAddress
