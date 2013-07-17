@@ -23,6 +23,7 @@
         if ( [self.version isEqualToString:@"34"] ) {
             [self fetchCapabilities];
         }
+        [self.configNameStore fetchConfigNames];
     }
     return self;
 }
@@ -92,6 +93,13 @@
         _jsonClient = [[TVHJsonClient alloc] init];
     }
     return _jsonClient;
+}
+
+- (TVHConfigNameStore*)configNameStore {
+    if( ! _configNameStore ) {
+        _configNameStore = [[TVHConfigNameStore alloc] initWithTvhServer:self];
+    }
+    return _configNameStore;
 }
 
 - (NSString*)version {

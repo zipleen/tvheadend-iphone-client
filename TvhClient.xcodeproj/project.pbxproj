@@ -151,6 +151,8 @@
 		AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */; };
 		AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */; };
 		AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */; };
+		AAC715D5179749BC00B7B280 /* TVHConfigName.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC715D4179749BC00B7B280 /* TVHConfigName.m */; };
+		AAC715D817974A8A00B7B280 /* TVHConfigNameStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC715D717974A8A00B7B280 /* TVHConfigNameStore.m */; };
 		AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */; };
 		AAC93EA117838ACB00CE46C1 /* MGSplitCornersView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B252178386E1000B0E2E /* MGSplitCornersView.m */; };
 		AAC93EA217838ACE00CE46C1 /* MGSplitDividerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B254178386E1000B0E2E /* MGSplitDividerView.m */; };
@@ -462,6 +464,10 @@
 		AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueBack@2x.png"; sourceTree = "<group>"; };
 		AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueButton.png; sourceTree = "<group>"; };
 		AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueButton@2x.png"; sourceTree = "<group>"; };
+		AAC715D3179749BC00B7B280 /* TVHConfigName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHConfigName.h; sourceTree = "<group>"; };
+		AAC715D4179749BC00B7B280 /* TVHConfigName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHConfigName.m; sourceTree = "<group>"; };
+		AAC715D617974A8A00B7B280 /* TVHConfigNameStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHConfigNameStore.h; sourceTree = "<group>"; };
+		AAC715D717974A8A00B7B280 /* TVHConfigNameStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHConfigNameStore.m; sourceTree = "<group>"; };
 		AAC8426C172F11A5004BAB24 /* TVHChannelSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelSplitViewController.h; sourceTree = "<group>"; };
 		AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelSplitViewController.m; sourceTree = "<group>"; };
 		AACA613716CFDBE8002C6DE1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -916,6 +922,10 @@
 				AAF54A2416C735960076DF17 /* TVHEpgStore.m */,
 				AAF54A2016C735710076DF17 /* TVHEpg.h */,
 				AAF54A2116C735710076DF17 /* TVHEpg.m */,
+				AAC715D617974A8A00B7B280 /* TVHConfigNameStore.h */,
+				AAC715D717974A8A00B7B280 /* TVHConfigNameStore.m */,
+				AAC715D3179749BC00B7B280 /* TVHConfigName.h */,
+				AAC715D4179749BC00B7B280 /* TVHConfigName.m */,
 			);
 			name = Channels;
 			sourceTree = "<group>";
@@ -1665,6 +1675,8 @@
 				AAEACB601792FD0600288E24 /* UIImage+WebP.m in Sources */,
 				AAEACB611792FD0600288E24 /* UIImageView+WebCache.m in Sources */,
 				AA07D72417949D400064F9C5 /* ETProgressBar.m in Sources */,
+				AAC715D5179749BC00B7B280 /* TVHConfigName.m in Sources */,
+				AAC715D817974A8A00B7B280 /* TVHConfigNameStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

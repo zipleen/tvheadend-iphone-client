@@ -16,6 +16,7 @@
 #import "TVHAdaptersStore.h"
 #import "TVHLogStore.h"
 #import "TVHCometPollStore.h"
+#import "TVHConfigNameStore.h"
 #import "TVHJsonClient.h"
 #import "TVHSettings.h"
 
@@ -29,6 +30,7 @@
 @property (nonatomic, strong) TVHAdaptersStore *adapterStore;
 @property (nonatomic, strong) TVHLogStore *logStore;
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
+@property (nonatomic, strong) TVHConfigNameStore *configNameStore;
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSString *realVersion;
 @property (nonatomic, strong) NSArray *capabilities;
