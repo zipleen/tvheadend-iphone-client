@@ -235,8 +235,10 @@
                     cell.detailTextLabel.text = NSLocalizedString(@"Dynamic based on screen", @".. in settings screen");
                 } else if ( [self.settings splitRightMenu] == TVHS_SPLIT_RIGHT_MENU_STATUS ) {
                     cell.detailTextLabel.text = NSLocalizedString(@"Show Status", @".. in settings screen");
-                } else {
+                } else if ( [self.settings splitRightMenu] == TVHS_SPLIT_RIGHT_MENU_LOG ) {
                     cell.detailTextLabel.text = NSLocalizedString(@"Show Log", @".. in settings screen");
+                } else if ( [self.settings splitRightMenu] == TVHS_SPLIT_RIGHT_MENU_NONE ) {
+                    cell.detailTextLabel.text = NSLocalizedString(@"None", @".. in settings screen");
                 }
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
@@ -395,8 +397,8 @@
         if ( path.section == 1 && path.row == 5 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Right Panel", @".. in settings screen")];
-            [vc setSectionHeader:NSLocalizedString(@"Define what you want to see on the right panel", @".. in settings screen")];
-            [vc setOptions:@[NSLocalizedString(@"Dynamic based on screen", @".. in settings screen"), NSLocalizedString(@"Show Status", @".. in settings screen"), NSLocalizedString(@"Show Log", @".. in settings screen")] ];
+            [vc setSectionHeader:NSLocalizedString(@"Choose what you want to see on the right panel (App restart required)", @".. in settings screen")];
+            [vc setOptions:@[NSLocalizedString(@"Dynamic based on screen", @".. in settings screen"), NSLocalizedString(@"Show Status", @".. in settings screen"), NSLocalizedString(@"Show Log", @".. in settings screen"), NSLocalizedString(@"None", @".. in settings screen")] ];
             [vc setSelectedOption:[self.settings splitRightMenu]];
             [vc setResponseBack:^(NSInteger order) {
                 [[TVHSettings sharedInstance] setSplitRightMenu:order];
