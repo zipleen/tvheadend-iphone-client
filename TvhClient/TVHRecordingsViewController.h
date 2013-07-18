@@ -27,5 +27,6 @@
 @property (weak, nonatomic) IBOutlet SDSegmentedControl *segmentedControl;
 - (IBAction)segmentedDidChange:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)putTableInEditMode:(id)sender;
 
 @end

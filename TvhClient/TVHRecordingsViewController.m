@@ -397,4 +397,12 @@
     [self didErrorDvrStore:error];
 }
 
+- (IBAction)putTableInEditMode:(id)sender {
+    if ( [self.tableView isEditing] ) {
+        [self.tableView setEditing: NO animated: YES];
+    } else {
+        [self.tableView setEditing: YES animated: YES];
+    }
+    
+}
 @end
