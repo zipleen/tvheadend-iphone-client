@@ -23,8 +23,7 @@
 
 @implementation TVHTableMgrActions
 
-+ (void)doTableMgrAction:(NSString*)action inTable:(NSString*)table withEntries:(id)entries {
-    TVHJsonClient *httpClient = [[TVHSingletonServer sharedServerInstance] jsonClient];
++ (void)doTableMgrAction:(NSString*)action withJsonClient:(TVHJsonClient*)httpClient inTable:(NSString*)table withEntries:(id)entries {
     NSString *stringEntries;
     
     if ( [entries isKindOfClass:[NSString class]] ) {

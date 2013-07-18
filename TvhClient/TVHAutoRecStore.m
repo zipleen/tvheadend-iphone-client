@@ -69,7 +69,7 @@
     NSMutableArray *dvrAutoRecItems = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHAutoRecItem *dvritem = [[TVHAutoRecItem alloc] init];
+        TVHAutoRecItem *dvritem = [[TVHAutoRecItem alloc] initWithJsonClient:[self.tvhServer jsonClient]];
         [dvritem updateValuesFromDictionary:obj];
         
         [dvrAutoRecItems addObject:dvritem];

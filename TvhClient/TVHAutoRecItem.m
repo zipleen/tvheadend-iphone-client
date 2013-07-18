@@ -21,11 +21,19 @@
 #import "TVHAutoRecItem.h"
 #import "TVHTableMgrActions.h"
 
-@interface TVHAutoRecItem () 
+@interface TVHAutoRecItem ()
 @property (nonatomic, strong) NSMutableArray *updatedProperties;
 @end
 
 @implementation TVHAutoRecItem
+
+- (id)initWithJsonClient:(TVHJsonClient*)jsonClient {
+    self = [super init];
+    if (!self) return nil;
+    self.jsonClient = jsonClient;
+    
+    return self;
+}
 
 - (NSMutableArray*)updatedProperties {
     if ( ! _updatedProperties ) {
@@ -79,7 +87,7 @@
 }
 
 - (void)deleteAutoRec {
-    [TVHTableMgrActions doTableMgrAction:@"delete" inTable:@"autorec" withEntries:[NSString stringWithFormat:@"%d",self.id] ];
+    [TVHTableMgrActions doTableMgrAction:@"delete" withJsonClient:self.jsonClient inTable:@"autorec" withEntries:[NSString stringWithFormat:@"%d",self.id] ];
 }
 
 - (void)updateAutoRec {
@@ -92,6 +100,6 @@
         [sendProperties setValue:[self valueForKey:key] forKey:key];
     }
     [sendProperties setValue:[NSString stringWithFormat:@"%d", self.id] forKey:@"id"];
-    [TVHTableMgrActions doTableMgrAction:@"update" inTable:@"autorec" withEntries:sendProperties ];
+    [TVHTableMgrActions doTableMgrAction:@"update" withJsonClient:self.jsonClient inTable:@"autorec" withEntries:sendProperties ];
 }
 @end

@@ -19,7 +19,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHJsonClient.h"
 
 @interface TVHTableMgrActions : NSObject
-+ (void)doTableMgrAction:(NSString*)action inTable:(NSString*)table withEntries:(id)entries;
++ (void)doTableMgrAction:(NSString*)action withJsonClient:(TVHJsonClient*)httpClient inTable:(NSString*)table withEntries:(id)entries;
 @end

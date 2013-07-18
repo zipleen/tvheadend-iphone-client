@@ -262,7 +262,6 @@
     }
 }
 
-
 - (void)viewDidUnload {
     [self setItemTitle:nil];
     [self setItemChannel:nil];
@@ -277,6 +276,12 @@
     [self setItemEnable:nil];
     [super viewDidUnload];
 }
+
+- (void)setItem:(TVHAutoRecItem *)item {
+    _item = item;
+    [_item setJsonClient:[[TVHSingletonServer sharedServerInstance] jsonClient]];
+}
+
 - (IBAction)saveButton:(id)sender {
     [self.view.window endEditing: YES];
     // check for the 3 titles
