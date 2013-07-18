@@ -172,7 +172,7 @@
     
     if ( [[TVHSettings sharedInstance] useBlackBorders] ) {
         // rouding corners - this makes the animation in ipad become VERY SLOW!!!
-        channelImage.layer.cornerRadius = 2.0f;
+        //channelImage.layer.cornerRadius = 2.0f;
         channelImage.layer.masksToBounds = NO;
         channelImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
         channelImage.layer.borderWidth = 0.4;
