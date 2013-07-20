@@ -46,4 +46,5 @@
 - (void)deleteRecording;
 - (TVHChannel*)channelObject;
 - (NSString*)streamURL;
+- (NSString*)transcodeStreamURL;
 @end

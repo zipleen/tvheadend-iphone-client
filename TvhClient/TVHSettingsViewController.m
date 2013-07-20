@@ -16,6 +16,8 @@
 #import "TVHSingletonServer.h"
 #import "UIView+ClosestParent.h"
 
+#define TVHS_TRANSCODE_RESOLUTIONS @[@"384", @"576", @"768", @"720"]
+
 @interface TVHSettingsViewController () <UITextFieldDelegate> {
     NIKFontAwesomeIconFactory *factory;
 }
@@ -110,9 +112,9 @@
     }
     if ( section == 1 ) {
         if ( IS_IPAD ) {
-            return 6;
+            return 7;
         } else {
-            return 5;
+            return 6;
         }
     }
     if ( section == 2 ) {
@@ -222,9 +224,18 @@
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
             textLabel.text = NSLocalizedString(@"Draw Image Border", @".. in settings screen");
         }
-        
+        if ( indexPath.row == 5 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
+            if(cell==nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
+            }
+            
+            cell.textLabel.text = NSLocalizedString(@"Transcode Resolution", @".. in settings screen");
+            cell.detailTextLabel.text = [self.settings transcodeResolution];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
         if ( IS_IPAD ) {
-            if ( indexPath.row == 5 ) {
+            if ( indexPath.row == 6 ) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
                 if(cell==nil) {
                     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
@@ -342,6 +353,10 @@
         [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
     }
     
+    if ( indexPath.section == 1 && indexPath.row == 6 ) {
+        [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
+    }
+    
     if ( indexPath.section == 2 && indexPath.row == 0 ) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/zipleen/tvheadend-iphone-client/wiki/Support"]];
     }
@@ -393,8 +408,19 @@
                 
             }];
         }
-                                                    
+        
         if ( path.section == 1 && path.row == 5 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Transcode Resolution", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Choose transcode resolution", @".. in settings screen")];
+            [vc setOptions:TVHS_TRANSCODE_RESOLUTIONS ];
+            [vc setSelectedOption:[TVHS_TRANSCODE_RESOLUTIONS indexOfObject:[self.settings transcodeResolution]]];
+            [vc setResponseBack:^(NSInteger order) {
+                [[TVHSettings sharedInstance] setTranscodeResolution:[TVHS_TRANSCODE_RESOLUTIONS objectAtIndex:order]];
+            }];
+        }
+        
+        if ( path.section == 1 && path.row == 6 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Right Panel", @".. in settings screen")];
             [vc setSectionHeader:NSLocalizedString(@"Choose what you want to see on the right panel (App restart required)", @".. in settings screen")];

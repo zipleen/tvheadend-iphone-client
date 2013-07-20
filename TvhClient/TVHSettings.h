@@ -57,6 +57,7 @@
 @property (nonatomic) NSInteger sortChannel;
 @property (nonatomic) BOOL sendAnonymousStatistics;
 @property (nonatomic) BOOL useBlackBorders;
+@property (nonatomic, strong) NSString *transcodeResolution;
 // ipad
 @property (nonatomic) NSInteger statusSplitPosition;
 @property (nonatomic) NSInteger statusSplitPositionPortrait;

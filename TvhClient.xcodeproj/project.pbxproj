@@ -119,6 +119,8 @@
 		AA9BD3CF175BCDAC00670C76 /* navigationbar_inverted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9BD3CD175BCDAC00670C76 /* navigationbar_inverted@2x.png */; };
 		AA9BD3D0175BCDAC00670C76 /* navigationbar_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9BD3CE175BCDAC00670C76 /* navigationbar_inverted.png */; };
 		AAAC5AC71748FDC4006B093E /* TVHStatusSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5AC61748FDC4006B093E /* TVHStatusSplitViewController.m */; };
+		AAB33133179A0AD4001630DC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB33132179A0AD4001630DC /* MediaPlayer.framework */; };
+		AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB33135179A0B66001630DC /* TVHNativeMoviePlayerViewController.m */; };
 		AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
 		AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F716BDB21900973F88 /* CoreGraphics.framework */; };
@@ -424,6 +426,9 @@
 		AA9BD3CE175BCDAC00670C76 /* navigationbar_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationbar_inverted.png; sourceTree = "<group>"; };
 		AAAC5AC51748FDC4006B093E /* TVHStatusSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusSplitViewController.h; sourceTree = "<group>"; };
 		AAAC5AC61748FDC4006B093E /* TVHStatusSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSplitViewController.m; sourceTree = "<group>"; };
+		AAB33132179A0AD4001630DC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		AAB33134179A0B66001630DC /* TVHNativeMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHNativeMoviePlayerViewController.h; sourceTree = "<group>"; };
+		AAB33135179A0B66001630DC /* TVHNativeMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHNativeMoviePlayerViewController.m; sourceTree = "<group>"; };
 		AAB399F016BDB21900973F88 /* TvhClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TvhClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB399F316BDB21900973F88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AAB399F516BDB21900973F88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -607,6 +612,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAB33133179A0AD4001630DC /* MediaPlayer.framework in Frameworks */,
 				AA9BD3CC175B953700670C76 /* AdSupport.framework in Frameworks */,
 				AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */,
 				AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */,
@@ -889,14 +895,13 @@
 		AA7C3FD016C709380057E4C4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AAB3312B1799FCBD001630DC /* Transcode */,
 				AAC8426B172F1087004BAB24 /* iPad */,
 				AA8DC11616E140C800F93BD7 /* Channels */,
 				AA8DC11816E140DE00F93BD7 /* DVR */,
 				AA99BC5916ED537A0087060A /* EPG */,
 				AA8DC11716E140D600F93BD7 /* Status */,
 				AA424AF516F67CA900D20F12 /* Settings */,
-				AA28BA4616E6A1290029A723 /* TVHPlayStreamHelpController.h */,
-				AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */,
 				AA6542211706196800BA20C1 /* TVHShowNotice.h */,
 				AA6542221706196800BA20C1 /* TVHShowNotice.m */,
 				AA08B24517838197000B0E2E /* UIView+ClosestParent.h */,
@@ -1105,9 +1110,21 @@
 			name = EPG;
 			sourceTree = "<group>";
 		};
+		AAB3312B1799FCBD001630DC /* Transcode */ = {
+			isa = PBXGroup;
+			children = (
+				AA28BA4616E6A1290029A723 /* TVHPlayStreamHelpController.h */,
+				AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */,
+				AAB33134179A0B66001630DC /* TVHNativeMoviePlayerViewController.h */,
+				AAB33135179A0B66001630DC /* TVHNativeMoviePlayerViewController.m */,
+			);
+			name = Transcode;
+			sourceTree = "<group>";
+		};
 		AAB399E716BDB21900973F88 = {
 			isa = PBXGroup;
 			children = (
+				AAB33132179A0AD4001630DC /* MediaPlayer.framework */,
 				AAB399F916BDB21900973F88 /* TvhClient */,
 				AA43D4A116CF167300104BBF /* TvhClientTests */,
 				AAB399F216BDB21900973F88 /* Frameworks */,
@@ -1677,6 +1694,7 @@
 				AA07D72417949D400064F9C5 /* ETProgressBar.m in Sources */,
 				AAC715D5179749BC00B7B280 /* TVHConfigName.m in Sources */,
 				AAC715D817974A8A00B7B280 /* TVHConfigNameStore.m in Sources */,
+				AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

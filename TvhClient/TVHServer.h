@@ -36,4 +36,5 @@
 @property (nonatomic, strong) NSArray *capabilities;
 - (TVHServer*)initVersion:(NSString*)version;
 - (void)fetchServerVersion;
+- (BOOL)isTranscodingCapable;
 @end

@@ -20,18 +20,16 @@
 
 #import "TVHPlayStreamHelpController.h"
 #import "TVHSettings.h"
+#import "TVHNativeMoviePlayerViewController.h"
 
-//#define KXMOVIE
-#ifdef KXMOVIE
-#import "KxMovieViewController.h"
-#endif
-
-#define TVH_PROGRAMS @{@"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Oplayer":@"oplayer"}
+#define TVH_PROGRAMS @{@"VLC":@"vlc", @"Oplayer":@"oplayer", @"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer" }
+#define TVHS_TVHEADEND_STREAM_URL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS&mux=mpegts"
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate> {
     UIActionSheet *myActionSheet;
 }
 @property (weak, nonatomic) id<TVHPlayStreamDelegate> streamObject;
+@property (weak, nonatomic) UIStoryboard *storyboard;
 @property (weak, nonatomic) UIViewController *vc;
 @end
 
@@ -62,22 +60,23 @@
     return [available copy];
 }
 
-- (void)showMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle{
+- (void)showMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
     int countOfItems = 0;
     NSString *actionSheetTitle = NSLocalizedString(@"Playback", nil);
     NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
     NSString *cancel = NSLocalizedString(@"Cancel", nil);
-#ifdef KXMOVIE
-    NSString *stream = NSLocalizedString(actionTitle, nil);
-#endif
+    NSString *transcode = NSLocalizedString(@"Transcode", nil);
+
     [self dismissActionSheet];
     myActionSheet = [[UIActionSheet alloc] init];
     [myActionSheet setTitle:actionSheetTitle];
     [myActionSheet setDelegate:self];
-#ifdef KXMOVIE
-    [actionSheet addButtonWithTitle:stream];
-    countOfItems++;
-#endif
+
+    if ( [self.streamObject transcodeStreamURL] ) {
+        [myActionSheet addButtonWithTitle:transcode];
+        [myActionSheet setDestructiveButtonIndex:countOfItems];
+        countOfItems++;
+    }
     
     [myActionSheet addButtonWithTitle:copy];
     countOfItems++;
@@ -94,7 +93,7 @@
 
 }
 
-- (void)playStream:(UIBarButtonItem*)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc {
+- (void)playStream:(UIBarButtonItem*)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc  {
     self.streamObject = channel;
     self.vc = vc;
     [self showMenu:sender withVC:vc withActionSheet:@"Stream Channel"];
@@ -128,16 +127,10 @@
         NSURL *myURL = [NSURL URLWithString:url ];
         [[UIApplication sharedApplication] openURL:myURL];
     }
-#ifdef KXMOVIE
-    if ([buttonTitle isEqualToString:NSLocalizedString(@"Stream Channel", nil)]) {
-        NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.streamObject streamURL] ];
-        [self streamChannel:url];
+    
+    if ([buttonTitle isEqualToString:NSLocalizedString(@"Transcode", nil)]) {
+        [self streamNativeUrl: [self stringTranscodeUrl: [self.streamObject transcodeStreamURL] ] ];
     }
-    if ([buttonTitle isEqualToString:NSLocalizedString(@"Play Dvr File", nil)]) {
-        NSString *url = [NSString stringWithFormat:@"%@?mux=pass", [self.streamObject streamURL] ];
-        [self streamChannel:url];
-    }
-#endif
 }
 
 - (void)dismissActionSheet {
@@ -147,28 +140,18 @@
     }
 }
 
-#ifdef KXMOVIE
-- (void)streamChannel:(NSString*) path {
-
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-
-    // increase buffering for .wmv, it solves problem with delaying audio frames
-    //if ([path.pathExtension isEqualToString:@"wmv"])
-    // //   parameters[KxMovieParameterMinBufferedDuration] = @(5.0);
-    
-    // disable deinterlacing for iPhone, because it's complex operation can cause stuttering
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-        parameters[KxMovieParameterDisableDeinterlacing] = @(YES);
-    
-    // disable buffering
-    // parameters[KxMovieParameterMinBufferedDuration] = @(0.0f);
-    
-    KxMovieViewController *vc = [KxMovieViewController movieViewControllerWithContentPath:path
-                                                                               parameters:parameters];
-    [self.vc presentViewController:vc animated:YES completion:nil];
-    //[self.navigationController pushViewController:vc animated:YES];
- 
+- (NSString*)stringTranscodeUrl:(NSString*)url {
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL, [settings transcodeResolution]];
 }
-#endif
+
+- (void)streamNativeUrl:(NSString*)url {
+    TVHNativeMoviePlayerViewController *moviePlayer = [[TVHNativeMoviePlayerViewController alloc] init];
+    moviePlayer.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.vc presentViewController:moviePlayer animated:YES completion:^{
+        [moviePlayer playStream:url];
+    }];
+    
+}
 
 @end

@@ -156,6 +156,17 @@
 
 }
 
+- (BOOL)isTranscodingCapable {
+    if ( self.capabilities ) {
+        NSString *transcode = @"transcoding";
+        NSInteger idx = [self.capabilities indexOfObject:transcode];
+        if ( idx != NSNotFound ) {
+            return true;
+        }
+    }
+    return false;
+}
+
 - (void)resetData {
     self.jsonClient = nil;
     self.tagStore = nil;
@@ -165,6 +176,10 @@
     self.statusStore = nil;
     self.adapterStore = nil;
     self.cometStore = nil;
+    self.configNameStore = nil;
+    self.capabilities = nil;
+    self.version = nil;
+    self.realVersion = nil;
 }
 
 @end

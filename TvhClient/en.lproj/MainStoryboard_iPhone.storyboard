@@ -1774,7 +1774,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cqh-rj-fhW"/>
         <segue reference="brX-Oe-q0O"/>
+        <segue reference="cqh-rj-fhW"/>
     </inferredMetricsTieBreakers>
 </document>

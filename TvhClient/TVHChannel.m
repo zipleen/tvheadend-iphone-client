@@ -22,6 +22,7 @@
 #import "TVHEpgStore.h"
 #import "TVHChannelEpg.h"
 #import "TVHSettings.h"
+#import "TVHServer.h"
 
 @interface TVHChannel() <TVHEpgStoreDelegate> {
     NSDateFormatter *dateFormatter;
@@ -84,6 +85,14 @@
 - (NSString*)streamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
     return [NSString stringWithFormat:@"%@/stream/channelid/%d", [tvh fullBaseURL], self.chid];
+}
+
+- (NSString*)transcodeStreamURL {
+    if ( [self.tvhServer isTranscodingCapable] ) {
+        TVHSettings *tvh = [TVHSettings sharedInstance];
+        return [NSString stringWithFormat:@"%@/playlist/channelid/%d", [tvh fullBaseURL], self.chid];
+    }
+    return nil;
 }
 
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {

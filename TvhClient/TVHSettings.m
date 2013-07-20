@@ -31,6 +31,7 @@
 #define TVHS_STATUS_SPLITPORTRAIT @"statusSplitPositionPortrait"
 #define TVHS_STATUS_SHOWLOG @"statusShowLog"
 #define TVHS_SPLIT_RIGHT_MENU @"splitRightMenu"
+#define TVHS_TRANSCODE_RES @"transcodeResolution"
 
 @interface TVHSettings()
 
@@ -49,6 +50,7 @@
 @synthesize statusSplitPositionPortrait = _statusSplitPositionPortrait;
 @synthesize statusShowLog = _statusShowLog;
 @synthesize splitRightMenu = _splitRightMenu;
+@synthesize transcodeResolution = _transcodeResolution;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -535,6 +537,23 @@ withPassword:(NSString*)password {
     return _splitRightMenu;
 }
 
+- (void)setTranscodeResolution:(NSString *)transcodeResolution {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:transcodeResolution forKey:TVHS_TRANSCODE_RES];
+    [defaults synchronize];
+    _transcodeResolution = transcodeResolution;
+}
+
+- (NSString*)transcodeResolution {
+    if ( !_transcodeResolution ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _transcodeResolution = [defaults stringForKey:TVHS_TRANSCODE_RES];
+        if ( ! _transcodeResolution ) {
+            _transcodeResolution = @"384";
+        }
+    }
+    return _transcodeResolution;
+}
 
 @end
 

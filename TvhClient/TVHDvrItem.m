@@ -96,6 +96,10 @@
     return nil;
 }
 
+- (NSString*)transcodeStreamURL {
+    return nil;
+}
+
 - (BOOL)isEqual: (id)other {
     if (other == self)
         return YES;
