@@ -5,38 +5,14 @@
 //  Created by zipleen on 2/23/13.
 //  Copyright 2013 Luis Fernandes
 //
-//  Licensed under the Apache License, Version 2.0 (the "License");
-//  you may not use this file except in compliance with the License.
-//  You may obtain a copy of the License at
-//
-//  http://www.apache.org/licenses/LICENSE-2.0
-//
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  See the License for the specific language governing permissions and
-//  limitations under the License.
+//  This Source Code Form is subject to the terms of the Mozilla Public
+//  License, v. 2.0. If a copy of the MPL was not distributed with this
+//  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
 #import "TVHUICustomNavigationBar.h"
 
 @implementation TVHUICustomNavigationBar
-
-+ (void)initialize {
-    /*const CGFloat ArrowLeftCap = 14.0f;
-    UIImage *back = [UIImage imageNamed:@"nav-backbutton.png"];
-    back = [back stretchableImageWithLeftCapWidth:ArrowLeftCap
-                                     topCapHeight:0];
-    
-    [[UIBarButtonItem appearanceWhenContainedIn:[TVHUICustomNavigationBar class], nil] setBackButtonBackgroundImage:back
-                                                                                                      forState:UIControlStateNormal
-                                                                                                    barMetrics:UIBarMetricsDefault];
-    
-    const CGFloat TextOffset = 3.0f;
-    [[UIBarButtonItem appearanceWhenContainedIn:[TVHUICustomNavigationBar class], nil] setBackButtonTitlePositionAdjustment:UIOffsetMake(TextOffset, 0)
-                                                                                                         forBarMetrics:UIBarMetricsDefault];
-     */
-}
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -88,7 +64,7 @@
         
         [[UIToolbar appearance] setBackgroundImage:[[UIImage
                                                      imageNamed:@"navigationbar_inverted.png"]
-                                                    resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)]
+                                                        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)]
                                 forToolbarPosition:UIToolbarPositionAny
                                         barMetrics:UIBarMetricsDefault];
         
