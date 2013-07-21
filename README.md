@@ -53,18 +53,11 @@ Build and run ! Send your patches to me via a pull request ;)
 
 ## Video Streaming
 
-DVB streaming is mainly MPEG2 streams for SD channels. MPEG4 is used for some HD Video streaming, although the audio codec could be MPEG2, AAC or AC3. The iOS devices have limitations that only allow them to hardware decode a MP4 stream which complies with device specifications. TVHeadend serves a TS or MKV stream, which the iOS can't handle natively.
+Download VLC from the App Store and open the stream with it!
 
-In order to add video streaming, software decoding is the only solution - normally FFMPEG, but it has a lot of drawbacks:
-- software only decoding of MPEG2 streams (your iOS device battery will drain)
-- software only for MPEG4 - because tvheadend uses a mkv or TS container, this could (possible) be overcome
-- need to pay royalties for AC3
-- need to pay royalties for MPEG2
-- it's slow, buggy (hangs a lot - only latest iPad have the processing power to handle software decoding) and it's not polished enough
+There's also an option to use the new alpha transcoding feature from TVHeadend to stream H264/AAC MPEG-TS, compatible with iOS. In order to use transcoding you need TVHeadend 3.5 and enable transcoding support by changing src/plumbing/transcoding.c : 114 variable from 0 to 1. The transcoding is still a very experimental feature.
 
-For this reasons, I won't include ffmpeg in the app. You can experiment adding ffmpeg to the app, see some instructions in the wiki https://github.com/zipleen/tvheadend-iphone-client/wiki/Kxmovie
-
-However, there's been some work on TVHeadend to implement a transcoding feature. With transcoding, it could be possible to encode the stream to an iOS capable stream - the streaming support will be directly supported by the system.
+In the future there could be a possibility to add VLC into the app, in order to software decode the stream. Although AC3 won't ever be possible because of patent issues.
 
 ## Technical Background regarding connection to TVHeadend
 
@@ -72,7 +65,7 @@ There's two ways to connect to TVHeadend: HTSP and using the web interface. This
 
 ## License
 
-This app's source code is licensed under the Apache 2.0 License. 
+This app's source code is licensed under the Mozilla Public License 2 (MPL-2). 
 
 App Icon made by Julio Costa Pinto, thanks =)
 
