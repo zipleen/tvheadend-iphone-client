@@ -111,12 +111,14 @@
         if ( versionRange ) {
             NSString* versionString = [response substringWithRange:[versionRange rangeAtIndex:1]];
             versionString = [versionString stringByReplacingOccurrencesOfString:@"." withString:@""];
-            self.version = [versionString substringWithRange:NSMakeRange(0, 2)];
+            if ([versionString length] > 2) {
+                self.version = [versionString substringWithRange:NSMakeRange(0, 2)];
 #ifdef TESTING
-            NSLog(@"[TVHServer getVersion]: %@", self.version);
+                NSLog(@"[TVHServer getVersion]: %@", self.version);
 #endif
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHVersion"
-                                                                object:self];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHVersion"
+                                                                    object:self];
+            }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[TVHServer getVersion]: %@", error.localizedDescription);
