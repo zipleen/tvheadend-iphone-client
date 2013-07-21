@@ -93,7 +93,7 @@
 - (NSString*)version {
     if ( _version ) {
         int ver = [_version intValue];
-        if ( ver <= 32 ) {
+        if ( ver >= 30 && ver <= 32 ) {
             return @"32";
         }
     }

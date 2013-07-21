@@ -26,7 +26,7 @@
 #import "KxMovieViewController.h"
 #endif
 
-#define TVH_PROGRAMS @{@"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Oplayer":@"oplayer"}
+#define TVH_PROGRAMS @{@"VLC":@"vlc", @"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Oplayer":@"oplayer", @"AcePlayer": @"aceplayer"}
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate> {
     UIActionSheet *myActionSheet;
