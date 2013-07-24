@@ -208,10 +208,16 @@
     
     float progress = [epg progress];
     if ( progress > 0 && progress < 100 ) {
-        CGRect progressBarFrame = {
+        /*CGRect progressBarFrame = {
             .origin.x = 72,
             .origin.y = 22,
             .size.width = cell.contentView.bounds.size.width - 110,
+            .size.height = 2,
+        };*/
+        CGRect progressBarFrame = {
+            .origin.x = 4,
+            .origin.y = 53,
+            .size.width = 60,
             .size.height = 2,
         };
         ETProgressBar *currentTimeProgress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];

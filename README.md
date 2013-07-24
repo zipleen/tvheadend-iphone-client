@@ -55,7 +55,7 @@ Build and run ! Send your patches to me via a pull request ;)
 
 Download VLC from the App Store and open the stream with it!
 
-There's also an option to use the new alpha transcoding feature from TVHeadend to stream H264/AAC MPEG-TS, compatible with iOS. In order to use transcoding you need TVHeadend 3.5 and enable transcoding support by changing src/plumbing/transcoding.c : 114 variable from 0 to 1. The transcoding is still a very experimental feature.
+There's also an option to use the new alpha transcoding feature from TVHeadend to stream H264/AAC MPEG-TS, compatible with iOS. See [here](https://github.com/zipleen/tvheadend-iphone-client/wiki/Tvheadend-Transcoding) 
 
 In the future there could be a possibility to add VLC into the app, in order to software decode the stream. Although AC3 won't ever be possible because of patent issues.
 

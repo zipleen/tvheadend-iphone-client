@@ -1098,11 +1098,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" id="kaK-YP-hpt">
-                                            <rect key="frame" x="6" y="26" width="60" height="50"/>
+                                            <rect key="frame" x="7" y="7" width="60" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="My Channel Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="g6h-GJ-DyD">
-                                            <rect key="frame" x="72" y="3" width="210" height="18"/>
+                                            <rect key="frame" x="72" y="4" width="210" height="18"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1111,7 +1111,7 @@
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="My program on Tv ep1 - s2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lBc-ro-wgz">
-                                            <rect key="frame" x="72" y="27" width="210" height="18"/>
+                                            <rect key="frame" x="72" y="23" width="210" height="18"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1120,7 +1120,7 @@
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="110" contentMode="left" text="My program on Tv ep1 - s2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a23-fl-4HL">
-                                            <rect key="frame" x="72" y="43" width="210" height="18"/>
+                                            <rect key="frame" x="72" y="41" width="210" height="18"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1129,9 +1129,9 @@
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="111" contentMode="left" text="My program on Tv ep1 - s2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7ex-U8-nee">
-                                            <rect key="frame" x="72" y="59" width="210" height="18"/>
+                                            <rect key="frame" x="72" y="58" width="210" height="18"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1873,6 +1873,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsServersViewController.h"/>
             <relationships>
                 <relationship kind="action" name="saveServer:"/>
+                <relationship kind="action" name="setUseHttps:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
@@ -1884,6 +1885,7 @@
         <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="showSplitLog:"/>
                 <relationship kind="action" name="switchPolling:"/>
                 <relationship kind="outlet" name="switchButton" candidateClass="UIBarButtonItem"/>
             </relationships>

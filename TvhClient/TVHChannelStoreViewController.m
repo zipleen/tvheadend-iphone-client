@@ -139,14 +139,23 @@
             [progressToDelete removeFromSuperview];
         }
     }
-	CGRect progressBarFrame = {
+	/*CGRect progressBarFrame = {
 		.origin.x = 72,
 		.origin.y = 26,
 		.size.width = cell.contentView.bounds.size.width - 110,
 		.size.height = 2,
+	};*/
+    CGRect progressBarFrame = {
+		.origin.x = 7,
+		.origin.y = 57,
+		.size.width = 60,
+		.size.height = 2,
 	};
 	ETProgressBar *currentTimeProgress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];
-	[cell.contentView addSubview:currentTimeProgress];
+	currentTimeProgress.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+                                                     UIViewAutoresizingFlexibleLeftMargin |
+                                                     UIViewAutoresizingFlexibleRightMargin);
+    [cell.contentView addSubview:currentTimeProgress];
     
 	currentProgramLabel.text = NSLocalizedString(@"Not Available", nil);
     nextProgramLabel.text = nil;
