@@ -138,6 +138,7 @@
 - (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
     
     NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
+    [self signalWillLoadEpg];
 #ifdef TESTING
     NSLog(@"[%@ EPG Going to call (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %@", self.statsEpgName, self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, params);
 #endif
@@ -161,19 +162,14 @@
         NSLog(@"[%@ Profiling Network]: %f", self.statsEpgName, time);
 #endif
         if ( [self fetchedData:responseObject] ) {
-            if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
-                [self.delegate didLoadEpg:self];
-            }
-            
+            [self signalDidLoadEpg];
             [self getMoreEpg:start limit:limit fetchAll:fetchAll];
         }
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[EpgStore HTTPClient Error]: %@", error.localizedDescription);
-        if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
-            [self.delegate didErrorLoadingEpgStore:error];
-        }
+        [self signalDidErrorLoadingEpgStore:error];
     }];
     
 }
@@ -249,5 +245,28 @@
         self.epgStore = nil;
     }
 }
+
+- (void)signalWillLoadEpg {
+    if ([self.delegate respondsToSelector:@selector(willLoadEpg)]) {
+        [self.delegate willLoadEpg];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadEpg"
+                                                        object:self];
+}
+
+- (void)signalDidLoadEpg {
+    if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
+        [self.delegate didLoadEpg:self];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadEpg"
+                                                        object:self];
+}
+
+- (void)signalDidErrorLoadingEpgStore:(NSError*)error {
+    if ([self.delegate respondsToSelector:@selector(didErrorLoadingEpgStore:)]) {
+        [self.delegate didErrorLoadingEpgStore:error];
+    }
+}
+
 
 @end

@@ -76,7 +76,7 @@
 - (void)initDelegate {
     if( [self.dvrStore delegate] ) {
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didLoadDvr)
+                                                 selector:@selector(didLoadDvr:)
                                                      name:@"didLoadDvr"
                                                    object:self.dvrStore];
     } else {
@@ -246,7 +246,20 @@
         titleLabel.text = autoRecItem.title;
         dateLabel.text = autoRecItem.channel;
         statusLabel.text = [NSString stringOfWeekdaysLocalizedFromArray:[autoRecItem.weekdays componentsSeparatedByString:@","] joinedByString:@","];
-        [channelImage setImage:[UIImage imageNamed:@"tv2.png"]];
+        
+        if (autoRecItem.channel) {
+            TVHChannelStore *channelStore = [[self.dvrStore tvhServer] channelStore];
+            TVHChannel *channel = [channelStore channelWithName:autoRecItem.channel];
+            channelImage.contentMode = UIViewContentModeScaleAspectFit;
+            [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                if (!error) {
+                    channelImage.image = [TVHImageCache resizeImage:image];
+                }
+            } ];
+        } else {
+            [channelImage setImage:[UIImage imageNamed:@"tv2.png"]];
+        }
+        
         if ( [autoRecItem enabled] ) {
             titleLabel.textColor = [UIColor blackColor];
         } else {
@@ -366,6 +379,18 @@
 - (void)reloadData {
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+}
+
+- (void)willLoadDvr:(NSInteger)type {
+    if ( type == self.segmentedControl.selectedSegmentIndex ) {
+        [self.refreshControl beginRefreshing];
+        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    }
+}
+
+- (void)willLoadDvrAutoRec {
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
 }
 
 - (void)didLoadDvr:(NSInteger)type {

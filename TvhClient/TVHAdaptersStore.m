@@ -115,6 +115,14 @@
     }
 }
 
+- (void)signalWillLoadAdapters {
+    if ([self.delegate respondsToSelector:@selector(willLoadAdapters)]) {
+        [self.delegate willLoadAdapters];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadAdapters"
+                                                        object:self];
+}
+
 - (void)signalDidLoadAdapters {
     if ([self.delegate respondsToSelector:@selector(didLoadAdapters)]) {
         [self.delegate didLoadAdapters];

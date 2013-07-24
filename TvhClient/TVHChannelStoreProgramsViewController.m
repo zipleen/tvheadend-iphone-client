@@ -54,12 +54,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initDelegate];
-    [self.channel downloadRestOfEpg];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    [self initDelegate];
+    [self.channel downloadRestOfEpg];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEE"];
@@ -233,6 +234,11 @@
     }
 }
 
+- (void)willLoadEpgChannel {
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+}
+
 - (void)didLoadEpgChannel {
     [self updateSegmentControl];
     [self.tableView reloadData];
@@ -241,7 +247,6 @@
 
 - (void)didErrorLoadingEpgChannel:(NSError*) error {
     [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error",nil) message:error.localizedDescription];
-    
     [self.refreshControl endRefreshing];
 }
 

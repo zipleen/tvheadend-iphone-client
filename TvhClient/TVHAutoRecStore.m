@@ -113,6 +113,14 @@
     return 0;
 }
 
+- (void)signalWillLoadDvrAutoRec {
+    if ([self.delegate respondsToSelector:@selector(willLoadDvrAutoRec)]) {
+        [self.delegate willLoadDvrAutoRec];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadDvrAutoRec"
+                                                        object:self];
+}
+
 - (void)signalDidLoadDvrAutoRec {
     if ([self.delegate respondsToSelector:@selector(didLoadDvrAutoRec)]) {
         [self.delegate didLoadDvrAutoRec];

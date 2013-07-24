@@ -87,8 +87,8 @@
 }
 
 - (void)fetchChannelList {
-    
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
+    [self signalWillLoadChannels];
     self.profilingDate = [NSDate date];
     [self.jsonClient postPath:@"channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
@@ -177,6 +177,14 @@
     if (_delegate != delegate) {
         _delegate = delegate;
     }
+}
+
+- (void)signalWillLoadChannels {
+    if ([self.delegate respondsToSelector:@selector(willLoadChannels)]) {
+        [self.delegate didLoadChannels];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadChannels"
+                                                        object:self];
 }
 
 - (void)signalDidLoadChannels {

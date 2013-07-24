@@ -299,6 +299,16 @@
 
 #pragma mark - Table view delegate
 
+- (void)willLoadAdapters {
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+}
+
+- (void)willLoadStatusSubscriptions {
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+}
+
 - (void)didErrorStatusSubscriptionsStore:(NSError *)error {
     [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error", nil) message:error.localizedDescription];
     

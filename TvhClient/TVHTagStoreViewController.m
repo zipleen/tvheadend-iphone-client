@@ -188,6 +188,11 @@
     }
 }
 
+- (void)willLoadTags {
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+}
+
 - (void)didLoadTags {
     [self reloadData];
     [self.refreshControl endRefreshing];

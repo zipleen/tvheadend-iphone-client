@@ -81,6 +81,7 @@
 - (void)fetchTagList {
     
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
+    [self signalWillLoadTags];
     self.profilingDate = [NSDate date];
     [self.jsonClient postPath:@"tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
@@ -109,6 +110,14 @@
     if (_delegate != delegate) {
         _delegate = delegate;
     }
+}
+
+- (void)signalWillLoadTags {
+    if ([self.delegate respondsToSelector:@selector(willLoadTags)]) {
+        [self.delegate didLoadTags];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadTags"
+                                                        object:self];
 }
 
 - (void)signalDidLoadTags {

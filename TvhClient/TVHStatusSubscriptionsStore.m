@@ -88,7 +88,7 @@
 }
 
 - (void)fetchStatusSubscriptions {
-    
+    [self signalWillLoadStatusSubscriptions];
     [self.jsonClient getPath:@"subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ( [self fetchedData:responseObject] ) {
             [self signalDidLoadStatusSubscriptions];
@@ -122,6 +122,14 @@
         [self.delegate didLoadStatusSubscriptions];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadStatusSubscriptions"
+                                                        object:self];
+}
+
+- (void)signalWillLoadStatusSubscriptions {
+    if ([self.delegate respondsToSelector:@selector(willLoadStatusSubscriptions)]) {
+        [self.delegate willLoadStatusSubscriptions];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadStatusSubscriptions"
                                                         object:self];
 }
 

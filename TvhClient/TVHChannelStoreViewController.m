@@ -254,6 +254,11 @@
     [channelPrograms setTitle:channel.name];
 }
 
+- (void)willLoadChannels {
+    [self.refreshControl beginRefreshing];
+    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+}
+
 - (void)didLoadChannels {
     self.channels = [[self.channelStore arrayChannels] copy];
     [self.tableView reloadData];

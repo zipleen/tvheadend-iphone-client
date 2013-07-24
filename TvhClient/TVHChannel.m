@@ -192,6 +192,7 @@
 }
 
 - (void)downloadRestOfEpg {
+    [self signalWillLoadEpgChannel];
     // spawn a new epgList so we can set a filter to the channel
     TVHEpgStore *restOfEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"ChannelEPG" withTvhServer:self.tvhServer];
     [restOfEpgStore setDelegate:self];
@@ -263,6 +264,14 @@
     if (_delegate != delegate) {
         _delegate = delegate;
     }
+}
+
+- (void)signalWillLoadEpgChannel {
+    if ([self.delegate respondsToSelector:@selector(willLoadEpgChannel)]) {
+        [self.delegate willLoadEpgChannel];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadEpgChannel"
+                                                        object:self];
 }
 
 - (void)signalDidLoadEpgChannel {

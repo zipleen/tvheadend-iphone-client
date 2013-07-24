@@ -94,6 +94,7 @@
 }
 
 - (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type {
+    [self signalWillLoadDvr:type];
     self.profilingDate = [NSDate date];
     [self.jsonClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
@@ -163,6 +164,14 @@
         return [self.cachedDvrItems count];
     }
     return 0;
+}
+
+- (void)signalWillLoadDvr:(NSInteger)type {
+    if ([self.delegate respondsToSelector:@selector(willLoadDvr:)]) {
+        [self.delegate willLoadDvr:type];
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willLoadDvr"
+                                                        object:self];
 }
 
 - (void)signalDidLoadDvr:(NSInteger)type {

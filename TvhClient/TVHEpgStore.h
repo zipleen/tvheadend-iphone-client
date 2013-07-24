@@ -19,6 +19,7 @@
 @protocol TVHEpgStoreDelegate <NSObject>
 - (void)didLoadEpg:(TVHEpgStore*)epgStore;
 @optional
+- (void)willLoadEpg;
 - (void)didErrorLoadingEpgStore:(NSError*)error;
 @end
 

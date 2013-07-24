@@ -89,6 +89,7 @@
         [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
     [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
+    [self.refreshControl beginRefreshing];
 }
 
 - (void)viewDidUnload
@@ -255,6 +256,13 @@
     [self.refreshControl endRefreshing];
     self.epgTable = [epgStore epgStoreItems];
     [self.tableView reloadData];
+}
+
+- (void)willLoadEpg {
+    if ( [self.tableView numberOfRowsInSection:0] == 0 ) {
+        [self.refreshControl beginRefreshing];
+        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    }
 }
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {

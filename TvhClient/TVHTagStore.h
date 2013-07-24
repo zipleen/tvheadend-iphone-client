@@ -17,6 +17,7 @@
 
 @protocol TVHTagStoreDelegate <NSObject>
 @optional
+- (void)willLoadTags;
 - (void)didLoadTags;
 - (void)didErrorLoadingTagStore:(NSError*)error;
 @end

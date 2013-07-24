@@ -16,6 +16,8 @@
 @class TVHServer;
 
 @protocol TVHStatusSubscriptionsDelegate <NSObject>
+@optional
+- (void)willLoadStatusSubscriptions;
 - (void)didLoadStatusSubscriptions;
 - (void)didErrorStatusSubscriptionsStore:(NSError*)error;
 @end

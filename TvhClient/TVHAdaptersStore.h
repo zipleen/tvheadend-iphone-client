@@ -16,6 +16,8 @@
 @class TVHServer;
 
 @protocol TVHAdaptersDelegate <NSObject>
+@optional
+- (void)willLoadAdapters;
 - (void)didLoadAdapters;
 - (void)didErrorAdaptersStore:(NSError*)error;
 @end

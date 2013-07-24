@@ -18,6 +18,7 @@
 
 @protocol TVHChannelStoreDelegate <NSObject>
 @optional
+- (void)willLoadChannels;
 - (void)didLoadChannels;
 - (void)didErrorLoadingChannelStore:(NSError*)error;
 @end
