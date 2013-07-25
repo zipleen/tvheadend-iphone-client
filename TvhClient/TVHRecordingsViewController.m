@@ -168,6 +168,7 @@
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
+    [self.tableView setEditing:NO animated:NO];
 }
 
 - (void)didReceiveMemoryWarning

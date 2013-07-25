@@ -21,7 +21,7 @@
 #import "TVHShowNotice.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSettingsGenericFieldViewController.h"
-#import "ETProgressBar.h"
+#import "TVHProgressBar.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;
@@ -180,8 +180,8 @@
     UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
     
     // delete ETProgressBar
-    for (ETProgressBar *progressToDelete in cell.contentView.subviews) {
-        if ( [progressToDelete isKindOfClass:[ETProgressBar class]] ) {
+    for (TVHProgressBar *progressToDelete in cell.contentView.subviews) {
+        if ( [progressToDelete isKindOfClass:[TVHProgressBar class]] ) {
             [progressToDelete removeFromSuperview];
         }
     }
@@ -221,9 +221,14 @@
             .size.width = 60,
             .size.height = 2,
         };
-        ETProgressBar *currentTimeProgress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];
+        TVHProgressBar *currentTimeProgress = [[TVHProgressBar alloc] initWithFrame:progressBarFrame];
         [cell.contentView addSubview:currentTimeProgress];
         [currentTimeProgress setProgress:progress];
+        if ( progress < 0.5 ) {
+            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
+        } else {
+            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];
+        }
     }
     
     [self setScheduledIcon:schedStatusImage forEpg:epg];

@@ -18,7 +18,7 @@
 #import "TVHPlayStreamHelpController.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
-#import "ETProgressBar.h"
+#import "TVHProgressBar.h"
 
 @interface TVHChannelStoreProgramsViewController () <TVHChannelDelegate, UIActionSheetDelegate> {
     NSDateFormatter *dateFormatter;
@@ -166,8 +166,8 @@
     UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
     
     // delete ETProgressBar
-    for (ETProgressBar *progressToDelete in cell.contentView.subviews) {
-        if ( [progressToDelete isKindOfClass:[ETProgressBar class]] ) {
+    for (TVHProgressBar *progressToDelete in cell.contentView.subviews) {
+        if ( [progressToDelete isKindOfClass:[TVHProgressBar class]] ) {
             [progressToDelete removeFromSuperview];
         }
     }
@@ -186,7 +186,7 @@
             .size.width = cell.contentView.bounds.size.width - 91,
             .size.height = 2,
         };
-        ETProgressBar *progress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];
+        TVHProgressBar *progress = [[TVHProgressBar alloc] initWithFrame:progressBarFrame];
         [cell.contentView addSubview:progress];
         
         progress.progress = epg.progress;

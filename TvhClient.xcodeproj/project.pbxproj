@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA07D72417949D400064F9C5 /* ETProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA07D72317949D400064F9C5 /* ETProgressBar.m */; };
 		AA08B241178370FB000B0E2E /* TVHiOSCheckVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */; };
 		AA08B24717838197000B0E2E /* UIView+ClosestParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B24617838197000B0E2E /* UIView+ClosestParent.m */; };
+		AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */; };
 		AA0F56B816E3869000E07DF3 /* separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56B716E3869000E07DF3 /* separator@2x.png */; };
 		AA0F56C016E38C9400E07DF3 /* separator.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56BF16E38C9400E07DF3 /* separator.png */; };
 		AA0F56C816E41F8800E07DF3 /* nav-button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA0F56C716E41F8700E07DF3 /* nav-button_selected@2x.png */; };
@@ -155,6 +155,10 @@
 		AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */; };
 		AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */; };
 		AAC3938517050C22002590C7 /* UINavigationBarBlackOpaqueButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */; };
+		AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5B17A09821005F07B3 /* IAPHelper.m */; };
+		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
+		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
+		AAC59D6517A09A1E005F07B3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC59D6417A09A1E005F07B3 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AAC715D5179749BC00B7B280 /* TVHConfigName.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC715D4179749BC00B7B280 /* TVHConfigName.m */; };
 		AAC715D817974A8A00B7B280 /* TVHConfigNameStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC715D717974A8A00B7B280 /* TVHConfigNameStore.m */; };
 		AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */; };
@@ -246,8 +250,6 @@
 /* Begin PBXFileReference section */
 		AA00CA87171362AF00A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AA00CA8B171362D100A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		AA07D72217949D400064F9C5 /* ETProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ETProgressBar.h; path = ETProgressBar/ETProgressBar/ETProgressBar.h; sourceTree = SOURCE_ROOT; };
-		AA07D72317949D400064F9C5 /* ETProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ETProgressBar.m; path = ETProgressBar/ETProgressBar/ETProgressBar.m; sourceTree = SOURCE_ROOT; };
 		AA08B23F178370FB000B0E2E /* TVHiOSCheckVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHiOSCheckVersion.h; sourceTree = "<group>"; };
 		AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHiOSCheckVersion.m; sourceTree = "<group>"; };
 		AA08B24517838197000B0E2E /* UIView+ClosestParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ClosestParent.h"; sourceTree = "<group>"; };
@@ -258,6 +260,8 @@
 		AA08B254178386E1000B0E2E /* MGSplitDividerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MGSplitDividerView.m; path = MGSplitViewController/Classes/MGSplitDividerView.m; sourceTree = SOURCE_ROOT; };
 		AA08B255178386E1000B0E2E /* MGSplitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MGSplitViewController.h; path = MGSplitViewController/Classes/MGSplitViewController.h; sourceTree = SOURCE_ROOT; };
 		AA08B256178386E1000B0E2E /* MGSplitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MGSplitViewController.m; path = MGSplitViewController/Classes/MGSplitViewController.m; sourceTree = SOURCE_ROOT; };
+		AA0BE35E17A1DFBF00D33B7A /* TVHProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHProgressBar.h; sourceTree = "<group>"; };
+		AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHProgressBar.m; sourceTree = "<group>"; };
 		AA0F56B716E3869000E07DF3 /* separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "separator@2x.png"; sourceTree = "<group>"; };
 		AA0F56BF16E38C9400E07DF3 /* separator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = separator.png; sourceTree = "<group>"; };
 		AA0F56C716E41F8700E07DF3 /* nav-button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav-button_selected@2x.png"; sourceTree = "<group>"; };
@@ -474,6 +478,13 @@
 		AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueBack@2x.png"; sourceTree = "<group>"; };
 		AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueButton.png; sourceTree = "<group>"; };
 		AAC3937D17050C1E002590C7 /* UINavigationBarBlackOpaqueButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueButton@2x.png"; sourceTree = "<group>"; };
+		AAC59D5A17A09821005F07B3 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		AAC59D5B17A09821005F07B3 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		AAC59D5C17A09821005F07B3 /* TVHIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHIAPHelper.h; sourceTree = "<group>"; };
+		AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHIAPHelper.m; sourceTree = "<group>"; };
+		AAC59D5E17A09821005F07B3 /* TVHSupportMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSupportMeViewController.h; sourceTree = "<group>"; };
+		AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSupportMeViewController.m; sourceTree = "<group>"; };
+		AAC59D6417A09A1E005F07B3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		AAC715D3179749BC00B7B280 /* TVHConfigName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHConfigName.h; sourceTree = "<group>"; };
 		AAC715D4179749BC00B7B280 /* TVHConfigName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHConfigName.m; sourceTree = "<group>"; };
 		AAC715D617974A8A00B7B280 /* TVHConfigNameStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHConfigNameStore.h; sourceTree = "<group>"; };
@@ -617,6 +628,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC59D6517A09A1E005F07B3 /* StoreKit.framework in Frameworks */,
 				AAB33133179A0AD4001630DC /* MediaPlayer.framework in Frameworks */,
 				AA9BD3CC175B953700670C76 /* AdSupport.framework in Frameworks */,
 				AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */,
@@ -643,15 +655,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA07D72117949D2F0064F9C5 /* ETProgressBar */ = {
-			isa = PBXGroup;
-			children = (
-				AA07D72217949D400064F9C5 /* ETProgressBar.h */,
-				AA07D72317949D400064F9C5 /* ETProgressBar.m */,
-			);
-			name = ETProgressBar;
-			sourceTree = "<group>";
-		};
 		AA10AA7C16D1304D00BBDFEA /* CKRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +682,8 @@
 				AAFF92FF171DD73300EDC6DF /* TVHImageCache.h */,
 				AAFF9300171DD73300EDC6DF /* TVHImageCache.m */,
 				AA407E2F16D1A0EE00451E6F /* Localizable.strings */,
+				AA0BE35E17A1DFBF00D33B7A /* TVHProgressBar.h */,
+				AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -789,6 +794,7 @@
 		AA424AF516F67CA900D20F12 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				AAC59D6317A09827005F07B3 /* Support Me */,
 				AA3721C016FBF16F00C21F09 /* Files */,
 				AA424AF216F6797A00D20F12 /* TVHSettingsViewController.h */,
 				AA424AF316F6797B00D20F12 /* TVHSettingsViewController.m */,
@@ -1057,7 +1063,6 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				AA07D72117949D2F0064F9C5 /* ETProgressBar */,
 				AA24868817484E1400AB2E42 /* MGSplitViewController */,
 				AAF2647917441D57006C96CE /* JASlidingPanels */,
 				AAEE7A80171240AE00D0E584 /* GoogleAnalytics SDK */,
@@ -1151,6 +1156,7 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AAC59D6417A09A1E005F07B3 /* StoreKit.framework */,
 				AAB33132179A0AD4001630DC /* MediaPlayer.framework */,
 				AA9BD3CB175B953700670C76 /* AdSupport.framework */,
 				AA9BD3C8175B94E800670C76 /* Crashlytics.framework */,
@@ -1233,6 +1239,27 @@
 				AABE682616EBAE84003E8F92 /* TVHLogStore.m */,
 			);
 			name = Logs;
+			sourceTree = "<group>";
+		};
+		AAC59D5917A09821005F07B3 /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				AAC59D5A17A09821005F07B3 /* IAPHelper.h */,
+				AAC59D5B17A09821005F07B3 /* IAPHelper.m */,
+				AAC59D5C17A09821005F07B3 /* TVHIAPHelper.h */,
+				AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */,
+			);
+			path = IAP;
+			sourceTree = "<group>";
+		};
+		AAC59D6317A09827005F07B3 /* Support Me */ = {
+			isa = PBXGroup;
+			children = (
+				AAC59D5917A09821005F07B3 /* IAP */,
+				AAC59D5E17A09821005F07B3 /* TVHSupportMeViewController.h */,
+				AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */,
+			);
+			name = "Support Me";
 			sourceTree = "<group>";
 		};
 		AAC8426B172F1087004BAB24 /* iPad */ = {
@@ -1688,7 +1715,6 @@
 				AAC93EA217838ACE00CE46C1 /* MGSplitDividerView.m in Sources */,
 				AAC93EA317838AD000CE46C1 /* MGSplitViewController.m in Sources */,
 				AAFF8754178B8E2C0067A57B /* TVHDvrStore32.m in Sources */,
-				AA07D72417949D400064F9C5 /* ETProgressBar.m in Sources */,
 				AAC715D5179749BC00B7B280 /* TVHConfigName.m in Sources */,
 				AAC715D817974A8A00B7B280 /* TVHConfigNameStore.m in Sources */,
 				AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */,
@@ -1705,6 +1731,10 @@
 				AAFE73AE179C14B0000E7105 /* UIImage+MultiFormat.m in Sources */,
 				AAFE73AF179C14B0000E7105 /* UIImage+WebP.m in Sources */,
 				AAFE73B0179C14B0000E7105 /* UIImageView+WebCache.m in Sources */,
+				AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */,
+				AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */,
+				AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */,
+				AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

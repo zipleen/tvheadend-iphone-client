@@ -20,7 +20,7 @@
 #import "TVHImageCache.h"
 #import "TVHSettings.h"
 #import "TVHSingletonServer.h"
-#import "ETProgressBar.h"
+#import "TVHProgressBar.h"
 
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
@@ -134,8 +134,8 @@
 	__weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     
     // delete ETProgressBar
-    for (ETProgressBar *progressToDelete in cell.contentView.subviews) {
-        if ( [progressToDelete isKindOfClass:[ETProgressBar class]] ) {
+    for (TVHProgressBar *progressToDelete in cell.contentView.subviews) {
+        if ( [progressToDelete isKindOfClass:[TVHProgressBar class]] ) {
             [progressToDelete removeFromSuperview];
         }
     }
@@ -146,15 +146,15 @@
 		.size.height = 2,
 	};*/
     CGRect progressBarFrame = {
-		.origin.x = 7,
-		.origin.y = 57,
+		.origin.x = 6,
+		.origin.y = 64,
 		.size.width = 60,
-		.size.height = 2,
+		.size.height = 4,
 	};
-	ETProgressBar *currentTimeProgress  = [[ETProgressBar alloc] initWithFrame:progressBarFrame];
-	currentTimeProgress.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
+    TVHProgressBar *currentTimeProgress = [[TVHProgressBar alloc] initWithFrame:progressBarFrame];
+	currentTimeProgress.autoresizingMask = (UIViewAutoresizingFlexibleBottomMargin |
                                                      UIViewAutoresizingFlexibleLeftMargin |
-                                                     UIViewAutoresizingFlexibleRightMargin);
+                                                     UIViewAutoresizingFlexibleTopMargin);
     [cell.contentView addSubview:currentTimeProgress];
     
 	currentProgramLabel.text = NSLocalizedString(@"Not Available", nil);
@@ -198,7 +198,13 @@
         
         //currentTimeProgramLabel.text = [NSString stringWithFormat:@"%@ | %@", [dateFormatter stringFromDate:currentPlayingProgram.start], [dateFormatter stringFromDate:currentPlayingProgram.end]];
         currentTimeProgress.hidden = false;
-        [currentTimeProgress setProgress:[currentPlayingProgram progress] animated:NO];
+        float progress = [currentPlayingProgram progress];
+        [currentTimeProgress setProgress:progress animated:NO];
+        if ( progress < 0.5 ) {
+            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
+        } else {
+            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];
+        }
         cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", channel.name, currentPlayingProgram.title, [dateFormatter stringFromDate:currentPlayingProgram.start], NSLocalizedString(@"to",@"accessibility"), [dateFormatter stringFromDate:currentPlayingProgram.end] ];
     } else {
         cell.accessibilityLabel = channel.name;
@@ -213,9 +219,6 @@
     UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1)];
     [sepColor setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     [cell.contentView addSubview:sepColor];
-    
-    //UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"separator.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
-    //[cell.contentView addSubview: separator];
     
     return cell;
 }

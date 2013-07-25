@@ -85,9 +85,9 @@
     }
     if( [now compare:self.end] == NSOrderedDescending ) {
 #ifdef TESTING
-        //NSLog(@"start(100) for %@ is %@", self.title, self.start);
+        //NSLog(@"start(1) for %@ is %@", self.title, self.start);
 #endif
-        return 100;
+        return 1;
     }
     return actualLength / programLength;
 }
