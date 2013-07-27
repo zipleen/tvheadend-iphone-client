@@ -149,6 +149,17 @@
     [self.segmentedControl setTitle:NSLocalizedString(@"AutoRec", nil) forSegmentAtIndex:3];
     
     self.title = NSLocalizedString(@"Recordings", @"");
+    
+    
+    UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(handleSwipeFromRight:)];
+    [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.tableView addGestureRecognizer:rightGesture];
+    
+    UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(handleSwipeFromLeft:)];
+    [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.tableView addGestureRecognizer:leftGesture];
 }
 
 - (void)viewDidUnload {
@@ -373,6 +384,26 @@
         TVHAutoRecDetailViewController *vc = segue.destinationViewController;
         [vc setTitle:[item title]];
         [vc setItem:[item copy]];
+    }
+}
+
+- (void)handleSwipeFromRight:(UISwipeGestureRecognizer *)recognizer {
+    if ( recognizer.state == UIGestureRecognizerStateEnded ) {
+        int sel = [self.segmentedControl selectedSegmentIndex] -1;
+        if (sel >= 0 ) {
+            [self.segmentedControl setSelectedSegmentIndex:sel];
+            [self segmentedDidChange:self.segmentedControl];
+        }
+    }
+}
+
+- (void)handleSwipeFromLeft:(UISwipeGestureRecognizer *)recognizer {
+    if ( recognizer.state == UIGestureRecognizerStateEnded ) {
+        int sel = [self.segmentedControl selectedSegmentIndex] + 1;
+        if (sel < [self.segmentedControl numberOfSegments] ) {
+            [self.segmentedControl setSelectedSegmentIndex:sel];
+            [self segmentedDidChange:self.segmentedControl];
+        }
     }
 }
 

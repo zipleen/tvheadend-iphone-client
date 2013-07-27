@@ -34,7 +34,7 @@
     NSDateFormatter *hourFormatter;
 }
 
-- (void) receiveDvrNotification:(NSNotification *) notification {
+- (void)receiveDvrNotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"didSuccessDvrAction"] && [notification.object isEqualToString:@"recordEvent"]) {
         [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
     }
@@ -68,6 +68,26 @@
     }
     
     return [p copy];
+}
+
+- (void)handleSwipeFromRight:(UISwipeGestureRecognizer *)recognizer {
+    if ( recognizer.state == UIGestureRecognizerStateEnded ) {
+        int sel = [self.segmentedControl selectedSegmentIndex] -1;
+        if (sel >= 0 ) {
+            [self.segmentedControl setSelectedSegmentIndex:sel];
+            [self segmentedDidChange:self.segmentedControl];
+        }
+    }
+}
+
+- (void)handleSwipeFromLeft:(UISwipeGestureRecognizer *)recognizer {
+    if ( recognizer.state == UIGestureRecognizerStateEnded ) {
+        int sel = [self.segmentedControl selectedSegmentIndex] + 1;
+        if (sel < [self.segmentedControl numberOfSegments] ) {
+            [self.segmentedControl setSelectedSegmentIndex:sel];
+            [self segmentedDidChange:self.segmentedControl];
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -168,6 +188,16 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     //[self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(handleSwipeFromRight:)];
+    [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.tableView addGestureRecognizer:rightGesture];
+    
+    UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(handleSwipeFromLeft:)];
+    [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.tableView addGestureRecognizer:leftGesture];
 }
 
 - (void)didReceiveMemoryWarning
