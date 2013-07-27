@@ -22,12 +22,13 @@
         [self.channelStore fetchChannelList];
         [self.statusStore fetchStatusSubscriptions];
         [self.adapterStore fetchAdapters];
-        [self.logStore clearLog];
+        [self logStore];
         [self fetchServerVersion];
         if ( [self.version isEqualToString:@"34"] ) {
             [self fetchCapabilities];
         }
         [self.configNameStore fetchConfigNames];
+        [self cometStore];
     }
     return self;
 }

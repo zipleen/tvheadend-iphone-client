@@ -17,6 +17,7 @@
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic) NSInteger cachedType;
 @property (nonatomic, strong) NSDate *profilingDate;
+@property (nonatomic, strong) NSMutableArray *totalEventCount;
 @end
 
 @implementation TVHDvrStore34
@@ -51,6 +52,13 @@
     }
 }
 
+- (NSMutableArray*)totalEventCount {
+    if ( !_totalEventCount ) {
+        _totalEventCount = [@[@0,@0,@0,@0] mutableCopy];
+    }
+    return _totalEventCount;
+}
+
 - (NSArray*)dvrItems {
     if ( !_dvrItems ) {
         _dvrItems = [[NSArray alloc] init];
@@ -81,6 +89,8 @@
     }
     
     NSArray *entries = [json objectForKey:@"entries"];
+    NSNumber *totalCount = [[NSNumber alloc] initWithInt:[[json objectForKey:@"totalCount"] intValue]];
+    [self.totalEventCount replaceObjectAtIndex:type withObject:totalCount];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHDvrItem *dvritem = [self createDvrItemFromDictionary:obj ofType:type];
@@ -93,10 +103,17 @@
     return true;
 }
 
-- (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type {
+- (void)fetchDvrItemsFromServer:(NSString*)url withType:(NSInteger)type start:(NSInteger)start limit:(NSInteger)limit {
     [self signalWillLoadDvr:type];
     self.profilingDate = [NSDate date];
-    [self.jsonClient getPath:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   [NSString stringWithFormat:@"%d", start ],
+                                   @"start",
+                                   [NSString stringWithFormat:@"%d", limit ],
+                                   @"limit",nil];
+    
+    [self.jsonClient getPath:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TVH_GOOGLEANALYTICS_KEY
         [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
@@ -110,6 +127,7 @@
 
         if ( [self fetchedData:responseObject withType:type] ) {
             [self signalDidLoadDvr:type];
+            [self getMoreDvrItems:url withType:type start:start limit:limit];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -119,13 +137,20 @@
     
 }
 
+- (void)getMoreDvrItems:(NSString*)url withType:(NSInteger)type start:(NSInteger)start limit:(NSInteger)limit {
+    if ( (start+limit) < [[self.totalEventCount objectAtIndex:type] intValue] ) {
+        [self fetchDvrItemsFromServer:url withType:type start:(start+limit) limit:limit];
+    }
+}
+
+
 - (void)fetchDvr {
     self.dvrItems = nil;
     self.cachedDvrItems = nil;
     
-    [self fetchDvrItemsFromServer:@"dvrlist_upcoming" withType:RECORDING_UPCOMING];
-    [self fetchDvrItemsFromServer:@"dvrlist_finished" withType:RECORDING_FINISHED];
-    [self fetchDvrItemsFromServer:@"dvrlist_failed" withType:RECORDING_FAILED];
+    [self fetchDvrItemsFromServer:@"dvrlist_upcoming" withType:RECORDING_UPCOMING start:0 limit:20];
+    [self fetchDvrItemsFromServer:@"dvrlist_finished" withType:RECORDING_FINISHED start:0 limit:20];
+    [self fetchDvrItemsFromServer:@"dvrlist_failed" withType:RECORDING_FAILED start:0 limit:20];
 }
 
 - (NSArray*)dvrItemsForType:(NSInteger)type {

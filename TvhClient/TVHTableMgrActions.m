@@ -44,8 +44,11 @@
         NSLog(@"Request Successful, response '%@'", responseStr);
         
         // reload dvr
-        TVHAutoRecStore *store = [[TVHSingletonServer sharedServerInstance] autorecStore];
+        /*TVHAutoRecStore *store = [[TVHSingletonServer sharedServerInstance] autorecStore];
         [store fetchDvrAutoRec];
+        
+        id<TVHDvrStore> dvrStore = [[TVHSingletonServer sharedServerInstance] dvrStore];
+        [dvrStore fetchDvr];*/
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 #ifdef TESTING

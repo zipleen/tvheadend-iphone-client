@@ -165,8 +165,7 @@
             [self signalDidLoadEpg];
             [self getMoreEpg:start limit:limit fetchAll:fetchAll];
         }
-        //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        //NSLog(@"Request Successful, response '%@'", responseStr);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[EpgStore HTTPClient Error]: %@", error.localizedDescription);
         [self signalDidErrorLoadingEpgStore:error];
