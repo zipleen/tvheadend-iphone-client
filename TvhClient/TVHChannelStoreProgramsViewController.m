@@ -80,6 +80,15 @@
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 
+    UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(handleSwipeFromRight:)];
+    [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.tableView addGestureRecognizer:rightGesture];
+    
+    UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(handleSwipeFromLeft:)];
+    [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.tableView addGestureRecognizer:leftGesture];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -110,6 +119,26 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)handleSwipeFromRight:(UISwipeGestureRecognizer *)recognizer {
+    if ( recognizer.state == UIGestureRecognizerStateEnded ) {
+        int sel = [self.segmentedControl selectedSegmentIndex] -1;
+        if (sel >= 0 ) {
+            [self.segmentedControl setSelectedSegmentIndex:sel];
+            [self.tableView reloadData];
+        }
+    }
+}
+
+- (void)handleSwipeFromLeft:(UISwipeGestureRecognizer *)recognizer {
+    if ( recognizer.state == UIGestureRecognizerStateEnded ) {
+        int sel = [self.segmentedControl selectedSegmentIndex] + 1;
+        if (sel < [self.segmentedControl numberOfSegments] ) {
+            [self.segmentedControl setSelectedSegmentIndex:sel];
+            [self.tableView reloadData];
+        }
+    }
+}
 
 - (void)updateSegmentControl {
     for (int i=0 ; i<[self.channel totalCountOfDaysEpg]; i++) {
