@@ -172,10 +172,10 @@
     factory.size = 12;
     factory.colors = @[[UIColor grayColor], [UIColor lightGrayColor]];
     [schedStatusIcon setImage:nil];
-    if ( [[epg schedstate] isEqualToString:@"scheduled"] ) {
+    if ( [epg isScheduledForRecording] ) {
         [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconTime]];
     }
-    if ( [[epg schedstate] isEqualToString:@"recording"] ) {
+    if ( [epg isRecording] ) {
         factory.colors = @[[UIColor redColor]];
         [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconBullseye]];
     }

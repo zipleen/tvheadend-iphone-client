@@ -46,15 +46,6 @@
     return _channelStore;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
 #ifdef TVH_GOOGLEANALYTICS_KEY
@@ -174,10 +165,24 @@
             NSString *time = [NSString stringWithFormat:@"%@ ", [dateFormatter stringFromDate:nextProgram.start]];
             nextProgramLabel.text = [time stringByAppendingString:[nextProgram fullTitle] ];
             
+            // set red text for recording
+            if( [nextProgram isScheduledForRecording] ) {
+                nextProgramLabel.textColor = [UIColor redColor];
+            } else {
+                nextProgramLabel.textColor = [UIColor darkGrayColor];
+            }
+            
             if( [currentAndNextPlayingPrograms count] > 2 ) {
                 TVHEpg *afterProgram = [currentAndNextPlayingPrograms objectAtIndex:2];
                 NSString *time = [NSString stringWithFormat:@"%@ ", [dateFormatter stringFromDate:afterProgram.start]];
                 laterProgramLabel.text = [time stringByAppendingString:[afterProgram fullTitle] ];
+                
+                // set red text for recording
+                if( [afterProgram isScheduledForRecording] ) {
+                    laterProgramLabel.textColor = [UIColor redColor];
+                } else {
+                    laterProgramLabel.textColor = [UIColor darkGrayColor];
+                }
             }
         }
         
@@ -190,6 +195,12 @@
         } else {
             [currentTimeProgress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];
         }
+        
+        // if it's recording, let's put the bar red =)
+        if ( [currentPlayingProgram isRecording] ) {
+            [currentTimeProgress setTintColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1]];
+        }
+        
         cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", channel.name, currentPlayingProgram.title, [dateFormatter stringFromDate:currentPlayingProgram.start], NSLocalizedString(@"to",@"accessibility"), [dateFormatter stringFromDate:currentPlayingProgram.end] ];
     } else {
         cell.accessibilityLabel = channel.name;

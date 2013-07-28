@@ -115,4 +115,12 @@
     [TVHDvrActions addAutoRecording:self.id withConfigName:nil];
 }
 
+- (BOOL)isScheduledForRecording {
+    return [[self schedstate] isEqualToString:@"scheduled"];
+}
+
+- (BOOL)isRecording {
+    return [[self schedstate] isEqualToString:@"recording"];
+}
+
 @end

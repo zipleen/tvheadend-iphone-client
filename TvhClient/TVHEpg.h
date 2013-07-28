@@ -42,4 +42,6 @@
 - (BOOL)isEqual:(TVHEpg*)other;
 - (TVHChannel*)channelObject;
 - (void)addAutoRec;
+- (BOOL)isRecording;
+- (BOOL)isScheduledForRecording;
 @end
