@@ -178,14 +178,8 @@
     __weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     UILabel *channelName = (UILabel *)[cell viewWithTag:103];
     UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
-    
-    // delete ETProgressBar
-    for (TVHProgressBar *progressToDelete in cell.contentView.subviews) {
-        if ( [progressToDelete isKindOfClass:[TVHProgressBar class]] ) {
-            [progressToDelete removeFromSuperview];
-        }
-    }
-    
+    TVHProgressBar *currentTimeProgress = (TVHProgressBar *)[cell viewWithTag:105];
+        
     programLabel.text = epg.fullTitle;
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
     channelName.text = epg.channel;
@@ -195,6 +189,7 @@
             channelImage.image = [TVHImageCache resizeImage:image];
         }
     } ];
+    [currentTimeProgress setHidden:YES];
     
     if ( [[TVHSettings sharedInstance] useBlackBorders] ) {
         // rouding corners - this makes the animation in ipad become VERY SLOW!!!
@@ -209,22 +204,16 @@
     
     float progress = [epg progress];
     if ( progress > 0 && progress < 100 ) {
-        /*CGRect progressBarFrame = {
-            .origin.x = 72,
-            .origin.y = 22,
-            .size.width = cell.contentView.bounds.size.width - 110,
-            .size.height = 2,
-        };*/
         CGRect progressBarFrame = {
-            .origin.x = 4,
-            .origin.y = 53,
-            .size.width = 60,
-            .size.height = 2,
+            .origin.x = currentTimeProgress.frame.origin.x,
+            .origin.y = currentTimeProgress.frame.origin.y,
+            .size.width = currentTimeProgress.frame.size.width,
+            .size.height = 4,
         };
-        TVHProgressBar *currentTimeProgress = [[TVHProgressBar alloc] initWithFrame:progressBarFrame];
-        [cell.contentView addSubview:currentTimeProgress];
+        [currentTimeProgress setFrame:progressBarFrame];
+        [currentTimeProgress setHidden:NO];
         [currentTimeProgress setProgress:progress];
-        if ( progress < 0.5 ) {
+        if ( progress < 0.9 ) {
             [currentTimeProgress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
         } else {
             [currentTimeProgress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];

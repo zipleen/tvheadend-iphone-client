@@ -132,30 +132,15 @@
     UILabel *nextProgramLabel = (UILabel *)[cell viewWithTag:110];
     UILabel *laterProgramLabel = (UILabel *)[cell viewWithTag:111];
 	__weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
+    TVHProgressBar *currentTimeProgress = (TVHProgressBar *)[cell viewWithTag:104];
     
-    // delete ETProgressBar
-    for (TVHProgressBar *progressToDelete in cell.contentView.subviews) {
-        if ( [progressToDelete isKindOfClass:[TVHProgressBar class]] ) {
-            [progressToDelete removeFromSuperview];
-        }
-    }
-	/*CGRect progressBarFrame = {
-		.origin.x = 72,
-		.origin.y = 26,
-		.size.width = cell.contentView.bounds.size.width - 110,
-		.size.height = 2,
-	};*/
     CGRect progressBarFrame = {
-		.origin.x = 6,
-		.origin.y = 64,
-		.size.width = 60,
+		.origin.x = currentTimeProgress.frame.origin.x,
+		.origin.y = currentTimeProgress.frame.origin.y,
+		.size.width = currentTimeProgress.frame.size.width,
 		.size.height = 4,
 	};
-    TVHProgressBar *currentTimeProgress = [[TVHProgressBar alloc] initWithFrame:progressBarFrame];
-	currentTimeProgress.autoresizingMask = (UIViewAutoresizingFlexibleBottomMargin |
-                                                     UIViewAutoresizingFlexibleLeftMargin |
-                                                     UIViewAutoresizingFlexibleTopMargin);
-    [cell.contentView addSubview:currentTimeProgress];
+    [currentTimeProgress setFrame:progressBarFrame];
     
 	currentProgramLabel.text = NSLocalizedString(@"Not Available", nil);
     nextProgramLabel.text = nil;
@@ -200,7 +185,7 @@
         currentTimeProgress.hidden = false;
         float progress = [currentPlayingProgram progress];
         [currentTimeProgress setProgress:progress animated:NO];
-        if ( progress < 0.5 ) {
+        if ( progress < 0.9 ) {
             [currentTimeProgress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
         } else {
             [currentTimeProgress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];
@@ -258,8 +243,7 @@
 }
 
 - (void)willLoadChannels {
-    [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    
 }
 
 - (void)didLoadChannels {

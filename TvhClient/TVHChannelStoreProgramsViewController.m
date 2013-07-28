@@ -80,15 +80,17 @@
     [self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:self.refreshControl];
 
-    UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
-                                         initWithTarget:self action:@selector(handleSwipeFromRight:)];
-    [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.tableView addGestureRecognizer:rightGesture];
-    
-    UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
-                                              initWithTarget:self action:@selector(handleSwipeFromLeft:)];
-    [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [self.tableView addGestureRecognizer:leftGesture];
+    if ( ! IS_IPAD ) {
+        UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
+                                             initWithTarget:self action:@selector(handleSwipeFromRight:)];
+        [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+        [self.tableView addGestureRecognizer:rightGesture];
+        
+        UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
+                                                  initWithTarget:self action:@selector(handleSwipeFromLeft:)];
+        [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [self.tableView addGestureRecognizer:leftGesture];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -193,13 +195,7 @@
 	UILabel *description = (UILabel *)[cell viewWithTag:101];
     UILabel *hour = (UILabel *)[cell viewWithTag:102];
     UIImageView *schedStatusImage = (UIImageView *)[cell viewWithTag:104];
-    
-    // delete ETProgressBar
-    for (TVHProgressBar *progressToDelete in cell.contentView.subviews) {
-        if ( [progressToDelete isKindOfClass:[TVHProgressBar class]] ) {
-            [progressToDelete removeFromSuperview];
-        }
-    }
+    TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:105];
     
     hour.text = [timeFormatter stringFromDate: epg.start];
     name.text = epg.fullTitle;
@@ -207,20 +203,24 @@
     if( [description.text isEqualToString:@""] ) {
         description.text = NSLocalizedString(@"Not Available", nil);;
     }
+    [progress setHidden:YES];
     
     if( epg == self.channel.currentPlayingProgram ) {
         CGRect progressBarFrame = {
-            .origin.x = 64,
-            .origin.y = 23,
-            .size.width = cell.contentView.bounds.size.width - 91,
-            .size.height = 2,
+            .origin.x = progress.frame.origin.x,
+            .origin.y = progress.frame.origin.y,
+            .size.width = progress.frame.size.width,
+            .size.height = 4,
         };
-        TVHProgressBar *progress = [[TVHProgressBar alloc] initWithFrame:progressBarFrame];
-        [cell.contentView addSubview:progress];
-        
+        [progress setFrame:progressBarFrame];
         progress.progress = epg.progress;
         progress.hidden = NO;
         
+        if ( epg.progress < 0.9 ) {
+            [progress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
+        } else {
+            [progress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];
+        }
     } 
     
     [self setScheduledIcon:schedStatusImage forEpg:epg];

@@ -150,16 +150,17 @@
     
     self.title = NSLocalizedString(@"Recordings", @"");
     
-    
-    UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
-                                              initWithTarget:self action:@selector(handleSwipeFromRight:)];
-    [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.tableView addGestureRecognizer:rightGesture];
-    
-    UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
-                                             initWithTarget:self action:@selector(handleSwipeFromLeft:)];
-    [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [self.tableView addGestureRecognizer:leftGesture];
+    if ( ! IS_IPAD ) {
+        UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
+                                                  initWithTarget:self action:@selector(handleSwipeFromRight:)];
+        [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+        [self.tableView addGestureRecognizer:rightGesture];
+        
+        UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
+                                                 initWithTarget:self action:@selector(handleSwipeFromLeft:)];
+        [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [self.tableView addGestureRecognizer:leftGesture];
+    }
 }
 
 - (void)viewDidUnload {
