@@ -425,7 +425,7 @@
 }
 
 - (void)willLoadDvr:(NSInteger)type {
-    if ( type == self.segmentedControl.selectedSegmentIndex ) {
+    if ( ! [self.refreshControl isRefreshing] && type == self.segmentedControl.selectedSegmentIndex ) {
         [self.refreshControl beginRefreshing];
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
     }

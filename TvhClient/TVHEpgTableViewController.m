@@ -253,7 +253,7 @@
 }
 
 - (void)willLoadEpg {
-    if ( [self.tableView numberOfRowsInSection:0] == 0 ) {
+    if ( ! [self.refreshControl isRefreshing] && [self.tableView numberOfRowsInSection:0] == 0 ) {
         [self.refreshControl beginRefreshing];
         [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
     }

@@ -189,7 +189,10 @@
 }
 
 - (void)willLoadTags {
-    
+    if ( ! [self.refreshControl isRefreshing] ) {
+        [self.refreshControl beginRefreshing];
+        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    }
 }
 
 - (void)didLoadTags {

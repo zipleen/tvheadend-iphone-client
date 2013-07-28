@@ -198,6 +198,15 @@
                                              initWithTarget:self action:@selector(handleSwipeFromLeft:)];
     [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
     [self.tableView addGestureRecognizer:leftGesture];
+    
+    // fetch more items on panel load!
+    if ( ! self.moreTimes ) {
+        self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[self.channel tvhServer]];
+        //[self.moreTimes setFilterToChannelName:self.channel.name];
+        [self.moreTimes setFilterToProgramTitle:self.epg.title];
+        [self.moreTimes setDelegate:self];
+        [self.moreTimes downloadEpgList];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -351,23 +360,11 @@
 }
 
 - (IBAction)segmentedDidChange:(id)sender {
-    if(self.segmentedControl.selectedSegmentIndex == 1) {
-        // on our first time we click more items, we'll spawn a new epgstore and filter for our channel name + program title
-        if ( ! self.moreTimes ) {
-            self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[self.channel tvhServer]];
-            //[self.moreTimes setFilterToChannelName:self.channel.name];
-            [self.moreTimes setFilterToProgramTitle:self.epg.title];
-            [self.moreTimes setDelegate:self];
-            [self.moreTimes downloadEpgList];
-        }
-    }
-    [self.refreshControl beginRefreshing];
     [self.tableView reloadData];
 }
 
 - (void)willLoadEpg {
-    [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:NO];
+    
 }
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
