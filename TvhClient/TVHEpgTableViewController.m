@@ -89,7 +89,6 @@
         [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
 #endif
     [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
-    [self.refreshControl beginRefreshing];
 }
 
 - (void)viewDidUnload
