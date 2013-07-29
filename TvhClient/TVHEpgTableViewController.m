@@ -215,7 +215,7 @@
         if ( progress < 0.9 ) {
             [currentTimeProgress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
         } else {
-            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];
+            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.5 green:0 blue:0 alpha:1]];
         }
     }
     

@@ -1946,6 +1946,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsServersViewController.h"/>
             <relationships>
                 <relationship kind="action" name="saveServer:"/>
+                <relationship kind="action" name="setUseHttps:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
