@@ -125,7 +125,7 @@
     
     for ( TVHChannelEpg *epgByDay in self.channelEpgDataByDay ) {
         for ( TVHEpg *epg in [epgByDay programs] ) {
-            if ( [epg progress] > 0 && [epg progress] < 100 ) {
+            if ( [epg progress] > 0 && [epg progress] < 1 ) {
                 return epg;
             }
 #ifdef TESTING
@@ -153,10 +153,12 @@
     
     for ( TVHChannelEpg *epgByDay in self.channelEpgDataByDay ) {
         for ( TVHEpg *epg in [epgByDay programs] ) {
-            [nextPrograms addObject:epg];
-            i++;
-            if ( i >= 3 ) {
-                break;
+            if ( i > 0 || (i == 0 && [epg progress] > 0 && [epg progress] < 1) ) {
+                [nextPrograms addObject:epg];
+                i++;
+                if ( i >= 3 ) {
+                    break;
+                }
             }
         }
     }

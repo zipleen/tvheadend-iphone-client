@@ -202,7 +202,7 @@
     }
     
     float progress = [epg progress];
-    if ( progress > 0 && progress < 100 ) {
+    if ( progress > 0 && progress < 1 ) {
         CGRect progressBarFrame = {
             .origin.x = currentTimeProgress.frame.origin.x,
             .origin.y = currentTimeProgress.frame.origin.y,

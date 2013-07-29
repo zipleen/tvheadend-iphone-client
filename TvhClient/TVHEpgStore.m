@@ -208,7 +208,13 @@
 }
 
 - (NSArray*)epgStoreItems{
-    return self.epgStore;
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    for ( TVHEpg *epg in self.epgStore ) {
+        if ( [epg progress] < 100 ) {
+            [items addObject:epg];
+        }
+    }
+    return [items copy];
 }
 
 - (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate {
