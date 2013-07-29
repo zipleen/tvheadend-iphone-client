@@ -63,7 +63,7 @@
     [self.channel downloadRestOfEpg];
     
     dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEE"];
+    dateFormatter.dateFormat = @"EEE";
     timeFormatter = [[NSDateFormatter alloc] init];
     timeFormatter.dateFormat = @"HH:mm";
     
@@ -142,10 +142,37 @@
     }
 }
 
+- (NSString*)stringFromDate:(NSDate*)date {
+    NSString *dayString;
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDate* now = [NSDate date];
+    int differenceInDays =
+    [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:date] -
+    [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:now];
+    
+    switch (differenceInDays) {
+        case -1:
+            dayString = @"Yesterday";
+            break;
+        case 0:
+            dayString = @"Today";
+            break;
+        case 1:
+            dayString = @"Tomorrow";
+            break;
+        default: {
+            dayString = [dateFormatter stringFromDate:date];
+            break;
+        }
+    }
+    
+    return dayString;
+}
+
 - (void)updateSegmentControl {
     for (int i=0 ; i<[self.channel totalCountOfDaysEpg]; i++) {
         NSDate *date = [self.channel dateForDay:i];
-        NSString *dateString = [dateFormatter stringFromDate:date];
+        NSString *dateString = [self stringFromDate:date];
         if ( i >= [self.segmentedControl numberOfSegments] ) {
             [self.segmentedControl insertSegmentWithTitle:dateString atIndex:i animated:YES];
         } else {
