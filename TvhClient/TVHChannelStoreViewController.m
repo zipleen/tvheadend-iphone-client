@@ -191,14 +191,14 @@
         float progress = [currentPlayingProgram progress];
         [currentTimeProgress setProgress:progress animated:NO];
         if ( progress < 0.9 ) {
-            [currentTimeProgress setTintColor:PROGRESS_BAR_PLAYBACK;
+            [currentTimeProgress setTintColor:PROGRESS_BAR_PLAYBACK];
         } else {
-            [currentTimeProgress setTintColor:PROGRESS_BAR_NEAR_END_PLAYBACK;
+            [currentTimeProgress setTintColor:PROGRESS_BAR_NEAR_END_PLAYBACK];
         }
         
         // if it's recording, let's put the bar red =)
         if ( [currentPlayingProgram isRecording] ) {
-            [currentTimeProgress setTintColor:PROGRESS_BAR_RECORDING;
+            [currentTimeProgress setTintColor:PROGRESS_BAR_RECORDING];
         }
         
         cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", channel.name, currentPlayingProgram.title, [dateFormatter stringFromDate:currentPlayingProgram.start], NSLocalizedString(@"to",@"accessibility"), [dateFormatter stringFromDate:currentPlayingProgram.end] ];

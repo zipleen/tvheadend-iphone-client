@@ -70,9 +70,9 @@
     NSMutableArray *adapters = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHAdapter *adapter = [[TVHAdapter alloc] init];
+        TVHAdapter *adapter = [[TVHAdapter alloc] initWithTvhServer:self.tvhServer];
         [adapter updateValuesFromDictionary:obj];
-        
+        [adapter fetchMuxes];
         [adapters addObject:adapter];
     }];
     

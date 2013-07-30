@@ -213,14 +213,14 @@
         [currentTimeProgress setHidden:NO];
         [currentTimeProgress setProgress:progress];
         if ( progress < 0.9 ) {
-            [currentTimeProgress setTintColor:PROGRESS_BAR_PLAYBACK;
+            [currentTimeProgress setTintColor:PROGRESS_BAR_PLAYBACK];
         } else {
-            [currentTimeProgress setTintColor:PROGRESS_BAR_NEAR_END_PLAYBACK;
+            [currentTimeProgress setTintColor:PROGRESS_BAR_NEAR_END_PLAYBACK];
         }
              
          // if it's recording, let's put the bar red =)
          if ( [epg isRecording] ) {
-             [currentTimeProgress setTintColor:PROGRESS_BAR_RECORDING;
+             [currentTimeProgress setTintColor:PROGRESS_BAR_RECORDING];
          }
     }
     

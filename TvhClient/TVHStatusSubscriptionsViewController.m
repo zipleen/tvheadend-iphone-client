@@ -17,6 +17,8 @@
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSingletonServer.h"
+#import "TVHAdapter.h"
+#import "TVHAdapterMuxViewController.h"
 
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;
@@ -295,6 +297,34 @@
     }
     
     return cell;
+}
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.section == 1 ) {
+        if ( indexPath.row  < [self.adapterStore count] ) {
+            if ( self.splitViewController ) {
+                UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
+                [detailView popToRootViewControllerAnimated:NO];
+                
+                [self performSegueWithIdentifier:@"Show DVB Mux Popup" sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"Show DVB Mux" sender:self];
+            }
+        }
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"Show DVB Mux"]) {
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        TVHAdapter *adapter = [self.adapterStore objectAtIndex:path.row];
+        
+        TVHAdapterMuxViewController *mux = segue.destinationViewController;
+        [mux setAdapter:adapter];
+    }
 }
 
 #pragma mark - Table view delegate

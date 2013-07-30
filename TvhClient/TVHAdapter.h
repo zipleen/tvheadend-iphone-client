@@ -12,6 +12,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class TVHServer;
+
 @interface TVHAdapter : NSObject
 
 @property NSInteger ber;
@@ -38,5 +40,8 @@
 @property NSInteger uncavg;
 @property NSInteger bw;
 
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
+- (void)fetchMuxes;
+- (NSArray*)arrayAdapterMuxes;
 @end

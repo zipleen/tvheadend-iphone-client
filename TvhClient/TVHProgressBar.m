@@ -25,7 +25,7 @@
 	self = [super initWithFrame:frame];
 	if(self) {
         //set bar color
-        _tintColor = [UIColor colorWithRed:51.0f/255.0f green:153.0f/255.0f blue:255.0f/255.0f alpha:1];
+        _tintColor = PROGRESS_BAR_PLAYBACK;
 		self.progress = 0;
         self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
 	}
