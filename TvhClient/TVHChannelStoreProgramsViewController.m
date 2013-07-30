@@ -144,26 +144,15 @@
 
 - (NSString*)stringFromDate:(NSDate*)date {
     NSString *dayString;
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDate* now = [NSDate date];
-    int differenceInDays =
-    [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:date] -
-    [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:now];
     
-    switch (differenceInDays) {
-        case -1:
-            dayString = @"Yesterday";
-            break;
-        case 0:
-            dayString = @"Today";
-            break;
-        case 1:
-            dayString = @"Tomorrow";
-            break;
-        default: {
-            dayString = [dateFormatter stringFromDate:date];
-            break;
-        }
+    if ( [date isYesterday] ) {
+        dayString = NSLocalizedString(@"Yesterday", @"");
+    } else if ( [date isToday] ) {
+        dayString = NSLocalizedString(@"Today", @"");
+    } else if ( [date isTomorrow] ) {
+        dayString = NSLocalizedString(@"Tomorrow", @"");
+    } else {
+        dayString = [dateFormatter stringFromDate:date];
     }
     
     return dayString;

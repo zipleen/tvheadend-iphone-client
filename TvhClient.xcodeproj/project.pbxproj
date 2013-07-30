@@ -214,6 +214,7 @@
 		AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagStoreViewController.m */; };
 		AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2116C735710076DF17 /* TVHEpg.m */; };
 		AAF54A2516C735960076DF17 /* TVHEpgStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2416C735960076DF17 /* TVHEpgStore.m */; };
+		AAF5FCAF17A844BD001E908B /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF5FCAE17A844BD001E908B /* NSDate+Utilities.m */; };
 		AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */; };
 		AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCB6C016C86EC800A64434 /* TVHProgramDetailViewController.m */; };
 		AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */; };
@@ -568,6 +569,8 @@
 		AAF54A2116C735710076DF17 /* TVHEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpg.m; sourceTree = "<group>"; };
 		AAF54A2316C735960076DF17 /* TVHEpgStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgStore.h; sourceTree = "<group>"; };
 		AAF54A2416C735960076DF17 /* TVHEpgStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgStore.m; sourceTree = "<group>"; };
+		AAF5FCAD17A844BD001E908B /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
+		AAF5FCAE17A844BD001E908B /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		AAFC2A0816FB34B500194DFF /* TVHSettingsServersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsServersViewController.h; sourceTree = "<group>"; };
 		AAFC2A0916FB34B500194DFF /* TVHSettingsServersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsServersViewController.m; sourceTree = "<group>"; };
 		AAFCB6BF16C86EC800A64434 /* TVHProgramDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHProgramDetailViewController.h; sourceTree = "<group>"; };
@@ -1063,6 +1066,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AAF5FCAC17A844A2001E908B /* NSDate */,
 				AA24868817484E1400AB2E42 /* MGSplitViewController */,
 				AAF2647917441D57006C96CE /* JASlidingPanels */,
 				AAEE7A80171240AE00D0E584 /* GoogleAnalytics SDK */,
@@ -1368,6 +1372,15 @@
 				AA8EA97F1751413A008B3703 /* TVHJASidePanelController.m */,
 			);
 			name = SidePanel;
+			sourceTree = "<group>";
+		};
+		AAF5FCAC17A844A2001E908B /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				AAF5FCAD17A844BD001E908B /* NSDate+Utilities.h */,
+				AAF5FCAE17A844BD001E908B /* NSDate+Utilities.m */,
+			);
+			name = NSDate;
 			sourceTree = "<group>";
 		};
 		AAFDEC61174549E30035D734 /* Tvh Server */ = {
@@ -1735,6 +1748,7 @@
 				AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */,
 				AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */,
 				AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */,
+				AAF5FCAF17A844BD001E908B /* NSDate+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
