@@ -244,9 +244,14 @@
         progress.hidden = NO;
         
         if ( epg.progress < 0.9 ) {
-            [progress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
+            [progress setTintColor:PROGRESS_BAR_PLAYBACK;
         } else {
-            [progress setTintColor:[UIColor colorWithRed:0.0 green:0.3 blue:0.5 alpha:1]];
+            [progress setTintColor:PROGRESS_BAR_NEAR_END_PLAYBACK;
+        }
+    
+        // if it's recording, let's put the bar red =)
+        if ( [epg isRecording] ) {
+            [progress setTintColor:PROGRESS_BAR_RECORDING;
         }
     } 
     

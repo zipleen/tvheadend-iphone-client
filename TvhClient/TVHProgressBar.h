@@ -11,6 +11,10 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define PROGRESS_BAR_PLAYBACK [UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]]
+#define PROGRESS_BAR_NEAR_END_PLAYBACK [UIColor colorWithRed:0.445 green:0 blue:0.632 alpha:1]]
+#define PROGRESS_BAR_RECORDING [UIColor colorWithRed:1 green:0 blue:0 alpha:1]]
+
 @class UIProgressView;
 
 @interface TVHProgressBar : UIProgressView

@@ -213,10 +213,15 @@
         [currentTimeProgress setHidden:NO];
         [currentTimeProgress setProgress:progress];
         if ( progress < 0.9 ) {
-            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.3 green:0.6 blue:0.9 alpha:1]];
+            [currentTimeProgress setTintColor:PROGRESS_BAR_PLAYBACK;
         } else {
-            [currentTimeProgress setTintColor:[UIColor colorWithRed:0.5 green:0 blue:0 alpha:1]];
+            [currentTimeProgress setTintColor:PROGRESS_BAR_NEAR_END_PLAYBACK;
         }
+             
+         // if it's recording, let's put the bar red =)
+         if ( [epg isRecording] ) {
+             [currentTimeProgress setTintColor:PROGRESS_BAR_RECORDING;
+         }
     }
     
     [self setScheduledIcon:schedStatusImage forEpg:epg];
