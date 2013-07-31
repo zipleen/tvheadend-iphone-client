@@ -85,7 +85,7 @@
 }
 
 - (NSArray*)arrayAdapterMuxes {
-    return [self.adapterMuxes copy];
+    return [self.adapterMuxes sortedArrayUsingSelector:@selector(compareByFreq:)];
 }
 
 - (void)signalDidLoadAdapterMuxes {

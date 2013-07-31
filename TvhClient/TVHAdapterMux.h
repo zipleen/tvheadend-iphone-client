@@ -28,5 +28,6 @@
 @property NSInteger onid;
 @property NSInteger quality;
 
-- (void)updateValuesFromDictionary:(NSDictionary*) values;
+- (void)updateValuesFromDictionary:(NSDictionary*)values;
+- (NSComparisonResult)compareByFreq:(TVHAdapterMux *)otherObject;
 @end

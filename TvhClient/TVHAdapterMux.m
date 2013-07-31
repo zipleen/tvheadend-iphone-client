@@ -38,6 +38,10 @@
     
 }
 
+- (NSComparisonResult)compareByFreq:(TVHAdapterMux *)otherObject {
+    return [self.freq compare:otherObject.freq];
+}
+
 - (BOOL)isEqual:(id)other {
     if (other == self)
         return YES;
