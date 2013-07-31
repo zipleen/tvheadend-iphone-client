@@ -319,21 +319,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( indexPath.section == 1 ) {
         if ( indexPath.row  < [self.adapterStore count] ) {
-            if ( self.splitViewController ) {
-                UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
-                [detailView popToRootViewControllerAnimated:NO];
-                
-                [self performSegueWithIdentifier:@"Show DVB Mux Popup" sender:self];
-            } else {
-                [self performSegueWithIdentifier:@"Show DVB Mux" sender:self];
-            }
+            [self performSegueWithIdentifier:@"Show DVB Mux" sender:self];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"Show DVB Mux"]) {
+    if( [segue.identifier isEqualToString:@"Show DVB Mux"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHAdapter *adapter = [self.adapterStore objectAtIndex:path.row];

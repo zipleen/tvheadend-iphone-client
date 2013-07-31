@@ -93,18 +93,20 @@
 }
 
 - (void)didRefreshAdapterMux:(NSNotification *)notification {
-    if ( [[notification name] isEqualToString:@"didRefreshAdapterMux"] ) {
-        TVHAdapterMux *changedMux = (TVHAdapterMux*)[notification object];
-        NSUInteger indexInArray = [self.muxes indexOfObject:changedMux];
-        if ( indexInArray != NSNotFound ) {
-            [self.muxes replaceObjectAtIndex:indexInArray withObject:changedMux];
+    if ( self.muxes ) {
+        if ( [[notification name] isEqualToString:@"didRefreshAdapterMux"] ) {
+            TVHAdapterMux *changedMux = (TVHAdapterMux*)[notification object];
+            NSUInteger indexInArray = [self.muxes indexOfObject:changedMux];
+            if ( indexInArray != NSNotFound ) {
+                [self.muxes replaceObjectAtIndex:indexInArray withObject:changedMux];
+                
+                [self.tableView beginUpdates];
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexInArray inSection:0]]
+                                      withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView endUpdates];
+            }
             
-            [self.tableView beginUpdates];
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexInArray inSection:0]]
-                                  withRowAnimation:UITableViewRowAnimationNone];
-            [self.tableView endUpdates];
         }
-        
     }
 }
 
