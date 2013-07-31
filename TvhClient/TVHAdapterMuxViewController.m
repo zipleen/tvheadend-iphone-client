@@ -11,7 +11,7 @@
 #import "TVHAdapterMux.h"
 
 @interface TVHAdapterMuxViewController ()
-@property (strong, nonatomic) NSArray *muxes;
+@property (strong, nonatomic) NSMutableArray *muxes;
 @end
 
 @implementation TVHAdapterMuxViewController
@@ -28,9 +28,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.muxes = [self.adapter arrayAdapterMuxes];
+	self.muxes = [[self.adapter arrayAdapterMuxes] mutableCopy];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didRefreshAdapterMux:)
+                                                 name:@"didRefreshAdapterMux"
+                                               object:nil];
+}
+
+- (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,5 +92,20 @@
     return cell;
 }
 
+- (void)didRefreshAdapterMux:(NSNotification *)notification {
+    if ( [[notification name] isEqualToString:@"didRefreshAdapterMux"] ) {
+        TVHAdapterMux *changedMux = (TVHAdapterMux*)[notification object];
+        NSUInteger indexInArray = [self.muxes indexOfObject:changedMux];
+        if ( indexInArray != NSNotFound ) {
+            [self.muxes replaceObjectAtIndex:indexInArray withObject:changedMux];
+            
+            [self.tableView beginUpdates];
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexInArray inSection:0]]
+                                  withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView endUpdates];
+        }
+        
+    }
+}
 
 @end

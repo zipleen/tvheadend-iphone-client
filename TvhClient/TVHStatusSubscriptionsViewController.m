@@ -109,6 +109,9 @@
 }
 
 - (void)viewDidUnload {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:_adapterStore];
+    [[NSNotificationCenter defaultCenter] removeObserver:_statusSubscriptionsStore];
     self.adapterStore = nil;
     self.cometPoll = nil;
     self.statusSubscriptionsStore = nil;
