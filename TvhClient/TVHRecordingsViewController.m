@@ -361,9 +361,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
-        [self performSegueWithIdentifier:@"DvrAutoRecDetailSegue" sender:self];
+        if ( [self.autoRecStore objectAtIndex:indexPath.row] ) {
+            [self performSegueWithIdentifier:@"DvrAutoRecDetailSegue" sender:self];
+        }
     } else {
-        [self performSegueWithIdentifier:@"DvrDetailSegue" sender:self];
+        if ( [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex] ) {
+            [self performSegueWithIdentifier:@"DvrDetailSegue" sender:self];
+        }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -425,15 +429,15 @@
 }
 
 - (void)willLoadDvr:(NSInteger)type {
-    if ( ! [self.refreshControl isRefreshing] && type == self.segmentedControl.selectedSegmentIndex ) {
-        [self.refreshControl beginRefreshing];
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    }
+    //if ( ! [self.refreshControl isRefreshing] && type == self.segmentedControl.selectedSegmentIndex ) {
+    //    [self.refreshControl beginRefreshing];
+    //    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    //}
 }
 
 - (void)willLoadDvrAutoRec {
-    [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    //[self.refreshControl beginRefreshing];
+    //[self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
 }
 
 - (void)didLoadDvr:(NSInteger)type {

@@ -247,6 +247,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( [self.epgTable objectAtIndex:indexPath.row] ) {
+        [self performSegueWithIdentifier:@"Show Program Detail from EPG" sender:self];
+    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

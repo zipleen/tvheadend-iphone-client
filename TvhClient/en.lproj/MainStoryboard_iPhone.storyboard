@@ -181,7 +181,7 @@
             <objects>
                 <tableViewController id="JAO-4d-hsi" customClass="TVHSettingsGenericFieldViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="fds-z9-TGf">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <prototypes>
@@ -214,7 +214,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPY-L4-5sI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1413" y="-1997"/>
+            <point key="canvasLocation" x="1413" y="-1993"/>
         </scene>
         <!--Settings Servers View Controller-->
         <scene sceneID="h27-xn-XEm">
@@ -1241,9 +1241,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail" id="VI1-re-6wP"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1264,6 +1261,7 @@
                     <connections>
                         <outlet property="segmentedControl" destination="gPq-hD-NSY" id="iHW-4J-364"/>
                         <outlet property="tableView" destination="ht7-9e-hje" id="Vkm-BY-5N9"/>
+                        <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail" id="HOO-ET-j6o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4yM-XR-Juw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1392,7 +1390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxt-Iq-vNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1413" y="-1330"/>
+            <point key="canvasLocation" x="1457" y="-1338"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nSB-i6-L0E">
@@ -1528,9 +1526,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail from EPG" id="cqh-rj-fhW"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1550,6 +1545,7 @@
                         <outlet property="searchBar" destination="mTv-Tn-t3C" id="tDr-pU-IfN"/>
                         <outlet property="tableView" destination="b5N-0e-UTF" id="cbl-Ah-cER"/>
                         <segue destination="JAO-4d-hsi" kind="modal" identifier="Select Filter Pref" modalTransitionStyle="flipHorizontal" id="brX-Oe-q0O"/>
+                        <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail from EPG" id="0x8-gt-GgX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xBz-tE-AGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2114,7 +2110,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="VI1-re-6wP"/>
-        <segue reference="03u-bL-9X8"/>
+        <segue reference="brX-Oe-q0O"/>
+        <segue reference="0x8-gt-GgX"/>
     </inferredMetricsTieBreakers>
 </document>

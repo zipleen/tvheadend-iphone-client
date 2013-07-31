@@ -86,7 +86,7 @@
     fe_status.text = [NSString stringWithFormat:@"Frontend Status: %@", mux.fe_status];
     networkid.text = [NSString stringWithFormat:@"NetId: %d", mux.onid];
     muxid.text = [NSString stringWithFormat:@"MuxId: %d", mux.muxid];
-    [quality setProgress:mux.quality/100];
+    [quality setProgress:mux.quality/100.0];
     progressText.text = [NSString stringWithFormat:@"%d%%", mux.quality];
     
     return cell;

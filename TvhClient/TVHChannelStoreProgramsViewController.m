@@ -266,6 +266,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ( [self.channel programDetailForDay:self.segmentedControl.selectedSegmentIndex index:indexPath.row] ) {
+        [self performSegueWithIdentifier:@"Show Program Detail" sender:self];
+    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

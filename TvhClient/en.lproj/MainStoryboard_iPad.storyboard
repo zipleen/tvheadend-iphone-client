@@ -149,7 +149,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFb-6o-BTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1300" y="-5857"/>
+            <point key="canvasLocation" x="908" y="-5841"/>
         </scene>
         <!--Settings Generic Text View Controller-->
         <scene sceneID="Ya7-MK-DWM">
@@ -219,7 +219,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PPY-L4-5sI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2749" y="-4639"/>
+            <point key="canvasLocation" x="2013" y="-2389"/>
         </scene>
         <!--Settings Servers View Controller-->
         <scene sceneID="h27-xn-XEm">
@@ -1136,11 +1136,11 @@
             <objects>
                 <viewController storyboardIdentifier="channelProgramsStoryboard" id="05s-K2-hia" customClass="TVHChannelStoreProgramsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q0F-FH-9yM">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="gPq-hD-NSY" customClass="SDSegmentedControl">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="First"/>
@@ -1151,16 +1151,16 @@
                                 </connections>
                             </segmentedControl>
                             <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="ht7-9e-hje">
-                                <rect key="frame" x="0.0" y="46" width="768" height="916"/>
+                                <rect key="frame" x="0.0" y="46" width="320" height="744"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <color key="separatorColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProgramListTableItems" id="FQZ-Nf-sWG">
-                                        <rect key="frame" x="0.0" y="22" width="768" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="748" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="44:49" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="28V-DF-uj8">
@@ -1171,7 +1171,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Program" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AuA-mV-Thx">
-                                                    <rect key="frame" x="64" y="3" width="677" height="21"/>
+                                                    <rect key="frame" x="64" y="3" width="229" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1186,7 +1186,7 @@
                                                     <color key="progressTintColor" red="0.20000000000000001" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </progressView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Description" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Slx-3e-xyA">
-                                                    <rect key="frame" x="64" y="27" width="677" height="32"/>
+                                                    <rect key="frame" x="64" y="27" width="229" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1201,9 +1201,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail" id="VI1-re-6wP"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1224,6 +1221,7 @@
                     <connections>
                         <outlet property="segmentedControl" destination="gPq-hD-NSY" id="iHW-4J-364"/>
                         <outlet property="tableView" destination="ht7-9e-hje" id="Vkm-BY-5N9"/>
+                        <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail" id="wEd-Pr-b9n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4yM-XR-Juw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1348,7 +1346,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxt-Iq-vNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="-3740"/>
+            <point key="canvasLocation" x="30" y="-3060"/>
         </scene>
         <!--Left Main Menu View Controller-->
         <scene sceneID="p9Z-R7-J7b">
@@ -1553,9 +1551,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail from EPG" id="dwq-cJ-wgM"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1567,6 +1562,7 @@
                         <outlet property="filterSegmentedControl" destination="Xp3-wL-Duu" id="EK4-HR-Mne"/>
                         <outlet property="searchBar" destination="F62-HV-CCX" id="4yl-DZ-ZDN"/>
                         <outlet property="tableView" destination="zS1-Zg-Uvz" id="PmU-hQ-tB8"/>
+                        <segue destination="R7y-nK-jpx" kind="push" identifier="Show Program Detail from EPG" id="A37-th-b3M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8uq-YR-RfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2091,8 +2087,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LsT-hq-AY2"/>
-        <segue reference="VI1-re-6wP"/>
         <segue reference="Iuv-qh-s6J"/>
+        <segue reference="A37-th-b3M"/>
+        <segue reference="sHm-Tp-YTa"/>
     </inferredMetricsTieBreakers>
 </document>
