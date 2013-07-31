@@ -147,10 +147,6 @@
 		AAC393671704ED6C002590C7 /* log@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC393651704ED6C002590C7 /* log@2x.png */; };
 		AAC3936A1704ED88002590C7 /* epg.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC393681704ED88002590C7 /* epg.png */; };
 		AAC3936B1704ED88002590C7 /* epg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC393691704ED88002590C7 /* epg@2x.png */; };
-		AAC3937417050449002590C7 /* BarFill.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937017050446002590C7 /* BarFill.png */; };
-		AAC3937517050449002590C7 /* BarFill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937117050447002590C7 /* BarFill@2x.png */; };
-		AAC3937617050449002590C7 /* BarTrack.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937217050448002590C7 /* BarTrack.png */; };
-		AAC3937717050449002590C7 /* BarTrack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937317050448002590C7 /* BarTrack@2x.png */; };
 		AAC3938017050C22002590C7 /* UINavigationBarBlackOpaqueBack.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937817050C19002590C7 /* UINavigationBarBlackOpaqueBack.png */; };
 		AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */; };
 		AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */; };
@@ -473,10 +469,6 @@
 		AAC393651704ED6C002590C7 /* log@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "log@2x.png"; sourceTree = "<group>"; };
 		AAC393681704ED88002590C7 /* epg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = epg.png; sourceTree = "<group>"; };
 		AAC393691704ED88002590C7 /* epg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "epg@2x.png"; sourceTree = "<group>"; };
-		AAC3937017050446002590C7 /* BarFill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarFill.png; sourceTree = "<group>"; };
-		AAC3937117050447002590C7 /* BarFill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarFill@2x.png"; sourceTree = "<group>"; };
-		AAC3937217050448002590C7 /* BarTrack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BarTrack.png; sourceTree = "<group>"; };
-		AAC3937317050448002590C7 /* BarTrack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarTrack@2x.png"; sourceTree = "<group>"; };
 		AAC3937817050C19002590C7 /* UINavigationBarBlackOpaqueBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueBack.png; sourceTree = "<group>"; };
 		AAC3937917050C1A002590C7 /* UINavigationBarBlackOpaqueBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UINavigationBarBlackOpaqueBack@2x.png"; sourceTree = "<group>"; };
 		AAC3937C17050C1D002590C7 /* UINavigationBarBlackOpaqueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBarBlackOpaqueButton.png; sourceTree = "<group>"; };
@@ -753,10 +745,6 @@
 				AA5E8A1C170F61E200779AC6 /* hardware@2x.png */,
 				AA5E8A14170F5B3100779AC6 /* satellite.png */,
 				AA5E8A15170F5B3100779AC6 /* satellite@2x.png */,
-				AAC3937017050446002590C7 /* BarFill.png */,
-				AAC3937117050447002590C7 /* BarFill@2x.png */,
-				AAC3937217050448002590C7 /* BarTrack.png */,
-				AAC3937317050448002590C7 /* BarTrack@2x.png */,
 				AA0F56BF16E38C9400E07DF3 /* separator.png */,
 				AA0F56B716E3869000E07DF3 /* separator@2x.png */,
 				AABD859116D9BA4300C8245C /* nav-button.png */,
@@ -1541,10 +1529,6 @@
 				AAC393671704ED6C002590C7 /* log@2x.png in Resources */,
 				AAC3936A1704ED88002590C7 /* epg.png in Resources */,
 				AAC3936B1704ED88002590C7 /* epg@2x.png in Resources */,
-				AAC3937417050449002590C7 /* BarFill.png in Resources */,
-				AAC3937517050449002590C7 /* BarFill@2x.png in Resources */,
-				AAC3937617050449002590C7 /* BarTrack.png in Resources */,
-				AAC3937717050449002590C7 /* BarTrack@2x.png in Resources */,
 				AAC3938017050C22002590C7 /* UINavigationBarBlackOpaqueBack.png in Resources */,
 				AAC3938117050C22002590C7 /* UINavigationBarBlackOpaqueBack@2x.png in Resources */,
 				AAC3938417050C22002590C7 /* UINavigationBarBlackOpaqueButton.png in Resources */,

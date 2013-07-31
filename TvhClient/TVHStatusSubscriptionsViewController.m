@@ -19,6 +19,7 @@
 #import "TVHSingletonServer.h"
 #import "TVHAdapter.h"
 #import "TVHAdapterMuxViewController.h"
+#import "TVHProgressBar.h"
 
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;
@@ -263,6 +264,8 @@
         [clientIcon setContentMode:UIViewContentModeScaleAspectFit];
         [client2Icon setImage:[factory createImageForIcon:NIKFontAwesomeIconPlayCircle]];
         [client2Icon setContentMode:UIViewContentModeScaleAspectFit];
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     if ( indexPath.section == 1 ) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
@@ -279,7 +282,15 @@
         UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
         UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];
         UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
-        UIProgressView *progress = (UIProgressView *)[cell viewWithTag:110];
+        TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
+        [progress setTintColor:PROGRESS_BAR_PLAYBACK];
+        CGRect progressBarFrame = {
+            .origin.x = progress.frame.origin.x,
+            .origin.y = progress.frame.origin.y,
+            .size.width = progress.frame.size.width,
+            .size.height = 4,
+        };
+        [progress setFrame:progressBarFrame];
         
         TVHAdapter *adapter = [self.adapterStore objectAtIndex:indexPath.row];
         
@@ -294,6 +305,8 @@
         progress.progress = (float)adapter.signal/100;
         [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
         [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     return cell;

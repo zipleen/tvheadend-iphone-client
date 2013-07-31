@@ -61,6 +61,13 @@
     UILabel *progressText = (UILabel *)[cell viewWithTag:108];
     TVHProgressBar *quality = (TVHProgressBar *)[cell viewWithTag:107];
     [quality setTintColor:PROGRESS_BAR_PLAYBACK];
+    CGRect progressBarFrame = {
+        .origin.x = quality.frame.origin.x,
+        .origin.y = quality.frame.origin.y,
+        .size.width = quality.frame.size.width,
+        .size.height = 4,
+    };
+    [quality setFrame:progressBarFrame];
     
     TVHAdapterMux *mux = [self.muxes objectAtIndex:indexPath.row];
     network.text = mux.network;

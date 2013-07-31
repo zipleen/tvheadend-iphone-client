@@ -729,9 +729,10 @@
                                             <rect key="frame" x="101" y="62" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         </imageView>
-                                        <progressView opaque="NO" tag="110" contentMode="scaleToFill" progress="0.5" id="GTG-Ao-0lb">
-                                            <rect key="frame" x="41" y="21" width="200" height="9"/>
+                                        <progressView opaque="NO" tag="110" contentMode="scaleToFill" progress="0.5" id="GTG-Ao-0lb" customClass="TVHProgressBar">
+                                            <rect key="frame" x="41" y="24" width="200" height="9"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <accessibility key="accessibilityConfiguration" hint="Signal"/>
                                         </progressView>
                                     </subviews>

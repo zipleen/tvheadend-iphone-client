@@ -31,7 +31,7 @@
 }
 
 - (void)customize {
-    if ( ! DEVICE_HAS_IOS7 ) {
+    //if ( ! DEVICE_HAS_IOS7 ) {
         //UIImage *navBarBg = [UIImage imageNamed:@"navigationbar.png"];
         //[self setBackgroundImage:navBarBg forBarMetrics:UIBarMetricsDefault];
         [self setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -47,20 +47,14 @@
                                            forBarMetrics:UIBarMetricsDefault];
         
         [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBack.png"]
-                                                                    resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)]
+                                                                    resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)]        
                                                           forState:UIControlStateNormal
                                                         barMetrics:UIBarMetricsDefault];
-        //[[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"UINavigationBarBlackOpaqueBackPressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 5)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
         
         [[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButton.png"]
                                                 forState:UIControlStateNormal
                                               barMetrics:UIBarMetricsDefault];
-        //[[UIBarButtonItem appearance] setBackgroundImage:[UIImage imageNamed:@"UINavigationBarBlackOpaqueButtonPressed.png"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
         
-        [[UIProgressView appearance] setTrackImage:[[UIImage imageNamed:@"BarTrack.png"]
-                                                    resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
-        [[UIProgressView appearance] setProgressImage:[[UIImage imageNamed:@"BarFill.png"]
-                                                       resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)]];
         
         [[UIToolbar appearance] setBackgroundImage:[[UIImage
                                                      imageNamed:@"navigationbar_inverted.png"]
@@ -71,7 +65,7 @@
         [[UISearchBar appearance] setBackgroundImage:[[UIImage imageNamed:@"navigationbar.png"]
                                                      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)]
                                   ];
-    }
+    //}
 }
 
 
