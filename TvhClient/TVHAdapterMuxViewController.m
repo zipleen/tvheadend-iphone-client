@@ -74,9 +74,9 @@
     freq.text = mux.freq;
     mod.text = mux.mod;
     pol.text = mux.pol;
-    fe_status.text = mux.fe_status;
-    networkid.text = [NSString stringWithFormat:@"%d", mux.onid];
-    muxid.text = [NSString stringWithFormat:@"%d", mux.muxid];
+    fe_status.text = [NSString stringWithFormat:@"Frontend Status: %@", mux.fe_status];
+    networkid.text = [NSString stringWithFormat:@"NetId: %d", mux.onid];
+    muxid.text = [NSString stringWithFormat:@"MuxId: %d", mux.muxid];
     [quality setProgress:mux.quality/100];
     progressText.text = [NSString stringWithFormat:@"%d%%", mux.quality];
     
