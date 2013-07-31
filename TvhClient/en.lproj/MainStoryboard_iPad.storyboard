@@ -1728,7 +1728,7 @@
                                                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="addRecordMoreItemsToTVHeadend:" destination="R7y-nK-jpx" eventType="touchUpInside" id="NDA-Wo-dBC"/>
+                                                        <action selector="addRecordMoreItemsToTVHeadend:" destination="Vx1-qU-321" eventType="touchUpInside" id="UUQ-hS-dTN"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -1913,6 +1913,7 @@
         <class className="TVHRecordingsDetailViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsDetailViewController.h"/>
             <relationships>
+                <relationship kind="action" name="addRecordMoreItemsToTVHeadend:"/>
                 <relationship kind="action" name="playStream:"/>
                 <relationship kind="action" name="removeRecording:"/>
                 <relationship kind="action" name="segmentedDidChange:"/>
@@ -1946,7 +1947,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsServersViewController.h"/>
             <relationships>
                 <relationship kind="action" name="saveServer:"/>
-                <relationship kind="action" name="setUseHttps:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHSettingsViewController" superclassName="UITableViewController">

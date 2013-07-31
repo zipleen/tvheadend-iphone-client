@@ -17,6 +17,7 @@
 #import "NSString+FileSize.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "UIView+ClosestParent.h"
 
 @interface TVHRecordingsDetailViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
@@ -307,9 +308,36 @@
     [self.tableView reloadData];
 }
 
-- (void) didLoadEpg:(TVHEpgStore*)epgStore {
-    self.moreTimesItems = [epgStore epgStoreItems];
+- (void)didLoadEpg:(TVHEpgStore*)epgStore {
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    [[epgStore epgStoreItems] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ( ! [obj schedstate] ) {
+            [items addObject:obj];
+        }
+    }];
+    self.moreTimesItems = [items copy];
     [self.tableView reloadData];
 }
+
+- (IBAction)addRecordMoreItemsToTVHeadend:(id)sender {
+    if( self.segmentedControl.selectedSegmentIndex == 1 ){
+        // for "see again" items
+        UITableViewCell* myCell = (UITableViewCell*)[UIView TVHClosestParent:@"UITableViewCell" ofView:sender];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
+        TVHEpg *epg = self.moreTimesItems[indexPath.row];
+        if( ! [epg schedstate] ) {
+            [epg addRecording];
+        }
+        
+    }
+    
+#ifdef TVH_GOOGLEANALYTICS_KEY
+    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+                                                    withAction:@"recordings"
+                                                     withLabel:@"addRecording"
+                                                     withValue:[NSNumber numberWithInt:0]];
+#endif
+}
+
 
 @end
