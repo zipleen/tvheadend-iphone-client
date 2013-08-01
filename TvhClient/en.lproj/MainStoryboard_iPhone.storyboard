@@ -1560,74 +1560,74 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="0iI-ct-dJ9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="104" sectionHeaderHeight="10" sectionFooterHeight="10" id="0iI-ct-dJ9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="dvbMuxItems" id="6IZ-lZ-yYD">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="46" width="320" height="106"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                            <rect key="frame" x="10" y="1" width="300" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <progressView opaque="NO" tag="107" contentMode="scaleToFill" progress="0.5" id="RbJ-tC-fAy" customClass="TVHProgressBar">
-                                                    <rect key="frame" x="20" y="83" width="256" height="9"/>
+                                                    <rect key="frame" x="16" y="86" width="229" height="9"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </progressView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="network" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lrY-LR-Fr7">
-                                                    <rect key="frame" x="20" y="0.0" width="131" height="21"/>
+                                                    <rect key="frame" x="16" y="3" width="131" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="frequency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JCx-yA-rCT">
-                                                    <rect key="frame" x="20" y="20" width="131" height="21"/>
+                                                    <rect key="frame" x="16" y="23" width="131" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="modulation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pIE-t0-XLW">
-                                                    <rect key="frame" x="20" y="40" width="280" height="21"/>
+                                                    <rect key="frame" x="16" y="43" width="260" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" text="polarisation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QFj-l6-vLQ">
-                                                    <rect key="frame" x="169" y="20" width="131" height="21"/>
+                                                    <rect key="frame" x="169" y="23" width="111" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" text="frontend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7w-7W-gTh">
-                                                    <rect key="frame" x="20" y="60" width="131" height="21"/>
+                                                    <rect key="frame" x="16" y="63" width="131" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="networkid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Ub-pL-qaa">
-                                                    <rect key="frame" x="169" y="60" width="65" height="21"/>
+                                                    <rect key="frame" x="169" y="63" width="65" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="106" contentMode="left" text="mux id" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LDO-Mm-EEq">
-                                                    <rect key="frame" x="169" y="0.0" width="65" height="21"/>
+                                                    <rect key="frame" x="169" y="3" width="111" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="108" contentMode="left" text="progress" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dwa-da-zoG">
-                                                    <rect key="frame" x="284" y="74" width="29" height="21"/>
+                                                    <rect key="frame" x="252" y="77" width="29" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1953,6 +1953,157 @@
         <image name="satellite.png" width="16" height="16"/>
         <image name="status.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="SDSegmentedControl" superclassName="UISegmentedControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SDSegmentedControl.h"/>
+        </class>
+        <class className="TVHAdapterMuxViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHAdapterMuxViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHAutoRecDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHAutoRecDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveButton:"/>
+                <relationship kind="outlet" name="itemChannel" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemComment" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="itemCreatedBy" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="itemDvrConfig" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemEnable" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="itemGenre" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemPriority" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemStartAround" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemTag" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="itemTitle" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="itemWeekdays" candidateClass="UITableViewCell"/>
+            </relationships>
+        </class>
+        <class className="TVHChannelStoreProgramsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreProgramsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="segmentDidChange:"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHChannelStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHChannelStoreViewController.h"/>
+        </class>
+        <class className="TVHDebugLogViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHDebugLogViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="clearLog:"/>
+                <relationship kind="action" name="debugButton:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="moveSplit:"/>
+                <relationship kind="outlet" name="debugButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+        <class className="TVHEpgTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHEpgTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="filterSegmentedControlClicked:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="showHideSegmentedBar:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="filterSegmentedControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="filterToolBar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHProgramDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgramDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addAutoRecordToTVHeadend:"/>
+                <relationship kind="action" name="addRecordMoreItemsToTVHeadend:"/>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="channelTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHProgressBar" superclassName="UIProgressView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHProgressBar.h"/>
+        </class>
+        <class className="TVHRecordingsDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addRecordMoreItemsToTVHeadend:"/>
+                <relationship kind="action" name="playStream:"/>
+                <relationship kind="action" name="removeRecording:"/>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="channelTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="programImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="programTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="record" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHRecordingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHRecordingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="putTableInEditMode:"/>
+                <relationship kind="action" name="segmentedDidChange:"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="SDSegmentedControl"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHSettingsGenericFieldViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsGenericFieldViewController.h"/>
+        </class>
+        <class className="TVHSettingsGenericTextViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsGenericTextViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="genericText" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="TVHSettingsServersViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsServersViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveServer:"/>
+            </relationships>
+        </class>
+        <class className="TVHSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneSettings:"/>
+            </relationships>
+        </class>
+        <class className="TVHStatusSubscriptionsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHStatusSubscriptionsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="switchPolling:"/>
+                <relationship kind="outlet" name="switchButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TVHSupportMeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSupportMeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="buyRemoveAd:" candidateClass="UIButton"/>
+                <relationship kind="action" name="restorePurchase:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TVHTagStoreViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHTagStoreViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="settingsButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TVHUICustomNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomNavigationBar.h"/>
+        </class>
+        <class className="TVHUICustomTabBar" superclassName="UITabBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomTabBar.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

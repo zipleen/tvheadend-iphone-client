@@ -333,6 +333,7 @@
         
         TVHAdapterMuxViewController *mux = segue.destinationViewController;
         [mux setAdapter:adapter];
+        [mux setTitle:adapter.name];
     }
 }
 

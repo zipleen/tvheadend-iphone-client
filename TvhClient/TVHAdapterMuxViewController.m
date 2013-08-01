@@ -47,6 +47,17 @@
     [super didReceiveMemoryWarning];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.adapter devicename];
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"%d Muxes", [self.muxes count]];
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.muxes count];
@@ -79,6 +90,24 @@
     [quality setFrame:progressBarFrame];
     
     TVHAdapterMux *mux = [self.muxes objectAtIndex:indexPath.row];
+    
+    UIColor *textColor;
+    if ( mux.enabled == 1 ) {
+        textColor = [UIColor blackColor];
+    } else {
+        textColor = [UIColor lightGrayColor];
+    }
+    
+    // colour relative to status
+    network.textColor = textColor;
+    freq.textColor = textColor;
+    mod.textColor = textColor;
+    pol.textColor = textColor;
+    fe_status.textColor = textColor;
+    networkid.textColor = textColor;
+    muxid.textColor = textColor;
+    progressText.textColor = textColor;
+    
     network.text = mux.network;
     freq.text = mux.freq;
     mod.text = mux.mod;
