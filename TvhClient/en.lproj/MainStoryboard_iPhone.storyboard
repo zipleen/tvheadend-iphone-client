@@ -1392,10 +1392,10 @@
             </objects>
             <point key="canvasLocation" x="1457" y="-1338"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar Controller-->
         <scene sceneID="nSB-i6-L0E">
             <objects>
-                <tabBarController id="GXe-3y-tE2" sceneMemberID="viewController">
+                <tabBarController id="GXe-3y-tE2" customClass="TVHUICustomTabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="8fV-oQ-jbc" customClass="TVHUICustomTabBar">
@@ -2102,6 +2102,9 @@
         </class>
         <class className="TVHUICustomTabBar" superclassName="UITabBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomTabBar.h"/>
+        </class>
+        <class className="TVHUICustomTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHUICustomTabBarController.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

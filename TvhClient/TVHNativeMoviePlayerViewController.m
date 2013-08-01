@@ -11,7 +11,6 @@
 //
 
 #import "TVHNativeMoviePlayerViewController.h"
-#import <MediaPlayer/MediaPlayer.h>
 
 @interface TVHNativeMoviePlayerViewController ()
 @property (strong, nonatomic) MPMoviePlayerController *streamPlayer;
@@ -31,6 +30,8 @@
     self.streamPlayer.controlStyle = MPMovieControlStyleFullscreen;
     self.streamPlayer.shouldAutoplay = YES;
     [self.streamPlayer setFullscreen:YES animated:YES];
+    
+    self.streamPlayer.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     
     [self.view addSubview:self.streamPlayer.view];
     

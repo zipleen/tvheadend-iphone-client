@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA08625517AAF9FD001108D7 /* TVHUICustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */; };
 		AA08B241178370FB000B0E2E /* TVHiOSCheckVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */; };
 		AA08B24717838197000B0E2E /* UIView+ClosestParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B24617838197000B0E2E /* UIView+ClosestParent.m */; };
 		AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */; };
@@ -249,6 +250,8 @@
 /* Begin PBXFileReference section */
 		AA00CA87171362AF00A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AA00CA8B171362D100A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		AA08625317AAF9FD001108D7 /* TVHUICustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHUICustomTabBarController.h; sourceTree = "<group>"; };
+		AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHUICustomTabBarController.m; sourceTree = "<group>"; };
 		AA08B23F178370FB000B0E2E /* TVHiOSCheckVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHiOSCheckVersion.h; sourceTree = "<group>"; };
 		AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHiOSCheckVersion.m; sourceTree = "<group>"; };
 		AA08B24517838197000B0E2E /* UIView+ClosestParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ClosestParent.h"; sourceTree = "<group>"; };
@@ -685,6 +688,8 @@
 				AA407E2F16D1A0EE00451E6F /* Localizable.strings */,
 				AA0BE35E17A1DFBF00D33B7A /* TVHProgressBar.h */,
 				AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */,
+				AA08625317AAF9FD001108D7 /* TVHUICustomTabBarController.h */,
+				AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1745,6 +1750,7 @@
 				AAF5FCAF17A844BD001E908B /* NSDate+Utilities.m in Sources */,
 				AAF5FCB217A84FEB001E908B /* TVHAdapterMux.m in Sources */,
 				AAF5FCB517A85A49001E908B /* TVHAdapterMuxViewController.m in Sources */,
+				AA08625517AAF9FD001108D7 /* TVHUICustomTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

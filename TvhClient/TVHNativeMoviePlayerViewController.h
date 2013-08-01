@@ -11,6 +11,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface TVHNativeMoviePlayerViewController : UIViewController
 - (void)playStream:(NSString*)url;
