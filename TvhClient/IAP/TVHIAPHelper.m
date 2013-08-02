@@ -15,9 +15,9 @@
     static TVHIAPHelper * sharedInstance;
     dispatch_once(&once, ^{
         NSSet * productIdentifiers = [NSSet setWithObjects:
-                                      @"com.zipleen.TvhClient.thanksteeny",
-                                      @"com.zipleen.TvhClient.thankssloth",
-                                      @"com.zipleen.TvhClient.thankswale",
+                                      @"com.zipleen.TvhClient.1thanksllama",
+                                      @"com.zipleen.TvhClient.2thankssloth",
+                                      @"com.zipleen.TvhClient.3thankswale",
                                       nil];
         sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
     });

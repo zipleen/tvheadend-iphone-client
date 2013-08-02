@@ -9,6 +9,22 @@
 #import "TVHSupportMeViewController.h"
 #import "TVHIAPHelper.h"
 #import "TVHSettings.h"
+#import "UIView+ClosestParent.h"
+
+@implementation SKProduct (priceAsString)
+
+- (NSString *)priceAsString
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [formatter setLocale:[self priceLocale]];
+    
+    NSString *str = [formatter stringFromNumber:[self price]];
+    return str;
+}
+
+@end
 
 @interface TVHSupportMeViewController ()
 @property (nonatomic, strong) NSArray *products;
@@ -32,6 +48,7 @@
     [[TVHIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
         if (success) {
             _products = products;
+            [self.tableView reloadData];
         }
     }];
 }
@@ -53,17 +70,21 @@
     NSString * productIdentifier = notification.object;
     NSLog(@"buying %@", productIdentifier);
 #endif
+    [self.tableView reloadData];
     //[[TVHSettings sharedInstance] setRemoveAds];
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)buyRemoveAd:(UIButton *)sender {
-    //if ( self.products.count > 0 ) {
-        SKProduct *product = [self.products objectAtIndex:0];
+    UITableViewCell* myCell = (UITableViewCell*)[UIView TVHClosestParent:@"UITableViewCell" ofView:sender];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
+    
+    if ( self.products.count > indexPath.row ) {
+        SKProduct *product = [self.products objectAtIndex:indexPath.row];
     
         NSLog(@"Buying %@...", product.productIdentifier);
         [[TVHIAPHelper sharedInstance] buyProduct:product];
-    //}
+    }
 }
 
 - (IBAction)restorePurchase:(UIBarButtonItem *)sender {
@@ -79,7 +100,7 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return NSLocalizedString(@"Support Me - Offer what you want", @"");
+    return NSLocalizedString(@"Support Me - Pay what you want", @"");
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
@@ -93,7 +114,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 3;
+    return [self.products count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,29 +126,22 @@
     }
     UIButton *button = (UIButton*)[cell viewWithTag:100];
     UILabel *textLabel = (UILabel*)[cell viewWithTag:101];
-    if( indexPath.row == 0 ) {
-        textLabel.text = NSLocalizedString(@"Teeny of Thanks", @"");
-        [button setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-        [button setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
-        button.hidden = NO;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    UILabel *thanksLabel = (UILabel*)[cell viewWithTag:103];
+    SKProduct *product = self.products[indexPath.row];
     
-    if( indexPath.row == 1 ) {
-        textLabel.text = NSLocalizedString(@"Thanks a Sloth", @"");
-        [button setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-        [button setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
-        button.hidden = NO;
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    textLabel.text = product.localizedTitle;
     
-    if( indexPath.row == 2 ) {
-        textLabel.text = NSLocalizedString(@"Whale of Thanks", @"");
+    if ( [[TVHIAPHelper sharedInstance] productPurchased:product.productIdentifier] ) {
+        button.hidden = YES;
+        thanksLabel.hidden = NO;
+    } else {
+        [button setTitle:[NSString stringWithFormat:@"Buy %@", product.priceAsString] forState:UIControlStateNormal];
         [button setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
         [button setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
         button.hidden = NO;
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        thanksLabel.hidden = YES;
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
     
     return cell;
 }
