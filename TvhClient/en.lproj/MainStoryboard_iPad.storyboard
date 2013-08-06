@@ -145,7 +145,7 @@
                         <segue destination="FYs-EC-yLp" kind="push" identifier="SettingsServers" id="t2j-X7-wjx"/>
                         <segue destination="8ta-wh-pjF" kind="push" identifier="SettingsGenericText" id="AlH-BS-jiT"/>
                         <segue destination="JAO-4d-hsi" kind="push" identifier="SettingsGenericField" id="eb8-mL-0Xc"/>
-                        <segue destination="ZaD-E1-4dO" kind="push" identifier="Support Me" id="TJT-QS-u2e"/>
+                        <segue destination="adU-gt-enQ" kind="push" identifier="Support Me" id="B7b-Qo-Kh8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFb-6o-BTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1898,79 +1898,45 @@
             <point key="canvasLocation" x="-1985" y="946"/>
         </scene>
         <!--Support Me View Controller-->
-        <scene sceneID="H6M-DU-OPs">
+        <scene sceneID="c76-XF-ZMG">
             <objects>
-                <viewController id="ZaD-E1-4dO" customClass="TVHSupportMeViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2Vl-uB-Xml">
+                <viewController id="adU-gt-enQ" customClass="TVHSupportMeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kl3-jO-sxC">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="nH8-pV-08s">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="969"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="w4p-Cd-5r4">
+                                <rect key="frame" x="365" y="686" width="38" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.20000000000000001" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="changePage:" destination="adU-gt-enQ" eventType="valueChanged" id="Bjk-yr-4PU"/>
+                                </connections>
+                            </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="kxt-Fq-nA5">
+                                <rect key="frame" x="224" y="282" width="320" height="396"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="SupportMeTableCell" id="ngJ-Af-9ur">
-                                        <rect key="frame" x="0.0" y="54" width="768" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="45" y="1" width="678" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qtM-p7-GuF">
-                                                    <rect key="frame" x="564" y="8" width="108" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Buy1">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="buyRemoveAd:" destination="ZaD-E1-4dO" eventType="touchUpInside" id="bBt-bS-XQm"/>
-                                                    </connections>
-                                                </button>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Opp-Gb-fz4">
-                                                    <rect key="frame" x="20" y="11" width="371" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" text="Thanks!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xNt-oX-3jC">
-                                                    <rect key="frame" x="569" y="11" width="99" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </tableViewCell>
-                                </prototypes>
-                                <sections/>
-                            </tableView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="KD7-3y-oQm">
-                        <barButtonItem key="rightBarButtonItem" title="Restore" id="fQZ-6a-FFe">
+                    <navigationItem key="navigationItem" id="yfM-Bu-iSw">
+                        <barButtonItem key="rightBarButtonItem" title="Restore Purchases" id="wJH-Er-4Yr">
                             <connections>
-                                <action selector="restorePurchase:" destination="ZaD-E1-4dO" id="1g2-Pc-uCA"/>
+                                <action selector="restorePurchase:" destination="adU-gt-enQ" id="axA-4b-yVI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
                     <connections>
-                        <outlet property="tableView" destination="nH8-pV-08s" id="yHd-TI-Nkb"/>
+                        <outlet property="pageControl" destination="w4p-Cd-5r4" id="9Eo-z3-UIh"/>
+                        <outlet property="scrollView" destination="kxt-Fq-nA5" id="nNo-LS-jeN"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lPb-8B-pa0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hbS-8p-VWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="975" y="-7109"/>
+            <point key="canvasLocation" x="812" y="-7222"/>
         </scene>
     </scenes>
     <resources>
@@ -2149,7 +2115,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSupportMeViewController.h"/>
             <relationships>
                 <relationship kind="action" name="buyRemoveAd:" candidateClass="UIButton"/>
+                <relationship kind="action" name="changePage:"/>
                 <relationship kind="action" name="restorePurchase:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

@@ -26,7 +26,9 @@
 
 @end
 
-@interface TVHSupportMeViewController ()
+@interface TVHSupportMeViewController () {
+    BOOL pageControlBeingUsed;
+}
 @property (nonatomic, strong) NSArray *products;
 @end
 
@@ -48,9 +50,75 @@
     [[TVHIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
         if (success) {
             _products = products;
-            [self.tableView reloadData];
+            [self updateScrollView];
+            //[self.tableView reloadData];
         }
     }];
+    
+    self.scrollView.delegate = self;
+}
+
+- (void)updateScrollView {
+    // remove all subviews ?
+    for (UIView *v in [self.scrollView subviews]) {
+        [v removeFromSuperview];
+    }
+    
+    for (int i = 0; i < [self.products count]; i++) {
+        SKProduct *product = self.products[i];
+        
+        CGRect frame;
+        frame.origin.x = self.scrollView.frame.size.width * i;
+        frame.origin.y = 0;
+        frame.size = self.scrollView.frame.size;
+        
+        
+        UIView *subview = [[UIView alloc] initWithFrame:frame];
+        subview.backgroundColor = [UIColor clearColor];
+        
+        if ( [[TVHIAPHelper sharedInstance] productPurchased:product.productIdentifier] ) {
+            // text
+            UILabel *tks = [[UILabel alloc] initWithFrame:CGRectMake(192, 60, 108, 29)];
+            tks.text = NSLocalizedString(@"Thanks!", "");
+            tks.backgroundColor = [UIColor clearColor];
+            tks.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
+            [subview addSubview:tks];
+        } else {
+            // button
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(192, 60, 108, 29)];
+            [button setTitle:[NSString stringWithFormat:@"Buy %@", product.priceAsString] forState:UIControlStateNormal];
+            [button setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
+            [button setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
+            [button addTarget:self action:@selector(buyRemoveAd:) forControlEvents:UIControlEventTouchDown];
+            [subview addSubview:button];
+        }
+        
+        // text
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, 280, 26)];
+        title.text = product.localizedTitle;
+        title.backgroundColor = [UIColor clearColor];
+        title.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
+        [subview addSubview:title];
+        
+        // description
+        UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(20, 95, 280, 216)];
+        desc.text = product.localizedDescription;
+        desc.numberOfLines = 7;
+        desc.backgroundColor = [UIColor clearColor];
+        desc.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
+        [subview addSubview:desc];
+        
+        [self.scrollView addSubview:subview];
+    }
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.products count], self.scrollView.frame.size.height);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    // Update the page when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -70,18 +138,14 @@
     NSString * productIdentifier = notification.object;
     NSLog(@"buying %@", productIdentifier);
 #endif
-    [self.tableView reloadData];
-    //[[TVHSettings sharedInstance] setRemoveAds];
-    //[self.navigationController popViewControllerAnimated:YES];
+    [self updateScrollView];
 }
 
 - (IBAction)buyRemoveAd:(UIButton *)sender {
-    UITableViewCell* myCell = (UITableViewCell*)[UIView TVHClosestParent:@"UITableViewCell" ofView:sender];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
     
-    if ( self.products.count > indexPath.row ) {
-        SKProduct *product = [self.products objectAtIndex:indexPath.row];
-    
+    if ( self.products.count > self.pageControl.currentPage ) {
+        SKProduct *product = [self.products objectAtIndex:self.pageControl.currentPage];
+        
         NSLog(@"Buying %@...", product.productIdentifier);
         [[TVHIAPHelper sharedInstance] buyProduct:product];
     }
@@ -91,64 +155,20 @@
     [[TVHIAPHelper sharedInstance] restoreCompletedTransactions];
 }
 
+- (IBAction)changePage:(id)sender {
+    // update the scroll view to the appropriate page
+    CGRect frame;
+    frame.origin.x = self.scrollView.frame.size.width * self.pageControl.currentPage;
+    frame.origin.y = 0;
+    frame.size = self.scrollView.frame.size;
+    [self.scrollView scrollRectToVisible:frame animated:YES];
+}
+
 - (void)viewDidUnload {
     [self setTableView:nil];
+    [self setScrollView:nil];
+    [self setPageControl:nil];
     [super viewDidUnload];
-}
-
-#pragma MARK table crap
-
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return NSLocalizedString(@"Support Me - Pay what you want", @"");
-}
-
-- (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    /*if ( [[TVHSettings sharedInstance] removeAds] ) {
-        return NSLocalizedString(@"Thank you for supporting the app!", @"");
-    }*/
-    return NSLocalizedString(@"If you find TvhClient useful, your support would be greatly appreciated!", @"");
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-    return [self.products count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"SupportMeTableCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    UIButton *button = (UIButton*)[cell viewWithTag:100];
-    UILabel *textLabel = (UILabel*)[cell viewWithTag:101];
-    UILabel *thanksLabel = (UILabel*)[cell viewWithTag:103];
-    SKProduct *product = self.products[indexPath.row];
-    
-    textLabel.text = product.localizedTitle;
-    
-    if ( [[TVHIAPHelper sharedInstance] productPurchased:product.productIdentifier] ) {
-        button.hidden = YES;
-        thanksLabel.hidden = NO;
-    } else {
-        [button setTitle:[NSString stringWithFormat:@"Buy %@", product.priceAsString] forState:UIControlStateNormal];
-        [button setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-        [button setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
-        button.hidden = NO;
-        thanksLabel.hidden = YES;
-    }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
