@@ -260,13 +260,11 @@
 }
 
 - (void)willLoadEpg {
-    if ( ! [self.refreshControl isRefreshing] && [self.tableView numberOfRowsInSection:0] == 0 ) {
-        [self.refreshControl beginRefreshing];
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    }
+    [WTStatusBar setStatusText:@"Loading EPG..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
+    [WTStatusBar clearStatusAnimated:YES];
     [self.refreshControl endRefreshing];
     self.epgTable = [[epgStore epgStoreItems] copy];
     [self.tableView reloadData];

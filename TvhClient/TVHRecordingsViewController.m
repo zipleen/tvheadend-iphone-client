@@ -429,25 +429,23 @@
 }
 
 - (void)willLoadDvr:(NSInteger)type {
-    //if ( ! [self.refreshControl isRefreshing] && type == self.segmentedControl.selectedSegmentIndex ) {
-    //    [self.refreshControl beginRefreshing];
-    //    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    //}
+    [WTStatusBar setStatusText:@"Loading DVR Data..." timeout:2.0 animated:YES];
 }
 
 - (void)willLoadDvrAutoRec {
-    //[self.refreshControl beginRefreshing];
-    //[self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    [WTStatusBar setStatusText:@"Loading AutoRec DVR Data..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadDvr:(NSInteger)type {
     if ( type == self.segmentedControl.selectedSegmentIndex ) {
+        [WTStatusBar clearStatusAnimated:YES];
         [self reloadData];
     }
 }
 
 - (void)didLoadDvrAutoRec {
     if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
+        [WTStatusBar clearStatusAnimated:YES];
         [self reloadData];
     }
 }

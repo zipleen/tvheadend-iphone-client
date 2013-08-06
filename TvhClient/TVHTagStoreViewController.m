@@ -189,13 +189,11 @@
 }
 
 - (void)willLoadTags {
-    if ( ! [self.refreshControl isRefreshing] ) {
-        [self.refreshControl beginRefreshing];
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    }
+    [WTStatusBar setStatusText:@"Loading Tags..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadTags {
+    [WTStatusBar clearStatusAnimated:YES];
     [self reloadData];
     [self.refreshControl endRefreshing];
     if ( [self.tags count] == 1 ) {

@@ -254,13 +254,11 @@
 }
 
 - (void)willLoadChannels {
-    if ( ! [self.refreshControl isRefreshing] ) {
-        [self.refreshControl beginRefreshing];
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    }
+    [WTStatusBar setStatusText:@"Loading Channels..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadChannels {
+    [WTStatusBar clearStatusAnimated:YES];
     self.channels = [[self.channelStore arrayChannels] copy];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];

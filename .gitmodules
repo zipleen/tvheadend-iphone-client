@@ -31,3 +31,6 @@
 [submodule "ETProgressBar"]
 	path = ETProgressBar
 	url = https://github.com/elitalon/ETProgressBar.git
+[submodule "WTStatusBar"]
+	path = WTStatusBar
+	url = https://github.com/pieceofsummer/WTStatusBar.git

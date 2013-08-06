@@ -98,6 +98,9 @@
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
+		AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */; };
+		AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6717B19F3A00CE7614 /* WTStatusView.m */; };
+		AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6917B19F3A00CE7614 /* WTStatusWindow.m */; };
 		AA8DC11C16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DC11B16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m */; };
 		AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */; };
 		AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DED0016DEDB3B00AF6A51 /* SDSegmentedControl.m */; };
@@ -396,6 +399,12 @@
 		AA779C9E170CD70400B7DDB4 /* TVHApiKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiKeys.h; sourceTree = "<group>"; };
 		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
 		AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettings.m; sourceTree = "<group>"; };
+		AA88AD6417B19F3A00CE7614 /* WTStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTStatusBar.h; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusBar.h; sourceTree = SOURCE_ROOT; };
+		AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTStatusBar.m; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusBar.m; sourceTree = SOURCE_ROOT; };
+		AA88AD6617B19F3A00CE7614 /* WTStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTStatusView.h; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusView.h; sourceTree = SOURCE_ROOT; };
+		AA88AD6717B19F3A00CE7614 /* WTStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTStatusView.m; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusView.m; sourceTree = SOURCE_ROOT; };
+		AA88AD6817B19F3A00CE7614 /* WTStatusWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTStatusWindow.h; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusWindow.h; sourceTree = SOURCE_ROOT; };
+		AA88AD6917B19F3A00CE7614 /* WTStatusWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTStatusWindow.m; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusWindow.m; sourceTree = SOURCE_ROOT; };
 		AA8DC11A16E1762E00F93BD7 /* TVHRecordingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHRecordingsDetailViewController.h; sourceTree = "<group>"; };
 		AA8DC11B16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHRecordingsDetailViewController.m; sourceTree = "<group>"; };
 		AA8DECFC16DEBFAE00AF6A51 /* TVHRecordingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHRecordingsViewController.h; sourceTree = "<group>"; };
@@ -926,6 +935,19 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		AA88AD6317B19EE300CE7614 /* WTStatusBar */ = {
+			isa = PBXGroup;
+			children = (
+				AA88AD6417B19F3A00CE7614 /* WTStatusBar.h */,
+				AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */,
+				AA88AD6617B19F3A00CE7614 /* WTStatusView.h */,
+				AA88AD6717B19F3A00CE7614 /* WTStatusView.m */,
+				AA88AD6817B19F3A00CE7614 /* WTStatusWindow.h */,
+				AA88AD6917B19F3A00CE7614 /* WTStatusWindow.m */,
+			);
+			name = WTStatusBar;
+			sourceTree = "<group>";
+		};
 		AA8DC11016E1407700F93BD7 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1067,6 +1089,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA88AD6317B19EE300CE7614 /* WTStatusBar */,
 				AAF5FCAC17A844A2001E908B /* NSDate */,
 				AA24868817484E1400AB2E42 /* MGSplitViewController */,
 				AAF2647917441D57006C96CE /* JASlidingPanels */,
@@ -1751,6 +1774,9 @@
 				AAF5FCB217A84FEB001E908B /* TVHAdapterMux.m in Sources */,
 				AAF5FCB517A85A49001E908B /* TVHAdapterMuxViewController.m in Sources */,
 				AA08625517AAF9FD001108D7 /* TVHUICustomTabBarController.m in Sources */,
+				AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */,
+				AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */,
+				AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -288,13 +288,11 @@
 }
 
 - (void)willLoadEpgChannel {
-    if ( ! [self.refreshControl isRefreshing] ) {
-        [self.refreshControl beginRefreshing];
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-    }
+    [WTStatusBar setStatusText:[@"Loading Channel Data..." stringByAppendingString:[self.channel name]] timeout:2.0 animated:YES];
 }
 
 - (void)didLoadEpgChannel {
+    [WTStatusBar clearStatusAnimated:YES];
     [self updateSegmentControl];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
