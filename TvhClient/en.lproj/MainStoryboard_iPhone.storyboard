@@ -1898,7 +1898,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="CfT-3P-AuN">
                         <barButtonItem key="rightBarButtonItem" title="Restore Purchases" id="eyy-RH-Hbj">
@@ -2089,7 +2089,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0x8-gt-GgX"/>
         <segue reference="eb8-mL-0Xc"/>
+        <segue reference="HOO-ET-j6o"/>
     </inferredMetricsTieBreakers>
 </document>

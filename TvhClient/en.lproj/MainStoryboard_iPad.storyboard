@@ -251,6 +251,10 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         </textField>
+                                        <switch opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="z8x-E6-CfO">
+                                            <rect key="frame" x="581" y="9" width="79" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                        </switch>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -2093,6 +2097,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsServersViewController.h"/>
             <relationships>
                 <relationship kind="action" name="saveServer:"/>
+                <relationship kind="action" name="setUseHttps:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHSettingsViewController" superclassName="UITableViewController">

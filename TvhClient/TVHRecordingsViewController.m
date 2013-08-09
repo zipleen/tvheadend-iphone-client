@@ -318,14 +318,7 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ( IS_IPAD ) {
-        if (self.editing) {
-            return UITableViewCellEditingStyleDelete;
-        }
-        return UITableViewCellEditingStyleNone;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
+    return UITableViewCellEditingStyleDelete;
 }
 
 // Override to support editing the table view.
