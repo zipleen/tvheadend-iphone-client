@@ -116,9 +116,9 @@
     }
     if ( section == 1 ) {
         if ( IS_IPAD ) {
-            return 7;
-        } else {
             return 6;
+        } else {
+            return 5;
         }
     }
     if ( section == 2 ) {
@@ -228,6 +228,7 @@
             UILabel *textLabel = (UILabel *)[cell viewWithTag:301];
             textLabel.text = NSLocalizedString(@"Draw Image Border", @".. in settings screen");
         }
+        /*
         if ( indexPath.row == 5 ) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
             if(cell==nil) {
@@ -238,8 +239,9 @@
             cell.detailTextLabel.text = [self.settings transcodeResolution];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+         */
         if ( IS_IPAD ) {
-            if ( indexPath.row == 6 ) {
+            if ( indexPath.row == 5 ) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
                 if(cell==nil) {
                     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
@@ -304,23 +306,6 @@
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -413,7 +398,7 @@
                 
             }];
         }
-        
+        /*
         if ( path.section == 1 && path.row == 5 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Transcode Resolution", @".. in settings screen")];
@@ -424,8 +409,8 @@
                 [[TVHSettings sharedInstance] setTranscodeResolution:[TVHS_TRANSCODE_RESOLUTIONS objectAtIndex:order]];
             }];
         }
-        
-        if ( path.section == 1 && path.row == 6 ) {
+        */
+        if ( path.section == 1 && path.row == 5 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Right Panel", @".. in settings screen")];
             [vc setSectionHeader:NSLocalizedString(@"Choose what you want to see on the right panel (App restart required)", @".. in settings screen")];

@@ -537,6 +537,7 @@ withPassword:(NSString*)password {
 }
 
 - (NSString*)transcodeResolution {
+    return @"384"; // transcoding resolution is not working correctly, only 384 has a chance of working!
     if ( !_transcodeResolution ) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _transcodeResolution = [defaults stringForKey:TVHS_TRANSCODE_RES];

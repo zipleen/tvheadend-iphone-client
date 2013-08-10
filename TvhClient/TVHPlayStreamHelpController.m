@@ -15,14 +15,17 @@
 #import "TVHNativeMoviePlayerViewController.h"
 
 #define TVH_PROGRAMS @{@"VLC":@"vlc", @"Oplayer":@"oplayer", @"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Ace Player":@"aceplayer" }
-#define TVHS_TVHEADEND_STREAM_URL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS&mux=mpegts"
+#define TVHS_TVHEADEND_STREAM_URL_INTERNAL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS&mux=mpegts"
+#define TVHS_TVHEADEND_STREAM_URL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS"
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate> {
     UIActionSheet *myActionSheet;
+    BOOL transcodingEnabled;
 }
 @property (weak, nonatomic) id<TVHPlayStreamDelegate> streamObject;
 @property (weak, nonatomic) UIStoryboard *storyboard;
 @property (weak, nonatomic) UIViewController *vc;
+@property (weak, nonatomic) UIBarButtonItem *sender;
 @end
 
 @implementation TVHPlayStreamHelpController
@@ -52,16 +55,25 @@
     return [available copy];
 }
 
+- (void)showTranscodeMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
+    transcodingEnabled = YES;
+    [self showMenu:sender withVC:vc withActionSheet:actionTitle];
+}
+
 - (void)showMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
     int countOfItems = 0;
-    NSString *actionSheetTitle = NSLocalizedString(@"Playback", nil);
     NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
     NSString *cancel = NSLocalizedString(@"Cancel", nil);
-    NSString *transcode = NSLocalizedString(@"Transcode", nil);
+    NSString *transcode;
+    if ( transcodingEnabled ) {
+        transcode = NSLocalizedString(@"Internal Player", nil);
+    } else {
+        transcode = NSLocalizedString(@"Transcode", nil);
+    }
 
     [self dismissActionSheet];
     myActionSheet = [[UIActionSheet alloc] init];
-    [myActionSheet setTitle:actionSheetTitle];
+    [myActionSheet setTitle:actionTitle];
     [myActionSheet setDelegate:self];
 
     if ( [self.streamObject transcodeStreamURL] ) {
@@ -80,7 +92,6 @@
     [myActionSheet setCancelButtonIndex:countOfItems];
     [myActionSheet addButtonWithTitle:cancel];
     
-    //[actionSheet showFromToolbar:self.navigationController.toolbar];
     [myActionSheet showFromBarButtonItem:sender animated:YES];
 
 }
@@ -88,20 +99,32 @@
 - (void)playStream:(UIBarButtonItem*)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc  {
     self.streamObject = channel;
     self.vc = vc;
-    [self showMenu:sender withVC:vc withActionSheet:@"Stream Channel"];
+    self.sender = sender;
+    transcodingEnabled = NO;
+    [self showMenu:sender withVC:vc withActionSheet:NSLocalizedString(@"Stream Channel", nil)];
 }
 
 - (void)playDvr:(UIBarButtonItem*)sender withDvrItem:(id<TVHPlayStreamDelegate>)dvrItem withVC:(UIViewController*)vc {
     self.streamObject = dvrItem;
     self.vc = vc;
-    [self showMenu:sender withVC:vc withActionSheet:@"Play Dvr File"];
+    self.sender = sender;
+    transcodingEnabled = NO;
+    [self showMenu:sender withVC:vc withActionSheet:NSLocalizedString(@"Play Dvr File", nil)];
 }
 
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if  ([buttonTitle isEqualToString:NSLocalizedString(@"Copy to Clipboard", nil)]) {
-        NSString *streamUrl = [self.streamObject streamURL];
+    NSString *streamUrl, *streamUrlInternal;
+    
+    if ( transcodingEnabled ) {
+        streamUrl = [self stringTranscodeUrl:[self.streamObject transcodeStreamURL] withFormat:TVHS_TVHEADEND_STREAM_URL];
+        streamUrlInternal = [self stringTranscodeUrl:[self.streamObject transcodeStreamURL] withFormat:TVHS_TVHEADEND_STREAM_URL_INTERNAL];
+    } else {
+        streamUrl = [self.streamObject streamURL];
+    }
+    
+    if ( [buttonTitle isEqualToString:NSLocalizedString(@"Copy to Clipboard", nil)] ) {
         if ( streamUrl ) {
             UIPasteboard *pb = [UIPasteboard generalPasteboard];
             [pb setString:streamUrl];
@@ -110,18 +133,23 @@
     
     NSString *prefix = [TVH_PROGRAMS objectForKey:buttonTitle];
     if ( prefix ) {
-        NSURL *myURL = [self urlForSchema:prefix withURL:[self.streamObject streamURL]];
+        NSURL *myURL = [self urlForSchema:prefix withURL:streamUrl];
         [[UIApplication sharedApplication] openURL:myURL];
     }
-    if ([buttonTitle isEqualToString:NSLocalizedString(@"Custom Player", nil)]) {
+    if ( [buttonTitle isEqualToString:NSLocalizedString(@"Custom Player", nil)] ) {
         NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
-        NSString *url = [NSString stringWithFormat:@"%@://%@", customPrefix, [self.streamObject streamURL] ];
-        NSURL *myURL = [NSURL URLWithString:url ];
+        NSString *url = [NSString stringWithFormat:@"%@://%@", customPrefix, streamUrl ];
+        NSURL *myURL = [NSURL URLWithString:url];
         [[UIApplication sharedApplication] openURL:myURL];
     }
     
-    if ([buttonTitle isEqualToString:NSLocalizedString(@"Transcode", nil)]) {
-        [self streamNativeUrl: [self stringTranscodeUrl: [self.streamObject transcodeStreamURL] ] ];
+    if ( [buttonTitle isEqualToString:NSLocalizedString(@"Transcode", nil)] ) {
+        [myActionSheet dismissWithClickedButtonIndex:0 animated:YES];
+        [self showTranscodeMenu:self.sender withVC:self.vc withActionSheet:NSLocalizedString(@"Playback Transcode Stream", nil)];
+    }
+    
+    if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal Player", nil)] ) {
+        [self streamNativeUrl:streamUrlInternal];
     }
 }
 
@@ -132,9 +160,9 @@
     }
 }
 
-- (NSString*)stringTranscodeUrl:(NSString*)url {
+- (NSString*)stringTranscodeUrl:(NSString*)url withFormat:(NSString*)format {
     TVHSettings *settings = [TVHSettings sharedInstance];
-    return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL, [settings transcodeResolution]];
+    return [url stringByAppendingFormat:format, [settings transcodeResolution]];
 }
 
 - (void)streamNativeUrl:(NSString*)url {
