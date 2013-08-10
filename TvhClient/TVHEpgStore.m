@@ -33,6 +33,24 @@
     }
 }
 
+- (void)removeOldProgramsFromStore {
+    BOOL __block didRemove = false;
+    NSMutableArray *myStore = [[NSMutableArray alloc ] init];
+    if ( self.epgStore ) {
+        for ( TVHEpg *obj in self.epgStore ) {
+            if ( [obj progress] >= 1.0 ) {
+                didRemove = true;
+            } else {
+                [myStore addObject:obj];
+            }
+        }
+        self.epgStore = [myStore copy];
+    }
+    if ( didRemove ) {
+        [self signalDidLoadEpg];
+    }
+}
+
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
@@ -97,7 +115,7 @@
     NSArray *entries = [json objectForKey:@"entries"];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHEpg *epg = [[TVHEpg alloc] init];
+        TVHEpg *epg = [[TVHEpg alloc] initWithTvhServer:self.tvhServer];
         [epg updateValuesFromDictionary:obj];
         [self addEpgItemToStore:epg];
     }];
@@ -205,6 +223,10 @@
 
 - (void)downloadMoreEpgList {
     [self retrieveEpgDataFromTVHeadend:[self.epgStore count] limit:50 fetchAll:false];
+}
+
+- (void)clearEpgData {
+    self.epgStore = nil;
 }
 
 - (NSArray*)epgStoreItems{

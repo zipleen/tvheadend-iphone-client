@@ -32,7 +32,8 @@
 
 - (NSArray*)channels;
 - (NSArray*)arrayChannels;
-- (TVHChannel*)channelWithName:(NSString*) name;
-- (TVHChannel*)channelWithId:(NSInteger) channelId;
+- (TVHChannel*)channelWithName:(NSString*)name;
+- (TVHChannel*)channelWithId:(NSInteger)channelId;
 - (NSArray*)filteredChannelList;
+- (void)updateChannelsProgress;
 @end

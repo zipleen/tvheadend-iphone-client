@@ -9,6 +9,7 @@
 #import "TVHSupportMeViewController.h"
 #import "TVHIAPHelper.h"
 #import "TVHSettings.h"
+#import <QuartzCore/QuartzCore.h>
 #import "UIView+ClosestParent.h"
 
 @implementation SKProduct (priceAsString)
@@ -72,15 +73,16 @@
         frame.origin.y = 0;
         frame.size = self.scrollView.frame.size;
         
-        
         UIView *subview = [[UIView alloc] initWithFrame:frame];
         subview.backgroundColor = [UIColor clearColor];
+        
         
         if ( [[TVHIAPHelper sharedInstance] productPurchased:product.productIdentifier] ) {
             // text
             UILabel *tks = [[UILabel alloc] initWithFrame:CGRectMake(192, 60, 108, 29)];
             tks.text = NSLocalizedString(@"Thanks!", "");
             tks.backgroundColor = [UIColor clearColor];
+            tks.textColor = [UIColor grayColor];
             tks.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
             [subview addSubview:tks];
         } else {
@@ -92,6 +94,13 @@
             [button addTarget:self action:@selector(buyRemoveAd:) forControlEvents:UIControlEventTouchDown];
             [subview addSubview:button];
         }
+        
+        UILabel *tks = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 280, 29)];
+        tks.text = NSLocalizedString(@"Support Me", "");
+        tks.backgroundColor = [UIColor clearColor];
+        tks.textAlignment = NSTextAlignmentCenter;
+        tks.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
+        [subview addSubview:tks];
         
         // text
         UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, 280, 26)];
@@ -107,6 +116,12 @@
         desc.backgroundColor = [UIColor clearColor];
         desc.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
         [subview addSubview:desc];
+        
+        UIView *rect = [[UIView alloc] initWithFrame:CGRectMake(20, 40, 280, 340)];
+        rect.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [subview addSubview:rect];
+        rect.layer.cornerRadius = 5;
+        rect.layer.masksToBounds = YES;
         
         [self.scrollView addSubview:subview];
     }

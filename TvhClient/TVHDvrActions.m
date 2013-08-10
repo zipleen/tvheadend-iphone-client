@@ -46,6 +46,9 @@
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"didSuccessDvrAction"
              object:action];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"didSuccessfulyAddEpgToRecording"
+                                                                object:[NSNumber numberWithInt:idint]];
         } else {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"didReturnErrorDvrAction"

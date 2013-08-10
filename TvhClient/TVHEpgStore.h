@@ -35,6 +35,8 @@
 - (void)downloadAllEpgItems;
 - (void)downloadEpgList;
 - (void)downloadMoreEpgList;
+- (void)clearEpgData;
 - (NSArray*)epgStoreItems;
 - (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate;
+- (void)removeOldProgramsFromStore;
 @end

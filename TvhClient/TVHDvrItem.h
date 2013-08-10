@@ -11,8 +11,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TVHChannel.h"
 #import "TVHPlayStreamDelegate.h"
+
+@class TVHChannel;
 
 @interface TVHDvrItem : NSObject <TVHPlayStreamDelegate>
 @property (nonatomic, strong) NSString *channel;

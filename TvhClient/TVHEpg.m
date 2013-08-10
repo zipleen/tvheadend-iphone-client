@@ -11,15 +11,79 @@
 //
 
 #import "TVHEpg.h"
+#import "TVHServer.h"
 #import "TVHDvrActions.h"
-#import "TVHChannelStore.h"
 
-// to remove
-#import "TVHSingletonServer.h"
+@interface TVHEpg()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@end
 
 @implementation TVHEpg
 
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
+    self = [self init];
+    if (!self) return nil;
+    self.tvhServer = tvhServer;
+    
+    return self;
+}
+
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
+    
+    // returns TVHEpg
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(willRemoveEpgFromRecording:)
+                                                 name:@"willRemoveEpgFromRecording"
+                                               object:nil];
+    
+    // returns nsnumber
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didSuccessfulyAddEpgToRecording:)
+                                                 name:@"didSuccessfulyAddEpgToRecording"
+                                               object:nil];
+    return self;
+}
+
+// this one is wrong because I don't know if it actually removed recording or not! 
+- (void)willRemoveEpgFromRecording:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:@"willRemoveEpgFromRecording"]) {
+        TVHDvrItem *dvritem = [notification object];
+        if ( [dvritem.channel isEqualToString:self.channel] && [dvritem.title isEqualToString:self.title] && [dvritem.start isEqual:self.start] ) {
+            self.schedstate = @"";
+            
+            // update channels
+            [[self.tvhServer channelStore] updateChannelsProgress];
+            // update channel program detail view
+            TVHChannel *ch = [[self.tvhServer channelStore] channelWithId:self.channelid];
+            [ch signalDidLoadEpgChannel];
+        }
+    }
+}
+
+- (void)didSuccessfulyAddEpgToRecording:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:@"didSuccessfulyAddEpgToRecording"]) {
+        NSNumber *number = [notification object];
+        if ( [number intValue] == self.id ) {
+            // not exactly right, but it's better than having to get ALL the epg again :p
+            if ( [self progress] > 0 ) {
+                self.schedstate = @"recording";
+            } else {
+                self.schedstate = @"scheduled";
+            }
+        
+            // update channels
+            [[self.tvhServer channelStore] updateChannelsProgress];
+            // update channel program detail view
+            TVHChannel *ch = [[self.tvhServer channelStore] channelWithId:self.channelid];
+            [ch signalDidLoadEpgChannel];
+        }
+    }
+}
+
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.channel = nil;
     self.chicon = nil;
     self.title = nil;
@@ -106,7 +170,7 @@
 }
 
 - (TVHChannel*)channelObject {
-    TVHChannelStore *store = [[TVHSingletonServer sharedServerInstance] channelStore];
+    TVHChannelStore *store = [self.tvhServer channelStore];
     TVHChannel *channel = [store channelWithId:self.channelid];
     return channel;
 }

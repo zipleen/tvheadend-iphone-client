@@ -12,11 +12,39 @@
 
 #import "TVHServer.h"
 
-@implementation TVHServer
+@interface TVHServer() {
+    BOOL inProcessing;
+}
+@property (strong, nonatomic) NSTimer *timer;
+@end
+
+@implementation TVHServer 
+
+- (void)appWillResignActive:(NSNotification*)note {
+    [self.timer invalidate];
+}
+
+- (void)appWillEnterForeground:(NSNotification*)note {
+    [self processTimerEvents];
+    [self startTimer];
+}
+
+- (void)startTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(processTimerEvents) userInfo:nil repeats:YES];
+}
+
+- (void)processTimerEvents {
+    if ( ! inProcessing ) {
+        inProcessing = YES;
+        [self.channelStore updateChannelsProgress];
+        inProcessing = NO;
+    }
+}
 
 - (TVHServer*)initVersion:(NSString*)version {
     self = [super init];
     if (self) {
+        inProcessing = NO;
         [self setVersion:version];
         [self.tagStore fetchTagList];
         [self.channelStore fetchChannelList];
@@ -29,8 +57,24 @@
         }
         [self.configNameStore fetchConfigNames];
         [self cometStore];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(appWillResignActive:)
+                                                     name:UIApplicationWillResignActiveNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(appWillEnterForeground:)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
+        [self startTimer];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (TVHTagStore*)tagStore {

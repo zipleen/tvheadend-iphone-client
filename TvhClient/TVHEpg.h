@@ -11,8 +11,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TVHChannel.h"
 
+@class TVHServer;
 @class TVHChannel;
 
 @interface TVHEpg : NSObject
@@ -35,7 +35,7 @@
 @property (nonatomic, strong) NSString *schedstate;
 @property (nonatomic) NSInteger serieslink;
 @property (nonatomic, strong) NSString *contenttype;
-
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (float)progress;
 - (void)addRecording;

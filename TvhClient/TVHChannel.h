@@ -14,7 +14,6 @@
 #import "TVHEpg.h"
 #import "TVHPlayStreamDelegate.h"
 
-@class TVHEpg;
 @class TVHEpgStore;
 @class TVHServer;
 
@@ -59,4 +58,5 @@
 
 - (void)setDelegate:(id <TVHChannelDelegate>) delegate;
 - (void)didLoadEpg:(TVHEpgStore*)epgList;
+- (void)signalDidLoadEpgChannel; // only to be used by tvhEpg
 @end

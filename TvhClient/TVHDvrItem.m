@@ -72,6 +72,8 @@
     } else {
         [TVHDvrActions deleteRecording:self.id];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"willRemoveEpgFromRecording"
+                                                        object:self];
 }
 
 - (TVHChannel*)channelObject {

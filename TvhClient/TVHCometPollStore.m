@@ -61,9 +61,7 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"fetchCometPollStatus" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.boxid = nil;
 }
 

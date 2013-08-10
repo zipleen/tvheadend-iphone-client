@@ -44,6 +44,7 @@
                                                  name:@"channelsNotificationClassReceived"
                                                object:nil];
 
+
     return self;
 }
 
@@ -83,6 +84,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);
 #endif
+    [self.epgStore clearEpgData];
     return true;
 }
 
@@ -199,6 +201,13 @@
     if ([self.delegate respondsToSelector:@selector(didErrorLoadingChannelStore:)]) {
         [self.delegate didErrorLoadingChannelStore:error];
     }   
+}
+
+- (void)updateChannelsProgress {
+    if (self.channels) {
+        [self signalDidLoadChannels];
+    }
+    [self.epgStore removeOldProgramsFromStore];
 }
 
 @end
