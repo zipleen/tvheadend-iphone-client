@@ -205,6 +205,9 @@
         return size.height + 25;
         
     }
+    if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
+        return 60;
+    }
     return 48;
 }
 
@@ -259,7 +262,7 @@
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
             titleLabel.text = epg.title;
-            descLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%d min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
     }
     
@@ -299,7 +302,7 @@
         // on our first time we click more items, we'll spawn a new epgstore and filter for our channel name + program title
         if ( ! self.moreTimes ) {
             self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[[self.dvrItem channelObject] tvhServer]];
-            [self.moreTimes setFilterToChannelName:self.dvrItem.channel];
+            //[self.moreTimes setFilterToChannelName:self.dvrItem.channel];
             [self.moreTimes setFilterToProgramTitle:self.dvrItem.title];
             [self.moreTimes setDelegate:self];
             [self.moreTimes downloadEpgList];
