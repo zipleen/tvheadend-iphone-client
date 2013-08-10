@@ -149,8 +149,8 @@
         dayString = NSLocalizedString(@"Yesterday", @"");
     } else if ( [date isToday] ) {
         dayString = NSLocalizedString(@"Today", @"");
-    } else if ( [date isTomorrow] ) {
-        dayString = NSLocalizedString(@"Tomorrow", @"");
+    //} else if ( [date isTomorrow] ) {
+    //    dayString = NSLocalizedString(@"Tomorrow", @"");
     } else {
         dayString = [dateFormatter stringFromDate:date];
     }
