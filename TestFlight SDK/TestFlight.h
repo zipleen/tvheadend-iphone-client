@@ -6,7 +6,7 @@
 //  Copyright 2011 TestFlight. All rights reserved.
 
 #import <Foundation/Foundation.h>
-#define TESTFLIGHT_SDK_VERSION @"1.3.0-beta.7"
+#define TESTFLIGHT_SDK_VERSION @"1.3.0-beta.8"
 #undef TFLog
 
 #if __cplusplus
@@ -65,12 +65,6 @@ extern "C" {
  * @param checkpointName The name of the checkpoint, this should be a static string
  */
 + (void)passCheckpoint:(NSString *)checkpointName;
-
-/**
- * Use to manually flush data to TestFlight.
- * TestFlight automatically flushes at the end of a session and every `TFOptionFlushSecondsInterval`.
- */
-+ (void)flush;
 
 /**
  * Submits custom feedback to the site. Sends the data in feedback to the site. This is to be used as the method to submit
