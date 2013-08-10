@@ -128,6 +128,8 @@
         if (sel >= 0 ) {
             [self.segmentedControl setSelectedSegmentIndex:sel];
             [self.tableView reloadData];
+        } else if (sel<0) {
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }
