@@ -122,7 +122,7 @@
         }
     }
     if ( section == 2 ) {
-        return 4;
+        return 5;
     }
     return 0;
 }
@@ -273,14 +273,18 @@
             cell.textLabel.text = NSLocalizedString(@"Support Me", @".. in settings screen");
         }
         if ( indexPath.row == 1 ) {
+            icon = NIKFontAwesomeIconGithub;
+            cell.textLabel.text = NSLocalizedString(@"Got an issue?", @".. in settings screen");
+        }
+        if ( indexPath.row == 2 ) {
             icon = NIKFontAwesomeIconQuestionSign;
             cell.textLabel.text = NSLocalizedString(@"FAQ", @".. in settings screen");
         }
-        if ( indexPath.row == 2 ) {
+        if ( indexPath.row == 3 ) {
             icon = NIKFontAwesomeIconInfoSign;
             cell.textLabel.text = NSLocalizedString(@"About", @".. in settings screen");
         }
-        if ( indexPath.row == 3 ) {
+        if ( indexPath.row == 4 ) {
             icon = NIKFontAwesomeIconFileAlt;
             cell.textLabel.text = NSLocalizedString(@"Licenses", @".. in settings screen");
         }
@@ -351,12 +355,8 @@
         [self performSegueWithIdentifier:@"Support Me" sender:self];
     }
     
-    if ( indexPath.section == 2 && (indexPath.row == 2 || indexPath.row == 3) ) {
+    if ( indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4) ) {
         [self performSegueWithIdentifier:@"SettingsGenericText" sender:self];
-    }
-    
-    if ( indexPath.section == 2 && indexPath.row == 1 ) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/zipleen/tvheadend-iphone-client/wiki/FAQ"]];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -376,13 +376,23 @@
     if ( [segue.identifier isEqualToString:@"SettingsGenericText"] ) {
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         TVHSettingsGenericTextViewController *vc = segue.destinationViewController;
-        if ( path.row == 2 ) {
-            [vc setTitle:NSLocalizedString(@"About", @".. in settings screen")];
-            [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
+        if ( path.row == 1 ) {
+            [vc setTitle:NSLocalizedString(@"Issues", @".. in settings screen")];
+            vc.url = @"https://github.com/zipleen/tvheadend-iphone-client/issues";
         }
+        
+        if ( path.row == 2 ) {
+            [vc setTitle:NSLocalizedString(@"FAQ", @".. in settings screen")];
+            vc.url = @"https://github.com/zipleen/tvheadend-iphone-client/wiki/FAQ";
+        }
+        
         if ( path.row == 3 ) {
+            [vc setTitle:NSLocalizedString(@"About", @".. in settings screen")];
+            vc.url = [[NSBundle bundleForClass:[self class]] pathForResource:@"about" ofType:@"html"];
+        }
+        if ( path.row == 4 ) {
             [vc setTitle:NSLocalizedString(@"Licenses", @".. in settings screen")];
-            [vc setDisplayText:[NSString stringWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"licenses" ofType:@"txt"] encoding:NSUTF8StringEncoding error:NULL]];
+            vc.url = [[NSBundle bundleForClass:[self class]] pathForResource:@"licenses" ofType:@"html"];
         }
     }
     if ( [segue.identifier isEqualToString:@"SettingsGenericField"] ) {

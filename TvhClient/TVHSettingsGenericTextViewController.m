@@ -30,8 +30,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.genericText.text = self.displayText;
-	// Do any additional setup after loading the view.
+    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:(NSTextCheckingTypes)NSTextCheckingTypeLink error:nil];
+    NSURL *url;
+    if ( [detector numberOfMatchesInString:self.url options:0 range:NSMakeRange(0, [self.url length])] > 0 ) {
+        url = [NSURL URLWithString:self.url];
+        self.navigationController.navigationItem.rightBarButtonItem.enabled = NO;
+    } else {
+        url = [NSURL fileURLWithPath:self.url];
+        self.navigationController.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:requestObj];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,7 +50,11 @@
 }
 
 - (void)viewDidUnload {
-    [self setGenericText:nil];
+    [self setWebView:nil];
     [super viewDidUnload];
+}
+
+- (IBAction)openInSafari:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.url]];
 }
 @end

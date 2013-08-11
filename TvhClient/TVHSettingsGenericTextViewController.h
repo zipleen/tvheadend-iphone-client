@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TVHSettingsGenericTextViewController : UIViewController
-@property (strong, nonatomic) NSString *displayText;
-@property (weak, nonatomic) IBOutlet UITextView *genericText;
-
+@property (strong, nonatomic) NSString *url;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+- (IBAction)openInSafari:(id)sender;
 @end

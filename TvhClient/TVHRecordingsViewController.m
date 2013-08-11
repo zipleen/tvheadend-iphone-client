@@ -432,6 +432,7 @@
 - (void)didLoadDvr:(NSInteger)type {
     if ( type == self.segmentedControl.selectedSegmentIndex ) {
         [WTStatusBar clearStatusAnimated:YES];
+        [self.refreshControl endRefreshing];
         [self reloadData];
     }
 }
@@ -439,6 +440,7 @@
 - (void)didLoadDvrAutoRec {
     if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
         [WTStatusBar clearStatusAnimated:YES];
+        [self.refreshControl endRefreshing];
         [self reloadData];
     }
 }
