@@ -1905,7 +1905,7 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="w4p-Cd-5r4">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="w4p-Cd-5r4">
                                 <rect key="frame" x="365" y="686" width="38" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -2099,10 +2099,7 @@
         <class className="TVHSettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TVHSettingsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="autoStartPolling:" candidateClass="UISwitch"/>
                 <relationship kind="action" name="doneSettings:"/>
-                <relationship kind="action" name="sendAnonymousStatistics:" candidateClass="UISwitch"/>
-                <relationship kind="action" name="useBlackBorders:" candidateClass="UISwitch"/>
             </relationships>
         </class>
         <class className="TVHStatusSplitViewController" superclassName="MGSplitViewController">

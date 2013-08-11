@@ -76,56 +76,57 @@
         UIView *subview = [[UIView alloc] initWithFrame:frame];
         subview.backgroundColor = [UIColor clearColor];
         
+        UIView *rect = [[UIView alloc] initWithFrame:CGRectMake(10, 70, 300, 340)];
+        rect.backgroundColor = [UIColor lightGrayColor];
+        [subview addSubview:rect];
+        rect.layer.cornerRadius = 5;
+        rect.layer.masksToBounds = YES;
         
         if ( [[TVHIAPHelper sharedInstance] productPurchased:product.productIdentifier] ) {
             // text
-            UILabel *tks = [[UILabel alloc] initWithFrame:CGRectMake(192, 60, 108, 29)];
+            UILabel *tks = [[UILabel alloc] initWithFrame:CGRectMake(192, 90, 108, 29)];
             tks.text = NSLocalizedString(@"Thanks!", "");
             tks.backgroundColor = [UIColor clearColor];
-            tks.textColor = [UIColor grayColor];
+            tks.textColor = [UIColor blueColor];
             tks.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
             [subview addSubview:tks];
         } else {
             // button
-            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(192, 60, 108, 29)];
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(192, 90, 108, 29)];
             [button setTitle:[NSString stringWithFormat:@"Buy %@", product.priceAsString] forState:UIControlStateNormal];
             [button setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
             [button setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
             [button addTarget:self action:@selector(buyRemoveAd:) forControlEvents:UIControlEventTouchDown];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [subview addSubview:button];
         }
         
-        UILabel *tks = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 280, 29)];
-        tks.text = NSLocalizedString(@"Support Me", "");
+        UILabel *tks = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 280, 29)];
+        tks.text = NSLocalizedString(@"You're free to support me!", "");
         tks.backgroundColor = [UIColor clearColor];
         tks.textAlignment = NSTextAlignmentCenter;
         tks.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
         [subview addSubview:tks];
         
         // text
-        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, 280, 26)];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(40, 90, 280, 26)];
         title.text = product.localizedTitle;
         title.backgroundColor = [UIColor clearColor];
         title.font = [UIFont fontWithName:@"Helvetica Neue" size:18];
         [subview addSubview:title];
         
         // description
-        UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(20, 95, 280, 216)];
+        UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(20, 115, 280, 216)];
         desc.text = product.localizedDescription;
         desc.numberOfLines = 7;
         desc.backgroundColor = [UIColor clearColor];
         desc.font = [UIFont fontWithName:@"Helvetica Neue" size:14];
         [subview addSubview:desc];
         
-        UIView *rect = [[UIView alloc] initWithFrame:CGRectMake(20, 40, 280, 340)];
-        rect.backgroundColor = [UIColor groupTableViewBackgroundColor];
-        [subview addSubview:rect];
-        rect.layer.cornerRadius = 5;
-        rect.layer.masksToBounds = YES;
-        
         [self.scrollView addSubview:subview];
     }
     
+    self.pageControl.numberOfPages = [self.products count];
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [self.products count], self.scrollView.frame.size.height);
 }
 
