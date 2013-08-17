@@ -96,6 +96,7 @@
 		AA5E8A1E170F61E200779AC6 /* hardware@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5E8A1C170F61E200779AC6 /* hardware@2x.png */; };
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
+		AA654AD317BF9AB000027D39 /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AA654AD217BF9AB000027D39 /* AFHTTPRequestOperationLogger.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
 		AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */; };
@@ -394,6 +395,8 @@
 		AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannel.m; sourceTree = "<group>"; };
 		AA6542211706196800BA20C1 /* TVHShowNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHShowNotice.h; sourceTree = "<group>"; };
 		AA6542221706196800BA20C1 /* TVHShowNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHShowNotice.m; sourceTree = "<group>"; };
+		AA654AD117BF9AB000027D39 /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperationLogger.h; path = AFHTTPRequestOperationLogger/AFHTTPRequestOperationLogger.h; sourceTree = SOURCE_ROOT; };
+		AA654AD217BF9AB000027D39 /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationLogger.m; path = AFHTTPRequestOperationLogger/AFHTTPRequestOperationLogger.m; sourceTree = SOURCE_ROOT; };
 		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
 		AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelEpg.m; sourceTree = "<group>"; };
 		AA779C9E170CD70400B7DDB4 /* TVHApiKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiKeys.h; sourceTree = "<group>"; };
@@ -895,6 +898,15 @@
 			path = TestData;
 			sourceTree = "<group>";
 		};
+		AA654AD017BF9AA000027D39 /* AFHTTPRequestOperationLogger */ = {
+			isa = PBXGroup;
+			children = (
+				AA654AD117BF9AB000027D39 /* AFHTTPRequestOperationLogger.h */,
+				AA654AD217BF9AB000027D39 /* AFHTTPRequestOperationLogger.m */,
+			);
+			name = AFHTTPRequestOperationLogger;
+			sourceTree = "<group>";
+		};
 		AA7C3FCA16C6C9870057E4C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1089,6 +1101,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA654AD017BF9AA000027D39 /* AFHTTPRequestOperationLogger */,
 				AA88AD6317B19EE300CE7614 /* WTStatusBar */,
 				AAF5FCAC17A844A2001E908B /* NSDate */,
 				AA24868817484E1400AB2E42 /* MGSplitViewController */,
@@ -1777,6 +1790,7 @@
 				AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */,
 				AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */,
 				AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */,
+				AA654AD317BF9AB000027D39 /* AFHTTPRequestOperationLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

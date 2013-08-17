@@ -16,6 +16,7 @@
 
 #ifdef TVH_TESTFLIGHT_KEY
 #import "TestFlight.h"
+#import "AFHTTPRequestOperationLogger.h"
 #endif
 #ifdef TVH_GOOGLEANALYTICS_KEY
 #import "GAI.h"
@@ -46,6 +47,7 @@
 #endif
 #if defined TESTING && defined TVH_TESTFLIGHT_KEY
         [TestFlight takeOff:TVH_TESTFLIGHT_KEY];
+        [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
 #endif
     } else {
 #ifdef TVH_GOOGLEANALYTICS_KEY

@@ -34,3 +34,6 @@
 [submodule "WTStatusBar"]
 	path = WTStatusBar
 	url = https://github.com/pieceofsummer/WTStatusBar.git
+[submodule "AFHTTPRequestOperationLogger"]
+	path = AFHTTPRequestOperationLogger
+	url = https://github.com/AFNetworking/AFHTTPRequestOperationLogger.git
