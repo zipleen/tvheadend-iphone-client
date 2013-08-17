@@ -37,3 +37,6 @@
 [submodule "AFHTTPRequestOperationLogger"]
 	path = AFHTTPRequestOperationLogger
 	url = https://github.com/AFNetworking/AFHTTPRequestOperationLogger.git
+[submodule "AFNetworking-ProxyQueue"]
+	path = AFNetworking-ProxyQueue
+	url = https://github.com/mystcolor/AFNetworking-ProxyQueue.git

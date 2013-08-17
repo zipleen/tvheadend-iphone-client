@@ -97,6 +97,7 @@
 		AA63669F16BF2F5D00FDAC1B /* TVHChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */; };
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
 		AA654AD317BF9AB000027D39 /* AFHTTPRequestOperationLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = AA654AD217BF9AB000027D39 /* AFHTTPRequestOperationLogger.m */; };
+		AA654AD717BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AA654AD617BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
 		AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */; };
@@ -397,6 +398,8 @@
 		AA6542221706196800BA20C1 /* TVHShowNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHShowNotice.m; sourceTree = "<group>"; };
 		AA654AD117BF9AB000027D39 /* AFHTTPRequestOperationLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperationLogger.h; path = AFHTTPRequestOperationLogger/AFHTTPRequestOperationLogger.h; sourceTree = SOURCE_ROOT; };
 		AA654AD217BF9AB000027D39 /* AFHTTPRequestOperationLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPRequestOperationLogger.m; path = AFHTTPRequestOperationLogger/AFHTTPRequestOperationLogger.m; sourceTree = SOURCE_ROOT; };
+		AA654AD517BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AFHTTPClient+ProxyQueue.h"; path = "AFNetworking-ProxyQueue/AFHTTPClient+ProxyQueue.h"; sourceTree = SOURCE_ROOT; };
+		AA654AD617BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AFHTTPClient+ProxyQueue.m"; path = "AFNetworking-ProxyQueue/AFHTTPClient+ProxyQueue.m"; sourceTree = SOURCE_ROOT; };
 		AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelEpg.h; sourceTree = "<group>"; };
 		AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelEpg.m; sourceTree = "<group>"; };
 		AA779C9E170CD70400B7DDB4 /* TVHApiKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiKeys.h; sourceTree = "<group>"; };
@@ -907,6 +910,15 @@
 			name = AFHTTPRequestOperationLogger;
 			sourceTree = "<group>";
 		};
+		AA654AD417BFB9FD00027D39 /* AFNetworking-ProxyQueue */ = {
+			isa = PBXGroup;
+			children = (
+				AA654AD517BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.h */,
+				AA654AD617BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m */,
+			);
+			name = "AFNetworking-ProxyQueue";
+			sourceTree = "<group>";
+		};
 		AA7C3FCA16C6C9870057E4C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1101,6 +1113,7 @@
 		AA9101AA16C6B2C500673DF5 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA654AD417BFB9FD00027D39 /* AFNetworking-ProxyQueue */,
 				AA654AD017BF9AA000027D39 /* AFHTTPRequestOperationLogger */,
 				AA88AD6317B19EE300CE7614 /* WTStatusBar */,
 				AAF5FCAC17A844A2001E908B /* NSDate */,
@@ -1791,6 +1804,7 @@
 				AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */,
 				AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */,
 				AA654AD317BF9AB000027D39 /* AFHTTPRequestOperationLogger.m in Sources */,
+				AA654AD717BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

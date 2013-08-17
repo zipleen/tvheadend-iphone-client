@@ -12,6 +12,7 @@
 
 #import "AFHTTPClient.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "AFHTTPClient+ProxyQueue.h"
 
 @interface TVHNetworkActivityIndicatorManager : AFNetworkActivityIndicatorManager
 @end
