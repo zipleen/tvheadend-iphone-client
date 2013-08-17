@@ -206,11 +206,7 @@
         cell.accessibilityLabel = channel.name;
     }
     
-    if ( [channel countEpg] > 0 ) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1)];
     [sepColor setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
@@ -225,15 +221,13 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ( [[self.channels objectAtIndex:indexPath.row] countEpg] > 0 ) {
-        if ( self.splitViewController ) {
-            UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
-            [detailView popToRootViewControllerAnimated:NO];
-            
-            [self performSegueWithIdentifier:@"Show Channel Programs Detail" sender:self];
-        } else {
-            [self performSegueWithIdentifier:@"Show Channel Programs" sender:self];
-        }
+    if ( self.splitViewController ) {
+        UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
+        [detailView popToRootViewControllerAnimated:NO];
+        
+        [self performSegueWithIdentifier:@"Show Channel Programs Detail" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"Show Channel Programs" sender:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -262,7 +262,17 @@
     return cell;
 }
 
+- (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if ( [self.channel countEpg] == 0 ) {
+        return NSLocalizedString(@"EPG not available.",nil);
+    }
+    return nil;
+}
+
 - (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if ( [self.channel countEpg] == 0 ) {
+        return 40;
+    }
     return 0.01f;
 }
 
