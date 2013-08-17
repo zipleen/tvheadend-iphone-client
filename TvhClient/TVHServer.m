@@ -271,6 +271,7 @@
     self.capabilities = nil;
     self.version = nil;
     self.realVersion = nil;
+    self.configSettings = nil;
 }
 
 @end

@@ -310,7 +310,7 @@
     [self.refreshControl endRefreshing];
 }
 
-- (void)didErrorLoadingEpgChannel:(NSError*) error {
+- (void)didErrorLoadingEpgChannel:(NSError*)error {
     [TVHShowNotice errorNoticeInView:self.view title:NSLocalizedString(@"Network Error",nil) message:error.localizedDescription];
     [self.refreshControl endRefreshing];
 }
