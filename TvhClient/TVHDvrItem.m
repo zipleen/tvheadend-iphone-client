@@ -90,7 +90,7 @@
     return nil;
 }
 
-- (NSString*)transcodeStreamURL {
+- (NSString*)playlistStreamURL {
     return nil;
 }
 

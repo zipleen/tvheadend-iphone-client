@@ -79,12 +79,9 @@
     return [NSString stringWithFormat:@"%@/stream/channelid/%d", [tvh fullBaseURL], self.chid];
 }
 
-- (NSString*)transcodeStreamURL {
-    if ( [self.tvhServer isTranscodingCapable] ) {
-        TVHSettings *tvh = [TVHSettings sharedInstance];
-        return [NSString stringWithFormat:@"%@/playlist/channelid/%d", [tvh fullBaseURL], self.chid];
-    }
-    return nil;
+- (NSString*)playlistStreamURL {
+    TVHSettings *tvh = [TVHSettings sharedInstance];
+    return [NSString stringWithFormat:@"%@/playlist/channelid/%d", [tvh fullBaseURL], self.chid];
 }
 
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {

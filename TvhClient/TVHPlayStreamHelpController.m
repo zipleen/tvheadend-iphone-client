@@ -13,6 +13,7 @@
 #import "TVHPlayStreamHelpController.h"
 #import "TVHSettings.h"
 #import "TVHNativeMoviePlayerViewController.h"
+#import "TVHSingletonServer.h"
 
 #define TVH_PROGRAMS @{@"VLC":@"vlc", @"Oplayer":@"oplayer", @"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Ace Player":@"aceplayer" }
 #define TVHS_TVHEADEND_STREAM_URL_INTERNAL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS&mux=mpegts"
@@ -75,8 +76,9 @@
     myActionSheet = [[UIActionSheet alloc] init];
     [myActionSheet setTitle:actionTitle];
     [myActionSheet setDelegate:self];
-
-    if ( [self.streamObject transcodeStreamURL] ) {
+    
+    TVHServer *tvhServer = [TVHSingletonServer sharedServerInstance];
+    if ( [tvhServer isTranscodingCapable] ) {
         [myActionSheet addButtonWithTitle:transcode];
         [myActionSheet setDestructiveButtonIndex:countOfItems];
         countOfItems++;
@@ -118,8 +120,8 @@
     NSString *streamUrl, *streamUrlInternal;
     
     if ( transcodingEnabled ) {
-        streamUrl = [self stringTranscodeUrl:[self.streamObject transcodeStreamURL] withFormat:TVHS_TVHEADEND_STREAM_URL];
-        streamUrlInternal = [self stringTranscodeUrl:[self.streamObject transcodeStreamURL] withFormat:TVHS_TVHEADEND_STREAM_URL_INTERNAL];
+        streamUrl = [self stringTranscodeUrl:[self.streamObject streamURL] withFormat:TVHS_TVHEADEND_STREAM_URL];
+        streamUrlInternal = [self stringTranscodeUrl:[self.streamObject playlistStreamURL] withFormat:TVHS_TVHEADEND_STREAM_URL_INTERNAL];
     } else {
         streamUrl = [self.streamObject streamURL];
     }

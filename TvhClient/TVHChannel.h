@@ -41,7 +41,7 @@
 - (void)setCh_icon:(NSString*)icon;
 - (bool)hasTag:(NSInteger)tag;
 - (NSString*)streamURL;
-- (NSString*)transcodeStreamURL;
+- (NSString*)playlistStreamURL;
 - (void)addEpg:(TVHEpg*)epg;
 - (TVHEpg*)currentPlayingProgram;
 - (NSArray*)currentPlayingAndNextPrograms;
