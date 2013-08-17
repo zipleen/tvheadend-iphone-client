@@ -150,10 +150,10 @@
         textLabel.text = NSLocalizedString(@"Use HTTPS", @"..in Settings server edit");
         textField.hidden = YES;
         switchfield.hidden = NO;
-        if ( [[self.server objectForKey:TVHS_USE_HTTPS] isEqualToString:@""] ) {
-            [switchfield setOn:NO];
-        } else {
+        if ( [[self.server objectForKey:TVHS_USE_HTTPS] isEqualToString:@"s"] ) {
             [switchfield setOn:YES];
+        } else {
+            [switchfield setOn:NO];
         }
         [switchfield addTarget:self action: @selector(setUseHttps:) forControlEvents:UIControlEventValueChanged];
     }
