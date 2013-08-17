@@ -56,6 +56,7 @@
             [self fetchCapabilities];
         }
         [self.configNameStore fetchConfigNames];
+        [self fetchConfigSettings];
         [self cometStore];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -203,7 +204,7 @@
 #ifdef TESTING
         NSLog(@"[TVHServer capabilities]: %@", _capabilities);
 #endif
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHVCapabilities"
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHCapabilities"
                                                             object:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[TVHServer capabilities]: %@", error.localizedDescription);
@@ -211,12 +212,47 @@
 
 }
 
+- (void)fetchConfigSettings {
+    [self.jsonClient getPath:@"config" parameters:@{@"op":@"loadSettings"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error;
+        NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseObject error:&error];
+        
+        if( error ) {
+            NSLog(@"[TVHServer fetchConfigSettings]: error %@", error.description);
+            return ;
+        }
+        
+        NSArray *entries = [json objectForKey:@"config"];
+        NSMutableDictionary *config = [[NSMutableDictionary alloc] init];
+        
+        [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [obj enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                [config setValue:obj forKey:key];
+            }];
+        }];
+        
+        self.configSettings = [config copy];
+#ifdef TESTING
+        NSLog(@"[TVHServer configSettings]: %@", self.configSettings);
+#endif
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHConfigSettings"
+                                                            object:self];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"[TVHServer capabilities]: %@", error.localizedDescription);
+    }];
+    
+}
+
+
 - (BOOL)isTranscodingCapable {
     if ( self.capabilities ) {
-        NSString *transcode = @"transcoding";
-        NSInteger idx = [self.capabilities indexOfObject:transcode];
+        NSInteger idx = [self.capabilities indexOfObject:@"transcoding"];
         if ( idx != NSNotFound ) {
-            return true;
+            // check config settings now
+            NSNumber *transcodingEnabled = [self.configSettings objectForKey:@"transcoding_enabled"];
+            if ( [transcodingEnabled integerValue] == 1 ) {
+                return true;
+            }
         }
     }
     return false;

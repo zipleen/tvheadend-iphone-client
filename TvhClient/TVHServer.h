@@ -38,6 +38,7 @@
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSString *realVersion;
 @property (nonatomic, strong) NSArray *capabilities;
+@property (nonatomic, strong) NSDictionary *configSettings;
 - (TVHServer*)initVersion:(NSString*)version;
 - (void)fetchServerVersion;
 - (BOOL)isTranscodingCapable;
