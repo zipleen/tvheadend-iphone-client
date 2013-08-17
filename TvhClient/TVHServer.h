@@ -42,4 +42,5 @@
 - (TVHServer*)initVersion:(NSString*)version;
 - (void)fetchServerVersion;
 - (BOOL)isTranscodingCapable;
+- (void)resetData;
 @end

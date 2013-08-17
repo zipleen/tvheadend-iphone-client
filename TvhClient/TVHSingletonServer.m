@@ -69,6 +69,7 @@
 }
 
 - (void)resetServer {
+    [__tvhserver resetData];
     __tvhserver = nil;
 }
 @end
