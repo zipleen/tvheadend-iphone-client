@@ -12,8 +12,9 @@
 
 #import "TVHSettingsGenericTextViewController.h"
 
-@interface TVHSettingsGenericTextViewController ()
-
+@interface TVHSettingsGenericTextViewController () {
+    BOOL isHttp;
+}
 @end
 
 @implementation TVHSettingsGenericTextViewController
@@ -30,16 +31,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:(NSTextCheckingTypes)NSTextCheckingTypeLink error:nil];
     NSURL *url;
-    if ( [detector numberOfMatchesInString:self.url options:0 range:NSMakeRange(0, [self.url length])] > 0 ) {
+    if ( [[self.url substringToIndex:4] isEqualToString:@"http"] ) {
         url = [NSURL URLWithString:self.url];
-        self.navigationController.navigationItem.rightBarButtonItem.enabled = NO;
+        isHttp = YES;
+        self.webView.scalesPageToFit = YES;
     } else {
         url = [NSURL fileURLWithPath:self.url];
-        self.navigationController.navigationItem.rightBarButtonItem.enabled = YES;
+        isHttp = NO;
     }
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [self.webView setDelegate:self];
     [self.webView loadRequest:requestObj];
 }
 
@@ -56,5 +58,27 @@
 
 - (IBAction)openInSafari:(id)sender {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.url]];
+}
+
+- (IBAction)goBack:(id)sender {
+    [self.webView goBack];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    UIBarButtonItem *addButton1;
+    if ( [webView canGoBack] ) {
+        addButton1 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Go Back", @"")
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(goBack:)];
+    } else {
+        if ( isHttp ) {
+            addButton1 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Open In Safari", @"")
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(openInSafari:)];
+        }
+    }
+    [self.navigationItem setRightBarButtonItem:addButton1];
 }
 @end

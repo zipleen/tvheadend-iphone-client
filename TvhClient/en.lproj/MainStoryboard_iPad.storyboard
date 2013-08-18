@@ -168,13 +168,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kE5-2F-eDJ">
-                        <barButtonItem key="rightBarButtonItem" title="Open In Safari" id="IfS-h4-Cjw">
-                            <connections>
-                                <action selector="openInSafari:" destination="8ta-wh-pjF" id="yeq-hy-78a"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="kE5-2F-eDJ"/>
                     <connections>
                         <outlet property="webView" destination="pGZ-M5-lEI" id="wNh-Be-hO1"/>
                     </connections>
