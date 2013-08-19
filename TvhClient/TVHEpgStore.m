@@ -25,6 +25,8 @@
 @implementation TVHEpgStore
 
 - (void)appWillEnterForeground:(NSNotification*)note {
+    [self removeOldProgramsFromStore];
+    
     TVHEpg *last = [self.epgStore lastObject];
     if ( last && [last.start compare:[NSDate date]] == NSOrderedDescending ) {
         self.epgStore = nil;
@@ -44,9 +46,9 @@
                 [myStore addObject:obj];
             }
         }
-        self.epgStore = [myStore copy];
     }
     if ( didRemove ) {
+        self.epgStore = [myStore copy];
         [self signalDidLoadEpg];
     }
 }
@@ -58,6 +60,7 @@
     self.jsonClient = [self.tvhServer jsonClient];
     
     self.statsEpgName = @"Shared";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     return self;
 }
 
