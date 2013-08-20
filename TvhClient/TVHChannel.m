@@ -246,6 +246,23 @@
     return self.chid == otherCast.chid;
 }
 
+// TODO refactor the whole ChannelEPG crap - it should be a self contained day/program store!
+- (void)removeOldProgramsFromStore {
+    if ( self.channelEpgDataByDay ) {
+        for ( TVHChannelEpg *channelEpg in self.channelEpgDataByDay ) {
+            NSArray *testingPrograms = [channelEpg.programs copy];
+            for ( TVHEpg *obj in testingPrograms ) {
+                if ( [obj progress] >= 1.0 ) {
+                    [channelEpg.programs removeObject:obj];
+                }
+            }
+        }
+    }
+    
+    // we need to make the controller update the channel progress - TODO how can I make this more efficient?
+    [self signalDidLoadEpgChannel];
+}
+
 #pragma delegate stuff
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     NSArray *epgItems = [epgStore epgStoreItems];

@@ -208,7 +208,7 @@
     }
     [self.epgStore removeOldProgramsFromStore];
     for ( TVHChannel *channel in self.channels ) {
-        [channel signalDidLoadEpgChannel];
+        [channel removeOldProgramsFromStore];
     }
 }
 
