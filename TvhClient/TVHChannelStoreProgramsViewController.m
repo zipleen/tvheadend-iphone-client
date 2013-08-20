@@ -161,6 +161,11 @@
 }
 
 - (void)updateSegmentControl {
+    if ( [self.channel countEpg] == 0 ) {
+        self.segmentedControl.enabled = NO;
+        return;
+    }
+    
     for (int i=0 ; i<[self.channel totalCountOfDaysEpg]; i++) {
         NSDate *date = [self.channel dateForDay:i];
         NSString *dateString = [self stringFromDate:date];
@@ -270,11 +275,34 @@
 }
 
 - (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if ( [self.channel countEpg] == 0 ) {
-        return 40;
-    }
     return 0.01f;
 }
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    //create the uiview container
+    UIView *tfooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tableView.frame.size.width, 45)];
+    tfooterView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    //create the uilabel for the text
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(_tableView.frame.size.width/2-120, 0, 240, 35)];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:17];
+    label.numberOfLines = 2;
+    label.lineBreakMode = UILineBreakModeWordWrap;
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor colorWithRed:0.298039 green:0.337255 blue:0.423529 alpha:1];
+    label.shadowColor = [UIColor whiteColor];
+    label.text = [self tableView:self.tableView titleForFooterInSection:section];
+    label.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
+    
+    label.accessibilityLabel = [self tableView:self.tableView titleForFooterInSection:section];
+    //add the label to the view
+    [tfooterView addSubview:label];
+    
+    return tfooterView;
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
