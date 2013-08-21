@@ -224,10 +224,16 @@
     return [self.channelEpgDataByDay count];
 }
 
+// returns the date for the first epg entry in that day
 - (NSDate*)dateForDay:(NSInteger)day {
-    TVHChannelEpg *epg = [self.channelEpgDataByDay objectAtIndex:day];
-    TVHEpg *realEpg = [[epg programs] objectAtIndex:0];
-    return [realEpg start];
+    if ( day < [self.channelEpgDataByDay count] ) {
+        TVHChannelEpg *epg = [self.channelEpgDataByDay objectAtIndex:day];
+        if ( epg ) {
+            TVHEpg *realEpg = [epg.programs objectAtIndex:0];
+            return [realEpg start];
+        }
+    }
+    return nil;
 }
 
 - (NSInteger)numberOfProgramsInDay:(NSInteger)section{
@@ -249,12 +255,20 @@
 // TODO refactor the whole ChannelEPG crap - it should be a self contained day/program store!
 - (void)removeOldProgramsFromStore {
     if ( self.channelEpgDataByDay ) {
-        for ( TVHChannelEpg *channelEpg in self.channelEpgDataByDay ) {
+        NSArray *testingChannelEpgDataByDay = [self.channelEpgDataByDay copy];
+        for ( TVHChannelEpg *channelEpg in testingChannelEpgDataByDay ) {
             NSArray *testingPrograms = [channelEpg.programs copy];
             for ( TVHEpg *obj in testingPrograms ) {
                 if ( [obj progress] >= 1.0 ) {
-                    [channelEpg.programs removeObject:obj];
+                    // to remove the channel, we need to fetch the original channelEpg array
+                    TVHChannelEpg *originalPrograms = [self.channelEpgDataByDay objectAtIndex:[self.channelEpgDataByDay indexOfObject:channelEpg]];
+                    [originalPrograms.programs removeObject:obj];
                 }
+            }
+            
+            // we now need to remove days that no longer have epgs in them!
+            if ( [channelEpg.programs count] == 0 ) {
+                [self.channelEpgDataByDay removeObject:channelEpg];
             }
         }
     }

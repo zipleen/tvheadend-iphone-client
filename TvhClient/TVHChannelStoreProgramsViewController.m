@@ -168,6 +168,11 @@
     
     for (int i=0 ; i<[self.channel totalCountOfDaysEpg]; i++) {
         NSDate *date = [self.channel dateForDay:i];
+        if ( !date ) {
+            // uh oh, so we don't have a date for this day? let's forcebly refresh
+            NSLog(@"[Program Detail] - I don't have a date for the first epg program - bug?");
+            return [self pullToRefreshViewShouldRefresh];
+        }
         NSString *dateString = [self stringFromDate:date];
         if ( i >= [self.segmentedControl numberOfSegments] ) {
             [self.segmentedControl insertSegmentWithTitle:dateString atIndex:i animated:YES];
@@ -177,6 +182,12 @@
             }
         }
     }
+    
+    // remove excess segments
+    for ( int i = [self.segmentedControl numberOfSegments]; i > [self.channel totalCountOfDaysEpg]; i-- ) {
+        [self.segmentedControl removeSegmentAtIndex:i animated:YES];
+    }
+    
     if ( self.segmentedControl.selectedSegmentIndex == -1 && [self.segmentedControl numberOfSegments] > 0 ) {
         [self.segmentedControl setSelectedSegmentIndex:0];
     }

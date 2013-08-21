@@ -31,7 +31,6 @@
     NSData *data = [TVHTestHelper loadFixture:@"Log.tags"];
     TVHTagStore *store = [[TVHTagStore alloc] init];
     STAssertNotNil(store, @"creating tvhtag store object");
-    NSLog(@"olha aqui: %d", [store.tags count]);
     [store fetchedData:data];
     STAssertTrue( ([store.tags count] == 13+1), @"tag count does not match");
     

@@ -88,4 +88,18 @@
     STAssertTrue( ([chepg.programs count] == 4), @"programs == %d should be 4", [chepg.programs count]);
 }
 
+- (void)testRemovingLastEpgOfTheDay {
+    TVHChannel *channel = [self channel];
+    TVHEpg *epg = [self epg];
+    
+    [channel addEpg:epg];
+    TVHChannelEpg *chepg = [channel.channelEpgDataByDay objectAtIndex:0];
+    STAssertTrue( ([chepg.programs count] == 1), @"epg not inserted");
+    
+    // we now have a channel with 1 epg in it
+    [channel removeOldProgramsFromStore];
+    
+    STAssertTrue( ([chepg.programs count] == 0), @"epg day was not removed when last epg got removed");
+}
+
 @end
