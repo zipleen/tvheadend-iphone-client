@@ -141,7 +141,7 @@
     channelNameLabel.text = channel.name;
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
     [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        if (!error) {
+        if (!error && image) {
             channelImage.image = [TVHImageCache resizeImage:image];
         }
     } ];

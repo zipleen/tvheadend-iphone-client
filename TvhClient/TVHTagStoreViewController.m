@@ -133,7 +133,7 @@
     tagNumberLabel.text = nil;
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
     [channelImage setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        if (!error) {
+        if (!error && image) {
             channelImage.image = [TVHImageCache resizeImage:image];
         }
     } ];

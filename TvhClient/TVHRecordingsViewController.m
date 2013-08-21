@@ -265,7 +265,7 @@
             TVHChannel *channel = [channelStore channelWithName:autoRecItem.channel];
             channelImage.contentMode = UIViewContentModeScaleAspectFit;
             [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                if (!error) {
+                if (!error && image) {
                     channelImage.image = [TVHImageCache resizeImage:image];
                 }
             } ];
@@ -284,7 +284,7 @@
         dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
         statusLabel.text = dvrItem.status;
         [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            if (!error) {
+            if (!error && image) {
                 channelImage.image = [TVHImageCache resizeImage:image];
             }
         } ];

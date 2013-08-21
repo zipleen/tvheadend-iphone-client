@@ -184,7 +184,7 @@
     channelName.text = epg.channel;
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
     [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        if (!error) {
+        if (!error && image) {
             channelImage.image = [TVHImageCache resizeImage:image];
         }
     } ];
