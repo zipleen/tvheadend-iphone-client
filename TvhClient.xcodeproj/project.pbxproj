@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA038D8517C5670200F8977C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA038D8417C5670200F8977C /* Crashlytics.framework */; };
 		AA08625517AAF9FD001108D7 /* TVHUICustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */; };
 		AA08B241178370FB000B0E2E /* TVHiOSCheckVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B240178370FB000B0E2E /* TVHiOSCheckVersion.m */; };
 		AA08B24717838197000B0E2E /* UIView+ClosestParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B24617838197000B0E2E /* UIView+ClosestParent.m */; };
@@ -122,7 +123,6 @@
 		AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA97AA59170642FD0068702E /* PDKeychainBindingsController.m */; };
 		AA97AA5D17065B540068702E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA97AA5C17065B540068702E /* Security.framework */; };
 		AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */; };
-		AA9BD3C9175B94E800670C76 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BD3C8175B94E800670C76 /* Crashlytics.framework */; };
 		AA9BD3CC175B953700670C76 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BD3CB175B953700670C76 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AA9BD3CF175BCDAC00670C76 /* navigationbar_inverted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9BD3CD175BCDAC00670C76 /* navigationbar_inverted@2x.png */; };
 		AA9BD3D0175BCDAC00670C76 /* navigationbar_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9BD3CE175BCDAC00670C76 /* navigationbar_inverted.png */; };
@@ -258,6 +258,7 @@
 /* Begin PBXFileReference section */
 		AA00CA87171362AF00A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AA00CA8B171362D100A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		AA038D8417C5670200F8977C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		AA08625317AAF9FD001108D7 /* TVHUICustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHUICustomTabBarController.h; sourceTree = "<group>"; };
 		AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHUICustomTabBarController.m; sourceTree = "<group>"; };
 		AA08B23F178370FB000B0E2E /* TVHiOSCheckVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHiOSCheckVersion.h; sourceTree = "<group>"; };
@@ -449,7 +450,6 @@
 		AA97AA5C17065B540068702E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AA99BC5D16ED54290087060A /* TVHEpgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHEpgTableViewController.h; sourceTree = "<group>"; };
 		AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHEpgTableViewController.m; sourceTree = "<group>"; };
-		AA9BD3C8175B94E800670C76 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		AA9BD3CB175B953700670C76 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		AA9BD3CD175BCDAC00670C76 /* navigationbar_inverted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_inverted@2x.png"; sourceTree = "<group>"; };
 		AA9BD3CE175BCDAC00670C76 /* navigationbar_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationbar_inverted.png; sourceTree = "<group>"; };
@@ -673,7 +673,7 @@
 				AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */,
 				AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */,
 				AAEE7A87171240AE00D0E584 /* libGoogleAnalytics.a in Frameworks */,
-				AA9BD3C9175B94E800670C76 /* Crashlytics.framework in Frameworks */,
+				AA038D8517C5670200F8977C /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1219,10 +1219,10 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA038D8417C5670200F8977C /* Crashlytics.framework */,
 				AAC59D6417A09A1E005F07B3 /* StoreKit.framework */,
 				AAB33132179A0AD4001630DC /* MediaPlayer.framework */,
 				AA9BD3CB175B953700670C76 /* AdSupport.framework */,
-				AA9BD3C8175B94E800670C76 /* Crashlytics.framework */,
 				AA3EE6F7172B008100AD60F5 /* CoreData.framework */,
 				AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */,
 				AAE7B79C170782200052E6F3 /* libssh2.a */,

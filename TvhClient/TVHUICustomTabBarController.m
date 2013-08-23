@@ -20,29 +20,21 @@
 // iPad uses a different root controller! iPhone root controller is this one =)
 
 // Autorotation (iOS <= 5.x)
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     
     if ([self presentedViewController] && [[self presentedViewController] isKindOfClass:[MPMoviePlayerController class]]) {
-        
-        // Playing Video: Anything but 'Portrait (Upside down)' is OK
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    }
-    else{
-        // NOT Playing Video: Only 'Portrait' is OK
+    } else {
         return (interfaceOrientation == UIInterfaceOrientationPortrait);
     }
 }
 
-
 // Autorotation (iOS >= 6.0)
-
 - (BOOL)shouldAutorotate
 {
     return YES;
 }
-
 
 - (NSUInteger)supportedInterfaceOrientations
 {
