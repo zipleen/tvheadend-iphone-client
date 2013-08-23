@@ -164,6 +164,8 @@
     if ( [self.channel countEpg] == 0 ) {
         self.segmentedControl.enabled = NO;
         return;
+    } else {
+        self.segmentedControl.enabled = YES;
     }
     
     for (int i=0 ; i<[self.channel totalCountOfDaysEpg]; i++) {
