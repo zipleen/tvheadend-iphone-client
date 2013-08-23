@@ -18,18 +18,20 @@
 @interface TVHChannelStore ()
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *channels;
-@property (nonatomic, strong) TVHEpgStore *epgStore;
+@property (nonatomic, strong) TVHEpgStore *currentlyPlayingEpgStore;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHChannelStore 
 
-- (TVHEpgStore*)epgStore {
-    if( ! _epgStore ){
-        _epgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying" withTvhServer:self.tvhServer];
-        [_epgStore setDelegate:self];
+- (TVHEpgStore*)currentlyPlayingEpgStore {
+    if( ! _currentlyPlayingEpgStore ){
+        _currentlyPlayingEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying" withTvhServer:self.tvhServer];
+        [_currentlyPlayingEpgStore setDelegate:self];
+        // we can't have the object register the notification, because every channel has one epgStore - that would make every epgStore object update itself!!
+        [[NSNotificationCenter defaultCenter] addObserver:_currentlyPlayingEpgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
-    return _epgStore;
+    return _currentlyPlayingEpgStore;
 }
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
@@ -50,7 +52,7 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.channels = nil;
-    self.epgStore = nil;
+    self.currentlyPlayingEpgStore = nil;
     self.jsonClient = nil;
     self.profilingDate = nil;
 }
@@ -83,7 +85,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);
 #endif
-    [self.epgStore clearEpgData];
+    [self.currentlyPlayingEpgStore clearEpgData];
     return true;
 }
 
@@ -106,7 +108,7 @@
             if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
                 [self.delegate didLoadChannels];
             }
-            [self.epgStore downloadEpgList];
+            [self.currentlyPlayingEpgStore downloadEpgList];
         }
         
        // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -203,12 +205,25 @@
 }
 
 - (void)updateChannelsProgress {
-    if (self.channels) {
-        [self signalDidLoadChannels];
+    // 1 - remove old programs, from currentlyPlaying and from each Channel
+    [self.currentlyPlayingEpgStore removeOldProgramsFromStore];
+    
+    // 2 - check if we need to download more programs
+    for ( TVHChannel *channel in self.channels ) {
+        if ( [channel isLastEpgFromThePast] ) {
+            [self.currentlyPlayingEpgStore downloadEpgList];
+            break;
+        }
     }
-    [self.epgStore removeOldProgramsFromStore];
+    
+    // 3 - remove old programs from channels (this should have the previous more programs already added)
     for ( TVHChannel *channel in self.channels ) {
         [channel removeOldProgramsFromStore];
+    }
+    
+    // 4 - signal the refresh of channel data, with updated EPG
+    if (self.channels) {
+        [self signalDidLoadChannels];
     }
 }
 

@@ -44,6 +44,8 @@
         // should we change this to a notification? this epgstore SHOULD be shared!!
         _epgStore = [[TVHEpgStore alloc] initWithTvhServer:[TVHSingletonServer sharedServerInstance]];
         [self.epgStore setDelegate:self];
+        // we can't have the object register the notification, because every channel has one epgStore - that would make every epgStore object update itself!!
+        [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
     return _epgStore;
 }

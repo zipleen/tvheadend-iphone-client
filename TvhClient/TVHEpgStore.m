@@ -27,8 +27,7 @@
 - (void)appWillEnterForeground:(NSNotification*)note {
     [self removeOldProgramsFromStore];
     
-    TVHEpg *last = [self.epgStore lastObject];
-    if ( last && [last.start compare:[NSDate date]] == NSOrderedDescending ) {
+    if ( [self isLastEpgFromThePast] ) {
         self.epgStore = nil;
         self.totalEventCount = 0;
         [self downloadEpgList];
@@ -53,6 +52,11 @@
     }
 }
 
+- (BOOL)isLastEpgFromThePast {
+    TVHEpg *last = [self.epgStore lastObject];
+    return ( last && [last.start compare:[NSDate date]] == NSOrderedDescending );
+}
+
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
@@ -60,7 +64,6 @@
     self.jsonClient = [self.tvhServer jsonClient];
     
     self.statsEpgName = @"Shared";
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     return self;
 }
 
@@ -197,20 +200,20 @@
 - (void)getMoreEpg:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
     // get last epg
     // check date
-    // if date > datenow, get more 50
+    // if date > datenow, get more 50 (DEFAULT_REQUEST_EPG_ITEMS)
     if ( fetchAll ) {
         if ( (start+limit) < self.totalEventCount ) {
-            [self retrieveEpgDataFromTVHeadend:(start+limit) limit:300 fetchAll:true];
+            [self retrieveEpgDataFromTVHeadend:(start+limit) limit:MAX_REQUEST_EPG_ITEMS fetchAll:true];
         }
     } else {
         TVHEpg *last = [self.epgStore lastObject];
         if ( last ) {
-            NSDate *localDate = [NSDate dateWithTimeIntervalSinceNow:21600];
+            NSDate *localDate = [NSDate dateWithTimeIntervalSinceNow:SECONDS_TO_FETCH_AHEAD_EPG_ITEMS];
     #ifdef TESTING
             //NSLog(@"localdate: %@ | last start date: %@ ", localDate, last.start);
     #endif
             if ( [localDate compare:last.start] == NSOrderedDescending && (start+limit) < self.totalEventCount ) {
-                [self retrieveEpgDataFromTVHeadend:(start+limit) limit:50 fetchAll:false];
+                [self retrieveEpgDataFromTVHeadend:(start+limit) limit:DEFAULT_REQUEST_EPG_ITEMS fetchAll:false];
             }
         }
     }
@@ -221,11 +224,11 @@
 }
 
 - (void)downloadEpgList {
-    [self retrieveEpgDataFromTVHeadend:0 limit:50 fetchAll:false];
+    [self retrieveEpgDataFromTVHeadend:0 limit:DEFAULT_REQUEST_EPG_ITEMS fetchAll:false];
 }
 
 - (void)downloadMoreEpgList {
-    [self retrieveEpgDataFromTVHeadend:[self.epgStore count] limit:50 fetchAll:false];
+    [self retrieveEpgDataFromTVHeadend:[self.epgStore count] limit:DEFAULT_REQUEST_EPG_ITEMS fetchAll:false];
 }
 
 - (void)clearEpgData {

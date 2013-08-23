@@ -56,6 +56,7 @@
 - (NSInteger)numberOfProgramsInDay:(NSInteger)section;
 - (NSInteger)totalCountOfDaysEpg;
 - (void)removeOldProgramsFromStore;
+- (BOOL)isLastEpgFromThePast;
 
 - (void)setDelegate:(id <TVHChannelDelegate>) delegate;
 - (void)didLoadEpg:(TVHEpgStore*)epgList;

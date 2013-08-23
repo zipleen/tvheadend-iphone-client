@@ -277,6 +277,18 @@
     [self signalDidLoadEpgChannel];
 }
 
+- (BOOL)isLastEpgFromThePast {
+    TVHChannelEpg *lastChannelEpg = [self.channelEpgDataByDay lastObject];
+    if ( ! lastChannelEpg ) {
+        return NO; // probably we don't have an EPG! let's not trigger a refresh because of that
+    }
+    TVHEpg *last = [lastChannelEpg.programs lastObject];
+    if ( ! last ) {
+        return YES;
+    }
+    return ( [last.end compare:[NSDate date]] == NSOrderedAscending );
+}
+
 #pragma delegate stuff
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     NSArray *epgItems = [epgStore epgStoreItems];

@@ -13,6 +13,10 @@
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
 
+#define MAX_REQUEST_EPG_ITEMS 300 // tvheadend has a limit of how much items you can request at one time
+#define DEFAULT_REQUEST_EPG_ITEMS 50 // this is the default query limit on the webUI
+#define SECONDS_TO_FETCH_AHEAD_EPG_ITEMS 21600
+
 @class TVHServer;
 @class TVHEpgStore;
 
@@ -39,4 +43,5 @@
 - (NSArray*)epgStoreItems;
 - (void)setDelegate:(id <TVHEpgStoreDelegate>)delegate;
 - (void)removeOldProgramsFromStore;
+- (BOOL)isLastEpgFromThePast;
 @end
