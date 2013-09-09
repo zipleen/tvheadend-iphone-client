@@ -46,7 +46,7 @@
     super.dvrItems = nil;
     super.cachedDvrItems = nil;
     
-    [super fetchDvrItemsFromServer:@"dvrlist" withType:RECORDING_UPCOMING];
+    [super fetchDvrItemsFromServer:@"dvrlist" withType:RECORDING_UPCOMING start:0 limit:20];
     [super signalDidLoadDvr:RECORDING_FINISHED];
     [super signalDidLoadDvr:RECORDING_FAILED];
 }

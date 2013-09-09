@@ -74,8 +74,7 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (TVHTagStore*)tagStore {
@@ -171,7 +170,7 @@
         NSString *versionString = [response substringWithRange:[versionRange rangeAtIndex:1]];
         _realVersion = versionString;
         versionString = [versionString stringByReplacingOccurrencesOfString:@"." withString:@""];
-        if ([versionString length] > 2) {
+        if ([versionString length] > 1) {
             self.version = [versionString substringWithRange:NSMakeRange(0, 2)];
 #ifdef TESTING
             NSLog(@"[TVHServer getVersion]: %@", self.version);
@@ -272,6 +271,7 @@
     self.version = nil;
     self.realVersion = nil;
     self.configSettings = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

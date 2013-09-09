@@ -14,7 +14,7 @@
 #import "TVHDvrStore34.h"
 
 @interface TVHDvrStore34 (Private)
-- (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type;
+- (void)fetchDvrItemsFromServer: (NSString*)url withType:(NSInteger)type start:(NSInteger)start limit:(NSInteger)limit;
 @end
 
 @interface TVHDvrStore32 : TVHDvrStore34
