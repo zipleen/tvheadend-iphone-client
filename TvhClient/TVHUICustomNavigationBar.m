@@ -31,7 +31,7 @@
 }
 
 - (void)customize {
-    //if ( ! DEVICE_HAS_IOS7 ) {
+    if ( ! DEVICE_HAS_IOS7 ) {
         //UIImage *navBarBg = [UIImage imageNamed:@"navigationbar.png"];
         //[self setBackgroundImage:navBarBg forBarMetrics:UIBarMetricsDefault];
         [self setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -65,7 +65,7 @@
         [[UISearchBar appearance] setBackgroundImage:[[UIImage imageNamed:@"navigationbar.png"]
                                                      resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 14)]
                                   ];
-    //}
+    }
 }
 
 

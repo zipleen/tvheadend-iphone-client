@@ -37,7 +37,7 @@
     BOOL sendAnonymousStats = [[TVHSettings sharedInstance] sendAnonymousStatistics];
     if ( sendAnonymousStats ) {
 #if defined TESTING && defined TVH_TESTFLIGHT_KEY
-        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+        //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
 #if defined TESTING && defined TVH_TESTFLIGHT_KEY
         [TestFlight takeOff:TVH_TESTFLIGHT_KEY];
