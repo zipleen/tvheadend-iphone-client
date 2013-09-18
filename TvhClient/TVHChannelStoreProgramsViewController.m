@@ -341,11 +341,11 @@
 }
 
 - (void)willLoadEpgChannel {
-    [WTStatusBar setStatusText:[@"Loading Channel Data..." stringByAppendingString:[self.channel name]] timeout:2.0 animated:YES];
+    [TVHStatusBar setStatusText:[@"Loading Channel Data..." stringByAppendingString:[self.channel name]] timeout:2.0 animated:YES];
 }
 
 - (void)didLoadEpgChannel {
-    [WTStatusBar clearStatusAnimated:YES];
+    [TVHStatusBar clearStatusAnimated:YES];
     [self updateSegmentControl];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];

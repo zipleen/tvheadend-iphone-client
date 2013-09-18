@@ -189,11 +189,11 @@
 }
 
 - (void)willLoadTags {
-    [WTStatusBar setStatusText:@"Loading Tags..." timeout:2.0 animated:YES];
+    [TVHStatusBar setStatusText:@"Loading Tags..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadTags {
-    [WTStatusBar clearStatusAnimated:YES];
+    [TVHStatusBar clearStatusAnimated:YES];
     [self reloadData];
     [self.refreshControl endRefreshing];
     if ( [self.tags count] == 1 ) {

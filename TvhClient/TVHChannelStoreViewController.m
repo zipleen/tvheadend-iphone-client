@@ -248,11 +248,11 @@
 }
 
 - (void)willLoadChannels {
-    [WTStatusBar setStatusText:@"Loading Channels..." timeout:2.0 animated:YES];
+    [TVHStatusBar setStatusText:@"Loading Channels..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadChannels {
-    [WTStatusBar clearStatusAnimated:YES];
+    [TVHStatusBar clearStatusAnimated:YES];
     self.channels = [[self.channelStore arrayChannels] copy];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];

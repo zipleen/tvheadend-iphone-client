@@ -262,11 +262,11 @@
 }
 
 - (void)willLoadEpg {
-    [WTStatusBar setStatusText:@"Loading EPG..." timeout:2.0 animated:YES];
+    [TVHStatusBar setStatusText:@"Loading EPG..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
-    [WTStatusBar clearStatusAnimated:YES];
+    [TVHStatusBar clearStatusAnimated:YES];
     [self.refreshControl endRefreshing];
     self.epgTable = [[epgStore epgStoreItems] copy];
     [self.tableView reloadData];

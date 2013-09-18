@@ -101,6 +101,7 @@
 		AA654AD717BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = AA654AD617BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m */; };
 		AA7575E216C9AC4E008BDF29 /* TVHChannelEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
+		AA845E3817E90309002D1CB5 /* TVHStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA845E3717E90309002D1CB5 /* TVHStatusBar.m */; };
 		AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */; };
 		AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6717B19F3A00CE7614 /* WTStatusView.m */; };
 		AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6917B19F3A00CE7614 /* WTStatusWindow.m */; };
@@ -409,6 +410,8 @@
 		AA779C9E170CD70400B7DDB4 /* TVHApiKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiKeys.h; sourceTree = "<group>"; };
 		AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettings.h; sourceTree = "<group>"; };
 		AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettings.m; sourceTree = "<group>"; };
+		AA845E3617E90309002D1CB5 /* TVHStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusBar.h; sourceTree = "<group>"; };
+		AA845E3717E90309002D1CB5 /* TVHStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusBar.m; sourceTree = "<group>"; };
 		AA88AD6417B19F3A00CE7614 /* WTStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTStatusBar.h; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusBar.h; sourceTree = SOURCE_ROOT; };
 		AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTStatusBar.m; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusBar.m; sourceTree = SOURCE_ROOT; };
 		AA88AD6617B19F3A00CE7614 /* WTStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTStatusView.h; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusView.h; sourceTree = SOURCE_ROOT; };
@@ -711,6 +714,8 @@
 				AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */,
 				AA08625317AAF9FD001108D7 /* TVHUICustomTabBarController.h */,
 				AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */,
+				AA845E3617E90309002D1CB5 /* TVHStatusBar.h */,
+				AA845E3717E90309002D1CB5 /* TVHStatusBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1708,6 +1713,7 @@
 				AA91022A16C6B41700673DF5 /* AFHTTPRequestOperation.m in Sources */,
 				AA91022B16C6B41700673DF5 /* AFImageRequestOperation.m in Sources */,
 				AA91022C16C6B41700673DF5 /* AFJSONRequestOperation.m in Sources */,
+				AA845E3817E90309002D1CB5 /* TVHStatusBar.m in Sources */,
 				AA91022D16C6B41700673DF5 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				AA91022E16C6B41700673DF5 /* AFPropertyListRequestOperation.m in Sources */,
 				AA91022F16C6B41700673DF5 /* AFURLConnectionOperation.m in Sources */,

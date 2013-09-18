@@ -422,16 +422,16 @@
 }
 
 - (void)willLoadDvr:(NSInteger)type {
-    [WTStatusBar setStatusText:@"Loading DVR Data..." timeout:2.0 animated:YES];
+    [TVHStatusBar setStatusText:@"Loading DVR Data..." timeout:2.0 animated:YES];
 }
 
 - (void)willLoadDvrAutoRec {
-    [WTStatusBar setStatusText:@"Loading AutoRec DVR Data..." timeout:2.0 animated:YES];
+    [TVHStatusBar setStatusText:@"Loading AutoRec DVR Data..." timeout:2.0 animated:YES];
 }
 
 - (void)didLoadDvr:(NSInteger)type {
     if ( type == self.segmentedControl.selectedSegmentIndex ) {
-        [WTStatusBar clearStatusAnimated:YES];
+        [TVHStatusBar clearStatusAnimated:YES];
         [self.refreshControl endRefreshing];
         [self reloadData];
     }
@@ -439,7 +439,7 @@
 
 - (void)didLoadDvrAutoRec {
     if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
-        [WTStatusBar clearStatusAnimated:YES];
+        [TVHStatusBar clearStatusAnimated:YES];
         [self.refreshControl endRefreshing];
         [self reloadData];
     }
