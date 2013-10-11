@@ -8,6 +8,7 @@ It allows you to list channels, view channel's EPG, search for programs, schedul
 You can now download the app directly from the App Store!
 
 [![TvhClient](http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png)](https://itunes.apple.com/gb/app/tvhclient/id638900112?mt=8&uo=4)
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G6DBJWV5LP36A)
 
 ##Features
 - View tags
