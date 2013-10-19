@@ -45,8 +45,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
     
     [[TVHIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
         if (success) {
@@ -60,7 +58,6 @@
 }
 
 - (void)viewDidUnload {
-    [self setTableView:nil];
     [self setScrollView:nil];
     [self setPageControl:nil];
     [super viewDidUnload];
