@@ -92,6 +92,11 @@
     //[bgColorView setBackgroundColor:[UIColor colorWithRed:0.133 green:0.133 blue:0.133 alpha:1]];
     bgColorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"left_sel.png"] ];
     bgColorView.contentMode = UIViewContentModeBottomLeft;
+    
+    if ( DEVICE_HAS_IOS7 ) {
+        // ios7 has the bottom bar included in the app, need to push 20px down..
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y + 20, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -140,6 +145,7 @@
     image.contentMode = UIViewContentModeScaleAspectFit;
     
     cell.selectedBackgroundView = bgColorView;
+    [cell setBackgroundColor:[UIColor clearColor]];
     
     //UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1)];
     //[sepColor setBackgroundColor:[UIColor colorWithRed:0.212 green:0.212 blue:0.212 alpha:1]];
