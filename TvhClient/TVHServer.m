@@ -258,6 +258,9 @@
 }
 
 - (void)resetData {
+    [self.timer invalidate];
+    self.timer = nil;
+    
     self.jsonClient = nil;
     self.tagStore = nil;
     self.channelStore = nil;

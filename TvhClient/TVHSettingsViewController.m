@@ -80,7 +80,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if ( section == 0 ) {
-        TVHServer *server = [TVHSingletonServer sharedServerInstance];
+        __weak TVHServer *server = [TVHSingletonServer sharedServerInstance];
         if ( [server realVersion] ) {
             return [NSString stringWithFormat:@"Tvheadend Version: %@ (%@)", [server realVersion], [server version]];
         }
