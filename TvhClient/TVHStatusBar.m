@@ -7,7 +7,6 @@
 //
 
 #import "TVHStatusBar.h"
-#import "TVHiOSCheckVersion.h"
 
 @implementation TVHStatusBar
 + (void) clearStatusAnimated:(BOOL)animated {

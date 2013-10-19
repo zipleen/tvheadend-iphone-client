@@ -11,7 +11,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TVHiOSCheckVersion.h"
 
 @interface TVHUICustomNavigationBar : UINavigationBar
 
