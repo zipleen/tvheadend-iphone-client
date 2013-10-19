@@ -188,17 +188,17 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     //[self.refreshControl addTarget:self action:@selector(pullToRefreshViewShouldRefresh) forControlEvents:UIControlEventValueChanged];
-    
-    UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
-                                              initWithTarget:self action:@selector(handleSwipeFromRight:)];
-    [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.tableView addGestureRecognizer:rightGesture];
-    
-    UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
-                                             initWithTarget:self action:@selector(handleSwipeFromLeft:)];
-    [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [self.tableView addGestureRecognizer:leftGesture];
-    
+    if ( ! DEVICE_HAS_IOS7 ) {
+        UISwipeGestureRecognizer *rightGesture = [[UISwipeGestureRecognizer alloc]
+                                                  initWithTarget:self action:@selector(handleSwipeFromRight:)];
+        [rightGesture setDirection:UISwipeGestureRecognizerDirectionRight];
+        [self.tableView addGestureRecognizer:rightGesture];
+        
+        UISwipeGestureRecognizer *leftGesture = [[UISwipeGestureRecognizer alloc]
+                                                 initWithTarget:self action:@selector(handleSwipeFromLeft:)];
+        [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+        [self.tableView addGestureRecognizer:leftGesture];
+    }
     // fetch more items on panel load!
     if ( ! self.moreTimes ) {
         self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[self.channel tvhServer]];
