@@ -267,15 +267,13 @@
     [self setScheduledIcon:schedStatusImage forEpg:epg];
     
     cell.accessibilityLabel = [NSString stringWithFormat:@"%@ %@", epg.fullTitle, [timeFormatter stringFromDate: epg.start]];
-    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1)];
-    [sepColor setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-    [cell.contentView addSubview:sepColor];
-    
-    //UIImageView *separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"separator.png"]];
-    //[cell.contentView addSubview: separator];
+    if ( ! DEVICE_HAS_IOS7 ) {
+        UIView *sepColor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width , 1)];
+        [sepColor setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+        [cell.contentView addSubview:sepColor];
+    }
     
     return cell;
 }

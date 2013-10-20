@@ -144,7 +144,7 @@
     unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     
     CGSize size = [logCell.text
-                   sizeWithFont:[UIFont systemFontOfSize:12]
+                   sizeWithFont:logCell.font
                    constrainedToSize:CGSizeMake(screenWidth-20, CGFLOAT_MAX)];
     logCell.frame = CGRectMake(10, 5, screenWidth-20, size.height);
     logCell.text = [self lineAtIndex:indexPath.row];
