@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA038D8517C5670200F8977C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA038D8417C5670200F8977C /* Crashlytics.framework */; };
+		AA041CFB181422D7002019FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA041CFA181422D7002019FF /* Images.xcassets */; };
 		AA08625517AAF9FD001108D7 /* TVHUICustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */; };
 		AA08B24717838197000B0E2E /* UIView+ClosestParent.m in Sources */ = {isa = PBXBuildFile; fileRef = AA08B24617838197000B0E2E /* UIView+ClosestParent.m */; };
 		AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */; };
@@ -259,6 +260,7 @@
 		AA00CA87171362AF00A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		AA00CA8B171362D100A02E5F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		AA038D8417C5670200F8977C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		AA041CFA181422D7002019FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA08625317AAF9FD001108D7 /* TVHUICustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHUICustomTabBarController.h; sourceTree = "<group>"; };
 		AA08625417AAF9FD001108D7 /* TVHUICustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHUICustomTabBarController.m; sourceTree = "<group>"; };
 		AA08B24517838197000B0E2E /* UIView+ClosestParent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ClosestParent.h"; sourceTree = "<group>"; };
@@ -1262,6 +1264,7 @@
 		AAB399FA16BDB21900973F88 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA041CFA181422D7002019FF /* Images.xcassets */,
 				AA7C3FCA16C6C9870057E4C4 /* Resources */,
 				AA2AEB1D16CB0839006B071C /* images */,
 				AA9101AA16C6B2C500673DF5 /* Framework */,
@@ -1583,6 +1586,7 @@
 				AAD4C3C51703C69800AE67B6 /* Icon-72.png in Resources */,
 				AAD4C3C71703C69D00AE67B6 /* Icon-72@2x.png in Resources */,
 				AAD4C3CC1703C6A900AE67B6 /* Icon-Small-50.png in Resources */,
+				AA041CFB181422D7002019FF /* Images.xcassets in Resources */,
 				AAD4C3CD1703C6A900AE67B6 /* Icon-Small-50@2x.png in Resources */,
 				AAD4C3CE1703C6A900AE67B6 /* Icon-Small.png in Resources */,
 				AAD4C3CF1703C6A900AE67B6 /* Icon-Small@2x.png in Resources */,
@@ -1979,6 +1983,8 @@
 		AAB39A1716BDB21900973F88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
@@ -2011,6 +2017,8 @@
 		AAB39A1816BDB21900973F88 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
