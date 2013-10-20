@@ -156,16 +156,16 @@
     if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
         [self.tableView reloadData];
         lastTableUpdate = [NSDate date];
+        [self.refreshControl endRefreshing];
     }
-    [self.refreshControl endRefreshing];
 }
 
 - (void)didLoadAdapters {
     if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
         [self.tableView reloadData];
         lastTableUpdate = [NSDate date];
+        [self.refreshControl endRefreshing];
     }
-    [self.refreshControl endRefreshing];
 }
 
 - (void)pullToRefreshViewShouldRefresh
@@ -344,12 +344,12 @@
 
 - (void)willLoadAdapters {
     [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    //[self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
 }
 
 - (void)willLoadStatusSubscriptions {
     [self.refreshControl beginRefreshing];
-    [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
+    //[self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
 }
 
 - (void)didErrorStatusSubscriptionsStore:(NSError *)error {
