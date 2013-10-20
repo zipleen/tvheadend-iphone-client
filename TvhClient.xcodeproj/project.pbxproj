@@ -108,9 +108,6 @@
 		AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */; };
 		AABE682716EBAE84003E8F92 /* TVHLogStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AABE682616EBAE84003E8F92 /* TVHLogStore.m */; };
 		AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABE682916EBB0FE003E8F92 /* TVHDebugLogViewController.m */; };
-		AAC208B617C0D80D0038E1F3 /* iap_lhama.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAC208B517C0D80D0038E1F3 /* iap_lhama.jpg */; };
-		AAC208BA17C0DD560038E1F3 /* iap_whale.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAC208B917C0DD560038E1F3 /* iap_whale.jpg */; };
-		AAC208BC17C0F3550038E1F3 /* iap_sloth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AAC208BB17C0F3550038E1F3 /* iap_sloth.jpg */; };
 		AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5B17A09821005F07B3 /* IAPHelper.m */; };
 		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
 		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
@@ -376,9 +373,6 @@
 		AABE682616EBAE84003E8F92 /* TVHLogStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHLogStore.m; sourceTree = "<group>"; };
 		AABE682816EBB0FE003E8F92 /* TVHDebugLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDebugLogViewController.h; sourceTree = "<group>"; };
 		AABE682916EBB0FE003E8F92 /* TVHDebugLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDebugLogViewController.m; sourceTree = "<group>"; };
-		AAC208B517C0D80D0038E1F3 /* iap_lhama.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iap_lhama.jpg; sourceTree = "<group>"; };
-		AAC208B917C0DD560038E1F3 /* iap_whale.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iap_whale.jpg; sourceTree = "<group>"; };
-		AAC208BB17C0F3550038E1F3 /* iap_sloth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iap_sloth.jpg; sourceTree = "<group>"; };
 		AAC59D5A17A09821005F07B3 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		AAC59D5B17A09821005F07B3 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		AAC59D5C17A09821005F07B3 /* TVHIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHIAPHelper.h; sourceTree = "<group>"; };
@@ -605,16 +599,6 @@
 				AA08B256178386E1000B0E2E /* MGSplitViewController.m */,
 			);
 			name = MGSplitViewController;
-			sourceTree = "<group>";
-		};
-		AA2AEB1D16CB0839006B071C /* images */ = {
-			isa = PBXGroup;
-			children = (
-				AAC208BB17C0F3550038E1F3 /* iap_sloth.jpg */,
-				AAC208B917C0DD560038E1F3 /* iap_whale.jpg */,
-				AAC208B517C0D80D0038E1F3 /* iap_lhama.jpg */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		AA3721C016FBF16F00C21F09 /* Files */ = {
@@ -1048,7 +1032,6 @@
 			isa = PBXGroup;
 			children = (
 				AA041CFA181422D7002019FF /* Images.xcassets */,
-				AA2AEB1D16CB0839006B071C /* images */,
 				AA9101AA16C6B2C500673DF5 /* Framework */,
 				AAB399FB16BDB21900973F88 /* TvhClient-Info.plist */,
 				AAB399FC16BDB21900973F88 /* InfoPlist.strings */,
@@ -1344,9 +1327,6 @@
 				AA3721C416FBF19100C21F09 /* licenses.html in Resources */,
 				AA041CFB181422D7002019FF /* Images.xcassets in Resources */,
 				AAE8668D175A24B00027EE11 /* FontAwesome.otf in Resources */,
-				AAC208B617C0D80D0038E1F3 /* iap_lhama.jpg in Resources */,
-				AAC208BA17C0DD560038E1F3 /* iap_whale.jpg in Resources */,
-				AAC208BC17C0F3550038E1F3 /* iap_sloth.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
