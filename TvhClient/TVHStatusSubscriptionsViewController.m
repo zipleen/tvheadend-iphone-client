@@ -100,6 +100,9 @@
     
     int navigationControllerCount = [[self.navigationController.navigationBar subviews] count];
     if ( navigationControllerCount >= 2 ) {
+        if ( DEVICE_HAS_IOS7 && ! IS_IPAD ) {
+            shiftButton += 1;
+        }
         [[[self.navigationController.navigationBar subviews] objectAtIndex:navigationControllerCount-(1+shiftButton)] addSubview:act];
     }
     [self.navigationItem.rightBarButtonItem setImage:[factoryBar createImageForIcon:NIKFontAwesomeIconRefresh]];
