@@ -176,7 +176,7 @@
             <objects>
                 <tableViewController id="JAO-4d-hsi" customClass="TVHSettingsGenericFieldViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="fds-z9-TGf">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
@@ -288,7 +288,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TSK-6k-Bvu">
-                                            <rect key="frame" x="52" y="14" width="177" height="21"/>
+                                            <rect key="frame" x="52" y="12" width="177" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" red="0.30196079609999998" green="0.30196079609999998" blue="0.30196079609999998" alpha="1" colorSpace="deviceRGB"/>
@@ -305,6 +305,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <segue destination="J4O-6S-mIr" kind="push" identifier="Show Channel List" id="aH2-gX-8YJ"/>
                                 </connections>
@@ -385,6 +386,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="71" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -584,6 +586,7 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SubscriptionStoreAdapterItems" id="bnD-fz-nVP">
                                 <rect key="frame" x="0.0" y="163" width="320" height="108"/>
@@ -732,6 +735,7 @@
                                         </progressView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
@@ -1138,6 +1142,7 @@
                                         </progressView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <inset key="separatorInset" minX="71" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1329,6 +1334,7 @@
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1512,6 +1518,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="71" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1797,6 +1804,7 @@
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1931,7 +1939,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="03u-bL-9X8"/>
-        <segue reference="HOO-ET-j6o"/>
+        <segue reference="0x8-gt-GgX"/>
+        <segue reference="brX-Oe-q0O"/>
     </inferredMetricsTieBreakers>
 </document>
