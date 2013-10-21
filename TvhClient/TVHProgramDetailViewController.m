@@ -243,6 +243,13 @@
     [self.tableView reloadData];
 }
 
+- (int)fontSizeHack {
+    if ( DEVICE_HAS_IOS7 ) {
+        return 10;
+    }
+    return 0;
+}
+
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( self.segmentedControl.selectedSegmentIndex == 0 ) {
         NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
@@ -250,7 +257,7 @@
         CGSize size = [str
                        sizeWithFont:[UIFont systemFontOfSize:13]
                        constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
-        return size.height + 25;
+        return size.height + 25 + self.fontSizeHack;
     }
     if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
         return 60;
@@ -335,7 +342,7 @@
     CGSize size = [descLabel.text
                    sizeWithFont:descLabel.font
               constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
-    descLabel.frame = CGRectMake(20, 20, size.width+2, size.height);
+    descLabel.frame = CGRectMake(20, 20, size.width+2, size.height + self.fontSizeHack);
     
     if ( ! DEVICE_HAS_IOS7 ) {
         // line separator

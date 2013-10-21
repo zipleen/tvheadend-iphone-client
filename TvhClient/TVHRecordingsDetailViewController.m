@@ -202,7 +202,7 @@
         CGSize size = [str
                         sizeWithFont:[UIFont systemFontOfSize:13]
                         constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
-        return size.height + 25;
+        return size.height + 25 + self.fontSizeHack;
         
     }
     if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
@@ -271,7 +271,7 @@
     CGSize size = [descLabel.text
                    sizeWithFont:descLabel.font
                    constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
-    descLabel.frame = CGRectMake(20, 20, size.width+2, size.height);
+    descLabel.frame = CGRectMake(20, 20, size.width+2, size.height + self.fontSizeHack);
     
     if ( ! DEVICE_HAS_IOS7 ) {
         // line separator
@@ -281,6 +281,13 @@
     }
     
     return cell;
+}
+
+- (int)fontSizeHack {
+    if ( DEVICE_HAS_IOS7 ) {
+        return 10;
+    }
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
