@@ -1254,10 +1254,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAB39A1616BDB21900973F88 /* Build configuration list for PBXNativeTarget "TvhClient" */;
 			buildPhases = (
-				AAFC2A0B16FBA52900194DFF /* Run git version */,
 				AAB399EC16BDB21900973F88 /* Sources */,
 				AAB399ED16BDB21900973F88 /* Frameworks */,
 				AAB399EE16BDB21900973F88 /* Resources */,
+				AAFC2A0B16FBA52900194DFF /* Run git version */,
 				AA9BD3CA175B94F700670C76 /* Run Crashlytics */,
 			);
 			buildRules = (
