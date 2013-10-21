@@ -97,6 +97,9 @@
     act=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [act setFrame:CGRectMake(8, 5, 20, 20)];
     [act setUserInteractionEnabled:NO];
+    if ( DEVICE_HAS_IOS7 ) {
+        [act setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    }
     
     int navigationControllerCount = [[self.navigationController.navigationBar subviews] count];
     if ( navigationControllerCount >= 2 ) {
