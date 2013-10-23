@@ -67,9 +67,13 @@
     timeFormatter = [[NSDateFormatter alloc] init];
     timeFormatter.dateFormat = @"HH:mm";
     
-    factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
-    factory.size = 16;
-    [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
+    if ( DEVICE_HAS_IOS7 ) {
+        [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedString(@"Play", @"toolbar play")];
+    } else {
+        factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+        factory.size = 16;
+        [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
+    }
     [self.navigationItem.rightBarButtonItem setAccessibilityLabel:NSLocalizedString(@"Play Channel", @"accessbility")];
     
     [self.segmentedControl removeAllSegments];
