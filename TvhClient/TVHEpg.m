@@ -51,7 +51,7 @@
     if ([[notification name] isEqualToString:@"willRemoveEpgFromRecording"]) {
         TVHDvrItem *dvritem = [notification object];
         if ( [dvritem.channel isEqualToString:self.channel] && [dvritem.title isEqualToString:self.title] && [dvritem.start isEqual:self.start] ) {
-            self.schedstate = @"";
+            self.schedstate = nil;
             
             // update channels
             [[self.tvhServer channelStore] updateChannelsProgress];
