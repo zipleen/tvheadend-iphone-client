@@ -755,24 +755,9 @@
 		AA8DC11016E1407700F93BD7 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
-				AA1D426B16BEC2BA00F42F7E /* TVHChannelStore.h */,
-				AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */,
-				AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */,
-				AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */,
-				AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */,
-				AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */,
-				AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */,
-				AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */,
-				AAF54A1A16C70D270076DF17 /* TVHTag.h */,
-				AAF54A1B16C70D270076DF17 /* TVHTag.m */,
-				AAF54A2316C735960076DF17 /* TVHEpgStore.h */,
-				AAF54A2416C735960076DF17 /* TVHEpgStore.m */,
-				AAF54A2016C735710076DF17 /* TVHEpg.h */,
-				AAF54A2116C735710076DF17 /* TVHEpg.m */,
-				AAC715D617974A8A00B7B280 /* TVHConfigNameStore.h */,
-				AAC715D717974A8A00B7B280 /* TVHConfigNameStore.m */,
-				AAC715D3179749BC00B7B280 /* TVHConfigName.h */,
-				AAC715D4179749BC00B7B280 /* TVHConfigName.m */,
+				AAC03E681818778700631C93 /* Channel */,
+				AAC03E671818778000631C93 /* Tag */,
+				AAC03E691818779400631C93 /* Epg */,
 			);
 			name = Channels;
 			sourceTree = "<group>";
@@ -1074,6 +1059,52 @@
 			name = Logs;
 			sourceTree = "<group>";
 		};
+		AAC03E671818778000631C93 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */,
+				AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */,
+				AAF54A1A16C70D270076DF17 /* TVHTag.h */,
+				AAF54A1B16C70D270076DF17 /* TVHTag.m */,
+			);
+			name = Tag;
+			sourceTree = "<group>";
+		};
+		AAC03E681818778700631C93 /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				AA1D426B16BEC2BA00F42F7E /* TVHChannelStore.h */,
+				AA1D426C16BEC2BA00F42F7E /* TVHChannelStore.m */,
+				AA63669D16BF2F5D00FDAC1B /* TVHChannel.h */,
+				AA63669E16BF2F5D00FDAC1B /* TVHChannel.m */,
+				AA7575E016C9AC4E008BDF29 /* TVHChannelEpg.h */,
+				AA7575E116C9AC4E008BDF29 /* TVHChannelEpg.m */,
+			);
+			name = Channel;
+			sourceTree = "<group>";
+		};
+		AAC03E691818779400631C93 /* Epg */ = {
+			isa = PBXGroup;
+			children = (
+				AAF54A2316C735960076DF17 /* TVHEpgStore.h */,
+				AAF54A2416C735960076DF17 /* TVHEpgStore.m */,
+				AAF54A2016C735710076DF17 /* TVHEpg.h */,
+				AAF54A2116C735710076DF17 /* TVHEpg.m */,
+			);
+			name = Epg;
+			sourceTree = "<group>";
+		};
+		AAC03E6A1818779F00631C93 /* ConfigNames */ = {
+			isa = PBXGroup;
+			children = (
+				AAC715D617974A8A00B7B280 /* TVHConfigNameStore.h */,
+				AAC715D717974A8A00B7B280 /* TVHConfigNameStore.m */,
+				AAC715D3179749BC00B7B280 /* TVHConfigName.h */,
+				AAC715D4179749BC00B7B280 /* TVHConfigName.m */,
+			);
+			name = ConfigNames;
+			sourceTree = "<group>";
+		};
 		AAC59D5917A09821005F07B3 /* IAP */ = {
 			isa = PBXGroup;
 			children = (
@@ -1219,6 +1250,7 @@
 				AA8DC11016E1407700F93BD7 /* Channels */,
 				AA8DC11516E140B600F93BD7 /* DVR */,
 				AA8DC11416E1409400F93BD7 /* Comet Poll / Status */,
+				AAC03E6A1818779F00631C93 /* ConfigNames */,
 				AAD8EA041710CB8E00932A0E /* Misc */,
 				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
 				AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */,

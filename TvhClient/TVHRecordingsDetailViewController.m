@@ -271,7 +271,7 @@
     CGSize size = [descLabel.text
                    sizeWithFont:descLabel.font
                    constrainedToSize:CGSizeMake(screenWidth-40, CGFLOAT_MAX)];
-    descLabel.frame = CGRectMake(20, 20, size.width+2, size.height + self.fontSizeHack);
+    descLabel.frame = CGRectMake(20, 20, screenWidth-40, size.height + self.fontSizeHack);
     
     if ( ! DEVICE_HAS_IOS7 ) {
         // line separator
