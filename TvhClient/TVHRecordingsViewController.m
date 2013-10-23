@@ -136,7 +136,7 @@
                                                object:nil];
     
     factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
-    factory.size = 32*2;
+    factory.size = 18;
     factory.colors = @[[UIColor grayColor]];
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconTime] forSegmentAtIndex:0];
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconOkCircle] forSegmentAtIndex:1];
