@@ -8,7 +8,7 @@
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
-#define TESTING
+//#define TESTING
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
