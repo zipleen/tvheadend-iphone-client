@@ -115,12 +115,10 @@
     
     [self.jsonClient getPath:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
-#ifdef TVH_GOOGLEANALYTICS_KEY
-        [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+        [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
                                                           withValue:time
                                                            withName:[NSString stringWithFormat:@"DvrStore-%d", type]
                                                           withLabel:nil];
-#endif
 #ifdef TESTING
         NSLog(@"[DvrStore Profiling Network]: %f", time);
 #endif

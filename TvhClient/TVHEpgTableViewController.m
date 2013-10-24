@@ -87,9 +87,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-#ifdef TVH_GOOGLEANALYTICS_KEY
-        [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
-#endif
+    [TVHAnalytics sendView:NSStringFromClass([self class])];
     [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
 

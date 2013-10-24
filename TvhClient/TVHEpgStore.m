@@ -176,12 +176,10 @@
             return ;
         }
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
-#ifdef TVH_GOOGLEANALYTICS_KEY
-        [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+        [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
                                                           withValue:time
                                                            withName:self.statsEpgName
                                                           withLabel:nil];
-#endif
 #ifdef TESTING
         NSLog(@"[%@ Profiling Network]: %f", self.statsEpgName, time);
 #endif

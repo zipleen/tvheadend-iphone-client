@@ -177,9 +177,7 @@
     if ( [settings programFirstRun] ) {
         [self.segmentedControl setSelectedSegmentIndex:3 ];
     }
-#ifdef TVH_GOOGLEANALYTICS_KEY
-        [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
-#endif
+    [TVHAnalytics sendView:NSStringFromClass([self class])];
     [self.tableView setEditing:NO animated:NO];
 }
 
@@ -332,12 +330,10 @@
             TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
             [dvrItem deleteRecording];
         }
-#ifdef TVH_GOOGLEANALYTICS_KEY
-        [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+        [TVHAnalytics sendEventWithCategory:@"uiAction"
                                                         withAction:@"recordings"
                                                          withLabel:@"removeRecording"
                                                          withValue:[NSNumber numberWithInt:0]];
-#endif
         // because our recordings aren't really deleted right away, we won't have cute animations because we want confirmation that the recording was in fact removed
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }   

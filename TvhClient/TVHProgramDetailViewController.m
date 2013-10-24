@@ -92,9 +92,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-#ifdef TVH_GOOGLEANALYTICS_KEY
-    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
-#endif
+    [TVHAnalytics sendView:NSStringFromClass([self class])];
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
                                     self.tableView);
 }
@@ -405,22 +403,18 @@
         
     }
     
-#ifdef TVH_GOOGLEANALYTICS_KEY
-    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+    [TVHAnalytics sendEventWithCategory:@"uiAction"
                                                     withAction:@"recordings"
                                                      withLabel:@"addRecording"
                                                      withValue:[NSNumber numberWithInt:0]];
-#endif
 }
 
 - (IBAction)addAutoRecordToTVHeadend:(id)sender {
     [self.epg addAutoRec];
-#ifdef TVH_GOOGLEANALYTICS_KEY
-    [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+    [TVHAnalytics sendEventWithCategory:@"uiAction"
                                                     withAction:@"recordings"
                                                      withLabel:@"addRecordingRec"
                                                      withValue:[NSNumber numberWithInt:0]];
-#endif
 }
 
 - (IBAction)playStream:(id)sender {

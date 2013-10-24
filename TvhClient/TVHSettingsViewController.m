@@ -57,9 +57,7 @@
     self.servers = [self.settings availableServers];
     [self.tableView reloadData];
     
-#ifdef TVH_GOOGLEANALYTICS_KEY
-    [[GAI sharedInstance].defaultTracker sendView:NSStringFromClass([self class])];
-#endif
+    [TVHAnalytics sendView:NSStringFromClass([self class])];
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
                                     self.tableView);
 }
@@ -320,12 +318,10 @@
         if ( indexPath.row < [self.servers count] ) {
             [self.settings setSelectedServer:indexPath.row];
             [self.tableView reloadData];
-#ifdef TVH_GOOGLEANALYTICS_KEY
-            [[GAI sharedInstance].defaultTracker sendEventWithCategory:@"uiAction"
+            [TVHAnalytics sendEventWithCategory:@"uiAction"
                                                             withAction:@"changeServer"
                                                              withLabel:@"changeServer"
                                                              withValue:[NSNumber numberWithInt:0]];
-#endif
         } else {
             [self performSegueWithIdentifier:@"SettingsServers" sender:self];
         }

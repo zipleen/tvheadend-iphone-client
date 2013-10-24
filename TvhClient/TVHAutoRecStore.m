@@ -80,12 +80,10 @@
     self.profilingDate = [NSDate date];
     [self.jsonClient getPath:@"tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
-#ifdef TVH_GOOGLEANALYTICS_KEY
-        [[GAI sharedInstance].defaultTracker sendTimingWithCategory:@"Network Profiling"
+        [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
                                                           withValue:time
                                                            withName:@"AutoRec"
                                                           withLabel:nil];
-#endif
 #ifdef TESTING
         NSLog(@"[AutoRec Profiling Network]: %f", time);
 #endif

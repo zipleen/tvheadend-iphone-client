@@ -73,6 +73,8 @@
 		AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6517B19F3A00CE7614 /* WTStatusBar.m */; };
 		AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6717B19F3A00CE7614 /* WTStatusView.m */; };
 		AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = AA88AD6917B19F3A00CE7614 /* WTStatusWindow.m */; };
+		AA8CDBDD1819C79E0025C39F /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8CDBDC1819C79E0025C39F /* libGoogleAnalyticsServices.a */; };
+		AA8CDBE01819CC090025C39F /* TVHAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8CDBDF1819CC090025C39F /* TVHAnalytics.m */; };
 		AA8DC11C16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DC11B16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m */; };
 		AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DECFD16DEBFAE00AF6A51 /* TVHRecordingsViewController.m */; };
 		AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8DED0016DEDB3B00AF6A51 /* SDSegmentedControl.m */; };
@@ -136,7 +138,6 @@
 		AAE7B7A1170782200052E6F3 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B79E170782200052E6F3 /* libssl.a */; };
 		AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */; };
 		AAE8668D175A24B00027EE11 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAE8668C175A24B00027EE11 /* FontAwesome.otf */; };
-		AAEE7A87171240AE00D0E584 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */; };
 		AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647B17441D71006C96CE /* JASidePanelController.m */; };
 		AAF2647F17441D71006C96CE /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647D17441D71006C96CE /* UIViewController+JASidePanel.m */; };
 		AAF2648217441EC2006C96CE /* TVHMainSlidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648117441EC2006C96CE /* TVHMainSlidePanelViewController.m */; };
@@ -314,6 +315,12 @@
 		AA88AD6717B19F3A00CE7614 /* WTStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTStatusView.m; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusView.m; sourceTree = SOURCE_ROOT; };
 		AA88AD6817B19F3A00CE7614 /* WTStatusWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTStatusWindow.h; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusWindow.h; sourceTree = SOURCE_ROOT; };
 		AA88AD6917B19F3A00CE7614 /* WTStatusWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTStatusWindow.m; path = WTStatusBar/WTStatusBar/WTStatusBar/WTStatusWindow.m; sourceTree = SOURCE_ROOT; };
+		AA8CDBD91819C79E0025C39F /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		AA8CDBDA1819C79E0025C39F /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		AA8CDBDB1819C79E0025C39F /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		AA8CDBDC1819C79E0025C39F /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		AA8CDBDE1819CC090025C39F /* TVHAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAnalytics.h; sourceTree = "<group>"; };
+		AA8CDBDF1819CC090025C39F /* TVHAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAnalytics.m; sourceTree = "<group>"; };
 		AA8DC11A16E1762E00F93BD7 /* TVHRecordingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHRecordingsDetailViewController.h; sourceTree = "<group>"; };
 		AA8DC11B16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHRecordingsDetailViewController.m; sourceTree = "<group>"; };
 		AA8DECFC16DEBFAE00AF6A51 /* TVHRecordingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHRecordingsViewController.h; sourceTree = "<group>"; };
@@ -420,9 +427,6 @@
 		AAEE7A81171240AE00D0E584 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		AAEE7A82171240AE00D0E584 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
 		AAEE7A83171240AE00D0E584 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		AAEE7A84171240AE00D0E584 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
-		AAEE7A85171240AE00D0E584 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
-		AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		AAF2647A17441D71006C96CE /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = JASidePanels/JASidePanels/Source/JASidePanelController.h; sourceTree = SOURCE_ROOT; };
 		AAF2647B17441D71006C96CE /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = JASidePanels/JASidePanels/Source/JASidePanelController.m; sourceTree = SOURCE_ROOT; };
 		AAF2647C17441D71006C96CE /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JASidePanel.h"; path = "JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.h"; sourceTree = SOURCE_ROOT; };
@@ -526,9 +530,9 @@
 				AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */,
 				AA91023316C6B6F800673DF5 /* MobileCoreServices.framework in Frameworks */,
 				AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */,
+				AA8CDBDD1819C79E0025C39F /* libGoogleAnalyticsServices.a in Frameworks */,
 				AAB399F616BDB21900973F88 /* Foundation.framework in Frameworks */,
 				AAB399F816BDB21900973F88 /* CoreGraphics.framework in Frameworks */,
-				AAEE7A87171240AE00D0E584 /* libGoogleAnalytics.a in Frameworks */,
 				AA038D8517C5670200F8977C /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,6 +588,8 @@
 				AA28BA4916E6CC580029A723 /* TVHPlayStreamDelegate.h */,
 				AA21878616E7F6D9005D95EF /* NSString+FileSize.h */,
 				AA21878716E7F6D9005D95EF /* NSString+FileSize.m */,
+				AA8CDBDE1819CC090025C39F /* TVHAnalytics.h */,
+				AA8CDBDF1819CC090025C39F /* TVHAnalytics.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1200,12 +1206,13 @@
 		AAEE7A80171240AE00D0E584 /* GoogleAnalytics SDK */ = {
 			isa = PBXGroup;
 			children = (
+				AA8CDBD91819C79E0025C39F /* GAIDictionaryBuilder.h */,
+				AA8CDBDA1819C79E0025C39F /* GAIFields.h */,
+				AA8CDBDB1819C79E0025C39F /* GAILogger.h */,
 				AAEE7A81171240AE00D0E584 /* GAI.h */,
 				AAEE7A82171240AE00D0E584 /* GAITrackedViewController.h */,
 				AAEE7A83171240AE00D0E584 /* GAITracker.h */,
-				AAEE7A84171240AE00D0E584 /* GAITransaction.h */,
-				AAEE7A85171240AE00D0E584 /* GAITransactionItem.h */,
-				AAEE7A86171240AE00D0E584 /* libGoogleAnalytics.a */,
+				AA8CDBDC1819C79E0025C39F /* libGoogleAnalyticsServices.a */,
 			);
 			path = "GoogleAnalytics SDK";
 			sourceTree = SOURCE_ROOT;
@@ -1531,6 +1538,7 @@
 				AAFE73AD179C14B0000E7105 /* UIImage+GIF.m in Sources */,
 				AAFE73AE179C14B0000E7105 /* UIImage+MultiFormat.m in Sources */,
 				AAFE73AF179C14B0000E7105 /* UIImage+WebP.m in Sources */,
+				AA8CDBE01819CC090025C39F /* TVHAnalytics.m in Sources */,
 				AAFE73B0179C14B0000E7105 /* UIImageView+WebCache.m in Sources */,
 				AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */,
 				AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */,

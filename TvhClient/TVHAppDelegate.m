@@ -23,17 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-#ifdef TVH_GOOGLEANALYTICS_KEY
-    [GAI sharedInstance].trackUncaughtExceptions = NO;
-    [GAI sharedInstance].dispatchInterval = 60;
-    [GAI sharedInstance].debug = NO;
-#ifdef TESTING
-    [GAI sharedInstance].debug = NO;
-#endif
-    [[GAI sharedInstance] trackerWithTrackingId:TVH_GOOGLEANALYTICS_KEY];
-    [GAI sharedInstance].defaultTracker.useHttps = YES;
-#endif
-    
+    [TVHAnalytics start];
     BOOL sendAnonymousStats = [[TVHSettings sharedInstance] sendAnonymousStatistics];
     if ( sendAnonymousStats ) {
 #if defined TESTING && defined TVH_TESTFLIGHT_KEY
@@ -44,9 +34,7 @@
         [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
 #endif
     } else {
-#ifdef TVH_GOOGLEANALYTICS_KEY
-        [[GAI sharedInstance] setOptOut:YES];
-#endif
+        [TVHAnalytics setOptOut:YES];
     }
 #if defined TVH_CRASHLYTICS_KEY && !defined TESTING
     [Crashlytics startWithAPIKey:TVH_CRASHLYTICS_KEY];
