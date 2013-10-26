@@ -146,7 +146,7 @@
     }
     
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Transcode", nil)] ) {
-        [myActionSheet dismissWithClickedButtonIndex:0 animated:YES];
+        [self dismissActionSheet];
         [self showTranscodeMenu:self.sender withVC:self.vc withActionSheet:NSLocalizedString(@"Playback Transcode Stream", nil)];
     }
     
