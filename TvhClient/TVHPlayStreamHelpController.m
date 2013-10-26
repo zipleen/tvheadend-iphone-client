@@ -11,13 +11,8 @@
 //
 
 #import "TVHPlayStreamHelpController.h"
-#import "TVHSettings.h"
 #import "TVHNativeMoviePlayerViewController.h"
-#import "TVHSingletonServer.h"
-
-#define TVH_PROGRAMS @{@"VLC":@"vlc", @"Oplayer":@"oplayer", @"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Ace Player":@"aceplayer" }
-#define TVHS_TVHEADEND_STREAM_URL_INTERNAL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS&mux=mpegts"
-#define TVHS_TVHEADEND_STREAM_URL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS"
+#import "TVHPlayStream.h"
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate> {
     UIActionSheet *myActionSheet;
@@ -27,33 +22,17 @@
 @property (weak, nonatomic) UIStoryboard *storyboard;
 @property (weak, nonatomic) UIViewController *vc;
 @property (weak, nonatomic) UIBarButtonItem *sender;
+@property (weak, nonatomic) TVHPlayStream *playStreamModal;
 @end
 
 @implementation TVHPlayStreamHelpController
 
-- (NSURL*)urlForSchema:(NSString*)schema withURL:(NSString*)url {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", schema, url]];
-}
-
-- (NSArray*)arrayOfAvailablePrograms {
-    NSMutableArray *available = [[NSMutableArray alloc] init];
-    for (NSString* key in TVH_PROGRAMS) {
-        NSString *urlTarget = [TVH_PROGRAMS objectForKey:key];
-        NSURL *url = [self urlForSchema:urlTarget withURL:nil];
-        if( [[UIApplication sharedApplication] canOpenURL:url] ) {
-            [available addObject:key];
-        }
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.playStreamModal = [TVHPlayStream sharedInstance];
     }
-    
-    // custom
-    NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
-    if( [customPrefix length] > 0 ) {
-        NSURL *url = [self urlForSchema:customPrefix withURL:nil];
-        if( [[UIApplication sharedApplication] canOpenURL:url] ) {
-            [available addObject:NSLocalizedString(@"Custom Player", nil)];
-        }
-    }
-    return [available copy];
+    return self;
 }
 
 - (void)showTranscodeMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
@@ -77,8 +56,7 @@
     [myActionSheet setTitle:actionTitle];
     [myActionSheet setDelegate:self];
     
-    TVHServer *tvhServer = [TVHSingletonServer sharedServerInstance];
-    if ( [tvhServer isTranscodingCapable] ) {
+    if ( [self.playStreamModal isTranscodingCapable] ) {
         [myActionSheet addButtonWithTitle:transcode];
         [myActionSheet setDestructiveButtonIndex:countOfItems];
         countOfItems++;
@@ -86,7 +64,7 @@
     
     [myActionSheet addButtonWithTitle:copy];
     countOfItems++;
-    NSArray *available = [self arrayOfAvailablePrograms];
+    NSArray *available = [self.playStreamModal arrayOfAvailablePrograms];
     countOfItems += [available count];
     for( NSString *title in available )  {
         [myActionSheet addButtonWithTitle:title];
@@ -119,9 +97,10 @@
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     NSString *streamUrl, *streamUrlInternal;
     
+    // transcoding changed the URL structure, otherwise get the direct url
     if ( transcodingEnabled ) {
-        streamUrl = [self stringTranscodeUrl:[self.streamObject streamURL] withFormat:TVHS_TVHEADEND_STREAM_URL];
-        streamUrlInternal = [self stringTranscodeUrl:[self.streamObject playlistStreamURL] withFormat:TVHS_TVHEADEND_STREAM_URL_INTERNAL];
+        streamUrl = [self.playStreamModal stringTranscodeUrl:[self.streamObject streamURL]];
+        streamUrlInternal = [self.playStreamModal stringTranscodeUrlInternalFormat:[self.streamObject playlistStreamURL]];
     } else {
         streamUrl = [self.streamObject streamURL];
     }
@@ -133,18 +112,13 @@
         }
     }
     
-    NSString *prefix = [TVH_PROGRAMS objectForKey:buttonTitle];
-    if ( prefix ) {
-        NSURL *myURL = [self urlForSchema:prefix withURL:streamUrl];
+    NSURL *myURL = [self.playStreamModal URLforProgramWithName:buttonTitle forURL:streamUrl];
+    if ( myURL ) {
         [[UIApplication sharedApplication] openURL:myURL];
-    }
-    if ( [buttonTitle isEqualToString:NSLocalizedString(@"Custom Player", nil)] ) {
-        NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
-        NSString *url = [NSString stringWithFormat:@"%@://%@", customPrefix, streamUrl ];
-        NSURL *myURL = [NSURL URLWithString:url];
-        [[UIApplication sharedApplication] openURL:myURL];
+        return ;
     }
     
+    // transcode will call this menu again with the transcoding setting turned on
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Transcode", nil)] ) {
         [self dismissActionSheet];
         [self showTranscodeMenu:self.sender withVC:self.vc withActionSheet:NSLocalizedString(@"Playback Transcode Stream", nil)];
@@ -160,11 +134,6 @@
         [myActionSheet dismissWithClickedButtonIndex:0 animated:YES];
         myActionSheet = nil;
     }
-}
-
-- (NSString*)stringTranscodeUrl:(NSString*)url withFormat:(NSString*)format {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    return [url stringByAppendingFormat:format, [settings transcodeResolution]];
 }
 
 - (void)streamNativeUrl:(NSString*)url {
