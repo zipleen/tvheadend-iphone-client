@@ -11,6 +11,7 @@
 //
 
 #import "TVHSingletonServer.h"
+#import "TVHPlayXbmc.h"
 
 @implementation TVHSingletonServer {
     TVHServer *__tvhserver;
@@ -31,6 +32,7 @@
                                                  selector:@selector(refreshServerVersion)
                                                      name:@"didLoadTVHVersion"
                                                    object:nil];
+        [TVHPlayXbmc sharedInstance];
     });
     
     return __sharedInstance;

@@ -97,10 +97,8 @@
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     NSString *streamUrl, *streamUrlInternal;
     
-    // transcoding changed the URL structure, otherwise get the direct url
     if ( transcodingEnabled ) {
         streamUrl = [self.playStreamModal stringTranscodeUrl:[self.streamObject streamURL]];
-        streamUrlInternal = [self.playStreamModal stringTranscodeUrlInternalFormat:[self.streamObject playlistStreamURL]];
     } else {
         streamUrl = [self.streamObject streamURL];
     }
@@ -112,21 +110,19 @@
         }
     }
     
-    NSURL *myURL = [self.playStreamModal URLforProgramWithName:buttonTitle forURL:streamUrl];
-    if ( myURL ) {
-        [[UIApplication sharedApplication] openURL:myURL];
-        return ;
-    }
-    
     // transcode will call this menu again with the transcoding setting turned on
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Transcode", nil)] ) {
         [self dismissActionSheet];
         [self showTranscodeMenu:self.sender withVC:self.vc withActionSheet:NSLocalizedString(@"Playback Transcode Stream", nil)];
     }
     
+    // internal player
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal Player", nil)] ) {
+        streamUrlInternal = [self.playStreamModal stringTranscodeUrlInternalFormat:[self.streamObject playlistStreamURL]];
         [self streamNativeUrl:streamUrlInternal];
     }
+    
+    [self.playStreamModal playProgramWithName:buttonTitle forURL:streamUrl];
 }
 
 - (void)dismissActionSheet {

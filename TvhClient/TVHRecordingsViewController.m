@@ -331,9 +331,9 @@
             [dvrItem deleteRecording];
         }
         [TVHAnalytics sendEventWithCategory:@"uiAction"
-                                                        withAction:@"recordings"
-                                                         withLabel:@"removeRecording"
-                                                         withValue:[NSNumber numberWithInt:0]];
+                                 withAction:@"recordings"
+                                  withLabel:@"removeRecording"
+                                  withValue:[NSNumber numberWithInt:0]];
         // because our recordings aren't really deleted right away, we won't have cute animations because we want confirmation that the recording was in fact removed
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }   

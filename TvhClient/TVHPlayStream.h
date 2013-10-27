@@ -15,4 +15,5 @@
 - (NSString*)stringTranscodeUrl:(NSString*)url;
 - (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url;
 - (NSURL*)URLforProgramWithName:(NSString*)title forURL:(NSString*)streamUrl;
+- (BOOL)playProgramWithName:(NSString*)title forURL:(NSString*)streamUrl;
 @end

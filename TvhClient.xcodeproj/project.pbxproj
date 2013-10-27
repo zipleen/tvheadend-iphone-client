@@ -96,6 +96,7 @@
 		AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */; };
 		AA9BD3CC175B953700670C76 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9BD3CB175B953700670C76 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AA9E76D7181C75A200E5A0D4 /* TVHPlayStream.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9E76D6181C75A200E5A0D4 /* TVHPlayStream.m */; };
+		AA9E76DB181D3CC300E5A0D4 /* TVHPlayXbmc.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9E76DA181D3CC300E5A0D4 /* TVHPlayXbmc.m */; };
 		AAAC5AC71748FDC4006B093E /* TVHStatusSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAC5AC61748FDC4006B093E /* TVHStatusSplitViewController.m */; };
 		AAB33133179A0AD4001630DC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB33132179A0AD4001630DC /* MediaPlayer.framework */; };
 		AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB33135179A0B66001630DC /* TVHNativeMoviePlayerViewController.m */; };
@@ -360,6 +361,8 @@
 		AA9BD3CB175B953700670C76 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		AA9E76D5181C75A200E5A0D4 /* TVHPlayStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayStream.h; sourceTree = "<group>"; };
 		AA9E76D6181C75A200E5A0D4 /* TVHPlayStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHPlayStream.m; sourceTree = "<group>"; };
+		AA9E76D9181D3CC300E5A0D4 /* TVHPlayXbmc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayXbmc.h; sourceTree = "<group>"; };
+		AA9E76DA181D3CC300E5A0D4 /* TVHPlayXbmc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHPlayXbmc.m; sourceTree = "<group>"; };
 		AAAC5AC51748FDC4006B093E /* TVHStatusSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusSplitViewController.h; sourceTree = "<group>"; };
 		AAAC5AC61748FDC4006B093E /* TVHStatusSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusSplitViewController.m; sourceTree = "<group>"; };
 		AAB33132179A0AD4001630DC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -584,17 +587,15 @@
 			isa = PBXGroup;
 			children = (
 				AAFDEC61174549E30035D734 /* Tvh Server */,
+				AA9E76D8181D3C9A00E5A0D4 /* PlayTo */,
 				AAFDEC6217454CE80035D734 /* TVHSingletonServer.h */,
 				AAFDEC6317454CE80035D734 /* TVHSingletonServer.m */,
 				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
-				AA28BA4916E6CC580029A723 /* TVHPlayStreamDelegate.h */,
 				AA21878616E7F6D9005D95EF /* NSString+FileSize.h */,
 				AA21878716E7F6D9005D95EF /* NSString+FileSize.m */,
 				AA8CDBDE1819CC090025C39F /* TVHAnalytics.h */,
 				AA8CDBDF1819CC090025C39F /* TVHAnalytics.m */,
-				AA9E76D5181C75A200E5A0D4 /* TVHPlayStream.h */,
-				AA9E76D6181C75A200E5A0D4 /* TVHPlayStream.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -951,6 +952,18 @@
 				AA99BC5E16ED54290087060A /* TVHEpgTableViewController.m */,
 			);
 			name = EPG;
+			sourceTree = "<group>";
+		};
+		AA9E76D8181D3C9A00E5A0D4 /* PlayTo */ = {
+			isa = PBXGroup;
+			children = (
+				AA28BA4916E6CC580029A723 /* TVHPlayStreamDelegate.h */,
+				AA9E76D5181C75A200E5A0D4 /* TVHPlayStream.h */,
+				AA9E76D6181C75A200E5A0D4 /* TVHPlayStream.m */,
+				AA9E76D9181D3CC300E5A0D4 /* TVHPlayXbmc.h */,
+				AA9E76DA181D3CC300E5A0D4 /* TVHPlayXbmc.m */,
+			);
+			name = PlayTo;
 			sourceTree = "<group>";
 		};
 		AAB3312B1799FCBD001630DC /* Transcode */ = {
@@ -1481,6 +1494,7 @@
 				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
 				AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */,
 				AA3E5CDC16D8267200CE444C /* TVHJsonClient.m in Sources */,
+				AA9E76DB181D3CC300E5A0D4 /* TVHPlayXbmc.m in Sources */,
 				AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */,
 				AA132EBB16D9594B0074FAB8 /* TVHUICustomNavigationBar.m in Sources */,
 				AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */,

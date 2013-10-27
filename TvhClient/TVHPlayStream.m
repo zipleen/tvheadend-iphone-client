@@ -10,6 +10,7 @@
 #import "TVHSettings.h"
 #import "TVHServer.h"
 #import "TVHSingletonServer.h"
+#import "TVHPlayXbmc.h"
 
 #define TVH_PROGRAMS @{@"VLC":@"vlc", @"Oplayer":@"oplayer", @"Buzz Player":@"buzzplayer", @"GoodPlayer":@"goodplayer", @"Ace Player":@"aceplayer" }
 #define TVHS_TVHEADEND_STREAM_URL_INTERNAL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS&mux=mpegts"
@@ -49,6 +50,10 @@
             [available addObject:NSLocalizedString(@"Custom Player", nil)];
         }
     }
+    
+    // xbmc
+    [available addObjectsFromArray:[[TVHPlayXbmc sharedInstance] availableXbmcServers]];
+    
     return [available copy];
 }
 
@@ -82,6 +87,28 @@
     }
     
     return nil;
+}
+
+- (BOOL)playProgramWithName:(NSString*)title forURL:(NSString*)streamUrl {
+    
+    if ( [self playInternalProgramWithName:title forURL:streamUrl] ) {
+        return true;
+    }
+    
+    return [[TVHPlayXbmc sharedInstance] playToXbmc:title withURL:streamUrl];
+}
+
+- (BOOL)playInternalProgramWithName:(NSString *)title forURL:(NSString *)streamUrl {
+    NSURL *myURL = [self URLforProgramWithName:title forURL:streamUrl];
+    if ( myURL ) {
+        [TVHAnalytics sendEventWithCategory:@"playTo"
+                                 withAction:@"Internal"
+                                  withLabel:title
+                                  withValue:[NSNumber numberWithInt:1]];
+        [[UIApplication sharedApplication] openURL:myURL];
+        return true;
+    }
+    return false;
 }
 
 @end
