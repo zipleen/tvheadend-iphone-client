@@ -12,12 +12,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class TVHServer;
+
 @interface TVHTag : NSObject
 @property (nonatomic) NSInteger id;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *comment;
 @property (nonatomic, strong) NSString *icon;
-
-- (id)initWithAllChannels;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
+- (id)initWithAllChannels:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
+- (NSInteger)channelCount;
 @end

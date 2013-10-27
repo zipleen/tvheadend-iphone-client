@@ -26,7 +26,7 @@
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
-
 - (NSArray*)tags;
 - (void)fetchTagList;
+- (void)signalDidLoadTags;
 @end

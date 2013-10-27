@@ -18,6 +18,7 @@
 #import "TVHImageCache.h"
 #import "TVHEpgTableViewController.h"
 #import "TVHSingletonServer.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TVHTagStoreViewController ()
 @property (weak, nonatomic) TVHTagStore *tagStore;
@@ -128,7 +129,14 @@
 	UILabel *tagNumberLabel = (UILabel *)[cell viewWithTag:101];
 	__weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     tagNameLabel.text = tag.name;
-    tagNumberLabel.text = nil;
+    
+    tagNumberLabel.text = [NSString stringWithFormat:@"%d", [tag channelCount]];
+    tagNumberLabel.layer.cornerRadius = 10.0;
+    tagNumberLabel.layer.masksToBounds = YES;
+    tagNumberLabel.layer.borderWidth = 1.f;
+    tagNumberLabel.layer.borderColor = [tagNumberLabel.textColor CGColor];
+    tagNumberLabel.adjustsFontSizeToFitWidth = YES;
+    
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
     [channelImage setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         if (!error && image) {

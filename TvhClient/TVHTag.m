@@ -11,8 +11,20 @@
 //
 
 #import "TVHTag.h"
+#import "TVHServer.h"
+
+@interface TVHTag()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@end
 
 @implementation TVHTag
+
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
+    self = [super init];
+    if (!self) return nil;
+    self.tvhServer = tvhServer;
+    return self;
+}
 
 - (void)dealloc {
     self.name = nil;
@@ -20,12 +32,12 @@
     self.icon = nil;
 }
 
-- (id)initWithAllChannels {
+- (id)initWithAllChannels:(TVHServer*)tvhServer {
     self = [super init];
     if (self) {
         self.id = 0;
         self.name = NSLocalizedString(@"All Channels", nil);
-
+        self.tvhServer = tvhServer;
     }
     return self;
 }
@@ -52,4 +64,20 @@
     TVHTag *otherCast = other;
     return self.id == otherCast.id;
 }
+
+- (NSInteger)channelCount {
+    NSInteger count = 0;
+    NSArray *channels = [[self.tvhServer channelStore] arrayChannels];
+    if ( self.id == 0 ) {
+        return [channels count];
+    }
+    
+    for (TVHChannel *channel in channels) {
+        if ( [channel hasTag:self.id] ) {
+            count++;
+        }
+    }
+    return count;
+}
+
 @end

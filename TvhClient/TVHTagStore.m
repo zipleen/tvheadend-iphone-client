@@ -59,7 +59,7 @@
     for (id entry in entries) {
         NSInteger enabled = [[entry objectForKey:@"enabled"] intValue];
         if( enabled ) {
-            TVHTag *tag = [[TVHTag alloc] init];
+            TVHTag *tag = [[TVHTag alloc] initWithTvhServer:self.tvhServer];
             [tag updateValuesFromDictionary:entry];
             [tags addObject:tag];
         }
@@ -68,7 +68,7 @@
     NSMutableArray *orderedTags = [[tags sortedArrayUsingSelector:@selector(compareByName:)] mutableCopy];
     
     // All channels
-    TVHTag *t = [[TVHTag alloc] initWithAllChannels];
+    TVHTag *t = [[TVHTag alloc] initWithAllChannels:self.tvhServer];
     [orderedTags insertObject:t atIndex:0];
     
     self.tags = [orderedTags copy];

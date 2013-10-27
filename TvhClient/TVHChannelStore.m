@@ -106,6 +106,7 @@
             if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
                 [self.delegate didLoadChannels];
             }
+            [[self.tvhServer tagStore] signalDidLoadTags];
             [self.currentlyPlayingEpgStore downloadEpgList];
         }
         
