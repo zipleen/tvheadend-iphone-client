@@ -32,6 +32,7 @@
 @property (nonatomic, strong) TVHEpgStore *epgStore;
 @property (nonatomic, strong) NSArray *epgTable ;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation TVHEpgTableViewController {
@@ -43,11 +44,43 @@
         // we need a DIFFERENT epgstore, because of the delegate
         // should we change this to a notification? this epgstore SHOULD be shared!!
         _epgStore = [[TVHEpgStore alloc] initWithTvhServer:[TVHSingletonServer sharedServerInstance]];
-        [self.epgStore setDelegate:self];
+        [_epgStore setDelegate:self];
         // we can't have the object register the notification, because every channel has one epgStore - that would make every epgStore object update itself!!
         [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(appWillResignActive:)
+                                                     name:UIApplicationWillResignActiveNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(appWillEnterForeground:)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
+        [self startTimer];
     }
     return _epgStore;
+}
+
+- (void)appWillResignActive:(NSNotification*)note {
+    [self.timer invalidate];
+}
+
+- (void)appWillEnterForeground:(NSNotification*)note {
+    [self processTimerEvents];
+    [self startTimer];
+}
+
+- (void)startTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(processTimerEvents) userInfo:nil repeats:NO];
+}
+
+- (void)processTimerEvents {
+    if ( self.epgStore ) {
+        [self.epgStore removeOldProgramsFromStore];
+        [self startTimer];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)viewDidLoad
@@ -202,7 +235,7 @@
     }
     
     float progress = [epg progress];
-    if ( progress > 0 && progress < 1 ) {
+    if ( progress > 0 && progress <= 1 ) {
         CGRect progressBarFrame = {
             .origin.x = currentTimeProgress.frame.origin.x,
             .origin.y = currentTimeProgress.frame.origin.y,
