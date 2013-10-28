@@ -30,12 +30,12 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[TVHPlayXbmc alloc] init];
-        [[NSNotificationCenter defaultCenter] addObserver:self
+        [[NSNotificationCenter defaultCenter] addObserver:__sharedInstance
                                                  selector:@selector(appWillResignActive:)
                                                      name:UIApplicationWillResignActiveNotification
                                                    object:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self
+        [[NSNotificationCenter defaultCenter] addObserver:__sharedInstance
                                                  selector:@selector(appWillEnterForeground:)
                                                      name:UIApplicationWillEnterForegroundNotification
                                                    object:nil];
