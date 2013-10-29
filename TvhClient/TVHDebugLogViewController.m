@@ -57,6 +57,7 @@
                                              selector:@selector(clearLog:)
                                                  name:@"resetAllObjects"
                                                object:nil];
+    
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];
     self.searchBar.delegate = self;
     shouldBeginEditing = YES;
@@ -64,7 +65,10 @@
     
     if ( self.splitViewController ) {
         NSMutableArray *buttons = [self.navigationItem.rightBarButtonItems mutableCopy];
-        UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Resize", nil) style:UIBarButtonItemStylePlain target:self action:@selector(moveSplit:)];
+        UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Resize", nil)
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(moveSplit:)];
         [buttons addObject:split];
         self.navigationItem.rightBarButtonItems = [buttons copy];
     }

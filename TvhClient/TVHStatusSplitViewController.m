@@ -13,6 +13,7 @@
 #import "TVHStatusSplitViewController.h"
 #import "TVHDebugLogViewController.h"
 #import "TVHStatusSubscriptionsViewController.h"
+#import "TVHWebLogViewController.h"
 #import "TVHSettings.h"
 
 @interface TVHStatusSplitViewController ()
@@ -43,12 +44,18 @@
     return _statusController;
 }
 
-- (void)awakeFromNib {
-    
+- (TVHWebLogViewController*)webController {
+    if ( ! _webController ) {
+        _webController = [self.storyboard instantiateViewControllerWithIdentifier:@"webNavigationController"];
+        //if ( [_webController isKindOfClass:[UINavigationController class]] ) {
+            //TVHWebLogViewController *webLog = [_webController.childViewControllers lastObject];
+            [_webController setSplitViewController:self];
+        //}
+    }
+    return _webController;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	self.viewControllers = @[ self.debugController,  self.statusController ];
     self.vertical = NO;
@@ -56,6 +63,14 @@
     self.delegate = self;
     [self showStatusLog];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLogSplitPosition) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+}
+
+- (void)setSecondScreenAsDebug {
+    self.viewControllers = @[ self.debugController, self.statusController ];
+}
+
+- (void)setSecondScreenAsWeb {
+    self.viewControllers = @[ self.webController, self.statusController ];
 }
 
 - (void)viewDidUnload {
@@ -82,12 +97,6 @@
     } else {
         self.splitPosition = [[TVHSettings sharedInstance] statusSplitPositionPortrait];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)splitViewController:(MGSplitViewController*)svc willMoveSplitToPosition:(float)position {

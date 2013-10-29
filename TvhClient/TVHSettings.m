@@ -24,6 +24,9 @@
 #define TVHS_STATUS_SHOWLOG @"statusShowLog"
 #define TVHS_SPLIT_RIGHT_MENU @"splitRightMenu"
 #define TVHS_TRANSCODE_RES @"transcodeResolution"
+#define TVHS_WEB1_URL @"website1Url"
+#define TVHS_WEB1_USER @"website1User"
+#define TVHS_WEB1_PASS @"website1Pass"
 
 @interface TVHSettings()
 
@@ -43,6 +46,9 @@
 @synthesize statusShowLog = _statusShowLog;
 @synthesize splitRightMenu = _splitRightMenu;
 @synthesize transcodeResolution = _transcodeResolution;
+@synthesize web1Url = _web1Url;
+@synthesize web1User = _web1User;
+@synthesize web1Pass = _web1Pass;
 
 + (id)sharedInstance {
     static TVHSettings *__sharedInstance;
@@ -537,7 +543,6 @@ withPassword:(NSString*)password {
 }
 
 - (NSString*)transcodeResolution {
-    return @"384"; // transcoding resolution is not working correctly, only 384 has a chance of working!
     if ( !_transcodeResolution ) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _transcodeResolution = [defaults stringForKey:TVHS_TRANSCODE_RES];
@@ -546,6 +551,48 @@ withPassword:(NSString*)password {
         }
     }
     return _transcodeResolution;
+}
+
+- (void)setWeb1Url:(NSString *)web1Url {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:web1Url forKey:TVHS_WEB1_URL];
+    [defaults synchronize];
+    _web1Url = web1Url;
+}
+
+- (NSString*)web1Url {
+    if ( !_web1Url ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _web1Url = [defaults stringForKey:TVHS_WEB1_URL];
+    }
+    return _web1Url;
+}
+
+- (void)setWeb1User:(NSString *)web1User {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:web1User forKey:TVHS_WEB1_USER];
+    [defaults synchronize];
+    _web1User = web1User;
+}
+
+- (NSString*)web1User {
+    if ( !_web1User ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _web1User = [defaults stringForKey:TVHS_WEB1_USER];
+    }
+    return _web1User;
+}
+
+- (void)setWeb1Pass:(NSString *)web1Pass {
+    [self setProtectedString:web1Pass forKey:TVHS_WEB1_PASS];
+    _web1Pass = web1Pass;
+}
+
+- (NSString*)web1Pass {
+    if ( !_web1Pass ) {
+        _web1Pass = [self protectedString:TVHS_WEB1_PASS];
+    }
+    return _web1Pass;
 }
 
 @end

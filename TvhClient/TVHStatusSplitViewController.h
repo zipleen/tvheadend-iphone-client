@@ -13,7 +13,12 @@
 #import "UIViewController+JASidePanel.h"
 #import "MGSplitViewController.h"
 
+@class TVHWebLogViewController;
+
 @interface TVHStatusSplitViewController : MGSplitViewController <MGSplitViewControllerDelegate>
 @property (nonatomic, strong) UINavigationController *statusController;
 @property (nonatomic, strong) UINavigationController *debugController;
+@property (nonatomic, strong) TVHWebLogViewController *webController;
+- (void)setSecondScreenAsDebug;
+- (void)setSecondScreenAsWeb;
 @end

@@ -55,6 +55,9 @@
 @property (nonatomic) NSInteger statusSplitPositionPortrait;
 @property (nonatomic) BOOL statusShowLog;
 @property (nonatomic) NSInteger splitRightMenu;
+@property (nonatomic, strong) NSString *web1Url;
+@property (nonatomic, strong) NSString *web1User;
+@property (nonatomic, strong) NSString *web1Pass;
 
 - (NSString*)customPrefix;
 - (void)setCustomPrefix:(NSString*)customPrefix;

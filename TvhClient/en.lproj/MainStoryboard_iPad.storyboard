@@ -144,6 +144,7 @@
                         <segue destination="8ta-wh-pjF" kind="push" identifier="SettingsGenericText" id="AlH-BS-jiT"/>
                         <segue destination="JAO-4d-hsi" kind="push" identifier="SettingsGenericField" id="eb8-mL-0Xc"/>
                         <segue destination="adU-gt-enQ" kind="push" identifier="Support Me" id="B7b-Qo-Kh8"/>
+                        <segue destination="vDc-pd-9ft" kind="push" identifier="SettingsWebserver" id="tL6-LF-5OO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KFb-6o-BTy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,12 +177,56 @@
             </objects>
             <point key="canvasLocation" x="301" y="-5160"/>
         </scene>
+        <!--Settings Web Controller View Controller-->
+        <scene sceneID="I6V-Lx-Hu3">
+            <objects>
+                <tableViewController id="vDc-pd-9ft" customClass="TVHSettingsWebControllerViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="ZjW-vh-dte">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="webserverCell" id="b1n-rq-iuJ">
+                                <rect key="frame" x="0.0" y="119" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b1n-rq-iuJ" id="f01-s8-haC">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="200" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="NvS-DN-0g6">
+                                            <rect key="frame" x="11" y="11" width="117" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="201" contentMode="scaleToFill" restorationIdentifier="webserverCell" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="U1w-gg-qU4">
+                                            <rect key="frame" x="136" y="8" width="629" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vDc-pd-9ft" id="a0b-Ln-6y5"/>
+                            <outlet property="delegate" destination="vDc-pd-9ft" id="FyM-C1-Rw0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Umh-JM-0r8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hrP-5B-COk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="266" y="-3685"/>
+        </scene>
         <!--Settings Generic Field View Controller-->
         <scene sceneID="AGA-B2-Xlc">
             <objects>
                 <tableViewController modalPresentationStyle="currentContext" id="JAO-4d-hsi" customClass="TVHSettingsGenericFieldViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="fds-z9-TGf">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <prototypes>
@@ -1656,6 +1701,54 @@
             </objects>
             <point key="canvasLocation" x="-3336" y="1494"/>
         </scene>
+        <!--Web Log View Controller-->
+        <scene sceneID="gSV-BH-qLI">
+            <objects>
+                <viewController storyboardIdentifier="webNavigationController" id="nmw-dT-omN" customClass="TVHWebLogViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7IZ-zr-Umm">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="xqu-UJ-IoS">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="E7H-YD-ELY">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Back" id="VIT-la-Vc6">
+                                        <connections>
+                                            <action selector="backButton:" destination="nmw-dT-omN" id="q14-dz-5RT"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Reload" id="Ly8-ZA-Uf7">
+                                        <connections>
+                                            <action selector="reloadButton:" destination="nmw-dT-omN" id="wi6-79-lkB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="U8V-iZ-pnh"/>
+                                    <barButtonItem title="Resize" id="jhM-Gg-kMZ">
+                                        <connections>
+                                            <action selector="resizeButton:" destination="nmw-dT-omN" id="zmO-hx-ypr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="xqu-UJ-IoS" id="Kpa-sx-YyC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="djx-9s-lNo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2419" y="1494"/>
+        </scene>
         <!--Recordings Detail View Controller-->
         <scene sceneID="pyN-O0-WQS">
             <objects>
@@ -1950,8 +2043,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="sHm-Tp-YTa"/>
         <segue reference="A37-th-b3M"/>
-        <segue reference="Iuv-qh-s6J"/>
+        <segue reference="sHm-Tp-YTa"/>
+        <segue reference="eb8-mL-0Xc"/>
     </inferredMetricsTieBreakers>
 </document>

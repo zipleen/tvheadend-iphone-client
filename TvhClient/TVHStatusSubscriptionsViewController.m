@@ -20,6 +20,7 @@
 #import "TVHAdapter.h"
 #import "TVHAdapterMuxViewController.h"
 #import "TVHProgressBar.h"
+#import "TVHStatusSplitViewController.h"
 
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;
@@ -67,15 +68,25 @@
     return _adapterStore;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     int shiftButton = 0;
     
     if ( self.splitViewController ) {
         NSMutableArray *buttons = [self.navigationItem.rightBarButtonItems mutableCopy];
-        UIBarButtonItem *split = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log", nil) style:UIBarButtonItemStylePlain target:self action:@selector(showSplitLog:)];
-        [buttons addObject:split];
+        UIBarButtonItem *logButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log", nil)
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(showSplitLog:)];
+        [buttons addObject:logButton];
+        shiftButton++;
+        
+        UIBarButtonItem *webButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Web", nil)
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(showSplitWeb:)];
+        [buttons addObject:webButton];
+        
         self.navigationItem.rightBarButtonItems = [buttons copy];
         shiftButton++;
     }
@@ -142,15 +153,8 @@
     [self changePollingIcon];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [TVHAnalytics sendView:NSStringFromClass([self class])];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)didLoadStatusSubscriptions {
@@ -169,8 +173,7 @@
     }
 }
 
-- (void)pullToRefreshViewShouldRefresh
-{
+- (void)pullToRefreshViewShouldRefresh {
     [self.tableView reloadData];
     [self.statusSubscriptionsStore fetchStatusSubscriptions];
     [self.adapterStore fetchAdapters];
@@ -382,7 +385,21 @@
             [[TVHSettings sharedInstance] setStatusShowLog:YES];
         }
         
+        [(TVHStatusSplitViewController*)self.splitViewController setSecondScreenAsDebug];
         [self.splitViewController toggleMasterView:sender];
+    }
+}
+
+- (IBAction)showSplitWeb:(id)sender {
+    if( self.splitViewController ) {
+        /*if ( [[TVHSettings sharedInstance] statusShowLog] ) {
+            [[TVHSettings sharedInstance] setStatusShowLog:NO];
+        } else {
+            [[TVHSettings sharedInstance] setStatusShowLog:YES];
+        }*/
+        
+        [(TVHStatusSplitViewController*)self.splitViewController setSecondScreenAsWeb];
+        //[self.splitViewController toggleMasterView:sender];
     }
 }
 
