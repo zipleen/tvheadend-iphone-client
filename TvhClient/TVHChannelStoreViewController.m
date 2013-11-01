@@ -141,6 +141,12 @@
     [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         if (!error && image) {
             channelImage.image = [TVHImageCache resizeImage:image];
+            if ( channelImage.image.size.height > 0 /*&& cacheType == SDImageCacheTypeNone*/ ) {
+                [TVHAnalytics sendEventWithCategory:@"images"
+                                         withAction:@"channel"
+                                          withLabel:@"ratio"
+                                          withValue:[NSNumber numberWithFloat:(channelImage.image.size.width / channelImage.image.size.height)]];
+            }
         }
     } ];
     
