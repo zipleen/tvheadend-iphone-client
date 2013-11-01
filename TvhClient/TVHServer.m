@@ -175,6 +175,7 @@
 #ifdef TESTING
             NSLog(@"[TVHServer getVersion]: %@", self.version);
 #endif
+            [TVHDebugLytics setObjectValue:self.version forKey:@"version"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHVersion"
                                                                 object:self];
         }
@@ -203,6 +204,7 @@
 #ifdef TESTING
         NSLog(@"[TVHServer capabilities]: %@", _capabilities);
 #endif
+        [TVHDebugLytics setObjectValue:_capabilities forKey:@"server.capabilities"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHCapabilities"
                                                             object:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -234,6 +236,7 @@
 #ifdef TESTING
         NSLog(@"[TVHServer configSettings]: %@", self.configSettings);
 #endif
+        [TVHDebugLytics setObjectValue:self.configSettings forKey:@"server.configSettings"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadTVHConfigSettings"
                                                             object:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

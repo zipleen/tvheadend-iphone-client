@@ -36,4 +36,5 @@
         #define NSLog(__FORMAT__, ...) CLSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
     #endif
     #import "TVHAnalytics.h"
+    #import "TVHDebugLytics.h"
 #endif

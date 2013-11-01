@@ -40,6 +40,7 @@
     [[GAI sharedInstance].defaultTracker set:kGAIScreenName value:message];
     [[GAI sharedInstance].defaultTracker send:[[GAIDictionaryBuilder createAppView]  build]];
 #endif
+    [TVHDebugLytics setObjectValue:message forKey:@"view"];
 }
 
 + (void)sendEventWithCategory:(NSString *)category

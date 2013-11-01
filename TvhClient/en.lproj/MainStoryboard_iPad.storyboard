@@ -71,7 +71,7 @@
                                             <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         </textField>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="201" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sJb-M2-uPA">
-                                            <rect key="frame" x="11" y="11" width="179" height="21"/>
+                                            <rect key="frame" x="15" y="11" width="175" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -92,7 +92,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         </switch>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="301" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xsQ-hw-fer">
-                                            <rect key="frame" x="11" y="11" width="651" height="21"/>
+                                            <rect key="frame" x="15" y="11" width="647" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
