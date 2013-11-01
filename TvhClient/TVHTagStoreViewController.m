@@ -130,6 +130,9 @@
 	__weak UIImageView *channelImage = (UIImageView *)[cell viewWithTag:102];
     tagNameLabel.text = tag.name;
     
+    if ( ! DEVICE_HAS_IOS7 ){
+        tagNumberLabel.frame = CGRectMake(tagNumberLabel.frame.origin.x, tagNumberLabel.frame.origin.y, 31, tagNumberLabel.frame.size.height);
+    }
     tagNumberLabel.text = [NSString stringWithFormat:@"%d", [tag channelCount]];
     tagNumberLabel.layer.cornerRadius = 10.0;
     tagNumberLabel.layer.masksToBounds = YES;
