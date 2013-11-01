@@ -80,15 +80,15 @@
                                                                  action:@selector(showSplitLog:)];
         [buttons addObject:logButton];
         shiftButton++;
-        
+        /*
         UIBarButtonItem *webButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Web", nil)
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(showSplitWeb:)];
         [buttons addObject:webButton];
-        
-        self.navigationItem.rightBarButtonItems = [buttons copy];
         shiftButton++;
+        */
+        self.navigationItem.rightBarButtonItems = [buttons copy];
     }
     
     self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
