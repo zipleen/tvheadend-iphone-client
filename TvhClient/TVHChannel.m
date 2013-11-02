@@ -85,7 +85,7 @@
 }
 
 - (NSString*)htspStreamURL {
-    return [NSString stringWithFormat:@"htsp://192.168.1.250/%d", self.chid];
+    return [NSString stringWithFormat:@"%@/tags/0/%d.ts", [self.tvhServer htspUrl], self.chid];
 }
 
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {

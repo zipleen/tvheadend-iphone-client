@@ -259,6 +259,15 @@
     return false;
 }
 
+- (NSString*)htspUrl {
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    NSString *userAndPass = @"";
+    if ( ![[settings username] isEqualToString:@""] ) {
+        userAndPass = [NSString stringWithFormat:@"%@:%@@", [settings username], [settings password]];
+    }
+    return [NSString stringWithFormat:@"htsp://%@%@:%d", userAndPass, [settings ipForCurrentServer], 9982];
+}
+
 - (void)resetData {
     [self.timer invalidate];
     self.timer = nil;

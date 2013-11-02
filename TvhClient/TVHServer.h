@@ -43,4 +43,5 @@
 - (void)fetchServerVersion;
 - (BOOL)isTranscodingCapable;
 - (void)resetData;
+- (NSString*)htspUrl;
 @end

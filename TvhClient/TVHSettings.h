@@ -72,4 +72,8 @@
 - (void)resetSettings;
 - (BOOL)programFirstRun;
 - (NSString*)fullBaseURL;
+
+- (NSString*)username;
+- (NSString*)password;
+- (NSString*)ipForCurrentServer;
 @end

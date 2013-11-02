@@ -68,7 +68,7 @@
         return true;
     }
     
-    return [[TVHPlayXbmc sharedInstance] playToXbmc:program withURL:[streamObject streamURL]];
+    return [[TVHPlayXbmc sharedInstance] playToXbmc:program withURL:[streamObject htspStreamURL]];
 }
 
 - (BOOL)playInternalStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
