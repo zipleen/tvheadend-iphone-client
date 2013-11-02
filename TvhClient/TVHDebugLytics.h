@@ -10,4 +10,5 @@
 
 @interface TVHDebugLytics : NSObject
 + (void)setObjectValue:(id)value forKey:(NSString*)key;
++ (void)setIntValue:(int)value forKey:(NSString*)key;
 @end

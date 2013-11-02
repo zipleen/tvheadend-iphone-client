@@ -116,6 +116,11 @@
         [self showTranscodeMenu:self.sender withVC:self.vc withActionSheet:NSLocalizedString(@"Playback Transcode Stream", nil)];
     }
     
+    [TVHAnalytics sendEventWithCategory:@"uiActions"
+                             withAction:@"playTo"
+                              withLabel:buttonTitle
+                              withValue:[NSNumber numberWithInt:1]];
+    
     // internal player
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal Player", nil)] ) {
         streamUrlInternal = [self.playStreamModal stringTranscodeUrlInternalFormat:[self.streamObject playlistStreamURL]];

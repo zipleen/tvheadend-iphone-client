@@ -75,6 +75,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Tags]: %d", [self.tags count]);
 #endif
+    [TVHDebugLytics setIntValue:[self.tags count] forKey:@"tags"];
     return true;
 }
 

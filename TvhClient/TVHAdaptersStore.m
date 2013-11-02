@@ -81,6 +81,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Adapters]: %d", [self.adapters count]);
 #endif
+    [TVHDebugLytics setIntValue:[self.adapters count] forKey:@"adapters"];
     return true;
 }
 

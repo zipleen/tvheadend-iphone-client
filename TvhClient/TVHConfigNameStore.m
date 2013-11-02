@@ -52,6 +52,7 @@
 #ifdef TESTING
     NSLog(@"[ConfigNames Channels]: %@", _configNames);
 #endif
+    [TVHDebugLytics setIntValue:[_configNames count] forKey:@"configNames"];
     return true;
 }
 

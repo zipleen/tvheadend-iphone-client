@@ -100,6 +100,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded DVR Items, Count]: %d", [self.dvrItems count]);
 #endif
+    [TVHDebugLytics setIntValue:[self.dvrItems count] forKey:[NSString stringWithFormat:@"dvr_%d", type]];
     return true;
 }
 

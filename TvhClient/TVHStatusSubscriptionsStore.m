@@ -84,6 +84,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Subscription]: %d", [self.subscriptions count]);
 #endif
+    [TVHDebugLytics setIntValue:[self.subscriptions count] forKey:@"subscriptions"];
     return true;
 }
 

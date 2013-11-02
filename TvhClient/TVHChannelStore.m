@@ -85,6 +85,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Channels]: %d", [self.channels count]);
 #endif
+    [TVHDebugLytics setIntValue:[self.channels count] forKey:@"channels"];
     [self.currentlyPlayingEpgStore clearEpgData];
     return true;
 }

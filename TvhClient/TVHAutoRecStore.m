@@ -72,6 +72,7 @@
 #ifdef TESTING
     NSLog(@"[Loaded Auto Rec Items, Count]: %d", [self.dvrAutoRecItems count]);
 #endif
+    [TVHDebugLytics setIntValue:[self.dvrAutoRecItems count] forKey:@"autorec"];
 }
 
 - (void)fetchDvrAutoRec {

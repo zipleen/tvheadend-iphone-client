@@ -17,4 +17,10 @@
 #endif
 }
 
++ (void)setIntValue:(int)value forKey:(NSString*)key {
+#if defined TVH_CRASHLYTICS_KEY
+    [Crashlytics setIntValue:value forKey:key];
+#endif
+}
+
 @end
