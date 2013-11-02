@@ -127,8 +127,12 @@
                                                object:nil];
     
     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
-    factory.size = 16;
-    [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
+    if ( DEVICE_HAS_IOS7 ) {
+        [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedString(@"Play", @"toolbar play")];
+    } else {
+        factory.size = 16;
+        [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
+    }
     
     [self.segmentedControl setTitle:NSLocalizedString(@"Details", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:NSLocalizedString(@"See Again", nil) forSegmentAtIndex:1];
