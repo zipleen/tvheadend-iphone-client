@@ -20,7 +20,7 @@
 #import "TVHSingletonServer.h"
 #import "UIView+ClosestParent.h"
 
-#define TVHS_TRANSCODE_RESOLUTIONS @[@"384", @"576", @"768"]
+#define TVHS_TRANSCODE_RESOLUTIONS @[@"288", @"384", @"480", @"576", @"720"]
 
 @interface TVHSettingsViewController () <UITextFieldDelegate> {
     NIKFontAwesomeIconFactory *factory;
