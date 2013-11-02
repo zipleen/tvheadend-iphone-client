@@ -94,6 +94,10 @@
     return nil;
 }
 
+- (NSString*)htspStreamURL {
+    return nil;
+}
+
 - (BOOL)isEqual: (id)other {
     if (other == self)
         return YES;

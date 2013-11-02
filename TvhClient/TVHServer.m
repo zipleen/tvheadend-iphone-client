@@ -245,7 +245,6 @@
     
 }
 
-
 - (BOOL)isTranscodingCapable {
     if ( self.capabilities ) {
         NSInteger idx = [self.capabilities indexOfObject:@"transcoding"];

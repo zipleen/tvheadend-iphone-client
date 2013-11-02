@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHPlayStreamDelegate.h"
 
 @interface TVHPlayStream : NSObject
 + (id)sharedInstance;
@@ -14,6 +15,5 @@
 - (BOOL)isTranscodingCapable;
 - (NSString*)stringTranscodeUrl:(NSString*)url;
 - (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url;
-- (NSURL*)URLforProgramWithName:(NSString*)title forURL:(NSString*)streamUrl;
-- (BOOL)playProgramWithName:(NSString*)title forURL:(NSString*)streamUrl;
+- (BOOL)playStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding;
 @end

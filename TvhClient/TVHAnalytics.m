@@ -32,7 +32,9 @@
 }
 
 + (void)setOptOut:(BOOL)optOut {
+#ifdef TVH_GOOGLEANALYTICS_KEY
     [[GAI sharedInstance] setOptOut:optOut];
+#endif
 }
 
 + (void)sendView:(NSString*)message {

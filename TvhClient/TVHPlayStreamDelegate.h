@@ -15,4 +15,5 @@
 @protocol TVHPlayStreamDelegate <NSObject>
 - (NSString*)streamURL;
 - (NSString*)playlistStreamURL;
+- (NSString*)htspStreamURL;
 @end

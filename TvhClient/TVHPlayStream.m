@@ -28,9 +28,7 @@
     return __sharedInstance;
 }
 
-- (NSURL*)urlForSchema:(NSString*)schema withURL:(NSString*)url {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", schema, url]];
-}
+#pragma MARK get programs
 
 - (NSArray*)arrayOfAvailablePrograms {
     NSMutableArray *available = [[NSMutableArray alloc] init];
@@ -62,6 +60,40 @@
     return [tvhServer isTranscodingCapable];
 }
 
+#pragma MARK play stream
+
+- (BOOL)playStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
+    
+    if ( [self playInternalStreamIn:program forObject:streamObject withTranscoding:transcoding] ) {
+        return true;
+    }
+    
+    return [[TVHPlayXbmc sharedInstance] playToXbmc:program withURL:[streamObject streamURL]];
+}
+
+- (BOOL)playInternalStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
+    NSString *streamUrl = [self streamUrlFromObject:streamObject withTranscoding:transcoding];
+    
+    NSURL *myURL = [self URLforProgramWithName:program forURL:streamUrl];
+    if ( myURL ) {
+        [TVHAnalytics sendEventWithCategory:@"playTo"
+                                 withAction:@"Internal"
+                                  withLabel:program
+                                  withValue:[NSNumber numberWithInt:1]];
+        [[UIApplication sharedApplication] openURL:myURL];
+        return true;
+    }
+    return false;
+}
+
+- (NSString*)streamUrlFromObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
+    if ( transcoding ) {
+        return[self stringTranscodeUrl:[streamObject streamURL]];
+    } else {
+        return [streamObject streamURL];
+    }
+}
+
 - (NSString*)stringTranscodeUrl:(NSString*)url {
     TVHSettings *settings = [TVHSettings sharedInstance];
     return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL, [settings transcodeResolution]];
@@ -89,26 +121,8 @@
     return nil;
 }
 
-- (BOOL)playProgramWithName:(NSString*)title forURL:(NSString*)streamUrl {
-    
-    if ( [self playInternalProgramWithName:title forURL:streamUrl] ) {
-        return true;
-    }
-    
-    return [[TVHPlayXbmc sharedInstance] playToXbmc:title withURL:streamUrl];
-}
-
-- (BOOL)playInternalProgramWithName:(NSString *)title forURL:(NSString *)streamUrl {
-    NSURL *myURL = [self URLforProgramWithName:title forURL:streamUrl];
-    if ( myURL ) {
-        [TVHAnalytics sendEventWithCategory:@"playTo"
-                                 withAction:@"Internal"
-                                  withLabel:title
-                                  withValue:[NSNumber numberWithInt:1]];
-        [[UIApplication sharedApplication] openURL:myURL];
-        return true;
-    }
-    return false;
+- (NSURL*)urlForSchema:(NSString*)schema withURL:(NSString*)url {
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", schema, url]];
 }
 
 @end

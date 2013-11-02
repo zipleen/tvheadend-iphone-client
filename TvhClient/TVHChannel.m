@@ -84,6 +84,10 @@
     return [NSString stringWithFormat:@"%@/playlist/channelid/%d", [tvh fullBaseURL], self.chid];
 }
 
+- (NSString*)htspStreamURL {
+    return [NSString stringWithFormat:@"htsp://192.168.1.250/%d", self.chid];
+}
+
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date == %@", dateString];
     NSArray *filteredArray = [self.channelEpgDataByDay filteredArrayUsingPredicate:predicate];

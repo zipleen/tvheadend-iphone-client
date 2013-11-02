@@ -122,7 +122,7 @@
         [self streamNativeUrl:streamUrlInternal];
     }
     
-    [self.playStreamModal playProgramWithName:buttonTitle forURL:streamUrl];
+    [self.playStreamModal playStreamIn:buttonTitle forObject:self.streamObject withTranscoding:transcodingEnabled];
 }
 
 - (void)dismissActionSheet {
