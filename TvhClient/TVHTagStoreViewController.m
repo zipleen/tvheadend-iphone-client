@@ -20,7 +20,9 @@
 #import "TVHSingletonServer.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface TVHTagStoreViewController ()
+@interface TVHTagStoreViewController () {
+    BOOL didAlreadyPushed;
+}
 @property (weak, nonatomic) TVHTagStore *tagStore;
 @property (strong, nonatomic) NSArray *tags;
 @end
@@ -47,6 +49,7 @@
     }
     [self prepareSplitViewEpg:nil];
     [super viewWillAppear:animated];
+    didAlreadyPushed = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -204,7 +207,9 @@
     [TVHStatusBar clearStatusAnimated:YES];
     [self reloadData];
     [self.refreshControl endRefreshing];
-    if ( [self.tags count] == 1 ) {
+    
+    if ( [self.view isEqual:self.navigationController.topViewController.view] && [self.tags count] == 1 && !didAlreadyPushed ) {
+        didAlreadyPushed = YES;
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         [self performSegueWithIdentifier:@"Show Channel List" sender:self];
     }
