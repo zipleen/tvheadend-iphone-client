@@ -265,7 +265,7 @@
     if ( ![[settings username] isEqualToString:@""] ) {
         userAndPass = [NSString stringWithFormat:@"%@:%@@", [settings username], [settings password]];
     }
-    return [NSString stringWithFormat:@"htsp://%@%@:%d", userAndPass, [settings ipForCurrentServer], 9982];
+    return [NSString stringWithFormat:@"htsp://%@%@:%@", userAndPass, [settings ipForCurrentServer], [settings htspPortForCurrentServer]];
 }
 
 - (void)resetData {

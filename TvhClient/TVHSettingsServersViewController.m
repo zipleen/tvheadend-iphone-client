@@ -75,7 +75,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ( section == 0 ) {
-        return 3;
+        return 4;
     }
     if ( section == 1 ) {
         return 2;
@@ -90,17 +90,11 @@
 }
 
 - (NSInteger)indexOfSettingsArray:(NSInteger)section row:(NSInteger)row {
-    NSInteger c = 0;
-    if ( section >= 1 ) {
-        c = c + 3;
+    NSInteger indexCount = 0;
+    for (int sectionCount = 0; sectionCount < section && sectionCount < [self numberOfSectionsInTableView:self.tableView] ; sectionCount++) {
+        indexCount = indexCount + [self tableView:self.tableView numberOfRowsInSection:sectionCount];
     }
-    if ( section >= 2 ) {
-        c = c + 2;
-    }
-    if ( section >= 3 ) {
-        c = c + 2;
-    }
-    return c + row;
+    return indexCount + row;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,6 +127,11 @@
     if ( indexPath.row == 2 && indexPath.section == 0  ) {
         textLabel.text = NSLocalizedString(@"Port", @"..in Settings server edit");
         textField.placeholder = @"9981";
+        textField.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    if ( indexPath.row == 3 && indexPath.section == 0  ) {
+        textLabel.text = NSLocalizedString(@"HTSP Port", @"..in Settings server edit");
+        textField.placeholder = @"9982";
         textField.keyboardType = UIKeyboardTypeNumberPad;
     }
     if ( indexPath.row == 0 && indexPath.section == 1 ) {

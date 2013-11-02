@@ -184,6 +184,7 @@ withPassword:(NSString*)password {
     NSDictionary *newServer = @{TVHS_SERVER_NAME:@"",
                                 TVHS_IP_KEY:@"",
                                 TVHS_PORT_KEY:@"9981",
+                                TVHS_HTSP_PORT_KEY:@"9982",
                                 TVHS_USERNAME_KEY:@"",
                                 TVHS_PASSWORD_KEY:@"",
                                 TVHS_USE_HTTPS:@"",
@@ -291,6 +292,19 @@ withPassword:(NSString*)password {
         port = [self currentServerProperty:TVHS_PORT_KEY];
         if( [port length] == 0 ) {
             port = @"9981";
+        }
+    }
+    return port;
+}
+
+- (NSString*)htspPortForCurrentServer {
+    NSString *port;
+    if ( [[self currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
+        port = [NSString stringWithFormat:@"%@", TVHS_SSH_PF_LOCAL_HTSP_PORT];
+    } else {
+        port = [self currentServerProperty:TVHS_HTSP_PORT_KEY];
+        if( [port length] == 0 ) {
+            port = @"9982";
         }
     }
     return port;
