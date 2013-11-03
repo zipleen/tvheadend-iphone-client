@@ -22,6 +22,9 @@
 #import "TVHProgressBar.h"
 #import "TVHStatusSplitViewController.h"
 
+#import "TVHDebugLogViewController.h"
+#import "TVHWebLogViewController.h"
+
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;
     NIKFontAwesomeIconFactory *factoryBar;
@@ -80,14 +83,14 @@
                                                                  action:@selector(showSplitLog:)];
         [buttons addObject:logButton];
         shiftButton++;
-        /*
+        
         UIBarButtonItem *webButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Web", nil)
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(showSplitWeb:)];
         [buttons addObject:webButton];
         shiftButton++;
-        */
+        
         self.navigationItem.rightBarButtonItems = [buttons copy];
     }
     
@@ -379,27 +382,37 @@
 
 - (IBAction)showSplitLog:(id)sender {
     if( self.splitViewController ) {
-        if ( [[TVHSettings sharedInstance] statusShowLog] ) {
-            [[TVHSettings sharedInstance] setStatusShowLog:NO];
-        } else {
-            [[TVHSettings sharedInstance] setStatusShowLog:YES];
-        }
         
+        if ( ! [self.splitViewController isShowingMaster] ||
+            [[self.splitViewController masterViewController] isKindOfClass:[UINavigationController class]] ) {
+            
+            if ( [[TVHSettings sharedInstance] statusShowLog] ) {
+                [[TVHSettings sharedInstance] setStatusShowLog:NO];
+            } else {
+                [[TVHSettings sharedInstance] setStatusShowLog:YES];
+            }
+            [(TVHStatusSplitViewController*)self.splitViewController setSecondScreenAsDebug];
+            [self.splitViewController toggleMasterView:sender];
+        }
         [(TVHStatusSplitViewController*)self.splitViewController setSecondScreenAsDebug];
-        [self.splitViewController toggleMasterView:sender];
+        
     }
 }
 
 - (IBAction)showSplitWeb:(id)sender {
     if( self.splitViewController ) {
-        /*if ( [[TVHSettings sharedInstance] statusShowLog] ) {
-            [[TVHSettings sharedInstance] setStatusShowLog:NO];
-        } else {
-            [[TVHSettings sharedInstance] setStatusShowLog:YES];
-        }*/
-        
+        if ( ! [self.splitViewController isShowingMaster] ||
+            [[self.splitViewController masterViewController] isKindOfClass:[TVHWebLogViewController class]] ) {
+            
+            if ( [[TVHSettings sharedInstance] statusShowLog] ) {
+                [[TVHSettings sharedInstance] setStatusShowLog:NO];
+            } else {
+                [[TVHSettings sharedInstance] setStatusShowLog:YES];
+            }
+            [(TVHStatusSplitViewController*)self.splitViewController setSecondScreenAsWeb];
+            [self.splitViewController toggleMasterView:sender];
+        }
         [(TVHStatusSplitViewController*)self.splitViewController setSecondScreenAsWeb];
-        //[self.splitViewController toggleMasterView:sender];
     }
 }
 

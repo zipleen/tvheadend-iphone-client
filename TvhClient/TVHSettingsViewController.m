@@ -114,7 +114,7 @@
     }
     if ( section == 1 ) {
         if ( IS_IPAD ) {
-            return 7;
+            return 8;
         } else {
             return 6;
         }
