@@ -1,42 +1,42 @@
-[submodule "AFNetworking"]
-	path = AFNetworking
+[submodule "vendor/AFNetworking"]
+	path = vendor/AFNetworking
 	url = git://github.com/AFNetworking/AFNetworking.git
-[submodule "NoticeView"]
-	path = NoticeView
+[submodule "vendor/NoticeView"]
+	path = vendor/NoticeView
 	url = git://github.com/tciuro/NoticeView.git
-[submodule "CKRefreshControl"]
-	path = CKRefreshControl
+[submodule "vendor/CKRefreshControl"]
+	path = vendor/CKRefreshControl
 	url = git://github.com/instructure/CKRefreshControl.git
-[submodule "SDSegmentedControl"]
-	path = SDSegmentedControl
+[submodule "vendor/SDSegmentedControl"]
+	path = vendor/SDSegmentedControl
 	url = git://github.com/rs/SDSegmentedControl.git
-[submodule "SDWebImage"]
-	path = SDWebImage
+[submodule "vendor/SDWebImage"]
+	path = vendor/SDWebImage
 	url = git://github.com/rs/SDWebImage.git
-[submodule "PDKeychainBindingsController"]
-	path = PDKeychainBindingsController
+[submodule "vendor/PDKeychainBindingsController"]
+	path = vendor/PDKeychainBindingsController
 	url = git://github.com/carlbrown/PDKeychainBindingsController.git
-[submodule "libssh2-for-iOS"]
-	path = libssh2-for-iOS
+[submodule "vendor/libssh2-for-iOS"]
+	path = vendor/libssh2-for-iOS
 	url = git://github.com/x2on/libssh2-for-iOS.git
-[submodule "FontAwesomeIconFactory"]
-	path = FontAwesomeIconFactory
+[submodule "vendor/FontAwesomeIconFactory"]
+	path = vendor/FontAwesomeIconFactory
 	url = git://github.com/nschum/FontAwesomeIconFactory.git
-[submodule "JASidePanels"]
-	path = JASidePanels
+[submodule "vendor/JASidePanels"]
+	path = vendor/JASidePanels
 	url = git://github.com/gotosleep/JASidePanels.git
-[submodule "MGSplitViewController"]
-	path = MGSplitViewController
+[submodule "vendor/MGSplitViewController"]
+	path = vendor/MGSplitViewController
 	url = https://github.com/zipleen/MGSplitViewController.git 
-[submodule "ETProgressBar"]
-	path = ETProgressBar
+[submodule "vendor/ETProgressBar"]
+	path = vendor/ETProgressBar
 	url = https://github.com/elitalon/ETProgressBar.git
-[submodule "WTStatusBar"]
-	path = WTStatusBar
+[submodule "vendor/WTStatusBar"]
+	path = vendor/WTStatusBar
 	url = https://github.com/pieceofsummer/WTStatusBar.git
-[submodule "AFHTTPRequestOperationLogger"]
-	path = AFHTTPRequestOperationLogger
+[submodule "vendor/AFHTTPRequestOperationLogger"]
+	path = vendor/AFHTTPRequestOperationLogger
 	url = https://github.com/AFNetworking/AFHTTPRequestOperationLogger.git
-[submodule "AFNetworking-ProxyQueue"]
-	path = AFNetworking-ProxyQueue
+[submodule "vendor/AFNetworking-ProxyQueue"]
+	path = vendor/AFNetworking-ProxyQueue
 	url = https://github.com/mystcolor/AFNetworking-ProxyQueue.git
