@@ -75,7 +75,7 @@
 
 - (BOOL)playToXbmc:(NSString*)name withURL:(NSString*)url {
     NSString *serverUrl = [foundServices objectForKey:name];
-    if ( serverUrl ) {
+    if ( serverUrl && url ) {
         NSURL *playXbmc = [NSURL URLWithString:serverUrl];
         AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:playXbmc];
         [httpClient setParameterEncoding:AFJSONParameterEncoding];
@@ -99,6 +99,7 @@
                                       withLabel:@"Fail"
                                       withValue:[NSNumber numberWithInt:1]];
         }];
+        return true;
     }
     return false;
 }
