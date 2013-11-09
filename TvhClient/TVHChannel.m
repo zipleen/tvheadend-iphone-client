@@ -49,10 +49,16 @@
     return _channelEpgDataByDay;
 }
 
-- (void)setImageUrl:(NSString *)imageUrl {
-    _imageUrl = imageUrl;
-    self.image = nil;
-    //self.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imageUrl]];
+- (NSString*)imageUrl {
+    if ( self.chicon ) {
+        if ( [self.chicon isEqualToString:self.ch_icon] ) {
+            return self.chicon;
+        } else {
+            // if they are NOT the same it means it's a image cache and we need to add server url
+            return [NSString stringWithFormat:@"%@/%@", [self.tvhServer baseUrl], self.chicon];
+        }
+    }
+    return self.ch_icon;
 }
 
 // notice that setTags has (id) instead of NSArray*, which means we can test for a NSString and convert it !
@@ -60,10 +66,6 @@
     if([tags isKindOfClass:[NSString class]]) {
         _tags = [tags componentsSeparatedByString:@","];
     }
-}
-
-- (void)setCh_icon:(NSString*)icon {
-    [self setImageUrl:icon];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString*)key {

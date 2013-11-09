@@ -44,4 +44,5 @@
 - (BOOL)isTranscodingCapable;
 - (void)resetData;
 - (NSString*)htspUrl;
+- (NSString*)baseUrl;
 @end

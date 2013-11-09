@@ -184,7 +184,6 @@
 }
 
 - (void)fetchServerVersion {
-    
     [self.jsonClient getPath:@"extjs.html" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         [self handleFetchedServerVersion:response];
@@ -267,6 +266,11 @@
         userAndPass = [NSString stringWithFormat:@"%@:%@@", [settings username], [settings password]];
     }
     return [NSString stringWithFormat:@"htsp://%@%@:%@", userAndPass, [settings ipForCurrentServer], [settings htspPortForCurrentServer]];
+}
+
+- (NSString*)baseUrl {
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    return [settings fullBaseURL];
 }
 
 - (void)resetData {
