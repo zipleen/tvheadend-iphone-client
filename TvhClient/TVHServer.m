@@ -169,6 +169,7 @@
     if ( versionRange ) {
         NSString *versionString = [response substringWithRange:[versionRange rangeAtIndex:1]];
         _realVersion = versionString;
+        [TVHDebugLytics setObjectValue:_realVersion forKey:@"realVersion"];
         versionString = [versionString stringByReplacingOccurrencesOfString:@"." withString:@""];
         if ([versionString length] > 1) {
             self.version = [versionString substringWithRange:NSMakeRange(0, 2)];

@@ -89,16 +89,18 @@
 }
 
 - (void)fetchStatusSubscriptions {
-    [self signalWillLoadStatusSubscriptions];
-    [self.jsonClient getPath:@"subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ( [self fetchedData:responseObject] ) {
-            [self signalDidLoadStatusSubscriptions];
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self signalDidErrorStatusSubscriptionsStore:error];
-        NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
-    }];
+    if ( [[self.tvhServer version] intValue] >= 34 ) {
+        [self signalWillLoadStatusSubscriptions];
+        [self.jsonClient getPath:@"subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ( [self fetchedData:responseObject] ) {
+                [self signalDidLoadStatusSubscriptions];
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self signalDidErrorStatusSubscriptionsStore:error];
+            NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
+        }];
+    }
 }
 
 - (TVHStatusSubscription *) objectAtIndex:(int) row {
