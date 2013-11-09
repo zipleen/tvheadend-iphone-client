@@ -143,9 +143,9 @@
             channelImage.image = [TVHImageCache resizeImage:image];
             if ( channelImage.image.size.height > 0 /*&& cacheType == SDImageCacheTypeNone*/ ) {
                 [TVHAnalytics sendEventWithCategory:@"images"
-                                         withAction:@"channel"
-                                          withLabel:@"ratio"
-                                          withValue:[NSNumber numberWithFloat:(channelImage.image.size.width / channelImage.image.size.height)]];
+                                         withAction:@"ratio"
+                                          withLabel:[NSString stringWithFormat:@"%.2f", (channelImage.image.size.width / channelImage.image.size.height)]
+                                          withValue:@1];
             }
         }
     } ];
