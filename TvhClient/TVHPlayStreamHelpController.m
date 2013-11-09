@@ -98,7 +98,7 @@
     NSString *streamUrl, *streamUrlInternal;
     
     if ( transcodingEnabled ) {
-        streamUrl = [self.playStreamModal stringTranscodeUrl:[self.streamObject streamURL]];
+        streamUrl = [TVHPlayStream stringTranscodeUrl:[self.streamObject streamURL]];
     } else {
         streamUrl = [self.streamObject streamURL];
     }
@@ -123,7 +123,7 @@
     
     // internal player
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal Player", nil)] ) {
-        streamUrlInternal = [self.playStreamModal stringTranscodeUrlInternalFormat:[self.streamObject playlistStreamURL]];
+        streamUrlInternal = [TVHPlayStream stringTranscodeUrlInternalFormat:[self.streamObject playlistStreamURL]];
         [self streamNativeUrl:streamUrlInternal];
     }
     

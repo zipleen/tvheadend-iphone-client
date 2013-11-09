@@ -9,6 +9,7 @@
 #import "TVHPlayXbmc.h"
 #include <arpa/inet.h>
 #include "AFHTTPClient.h"
+#include "TVHPlayStream.h"
 
 #define SERVICE_TYPE @"_xbmc-jsonrpc-h._tcp"
 #define DOMAIN_NAME @"local"
@@ -73,10 +74,11 @@
 
 # pragma mark - xbmc results
 
-- (BOOL)playToXbmc:(NSString*)name withURL:(NSString*)url {
-    NSString *serverUrl = [foundServices objectForKey:name];
-    if ( serverUrl && url ) {
-        NSURL *playXbmc = [NSURL URLWithString:serverUrl];
+- (BOOL)playToXbmc:(NSString*)xbmcName forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
+    NSString *xbmcServerAddress = [foundServices objectForKey:xbmcName];
+    NSString *url = [self validUrlForObject:streamObject withTranscoding:transcoding];
+    if ( xbmcServerAddress && url ) {
+        NSURL *playXbmc = [NSURL URLWithString:xbmcServerAddress];
         AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:playXbmc];
         [httpClient setParameterEncoding:AFJSONParameterEncoding];
         NSDictionary *httpParams = @{@"jsonrpc": @"2.0",
@@ -102,6 +104,19 @@
         return true;
     }
     return false;
+}
+
+- (NSString*)validUrlForObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
+    NSString *url;
+    if ( transcoding ) {
+        return [TVHPlayStream streamUrlFromObject:streamObject withTranscoding:transcoding];
+    }
+    
+    url = [streamObject htspStreamURL];
+    if ( ! url ) {
+        url = [streamObject streamURL];
+    }
+    return url;
 }
 
 - (NSArray*)availableXbmcServers {

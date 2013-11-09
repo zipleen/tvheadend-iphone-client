@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHPlayStreamDelegate.h"
 
 @interface TVHPlayXbmc : NSObject
 + (TVHPlayXbmc*)sharedInstance;
 - (NSArray*)availableXbmcServers;
-- (BOOL)playToXbmc:(NSString*)name withURL:(NSString*)url;
+- (BOOL)playToXbmc:(NSString*)name forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding;
 @end

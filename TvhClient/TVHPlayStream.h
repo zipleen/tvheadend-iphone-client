@@ -11,9 +11,11 @@
 
 @interface TVHPlayStream : NSObject
 + (id)sharedInstance;
++ (NSString*)streamUrlFromObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding;
++ (NSString*)stringTranscodeUrl:(NSString*)url;
++ (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url;
+
 - (NSArray*)arrayOfAvailablePrograms;
 - (BOOL)isTranscodingCapable;
-- (NSString*)stringTranscodeUrl:(NSString*)url;
-- (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url;
 - (BOOL)playStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding;
 @end

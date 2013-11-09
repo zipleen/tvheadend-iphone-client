@@ -68,11 +68,11 @@
         return true;
     }
     
-    return [[TVHPlayXbmc sharedInstance] playToXbmc:program withURL:[streamObject htspStreamURL]];
+    return [[TVHPlayXbmc sharedInstance] playToXbmc:program forObject:streamObject withTranscoding:transcoding];
 }
 
 - (BOOL)playInternalStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
-    NSString *streamUrl = [self streamUrlFromObject:streamObject withTranscoding:transcoding];
+    NSString *streamUrl = [TVHPlayStream streamUrlFromObject:streamObject withTranscoding:transcoding];
     
     NSURL *myURL = [self URLforProgramWithName:program forURL:streamUrl];
     if ( myURL ) {
@@ -86,20 +86,20 @@
     return false;
 }
 
-- (NSString*)streamUrlFromObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
++ (NSString*)streamUrlFromObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
     if ( transcoding ) {
-        return[self stringTranscodeUrl:[streamObject streamURL]];
+        return [TVHPlayStream stringTranscodeUrl:[streamObject streamURL]];
     } else {
         return [streamObject streamURL];
     }
 }
 
-- (NSString*)stringTranscodeUrl:(NSString*)url {
++ (NSString*)stringTranscodeUrl:(NSString*)url {
     TVHSettings *settings = [TVHSettings sharedInstance];
     return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL, [settings transcodeResolution]];
 }
 
-- (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url {
++ (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url {
     TVHSettings *settings = [TVHSettings sharedInstance];
     return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL_INTERNAL, [settings transcodeResolution]];
 }
