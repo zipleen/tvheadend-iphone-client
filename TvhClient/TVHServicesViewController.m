@@ -45,7 +45,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.adapterMux freq];
+    return [NSString stringWithFormat:@"%@ %@", [self.adapterMux network], [self.adapterMux freq]];
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
@@ -77,7 +77,7 @@
     } else {
         svcname.text = [NSString stringWithFormat:@"Type: %@ Sid: %d", service.type, service.sid];
     }
-    channelName.text = [[[service.tvhServer channelStore] channelWithId:service.channel] name];
+    channelName.text = [service.mappedChannel name];
     
     return cell;
 }

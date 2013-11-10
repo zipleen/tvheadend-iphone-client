@@ -11,7 +11,6 @@
 #import "TVHPlayStreamDelegate.h"
 
 @interface TVHService : NSObject <TVHPlayStreamDelegate>
-@property (nonatomic, weak) TVHServer *tvhServer;
 @property (weak, nonatomic) TVHAdapter *adapterObject;
 @property (strong, nonatomic) NSString *id;
 @property NSInteger enabled;
@@ -27,10 +26,13 @@
 @property (strong, nonatomic) NSString *network;
 @property (strong, nonatomic) NSString *mux;
 @property (strong, nonatomic) NSString *satconf;
+@property (strong, nonatomic) NSString *channelname;
+@property (strong, nonatomic) NSString *dvb_charset;
 @property NSInteger dvb_eit_enable;
 @property NSInteger prefcapid;
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*)values;
 - (NSComparisonResult)compareByName:(TVHService *)otherObject;
+- (TVHChannel*)mappedChannel;
 @end

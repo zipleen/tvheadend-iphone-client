@@ -9,6 +9,7 @@
 #import "TVHService.h"
 
 @interface TVHService()
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @end
 
@@ -35,6 +36,10 @@
 
 - (NSComparisonResult)compareByName:(TVHService *)otherObject {
     return [self.svcname compare:otherObject.svcname];
+}
+
+- (TVHChannel*)mappedChannel {
+    return [[self.tvhServer channelStore] channelWithName:self.channelname];
 }
 
 - (NSString*)streamURL {
