@@ -1443,7 +1443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "releaseConfig=\"Release\"\nhaveKey=`awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\nif [ \"$releaseConfig\" == \"${CONFIGURATION}\" ]; then\n    if [ \"$haveKey\" != \"\" ]; then\n        echo \"Running Crashlytics\"\n        ./Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\n    fi\nfi";
+			shellScript = "releaseConfig=\"Release\"\nhaveKey=`awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\nif [ \"$releaseConfig\" == \"${CONFIGURATION}\" ]; then\n    if [ \"$haveKey\" != \"\" ]; then\n        echo \"Running Crashlytics\"\n        ./vendor/Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\n    fi\nfi";
 		};
 		AAFC2A0B16FBA52900194DFF /* Run git version */ = {
 			isa = PBXShellScriptBuildPhase;
