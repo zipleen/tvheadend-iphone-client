@@ -14,7 +14,7 @@
 #import "TVHPlayStreamDelegate.h"
 
 @interface TVHPlayStreamHelpController : NSObject
-- (void)playStream:(UIBarButtonItem*)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc;
+- (void)playStream:(id)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc;
 - (void)playDvr:(UIBarButtonItem*)sender withDvrItem:(id<TVHPlayStreamDelegate>)dvrItem withVC:(UIViewController*)vc;
 - (void)dismissActionSheet;
 @end

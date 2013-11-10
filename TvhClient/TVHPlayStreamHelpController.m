@@ -35,12 +35,12 @@
     return self;
 }
 
-- (void)showTranscodeMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
+- (void)showTranscodeMenu:(id)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
     transcodingEnabled = YES;
     [self showMenu:sender withVC:vc withActionSheet:actionTitle];
 }
 
-- (void)showMenu:(UIBarButtonItem*)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
+- (void)showMenu:(id)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
     int countOfItems = 0;
     NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
     NSString *cancel = NSLocalizedString(@"Cancel", nil);
@@ -72,11 +72,15 @@
     [myActionSheet setCancelButtonIndex:countOfItems];
     [myActionSheet addButtonWithTitle:cancel];
     
-    [myActionSheet showFromBarButtonItem:sender animated:YES];
+    if ( [sender isKindOfClass:[UIBarButtonItem class]] ) {
+        [myActionSheet showFromBarButtonItem:sender animated:YES];
+    } else {
+        [myActionSheet showInView:sender];
+    }
 
 }
 
-- (void)playStream:(UIBarButtonItem*)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc  {
+- (void)playStream:(id)sender withChannel:(id<TVHPlayStreamDelegate>)channel withVC:(UIViewController*)vc  {
     self.streamObject = channel;
     self.vc = vc;
     self.sender = sender;

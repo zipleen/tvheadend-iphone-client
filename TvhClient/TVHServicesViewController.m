@@ -8,8 +8,10 @@
 
 #import "TVHServicesViewController.h"
 #import "TVHService.h"
+#import "TVHPlayStreamHelpController.h"
 
-@interface TVHServicesViewController ()
+@interface TVHServicesViewController () <UIActionSheetDelegate>
+@property (strong, nonatomic) TVHPlayStreamHelpController *help;
 @property (strong, nonatomic) NSMutableArray *services;
 @end
 
@@ -78,6 +80,16 @@
     channelName.text = [[[service.tvhServer channelStore] channelWithId:service.channel] name];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(!self.help) {
+        self.help = [[TVHPlayStreamHelpController alloc] init];
+    }
+    TVHService *service = [self.services objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [self.help playStream:cell withChannel:service withVC:self];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end
