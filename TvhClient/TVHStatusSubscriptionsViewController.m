@@ -84,13 +84,14 @@
         [buttons addObject:logButton];
         shiftButton++;
         
-        UIBarButtonItem *webButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Web", nil)
-                                                                  style:UIBarButtonItemStylePlain
-                                                                 target:self
-                                                                 action:@selector(showSplitWeb:)];
-        [buttons addObject:webButton];
-        shiftButton++;
-        
+        if ( [[TVHSettings sharedInstance] web1Url] ) {
+            UIBarButtonItem *webButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Web", nil)
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(showSplitWeb:)];
+            [buttons addObject:webButton];
+            shiftButton++;
+        }
         self.navigationItem.rightBarButtonItems = [buttons copy];
     }
     
