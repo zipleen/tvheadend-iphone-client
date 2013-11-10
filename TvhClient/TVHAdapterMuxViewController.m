@@ -9,6 +9,7 @@
 #import "TVHAdapterMuxViewController.h"
 #import "TVHProgressBar.h"
 #import "TVHAdapterMux.h"
+#import "TVHServicesViewController.h"
 
 @interface TVHAdapterMuxViewController ()
 @property (strong, nonatomic) NSMutableArray *muxes;
@@ -54,7 +55,7 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%d Muxes", [self.muxes count]];
+    return [NSString stringWithFormat:@"%d Muxes - %d Services", [self.muxes count], [self.adapter services]];
 }
 
 
@@ -118,8 +119,33 @@
     [quality setProgress:mux.quality/100.0];
     progressText.text = [NSString stringWithFormat:@"%d%%", mux.quality];
     
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
+
+#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.row < [self.muxes count] ) {
+        [self performSegueWithIdentifier:@"Show Services" sender:self];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if( [segue.identifier isEqualToString:@"Show Services"]) {
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        TVHAdapterMux *adapterMux = [self.muxes objectAtIndex:path.row];
+        
+        TVHServicesViewController *serviceViewController = segue.destinationViewController;
+        [serviceViewController setAdapterMux:adapterMux];
+        [serviceViewController setAdapter:self.adapter];
+        [serviceViewController setTitle:adapterMux.freq];
+    }
+}
+
+#pragma mark - refresh data
 
 - (void)didRefreshAdapterMux:(NSNotification *)notification {
     if ( self.muxes ) {

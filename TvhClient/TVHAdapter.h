@@ -13,6 +13,7 @@
 #import <Foundation/Foundation.h>
 
 @class TVHServer;
+@class TVHAdapterMux;
 
 @interface TVHAdapter : NSObject
 
@@ -44,4 +45,6 @@
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)fetchMuxes;
 - (NSArray*)arrayAdapterMuxes;
+- (void)fetchServices;
+- (NSArray*)arrayServicesForMux:(TVHAdapterMux*)adapterMux;
 @end

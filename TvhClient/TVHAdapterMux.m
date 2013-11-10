@@ -11,12 +11,22 @@
 //
 
 #import "TVHAdapterMux.h"
+#import "TVHService.h"
+
+@interface TVHAdapterMux()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, strong) NSArray *services;
+@end
 
 @implementation TVHAdapterMux
 
-- (id)init {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateDvbMux:)
                                                  name:@"dvbMuxNotificationClassReceived"
@@ -65,6 +75,5 @@
         }
     }
 }
-
 
 @end

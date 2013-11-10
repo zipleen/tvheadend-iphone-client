@@ -73,6 +73,8 @@
         TVHAdapter *adapter = [[TVHAdapter alloc] initWithTvhServer:self.tvhServer];
         [adapter updateValuesFromDictionary:obj];
         [adapter fetchMuxes];
+        [adapter fetchServices];
+        
         [adapters addObject:adapter];
     }];
     
@@ -99,14 +101,14 @@
     
 }
 
-- (TVHAdapter *) objectAtIndex:(int) row {
+- (TVHAdapter *)objectAtIndex:(int) row {
     if ( row < [self.adapters count] ) {
         return [self.adapters objectAtIndex:row];
     }
     return nil;
 }
 
-- (int) count {
+- (int)count {
     return [self.adapters count];
 }
 
