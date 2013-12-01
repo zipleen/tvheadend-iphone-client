@@ -84,9 +84,10 @@
     return _tagStore;
 }
 
-- (TVHChannelStore*)channelStore {
+- (id <TVHChannelStore>)channelStore {
     if( ! _channelStore ) {
-        _channelStore = [[TVHChannelStore alloc] initWithTvhServer:self];
+        Class myClass = NSClassFromString([@"TVHChannelStore" stringByAppendingString:self.version]);
+        _channelStore = [[myClass alloc] initWithTvhServer:self];
     }
     return _channelStore;
 }

@@ -130,7 +130,7 @@
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         // channel
         if ( path.section == 0 && path.row == 2 ) {
-            TVHChannelStore *channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
+            id <TVHChannelStore> channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
             NSArray *objectChannelList = [channelStore channels];
             NSMutableArray *list = [[NSMutableArray alloc] init];
             [objectChannelList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

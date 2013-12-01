@@ -259,7 +259,7 @@
         statusLabel.text = [NSString stringOfWeekdaysLocalizedFromArray:[autoRecItem.weekdays componentsSeparatedByString:@","] joinedByString:@","];
         
         if (autoRecItem.channel) {
-            TVHChannelStore *channelStore = [[self.dvrStore tvhServer] channelStore];
+            id <TVHChannelStore> channelStore = [[self.dvrStore tvhServer] channelStore];
             TVHChannel *channel = [channelStore channelWithName:autoRecItem.channel];
             channelImage.contentMode = UIViewContentModeScaleAspectFit;
             [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {

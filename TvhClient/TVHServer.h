@@ -27,7 +27,7 @@
 @interface TVHServer : NSObject
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) TVHTagStore *tagStore;
-@property (nonatomic, strong) TVHChannelStore *channelStore;
+@property (nonatomic, strong) id <TVHChannelStore> channelStore;
 @property (nonatomic, strong) id <TVHDvrStore> dvrStore;
 @property (nonatomic, strong) TVHAutoRecStore *autorecStore;
 @property (nonatomic, strong) TVHStatusSubscriptionsStore *statusStore;

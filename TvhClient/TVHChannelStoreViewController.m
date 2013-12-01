@@ -25,7 +25,7 @@
 @interface TVHChannelStoreViewController () {
     NSDateFormatter *dateFormatter;
 }
-@property (weak, nonatomic) TVHChannelStore *channelStore;
+@property (weak, nonatomic) id <TVHChannelStore> channelStore;
 @property (strong, nonatomic) NSArray *channels;
 @end
 
@@ -39,7 +39,7 @@
     return _filterTagId;
 }
 
-- (TVHChannelStore*) channelList {
+- (id <TVHChannelStore>) channelList {
     if ( _channelStore == nil) {
         _channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
     }

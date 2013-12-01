@@ -170,7 +170,7 @@
 }
 
 - (TVHChannel*)channelObject {
-    TVHChannelStore *store = [self.tvhServer channelStore];
+    id <TVHChannelStore> store = [self.tvhServer channelStore];
     TVHChannel *channel = [store channelWithId:self.channelid];
     return channel;
 }

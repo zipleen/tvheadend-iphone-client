@@ -10,19 +10,19 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHChannelStore.h"
+#import "TVHChannelStoreAbstract.h"
 #import "TVHEpg.h"
 #import "TVHSettings.h"
 #import "TVHServer.h"
 
-@interface TVHChannelStore ()
+@interface TVHChannelStoreAbstract ()
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, strong) TVHEpgStore *currentlyPlayingEpgStore;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
-@implementation TVHChannelStore 
+@implementation TVHChannelStoreAbstract
 
 - (TVHEpgStore*)currentlyPlayingEpgStore {
     if( ! _currentlyPlayingEpgStore ){

@@ -77,7 +77,7 @@
 }
 
 - (TVHChannel*)channelObject {
-    TVHChannelStore *store = [[TVHSingletonServer sharedServerInstance] channelStore];
+    id <TVHChannelStore> store = [[TVHSingletonServer sharedServerInstance] channelStore];
     TVHChannel *channel = [store channelWithName:self.channel];
     return channel;
 }

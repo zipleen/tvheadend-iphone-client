@@ -338,7 +338,7 @@
         TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
         int clickedFilterButton = [self.filterSegmentedControl selectedSegmentIndex];
         if ( clickedFilterButton == 0 ) {
-            TVHChannelStore *channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
+            id <TVHChannelStore> channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
             NSArray *objectChannelList = [channelStore channels];
             NSMutableArray *list = [[NSMutableArray alloc] init];
             [list addObject:NSLocalizedString(@"All Channels", nil)];
