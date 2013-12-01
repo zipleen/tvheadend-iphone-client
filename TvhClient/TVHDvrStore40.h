@@ -1,5 +1,5 @@
 //
-//  TVHDvrStore34.h
+//  TVHDvrStore40.h
 //  TvhClient
 //
 //  Created by zipleen on 01/12/13.
@@ -8,6 +8,6 @@
 
 #import "TVHDvrStoreAbstract.h"
 
-@interface TVHDvrStore34 : TVHDvrStoreAbstract <TVHDvrStore, TVHDvrStoreDelegate>
+@interface TVHDvrStore40 : TVHDvrStoreAbstract <TVHDvrStore, TVHDvrStoreDelegate>
 
 @end

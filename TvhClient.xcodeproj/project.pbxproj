@@ -139,6 +139,7 @@
 		AAE1EAC6170B6471006DE2BE /* NIKFontAwesomePathRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE1EAC1170B6471006DE2BE /* NIKFontAwesomePathRenderer.m */; };
 		AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AAE3321C184B5B5600525540 /* TVHDvrStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3321B184B5B5600525540 /* TVHDvrStore34.m */; };
+		AAE3321F184B5D1400525540 /* TVHDvrStore40.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3321E184B5D1400525540 /* TVHDvrStore40.m */; };
 		AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */; };
 		AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273716F28AE0002047E4 /* TVHAutoRecItem.m */; };
 		AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */; };
@@ -438,6 +439,8 @@
 		AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		AAE3321A184B5B5600525540 /* TVHDvrStore34.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrStore34.h; sourceTree = "<group>"; };
 		AAE3321B184B5B5600525540 /* TVHDvrStore34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrStore34.m; sourceTree = "<group>"; };
+		AAE3321D184B5D1400525540 /* TVHDvrStore40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrStore40.h; sourceTree = "<group>"; };
+		AAE3321E184B5D1400525540 /* TVHDvrStore40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDvrStore40.m; sourceTree = "<group>"; };
 		AAE5273316F28AD0002047E4 /* TVHAutoRecStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecStore.h; sourceTree = "<group>"; };
 		AAE5273416F28AD0002047E4 /* TVHAutoRecStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecStore.m; sourceTree = "<group>"; };
 		AAE5273616F28AE0002047E4 /* TVHAutoRecItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecItem.h; sourceTree = "<group>"; };
@@ -820,6 +823,8 @@
 				AAFF8753178B8E2C0067A57B /* TVHDvrStore32.m */,
 				AAE3321A184B5B5600525540 /* TVHDvrStore34.h */,
 				AAE3321B184B5B5600525540 /* TVHDvrStore34.m */,
+				AAE3321D184B5D1400525540 /* TVHDvrStore40.h */,
+				AAE3321E184B5D1400525540 /* TVHDvrStore40.m */,
 				AA575E3816DFF19500D80F8C /* TVHDvrItem.h */,
 				AA575E3916DFF19500D80F8C /* TVHDvrItem.m */,
 				AA42371016E01ADA00D469A0 /* TVHDvrActions.h */,
@@ -1583,6 +1588,7 @@
 				AAC7D17918286D7A00089875 /* UILabel+WBExtensions.m in Sources */,
 				AAFE73A4179C14B0000E7105 /* NSData+GIF.m in Sources */,
 				AAFE73A5179C14B0000E7105 /* SDImageCache.m in Sources */,
+				AAE3321F184B5D1400525540 /* TVHDvrStore40.m in Sources */,
 				AAFE73A6179C14B0000E7105 /* SDWebImageCompat.m in Sources */,
 				AAFE73A7179C14B0000E7105 /* SDWebImageDecoder.m in Sources */,
 				AAFE73A8179C14B0000E7105 /* SDWebImageDownloader.m in Sources */,

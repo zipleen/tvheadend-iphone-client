@@ -157,8 +157,11 @@
         if ( ver >= 30 && ver <= 32 ) {
             return @"32";
         }
+        if ( ver >= 33 && ver <= 35 ) {
+            return @"34";
+        }
     }
-    return @"34";
+    return @"40";
 }
 
 - (void)handleFetchedServerVersion:(NSString*)response {

@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 #import "TVHDvrStore.h"
 
-@interface TVHDvrStoreAbstract : NSObject <TVHDvrStore>
+@interface TVHDvrStoreAbstract : NSObject <TVHDvrStore, TVHDvrStoreDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
 @property (nonatomic, strong) NSArray *dvrItems;
