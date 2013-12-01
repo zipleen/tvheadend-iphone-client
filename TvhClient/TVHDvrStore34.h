@@ -1,27 +1,13 @@
 //
-//  TVHDvrStore.h
-//  TVHeadend iPhone Client
+//  TVHDvrStore34.h
+//  TvhClient
 //
-//  Created by zipleen on 28/02/13.
-//  Copyright 2013 Luis Fernandes
-//
-//  This Source Code Form is subject to the terms of the Mozilla Public
-//  License, v. 2.0. If a copy of the MPL was not distributed with this
-//  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//  Created by zipleen on 01/12/13.
+//  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "TVHDvrStore.h"
+#import "TVHDvrStoreAbstract.h"
 
-@interface TVHDvrStore34 : NSObject <TVHDvrStore>
-@property (nonatomic, weak) TVHServer *tvhServer;
-@property (nonatomic, weak) id <TVHDvrStoreDelegate> delegate;
-@property (nonatomic, strong) NSArray *dvrItems;
-@property (nonatomic, strong) NSArray *cachedDvrItems; // the table delegate will get only the items in this array
-- (id)initWithTvhServer:(TVHServer*)tvhServer;
-- (void)fetchDvr;
+@interface TVHDvrStore34 : TVHDvrStoreAbstract
 
-- (TVHDvrItem *)objectAtIndex:(int)row forType:(NSInteger)type;
-- (int)count:(NSInteger)type;
-- (void)signalDidLoadDvr:(NSInteger)type;
 @end
