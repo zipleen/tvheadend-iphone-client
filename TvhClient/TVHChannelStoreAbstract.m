@@ -132,7 +132,7 @@
     // for each epg
     NSArray *list = [self.currentlyPlayingEpgStore epgStoreItems];
     for (TVHEpg *epg in list) {
-        TVHChannel *channel = [self channelWithId:epg.channelIdKey];
+        TVHChannel *channel = [self channelWithName:epg.channel];
         [channel addEpg:epg];
     }
     // instead of having this delegate here, channel could send a notification and channel controller
