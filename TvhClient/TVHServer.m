@@ -152,6 +152,12 @@
     return _configNameStore;
 }
 
+- (id <TVHEpgStore>)createEpgStoreWithName:(NSString*)statsName {
+    Class myClass = NSClassFromString([@"TVHEpgStore" stringByAppendingString:self.version]);
+    id <TVHEpgStore> epgStore = [[myClass alloc] initWithStatsEpgName:statsName withTvhServer:self];
+    return epgStore;
+}
+
 - (NSString*)version {
     if ( _version ) {
         int ver = [_version intValue];

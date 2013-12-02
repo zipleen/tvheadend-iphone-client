@@ -11,6 +11,7 @@
 //
 
 #import "TVHRecordingsDetailViewController.h"
+#import "TVHServer.h"
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHShowNotice.h"
@@ -22,7 +23,7 @@
 @interface TVHRecordingsDetailViewController () <UIActionSheetDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) NSDictionary *properties;
 @property (strong, nonatomic) NSArray *propertiesKeys;
-@property (strong, nonatomic) TVHEpgStore *moreTimes;
+@property (strong, nonatomic) id <TVHEpgStore> moreTimes;
 @property (strong, nonatomic) NSArray *moreTimesItems;
 @property (strong, nonatomic) TVHPlayStreamHelpController *help;
 @end
@@ -32,6 +33,17 @@
     NSDateFormatter *hourFormatter;
 }
 
+- (id <TVHEpgStore>)moreTimes {
+    if ( ! _moreTimes ) {
+        TVHServer *server = [[self.dvrItem channelObject] tvhServer];
+        _moreTimes = [server createEpgStoreWithName:@"MoreTimes"];
+        //[self.moreTimes setFilterToChannelName:self.dvrItem.channel];
+        [_moreTimes setFilterToProgramTitle:self.dvrItem.title];
+        [_moreTimes setDelegate:self];
+        [_moreTimes downloadEpgList];
+    }
+    return _moreTimes;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -306,22 +318,13 @@
 }
 
 - (IBAction)segmentedDidChange:(id)sender {
-    if(self.segmentedControl.selectedSegmentIndex == 1) {
-        // on our first time we click more items, we'll spawn a new epgstore and filter for our channel name + program title
-        if ( ! self.moreTimes ) {
-            self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[[self.dvrItem channelObject] tvhServer]];
-            //[self.moreTimes setFilterToChannelName:self.dvrItem.channel];
-            [self.moreTimes setFilterToProgramTitle:self.dvrItem.title];
-            [self.moreTimes setDelegate:self];
-            [self.moreTimes downloadEpgList];
-        }
-    }
+    [self moreTimes];
     [self.tableView reloadData];
 }
 
-- (void)didLoadEpg:(TVHEpgStore*)epgStore {
+- (void)didLoadEpg {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    [[epgStore epgStoreItems] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [[self.moreTimes epgStoreItems] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if ( ! [obj schedstate] ) {
             [items addObject:obj];
         }

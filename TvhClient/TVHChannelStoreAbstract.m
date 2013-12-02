@@ -18,15 +18,15 @@
 @interface TVHChannelStoreAbstract ()
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *channels;
-@property (nonatomic, strong) TVHEpgStore *currentlyPlayingEpgStore;
+@property (nonatomic, strong) id <TVHEpgStore> currentlyPlayingEpgStore;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHChannelStoreAbstract
 
-- (TVHEpgStore*)currentlyPlayingEpgStore {
+- (id <TVHEpgStore>)currentlyPlayingEpgStore {
     if( ! _currentlyPlayingEpgStore ){
-        _currentlyPlayingEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying" withTvhServer:self.tvhServer];
+        _currentlyPlayingEpgStore = [self.tvhServer createEpgStoreWithName:@"CurrentlyPlaying"];
         [_currentlyPlayingEpgStore setDelegate:self];
         // we can't have the object register the notification, because every channel has one epgStore - that would make every epgStore object update itself!!
         [[NSNotificationCenter defaultCenter] addObserver:_currentlyPlayingEpgStore
@@ -128,9 +128,9 @@
 
 #pragma mark EPG delegatee stuff
 
-- (void)didLoadEpg:(TVHEpgStore*)epgStore {
+- (void)didLoadEpg {
     // for each epg
-    NSArray *list = [epgStore epgStoreItems];
+    NSArray *list = [self.currentlyPlayingEpgStore epgStoreItems];
     for (TVHEpg *epg in list) {
         TVHChannel *channel = [self channelWithId:epg.channelIdKey];
         [channel addEpg:epg];

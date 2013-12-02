@@ -11,6 +11,7 @@
 //
 
 #import "TVHProgramDetailViewController.h"
+#import "TVHServer.h"
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHShowNotice.h"
@@ -24,7 +25,7 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSDictionary *properties;
 @property (strong, nonatomic) NSArray *propertiesKeys;
-@property (strong, nonatomic) TVHEpgStore *moreTimes;
+@property (strong, nonatomic) id <TVHEpgStore> moreTimes;
 @property (strong, nonatomic) NSArray *moreTimesItems;
 @property (strong, nonatomic) TVHPlayStreamHelpController *help;
 @end
@@ -32,6 +33,18 @@
 @implementation TVHProgramDetailViewController {
     NSDateFormatter *dateFormatter;
     NSDateFormatter *hourFormatter;
+}
+
+- (id <TVHEpgStore>)moreTimes {
+    if ( ! _moreTimes ) {
+        TVHServer *server = [self.channel tvhServer];
+        _moreTimes = [server createEpgStoreWithName:@"MoreTimes"];
+        //[self.moreTimes setFilterToChannelName:self.channel.name];
+        [_moreTimes setFilterToProgramTitle:self.epg.title];
+        [_moreTimes setDelegate:self];
+        [_moreTimes downloadEpgList];
+    }
+    return _moreTimes;
 }
 
 - (void)receiveDvrNotification:(NSNotification *) notification {
@@ -201,14 +214,7 @@
         [leftGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
         [self.tableView addGestureRecognizer:leftGesture];
     }
-    // fetch more items on panel load!
-    if ( ! self.moreTimes ) {
-        self.moreTimes = [[TVHEpgStore alloc] initWithTvhServer:[self.channel tvhServer]];
-        //[self.moreTimes setFilterToChannelName:self.channel.name];
-        [self.moreTimes setFilterToProgramTitle:self.epg.title];
-        [self.moreTimes setDelegate:self];
-        [self.moreTimes downloadEpgList];
-    }
+    [self moreTimes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -376,9 +382,9 @@
     
 }
 
-- (void)didLoadEpg:(TVHEpgStore*)epgStore {
+- (void)didLoadEpg {
     // this search will turn out to have our *current* listening program. we should delete that
-    NSMutableArray *items = [[epgStore epgStoreItems] mutableCopy];
+    NSMutableArray *items = [[self.moreTimes epgStoreItems] mutableCopy];
     [items removeObject:self.epg];
     
     self.moreTimesItems = [items copy];

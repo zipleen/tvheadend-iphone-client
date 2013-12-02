@@ -14,14 +14,14 @@
 #import "TVHTestHelper.h"
 #import "TVHChannel.h"
 #import "TVHEpg.h"
-#import "TVHEpgStore.h"
+#import "TVHEpgStore34.h"
 #import "TVHChannelEpg.h"
 
 @interface TVHChannel (MyPrivateMethodsUsedForTesting) 
 @property (nonatomic, strong) NSMutableArray *channelEpgDataByDay;
 @end
 
-@interface TVHEpgStore (MyPrivateMethodsUsedForTesting)
+@interface TVHEpgStore34 (MyPrivateMethodsUsedForTesting)
 - (void)fetchedData:(NSData *)responseData;
 @end
 
@@ -68,7 +68,7 @@
 
 - (void)testDuplicateEpgFromFetchMorePrograms {
     NSData *data = [TVHTestHelper loadFixture:@"Log.oneChannelEpg"];
-    TVHEpgStore *store = [[TVHEpgStore alloc ] init];
+    TVHEpgStore34 *store = [[TVHEpgStore34 alloc ] init];
     [store fetchedData:data];
     
     TVHChannel *channel = [self channel];

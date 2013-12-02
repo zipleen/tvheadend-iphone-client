@@ -12,9 +12,9 @@
 
 #import "TVHEpgStoreTests.h"
 #import "TVHTestHelper.h"
-#import "TVHEpgStore.h"
+#import "TVHEpgStore34.h"
 
-@interface TVHEpgStore (MyPrivateMethodsUsedForTesting)
+@interface TVHEpgStore34 (MyPrivateMethodsUsedForTesting)
 @property (nonatomic, strong) NSArray *epgStore;
 - (void)fetchedData:(NSData *)responseData;
 @end
@@ -38,7 +38,7 @@
 - (void)testJsonCharacterBug
 {
     NSData *data = [TVHTestHelper loadFixture:@"Log.287"];
-    TVHEpgStore *tvhe = [[TVHEpgStore alloc] init];
+    TVHEpgStore34 *tvhe = [[TVHEpgStore34 alloc] init];
     STAssertNotNil(tvhe, @"creating tvepg store object");
     [tvhe fetchedData:data];
     STAssertTrue( ([tvhe.epgStore count] == 1), @"Failed parsing json data");

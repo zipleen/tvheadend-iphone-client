@@ -20,6 +20,7 @@
     NSDateFormatter *dateFormatter;
 }
 @property (nonatomic, strong) NSMutableArray *channelEpgDataByDay;
+@property (nonatomic, strong) id <TVHEpgStore> restOfEpgStore;
 @end
 
 @implementation TVHChannel
@@ -31,7 +32,17 @@
     self.image = nil;
     self.tags = nil;
     self.channelEpgDataByDay = nil;
+    self.restOfEpgStore = nil;
     dateFormatter = nil;
+}
+
+- (id <TVHEpgStore>)restOfEpgStore {
+    if ( ! _restOfEpgStore ) {
+        _restOfEpgStore = [self.tvhServer createEpgStoreWithName:@"ChannelEPG"];
+        [_restOfEpgStore setDelegate:self];
+        [_restOfEpgStore setFilterToChannelName:self.name];
+    }
+    return _restOfEpgStore;
 }
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
@@ -216,11 +227,7 @@
 - (void)downloadRestOfEpg {
     [self signalWillLoadEpgChannel];
     // spawn a new epgList so we can set a filter to the channel
-    TVHEpgStore *restOfEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"ChannelEPG" withTvhServer:self.tvhServer];
-    [restOfEpgStore setDelegate:self];
-    [restOfEpgStore setFilterToChannelName:self.name];
-    
-    [restOfEpgStore downloadAllEpgItems];
+    [self.restOfEpgStore downloadAllEpgItems];
 }
 
 #pragma Table Call Methods
@@ -313,8 +320,8 @@
 }
 
 #pragma TVHEpgStore delegate
-- (void)didLoadEpg:(TVHEpgStore*)epgStore {
-    NSArray *epgItems = [epgStore epgStoreItems];
+- (void)didLoadEpg {
+    NSArray *epgItems = [self.restOfEpgStore epgStoreItems];
     for (TVHEpg *epg in epgItems) {
         [self addEpg:epg];
     }

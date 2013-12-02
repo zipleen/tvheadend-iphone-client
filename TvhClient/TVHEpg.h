@@ -18,7 +18,6 @@
 @interface TVHEpg : NSObject
 // channel
 @property (nonatomic) NSInteger channelid;
-@property (nonatomic, strong) NSString *channelUuid;
 @property (nonatomic, strong) NSString *channel;
 @property (nonatomic, strong) NSString *chicon;
 // titles
@@ -36,8 +35,10 @@
 @property (nonatomic, strong) NSString *schedstate;
 @property (nonatomic) NSInteger serieslink;
 @property (nonatomic, strong) NSString *contenttype;
-
+// 4.0
 @property (nonatomic) NSInteger dvrId;
+@property (nonatomic, strong) NSString *channelUuid;
+
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (float)progress;

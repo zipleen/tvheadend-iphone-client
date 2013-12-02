@@ -10,11 +10,16 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHEpgStore.h"
+#import "TVHEpgStoreAbstract.h"
 #import "TVHEpg.h"
 #import "TVHServer.h"
 
-@interface TVHEpgStore()
+@interface TVHEpgStoreAbstract()
+@property (nonatomic, strong) NSString *filterToProgramTitle;
+@property (nonatomic, strong) NSString *filterToChannelName;
+@property (nonatomic, strong) NSString *filterToTagName;
+@property (nonatomic, strong) NSString *filterToContentTypeId;
+
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *epgStore;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
@@ -22,7 +27,7 @@
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
-@implementation TVHEpgStore
+@implementation TVHEpgStoreAbstract
 
 - (void)appWillEnterForeground:(NSNotification*)note {
     [self removeOldProgramsFromStore];
@@ -159,6 +164,10 @@
     return [params copy];
 }
 
+- (NSString*)getApiEpg {
+    return @"epg";
+}
+
 - (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
     
     NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
@@ -167,7 +176,7 @@
     NSLog(@"[%@ EPG Going to call (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %@", self.statsEpgName, self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, params);
 #endif
     self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:@"epg" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:self.getApiEpg parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if( ! [params isEqualToDictionary:[self getPostParametersStartingFrom:start limit:limit]] ) {
 #ifdef TESTING
@@ -250,14 +259,14 @@
 }
 
 - (void)setFilterToProgramTitle:(NSString *)filterToProgramTitle {
-    if( ! [filterToProgramTitle isEqualToString:_filterToTagName] ) {
+    if( ! [filterToProgramTitle isEqualToString:_filterToProgramTitle] ) {
         _filterToProgramTitle = filterToProgramTitle;
         self.epgStore = nil;
     }
 }
 
 - (void)setFilterToChannelName:(NSString *)filterToChannelName {
-    if ( ! [filterToChannelName isEqualToString:_filterToTagName] ) {
+    if ( ! [filterToChannelName isEqualToString:_filterToChannelName] ) {
         _filterToChannelName = filterToChannelName;
         self.epgStore = nil;
     }
@@ -286,8 +295,8 @@
 }
 
 - (void)signalDidLoadEpg {
-    if ([self.delegate respondsToSelector:@selector(didLoadEpg:)]) {
-        [self.delegate didLoadEpg:self];
+    if ([self.delegate respondsToSelector:@selector(didLoadEpg)]) {
+        [self.delegate didLoadEpg];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didLoadEpg"
                                                         object:self];

@@ -11,6 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHEpgStore.h"
 #import "TVHEpg.h"
 #import "TVHPlayStreamDelegate.h"
 
@@ -67,6 +68,6 @@
 - (BOOL)isLastEpgFromThePast;
 
 - (void)setDelegate:(id <TVHChannelDelegate>) delegate;
-- (void)didLoadEpg:(TVHEpgStore*)epgList;
+- (void)didLoadEpg;
 - (void)signalDidLoadEpgChannel; // only to be used by tvhEpg
 @end

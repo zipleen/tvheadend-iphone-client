@@ -13,8 +13,8 @@
 #import <Foundation/Foundation.h>
 #import "TVHTagStore.h"
 #import "TVHChannelStore.h"
+#import "TVHEpgStore.h"
 #import "TVHDvrStore.h"
-#import "TVHDvrStore32.h"
 #import "TVHAutoRecStore.h"
 #import "TVHStatusSubscriptionsStore.h"
 #import "TVHAdaptersStore.h"
@@ -40,6 +40,7 @@
 @property (nonatomic, strong) NSArray *capabilities;
 @property (nonatomic, strong) NSDictionary *configSettings;
 - (TVHServer*)initVersion:(NSString*)version;
+- (id <TVHEpgStore>)createEpgStoreWithName:(NSString*)statsName;
 - (void)fetchServerVersion;
 - (BOOL)isTranscodingCapable;
 - (void)resetData;

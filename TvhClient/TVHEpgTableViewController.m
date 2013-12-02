@@ -29,7 +29,7 @@
     NIKFontAwesomeIconFactory *factory;
     __weak UIPopoverController *myPopover;
 }
-@property (nonatomic, strong) TVHEpgStore *epgStore;
+@property (nonatomic, strong) id <TVHEpgStore> epgStore;
 @property (nonatomic, strong) NSArray *epgTable ;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSTimer *timer;
@@ -39,11 +39,12 @@
     BOOL shouldBeginEditing;
 }
 
-- (TVHEpgStore*)epgStore {
+- (id <TVHEpgStore>)epgStore {
     if ( !_epgStore ) {
         // we need a DIFFERENT epgstore, because of the delegate
         // should we change this to a notification? this epgstore SHOULD be shared!!
-        _epgStore = [[TVHEpgStore alloc] initWithTvhServer:[TVHSingletonServer sharedServerInstance]];
+        TVHServer *server = [TVHSingletonServer sharedServerInstance];
+        _epgStore = [server createEpgStoreWithName:@"Shared"];
         [_epgStore setDelegate:self];
         // we can't have the object register the notification, because every channel has one epgStore - that would make every epgStore object update itself!!
         [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -288,7 +289,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)reloadData:(TVHEpgStore*)epgStore {
+- (void)reloadData:(id <TVHEpgStore>)epgStore {
     [self.refreshControl endRefreshing];
     self.epgTable = [epgStore epgStoreItems];
     [self.tableView reloadData];
@@ -298,10 +299,10 @@
     [TVHStatusBar setStatusText:@"Loading EPG..." timeout:2.0 animated:YES];
 }
 
-- (void)didLoadEpg:(TVHEpgStore*)epgStore {
+- (void)didLoadEpg {
     [TVHStatusBar clearStatusAnimated:YES];
     [self.refreshControl endRefreshing];
-    self.epgTable = [[epgStore epgStoreItems] copy];
+    self.epgTable = [[self.epgStore epgStoreItems] copy];
     [self.tableView reloadData];
 }
 
