@@ -9,5 +9,5 @@
 #import "TVHChannelStoreAbstract.h"
 
 @interface TVHChannelStore40 : TVHChannelStoreAbstract <TVHChannelStore, TVHEpgStoreDelegate>
-
+- (NSString*)getApiChannels;
 @end

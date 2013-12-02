@@ -24,11 +24,12 @@
 @property (nonatomic) NSInteger filterTag;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchChannelList;
+- (NSString*)getApiChannels;
 
 - (NSArray*)channels;
 - (NSArray*)arrayChannels;
 - (TVHChannel*)channelWithName:(NSString*)name;
-- (TVHChannel*)channelWithId:(NSInteger)channelId;
+- (TVHChannel*)channelWithId:(NSString*)channelId;
 - (NSArray*)filteredChannelList;
 - (void)updateChannelsProgress;
 @end

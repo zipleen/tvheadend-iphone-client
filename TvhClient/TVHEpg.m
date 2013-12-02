@@ -46,6 +46,13 @@
     return self;
 }
 
+- (NSString*)channelIdKey {
+    if ( self.channelUuid ) {
+        return self.channelUuid;
+    }
+    return [NSString stringWithFormat:@"%d", self.channelid];
+}
+
 // this one is wrong because I don't know if it actually removed recording or not! 
 - (void)willRemoveEpgFromRecording:(NSNotification *)notification {
     if ([[notification name] isEqualToString:@"willRemoveEpgFromRecording"]) {
@@ -56,7 +63,7 @@
             // update channels
             [[self.tvhServer channelStore] updateChannelsProgress];
             // update channel program detail view
-            TVHChannel *ch = [[self.tvhServer channelStore] channelWithId:self.channelid];
+            TVHChannel *ch = [[self.tvhServer channelStore] channelWithId:self.channelIdKey];
             [ch signalDidLoadEpgChannel];
         }
     }
@@ -76,7 +83,7 @@
             // update channels
             [[self.tvhServer channelStore] updateChannelsProgress];
             // update channel program detail view
-            TVHChannel *ch = [[self.tvhServer channelStore] channelWithId:self.channelid];
+            TVHChannel *ch = [[self.tvhServer channelStore] channelWithId:self.channelIdKey];
             [ch signalDidLoadEpgChannel];
         }
     }
@@ -171,7 +178,7 @@
 
 - (TVHChannel*)channelObject {
     id <TVHChannelStore> store = [self.tvhServer channelStore];
-    TVHChannel *channel = [store channelWithId:self.channelid];
+    TVHChannel *channel = [store channelWithId:self.channelIdKey];
     return channel;
 }
 

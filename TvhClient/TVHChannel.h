@@ -36,11 +36,17 @@
 @property (nonatomic, strong) NSData *image;
 @property (nonatomic) NSInteger chid;
 @property (nonatomic, strong) NSArray *tags;
+@property (nonatomic, strong) NSArray *services;
 @property (nonatomic) NSInteger epg_pre_start;
 @property (nonatomic) NSInteger epg_post_end;
 @property (nonatomic, strong) NSString *epggrabsrc;
+
+// 4.0
+@property (nonatomic, strong) NSString *uuid;
+
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 
+- (NSString*)channelIdKey;
 - (bool)hasTag:(NSInteger)tag;
 - (NSString*)streamURL;
 - (NSString*)playlistStreamURL;

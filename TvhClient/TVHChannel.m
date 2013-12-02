@@ -49,6 +49,13 @@
     return _channelEpgDataByDay;
 }
 
+- (NSString*)channelIdKey {
+    if ( self.uuid ) {
+        return self.uuid;
+    }
+    return [NSString stringWithFormat:@"%d", self.chid];
+}
+
 - (NSString*)imageUrl {
     if ( self.chicon ) {
         if ( [self.chicon isEqualToString:self.ch_icon] ) {
@@ -66,6 +73,16 @@
     if([tags isKindOfClass:[NSString class]]) {
         _tags = [tags componentsSeparatedByString:@","];
     }
+    if([tags isKindOfClass:[NSArray class]]) {
+        _tags = tags;
+    }
+}
+
+// notice that setTags has (id) instead of NSArray*, which means we can test for a NSString and convert it !
+- (void)setServices:(id)services {
+    if([services isKindOfClass:[NSArray class]]) {
+        _services = services;
+    }
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString*)key {
@@ -78,16 +95,16 @@
 
 - (NSString*)streamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
-    return [NSString stringWithFormat:@"%@/stream/channelid/%d", [tvh fullBaseURL], self.chid];
+    return [NSString stringWithFormat:@"%@/stream/channelid/%@", [tvh fullBaseURL], self.channelIdKey];
 }
 
 - (NSString*)playlistStreamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
-    return [NSString stringWithFormat:@"%@/playlist/channelid/%d", [tvh fullBaseURL], self.chid];
+    return [NSString stringWithFormat:@"%@/playlist/channelid/%@", [tvh fullBaseURL], self.channelIdKey];
 }
 
 - (NSString*)htspStreamURL {
-    return [NSString stringWithFormat:@"%@/tags/0/%d.ts", [self.tvhServer htspUrl], self.chid];
+    return [NSString stringWithFormat:@"%@/tags/0/%@.ts", [self.tvhServer htspUrl], self.channelIdKey];
 }
 
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {
@@ -255,7 +272,7 @@
     if (!other || ![other isKindOfClass:[self class]])
         return NO;
     TVHChannel *otherCast = other;
-    return self.chid == otherCast.chid;
+    return self.channelIdKey == otherCast.channelIdKey;
 }
 
 // TODO refactor the whole ChannelEPG crap - it should be a self contained day/program store!
@@ -295,7 +312,7 @@
     return ( [last.end compare:[NSDate date]] == NSOrderedAscending );
 }
 
-#pragma delegate stuff
+#pragma TVHEpgStore delegate
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     NSArray *epgItems = [epgStore epgStoreItems];
     for (TVHEpg *epg in epgItems) {

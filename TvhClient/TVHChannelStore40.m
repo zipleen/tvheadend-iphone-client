@@ -10,4 +10,8 @@
 
 @implementation TVHChannelStore40
 
+- (NSString*)getApiChannels {
+    return @"api/channel/grid";
+}
+
 @end

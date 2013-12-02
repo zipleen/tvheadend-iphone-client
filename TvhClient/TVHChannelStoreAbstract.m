@@ -29,7 +29,10 @@
         _currentlyPlayingEpgStore = [[TVHEpgStore alloc] initWithStatsEpgName:@"CurrentlyPlaying" withTvhServer:self.tvhServer];
         [_currentlyPlayingEpgStore setDelegate:self];
         // we can't have the object register the notification, because every channel has one epgStore - that would make every epgStore object update itself!!
-        [[NSNotificationCenter defaultCenter] addObserver:_currentlyPlayingEpgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:_currentlyPlayingEpgStore
+                                                 selector:@selector(appWillEnterForeground:)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
     }
     return _currentlyPlayingEpgStore;
 }
@@ -94,7 +97,7 @@
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
     [self signalWillLoadChannels];
     self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:@"channels" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.jsonClient postPath:[self getApiChannels] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
         [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
                                                           withValue:time
@@ -119,13 +122,17 @@
     }];
 }
 
+- (NSString*)getApiChannels {
+    return @"channels";
+}
+
 #pragma mark EPG delegatee stuff
 
 - (void)didLoadEpg:(TVHEpgStore*)epgStore {
     // for each epg
     NSArray *list = [epgStore epgStoreItems];
     for (TVHEpg *epg in list) {
-        TVHChannel *channel = [self channelWithId:epg.channelid];
+        TVHChannel *channel = [self channelWithId:epg.channelIdKey];
         [channel addEpg:epg];
     }
     // instead of having this delegate here, channel could send a notification and channel controller
@@ -166,10 +173,10 @@
     return nil;
 }
 
-- (TVHChannel*)channelWithId:(NSInteger)channelId {
+- (TVHChannel*)channelWithId:(NSString*)channelId {
     // not using a predicate because if I find one channel then I'll return it right away
     for (TVHChannel *channel in self.channels) {
-        if( channel.chid == channelId ) {
+        if ( [channel.channelIdKey isEqualToString:channelId] ) {
             return channel;
         }
     }
