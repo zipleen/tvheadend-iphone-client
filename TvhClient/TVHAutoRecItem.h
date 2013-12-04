@@ -12,7 +12,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class TVHJsonClient;
+@class TVHServer;
 
 @interface TVHAutoRecItem : NSObject
 @property (nonatomic, strong) NSString *channel;
@@ -27,10 +27,10 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *tag;
 @property (nonatomic, strong) NSString *genre;
-@property (nonatomic, strong) NSString *weekdays; // mon 1, sun 7
+@property (nonatomic, strong) NSArray *weekdays; // mon 1, sun 7
 @property (nonatomic) NSInteger serieslink;
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
-- (id)initWithJsonClient:(TVHJsonClient*)jsonClient;
+@property (nonatomic, weak) TVHServer *tvhServer;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValue:(id)value forKey:(NSString*)key;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)deleteAutoRec;

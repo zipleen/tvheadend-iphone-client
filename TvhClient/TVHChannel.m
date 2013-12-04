@@ -15,6 +15,7 @@
 #import "TVHChannelEpg.h"
 #import "TVHSettings.h"
 #import "TVHServer.h"
+#import "NSArray+Utils.h"
 
 @interface TVHChannel() <TVHEpgStoreDelegate> {
     NSDateFormatter *dateFormatter;
@@ -85,11 +86,7 @@
         _tags = [tags componentsSeparatedByString:@","];
     }
     if([tags isKindOfClass:[NSArray class]]) {
-        NSMutableArray *stringTags = [[NSMutableArray alloc] init];
-        for (NSNumber *tagInt in tags) {
-            [stringTags addObject:[NSString stringWithFormat:@"%@", tagInt]];
-        }
-        _tags = [stringTags copy];
+        _tags = [tags convertObjectsToStrings];
     }
 }
 

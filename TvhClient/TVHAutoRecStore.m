@@ -14,9 +14,8 @@
 #import "TVHServer.h"
 
 @interface TVHAutoRecStore()
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *dvrAutoRecItems;
-@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHAutoRecStore
@@ -25,7 +24,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveAutoRecNotification:)
@@ -61,7 +60,7 @@
     NSMutableArray *dvrAutoRecItems = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHAutoRecItem *dvritem = [[TVHAutoRecItem alloc] initWithJsonClient:[self.tvhServer jsonClient]];
+        TVHAutoRecItem *dvritem = [[TVHAutoRecItem alloc] initWithTvhServer:self.tvhServer];
         [dvritem updateValuesFromDictionary:obj];
         
         [dvrAutoRecItems addObject:dvritem];
@@ -75,24 +74,39 @@
     [TVHDebugLytics setIntValue:[self.dvrAutoRecItems count] forKey:@"autorec"];
 }
 
+#pragma mark Api Client delegates
+
+- (NSString*)apiMethod {
+    return @"GET";
+}
+
+- (NSString*)apiPath {
+    return @"tablemgr";
+}
+
+- (NSDictionary*)apiParameters {
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"autorec", @"table", nil];
+}
+
 - (void)fetchDvrAutoRec {
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"autorec", @"table", nil];
     self.dvrAutoRecItems = nil;
-    self.profilingDate = [NSDate date];
-    [self.jsonClient getPath:@"tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+    __block NSDate *profilingDate = [NSDate date];
+    TVHAutoRecStore __weak *weakSelf = self;
+    
+    [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:profilingDate];
         [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
-                                                          withValue:time
-                                                           withName:@"AutoRec"
-                                                          withLabel:nil];
+                                   withValue:time
+                                    withName:@"AutoRec"
+                                   withLabel:nil];
 #ifdef TESTING
         NSLog(@"[AutoRec Profiling Network]: %f", time);
 #endif
-        [self fetchedData:responseObject];
-        [self signalDidLoadDvrAutoRec];
+        [weakSelf fetchedData:responseObject];
+        [weakSelf signalDidLoadDvrAutoRec];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self signalDidErrorDvrAutoStore:error];
+        [weakSelf signalDidErrorDvrAutoStore:error];
         NSLog(@"[DVR AutoRec Items HTTPClient Error]: %@", error.localizedDescription);
     }];
     

@@ -48,8 +48,7 @@
     [self.itemChannel.detailTextLabel setText:[self.item channel]];
     [self.itemTag.detailTextLabel setText:[self.item tag]];
     [self.itemGenre.detailTextLabel setText:[self.item genre]];
-    [self.itemWeekdays.detailTextLabel
-     setText:[NSString stringOfWeekdaysLocalizedFromArray:[self.item.weekdays componentsSeparatedByString:@","] joinedByString:@","]];
+    [self.itemWeekdays.detailTextLabel setText:[NSString stringOfWeekdaysLocalizedFromArray:self.item.weekdays joinedByString:@","]];
     [self.itemStartAround.detailTextLabel setText:self.item.stringFromAproxTime];
     [self.itemPriority.detailTextLabel setText:[self.item pri]];
     [self.itemDvrConfig.detailTextLabel setText:[self.item config_name]];
@@ -271,7 +270,7 @@
 
 - (void)setItem:(TVHAutoRecItem *)item {
     _item = item;
-    [_item setJsonClient:[[TVHSingletonServer sharedServerInstance] jsonClient]];
+    [_item setTvhServer:[TVHSingletonServer sharedServerInstance]];
 }
 
 - (IBAction)saveButton:(id)sender {

@@ -256,7 +256,7 @@
         TVHAutoRecItem *autoRecItem = [self.autoRecStore objectAtIndex:indexPath.row];
         titleLabel.text = autoRecItem.title;
         dateLabel.text = autoRecItem.channel;
-        statusLabel.text = [NSString stringOfWeekdaysLocalizedFromArray:[autoRecItem.weekdays componentsSeparatedByString:@","] joinedByString:@","];
+        statusLabel.text = [NSString stringOfWeekdaysLocalizedFromArray:autoRecItem.weekdays joinedByString:@","];
         
         if (autoRecItem.channel) {
             id <TVHChannelStore> channelStore = [[self.dvrStore tvhServer] channelStore];

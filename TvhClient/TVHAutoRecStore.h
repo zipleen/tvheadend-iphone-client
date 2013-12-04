@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHAutoRecItem.h"
+#import "TVHApiClient.h"
 
 @class TVHServer;
 
@@ -22,7 +23,7 @@
 - (void)didErrorDvrAutoStore:(NSError*)error;
 @end
 
-@interface TVHAutoRecStore : NSObject
+@interface TVHAutoRecStore : NSObject <TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHAutoRecStoreDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;

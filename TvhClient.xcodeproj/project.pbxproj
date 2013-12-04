@@ -156,6 +156,7 @@
 		AAF029C7184FE4B700CF320E /* TVHTagStore32.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF029C6184FE4B700CF320E /* TVHTagStore32.m */; };
 		AAF029CA184FE4C700CF320E /* TVHTagStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF029C9184FE4C700CF320E /* TVHTagStore34.m */; };
 		AAF029CD184FE4D400CF320E /* TVHTagStore40.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF029CC184FE4D400CF320E /* TVHTagStore40.m */; };
+		AAF029D0184FEF4300CF320E /* NSArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF029CF184FEF4300CF320E /* NSArray+Utils.m */; };
 		AAF0537018245FA0008B1A0A /* TVHDebugLytics.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */; };
 		AAF1E5D6184E71740092205E /* TVHApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF1E5D5184E71740092205E /* TVHApiClient.m */; };
 		AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647B17441D71006C96CE /* JASidePanelController.m */; };
@@ -485,6 +486,8 @@
 		AAF029C9184FE4C700CF320E /* TVHTagStore34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore34.m; sourceTree = "<group>"; };
 		AAF029CB184FE4D400CF320E /* TVHTagStore40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore40.h; sourceTree = "<group>"; };
 		AAF029CC184FE4D400CF320E /* TVHTagStore40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore40.m; sourceTree = "<group>"; };
+		AAF029CE184FEF4300CF320E /* NSArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Utils.h"; sourceTree = "<group>"; };
+		AAF029CF184FEF4300CF320E /* NSArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Utils.m"; sourceTree = "<group>"; };
 		AAF0536E18245FA0008B1A0A /* TVHDebugLytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDebugLytics.h; sourceTree = "<group>"; };
 		AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDebugLytics.m; sourceTree = "<group>"; };
 		AAF1E5D4184E71740092205E /* TVHApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiClient.h; sourceTree = "<group>"; };
@@ -649,6 +652,8 @@
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
 				AA21878616E7F6D9005D95EF /* NSString+FileSize.h */,
 				AA21878716E7F6D9005D95EF /* NSString+FileSize.m */,
+				AAF029CE184FEF4300CF320E /* NSArray+Utils.h */,
+				AAF029CF184FEF4300CF320E /* NSArray+Utils.m */,
 				AA8CDBDE1819CC090025C39F /* TVHAnalytics.h */,
 				AA8CDBDF1819CC090025C39F /* TVHAnalytics.m */,
 				AAF0536E18245FA0008B1A0A /* TVHDebugLytics.h */,
@@ -1716,6 +1721,7 @@
 				AAF1E5D6184E71740092205E /* TVHApiClient.m in Sources */,
 				AAE33225184B660800525540 /* TVHChannelStore32.m in Sources */,
 				AA654AD317BF9AB000027D39 /* AFHTTPRequestOperationLogger.m in Sources */,
+				AAF029D0184FEF4300CF320E /* NSArray+Utils.m in Sources */,
 				AA654AD717BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

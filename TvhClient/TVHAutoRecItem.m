@@ -12,17 +12,20 @@
 
 #import "TVHAutoRecItem.h"
 #import "TVHTableMgrActions.h"
+#import "TVHServer.h"
 
 @interface TVHAutoRecItem ()
+@property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSMutableArray *updatedProperties;
 @end
 
 @implementation TVHAutoRecItem
 
-- (id)initWithJsonClient:(TVHJsonClient*)jsonClient {
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
     if (!self) return nil;
-    self.jsonClient = jsonClient;
+    self.tvhServer = tvhServer;
+    self.jsonClient = [self.tvhServer jsonClient];
     
     return self;
 }
@@ -50,6 +53,15 @@
     item.weekdays = self.weekdays;
     item.genre = self.genre;
     return item;
+}
+
+- (void)setWeekdays:(id)weekdays {
+    if([weekdays isKindOfClass:[NSString class]]) {
+        _weekdays = [weekdays componentsSeparatedByString:@","];
+    }
+    if([weekdays isKindOfClass:[NSArray class]]) {
+        _weekdays = weekdays;
+    }
 }
 
 - (void)updateValue:(id)value forKey:(NSString*)key {
