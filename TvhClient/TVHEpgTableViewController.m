@@ -367,7 +367,7 @@
         }
         
         if ( clickedFilterButton == 1 ) {
-            TVHTagStore *tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
+            id <TVHTagStore> tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
             NSArray *objectStoreList = [tagStore tags];
             NSMutableArray *list = [[NSMutableArray alloc] init];
             [objectStoreList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

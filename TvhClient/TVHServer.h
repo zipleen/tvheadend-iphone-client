@@ -27,7 +27,7 @@
 
 @interface TVHServer : NSObject
 
-- (TVHTagStore*)tagStore;
+- (id <TVHTagStore>)tagStore;
 - (id <TVHChannelStore>)channelStore;
 - (id <TVHDvrStore>)dvrStore;
 - (TVHAutoRecStore*)autorecStore;

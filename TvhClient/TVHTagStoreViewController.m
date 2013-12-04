@@ -23,13 +23,13 @@
 @interface TVHTagStoreViewController () {
     BOOL didAlreadyPushed;
 }
-@property (weak, nonatomic) TVHTagStore *tagStore;
+@property (weak, nonatomic) id <TVHTagStore> tagStore;
 @property (strong, nonatomic) NSArray *tags;
 @end
 
 @implementation TVHTagStoreViewController
 
-- (TVHTagStore*)tagStore {
+- (id <TVHTagStore>)tagStore {
     if ( _tagStore == nil) {
         _tagStore = [[TVHSingletonServer sharedServerInstance] tagStore];
     }

@@ -17,7 +17,7 @@
 }
 @property (nonatomic, strong) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) TVHApiClient *apiClient;
-@property (nonatomic, strong) TVHTagStore *tagStore;
+@property (nonatomic, strong) id <TVHTagStore> tagStore;
 @property (nonatomic, strong) id <TVHChannelStore> channelStore;
 @property (nonatomic, strong) id <TVHDvrStore> dvrStore;
 @property (nonatomic, strong) TVHAutoRecStore *autorecStore;
@@ -118,9 +118,10 @@
 
 #pragma mark Main Objects
 
-- (TVHTagStore*)tagStore {
+- (id <TVHTagStore>)tagStore {
     if( ! _tagStore ) {
-        _tagStore = [[TVHTagStore alloc] initWithTvhServer:self];
+        Class myClass = NSClassFromString([@"TVHTagStore" stringByAppendingString:self.version]);
+        _tagStore = [[myClass alloc] initWithTvhServer:self];
     }
     return _tagStore;
 }

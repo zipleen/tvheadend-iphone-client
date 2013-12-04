@@ -153,6 +153,9 @@
 		AAE7B798170781AB0052E6F3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE7B797170781AB0052E6F3 /* CFNetwork.framework */; };
 		AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */; };
 		AAE8668D175A24B00027EE11 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAE8668C175A24B00027EE11 /* FontAwesome.otf */; };
+		AAF029C7184FE4B700CF320E /* TVHTagStore32.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF029C6184FE4B700CF320E /* TVHTagStore32.m */; };
+		AAF029CA184FE4C700CF320E /* TVHTagStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF029C9184FE4C700CF320E /* TVHTagStore34.m */; };
+		AAF029CD184FE4D400CF320E /* TVHTagStore40.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF029CC184FE4D400CF320E /* TVHTagStore40.m */; };
 		AAF0537018245FA0008B1A0A /* TVHDebugLytics.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */; };
 		AAF1E5D6184E71740092205E /* TVHApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF1E5D5184E71740092205E /* TVHApiClient.m */; };
 		AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647B17441D71006C96CE /* JASidePanelController.m */; };
@@ -160,7 +163,7 @@
 		AAF2648217441EC2006C96CE /* TVHMainSlidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648117441EC2006C96CE /* TVHMainSlidePanelViewController.m */; };
 		AAF2648517442010006C96CE /* TVHRecordingsSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648417442010006C96CE /* TVHRecordingsSplitViewController.m */; };
 		AAF2648817442247006C96CE /* TVHLeftMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648717442247006C96CE /* TVHLeftMainMenuViewController.m */; };
-		AAF54A1916C70D1B0076DF17 /* TVHTagStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */; };
+		AAF54A1916C70D1B0076DF17 /* TVHTagStoreAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1816C70D1B0076DF17 /* TVHTagStoreAbstract.m */; };
 		AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1B16C70D270076DF17 /* TVHTag.m */; };
 		AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A1E16C7137B0076DF17 /* TVHTagStoreViewController.m */; };
 		AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF54A2116C735710076DF17 /* TVHEpg.m */; };
@@ -475,6 +478,13 @@
 		AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHWrapper.m; sourceTree = "<group>"; };
 		AAE8668C175A24B00027EE11 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.otf; path = "vendor/FontAwesomeIconFactory/Font-Awesome/build/assets/font-awesome/font/FontAwesome.otf"; sourceTree = SOURCE_ROOT; };
 		AAED409A178CB622003EC215 /* TVHDvrStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrStore.h; sourceTree = "<group>"; };
+		AAF029C4184FE3E100CF320E /* TVHTagStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore.h; sourceTree = "<group>"; };
+		AAF029C5184FE4B700CF320E /* TVHTagStore32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore32.h; sourceTree = "<group>"; };
+		AAF029C6184FE4B700CF320E /* TVHTagStore32.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore32.m; sourceTree = "<group>"; };
+		AAF029C8184FE4C700CF320E /* TVHTagStore34.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore34.h; sourceTree = "<group>"; };
+		AAF029C9184FE4C700CF320E /* TVHTagStore34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore34.m; sourceTree = "<group>"; };
+		AAF029CB184FE4D400CF320E /* TVHTagStore40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore40.h; sourceTree = "<group>"; };
+		AAF029CC184FE4D400CF320E /* TVHTagStore40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore40.m; sourceTree = "<group>"; };
 		AAF0536E18245FA0008B1A0A /* TVHDebugLytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDebugLytics.h; sourceTree = "<group>"; };
 		AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDebugLytics.m; sourceTree = "<group>"; };
 		AAF1E5D4184E71740092205E /* TVHApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiClient.h; sourceTree = "<group>"; };
@@ -489,8 +499,8 @@
 		AAF2648417442010006C96CE /* TVHRecordingsSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHRecordingsSplitViewController.m; sourceTree = "<group>"; };
 		AAF2648617442247006C96CE /* TVHLeftMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHLeftMainMenuViewController.h; sourceTree = "<group>"; };
 		AAF2648717442247006C96CE /* TVHLeftMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHLeftMainMenuViewController.m; sourceTree = "<group>"; };
-		AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStore.h; sourceTree = "<group>"; };
-		AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStore.m; sourceTree = "<group>"; };
+		AAF54A1716C70D1B0076DF17 /* TVHTagStoreAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStoreAbstract.h; sourceTree = "<group>"; };
+		AAF54A1816C70D1B0076DF17 /* TVHTagStoreAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTagStoreAbstract.m; sourceTree = "<group>"; };
 		AAF54A1A16C70D270076DF17 /* TVHTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTag.h; sourceTree = "<group>"; };
 		AAF54A1B16C70D270076DF17 /* TVHTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHTag.m; sourceTree = "<group>"; };
 		AAF54A1D16C7137B0076DF17 /* TVHTagStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHTagStoreViewController.h; sourceTree = "<group>"; };
@@ -1155,8 +1165,7 @@
 		AAC03E671818778000631C93 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				AAF54A1716C70D1B0076DF17 /* TVHTagStore.h */,
-				AAF54A1816C70D1B0076DF17 /* TVHTagStore.m */,
+				AAF029C3184FE3BF00CF320E /* TVHTagStore */,
 				AAF54A1A16C70D270076DF17 /* TVHTag.h */,
 				AAF54A1B16C70D270076DF17 /* TVHTag.m */,
 			);
@@ -1333,6 +1342,22 @@
 			);
 			path = "GoogleAnalytics SDK";
 			sourceTree = SOURCE_ROOT;
+		};
+		AAF029C3184FE3BF00CF320E /* TVHTagStore */ = {
+			isa = PBXGroup;
+			children = (
+				AAF029C4184FE3E100CF320E /* TVHTagStore.h */,
+				AAF54A1716C70D1B0076DF17 /* TVHTagStoreAbstract.h */,
+				AAF54A1816C70D1B0076DF17 /* TVHTagStoreAbstract.m */,
+				AAF029C5184FE4B700CF320E /* TVHTagStore32.h */,
+				AAF029C6184FE4B700CF320E /* TVHTagStore32.m */,
+				AAF029C8184FE4C700CF320E /* TVHTagStore34.h */,
+				AAF029C9184FE4C700CF320E /* TVHTagStore34.m */,
+				AAF029CB184FE4D400CF320E /* TVHTagStore40.h */,
+				AAF029CC184FE4D400CF320E /* TVHTagStore40.m */,
+			);
+			name = TVHTagStore;
+			sourceTree = "<group>";
 		};
 		AAF2647917441D57006C96CE /* JASlidingPanels */ = {
 			isa = PBXGroup;
@@ -1563,7 +1588,7 @@
 				AAC7D15118286A8600089875 /* AFJSONRequestOperation.m in Sources */,
 				AAC7D15518286A8600089875 /* AFXMLRequestOperation.m in Sources */,
 				AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */,
-				AAF54A1916C70D1B0076DF17 /* TVHTagStore.m in Sources */,
+				AAF54A1916C70D1B0076DF17 /* TVHTagStoreAbstract.m in Sources */,
 				AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */,
 				AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */,
 				AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */,
@@ -1587,6 +1612,7 @@
 				AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */,
 				AA6ADF86181F2A42000DC39A /* TVHSettingsWebControllerViewController.m in Sources */,
 				AA80AB9B184C199A00A3AB67 /* TVHEpgStore40.m in Sources */,
+				AAF029CA184FE4C700CF320E /* TVHTagStore34.m in Sources */,
 				AA132EBB16D9594B0074FAB8 /* TVHUICustomNavigationBar.m in Sources */,
 				AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */,
 				AAF0537018245FA0008B1A0A /* TVHDebugLytics.m in Sources */,
@@ -1673,6 +1699,7 @@
 				AAFE73B0179C14B0000E7105 /* UIImageView+WebCache.m in Sources */,
 				AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */,
 				AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */,
+				AAF029C7184FE4B700CF320E /* TVHTagStore32.m in Sources */,
 				AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */,
 				AABCEFB8182EFBEB00549ADF /* TVHService.m in Sources */,
 				AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */,
@@ -1685,6 +1712,7 @@
 				AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */,
 				AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */,
 				AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */,
+				AAF029CD184FE4D400CF320E /* TVHTagStore40.m in Sources */,
 				AAF1E5D6184E71740092205E /* TVHApiClient.m in Sources */,
 				AAE33225184B660800525540 /* TVHChannelStore32.m in Sources */,
 				AA654AD317BF9AB000027D39 /* AFHTTPRequestOperationLogger.m in Sources */,

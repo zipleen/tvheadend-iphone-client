@@ -10,18 +10,17 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHTagStore.h"
+#import "TVHTagStoreAbstract.h"
 #import "TVHSettings.h"
 #import "TVHServer.h"
 
-@interface TVHTagStore()
+@interface TVHTagStoreAbstract()
 @property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
 
-
-@implementation TVHTagStore
+@implementation TVHTagStoreAbstract
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
