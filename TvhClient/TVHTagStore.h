@@ -10,7 +10,7 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import <Foundation/Foundation.h>
+#import "TVHApiClient.h"
 #import "TVHTag.h"
 
 @class TVHServer;
@@ -22,7 +22,7 @@
 - (void)didErrorLoadingTagStore:(NSError*)error;
 @end
 
-@interface TVHTagStore : NSObject
+@interface TVHTagStore : NSObject <TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHTagStoreDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;

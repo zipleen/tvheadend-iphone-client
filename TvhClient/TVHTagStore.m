@@ -15,7 +15,7 @@
 #import "TVHServer.h"
 
 @interface TVHTagStore()
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, strong) NSDate *profilingDate;
 @end
@@ -27,7 +27,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(fetchTagList)
@@ -41,7 +41,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.tags = nil;
     self.tvhServer = nil;
-    self.jsonClient = nil;
+    self.apiClient = nil;
     self.profilingDate = nil;
 }
 
@@ -79,12 +79,24 @@
     return true;
 }
 
+#pragma mark Api Client delegates
+
+- (NSString*)apiMethod {
+    return @"POST";
+}
+
+- (NSString*)apiPath {
+    return @"tablemgr";
+}
+
+- (NSDictionary*)apiParameters {
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
+}
+
 - (void)fetchTagList {
-    
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", @"channeltags", @"table", nil];
     [self signalWillLoadTags];
     self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:@"tablemgr" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
         [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
                                                           withValue:time
@@ -110,6 +122,8 @@
         _delegate = delegate;
     }
 }
+
+#pragma mark singals
 
 - (void)signalWillLoadTags {
     if ([self.delegate respondsToSelector:@selector(willLoadTags)]) {
