@@ -13,13 +13,12 @@
 #import "TVHChannelStore.h"
 #import "TVHEpgStore.h"
 
-@interface TVHChannelStoreAbstract : NSObject <TVHChannelStore, TVHEpgStoreDelegate>
+@interface TVHChannelStoreAbstract : NSObject <TVHChannelStore, TVHEpgStoreDelegate, TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, strong) NSString *filterTag;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchChannelList;
-- (NSString*)getApiChannels;
 
 - (NSArray*)channels;
 - (NSArray*)arrayChannels;

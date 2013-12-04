@@ -16,10 +16,9 @@
 #import "TVHServer.h"
 
 @interface TVHChannelStoreAbstract ()
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *channels;
 @property (nonatomic, strong) id <TVHEpgStore> currentlyPlayingEpgStore;
-@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHChannelStoreAbstract
@@ -41,7 +40,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(fetchChannelList)
@@ -56,8 +55,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.channels = nil;
     self.currentlyPlayingEpgStore = nil;
-    self.jsonClient = nil;
-    self.profilingDate = nil;
+    self.apiClient = nil;
 }
 
 - (BOOL)fetchedData:(NSData *)responseData {
@@ -93,37 +91,48 @@
     return true;
 }
 
+#pragma mark Api Client delegates
+
+- (NSString*)apiMethod {
+    return @"POST";
+}
+
+- (NSString*)apiPath {
+    return @"channels";
+}
+
+- (NSDictionary*)apiParameters {
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
+}
+
 - (void)fetchChannelList {
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
+    __block NSDate *profilingDate = [NSDate date];
+    TVHChannelStoreAbstract __weak *weakSelf = self;
     [self signalWillLoadChannels];
-    self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:[self getApiChannels] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+    
+    [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:profilingDate];
         [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
-                                                          withValue:time
-                                                           withName:@"ChannelStore"
-                                                          withLabel:nil];
+                                   withValue:time
+                                    withName:@"ChannelStore"
+                                   withLabel:nil];
 #ifdef TESTING
         NSLog(@"[ChannelList Profiling Network]: %f", time);
 #endif
-        if ( [self fetchedData:responseObject] ) {
-            if ([self.delegate respondsToSelector:@selector(didLoadChannels)]) {
-                [self.delegate didLoadChannels];
+        if ( [weakSelf fetchedData:responseObject] ) {
+            if ([weakSelf.delegate respondsToSelector:@selector(didLoadChannels)]) {
+                [weakSelf.delegate didLoadChannels];
             }
-            [[self.tvhServer tagStore] signalDidLoadTags];
-            [self.currentlyPlayingEpgStore downloadEpgList];
+            [[weakSelf.tvhServer tagStore] signalDidLoadTags];
+            [weakSelf.currentlyPlayingEpgStore downloadEpgList];
         }
         
        // NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
        // NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self signalDidErrorLoadingChannelStore:error];
+        [weakSelf signalDidErrorLoadingChannelStore:error];
         NSLog(@"[ChannelList HTTPClient Error]: %@", error.localizedDescription);
     }];
-}
-
-- (NSString*)getApiChannels {
-    return @"channels";
 }
 
 #pragma mark EPG delegatee stuff

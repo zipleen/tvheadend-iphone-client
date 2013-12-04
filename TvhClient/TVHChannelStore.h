@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHChannel.h"
+#import "TVHApiClient.h"
 
 @class TVHServer;
 
@@ -18,13 +19,12 @@
 - (void)didErrorLoadingChannelStore:(NSError*)error;
 @end
 
-@protocol TVHChannelStore <NSObject>
+@protocol TVHChannelStore <TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
 @property (nonatomic, strong) NSString *filterTag;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchChannelList;
-- (NSString*)getApiChannels;
 
 - (NSArray*)channels;
 - (NSArray*)arrayChannels;
