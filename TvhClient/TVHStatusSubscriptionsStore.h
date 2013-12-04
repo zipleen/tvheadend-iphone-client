@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHStatusSubscription.h"
+#import "TVHApiClient.h"
 
 @class TVHServer;
 
@@ -22,7 +23,7 @@
 - (void)didErrorStatusSubscriptionsStore:(NSError*)error;
 @end
 
-@interface TVHStatusSubscriptionsStore : NSObject
+@interface TVHStatusSubscriptionsStore : NSObject <TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHStatusSubscriptionsDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;

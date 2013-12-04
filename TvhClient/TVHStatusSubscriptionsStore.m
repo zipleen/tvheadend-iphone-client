@@ -14,7 +14,7 @@
 #import "TVHServer.h"
 
 @interface TVHStatusSubscriptionsStore()
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *subscriptions;
 @end
 
@@ -24,7 +24,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveSubscriptionNotification:)
@@ -88,16 +88,32 @@
     return true;
 }
 
+#pragma mark Api Client delegates
+
+- (NSString*)apiMethod {
+    return @"GET";
+}
+
+- (NSString*)apiPath {
+    return @"subscriptions";
+}
+
+- (NSDictionary*)apiParameters {
+    return nil;
+}
+
 - (void)fetchStatusSubscriptions {
+    TVHStatusSubscriptionsStore __weak *weakSelf = self;
+    
     if ( [[self.tvhServer version] intValue] >= 34 ) {
         [self signalWillLoadStatusSubscriptions];
-        [self.jsonClient getPath:@"subscriptions" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ( [self fetchedData:responseObject] ) {
-                [self signalDidLoadStatusSubscriptions];
+        [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            if ( [weakSelf fetchedData:responseObject] ) {
+                [weakSelf signalDidLoadStatusSubscriptions];
             }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self signalDidErrorStatusSubscriptionsStore:error];
+            [weakSelf signalDidErrorStatusSubscriptionsStore:error];
             NSLog(@"[Subscription HTTPClient Error]: %@", error.localizedDescription);
         }];
     }
@@ -119,6 +135,8 @@
         _delegate = delegate;
     }
 }
+
+#pragma mark Signal delegates
 
 - (void)signalDidLoadStatusSubscriptions {
     if ([self.delegate respondsToSelector:@selector(didLoadStatusSubscriptions)]) {
