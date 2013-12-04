@@ -17,7 +17,6 @@
 @interface TVHTagStoreAbstract()
 @property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *tags;
-@property (nonatomic, strong) NSDate *profilingDate;
 @end
 
 @implementation TVHTagStoreAbstract
@@ -41,7 +40,6 @@
     self.tags = nil;
     self.tvhServer = nil;
     self.apiClient = nil;
-    self.profilingDate = nil;
 }
 
 - (bool)fetchedData:(NSData *)responseData {
@@ -55,20 +53,20 @@
     NSArray *entries = [json objectForKey:@"entries"];
     NSMutableArray *tags = [[NSMutableArray alloc] init];
     
-    for (id entry in entries) {
+    [entries enumerateObjectsUsingBlock:^(id entry, NSUInteger idx, BOOL *stop) {
         NSInteger enabled = [[entry objectForKey:@"enabled"] intValue];
         if( enabled ) {
             TVHTag *tag = [[TVHTag alloc] initWithTvhServer:self.tvhServer];
             [tag updateValuesFromDictionary:entry];
             [tags addObject:tag];
         }
-    }
+    }];
      
     NSMutableArray *orderedTags = [[tags sortedArrayUsingSelector:@selector(compareByName:)] mutableCopy];
     
     // All channels
-    TVHTag *t = [[TVHTag alloc] initWithAllChannels:self.tvhServer];
-    [orderedTags insertObject:t atIndex:0];
+    TVHTag *tag = [[TVHTag alloc] initWithAllChannels:self.tvhServer];
+    [orderedTags insertObject:tag atIndex:0];
     
     self.tags = [orderedTags copy];
 #ifdef TESTING
@@ -94,24 +92,26 @@
 
 - (void)fetchTagList {
     [self signalWillLoadTags];
-    self.profilingDate = [NSDate date];
+    TVHTagStoreAbstract __weak *weakSelf = self;
+    __block NSDate *profilingDate = [NSDate date];
+    
     [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:profilingDate];
         [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
-                                                          withValue:time
-                                                           withName:@"TagStore"
-                                                          withLabel:nil];
+                                   withValue:time
+                                    withName:@"TagStore"
+                                   withLabel:nil];
 #ifdef TESTING
         NSLog(@"[TagStore Profiling Network]: %f", time);
 #endif
-        if ( [self fetchedData:responseObject] ) {
-            [self signalDidLoadTags];
+        if ( [weakSelf fetchedData:responseObject] ) {
+            [weakSelf signalDidLoadTags];
         }
         
         //NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self signalDidErrorLoadingTagStore:error];
+        [weakSelf signalDidErrorLoadingTagStore:error];
         NSLog(@"[TagStore HTTPClient Error]: %@", error.description);
     }];
 }
