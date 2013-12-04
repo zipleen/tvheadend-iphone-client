@@ -12,10 +12,11 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHConfigName.h"
+#import "TVHApiClient.h"
 
 @class TVHServer;
 
-@interface TVHConfigNameStore : NSObject
+@interface TVHConfigNameStore : NSObject <TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer;

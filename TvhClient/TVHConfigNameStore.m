@@ -14,7 +14,7 @@
 #import "TVHServer.h"
 
 @interface TVHConfigNameStore ()
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *configNames;
 @end
 
@@ -24,7 +24,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     return self;
 }
@@ -56,12 +56,26 @@
     return true;
 }
 
+#pragma mark Api Client delegates
+
+- (NSString*)apiMethod {
+    return @"POST";
+}
+
+- (NSString*)apiPath {
+    return @"confignames";
+}
+
+- (NSDictionary*)apiParameters {
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
+}
+
 - (void)fetchConfigNames {
+    TVHConfigNameStore __weak *weakSelf = self;
     
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"list", @"op", nil];
-    [self.jsonClient postPath:@"confignames" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if ( [self fetchedData:responseObject] ) {
+        if ( [weakSelf fetchedData:responseObject] ) {
             // signal
         }
         
