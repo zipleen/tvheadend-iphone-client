@@ -157,7 +157,7 @@
 }
 
 - (NSArray*)arrayChannels {
-    if (self.filterTag == 0) {
+    if ( [self.filterTag isEqualToString:@"0"] ) {
         return [self.channels copy];
     } else {
         return [self filteredChannelList];

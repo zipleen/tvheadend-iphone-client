@@ -179,7 +179,7 @@
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     TVHTag *tag = [self.tags objectAtIndex:path.row];
     
-    [channelStore setFilterTagId:tag.id];
+    [channelStore setFilterTagId:tag.idKey];
     [channelStore setTitle:tag.name];
     
     [self prepareSplitViewEpg:tag];

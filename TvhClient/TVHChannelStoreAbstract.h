@@ -16,7 +16,7 @@
 @interface TVHChannelStoreAbstract : NSObject <TVHChannelStore, TVHEpgStoreDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHChannelStoreDelegate> delegate;
-@property (nonatomic) NSInteger filterTag;
+@property (nonatomic, strong) NSString *filterTag;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchChannelList;
 - (NSString*)getApiChannels;

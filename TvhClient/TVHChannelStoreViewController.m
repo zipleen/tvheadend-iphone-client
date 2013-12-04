@@ -32,14 +32,14 @@
 @implementation TVHChannelStoreViewController 
 
 // if we're called from tagstore, we'll set the filter of the channelStore to only get channels from the selected tag
-- (NSInteger) filterTagId {
+- (NSString*)filterTagId {
     if( ! _filterTagId ) {
-        return 0;
+        return @"0";
     }
     return _filterTagId;
 }
 
-- (id <TVHChannelStore>) channelList {
+- (id <TVHChannelStore>)channelList {
     if ( _channelStore == nil) {
         _channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
     }

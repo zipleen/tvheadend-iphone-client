@@ -48,7 +48,7 @@
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 
 - (NSString*)channelIdKey;
-- (bool)hasTag:(NSInteger)tag;
+- (BOOL)hasTag:(NSString*)tag;
 - (NSString*)streamURL;
 - (NSString*)playlistStreamURL;
 - (void)addEpg:(TVHEpg*)epg;

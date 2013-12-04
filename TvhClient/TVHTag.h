@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *icon;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (id)initWithAllChannels:(TVHServer*)tvhServer;
+- (NSString*)idKey;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (NSInteger)channelCount;
 @end

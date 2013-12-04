@@ -62,18 +62,25 @@
     if (!other || ![other isKindOfClass:[self class]])
         return NO;
     TVHTag *otherCast = other;
-    return self.id == otherCast.id;
+    if ( self.idKey == otherCast.idKey ) {
+        return YES;
+    }
+    return NO;
+}
+
+- (NSString*)idKey {
+    return [NSString stringWithFormat:@"%d", self.id];
 }
 
 - (NSInteger)channelCount {
     NSInteger count = 0;
-    NSArray *channels = [[self.tvhServer channelStore] arrayChannels];
-    if ( self.id == 0 ) {
+    NSArray *channels = [[self.tvhServer channelStore] channels];
+    if ( [self.idKey isEqualToString:@"0"] ) {
         return [channels count];
     }
     
     for (TVHChannel *channel in channels) {
-        if ( [channel hasTag:self.id] ) {
+        if ( [channel hasTag:self.idKey] ) {
             count++;
         }
     }

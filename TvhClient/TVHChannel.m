@@ -85,7 +85,11 @@
         _tags = [tags componentsSeparatedByString:@","];
     }
     if([tags isKindOfClass:[NSArray class]]) {
-        _tags = tags;
+        NSMutableArray *stringTags = [[NSMutableArray alloc] init];
+        for (NSNumber *tagInt in tags) {
+            [stringTags addObject:[NSString stringWithFormat:@"%@", tagInt]];
+        }
+        _tags = [stringTags copy];
     }
 }
 
@@ -100,8 +104,8 @@
     
 }
 
-- (bool)hasTag:(NSInteger)tag {
-    return [self.tags containsObject:[NSString stringWithFormat:@"%d",tag]];
+- (BOOL)hasTag:(NSString*)tag {
+    return [self.tags containsObject:tag];
 }
 
 - (NSString*)streamURL {
