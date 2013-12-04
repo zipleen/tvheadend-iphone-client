@@ -14,9 +14,18 @@
 @end
 
 @implementation TVHEpgStore40
+@synthesize filterToChannelName = _filterToChannelName;
 
-- (NSString*)getApiEpg {
-    return @"epg";
+- (NSString*)jsonApiFieldEntries {
+    return @"events";
+}
+
+- (NSString*)apiPath {
+    return @"api/epg/grid";
+}
+
+- (NSString*)apiMethod {
+    return @"GET";
 }
 
 - (void)setFilterToChannelName:(NSString *)filterToChannelName {

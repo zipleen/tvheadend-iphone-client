@@ -9,5 +9,4 @@
 #import "TVHEpgStoreAbstract.h"
 
 @interface TVHEpgStore40 : TVHEpgStoreAbstract
-@property (nonatomic, strong) NSString *filterToChannelName;
 @end

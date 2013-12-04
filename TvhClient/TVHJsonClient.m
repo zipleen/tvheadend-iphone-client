@@ -116,7 +116,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark replace
+#pragma mark AFHTTPClient methods
 
 - (void)getPath:(NSString *)path
      parameters:(NSDictionary *)parameters
@@ -142,7 +142,7 @@
 }
 
 
-#pragma JsonHelper
+#pragma mark JsonHelper
 
 + (NSDictionary*)convertFromJsonToObjectFixUtf8:(NSData*)responseData error:(__autoreleasing NSError**)error {
     

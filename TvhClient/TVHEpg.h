@@ -35,12 +35,17 @@
 @property (nonatomic, strong) NSString *schedstate;
 @property (nonatomic) NSInteger serieslink;
 @property (nonatomic, strong) NSString *contenttype;
+
 // 4.0
+@property (nonatomic, strong) NSDate *stop;
 @property (nonatomic) NSInteger dvrId;
 @property (nonatomic, strong) NSString *channelUuid;
+@property (nonatomic, strong) NSString *summary;
+@property (nonatomic, strong) NSString *image;
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
+- (BOOL)inProgress;
 - (float)progress;
 - (void)addRecording;
 - (BOOL)isEqual:(TVHEpg*)other;

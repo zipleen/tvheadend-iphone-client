@@ -10,22 +10,22 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import <Foundation/Foundation.h>
 #import "TVHEpgStore.h"
 
 @class TVHServer;
 @class TVHEpgStore;
 
-@interface TVHEpgStoreAbstract : NSObject <TVHEpgStore>
+@interface TVHEpgStoreAbstract : NSObject <TVHEpgStore, TVHApiClientDelegate>
+@property (nonatomic, strong) NSString *filterToProgramTitle;
+@property (nonatomic, strong) NSString *filterToChannelName;
+@property (nonatomic, strong) NSString *filterToTagName;
+@property (nonatomic, strong) NSString *filterToContentTypeId;
+@property NSInteger filterStart;
+@property NSInteger filterLimit;
+
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSString *statsEpgName;
 - (id)initWithStatsEpgName:(NSString*)statsEpgName withTvhServer:(TVHServer*)tvhServer;
-- (NSString*)getApiEpg;
-
-- (void)setFilterToProgramTitle:(NSString *)filterToProgramTitle;
-- (void)setFilterToChannelName:(NSString *)filterToChannelName;
-- (void)setFilterToTagName:(NSString *)filterToTagName;
-- (void)setFilterToContentTypeId:(NSString *)filterToContentTypeId;
 
 - (void)downloadAllEpgItems;
 - (void)downloadEpgList;

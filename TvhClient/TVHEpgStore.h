@@ -7,6 +7,7 @@
 //
 
 #import "TVHChannel.h"
+#import "TVHApiClient.h"
 
 #define MAX_REQUEST_EPG_ITEMS 300 // tvheadend has a limit of how much items you can request at one time
 #define DEFAULT_REQUEST_EPG_ITEMS 50 // this is the default query limit on the webUI
@@ -22,16 +23,17 @@
 - (void)didErrorLoadingEpgStore:(NSError*)error;
 @end
 
-@protocol TVHEpgStore <NSObject>
+@protocol TVHEpgStore <TVHApiClientDelegate>
+@property (nonatomic, strong) NSString *filterToProgramTitle;
+@property (nonatomic, strong) NSString *filterToChannelName;
+@property (nonatomic, strong) NSString *filterToTagName;
+@property (nonatomic, strong) NSString *filterToContentTypeId;
+@property NSInteger filterStart;
+@property NSInteger filterLimit;
+
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSString *statsEpgName;
 - (id)initWithStatsEpgName:(NSString*)statsEpgName withTvhServer:(TVHServer*)tvhServer;
-- (NSString*)getApiEpg;
-
-- (void)setFilterToProgramTitle:(NSString *)filterToProgramTitle;
-- (void)setFilterToChannelName:(NSString *)filterToChannelName;
-- (void)setFilterToTagName:(NSString *)filterToTagName;
-- (void)setFilterToContentTypeId:(NSString *)filterToContentTypeId;
 
 - (void)downloadAllEpgItems;
 - (void)downloadEpgList;

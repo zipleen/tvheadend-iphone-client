@@ -98,7 +98,7 @@
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self signalDidErrorStatusSubscriptionsStore:error];
-            NSLog(@"[TagList HTTPClient Error]: %@", error.localizedDescription);
+            NSLog(@"[Subscription HTTPClient Error]: %@", error.localizedDescription);
         }];
     }
 }

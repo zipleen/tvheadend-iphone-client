@@ -114,7 +114,7 @@
     }
     
     TVHChannel *channel = [self.channels objectAtIndex:indexPath.row];
-    NSArray *currentAndNextPlayingPrograms = [channel currentPlayingAndNextPrograms];
+    NSArray *currentAndNextPlayingPrograms = [channel nextPrograms:3];
     
     UILabel *channelNameLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *currentProgramLabel = (UILabel *)[cell viewWithTag:101];

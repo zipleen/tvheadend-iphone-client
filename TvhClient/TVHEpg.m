@@ -143,6 +143,13 @@
     return [self.start compare:otherObject.start];
 }
 
+- (BOOL)inProgress {
+    if ( self.progress > 0 && self.progress < 1 ) {
+        return YES;
+    }
+    return NO;
+}
+
 - (float)progress {
     NSDate *now = [NSDate date];
     NSTimeInterval actualLength = [now timeIntervalSinceDate:self.start];
@@ -173,7 +180,9 @@
     if (!other || ![other isKindOfClass:[self class]])
         return NO;
     TVHEpg *otherCast = other;
-    return self.id == otherCast.id;
+    if (self.id == otherCast.id)
+        return YES;
+    return NO;
 }
 
 - (TVHChannel*)channelObject {
@@ -192,6 +201,19 @@
 
 - (BOOL)isRecording {
     return [[self schedstate] isEqualToString:@"recording"];
+}
+
+// 4.0
+- (void)setStop:(id)stopDate {
+    if([stopDate isKindOfClass:[NSNumber class]]) {
+        _stop = [NSDate dateWithTimeIntervalSince1970:[stopDate intValue]];
+        _end = [NSDate dateWithTimeIntervalSince1970:[stopDate intValue]];
+    }
+}
+
+- (void)setSummary:(NSString *)summary {
+    _summary = summary;
+    _description = summary;
 }
 
 @end

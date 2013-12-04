@@ -15,16 +15,11 @@
 #import "TVHServer.h"
 
 @interface TVHEpgStoreAbstract()
-@property (nonatomic, strong) NSString *filterToProgramTitle;
-@property (nonatomic, strong) NSString *filterToChannelName;
-@property (nonatomic, strong) NSString *filterToTagName;
-@property (nonatomic, strong) NSString *filterToContentTypeId;
-
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, strong) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *epgStore;
 @property (nonatomic, weak) id <TVHEpgStoreDelegate> delegate;
 @property (nonatomic) NSInteger totalEventCount;
-@property (nonatomic, strong) NSDate *profilingDate;
+
 @end
 
 @implementation TVHEpgStoreAbstract
@@ -66,7 +61,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     self.statsEpgName = @"Shared";
     return self;
@@ -111,6 +106,12 @@
 #endif
 }
 
+#pragma mark ApiClient Implementation
+
+- (NSString*)jsonApiFieldEntries {
+    return @"entries";
+}
+
 - (bool)fetchedData:(NSData *)responseData {
     
     NSError __autoreleasing *error;
@@ -123,7 +124,7 @@
     }
     
     self.totalEventCount = [[json objectForKey:@"totalCount"] intValue];
-    NSArray *entries = [json objectForKey:@"entries"];
+    NSArray *entries = [json objectForKey:self.jsonApiFieldEntries];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHEpg *epg = [[TVHEpg alloc] initWithTvhServer:self.tvhServer];
@@ -137,12 +138,12 @@
     return true;
 }
 
-- (NSDictionary*)getPostParametersStartingFrom:(NSInteger)start limit:(NSInteger)limit {
+- (NSDictionary*)apiParameters {
     
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   [NSString stringWithFormat:@"%d", start ],
+                                   [NSString stringWithFormat:@"%d", self.filterStart ],
                                    @"start",
-                                   [NSString stringWithFormat:@"%d", limit ],
+                                   [NSString stringWithFormat:@"%d", self.filterLimit ],
                                    @"limit",nil];
     
     if( self.filterToChannelName != nil ) {
@@ -164,42 +165,51 @@
     return [params copy];
 }
 
-- (NSString*)getApiEpg {
+- (NSString*)apiPath {
     return @"epg";
+}
+
+- (NSString*)apiMethod {
+    return @"POST";
 }
 
 - (void)retrieveEpgDataFromTVHeadend:(NSInteger)start limit:(NSInteger)limit fetchAll:(BOOL)fetchAll {
     
-    NSDictionary *params = [self getPostParametersStartingFrom:start limit:limit];
+    self.filterStart = start;
+    self.filterLimit = limit;
+    
     [self signalWillLoadEpg];
 #ifdef TESTING
-    NSLog(@"[%@ EPG Going to call (ch:%@ | pr:%@ | tag:%@ | evcount:%d)]: %@", self.statsEpgName, self.filterToChannelName, self.filterToProgramTitle, self.filterToTagName, self.totalEventCount, params);
+    NSLog(@"[%@ EPG Going to call (total event count:%d)]: %@", self.statsEpgName, self.totalEventCount, self.apiParameters);
 #endif
-    self.profilingDate = [NSDate date];
-    [self.jsonClient postPath:self.getApiEpg parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    TVHEpgStoreAbstract __weak *weakSelf = self;
+    
+    __block NSDate *profilingDate = [NSDate date];
+    [self.apiClient doApiCall:self
+                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if( ! [params isEqualToDictionary:[self getPostParametersStartingFrom:start limit:limit]] ) {
+        if( ! (weakSelf.filterStart == start && weakSelf.filterLimit == limit) ) {
 #ifdef TESTING
-            NSLog(@"[%@ Wrong EPG received - discarding request.", self.statsEpgName );
+            NSLog(@"[%@ Wrong EPG received - discarding request.", weakSelf.statsEpgName );
 #endif
             return ;
         }
-        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:profilingDate];
         [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
-                                                          withValue:time
-                                                           withName:self.statsEpgName
-                                                          withLabel:nil];
+                                   withValue:time
+                                    withName:weakSelf.statsEpgName
+                                   withLabel:nil];
 #ifdef TESTING
-        NSLog(@"[%@ Profiling Network]: %f", self.statsEpgName, time);
+        NSLog(@"[%@ Profiling Network]: %f", weakSelf.statsEpgName, time);
 #endif
-        if ( [self fetchedData:responseObject] ) {
-            [self signalDidLoadEpg];
-            [self getMoreEpg:start limit:limit fetchAll:fetchAll];
+        if ( [weakSelf fetchedData:responseObject] ) {
+            [weakSelf signalDidLoadEpg];
+            [weakSelf getMoreEpg:start limit:limit fetchAll:fetchAll];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[EpgStore HTTPClient Error]: %@", error.localizedDescription);
-        [self signalDidErrorLoadingEpgStore:error];
+        [weakSelf signalDidErrorLoadingEpgStore:error];
     }];
     
 }

@@ -154,6 +154,7 @@
 		AAE7B7A51707825D0052E6F3 /* SSHWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE7B7A41707825D0052E6F3 /* SSHWrapper.m */; };
 		AAE8668D175A24B00027EE11 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAE8668C175A24B00027EE11 /* FontAwesome.otf */; };
 		AAF0537018245FA0008B1A0A /* TVHDebugLytics.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */; };
+		AAF1E5D6184E71740092205E /* TVHApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF1E5D5184E71740092205E /* TVHApiClient.m */; };
 		AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647B17441D71006C96CE /* JASidePanelController.m */; };
 		AAF2647F17441D71006C96CE /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2647D17441D71006C96CE /* UIViewController+JASidePanel.m */; };
 		AAF2648217441EC2006C96CE /* TVHMainSlidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF2648117441EC2006C96CE /* TVHMainSlidePanelViewController.m */; };
@@ -476,6 +477,8 @@
 		AAED409A178CB622003EC215 /* TVHDvrStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDvrStore.h; sourceTree = "<group>"; };
 		AAF0536E18245FA0008B1A0A /* TVHDebugLytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDebugLytics.h; sourceTree = "<group>"; };
 		AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDebugLytics.m; sourceTree = "<group>"; };
+		AAF1E5D4184E71740092205E /* TVHApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHApiClient.h; sourceTree = "<group>"; };
+		AAF1E5D5184E71740092205E /* TVHApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHApiClient.m; sourceTree = "<group>"; };
 		AAF2647A17441D71006C96CE /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = vendor/JASidePanels/JASidePanels/Source/JASidePanelController.h; sourceTree = SOURCE_ROOT; };
 		AAF2647B17441D71006C96CE /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = vendor/JASidePanels/JASidePanels/Source/JASidePanelController.m; sourceTree = SOURCE_ROOT; };
 		AAF2647C17441D71006C96CE /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JASidePanel.h"; path = "vendor/JASidePanels/JASidePanels/Source/UIViewController+JASidePanel.h"; sourceTree = SOURCE_ROOT; };
@@ -1375,6 +1378,8 @@
 				AAD8EA041710CB8E00932A0E /* Misc */,
 				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
 				AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */,
+				AAF1E5D4184E71740092205E /* TVHApiClient.h */,
+				AAF1E5D5184E71740092205E /* TVHApiClient.m */,
 				AAFDEC5E174549DC0035D734 /* TVHServer.h */,
 				AAFDEC5F174549DC0035D734 /* TVHServer.m */,
 			);
@@ -1680,6 +1685,7 @@
 				AA88AD6A17B19F3A00CE7614 /* WTStatusBar.m in Sources */,
 				AA88AD6B17B19F3A00CE7614 /* WTStatusView.m in Sources */,
 				AA88AD6C17B19F3A00CE7614 /* WTStatusWindow.m in Sources */,
+				AAF1E5D6184E71740092205E /* TVHApiClient.m in Sources */,
 				AAE33225184B660800525540 /* TVHChannelStore32.m in Sources */,
 				AA654AD317BF9AB000027D39 /* AFHTTPRequestOperationLogger.m in Sources */,
 				AA654AD717BFBA0B00027D39 /* AFHTTPClient+ProxyQueue.m in Sources */,

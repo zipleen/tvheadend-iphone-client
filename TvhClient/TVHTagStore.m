@@ -101,7 +101,7 @@
         //NSLog(@"Request Successful, response '%@'", responseStr);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self signalDidErrorLoadingTagStore:error];
-        NSLog(@"[TagList HTTPClient Error]: %@", error.description);
+        NSLog(@"[TagStore HTTPClient Error]: %@", error.description);
     }];
 }
 

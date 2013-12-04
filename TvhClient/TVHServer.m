@@ -15,10 +15,27 @@
 @interface TVHServer() {
     BOOL inProcessing;
 }
+@property (nonatomic, strong) TVHJsonClient *jsonClient;
+@property (nonatomic, strong) TVHApiClient *apiClient;
+@property (nonatomic, strong) TVHTagStore *tagStore;
+@property (nonatomic, strong) id <TVHChannelStore> channelStore;
+@property (nonatomic, strong) id <TVHDvrStore> dvrStore;
+@property (nonatomic, strong) TVHAutoRecStore *autorecStore;
+@property (nonatomic, strong) TVHStatusSubscriptionsStore *statusStore;
+@property (nonatomic, strong) TVHAdaptersStore *adapterStore;
+@property (nonatomic, strong) TVHLogStore *logStore;
+@property (nonatomic, strong) TVHCometPollStore *cometStore;
+@property (nonatomic, strong) TVHConfigNameStore *configNameStore;
+@property (nonatomic, strong) NSString *version;
+@property (nonatomic, strong) NSString *realVersion;
+@property (nonatomic, strong) NSArray *capabilities;
+@property (nonatomic, strong) NSDictionary *configSettings;
 @property (strong, nonatomic) NSTimer *timer;
 @end
 
 @implementation TVHServer 
+
+#pragma mark NSNotification
 
 - (void)appWillResignActive:(NSNotification*)note {
     [self.timer invalidate];
@@ -40,6 +57,8 @@
         inProcessing = NO;
     }
 }
+
+#pragma mark init
 
 - (TVHServer*)initVersion:(NSString*)version {
     self = [super init];
@@ -76,6 +95,28 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+- (void)resetData {
+    [self.timer invalidate];
+    self.timer = nil;
+    
+    self.jsonClient = nil;
+    self.tagStore = nil;
+    self.channelStore = nil;
+    self.dvrStore = nil;
+    self.autorecStore = nil;
+    self.statusStore = nil;
+    self.adapterStore = nil;
+    self.cometStore = nil;
+    self.configNameStore = nil;
+    self.capabilities = nil;
+    self.version = nil;
+    self.realVersion = nil;
+    self.configSettings = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark Main Objects
 
 - (TVHTagStore*)tagStore {
     if( ! _tagStore ) {
@@ -145,6 +186,13 @@
     return _jsonClient;
 }
 
+- (TVHApiClient*)apiClient {
+    if( ! _apiClient ) {
+        _apiClient = [[TVHApiClient alloc] initWithClient:self.jsonClient];
+    }
+    return _apiClient;
+}
+
 - (TVHConfigNameStore*)configNameStore {
     if( ! _configNameStore ) {
         _configNameStore = [[TVHConfigNameStore alloc] initWithTvhServer:self];
@@ -170,6 +218,8 @@
     }
     return @"40";
 }
+
+#pragma mark fetch version
 
 - (void)handleFetchedServerVersion:(NSString*)response {
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<title>HTS Tvheadend (.*?)</title>" options:NSRegularExpressionCaseInsensitive error:nil];
@@ -201,6 +251,8 @@
         NSLog(@"[TVHServer getVersion]: %@", error.localizedDescription);
     }];
 }
+
+#pragma mark fetch capabilities
 
 - (void)fetchCapabilities {
     [self.jsonClient getPath:@"capabilities" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -269,6 +321,8 @@
     return false;
 }
 
+#pragma mark TVH Server Details
+
 - (NSString*)htspUrl {
     TVHSettings *settings = [TVHSettings sharedInstance];
     NSString *userAndPass = @"";
@@ -283,24 +337,6 @@
     return [settings fullBaseURL];
 }
 
-- (void)resetData {
-    [self.timer invalidate];
-    self.timer = nil;
-    
-    self.jsonClient = nil;
-    self.tagStore = nil;
-    self.channelStore = nil;
-    self.dvrStore = nil;
-    self.autorecStore = nil;
-    self.statusStore = nil;
-    self.adapterStore = nil;
-    self.cometStore = nil;
-    self.configNameStore = nil;
-    self.capabilities = nil;
-    self.version = nil;
-    self.realVersion = nil;
-    self.configSettings = nil;
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+
 
 @end

@@ -22,23 +22,25 @@
 #import "TVHCometPollStore.h"
 #import "TVHConfigNameStore.h"
 #import "TVHJsonClient.h"
+#import "TVHApiClient.h"
 #import "TVHSettings.h"
 
 @interface TVHServer : NSObject
-@property (nonatomic, strong) TVHJsonClient *jsonClient;
-@property (nonatomic, strong) TVHTagStore *tagStore;
-@property (nonatomic, strong) id <TVHChannelStore> channelStore;
-@property (nonatomic, strong) id <TVHDvrStore> dvrStore;
-@property (nonatomic, strong) TVHAutoRecStore *autorecStore;
-@property (nonatomic, strong) TVHStatusSubscriptionsStore *statusStore;
-@property (nonatomic, strong) TVHAdaptersStore *adapterStore;
-@property (nonatomic, strong) TVHLogStore *logStore;
-@property (nonatomic, strong) TVHCometPollStore *cometStore;
-@property (nonatomic, strong) TVHConfigNameStore *configNameStore;
-@property (nonatomic, strong) NSString *version;
-@property (nonatomic, strong) NSString *realVersion;
-@property (nonatomic, strong) NSArray *capabilities;
-@property (nonatomic, strong) NSDictionary *configSettings;
+
+- (TVHTagStore*)tagStore;
+- (id <TVHChannelStore>)channelStore;
+- (id <TVHDvrStore>)dvrStore;
+- (TVHAutoRecStore*)autorecStore;
+- (TVHStatusSubscriptionsStore*)statusStore;
+- (TVHAdaptersStore*)adapterStore;
+- (TVHLogStore*)logStore;
+- (TVHCometPollStore*)cometStore;
+- (TVHJsonClient*)jsonClient;
+- (TVHApiClient*)apiClient;
+- (TVHConfigNameStore*)configNameStore;
+- (NSString*)version;
+- (NSString*)realVersion;
+
 - (TVHServer*)initVersion:(NSString*)version;
 - (id <TVHEpgStore>)createEpgStoreWithName:(NSString*)statsName;
 - (void)fetchServerVersion;

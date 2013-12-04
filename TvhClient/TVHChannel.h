@@ -53,7 +53,7 @@
 - (NSString*)playlistStreamURL;
 - (void)addEpg:(TVHEpg*)epg;
 - (TVHEpg*)currentPlayingProgram;
-- (NSArray*)currentPlayingAndNextPrograms;
+- (NSArray*)nextPrograms:(int)numberOfNextPrograms;
 
 - (void)downloadRestOfEpg;
 - (void)resetChannelEpgStore;

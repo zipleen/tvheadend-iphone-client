@@ -106,11 +106,17 @@
 
 - (NSString*)streamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
+    if ( [[self.tvhServer version] intValue] > 38 ) {
+        return [NSString stringWithFormat:@"%@/stream/channel/%@", [tvh fullBaseURL], self.channelIdKey];
+    }
     return [NSString stringWithFormat:@"%@/stream/channelid/%@", [tvh fullBaseURL], self.channelIdKey];
 }
 
 - (NSString*)playlistStreamURL {
     TVHSettings *tvh = [TVHSettings sharedInstance];
+    if ( [[self.tvhServer version] intValue] > 38 ) {
+        return [NSString stringWithFormat:@"%@/playlist/channel/%@", [tvh fullBaseURL], self.channelIdKey];
+    }
     return [NSString stringWithFormat:@"%@/playlist/channelid/%@", [tvh fullBaseURL], self.channelIdKey];
 }
 
@@ -161,7 +167,7 @@
             }
 #ifdef TESTING
             else {
-                NSLog(@"progress for %@ : %f", epg.title, [epg progress]);
+                //NSLog(@"progress for %@ : %f", epg.title, [epg progress]);
             }
 #endif
         }
@@ -172,7 +178,7 @@
     return nil;
 }
 
-- (NSArray*)currentPlayingAndNextPrograms {
+- (NSArray*)nextPrograms:(int)numberOfNextPrograms {
     int i = 0;
     NSMutableArray *nextPrograms = [[NSMutableArray alloc] init];
     if ( [self.channelEpgDataByDay count] == 0 ) {
@@ -184,10 +190,10 @@
     
     for ( TVHChannelEpg *epgByDay in self.channelEpgDataByDay ) {
         for ( TVHEpg *epg in [epgByDay programs] ) {
-            if ( i > 0 || (i == 0 && [epg progress] > 0 && [epg progress] < 1) ) {
+            if ( i > 0 || (i == 0 && [epg inProgress]) ) {
                 [nextPrograms addObject:epg];
                 i++;
-                if ( i >= 3 ) {
+                if ( i >= numberOfNextPrograms ) {
                     break;
                 }
             }
