@@ -14,10 +14,13 @@
 #import "TVHServer.h"
 
 @interface TVHDvrStoreAbstract()
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic) NSInteger cachedType;
-@property (nonatomic, strong) NSDate *profilingDate;
 @property (nonatomic, strong) NSMutableArray *totalEventCount;
+
+@property NSInteger filterStart;
+@property NSInteger filterLimit;
+@property (nonatomic, strong) NSString *filterPath;
 @end
 
 @implementation TVHDvrStoreAbstract
@@ -26,7 +29,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     self.cachedType = -1;
     
@@ -104,33 +107,50 @@
     return true;
 }
 
+#pragma mark Api Client delegates
+
+- (NSString*)apiMethod {
+    return @"GET";
+}
+
+- (NSString*)apiPath {
+    return self.filterPath;
+}
+
+- (NSDictionary*)apiParameters {
+    return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   [NSString stringWithFormat:@"%d", self.filterStart ],
+                                   @"start",
+                                   [NSString stringWithFormat:@"%d", self.filterLimit ],
+                                   @"limit",nil];
+}
+
 - (void)fetchDvrItemsFromServer:(NSString*)url withType:(NSInteger)type start:(NSInteger)start limit:(NSInteger)limit {
     [self signalWillLoadDvr:type];
-    self.profilingDate = [NSDate date];
+    __block NSDate *profilingDate = [NSDate date];
+    TVHDvrStoreAbstract __weak *weakSelf = self;
     
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   [NSString stringWithFormat:@"%d", start ],
-                                   @"start",
-                                   [NSString stringWithFormat:@"%d", limit ],
-                                   @"limit",nil];
+    self.filterPath = url;
+    self.filterStart = start;
+    self.filterLimit = limit;
     
-    [self.jsonClient getPath:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
+    [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:profilingDate];
         [TVHAnalytics sendTimingWithCategory:@"Network Profiling"
-                                                          withValue:time
-                                                           withName:[NSString stringWithFormat:@"DvrStore-%d", type]
-                                                          withLabel:nil];
+                                   withValue:time
+                                    withName:[NSString stringWithFormat:@"DvrStore-%d", type]
+                                   withLabel:nil];
 #ifdef TESTING
         NSLog(@"[DvrStore Profiling Network]: %f", time);
 #endif
 
-        if ( [self fetchedData:responseObject withType:type] ) {
-            [self signalDidLoadDvr:type];
-            [self getMoreDvrItems:url withType:type start:start limit:limit];
+        if ( [weakSelf fetchedData:responseObject withType:type] ) {
+            [weakSelf signalDidLoadDvr:type];
+            [weakSelf getMoreDvrItems:url withType:type start:start limit:limit];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self signalDidErrorDvrStore:error];
+        [weakSelf signalDidErrorDvrStore:error];
         NSLog(@"[DVR Items HTTPClient Error]: %@", error.localizedDescription);
     }];
     
@@ -141,7 +161,6 @@
         [self fetchDvrItemsFromServer:url withType:type start:(start+limit) limit:limit];
     }
 }
-
 
 - (void)fetchDvr {
     self.dvrItems = nil;
@@ -155,9 +174,9 @@
 - (NSArray*)dvrItemsForType:(NSInteger)type {
     NSMutableArray *itemsForType = [[NSMutableArray alloc] init];
     
-    [self.dvrItems enumerateObjectsUsingBlock:^(TVHDvrItem* obj, NSUInteger idx, BOOL *stop) {
-        if ( obj.dvrType == type ) {
-            [itemsForType addObject:obj];
+    [self.dvrItems enumerateObjectsUsingBlock:^(TVHDvrItem* item, NSUInteger idx, BOOL *stop) {
+        if ( item.dvrType == type ) {
+            [itemsForType addObject:item];
         }
     }];
     self.cachedType = -1;
@@ -189,6 +208,8 @@
     }
     return 0;
 }
+
+#pragma mark Signal delegate
 
 - (void)signalWillLoadDvr:(NSInteger)type {
     if ([self.delegate respondsToSelector:@selector(willLoadDvr:)]) {
