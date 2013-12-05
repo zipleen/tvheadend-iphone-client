@@ -131,6 +131,10 @@
         [self streamNativeUrl:streamUrlInternal];
     }
     
+    if ( [buttonTitle isEqualToString:NSLocalizedString(@"Cancel", nil)] ) {
+        return ;
+    }
+    
     [self.playStreamModal playStreamIn:buttonTitle forObject:self.streamObject withTranscoding:transcodingEnabled];
 }
 
