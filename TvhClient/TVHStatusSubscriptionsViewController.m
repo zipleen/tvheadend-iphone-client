@@ -33,7 +33,7 @@
 }
 
 @property (weak, nonatomic) id <TVHStatusSubscriptionsStore> statusSubscriptionsStore;
-@property (weak, nonatomic) TVHAdaptersStore *adapterStore;
+@property (weak, nonatomic) id <TVHAdaptersStore> adapterStore;
 @property (weak, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
@@ -55,7 +55,7 @@
     return _statusSubscriptionsStore;
 }
 
-- (TVHAdaptersStore*)adapterStore {
+- (id <TVHAdaptersStore>)adapterStore {
     if ( _adapterStore == nil) {
         _adapterStore = [[TVHSingletonServer sharedServerInstance] adapterStore];
         

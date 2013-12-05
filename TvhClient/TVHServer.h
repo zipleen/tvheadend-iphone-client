@@ -32,7 +32,7 @@
 - (id <TVHDvrStore>)dvrStore;
 - (TVHAutoRecStore*)autorecStore;
 - (id <TVHStatusSubscriptionsStore>)statusStore;
-- (TVHAdaptersStore*)adapterStore;
+- (id <TVHAdaptersStore>)adapterStore;
 - (TVHLogStore*)logStore;
 - (TVHCometPollStore*)cometStore;
 - (TVHJsonClient*)jsonClient;

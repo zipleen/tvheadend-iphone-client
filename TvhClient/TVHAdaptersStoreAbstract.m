@@ -10,15 +10,15 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHAdaptersStore.h"
+#import "TVHAdaptersStoreAbstract.h"
 #import "TVHServer.h"
 
-@interface TVHAdaptersStore()
+@interface TVHAdaptersStoreAbstract()
 @property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *adapters;
 @end
 
-@implementation TVHAdaptersStore
+@implementation TVHAdaptersStoreAbstract
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
@@ -102,7 +102,7 @@
 }
 
 - (void)fetchAdapters {
-    TVHAdaptersStore __weak *weakSelf = self;
+    TVHAdaptersStoreAbstract __weak *weakSelf = self;
     
     [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ( [weakSelf fetchedData:responseObject] ) {
