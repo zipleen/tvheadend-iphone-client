@@ -31,7 +31,7 @@
 - (id <TVHChannelStore>)channelStore;
 - (id <TVHDvrStore>)dvrStore;
 - (TVHAutoRecStore*)autorecStore;
-- (TVHStatusSubscriptionsStore*)statusStore;
+- (id <TVHStatusSubscriptionsStore>)statusStore;
 - (TVHAdaptersStore*)adapterStore;
 - (TVHLogStore*)logStore;
 - (TVHCometPollStore*)cometStore;

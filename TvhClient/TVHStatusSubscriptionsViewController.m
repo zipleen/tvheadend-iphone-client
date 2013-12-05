@@ -32,14 +32,14 @@
     NSDate *lastTableUpdate;
 }
 
-@property (weak, nonatomic) TVHStatusSubscriptionsStore *statusSubscriptionsStore;
+@property (weak, nonatomic) id <TVHStatusSubscriptionsStore> statusSubscriptionsStore;
 @property (weak, nonatomic) TVHAdaptersStore *adapterStore;
 @property (weak, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
 @implementation TVHStatusSubscriptionsViewController
 
-- (TVHStatusSubscriptionsStore*)statusSubscriptionsStore {
+- (id <TVHStatusSubscriptionsStore>)statusSubscriptionsStore {
     if ( _statusSubscriptionsStore == nil) {
         _statusSubscriptionsStore = [[TVHSingletonServer sharedServerInstance] statusStore];
         

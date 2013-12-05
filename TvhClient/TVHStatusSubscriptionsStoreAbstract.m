@@ -10,15 +10,15 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHStatusSubscriptionsStore.h"
+#import "TVHStatusSubscriptionsStoreAbstract.h"
 #import "TVHServer.h"
 
-@interface TVHStatusSubscriptionsStore()
+@interface TVHStatusSubscriptionsStoreAbstract()
 @property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *subscriptions;
 @end
 
-@implementation TVHStatusSubscriptionsStore
+@implementation TVHStatusSubscriptionsStoreAbstract
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
@@ -103,20 +103,18 @@
 }
 
 - (void)fetchStatusSubscriptions {
-    TVHStatusSubscriptionsStore __weak *weakSelf = self;
+    TVHStatusSubscriptionsStoreAbstract __weak *weakSelf = self;
     
-    if ( [[self.tvhServer version] intValue] >= 34 ) {
-        [self signalWillLoadStatusSubscriptions];
-        [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            if ( [weakSelf fetchedData:responseObject] ) {
-                [weakSelf signalDidLoadStatusSubscriptions];
-            }
-            
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [weakSelf signalDidErrorStatusSubscriptionsStore:error];
-            NSLog(@"[Subscription HTTPClient Error]: %@", error.localizedDescription);
-        }];
-    }
+    [self signalWillLoadStatusSubscriptions];
+    [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ( [weakSelf fetchedData:responseObject] ) {
+            [weakSelf signalDidLoadStatusSubscriptions];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [weakSelf signalDidErrorStatusSubscriptionsStore:error];
+        NSLog(@"[Subscription HTTPClient Error]: %@", error.localizedDescription);
+    }];
 }
 
 - (TVHStatusSubscription *) objectAtIndex:(int) row {

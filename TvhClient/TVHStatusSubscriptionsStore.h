@@ -1,18 +1,14 @@
 //
 //  TVHStatusSubscriptionsStore.h
-//  TVHeadend iPhone Client
+//  TvhClient
 //
-//  Created by zipleen on 2/18/13.
-//  Copyright 2013 Luis Fernandes
-//
-//  This Source Code Form is subject to the terms of the Mozilla Public
-//  License, v. 2.0. If a copy of the MPL was not distributed with this
-//  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//  Created by zipleen on 05/12/13.
+//  Copyright (c) 2013 zipleen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "TVHStatusSubscription.h"
 #import "TVHApiClient.h"
+#import "TVHStatusSubscription.h"
 
 @class TVHServer;
 
@@ -23,7 +19,7 @@
 - (void)didErrorStatusSubscriptionsStore:(NSError*)error;
 @end
 
-@interface TVHStatusSubscriptionsStore : NSObject <TVHApiClientDelegate>
+@protocol TVHStatusSubscriptionsStore <TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHStatusSubscriptionsDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
@@ -32,3 +28,4 @@
 - (TVHStatusSubscription *) objectAtIndex:(int) row;
 - (int)count;
 @end
+
