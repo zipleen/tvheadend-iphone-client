@@ -10,4 +10,8 @@
 
 @implementation TVHStatusSubscriptionsStore40
 
+- (NSString*)apiPath {
+    return @"api/status/subscriptions";
+}
+
 @end
