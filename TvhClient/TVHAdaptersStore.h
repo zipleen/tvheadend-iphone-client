@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TVHAdapter.h"
+#import "TVHApiClient.h"
 
 @class TVHServer;
 
@@ -22,7 +23,7 @@
 - (void)didErrorAdaptersStore:(NSError*)error;
 @end
 
-@interface TVHAdaptersStore : NSObject
+@interface TVHAdaptersStore : NSObject <TVHApiClientDelegate>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHAdaptersDelegate> delegate;
 - (id)initWithTvhServer:(TVHServer*)tvhServer;

@@ -14,7 +14,7 @@
 #import "TVHServer.h"
 
 @interface TVHAdaptersStore()
-@property (nonatomic, weak) TVHJsonClient *jsonClient;
+@property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *adapters;
 @end
 
@@ -24,7 +24,7 @@
     self = [super init];
     if (!self) return nil;
     self.tvhServer = tvhServer;
-    self.jsonClient = [self.tvhServer jsonClient];
+    self.apiClient = [self.tvhServer apiClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveSubscriptionNotification:)
@@ -87,15 +87,30 @@
     return true;
 }
 
+#pragma mark Api Client delegates
+
+- (NSString*)apiMethod {
+    return @"GET";
+}
+
+- (NSString*)apiPath {
+    return @"tv/adapter";
+}
+
+- (NSDictionary*)apiParameters {
+    return nil;
+}
+
 - (void)fetchAdapters {
+    TVHAdaptersStore __weak *weakSelf = self;
     
-    [self.jsonClient getPath:@"tv/adapter" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ( [self fetchedData:responseObject] ) {
-            [self signalDidLoadAdapters];
+    [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if ( [weakSelf fetchedData:responseObject] ) {
+            [weakSelf signalDidLoadAdapters];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self signalDidErrorAdaptersStore:error];
+        [weakSelf signalDidErrorAdaptersStore:error];
         NSLog(@"[Adapter Store HTTPClient Error]: %@", error.localizedDescription);
     }];
     
