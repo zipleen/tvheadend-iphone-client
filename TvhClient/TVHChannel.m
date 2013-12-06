@@ -69,6 +69,11 @@
 }
 
 - (NSString*)imageUrl {
+    // 4.0 uses icon
+    if ( self.icon ) {
+        return self.icon;
+    }
+    
     if ( self.chicon ) {
         if ( [self.chicon isEqualToString:self.ch_icon] ) {
             return self.chicon;

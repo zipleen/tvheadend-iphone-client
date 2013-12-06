@@ -44,6 +44,7 @@
 
 // 4.0
 @property (nonatomic, strong) NSString *uuid;
+@property (nonatomic, strong) NSString *icon;
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 

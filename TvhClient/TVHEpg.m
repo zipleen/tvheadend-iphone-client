@@ -102,6 +102,15 @@
     self.contenttype = nil;
 }
 
+- (NSString*)chicon {
+    if (_chicon) {
+        return _chicon;
+    }
+    
+    // try to fetch picture from channel
+    return [self.channelObject imageUrl];
+}
+
 - (NSString*)fullTitle {
     /*
     NSString *subtitle = self.subtitle;
