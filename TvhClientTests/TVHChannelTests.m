@@ -19,6 +19,7 @@
 
 @interface TVHChannel (MyPrivateMethodsUsedForTesting) 
 @property (nonatomic, strong) NSMutableArray *channelEpgDataByDay;
+@property (nonatomic, strong) id <TVHEpgStore> restOfEpgStore;
 @end
 
 @interface TVHEpgStore34 (MyPrivateMethodsUsedForTesting)
@@ -75,15 +76,16 @@
     TVHEpg *epg = [self epg];
     
     [channel setDelegate:self];
+    [channel setRestOfEpgStore:store];
     [channel addEpg:epg];
     TVHChannelEpg *chepg = [channel.channelEpgDataByDay objectAtIndex:0];
     STAssertTrue( ([chepg.programs count] == 1), @"epg not inserted");
     
-    [channel didLoadEpg:store];
+    [channel didLoadEpg];
     chepg = [channel.channelEpgDataByDay objectAtIndex:0];
     STAssertTrue( ([chepg.programs count] == 4), @"programs == %d should be 4", [chepg.programs count]);
     
-    [channel didLoadEpg:store];
+    [channel didLoadEpg];
     chepg = [channel.channelEpgDataByDay objectAtIndex:0];
     STAssertTrue( ([chepg.programs count] == 4), @"programs == %d should be 4", [chepg.programs count]);
 }

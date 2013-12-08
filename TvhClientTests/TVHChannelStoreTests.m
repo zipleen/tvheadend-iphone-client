@@ -12,11 +12,11 @@
 
 #import "TVHChannelStoreTests.h"
 #import "TVHTestHelper.h"
-#import "TVHChannelStore.h"
+#import "TVHChannelStore34.h"
 #import "TVHChannel.h"
 #import "TVHSettings.h"
 
-@interface TVHChannelStore (MyPrivateMethodsUsedForTesting)
+@interface TVHChannelStore34 (MyPrivateMethodsUsedForTesting)
 @property (nonatomic, strong) NSArray *channels;
 - (void)fetchedData:(NSData *)responseData;
 @end
@@ -36,7 +36,7 @@
 - (void)testJsonChannelParsing
 {
     NSData *data = [TVHTestHelper loadFixture:@"Log.channels"];
-    TVHChannelStore *store = [[TVHChannelStore alloc] init];
+    TVHChannelStore34 *store = [[TVHChannelStore34 alloc] init];
     STAssertNotNil(store, @"creating channel store object");
     
     [store fetchedData:data];
