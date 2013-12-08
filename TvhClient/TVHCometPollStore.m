@@ -191,12 +191,13 @@
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     //self.profilingDate = [NSDate date];
     activePolls++;
+    TVHCometPollStore __weak *weakSelf = self;
     [[self.jsonClient proxyQueueNamed:@"cometQueue"] postPath:@"comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TESTING
         //NSLog(@"[CometPoll Profiling Network]: %f", time);
 #endif
-        if ( [self fetchedData:responseObject] ) {
+        if ( [weakSelf fetchedData:responseObject] ) {
             activePolls--;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
