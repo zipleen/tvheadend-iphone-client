@@ -218,8 +218,11 @@
         if ( ver >= 33 && ver <= 35 ) {
             return @"34";
         }
+        if ( ver >= 36 ) {
+            return @"40";
+        }
     }
-    return @"40";
+    return @"34";
 }
 
 #pragma mark fetch version
