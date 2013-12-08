@@ -76,6 +76,14 @@
     
     [server handleFetchedServerVersion:@"<title>HTS Tvheadend </title>"];
     STAssertEqualObjects([server version], @"34", @"empty not detected as 3.4");
+    
+    [server handleFetchedServerVersion:@"<title>HTS Tvheadend 3.9.255~gbfa033d</title>"];
+    STAssertEqualObjects([server realVersion], @"3.9.255~gbfa033d", @"lonely version 3.9.255~gbfa033d not correctly detected");
+    STAssertEqualObjects([server version], @"40", @"3.9.255~gbfa033d not detected as 4.0");
+    
+    [server handleFetchedServerVersion:@"<title>HTS Tvheadend 4.0.0</title>"];
+    STAssertEqualObjects([server realVersion], @"4.0.0", @"lonely version 4.0.0 not correctly detected");
+    STAssertEqualObjects([server version], @"40", @"4.0.0 not detected as 4.0");
 }
 
 @end
