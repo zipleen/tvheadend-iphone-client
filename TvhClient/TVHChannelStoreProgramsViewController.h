@@ -2,7 +2,7 @@
 //  TVHChannelListProgramsViewController.h
 //  TVHeadend iPhone Client
 //
-//  Created by zipleen on 2/10/13.
+//  Created by Luis Fernandes on 2/10/13.
 //  Copyright 2013 Luis Fernandes
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public

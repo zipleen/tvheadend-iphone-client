@@ -2,7 +2,7 @@
 //  TVHChannel.m
 //  TVHeadend iPhone Client
 //
-//  Created by zipleen on 2/3/13.
+//  Created by Luis Fernandes on 2/3/13.
 //  Copyright 2013 Luis Fernandes
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -95,7 +95,7 @@
     }
 }
 
-// notice that setTags has (id) instead of NSArray*, which means we can test for a NSString and convert it !
+// services only exists in 4.0
 - (void)setServices:(id)services {
     if([services isKindOfClass:[NSArray class]]) {
         _services = services;

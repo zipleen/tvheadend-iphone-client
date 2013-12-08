@@ -2,7 +2,7 @@
 //  TVHLogStore.h
 //  TvhClient
 //
-//  Created by zipleen on 09/03/13.
+//  Created by Luis Fernandes on 09/03/13.
 //  Copyright 2013 Luis Fernandes
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");

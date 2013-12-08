@@ -2,7 +2,7 @@
 //  TVHPlayStreamDelegate.h
 //  TvhClient
 //
-//  Created by zipleen on 06/03/13.
+//  Created by Luis Fernandes on 06/03/13.
 //  Copyright 2013 Luis Fernandes
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public

@@ -2,8 +2,8 @@
 //  TVHService.h
 //  TvhClient
 //
-//  Created by zipleen on 09/11/13.
-//  Copyright (c) 2013 zipleen. All rights reserved.
+//  Created by Luis Fernandes on 09/11/13.
+//  Copyright (c) 2013 Luis Fernandes. 
 //
 
 #import <Foundation/Foundation.h>
