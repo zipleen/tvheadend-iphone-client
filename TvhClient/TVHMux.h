@@ -14,7 +14,7 @@
 #import "TVHAdapter.h"
 #import "TVHServer.h"
 
-@interface TVHAdapterMux : NSObject
+@interface TVHMux : NSObject
 @property (weak, nonatomic) TVHAdapter *adapterObject;
 @property (strong, nonatomic) NSString *adapterId;
 @property (strong, nonatomic) NSString *id;
@@ -31,6 +31,6 @@
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*)values;
-- (NSComparisonResult)compareByFreq:(TVHAdapterMux *)otherObject;
+- (NSComparisonResult)compareByFreq:(TVHMux *)otherObject;
 
 @end

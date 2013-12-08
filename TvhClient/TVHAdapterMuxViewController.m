@@ -12,7 +12,7 @@
 
 #import "TVHAdapterMuxViewController.h"
 #import "TVHProgressBar.h"
-#import "TVHAdapterMux.h"
+#import "TVHMux.h"
 #import "TVHServicesViewController.h"
 
 @interface TVHAdapterMuxViewController ()
@@ -94,7 +94,7 @@
     };
     [quality setFrame:progressBarFrame];
     
-    TVHAdapterMux *mux = [self.muxes objectAtIndex:indexPath.row];
+    TVHMux *mux = [self.muxes objectAtIndex:indexPath.row];
     
     UIColor *textColor;
     if ( mux.enabled == 1 ) {
@@ -140,7 +140,7 @@
     if( [segue.identifier isEqualToString:@"Show Services"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHAdapterMux *adapterMux = [self.muxes objectAtIndex:path.row];
+        TVHMux *adapterMux = [self.muxes objectAtIndex:path.row];
         
         TVHServicesViewController *serviceViewController = segue.destinationViewController;
         [serviceViewController setAdapterMux:adapterMux];
@@ -154,7 +154,7 @@
 - (void)didRefreshAdapterMux:(NSNotification *)notification {
     if ( self.muxes ) {
         if ( [[notification name] isEqualToString:@"didRefreshAdapterMux"] ) {
-            TVHAdapterMux *changedMux = (TVHAdapterMux*)[notification object];
+            TVHMux *changedMux = (TVHMux*)[notification object];
             NSUInteger indexInArray = [self.muxes indexOfObject:changedMux];
             if ( indexInArray != NSNotFound ) {
                 [self.muxes replaceObjectAtIndex:indexInArray withObject:changedMux];

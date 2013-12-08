@@ -13,7 +13,7 @@
 #import <Foundation/Foundation.h>
 
 @class TVHServer;
-@class TVHAdapterMux;
+@class TVHMux;
 
 @interface TVHAdapter : NSObject
 
@@ -46,5 +46,5 @@
 - (void)fetchMuxes;
 - (NSArray*)arrayAdapterMuxes;
 - (void)fetchServices;
-- (NSArray*)arrayServicesForMux:(TVHAdapterMux*)adapterMux;
+- (NSArray*)arrayServicesForMux:(TVHMux*)adapterMux;
 @end

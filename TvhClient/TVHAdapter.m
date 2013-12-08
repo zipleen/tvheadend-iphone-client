@@ -12,7 +12,7 @@
 
 #import "TVHAdapter.h"
 #import "TVHServer.h"
-#import "TVHAdapterMux.h"
+#import "TVHMux.h"
 #import "TVHService.h"
 
 @interface TVHAdapter()
@@ -57,7 +57,7 @@
     NSMutableArray *muxes = [[NSMutableArray alloc] init];
     
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHAdapterMux *mux = [[TVHAdapterMux alloc] initWithTvhServer:self.tvhServer];
+        TVHMux *mux = [[TVHMux alloc] initWithTvhServer:self.tvhServer];
         [mux setAdapterObject:self];
         [mux updateValuesFromDictionary:obj];
         
@@ -135,7 +135,7 @@
     
 }
 
-- (NSArray*)arrayServicesForMux:(TVHAdapterMux*)adapterMux {
+- (NSArray*)arrayServicesForMux:(TVHMux*)adapterMux {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mux == %@ AND satconf == %@ AND network == %@", adapterMux.freq, adapterMux.satconf, adapterMux.network];
     NSArray *filteredArray = [self.adapterServices filteredArrayUsingPredicate:predicate];
     

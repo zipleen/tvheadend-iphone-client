@@ -10,16 +10,16 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHAdapterMux.h"
+#import "TVHMux.h"
 #import "TVHService.h"
 
-@interface TVHAdapterMux()
+@interface TVHMux()
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
 @property (nonatomic, strong) NSArray *services;
 @end
 
-@implementation TVHAdapterMux
+@implementation TVHMux
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
@@ -48,7 +48,7 @@
     
 }
 
-- (NSComparisonResult)compareByFreq:(TVHAdapterMux *)otherObject {
+- (NSComparisonResult)compareByFreq:(TVHMux *)otherObject {
     return [self.freq compare:otherObject.freq];
 }
 
@@ -57,7 +57,7 @@
         return YES;
     if (!other || ![other isKindOfClass:[self class]])
         return NO;
-    TVHAdapterMux *otherCast = other;
+    TVHMux *otherCast = other;
     return self.id == otherCast.id;
 }
 
