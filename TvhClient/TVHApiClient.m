@@ -34,7 +34,7 @@
         [self.jsonClient postPath:[object apiPath]
                        parameters:[object apiParameters] success:success
                           failure:failure];
-    } else {
+    } else if ( [[object apiMethod] isEqualToString:@"GET"] ) {
         [self.jsonClient getPath:[object apiPath]
                       parameters:[object apiParameters]
                          success:success

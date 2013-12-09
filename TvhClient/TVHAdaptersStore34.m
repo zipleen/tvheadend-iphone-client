@@ -11,7 +11,25 @@
 //
 
 #import "TVHAdaptersStore34.h"
+#import "TVHServer.h"
 
 @implementation TVHAdaptersStore34
+
+- (void)setupMoreValuesForAdapter:(TVHAdapter*)adapter {
+    [self fetchMuxesFor:adapter];
+    [self fetchServicesFor:adapter];
+}
+
+- (void)fetchMuxesFor:(TVHAdapter*)adapter {
+    id <TVHMuxStore> muxStore = [self.tvhServer muxStore];
+    [muxStore setIdentifier:adapter.identifier];
+    [muxStore fetchMuxes];
+}
+
+- (void)fetchServicesFor:(TVHAdapter*)adapter {
+    id <TVHServiceStore> serviceStore = [self.tvhServer serviceStore];
+    [serviceStore setIdentifier:adapter.identifier];
+    [serviceStore fetchServices];
+}
 
 @end

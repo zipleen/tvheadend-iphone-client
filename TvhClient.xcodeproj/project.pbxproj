@@ -19,6 +19,8 @@
 		AA21878816E7F6D9005D95EF /* NSString+FileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21878716E7F6D9005D95EF /* NSString+FileSize.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */; };
 		AA28BA4816E6A12A0029A723 /* TVHPlayStreamHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */; };
+		AA2B93FE18540CA300987633 /* TVHMuxStoreAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2B93FD18540CA300987633 /* TVHMuxStoreAbstract.m */; };
+		AA2B940118540CB200987633 /* TVHServiceStoreAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2B940018540CB200987633 /* TVHServiceStoreAbstract.m */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3E5CC916D8046200CE444C /* Log.tags in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CC816D8046200CE444C /* Log.tags */; };
@@ -95,6 +97,12 @@
 		AABCEFB8182EFBEB00549ADF /* TVHService.m in Sources */ = {isa = PBXBuildFile; fileRef = AABCEFB7182EFBEB00549ADF /* TVHService.m */; };
 		AABE682716EBAE84003E8F92 /* TVHLogStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AABE682616EBAE84003E8F92 /* TVHLogStore.m */; };
 		AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AABE682916EBB0FE003E8F92 /* TVHDebugLogViewController.m */; };
+		AABF18D91855269500B06C14 /* TVHMuxStore32.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18D81855269500B06C14 /* TVHMuxStore32.m */; };
+		AABF18DC185526A000B06C14 /* TVHMuxStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18DB185526A000B06C14 /* TVHMuxStore34.m */; };
+		AABF18DF185526AB00B06C14 /* TVHMuxStore40.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18DE185526AB00B06C14 /* TVHMuxStore40.m */; };
+		AABF18E31855276400B06C14 /* TVHServiceStore32.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18E21855276400B06C14 /* TVHServiceStore32.m */; };
+		AABF18E61855277700B06C14 /* TVHServiceStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18E51855277700B06C14 /* TVHServiceStore34.m */; };
+		AABF18E91855278300B06C14 /* TVHServiceStore40.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18E81855278300B06C14 /* TVHServiceStore40.m */; };
 		AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5B17A09821005F07B3 /* IAPHelper.m */; };
 		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
 		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
@@ -244,6 +252,10 @@
 		AA28BA4616E6A1290029A723 /* TVHPlayStreamHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayStreamHelpController.h; sourceTree = "<group>"; };
 		AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHPlayStreamHelpController.m; sourceTree = "<group>"; };
 		AA28BA4916E6CC580029A723 /* TVHPlayStreamDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayStreamDelegate.h; sourceTree = "<group>"; };
+		AA2B93FC18540CA300987633 /* TVHMuxStoreAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHMuxStoreAbstract.h; sourceTree = "<group>"; };
+		AA2B93FD18540CA300987633 /* TVHMuxStoreAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHMuxStoreAbstract.m; sourceTree = "<group>"; };
+		AA2B93FF18540CB200987633 /* TVHServiceStoreAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHServiceStoreAbstract.h; sourceTree = "<group>"; };
+		AA2B940018540CB200987633 /* TVHServiceStoreAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHServiceStoreAbstract.m; sourceTree = "<group>"; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3E5CC816D8046200CE444C /* Log.tags */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.tags; sourceTree = "<group>"; };
@@ -375,6 +387,20 @@
 		AABE682616EBAE84003E8F92 /* TVHLogStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHLogStore.m; sourceTree = "<group>"; };
 		AABE682816EBB0FE003E8F92 /* TVHDebugLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHDebugLogViewController.h; sourceTree = "<group>"; };
 		AABE682916EBB0FE003E8F92 /* TVHDebugLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHDebugLogViewController.m; sourceTree = "<group>"; };
+		AABF18D6185525C100B06C14 /* TVHMuxStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHMuxStore.h; sourceTree = "<group>"; };
+		AABF18D71855269500B06C14 /* TVHMuxStore32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHMuxStore32.h; sourceTree = "<group>"; };
+		AABF18D81855269500B06C14 /* TVHMuxStore32.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHMuxStore32.m; sourceTree = "<group>"; };
+		AABF18DA185526A000B06C14 /* TVHMuxStore34.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHMuxStore34.h; sourceTree = "<group>"; };
+		AABF18DB185526A000B06C14 /* TVHMuxStore34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHMuxStore34.m; sourceTree = "<group>"; };
+		AABF18DD185526AA00B06C14 /* TVHMuxStore40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHMuxStore40.h; sourceTree = "<group>"; };
+		AABF18DE185526AB00B06C14 /* TVHMuxStore40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHMuxStore40.m; sourceTree = "<group>"; };
+		AABF18E01855271200B06C14 /* TVHServiceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHServiceStore.h; sourceTree = "<group>"; };
+		AABF18E11855276400B06C14 /* TVHServiceStore32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHServiceStore32.h; sourceTree = "<group>"; };
+		AABF18E21855276400B06C14 /* TVHServiceStore32.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHServiceStore32.m; sourceTree = "<group>"; };
+		AABF18E41855277700B06C14 /* TVHServiceStore34.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHServiceStore34.h; sourceTree = "<group>"; };
+		AABF18E51855277700B06C14 /* TVHServiceStore34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHServiceStore34.m; sourceTree = "<group>"; };
+		AABF18E71855278300B06C14 /* TVHServiceStore40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHServiceStore40.h; sourceTree = "<group>"; };
+		AABF18E81855278300B06C14 /* TVHServiceStore40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHServiceStore40.m; sourceTree = "<group>"; };
 		AAC59D5A17A09821005F07B3 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		AAC59D5B17A09821005F07B3 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		AAC59D5C17A09821005F07B3 /* TVHIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHIAPHelper.h; sourceTree = "<group>"; };
@@ -1165,13 +1191,9 @@
 		AABE682316EBAE41003E8F92 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
-				AAF029DC1850023E00CF320E /* AdapterStore */,
-				AA21878016E7EE04005D95EF /* TVHAdapter.h */,
-				AA21878116E7EE04005D95EF /* TVHAdapter.m */,
-				AAF5FCB017A84FEB001E908B /* TVHMux.h */,
-				AAF5FCB117A84FEB001E908B /* TVHMux.m */,
-				AABCEFB6182EFBEB00549ADF /* TVHService.h */,
-				AABCEFB7182EFBEB00549ADF /* TVHService.m */,
+				AABF18D51855173E00B06C14 /* Adapters */,
+				AABF18D31855171D00B06C14 /* Mux */,
+				AABF18D41855172C00B06C14 /* Services */,
 			);
 			name = Adapters;
 			sourceTree = "<group>";
@@ -1183,6 +1205,52 @@
 				AABE682616EBAE84003E8F92 /* TVHLogStore.m */,
 			);
 			name = Logs;
+			sourceTree = "<group>";
+		};
+		AABF18D31855171D00B06C14 /* Mux */ = {
+			isa = PBXGroup;
+			children = (
+				AABF18D6185525C100B06C14 /* TVHMuxStore.h */,
+				AA2B93FC18540CA300987633 /* TVHMuxStoreAbstract.h */,
+				AA2B93FD18540CA300987633 /* TVHMuxStoreAbstract.m */,
+				AABF18D71855269500B06C14 /* TVHMuxStore32.h */,
+				AABF18D81855269500B06C14 /* TVHMuxStore32.m */,
+				AABF18DA185526A000B06C14 /* TVHMuxStore34.h */,
+				AABF18DB185526A000B06C14 /* TVHMuxStore34.m */,
+				AABF18DD185526AA00B06C14 /* TVHMuxStore40.h */,
+				AABF18DE185526AB00B06C14 /* TVHMuxStore40.m */,
+				AAF5FCB017A84FEB001E908B /* TVHMux.h */,
+				AAF5FCB117A84FEB001E908B /* TVHMux.m */,
+			);
+			name = Mux;
+			sourceTree = "<group>";
+		};
+		AABF18D41855172C00B06C14 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AABF18E01855271200B06C14 /* TVHServiceStore.h */,
+				AA2B93FF18540CB200987633 /* TVHServiceStoreAbstract.h */,
+				AA2B940018540CB200987633 /* TVHServiceStoreAbstract.m */,
+				AABF18E11855276400B06C14 /* TVHServiceStore32.h */,
+				AABF18E21855276400B06C14 /* TVHServiceStore32.m */,
+				AABF18E41855277700B06C14 /* TVHServiceStore34.h */,
+				AABF18E51855277700B06C14 /* TVHServiceStore34.m */,
+				AABF18E71855278300B06C14 /* TVHServiceStore40.h */,
+				AABF18E81855278300B06C14 /* TVHServiceStore40.m */,
+				AABCEFB6182EFBEB00549ADF /* TVHService.h */,
+				AABCEFB7182EFBEB00549ADF /* TVHService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		AABF18D51855173E00B06C14 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				AAF029DC1850023E00CF320E /* AdapterStore */,
+				AA21878016E7EE04005D95EF /* TVHAdapter.h */,
+				AA21878116E7EE04005D95EF /* TVHAdapter.m */,
+			);
+			name = Adapters;
 			sourceTree = "<group>";
 		};
 		AAC03E671818778000631C93 /* Tag */ = {
@@ -1667,11 +1735,14 @@
 				AAC7D15618286A8600089875 /* UIImageView+AFNetworking.m in Sources */,
 				AA9E76DB181D3CC300E5A0D4 /* TVHPlayXbmc.m in Sources */,
 				AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */,
+				AABF18E91855278300B06C14 /* TVHServiceStore40.m in Sources */,
 				AA6ADF86181F2A42000DC39A /* TVHSettingsWebControllerViewController.m in Sources */,
 				AA80AB9B184C199A00A3AB67 /* TVHEpgStore40.m in Sources */,
+				AA2B940118540CB200987633 /* TVHServiceStoreAbstract.m in Sources */,
 				AAF029CA184FE4C700CF320E /* TVHTagStore34.m in Sources */,
 				AA132EBB16D9594B0074FAB8 /* TVHUICustomNavigationBar.m in Sources */,
 				AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */,
+				AABF18DF185526AB00B06C14 /* TVHMuxStore40.m in Sources */,
 				AAF0537018245FA0008B1A0A /* TVHDebugLytics.m in Sources */,
 				AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */,
 				AA575E3416DFF18300D80F8C /* TVHDvrStoreAbstract.m in Sources */,
@@ -1682,12 +1753,14 @@
 				AA21878216E7EE04005D95EF /* TVHAdapter.m in Sources */,
 				AA21878516E7EE12005D95EF /* TVHAdaptersStoreAbstract.m in Sources */,
 				AAC7D15F18286AB300089875 /* CKRefreshArrowView.m in Sources */,
+				AABF18E31855276400B06C14 /* TVHServiceStore32.m in Sources */,
 				AA21878816E7F6D9005D95EF /* NSString+FileSize.m in Sources */,
 				AABE682716EBAE84003E8F92 /* TVHLogStore.m in Sources */,
 				AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */,
 				AA80AB98184C198D00A3AB67 /* TVHEpgStore34.m in Sources */,
 				AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */,
 				AAE5273516F28AD0002047E4 /* TVHAutoRecStore.m in Sources */,
+				AABF18DC185526A000B06C14 /* TVHMuxStore34.m in Sources */,
 				AAE5273816F28AE0002047E4 /* TVHAutoRecItem.m in Sources */,
 				AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */,
 				AAE5274116F2938E002047E4 /* TVHTableMgrActions.m in Sources */,
@@ -1712,6 +1785,7 @@
 				AAFF9301171DD73300EDC6DF /* TVHImageCache.m in Sources */,
 				AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */,
 				AAF2647E17441D71006C96CE /* JASidePanelController.m in Sources */,
+				AABF18D91855269500B06C14 /* TVHMuxStore32.m in Sources */,
 				AAF2647F17441D71006C96CE /* UIViewController+JASidePanel.m in Sources */,
 				AAC7D15418286A8600089875 /* AFURLConnectionOperation.m in Sources */,
 				AAF2648217441EC2006C96CE /* TVHMainSlidePanelViewController.m in Sources */,
@@ -1744,11 +1818,13 @@
 				AAFE73A7179C14B0000E7105 /* SDWebImageDecoder.m in Sources */,
 				AAFE73A8179C14B0000E7105 /* SDWebImageDownloader.m in Sources */,
 				AAFE73A9179C14B0000E7105 /* SDWebImageDownloaderOperation.m in Sources */,
+				AABF18E61855277700B06C14 /* TVHServiceStore34.m in Sources */,
 				AAFE73AA179C14B0000E7105 /* SDWebImageManager.m in Sources */,
 				AAFE73AB179C14B0000E7105 /* SDWebImagePrefetcher.m in Sources */,
 				AAC7D16018286AB300089875 /* CKRefreshControl.m in Sources */,
 				AAC7D15018286A8600089875 /* AFImageRequestOperation.m in Sources */,
 				AAFE73AC179C14B0000E7105 /* UIButton+WebCache.m in Sources */,
+				AA2B93FE18540CA300987633 /* TVHMuxStoreAbstract.m in Sources */,
 				AAFE73AD179C14B0000E7105 /* UIImage+GIF.m in Sources */,
 				AAFE73AE179C14B0000E7105 /* UIImage+MultiFormat.m in Sources */,
 				AAC7D17818286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m in Sources */,

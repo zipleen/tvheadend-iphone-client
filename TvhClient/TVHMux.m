@@ -10,6 +10,7 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
+#import "TVHServer.h"
 #import "TVHMux.h"
 #import "TVHService.h"
 
@@ -44,6 +45,26 @@
     }];
 }
 
+- (void)updateValuesFromTVHMux:(TVHMux *)mux {
+    self.network = mux.network;
+    self.uuid = mux.uuid;
+    self.enabled = mux.enabled;
+    self.onid = mux.onid;
+    self.name = mux.name;
+    self.delsys = mux.delsys;
+    self.frequency = mux.frequency;
+    self.bandwidth = mux.bandwidth;
+    self.constellation = mux.constellation;
+    self.transmission_mode = mux.transmission_mode;
+    self.guard_interval = mux.guard_interval;
+    self.hierarchy = mux.hierarchy;
+    self.fec_hi = mux.fec_hi;
+    self.fec_lo = mux.fec_lo;
+    self.tsid = mux.tsid;
+    self.initscan = mux.initscan;
+    self.num_svc = mux.num_svc;
+}
+
 - (void)setValue:(id)value forUndefinedKey:(NSString*)key {
     
 }
@@ -58,7 +79,12 @@
     if (!other || ![other isKindOfClass:[self class]])
         return NO;
     TVHMux *otherCast = other;
-    return self.id == otherCast.id;
+    if ( self.id == otherCast.id
+        && [self.network isEqualToString:otherCast.network] 
+        && [self.uuid isEqualToString:otherCast.uuid] ) {
+        return YES;
+    }
+    return NO;
 }
 
 - (void)updateDvbMux:(NSNotification *)notification {

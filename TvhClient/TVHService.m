@@ -11,6 +11,7 @@
 //
 
 #import "TVHService.h"
+#import "TVHServer.h"
 
 @interface TVHService()
 @property (nonatomic, weak) TVHServer *tvhServer;
@@ -32,6 +33,10 @@
     [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [self setValue:obj forKey:key];
     }];
+}
+
+- (void)updateValuesFromService:(TVHService*)service {
+    
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString*)key {

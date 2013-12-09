@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TVHServer.h"
 #import "TVHPlayStreamDelegate.h"
 
+@class TVHServer;
+@class TVHChannel;
+
 @interface TVHService : NSObject <TVHPlayStreamDelegate>
-@property (weak, nonatomic) TVHAdapter *adapterObject;
 @property (strong, nonatomic) NSString *id;
 @property NSInteger enabled;
 @property NSInteger channel;
@@ -33,6 +34,7 @@
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*)values;
+- (void)updateValuesFromService:(TVHService*)service;
 - (NSComparisonResult)compareByName:(TVHService *)otherObject;
 - (TVHChannel*)mappedChannel;
 @end

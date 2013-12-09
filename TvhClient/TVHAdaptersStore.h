@@ -10,11 +10,10 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import <Foundation/Foundation.h>
-#import "TVHAdapter.h"
 #import "TVHApiClient.h"
 
 @class TVHServer;
+@class TVHAdapter;
 
 @protocol TVHAdaptersDelegate <NSObject>
 @optional
@@ -29,7 +28,7 @@
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchAdapters;
 
-- (TVHAdapter *)objectAtIndex:(int) row;
+- (TVHAdapter*)objectAtIndex:(int) row;
 - (int)count;
 @end
 

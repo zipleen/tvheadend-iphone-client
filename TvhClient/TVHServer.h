@@ -17,6 +17,8 @@
 #import "TVHDvrStore.h"
 #import "TVHAutoRecStore.h"
 #import "TVHStatusSubscriptionsStore.h"
+#import "TVHMuxStore.h"
+#import "TVHServiceStore.h"
 #import "TVHAdaptersStore.h"
 #import "TVHLogStore.h"
 #import "TVHCometPollStore.h"
@@ -27,16 +29,18 @@
 
 @interface TVHServer : NSObject
 
+- (TVHJsonClient*)jsonClient;
+- (TVHApiClient*)apiClient;
 - (id <TVHTagStore>)tagStore;
 - (id <TVHChannelStore>)channelStore;
 - (id <TVHDvrStore>)dvrStore;
 - (TVHAutoRecStore*)autorecStore;
 - (id <TVHStatusSubscriptionsStore>)statusStore;
 - (id <TVHAdaptersStore>)adapterStore;
+- (id <TVHMuxStore>)muxStore;
+- (id <TVHServiceStore>)serviceStore;
 - (TVHLogStore*)logStore;
 - (TVHCometPollStore*)cometStore;
-- (TVHJsonClient*)jsonClient;
-- (TVHApiClient*)apiClient;
 - (TVHConfigNameStore*)configNameStore;
 - (NSString*)version;
 - (NSString*)realVersion;

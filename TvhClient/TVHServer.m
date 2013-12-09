@@ -23,6 +23,8 @@
 @property (nonatomic, strong) TVHAutoRecStore *autorecStore;
 @property (nonatomic, strong) id <TVHStatusSubscriptionsStore> statusStore;
 @property (nonatomic, strong) id <TVHAdaptersStore> adapterStore;
+@property (nonatomic, strong) id <TVHMuxStore> muxStore;
+@property (nonatomic, strong) id <TVHServiceStore> serviceStore;
 @property (nonatomic, strong) TVHLogStore *logStore;
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
 @property (nonatomic, strong) TVHConfigNameStore *configNameStore;
@@ -69,6 +71,8 @@
         [self.channelStore fetchChannelList];
         [self.statusStore fetchStatusSubscriptions];
         [self.adapterStore fetchAdapters];
+        [self.muxStore fetchMuxes];
+        [self.serviceStore fetchServices];
         [self logStore];
         [self fetchServerVersion];
         if ( [self.version isEqualToString:@"34"] ) {
@@ -163,6 +167,22 @@
         _adapterStore = [[myClass alloc] initWithTvhServer:self];
     }
     return _adapterStore;
+}
+
+- (id <TVHMuxStore>)muxStore {
+    if( ! _muxStore ) {
+        Class myClass = NSClassFromString([@"TVHMuxStore" stringByAppendingString:self.version]);
+        _muxStore = [[myClass alloc] initWithTvhServer:self];
+    }
+    return _muxStore;
+}
+
+- (id <TVHServiceStore>)serviceStore {
+    if( ! _serviceStore ) {
+        Class myClass = NSClassFromString([@"TVHServiceStore" stringByAppendingString:self.version]);
+        _serviceStore = [[myClass alloc] initWithTvhServer:self];
+    }
+    return _serviceStore;
 }
 
 - (TVHLogStore*)logStore {

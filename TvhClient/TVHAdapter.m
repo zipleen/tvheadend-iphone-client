@@ -18,8 +18,6 @@
 @interface TVHAdapter()
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) TVHJsonClient *jsonClient;
-@property (nonatomic, strong) NSArray *adapterMuxes;
-@property (nonatomic, strong) NSArray *adapterServices;
 @end
 
 @implementation TVHAdapter
@@ -43,107 +41,18 @@
     
 }
 
-#pragma MARK muxes stuff
-
-- (BOOL)fetchedData:(NSData *)responseData {
-    NSError __autoreleasing *error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
-    if( error ) {
-        NSLog(@"[TV Adapter Mux JSON error]: %@", error.localizedDescription);
-        return false;
-    }
-    
-    NSArray *entries = [json objectForKey:@"entries"];
-    NSMutableArray *muxes = [[NSMutableArray alloc] init];
-    
-    [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHMux *mux = [[TVHMux alloc] initWithTvhServer:self.tvhServer];
-        [mux setAdapterObject:self];
-        [mux updateValuesFromDictionary:obj];
-        
-        [muxes addObject:mux];
-    }];
-    
-    self.adapterMuxes = [muxes copy];
-    
-#ifdef TESTING
-    NSLog(@"[Loaded Adapter Muxes]: %d", [self.adapterMuxes count]);
-#endif
-    return true;
-}
-
-- (void)fetchMuxes {
-    NSString *muxPath = [@"dvb/muxes/" stringByAppendingString:self.identifier];
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", nil];
-    [self.jsonClient postPath:muxPath parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ( [self fetchedData:responseObject] ) {
-            [self signalDidLoadAdapterMuxes];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"[TV Adapter Mux HTTPClient Error]: %@", error.localizedDescription);
-    }];
-    
-}
-
 - (NSArray*)arrayAdapterMuxes {
-    return [self.adapterMuxes sortedArrayUsingSelector:@selector(compareByFreq:)];
-}
-
-- (void)signalDidLoadAdapterMuxes {
-    
-}
-
-#pragma MARK services stuff
-
-- (BOOL)fetchedServiceData:(NSData *)responseData {
-    NSError __autoreleasing *error;
-    NSDictionary *json = [TVHJsonClient convertFromJsonToObject:responseData error:&error];
-    if( error ) {
-        NSLog(@"[TV Service Channel JSON error]: %@", error.localizedDescription);
-        return false;
-    }
-    
-    NSArray *entries = [json objectForKey:@"entries"];
-    NSMutableArray *services = [[NSMutableArray alloc] init];
-    
-    [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        TVHService *service = [[TVHService alloc] initWithTvhServer:self.tvhServer];
-        [service setAdapterObject:self];
-        [service updateValuesFromDictionary:obj];
-        
-        [services addObject:service];
-    }];
-    
-    self.adapterServices = [services copy];
-    
-#ifdef TESTING
-    NSLog(@"[Loaded Services]: %d", [self.adapterServices count]);
-#endif
-    return true;
-}
-
-- (void)fetchServices {
-    NSString *servicePath = [@"dvb/services/" stringByAppendingString:[self identifier]];
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:@"get", @"op", nil];
-    [self.jsonClient postPath:servicePath parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ( [self fetchedServiceData:responseObject] ) {
-            [self signalDidLoadServices];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"[TV Services HTTPClient Error]: %@", error.localizedDescription);
-    }];
-    
+    id <TVHMuxStore> muxStore = [self.tvhServer muxStore];
+    return [muxStore muxesFor:self];
 }
 
 - (NSArray*)arrayServicesForMux:(TVHMux*)adapterMux {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"mux == %@ AND satconf == %@ AND network == %@", adapterMux.freq, adapterMux.satconf, adapterMux.network];
-    NSArray *filteredArray = [self.adapterServices filteredArrayUsingPredicate:predicate];
-    
-    return [filteredArray sortedArrayUsingSelector:@selector(compareByName:)];
+    id <TVHServiceStore> serviceStore = [self.tvhServer serviceStore];
+    return [serviceStore servicesForMux:adapterMux];
 }
 
-- (void)signalDidLoadServices {
-    
+- (NSString*)identifierForNetwork {
+    return self.identifier;
 }
 
 @end

@@ -12,6 +12,7 @@
 
 #import "TVHServicesViewController.h"
 #import "TVHService.h"
+#import "TVHChannel.h"
 #import "TVHPlayStreamHelpController.h"
 
 @interface TVHServicesViewController () <UIActionSheetDelegate>

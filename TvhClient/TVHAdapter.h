@@ -10,12 +10,12 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import <Foundation/Foundation.h>
+#import "TVHMuxStore.h"
 
 @class TVHServer;
 @class TVHMux;
 
-@interface TVHAdapter : NSObject
+@interface TVHAdapter : NSObject <TVHMuxNetwork>
 
 @property NSInteger ber;
 @property (strong, nonatomic) NSString *currentMux;
@@ -43,8 +43,7 @@
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
-- (void)fetchMuxes;
 - (NSArray*)arrayAdapterMuxes;
-- (void)fetchServices;
 - (NSArray*)arrayServicesForMux:(TVHMux*)adapterMux;
+- (NSString*)identifierForNetwork;
 @end

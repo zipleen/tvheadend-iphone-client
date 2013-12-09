@@ -72,8 +72,7 @@
     [entries enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         TVHAdapter *adapter = [[TVHAdapter alloc] initWithTvhServer:self.tvhServer];
         [adapter updateValuesFromDictionary:obj];
-        [adapter fetchMuxes];
-        [adapter fetchServices];
+        [self setupMoreValuesForAdapter:adapter];
         
         [adapters addObject:adapter];
     }];
@@ -85,6 +84,9 @@
 #endif
     [TVHDebugLytics setIntValue:[self.adapters count] forKey:@"adapters"];
     return true;
+}
+
+- (void)setupMoreValuesForAdapter:(TVHAdapter*)adapter {
 }
 
 #pragma mark Api Client delegates
