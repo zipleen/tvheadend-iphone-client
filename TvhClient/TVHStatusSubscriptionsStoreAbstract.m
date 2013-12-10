@@ -153,7 +153,7 @@
 }
 
 - (void)signalDidErrorStatusSubscriptionsStore:(NSError*)error {
-    if ([self.delegate respondsToSelector:@selector(didErrorLoadingTagStore:)]) {
+    if ([self.delegate respondsToSelector:@selector(didErrorStatusSubscriptionsStore:)]) {
         [self.delegate didErrorStatusSubscriptionsStore:error];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didErrorStatusSubscriptionsStore"

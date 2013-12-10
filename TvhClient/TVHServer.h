@@ -20,6 +20,7 @@
 #import "TVHMuxStore.h"
 #import "TVHServiceStore.h"
 #import "TVHAdaptersStore.h"
+#import "TVHStatusInputStore.h"
 #import "TVHLogStore.h"
 #import "TVHCometPollStore.h"
 #import "TVHConfigNameStore.h"
@@ -42,6 +43,7 @@
 - (TVHLogStore*)logStore;
 - (TVHCometPollStore*)cometStore;
 - (TVHConfigNameStore*)configNameStore;
+- (id <TVHStatusInputStore>)inputStore;
 - (NSString*)version;
 - (NSString*)realVersion;
 

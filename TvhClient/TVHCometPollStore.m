@@ -101,6 +101,15 @@
 #endif
         }
         
+        if( [notificationClass isEqualToString:@"input_status"] ) {
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:@"inputsNotificationClassReceived"
+             object:obj];
+#ifdef TESTING
+            print = NO;
+#endif
+        }
+        
         if( [notificationClass isEqualToString:@"tvAdapter"] ) {
             [[NSNotificationCenter defaultCenter]
              postNotificationName:@"tvAdapterNotificationClassReceived"

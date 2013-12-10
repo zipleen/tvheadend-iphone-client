@@ -48,7 +48,6 @@
         NSDictionary *message = (NSDictionary*)[notification object];
         
         [self.adapters enumerateObjectsUsingBlock:^(TVHAdapter* obj, NSUInteger idx, BOOL *stop) {
-            
             if ( [obj.identifier isEqualToString:[message objectForKey:@"identifier"]] ) {
                 [obj updateValuesFromDictionary:message];
             }

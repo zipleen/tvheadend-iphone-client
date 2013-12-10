@@ -28,6 +28,7 @@
 @property (nonatomic, strong) TVHLogStore *logStore;
 @property (nonatomic, strong) TVHCometPollStore *cometStore;
 @property (nonatomic, strong) TVHConfigNameStore *configNameStore;
+@property (nonatomic, strong) id <TVHStatusInputStore> inputStore;
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSString *realVersion;
 @property (nonatomic, strong) NSArray *capabilities;
@@ -71,6 +72,7 @@
         [self.channelStore fetchChannelList];
         [self.statusStore fetchStatusSubscriptions];
         [self.adapterStore fetchAdapters];
+        [self.inputStore fetchStatusInputs];
         [self.muxStore fetchMuxes];
         [self.serviceStore fetchServices];
         [self logStore];
@@ -167,6 +169,14 @@
         _adapterStore = [[myClass alloc] initWithTvhServer:self];
     }
     return _adapterStore;
+}
+
+- (id <TVHStatusInputStore>)inputStore {
+    if( ! _inputStore ) {
+        Class myClass = NSClassFromString([@"TVHStatusInputStore" stringByAppendingString:self.version]);
+        _inputStore = [[myClass alloc] initWithTvhServer:self];
+    }
+    return _inputStore;
 }
 
 - (id <TVHMuxStore>)muxStore {

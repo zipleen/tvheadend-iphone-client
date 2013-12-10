@@ -23,5 +23,9 @@
 @property (strong, nonatomic) NSString *title;
 @property NSInteger bw;
 
+// 4.0
+@property NSInteger in;
+@property NSInteger out;
+
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 @end

@@ -18,6 +18,7 @@
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSingletonServer.h"
 #import "TVHAdapter.h"
+#import "TVHStatusInput.h"
 #import "TVHAdapterMuxViewController.h"
 #import "TVHProgressBar.h"
 #import "TVHStatusSplitViewController.h"
@@ -34,6 +35,7 @@
 
 @property (weak, nonatomic) id <TVHStatusSubscriptionsStore> statusSubscriptionsStore;
 @property (weak, nonatomic) id <TVHAdaptersStore> adapterStore;
+@property (weak, nonatomic) id <TVHStatusInputStore> inputStore;
 @property (weak, nonatomic) TVHCometPollStore *cometPoll;
 @end
 
@@ -69,6 +71,22 @@
         }
     }
     return _adapterStore;
+}
+
+- (id <TVHStatusInputStore>)inputStore {
+    if ( _inputStore == nil) {
+        _inputStore = [[TVHSingletonServer sharedServerInstance] inputStore];
+        
+        if( [_inputStore delegate] ) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(didLoadStatusInputs)
+                                                         name:@"didLoadStatusInputs"
+                                                       object:_adapterStore];
+        } else {
+            [_inputStore setDelegate:self];
+        }
+    }
+    return _inputStore;
 }
 
 - (void)viewDidLoad {
@@ -136,6 +154,7 @@
     self.adapterStore = nil;
     self.cometPoll = nil;
     self.statusSubscriptionsStore = nil;
+    self.inputStore = nil;
     [self setSwitchButton:nil];
     [super viewDidUnload];
 }
@@ -177,26 +196,38 @@
     }
 }
 
+- (void)didLoadStatusInputs {
+    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
+        [self.tableView reloadData];
+        lastTableUpdate = [NSDate date];
+        [self.refreshControl endRefreshing];
+    }
+}
+
 - (void)pullToRefreshViewShouldRefresh {
     [self.tableView reloadData];
     [self.statusSubscriptionsStore fetchStatusSubscriptions];
     [self.adapterStore fetchAdapters];
+    [self.inputStore fetchStatusInputs];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if ( section == 0 ) {
+    if ( section == 0 && self.statusSubscriptionsStore ) {
         return NSLocalizedString(@"Active Subscriptions", nil);
     }
-    if ( section == 1 ) {
+    if ( section == 1 && self.adapterStore ) {
         return NSLocalizedString(@"Adapters", nil);
+    }
+    if ( section == 2 && self.inputStore ) {
+        return NSLocalizedString(@"Stream Inputs", nil);
     }
     return nil;
 }
@@ -204,13 +235,18 @@
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
     if ( section == 0 ) {
-        if ( [self.statusSubscriptionsStore count] == 0 ) {
+        if ( [self.statusSubscriptionsStore count] == 0 && self.statusSubscriptionsStore ) {
             return NSLocalizedString(@"No active subscriptions.", nil);
         }
     }
     if ( section == 1 ) {
-        if ( [self.adapterStore count] == 0 ) {
+        if ( [self.adapterStore count] == 0 && self.adapterStore ) {
             return NSLocalizedString(@"No adapters found.", nil);
+        }
+    }
+    if ( section == 2 ) {
+        if ( [self.inputStore count] == 0 && self.inputStore ) {
+            return NSLocalizedString(@"No Stream found.", nil);
         }
     }
     return nil;
@@ -223,6 +259,9 @@
     }
     if ( section == 1 ) {
         return [self.adapterStore count];
+    }
+    if ( section == 2 ) {
+        return [self.inputStore count];
     }
     return 0;
 }
@@ -322,6 +361,48 @@
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    if ( indexPath.section == 2 ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+        if(cell==nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
+        }
+        
+        UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
+        UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
+        UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
+        UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+        UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
+        UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
+        UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
+        UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];
+        UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
+        TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
+        [progress setTintColor:PROGRESS_BAR_PLAYBACK];
+        CGRect progressBarFrame = {
+            .origin.x = progress.frame.origin.x,
+            .origin.y = progress.frame.origin.y,
+            .size.width = progress.frame.size.width,
+            .size.height = 4,
+        };
+        [progress setFrame:progressBarFrame];
+        
+        TVHStatusInput *input = [self.inputStore objectAtIndex:indexPath.row];
+        
+        deviceNameLabel.text = input.stream;
+        adapterPathLabel.text = input.input;
+        bwLabel.text = [NSString stringFromFileSizeInBits:input.bps];
+        serviceLabel.text = input.stream;
+        snrLabel.text = [NSString stringWithFormat:@"%.1f dB", input.snr];
+        uncLabel.text = [NSString stringWithFormat:@"%d", input.unc];
+        berLabel.text = [NSString stringWithFormat:@"%d", input.ber];
+        signalLabel.text = [NSString stringWithFormat:@"%d %%", input.signal];
+        progress.progress = (float)input.signal/100;
+        [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+        [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+
     
     return cell;
 }
