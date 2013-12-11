@@ -28,7 +28,7 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(fetchStatusSubscriptions)
+                                             selector:@selector(fetchStatusInputs)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
     return self;
