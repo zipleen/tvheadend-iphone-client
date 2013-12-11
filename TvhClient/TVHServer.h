@@ -22,7 +22,7 @@
 #import "TVHAdaptersStore.h"
 #import "TVHStatusInputStore.h"
 #import "TVHLogStore.h"
-#import "TVHCometPollStore.h"
+#import "TVHCometPoll.h"
 #import "TVHConfigNameStore.h"
 #import "TVHJsonClient.h"
 #import "TVHApiClient.h"
@@ -41,7 +41,7 @@
 - (id <TVHMuxStore>)muxStore;
 - (id <TVHServiceStore>)serviceStore;
 - (TVHLogStore*)logStore;
-- (TVHCometPollStore*)cometStore;
+- (id <TVHCometPoll>)cometStore;
 - (TVHConfigNameStore*)configNameStore;
 - (id <TVHStatusInputStore>)inputStore;
 - (NSString*)version;

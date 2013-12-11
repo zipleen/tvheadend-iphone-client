@@ -24,6 +24,9 @@
 		AA3054501859298000486A75 /* TVHAutoRecStore32.m in Sources */ = {isa = PBXBuildFile; fileRef = AA30544F1859298000486A75 /* TVHAutoRecStore32.m */; };
 		AA3054531859298D00486A75 /* TVHAutoRecStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3054521859298D00486A75 /* TVHAutoRecStore34.m */; };
 		AA3054561859299800486A75 /* TVHAutoRecStore40.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3054551859299800486A75 /* TVHAutoRecStore40.m */; };
+		AA30545B18592FA700486A75 /* TVHCometPoll32.m in Sources */ = {isa = PBXBuildFile; fileRef = AA30545A18592FA700486A75 /* TVHCometPoll32.m */; };
+		AA30545E18592FB000486A75 /* TVHCometPoll34.m in Sources */ = {isa = PBXBuildFile; fileRef = AA30545D18592FB000486A75 /* TVHCometPoll34.m */; };
+		AA30546118592FB900486A75 /* TVHCometPoll40.m in Sources */ = {isa = PBXBuildFile; fileRef = AA30546018592FB900486A75 /* TVHCometPoll40.m */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3E5CC916D8046200CE444C /* Log.tags in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CC816D8046200CE444C /* Log.tags */; };
@@ -95,7 +98,7 @@
 		AAB39A0D16BDB21900973F88 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0B16BDB21900973F88 /* MainStoryboard_iPhone.storyboard */; };
 		AAB39A1016BDB21900973F88 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB39A0E16BDB21900973F88 /* MainStoryboard_iPad.storyboard */; };
 		AAB39A1B16BDB29C00973F88 /* TVHChannelStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB39A1A16BDB29C00973F88 /* TVHChannelStoreViewController.m */; };
-		AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */; };
+		AAB7F5BC16D6B64100EB979B /* TVHCometPollAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB7F5BB16D6B64100EB979B /* TVHCometPollAbstract.m */; };
 		AAB9C9B8185690D800B6E494 /* TVHStatusInput.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB9C9B7185690D800B6E494 /* TVHStatusInput.m */; };
 		AAB9C9BE1856929A00B6E494 /* TVHStatusInputStore32.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB9C9BD1856929A00B6E494 /* TVHStatusInputStore32.m */; };
 		AAB9C9C11856933800B6E494 /* TVHStatusInputStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB9C9C01856933800B6E494 /* TVHStatusInputStore34.m */; };
@@ -270,6 +273,13 @@
 		AA3054521859298D00486A75 /* TVHAutoRecStore34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecStore34.m; sourceTree = "<group>"; };
 		AA3054541859299800486A75 /* TVHAutoRecStore40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHAutoRecStore40.h; sourceTree = "<group>"; };
 		AA3054551859299800486A75 /* TVHAutoRecStore40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHAutoRecStore40.m; sourceTree = "<group>"; };
+		AA30545818592E7A00486A75 /* TVHCometPoll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPoll.h; sourceTree = "<group>"; };
+		AA30545918592FA700486A75 /* TVHCometPoll32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPoll32.h; sourceTree = "<group>"; };
+		AA30545A18592FA700486A75 /* TVHCometPoll32.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPoll32.m; sourceTree = "<group>"; };
+		AA30545C18592FB000486A75 /* TVHCometPoll34.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPoll34.h; sourceTree = "<group>"; };
+		AA30545D18592FB000486A75 /* TVHCometPoll34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPoll34.m; sourceTree = "<group>"; };
+		AA30545F18592FB900486A75 /* TVHCometPoll40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPoll40.h; sourceTree = "<group>"; };
+		AA30546018592FB900486A75 /* TVHCometPoll40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPoll40.m; sourceTree = "<group>"; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3E5CC816D8046200CE444C /* Log.tags */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.tags; sourceTree = "<group>"; };
@@ -391,8 +401,8 @@
 		AAB39A0316BDB21900973F88 /* TVHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TVHAppDelegate.m; sourceTree = "<group>"; };
 		AAB39A1916BDB29C00973F88 /* TVHChannelStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreViewController.h; sourceTree = "<group>"; };
 		AAB39A1A16BDB29C00973F88 /* TVHChannelStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStoreViewController.m; sourceTree = "<group>"; };
-		AAB7F5BA16D6B64100EB979B /* TVHCometPollStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPollStore.h; sourceTree = "<group>"; };
-		AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPollStore.m; sourceTree = "<group>"; };
+		AAB7F5BA16D6B64100EB979B /* TVHCometPollAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPollAbstract.h; sourceTree = "<group>"; };
+		AAB7F5BB16D6B64100EB979B /* TVHCometPollAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPollAbstract.m; sourceTree = "<group>"; };
 		AAB9C9B6185690D800B6E494 /* TVHStatusInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusInput.h; sourceTree = "<group>"; };
 		AAB9C9B7185690D800B6E494 /* TVHStatusInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHStatusInput.m; sourceTree = "<group>"; };
 		AAB9C9BB185691E900B6E494 /* TVHStatusInputStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHStatusInputStore.h; sourceTree = "<group>"; };
@@ -744,6 +754,22 @@
 			name = MGSplitViewController;
 			sourceTree = "<group>";
 		};
+		AA30545718592D7F00486A75 /* Comet Polling */ = {
+			isa = PBXGroup;
+			children = (
+				AA30545818592E7A00486A75 /* TVHCometPoll.h */,
+				AAB7F5BA16D6B64100EB979B /* TVHCometPollAbstract.h */,
+				AAB7F5BB16D6B64100EB979B /* TVHCometPollAbstract.m */,
+				AA30545918592FA700486A75 /* TVHCometPoll32.h */,
+				AA30545A18592FA700486A75 /* TVHCometPoll32.m */,
+				AA30545C18592FB000486A75 /* TVHCometPoll34.h */,
+				AA30545D18592FB000486A75 /* TVHCometPoll34.m */,
+				AA30545F18592FB900486A75 /* TVHCometPoll40.h */,
+				AA30546018592FB900486A75 /* TVHCometPoll40.m */,
+			);
+			name = "Comet Polling";
+			sourceTree = "<group>";
+		};
 		AA3721C016FBF16F00C21F09 /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -932,8 +958,7 @@
 				AABF18D31855171D00B06C14 /* Mux */,
 				AABF18D41855172C00B06C14 /* Services */,
 				AABE682416EBAE52003E8F92 /* Logs */,
-				AAB7F5BA16D6B64100EB979B /* TVHCometPollStore.h */,
-				AAB7F5BB16D6B64100EB979B /* TVHCometPollStore.m */,
+				AA30545718592D7F00486A75 /* Comet Polling */,
 			);
 			name = "Comet Poll / Status";
 			sourceTree = "<group>";
@@ -1773,6 +1798,7 @@
 				AA845E3817E90309002D1CB5 /* TVHStatusBar.m in Sources */,
 				AAC7D15118286A8600089875 /* AFJSONRequestOperation.m in Sources */,
 				AAC7D15518286A8600089875 /* AFXMLRequestOperation.m in Sources */,
+				AA30545B18592FA700486A75 /* TVHCometPoll32.m in Sources */,
 				AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */,
 				AAF029D8185001C700CF320E /* TVHStatusSubscriptionsStore34.m in Sources */,
 				AAF54A1916C70D1B0076DF17 /* TVHTagStoreAbstract.m in Sources */,
@@ -1796,7 +1822,7 @@
 				AA407E3E16D1CA6700451E6F /* TVHStatusSubscription.m in Sources */,
 				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
 				AAF029E61850038A00CF320E /* TVHAdaptersStore40.m in Sources */,
-				AAB7F5BC16D6B64100EB979B /* TVHCometPollStore.m in Sources */,
+				AAB7F5BC16D6B64100EB979B /* TVHCometPollAbstract.m in Sources */,
 				AA3E5CDC16D8267200CE444C /* TVHJsonClient.m in Sources */,
 				AAC7D15618286A8600089875 /* UIImageView+AFNetworking.m in Sources */,
 				AA9E76DB181D3CC300E5A0D4 /* TVHPlayXbmc.m in Sources */,
@@ -1807,6 +1833,7 @@
 				AA2B940118540CB200987633 /* TVHServiceStoreAbstract.m in Sources */,
 				AAF029CA184FE4C700CF320E /* TVHTagStore34.m in Sources */,
 				AA132EBB16D9594B0074FAB8 /* TVHUICustomNavigationBar.m in Sources */,
+				AA30546118592FB900486A75 /* TVHCometPoll40.m in Sources */,
 				AA8DECFE16DEBFAE00AF6A51 /* TVHRecordingsViewController.m in Sources */,
 				AABF18DF185526AB00B06C14 /* TVHMuxStore40.m in Sources */,
 				AAF0537018245FA0008B1A0A /* TVHDebugLytics.m in Sources */,
@@ -1820,6 +1847,7 @@
 				AA21878516E7EE12005D95EF /* TVHAdaptersStoreAbstract.m in Sources */,
 				AAC7D15F18286AB300089875 /* CKRefreshArrowView.m in Sources */,
 				AABF18E31855276400B06C14 /* TVHServiceStore32.m in Sources */,
+				AA30545E18592FB000486A75 /* TVHCometPoll34.m in Sources */,
 				AA21878816E7F6D9005D95EF /* NSString+FileSize.m in Sources */,
 				AABE682716EBAE84003E8F92 /* TVHLogStore.m in Sources */,
 				AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */,

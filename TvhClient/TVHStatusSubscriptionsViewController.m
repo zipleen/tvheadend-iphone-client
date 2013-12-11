@@ -36,7 +36,7 @@
 @property (weak, nonatomic) id <TVHStatusSubscriptionsStore> statusSubscriptionsStore;
 @property (weak, nonatomic) id <TVHAdaptersStore> adapterStore;
 @property (weak, nonatomic) id <TVHStatusInputStore> inputStore;
-@property (weak, nonatomic) TVHCometPollStore *cometPoll;
+@property (weak, nonatomic) id <TVHCometPoll> cometPoll;
 @end
 
 @implementation TVHStatusSubscriptionsViewController

@@ -16,7 +16,7 @@
 @interface TVHDebugLogViewController () <UISearchBarDelegate>
 @property (weak, nonatomic) TVHLogStore *logStore;
 @property (strong, nonatomic) NSArray *logLines;
-@property (weak, nonatomic) TVHCometPollStore *cometPoll;
+@property (weak, nonatomic) id <TVHCometPoll> cometPoll;
 @end
 
 @implementation TVHDebugLogViewController {

@@ -26,7 +26,7 @@
 @property (nonatomic, strong) id <TVHMuxStore> muxStore;
 @property (nonatomic, strong) id <TVHServiceStore> serviceStore;
 @property (nonatomic, strong) TVHLogStore *logStore;
-@property (nonatomic, strong) TVHCometPollStore *cometStore;
+@property (nonatomic, strong) id <TVHCometPoll> cometStore;
 @property (nonatomic, strong) TVHConfigNameStore *configNameStore;
 @property (nonatomic, strong) id <TVHStatusInputStore> inputStore;
 @property (nonatomic, strong) NSString *version;
@@ -119,6 +119,7 @@
     self.version = nil;
     self.realVersion = nil;
     self.configSettings = nil;
+    self.inputStore = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -203,9 +204,10 @@
     return _logStore;
 }
 
-- (TVHCometPollStore*)cometStore {
+- (id <TVHCometPoll>)cometStore {
     if( ! _cometStore ) {
-        _cometStore = [[TVHCometPollStore alloc] initWithTvhServer:self];
+        Class myClass = NSClassFromString([@"TVHCometPoll" stringByAppendingString:self.version]);
+        _cometStore = [[myClass alloc] initWithTvhServer:self];
         if ( [[TVHSettings sharedInstance] autoStartPolling] ) {
             [_cometStore startRefreshingCometPoll];
         }

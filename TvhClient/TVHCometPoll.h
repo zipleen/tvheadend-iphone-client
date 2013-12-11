@@ -1,8 +1,8 @@
 //
-//  TVHCometPollStore.h
-//  TVHeadend iPhone Client
+//  TVHCometPoll.h
+//  TvhClient
 //
-//  Created by Luis Fernandes on 2/21/13.
+//  Created by zipleen on 11/12/13.
 //  Copyright 2013 Luis Fernandes
 //
 //  This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,7 +12,7 @@
 
 @class TVHServer;
 
-@interface TVHCometPollStore : NSObject
+@protocol TVHCometPoll
 - (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)fetchCometPollStatus;
 - (void)toggleDebug;

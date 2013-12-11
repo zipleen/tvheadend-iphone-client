@@ -10,11 +10,11 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHCometPollStore.h"
+#import "TVHCometPollAbstract.h"
 #import "TVHSettings.h"
 #import "TVHServer.h"
 
-@interface TVHCometPollStore() {
+@interface TVHCometPollAbstract() {
     BOOL timerStarted;
     unsigned int activePolls;
     BOOL timerActiveWhenSendingToBackground;
@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
-@implementation TVHCometPollStore
+@implementation TVHCometPollAbstract
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
@@ -200,7 +200,7 @@
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:self.boxid, @"boxid", @"0", @"immediate", nil];
     //self.profilingDate = [NSDate date];
     activePolls++;
-    TVHCometPollStore __weak *weakSelf = self;
+    TVHCometPollAbstract __weak *weakSelf = self;
     [[self.jsonClient proxyQueueNamed:@"cometQueue"] postPath:@"comet/poll" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:self.profilingDate];
 #ifdef TESTING
