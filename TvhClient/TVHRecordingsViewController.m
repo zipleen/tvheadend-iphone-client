@@ -34,7 +34,7 @@
 }
 
 @property (weak, nonatomic) id <TVHDvrStore> dvrStore;
-@property (weak, nonatomic) TVHAutoRecStore *autoRecStore;
+@property (weak, nonatomic) id <TVHAutoRecStore> autoRecStore;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
@@ -49,7 +49,7 @@
     return _dvrStore;
 }
 
-- (TVHAutoRecStore*)autoRecStore {
+- (id <TVHAutoRecStore>)autoRecStore {
     if ( _autoRecStore == nil) {
         _autoRecStore = [[TVHSingletonServer sharedServerInstance] autorecStore];
     }

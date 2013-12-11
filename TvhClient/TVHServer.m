@@ -20,7 +20,7 @@
 @property (nonatomic, strong) id <TVHTagStore> tagStore;
 @property (nonatomic, strong) id <TVHChannelStore> channelStore;
 @property (nonatomic, strong) id <TVHDvrStore> dvrStore;
-@property (nonatomic, strong) TVHAutoRecStore *autorecStore;
+@property (nonatomic, strong) id <TVHAutoRecStore> autorecStore;
 @property (nonatomic, strong) id <TVHStatusSubscriptionsStore> statusStore;
 @property (nonatomic, strong) id <TVHAdaptersStore> adapterStore;
 @property (nonatomic, strong) id <TVHMuxStore> muxStore;
@@ -148,9 +148,10 @@
     return _dvrStore;
 }
 
-- (TVHAutoRecStore*)autorecStore {
+- (id <TVHAutoRecStore>)autorecStore {
     if( ! _autorecStore ) {
-        _autorecStore = [[TVHAutoRecStore alloc] initWithTvhServer:self];
+        Class myClass = NSClassFromString([@"TVHAutoRecStore" stringByAppendingString:self.version]);
+        _autorecStore = [[myClass alloc] initWithTvhServer:self];
     }
     return _autorecStore;
 }

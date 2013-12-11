@@ -10,15 +10,15 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
-#import "TVHAutoRecStore.h"
+#import "TVHAutoRecStoreAbstract.h"
 #import "TVHServer.h"
 
-@interface TVHAutoRecStore()
+@interface TVHAutoRecStoreAbstract()
 @property (nonatomic, weak) TVHApiClient *apiClient;
 @property (nonatomic, strong) NSArray *dvrAutoRecItems;
 @end
 
-@implementation TVHAutoRecStore
+@implementation TVHAutoRecStoreAbstract
 
 - (id)initWithTvhServer:(TVHServer*)tvhServer {
     self = [super init];
@@ -91,7 +91,7 @@
 - (void)fetchDvrAutoRec {
     self.dvrAutoRecItems = nil;
     __block NSDate *profilingDate = [NSDate date];
-    TVHAutoRecStore __weak *weakSelf = self;
+    TVHAutoRecStoreAbstract __weak *weakSelf = self;
     
     [self.apiClient doApiCall:self success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:profilingDate];
