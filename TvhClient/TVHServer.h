@@ -11,6 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TVHServerSettings.h"
 #import "TVHTagStore.h"
 #import "TVHChannelStore.h"
 #import "TVHEpgStore.h"
@@ -26,10 +27,9 @@
 #import "TVHConfigNameStore.h"
 #import "TVHJsonClient.h"
 #import "TVHApiClient.h"
-#import "TVHSettings.h"
 
 @interface TVHServer : NSObject
-
+@property (nonatomic, strong) TVHServerSettings *settings;
 - (TVHJsonClient*)jsonClient;
 - (TVHApiClient*)apiClient;
 - (id <TVHTagStore>)tagStore;
@@ -47,11 +47,11 @@
 - (NSString*)version;
 - (NSString*)realVersion;
 
-- (TVHServer*)initVersion:(NSString*)version;
+- (TVHServer*)initWithSettings:(TVHServerSettings*)settings;
 - (id <TVHEpgStore>)createEpgStoreWithName:(NSString*)statsName;
 - (void)fetchServerVersion;
 - (BOOL)isTranscodingCapable;
 - (void)resetData;
 - (NSString*)htspUrl;
-- (NSString*)baseUrl;
+- (NSString*)httpUrl;
 @end

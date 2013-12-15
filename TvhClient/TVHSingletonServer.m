@@ -11,6 +11,8 @@
 //
 
 #import "TVHSingletonServer.h"
+#import "TVHServerSettings.h"
+#import "TVHSettings.h"
 #import "TVHPlayXbmc.h"
 
 @implementation TVHSingletonServer {
@@ -38,8 +40,21 @@
     return __sharedInstance;
 }
 
+#pragma mark Server Init
+
 + (TVHServer*)sharedServerInstance {
     return [[TVHSingletonServer sharedInstance] serverInstance];
+}
+
+- (TVHServer*)serverInstance {
+    if ( ! __tvhserver ) {
+        __tvhserver = [[TVHServer alloc] initWithSettings:self.serverSettings];
+    }
+    return __tvhserver;
+}
+
+- (TVHServerSettings*)serverSettings {
+    return [self.settings currentServerSettings];
 }
 
 - (TVHSettings*)settings {
@@ -49,29 +64,28 @@
     return settings;
 }
 
-- (NSString*)serverVersion {
-    return [self.settings currentServerProperty:TVHS_SERVER_VERSION];
-}
-
-- (void)refreshServerVersion {
-    NSString *serverVersion = [__tvhserver version];
-    if ( ! [serverVersion isEqualToString:[self serverVersion]] ) {
-        NSMutableDictionary *prop = [[settings serverProperties:[settings selectedServer]] mutableCopy];
-        [prop setValue:serverVersion forKey:TVHS_SERVER_VERSION];
-        [settings setServerProperties:prop forServerId:[settings selectedServer]];
-        [self resetServer];
-    }
-}
-
-- (TVHServer*)serverInstance {
-    if ( ! __tvhserver ) {
-        __tvhserver = [[TVHServer alloc] initVersion:[self serverVersion]];
-    }
-    return __tvhserver;
-}
+#pragma mark Notifications
 
 - (void)resetServer {
     [__tvhserver resetData];
     __tvhserver = nil;
+}
+
+- (void)refreshServerVersion {
+    NSString *serverVersion = [__tvhserver version];
+    if ( ! [serverVersion isEqualToString:self.currentServerVersion] ) {
+        [self changeCurrentServerVersionTo:serverVersion];
+        [self resetServer];
+    }
+}
+
+- (void)changeCurrentServerVersionTo:(NSString*)serverVersion {
+    NSMutableDictionary *prop = [[settings serverProperties:[settings selectedServer]] mutableCopy];
+    [prop setValue:serverVersion forKey:TVHS_SERVER_VERSION];
+    [settings setServerProperties:prop forServerId:[settings selectedServer]];
+}
+
+- (NSString*)currentServerVersion {
+    return [self.settings currentServerProperty:TVHS_SERVER_VERSION];
 }
 @end

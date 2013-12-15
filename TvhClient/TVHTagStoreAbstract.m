@@ -11,7 +11,6 @@
 //
 
 #import "TVHTagStoreAbstract.h"
-#import "TVHSettings.h"
 #import "TVHServer.h"
 
 @interface TVHTagStoreAbstract()

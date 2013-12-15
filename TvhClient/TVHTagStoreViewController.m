@@ -19,6 +19,7 @@
 #import "TVHEpgTableViewController.h"
 #import "TVHSingletonServer.h"
 #import <QuartzCore/QuartzCore.h>
+#import "TVHSettings.h"
 
 @interface TVHTagStoreViewController () {
     BOOL didAlreadyPushed;

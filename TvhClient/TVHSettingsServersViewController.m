@@ -189,7 +189,7 @@
     textField.delegate = self;
     textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
     textField.enabled = YES;
-    textField.text = [self.server objectForKey:TVHS_SERVER_KEYS[[self indexOfSettingsArray:indexPath.section row:indexPath.row]] ] ;
+    textField.text = [self.server objectForKey:TVHS_SERVER_KEY_SETTINGS[[self indexOfSettingsArray:indexPath.section row:indexPath.row]] ] ;
     
     [cell.contentView addSubview:textField];
     
@@ -216,7 +216,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
     
     [self.server setValue:textField.text
-                   forKey:TVHS_SERVER_KEYS[ [self indexOfSettingsArray:indexPath.section
+                   forKey:TVHS_SERVER_KEY_SETTINGS[ [self indexOfSettingsArray:indexPath.section
                                                                   row:indexPath.row]
                                            ]
      ];

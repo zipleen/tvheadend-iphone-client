@@ -22,6 +22,7 @@
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSettingsGenericFieldViewController.h"
 #import "TVHProgressBar.h"
+#import "TVHSettings.h"
 
 @interface TVHEpgTableViewController () <TVHEpgStoreDelegate, UISearchBarDelegate> {
     NSDateFormatter *dateFormatter;

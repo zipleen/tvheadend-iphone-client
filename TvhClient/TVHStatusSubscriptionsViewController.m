@@ -25,6 +25,7 @@
 
 #import "TVHDebugLogViewController.h"
 #import "TVHWebLogViewController.h"
+#import "TVHSettings.h"
 
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;

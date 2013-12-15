@@ -13,12 +13,17 @@
 #import "TVHDvrItem.h"
 #import "TVHDvrActions.h"
 #import "TVHChannelStore.h"
-#import "TVHSettings.h"
-
-// to remove
-#import "TVHSingletonServer.h"
+#import "TVHServer.h"
 
 @implementation TVHDvrItem
+
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
+    self = [super init];
+    if (!self) return nil;
+    self.tvhServer = tvhServer;
+    
+    return self;
+}
 
 - (void)dealloc {
     self.channel = nil;
@@ -77,15 +82,14 @@
 }
 
 - (TVHChannel*)channelObject {
-    id <TVHChannelStore> store = [[TVHSingletonServer sharedServerInstance] channelStore];
+    id <TVHChannelStore> store = [self.tvhServer channelStore];
     TVHChannel *channel = [store channelWithName:self.channel];
     return channel;
 }
 
 - (NSString*)streamURL {
     if ( self.url && ![self.url isEqualToString:@"(null)"]) {
-        TVHSettings *tvh = [TVHSettings sharedInstance];
-        return [NSString stringWithFormat:@"%@/%@", [tvh fullBaseURL], self.url];
+        return [NSString stringWithFormat:@"%@/%@", self.tvhServer.httpUrl, self.url];
     }
     return nil;
 }

@@ -52,16 +52,16 @@
 }
 
 - (NSString*)streamURL {
-    return [NSString stringWithFormat:@"%@/stream/service/%@", [self.tvhServer baseUrl], self.id];
+    return [NSString stringWithFormat:@"%@/stream/service/%@", self.tvhServer.httpUrl, self.id];
 }
 
 - (NSString*)playlistStreamURL {
-    return [NSString stringWithFormat:@"%@/playlist/stream/%@", [self.tvhServer baseUrl], self.id];
+    return [NSString stringWithFormat:@"%@/playlist/stream/%@", self.tvhServer.httpUrl, self.id];
 }
 
 - (NSString*)htspStreamURL {
     return nil;
-    return [NSString stringWithFormat:@"%@/service/%@.ts", [self.tvhServer htspUrl], self.id];
+    return [NSString stringWithFormat:@"%@/service/%@.ts", self.tvhServer.htspUrl, self.id];
 }
 
 @end

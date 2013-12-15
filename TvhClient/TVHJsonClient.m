@@ -10,8 +10,8 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
 
+#import "TVHServerSettings.h"
 #import "TVHJsonClient.h"
-#import "TVHSettings.h"
 #import "AFJSONRequestOperation.h"
 #import "SSHWrapper.h"
 #import "TVHImageCache.h"
@@ -60,43 +60,37 @@
 
 #pragma mark - Initialization
 
-// TODO: remove tvhsettings from this class!!!
-
-- (id)init {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    NSURL *baseUrl = [settings baseURL];
-    if ( ! baseUrl ) {
-        return nil;
-    }
-    return [self initWithBaseURL:baseUrl];
+- (id)init
+{
+    [NSException raise:@"Invalid Init" format:@"JsonClient needs ServerSettings to work"];
+    return nil;
 }
 
-- (id)initWithBaseURL:(NSURL *)url {
-    TVHSettings *settings = [TVHSettings sharedInstance];
+- (id)initWithSettings:(TVHServerSettings *)settings {
+    NSParameterAssert(settings);
+    
     // setup port forward
-    if ( [[settings currentServerProperty:TVHS_SSH_PF_HOST] length] > 0 ) {
-        [self setupPortForwardToHost:[settings currentServerProperty:TVHS_SSH_PF_HOST]
-                           onSSHPort:[[settings currentServerProperty:TVHS_SSH_PF_PORT] intValue]
-                        withUsername:[settings currentServerProperty:TVHS_SSH_PF_USERNAME]
-                        withPassword:[settings currentServerProperty:TVHS_SSH_PF_PASSWORD]
+    if ( [settings.sshPortForwardHost length] > 0 ) {
+        [self setupPortForwardToHost:settings.sshPortForwardHost
+                           onSSHPort:[settings.sshPortForwardPort intValue]
+                        withUsername:settings.sshPortForwardUsername
+                        withPassword:settings.sshPortForwardPassword
                          onLocalPort:[TVHS_SSH_PF_LOCAL_PORT intValue]
-                              toHost:[settings currentServerProperty:TVHS_IP_KEY]
-                        onRemotePort:[[settings currentServerProperty:TVHS_PORT_KEY] intValue]
+                              toHost:settings.ip
+                        onRemotePort:[settings.port intValue]
          ];
         _readyToUse = NO;
     } else {
         _readyToUse = YES;
     }
     
-    self = [super initWithBaseURL:url];
+    self = [super initWithBaseURL:settings.baseURL];
     if( !self ) {
         return nil;
     }
     
-    NSString *username = [settings username];
-    if( [username length] > 0 ) {
-        NSString *password = [settings password];
-        [self setUsername:username password:password];
+    if( [settings.username length] > 0 ) {
+        [self setUsername:settings.username password:settings.password];
     }
     
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];

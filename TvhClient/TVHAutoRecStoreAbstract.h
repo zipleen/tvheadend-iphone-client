@@ -16,13 +16,6 @@
 
 @class TVHServer;
 
-@protocol TVHAutoRecStoreDelegate <NSObject>
-@optional
-- (void)willLoadDvrAutoRec;
-- (void)didLoadDvrAutoRec;
-- (void)didErrorDvrAutoStore:(NSError*)error;
-@end
-
 @interface TVHAutoRecStoreAbstract : NSObject <TVHApiClientDelegate, TVHAutoRecStore>
 @property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, weak) id <TVHAutoRecStoreDelegate> delegate;

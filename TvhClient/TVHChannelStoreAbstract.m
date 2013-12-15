@@ -12,7 +12,6 @@
 
 #import "TVHChannelStoreAbstract.h"
 #import "TVHEpg.h"
-#import "TVHSettings.h"
 #import "TVHServer.h"
 
 @interface TVHChannelStoreAbstract ()
@@ -78,7 +77,7 @@
 
     }];
     
-    if ( [[TVHSettings sharedInstance] sortChannel] == TVHS_SORT_CHANNEL_BY_NAME ) {
+    if ( [self.tvhServer.settings sortChannel] == TVHS_SORT_CHANNEL_BY_NAME ) {
         self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByName:)];
     } else {
         self.channels =  [[channels copy] sortedArrayUsingSelector:@selector(compareByNumber:)];

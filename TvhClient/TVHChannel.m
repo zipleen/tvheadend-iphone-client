@@ -13,7 +13,6 @@
 #import "TVHChannel.h"
 #import "TVHEpgStore.h"
 #import "TVHChannelEpg.h"
-#import "TVHSettings.h"
 #import "TVHServer.h"
 #import "NSArray+Utils.h"
 
@@ -79,7 +78,7 @@
             return self.chicon;
         } else {
             // if they are NOT the same it means it's a image cache and we need to add server url
-            return [NSString stringWithFormat:@"%@/%@", [self.tvhServer baseUrl], self.chicon];
+            return [NSString stringWithFormat:@"%@/%@", [self.tvhServer httpUrl], self.chicon];
         }
     }
     return self.ch_icon;
@@ -111,23 +110,21 @@
 }
 
 - (NSString*)streamURL {
-    TVHSettings *tvh = [TVHSettings sharedInstance];
     if ( [[self.tvhServer version] intValue] > 38 ) {
-        return [NSString stringWithFormat:@"%@/stream/channel/%@", [tvh fullBaseURL], self.channelIdKey];
+        return [NSString stringWithFormat:@"%@/stream/channel/%@", self.tvhServer.httpUrl, self.channelIdKey];
     }
-    return [NSString stringWithFormat:@"%@/stream/channelid/%@", [tvh fullBaseURL], self.channelIdKey];
+    return [NSString stringWithFormat:@"%@/stream/channelid/%@", self.tvhServer.httpUrl, self.channelIdKey];
 }
 
 - (NSString*)playlistStreamURL {
-    TVHSettings *tvh = [TVHSettings sharedInstance];
     if ( [[self.tvhServer version] intValue] > 38 ) {
-        return [NSString stringWithFormat:@"%@/playlist/channel/%@", [tvh fullBaseURL], self.channelIdKey];
+        return [NSString stringWithFormat:@"%@/playlist/channel/%@", self.tvhServer.httpUrl, self.channelIdKey];
     }
-    return [NSString stringWithFormat:@"%@/playlist/channelid/%@", [tvh fullBaseURL], self.channelIdKey];
+    return [NSString stringWithFormat:@"%@/playlist/channelid/%@", self.tvhServer.httpUrl, self.channelIdKey];
 }
 
 - (NSString*)htspStreamURL {
-    return [NSString stringWithFormat:@"%@/tags/0/%@.ts", [self.tvhServer htspUrl], self.channelIdKey];
+    return [NSString stringWithFormat:@"%@/tags/0/%@.ts", self.tvhServer.htspUrl, self.channelIdKey];
 }
 
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {

@@ -11,7 +11,6 @@
 //
 
 #import "TVHCometPollAbstract.h"
-#import "TVHSettings.h"
 #import "TVHServer.h"
 
 @interface TVHCometPollAbstract() {

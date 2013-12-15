@@ -14,8 +14,10 @@
 #import "TVHPlayStreamDelegate.h"
 
 @class TVHChannel;
+@class TVHServer;
 
 @interface TVHDvrItem : NSObject <TVHPlayStreamDelegate>
+@property (nonatomic, weak) TVHServer *tvhServer;
 @property (nonatomic, strong) NSString *channel;
 @property (nonatomic, strong) NSString *chicon;
 @property (nonatomic, strong) NSString *config_name;
@@ -35,6 +37,7 @@
 @property (nonatomic, strong) NSString *episode;
 - (NSString*)fullTitle;
 
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
 - (void)updateValuesFromDictionary:(NSDictionary*) values;
 - (void)deleteRecording;
 - (TVHChannel*)channelObject;

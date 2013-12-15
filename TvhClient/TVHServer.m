@@ -63,11 +63,12 @@
 
 #pragma mark init
 
-- (TVHServer*)initVersion:(NSString*)version {
+- (TVHServer*)initWithSettings:(TVHServerSettings*)settings {
     self = [super init];
     if (self) {
         inProcessing = NO;
-        [self setVersion:version];
+        self.settings = settings;
+        self.version = settings.version;
         [self.tagStore fetchTagList];
         [self.channelStore fetchChannelList];
         [self.statusStore fetchStatusSubscriptions];
@@ -208,7 +209,7 @@
     if( ! _cometStore ) {
         Class myClass = NSClassFromString([@"TVHCometPoll" stringByAppendingString:self.version]);
         _cometStore = [[myClass alloc] initWithTvhServer:self];
-        if ( [[TVHSettings sharedInstance] autoStartPolling] ) {
+        if ( self.settings.autoStartPolling ) {
             [_cometStore startRefreshingCometPoll];
         }
     }
@@ -217,7 +218,7 @@
 
 - (TVHJsonClient*)jsonClient {
     if( ! _jsonClient ) {
-        _jsonClient = [[TVHJsonClient alloc] init];
+        _jsonClient = [[TVHJsonClient alloc] initWithSettings:self.settings];
     }
     return _jsonClient;
 }
@@ -363,19 +364,11 @@
 #pragma mark TVH Server Details
 
 - (NSString*)htspUrl {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    NSString *userAndPass = @"";
-    if ( ![[settings username] isEqualToString:@""] ) {
-        userAndPass = [NSString stringWithFormat:@"%@:%@@", [settings username], [settings password]];
-    }
-    return [NSString stringWithFormat:@"htsp://%@%@:%@", userAndPass, [settings ipForCurrentServer], [settings htspPortForCurrentServer]];
+    return [self.settings htspURL];
 }
 
-- (NSString*)baseUrl {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    return [settings fullBaseURL];
+- (NSString*)httpUrl {
+    return [self.settings httpURL];
 }
-
-
 
 @end

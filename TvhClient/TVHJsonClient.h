@@ -14,11 +14,14 @@
 #import "AFNetworkActivityIndicatorManager.h"
 #import "AFHTTPClient+ProxyQueue.h"
 
+@class TVHServerSettings;
+
 @interface TVHNetworkActivityIndicatorManager : AFNetworkActivityIndicatorManager
 @end
 
 @interface TVHJsonClient : AFHTTPClient
 @property (nonatomic, readonly) BOOL readyToUse;
+- (id)initWithSettings:(TVHServerSettings *)settings;
 - (void)setUsername:(NSString *)username password:(NSString *)password;
 
 + (NSDictionary*)convertFromJsonToObject:(NSData*)responseData error:(__autoreleasing NSError**)error;

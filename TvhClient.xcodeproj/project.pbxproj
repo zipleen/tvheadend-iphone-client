@@ -27,6 +27,7 @@
 		AA30545B18592FA700486A75 /* TVHCometPoll32.m in Sources */ = {isa = PBXBuildFile; fileRef = AA30545A18592FA700486A75 /* TVHCometPoll32.m */; };
 		AA30545E18592FB000486A75 /* TVHCometPoll34.m in Sources */ = {isa = PBXBuildFile; fileRef = AA30545D18592FB000486A75 /* TVHCometPoll34.m */; };
 		AA30546118592FB900486A75 /* TVHCometPoll40.m in Sources */ = {isa = PBXBuildFile; fileRef = AA30546018592FB900486A75 /* TVHCometPoll40.m */; };
+		AA305464185935FB00486A75 /* TVHServerSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA305463185935FB00486A75 /* TVHServerSettings.m */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3E5CC916D8046200CE444C /* Log.tags in Resources */ = {isa = PBXBuildFile; fileRef = AA3E5CC816D8046200CE444C /* Log.tags */; };
@@ -280,6 +281,8 @@
 		AA30545D18592FB000486A75 /* TVHCometPoll34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPoll34.m; sourceTree = "<group>"; };
 		AA30545F18592FB900486A75 /* TVHCometPoll40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHCometPoll40.h; sourceTree = "<group>"; };
 		AA30546018592FB900486A75 /* TVHCometPoll40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHCometPoll40.m; sourceTree = "<group>"; };
+		AA305462185935FB00486A75 /* TVHServerSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHServerSettings.h; sourceTree = "<group>"; };
+		AA305463185935FB00486A75 /* TVHServerSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHServerSettings.m; sourceTree = "<group>"; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3E5CC816D8046200CE444C /* Log.tags */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Log.tags; sourceTree = "<group>"; };
@@ -724,11 +727,11 @@
 			isa = PBXGroup;
 			children = (
 				AAFDEC61174549E30035D734 /* Tvh Server */,
-				AA9E76D8181D3C9A00E5A0D4 /* PlayTo */,
 				AAFDEC6217454CE80035D734 /* TVHSingletonServer.h */,
 				AAFDEC6317454CE80035D734 /* TVHSingletonServer.m */,
 				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
+				AA9E76D8181D3C9A00E5A0D4 /* PlayTo */,
 				AA21878616E7F6D9005D95EF /* NSString+FileSize.h */,
 				AA21878716E7F6D9005D95EF /* NSString+FileSize.m */,
 				AAF029CE184FEF4300CF320E /* NSArray+Utils.h */,
@@ -1618,6 +1621,8 @@
 				AAF1E5D5184E71740092205E /* TVHApiClient.m */,
 				AAFDEC5E174549DC0035D734 /* TVHServer.h */,
 				AAFDEC5F174549DC0035D734 /* TVHServer.m */,
+				AA305462185935FB00486A75 /* TVHServerSettings.h */,
+				AA305463185935FB00486A75 /* TVHServerSettings.m */,
 			);
 			name = "Tvh Server";
 			sourceTree = "<group>";
@@ -1803,6 +1808,7 @@
 				AAF029D8185001C700CF320E /* TVHStatusSubscriptionsStore34.m in Sources */,
 				AAF54A1916C70D1B0076DF17 /* TVHTagStoreAbstract.m in Sources */,
 				AAF54A1C16C70D270076DF17 /* TVHTag.m in Sources */,
+				AA305464185935FB00486A75 /* TVHServerSettings.m in Sources */,
 				AAF54A1F16C7137B0076DF17 /* TVHTagStoreViewController.m in Sources */,
 				AAB9C9BE1856929A00B6E494 /* TVHStatusInputStore32.m in Sources */,
 				AAF54A2216C735710076DF17 /* TVHEpg.m in Sources */,
