@@ -64,4 +64,9 @@
     return [NSString stringWithFormat:@"%@/service/%@.ts", self.tvhServer.htspUrl, self.id];
 }
 
+- (NSString*)streamUrlWithTranscoding:(BOOL)transcoding withInternal:(BOOL)internal
+{
+    return [self.tvhServer.playStream streamUrlForObject:self withTranscoding:transcoding withInternal:internal];
+}
+
 @end

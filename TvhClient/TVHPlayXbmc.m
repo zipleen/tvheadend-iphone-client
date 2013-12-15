@@ -78,42 +78,15 @@
 
 # pragma mark - xbmc results
 
-- (BOOL)playToXbmc:(NSString*)xbmcName forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
-    NSString *xbmcServerAddress = [foundServices objectForKey:xbmcName];
-    NSString *url = [self validUrlForObject:streamObject withTranscoding:transcoding];
-    if ( xbmcServerAddress && url ) {
-        NSURL *playXbmc = [NSURL URLWithString:xbmcServerAddress];
-        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:playXbmc];
-        [httpClient setParameterEncoding:AFJSONParameterEncoding];
-        NSDictionary *httpParams = @{@"jsonrpc": @"2.0",
-                                       @"method": @"player.open",
-                                       @"params":
-                                           @{@"item" :
-                                                 @{@"file": url}
-                                             }
-                                       };
-        [httpClient postPath:@"/jsonrpc" parameters:httpParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            //NSLog(@"Did something with %@ and %@ : %@", serverUrl, url, [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-            [TVHAnalytics sendEventWithCategory:@"playTo"
-                                     withAction:@"Xbmc"
-                                      withLabel:@"Success"
-                                      withValue:[NSNumber numberWithInt:1]];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            //NSLog(@"Failed to do something with %@ and %@", serverUrl, url);
-            [TVHAnalytics sendEventWithCategory:@"playTo"
-                                     withAction:@"Xbmc"
-                                      withLabel:@"Fail"
-                                      withValue:[NSNumber numberWithInt:1]];
-        }];
-        return true;
-    }
-    return false;
+- (NSDictionary*)foundServices
+{
+    return [foundServices copy];
 }
 
 - (NSString*)validUrlForObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
     NSString *url;
     if ( transcoding ) {
-        return [TVHPlayStream streamUrlFromObject:streamObject withTranscoding:transcoding];
+        return [streamObject streamUrlWithTranscoding:transcoding withInternal:NO];
     }
     
     url = [streamObject htspStreamURL];

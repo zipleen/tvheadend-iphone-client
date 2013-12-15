@@ -13,6 +13,7 @@
 #import "TVHPlayStreamHelpController.h"
 #import "TVHNativeMoviePlayerViewController.h"
 #import "TVHPlayStream.h"
+#import "TVHSingletonServer.h"
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate> {
     UIActionSheet *myActionSheet;
@@ -30,7 +31,8 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.playStreamModal = [TVHPlayStream sharedInstance];
+        TVHServer *server = [TVHSingletonServer sharedServerInstance];
+        self.playStreamModal = server.playStream;
     }
     return self;
 }
@@ -101,11 +103,7 @@
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     NSString *streamUrl, *streamUrlInternal;
     
-    if ( transcodingEnabled ) {
-        streamUrl = [TVHPlayStream stringTranscodeUrl:[self.streamObject streamURL]];
-    } else {
-        streamUrl = [self.streamObject streamURL];
-    }
+    streamUrl = [self.streamObject streamUrlWithTranscoding:transcodingEnabled withInternal:NO];
     
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Copy to Clipboard", nil)] ) {
         if ( streamUrl ) {
@@ -127,7 +125,7 @@
     
     // internal player
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal Player", nil)] ) {
-        streamUrlInternal = [TVHPlayStream stringTranscodeUrlInternalFormat:[self.streamObject playlistStreamURL]];
+        streamUrlInternal = [self.streamObject streamUrlWithTranscoding:transcodingEnabled withInternal:YES];
         [self streamNativeUrl:streamUrlInternal];
     }
     

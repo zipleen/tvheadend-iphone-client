@@ -28,10 +28,14 @@
     [[GAI sharedInstance] setDryRun:YES];
 #endif
     [[GAI sharedInstance] trackerWithTrackingId:TVH_GOOGLEANALYTICS_KEY];
-    [[GAI sharedInstance].defaultTracker send:[[[GAIDictionaryBuilder createEventWithCategory:@"UX"
+    [[GAI sharedInstance].defaultTracker send:[
+                                               [
+                                                [GAIDictionaryBuilder createEventWithCategory:@"UX"
                                                                                        action:@"appstart"
                                                                                         label:nil
-                                                                                        value:nil] set:@"start" forKey:kGAISessionControl] build]];
+                                                                                        value:nil]
+                                                set:@"start" forKey:kGAISessionControl]
+                                               build]];
 #endif
 }
 

@@ -267,8 +267,9 @@ withPassword:(NSString*)password {
         NSDictionary *settings = [self serverProperties:self.selectedServer];
         _currentServerSettings = [[TVHServerSettings alloc] initWithSettings:settings];
         [_currentServerSettings setSortChannel:self.sortChannel];
-        
-        
+        [_currentServerSettings setCustomPrefix:self.customPrefix];
+        [_currentServerSettings setAutoStartPolling:self.autoStartPolling];
+        [_currentServerSettings setTranscodeResolution:self.transcodeResolution];
     }
     return _currentServerSettings;
 }
@@ -316,6 +317,7 @@ withPassword:(NSString*)password {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:customPrefix forKey:TVHS_CUSTOM_PREFIX];
     [defaults synchronize];
+    self.currentServerSettings.customPrefix = customPrefix;
 }
 
 - (NSInteger)sortChannel {
@@ -469,6 +471,7 @@ withPassword:(NSString*)password {
     [defaults setValue:transcodeResolution forKey:TVHS_TRANSCODE_RES];
     [defaults synchronize];
     _transcodeResolution = transcodeResolution;
+    self.currentServerSettings.transcodeResolution = transcodeResolution;
 }
 
 - (NSString*)transcodeResolution {

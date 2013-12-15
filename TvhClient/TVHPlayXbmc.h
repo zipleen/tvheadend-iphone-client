@@ -16,5 +16,6 @@
 @interface TVHPlayXbmc : NSObject
 + (TVHPlayXbmc*)sharedInstance;
 - (NSArray*)availableXbmcServers;
-- (BOOL)playToXbmc:(NSString*)name forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding;
+- (NSDictionary*)foundServices;
+- (NSString*)validUrlForObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding;
 @end

@@ -11,7 +11,6 @@
 //
 
 #import "TVHPlayStream.h"
-#import "TVHSettings.h"
 #import "TVHServer.h"
 #import "TVHSingletonServer.h"
 #import "TVHPlayXbmc.h"
@@ -20,16 +19,25 @@
 #define TVHS_TVHEADEND_STREAM_URL_INTERNAL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS&mux=mpegts"
 #define TVHS_TVHEADEND_STREAM_URL @"?transcode=1&resolution=%@&vcodec=H264&acodec=AAC&scodec=PASS"
 
+@interface TVHPlayStream()
+@property (nonatomic, weak) TVHServer *tvhServer;
+@end
+
 @implementation TVHPlayStream
 
-+ (id)sharedInstance {
-    static TVHPlayStream *__sharedInstance;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        __sharedInstance = [[TVHPlayStream alloc] init];
-    });
+- (id)init
+{
+    [NSException raise:@"Invalid Init" format:@"TVHPlayStream needs TVHServer to work"];
+    return nil;
+}
+
+- (id)initWithTvhServer:(TVHServer*)tvhServer {
+    NSParameterAssert(tvhServer);
+    self = [super init];
+    if (!self) return nil;
+    self.tvhServer = tvhServer;
     
-    return __sharedInstance;
+    return self;
 }
 
 #pragma MARK get programs
@@ -45,7 +53,7 @@
     }
     
     // custom
-    NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
+    NSString *customPrefix = [self.tvhServer.settings customPrefix];
     if( [customPrefix length] > 0 ) {
         NSURL *url = [self urlForSchema:customPrefix withURL:nil];
         if( [[UIApplication sharedApplication] canOpenURL:url] ) {
@@ -60,11 +68,10 @@
 }
 
 - (BOOL)isTranscodingCapable {
-    TVHServer *tvhServer = [TVHSingletonServer sharedServerInstance];
-    return [tvhServer isTranscodingCapable];
+    return [self.tvhServer isTranscodingCapable];
 }
 
-#pragma MARK play stream
+#pragma mark play stream
 
 - (BOOL)playStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
     
@@ -72,40 +79,85 @@
         return true;
     }
     
-    return [[TVHPlayXbmc sharedInstance] playToXbmc:program forObject:streamObject withTranscoding:transcoding];
+    return [self playToXbmc:program forObject:streamObject withTranscoding:transcoding];
 }
 
 - (BOOL)playInternalStreamIn:(NSString*)program forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
-    NSString *streamUrl = [TVHPlayStream streamUrlFromObject:streamObject withTranscoding:transcoding];
-    
+    NSString *streamUrl = [streamObject streamUrlWithTranscoding:transcoding withInternal:NO];
     NSURL *myURL = [self URLforProgramWithName:program forURL:streamUrl];
     if ( myURL ) {
-        [TVHAnalytics sendEventWithCategory:@"playTo"
-                                 withAction:@"Internal"
-                                  withLabel:program
-                                  withValue:[NSNumber numberWithInt:1]];
+        [self.tvhServer.analytics sendEventWithCategory:@"playTo"
+                                             withAction:@"Internal"
+                                              withLabel:program
+                                              withValue:[NSNumber numberWithInt:1]];
         [[UIApplication sharedApplication] openURL:myURL];
         return true;
     }
     return false;
 }
 
-+ (NSString*)streamUrlFromObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
-    if ( transcoding ) {
-        return [TVHPlayStream stringTranscodeUrl:[streamObject streamURL]];
+- (BOOL)playToXbmc:(NSString*)xbmcName forObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding {
+    TVHPlayXbmc *playXbmcService = [TVHPlayXbmc sharedInstance];
+    NSDictionary *foundServices = [playXbmcService foundServices];
+    
+    NSString *xbmcServerAddress = [foundServices objectForKey:xbmcName];
+    NSString *url = [playXbmcService validUrlForObject:streamObject withTranscoding:transcoding];
+    if ( xbmcServerAddress && url ) {
+        NSURL *playXbmcUrl = [NSURL URLWithString:xbmcServerAddress];
+        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:playXbmcUrl];
+        [httpClient setParameterEncoding:AFJSONParameterEncoding];
+        NSDictionary *httpParams = @{@"jsonrpc": @"2.0",
+                                     @"method": @"player.open",
+                                     @"params":
+                                         @{@"item" :
+                                               @{@"file": url}
+                                           }
+                                     };
+        [httpClient postPath:@"/jsonrpc" parameters:httpParams success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            //NSLog(@"Did something with %@ and %@ : %@", serverUrl, url, [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+            [self.tvhServer.analytics sendEventWithCategory:@"playTo"
+                                                 withAction:@"Xbmc"
+                                                  withLabel:@"Success"
+                                                  withValue:[NSNumber numberWithInt:1]];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            //NSLog(@"Failed to do something with %@ and %@", serverUrl, url);
+            [self.tvhServer.analytics sendEventWithCategory:@"playTo"
+                                                 withAction:@"Xbmc"
+                                                  withLabel:@"Fail"
+                                                  withValue:[NSNumber numberWithInt:1]];
+        }];
+        return true;
+    }
+    return false;
+}
+
+- (NSString*)streamUrlForObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding withInternal:(BOOL)internal
+{
+    NSString *streamUrl;
+    if ( internal ) {
+        streamUrl = streamObject.playlistStreamURL;
     } else {
-        return [streamObject streamURL];
+        streamUrl = streamObject.streamURL;
+    }
+    
+    if ( transcoding ) {
+        if ( internal ) {
+            return [self stringTranscodeUrlInternalFormat:streamUrl];
+        } else {
+            return [self stringTranscodeUrl:streamUrl];
+        }
+    } else {
+        return streamUrl;
     }
 }
 
-+ (NSString*)stringTranscodeUrl:(NSString*)url {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL, [settings transcodeResolution]];
+
+- (NSString*)stringTranscodeUrl:(NSString*)url {
+    return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL, self.tvhServer.settings.transcodeResolution];
 }
 
-+ (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url {
-    TVHSettings *settings = [TVHSettings sharedInstance];
-    return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL_INTERNAL, [settings transcodeResolution]];
+- (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url {
+    return [url stringByAppendingFormat:TVHS_TVHEADEND_STREAM_URL_INTERNAL, self.tvhServer.settings.transcodeResolution];
 }
 
 - (NSURL*)URLforProgramWithName:(NSString*)title forURL:(NSString*)streamUrl {
@@ -116,7 +168,7 @@
     }
     
     if ( [title isEqualToString:NSLocalizedString(@"Custom Player", nil)] ) {
-        NSString *customPrefix = [[TVHSettings sharedInstance] customPrefix];
+        NSString *customPrefix = [self.tvhServer.settings customPrefix];
         NSString *url = [NSString stringWithFormat:@"%@://%@", customPrefix, streamUrl ];
         NSURL *myURL = [NSURL URLWithString:url];
         return myURL;

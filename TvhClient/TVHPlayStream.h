@@ -13,11 +13,11 @@
 #import <Foundation/Foundation.h>
 #import "TVHPlayStreamDelegate.h"
 
+@class TVHServer;
+
 @interface TVHPlayStream : NSObject
-+ (id)sharedInstance;
-+ (NSString*)streamUrlFromObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding;
-+ (NSString*)stringTranscodeUrl:(NSString*)url;
-+ (NSString*)stringTranscodeUrlInternalFormat:(NSString*)url;
+- (id)initWithTvhServer:(TVHServer*)tvhServer;
+- (NSString*)streamUrlForObject:(id<TVHPlayStreamDelegate>)streamObject withTranscoding:(BOOL)transcoding withInternal:(BOOL)internal;
 
 - (NSArray*)arrayOfAvailablePrograms;
 - (BOOL)isTranscodingCapable;

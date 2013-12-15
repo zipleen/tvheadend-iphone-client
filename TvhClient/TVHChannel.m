@@ -127,6 +127,11 @@
     return [NSString stringWithFormat:@"%@/tags/0/%@.ts", self.tvhServer.htspUrl, self.channelIdKey];
 }
 
+- (NSString*)streamUrlWithTranscoding:(BOOL)transcoding withInternal:(BOOL)internal
+{
+    return [self.tvhServer.playStream streamUrlForObject:self withTranscoding:transcoding withInternal:internal];
+}
+
 - (TVHChannelEpg*)getChannelEpgDataByDayString:(NSString*)dateString {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"date == %@", dateString];
     NSArray *filteredArray = [self.channelEpgDataByDay filteredArrayUsingPredicate:predicate];

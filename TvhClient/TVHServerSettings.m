@@ -20,6 +20,7 @@
 
 - (id)initWithSettings:(NSDictionary*)settings
 {
+    NSParameterAssert(settings);
     self = [super init];
     if (self) {
         _name = [settings objectForKey:TVHS_SERVER_NAME];

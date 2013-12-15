@@ -114,6 +114,7 @@
 		AABF18E31855276400B06C14 /* TVHServiceStore32.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18E21855276400B06C14 /* TVHServiceStore32.m */; };
 		AABF18E61855277700B06C14 /* TVHServiceStore34.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18E51855277700B06C14 /* TVHServiceStore34.m */; };
 		AABF18E91855278300B06C14 /* TVHServiceStore40.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF18E81855278300B06C14 /* TVHServiceStore40.m */; };
+		AABF3956185E157E00E62240 /* TVHModelAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF3955185E157E00E62240 /* TVHModelAnalytics.m */; };
 		AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5B17A09821005F07B3 /* IAPHelper.m */; };
 		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
 		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
@@ -437,6 +438,9 @@
 		AABF18E51855277700B06C14 /* TVHServiceStore34.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHServiceStore34.m; sourceTree = "<group>"; };
 		AABF18E71855278300B06C14 /* TVHServiceStore40.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHServiceStore40.h; sourceTree = "<group>"; };
 		AABF18E81855278300B06C14 /* TVHServiceStore40.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHServiceStore40.m; sourceTree = "<group>"; };
+		AABF3953185E0E5500E62240 /* TVHModelAnalyticsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHModelAnalyticsProtocol.h; sourceTree = "<group>"; };
+		AABF3954185E157E00E62240 /* TVHModelAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHModelAnalytics.h; sourceTree = "<group>"; };
+		AABF3955185E157E00E62240 /* TVHModelAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHModelAnalytics.m; sourceTree = "<group>"; };
 		AAC59D5A17A09821005F07B3 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		AAC59D5B17A09821005F07B3 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		AAC59D5C17A09821005F07B3 /* TVHIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHIAPHelper.h; sourceTree = "<group>"; };
@@ -727,19 +731,12 @@
 			isa = PBXGroup;
 			children = (
 				AAFDEC61174549E30035D734 /* Tvh Server */,
+				AABF3959185E168000E62240 /* Properties */,
+				AABF3957185E163C00E62240 /* Analytics / Debugs */,
 				AAFDEC6217454CE80035D734 /* TVHSingletonServer.h */,
 				AAFDEC6317454CE80035D734 /* TVHSingletonServer.m */,
 				AA7C3FCD16C6CC810057E4C4 /* TVHSettings.h */,
 				AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */,
-				AA9E76D8181D3C9A00E5A0D4 /* PlayTo */,
-				AA21878616E7F6D9005D95EF /* NSString+FileSize.h */,
-				AA21878716E7F6D9005D95EF /* NSString+FileSize.m */,
-				AAF029CE184FEF4300CF320E /* NSArray+Utils.h */,
-				AAF029CF184FEF4300CF320E /* NSArray+Utils.m */,
-				AA8CDBDE1819CC090025C39F /* TVHAnalytics.h */,
-				AA8CDBDF1819CC090025C39F /* TVHAnalytics.m */,
-				AAF0536E18245FA0008B1A0A /* TVHDebugLytics.h */,
-				AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1338,6 +1335,38 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		AABF3952185E0B2700E62240 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				AABF3953185E0E5500E62240 /* TVHModelAnalyticsProtocol.h */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+		AABF3957185E163C00E62240 /* Analytics / Debugs */ = {
+			isa = PBXGroup;
+			children = (
+				AABF3954185E157E00E62240 /* TVHModelAnalytics.h */,
+				AABF3955185E157E00E62240 /* TVHModelAnalytics.m */,
+				AA8CDBDE1819CC090025C39F /* TVHAnalytics.h */,
+				AA8CDBDF1819CC090025C39F /* TVHAnalytics.m */,
+				AAF0536E18245FA0008B1A0A /* TVHDebugLytics.h */,
+				AAF0536F18245FA0008B1A0A /* TVHDebugLytics.m */,
+			);
+			name = "Analytics / Debugs";
+			sourceTree = "<group>";
+		};
+		AABF3959185E168000E62240 /* Properties */ = {
+			isa = PBXGroup;
+			children = (
+				AA21878616E7F6D9005D95EF /* NSString+FileSize.h */,
+				AA21878716E7F6D9005D95EF /* NSString+FileSize.m */,
+				AAF029CE184FEF4300CF320E /* NSArray+Utils.h */,
+				AAF029CF184FEF4300CF320E /* NSArray+Utils.m */,
+			);
+			name = Properties;
+			sourceTree = "<group>";
+		};
 		AAC03E671818778000631C93 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
@@ -1615,6 +1644,8 @@
 				AA8DC11516E140B600F93BD7 /* DVR */,
 				AA8DC11416E1409400F93BD7 /* Comet Poll / Status */,
 				AAD8EA041710CB8E00932A0E /* Misc */,
+				AABF3952185E0B2700E62240 /* Analytics */,
+				AA9E76D8181D3C9A00E5A0D4 /* PlayTo */,
 				AA3E5CDA16D8267200CE444C /* TVHJsonClient.h */,
 				AA3E5CDB16D8267200CE444C /* TVHJsonClient.m */,
 				AAF1E5D4184E71740092205E /* TVHApiClient.h */,
@@ -1937,6 +1968,7 @@
 				AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */,
 				AAB9C9C4185693B800B6E494 /* TVHStatusInputStore40.m in Sources */,
 				AAF029C7184FE4B700CF320E /* TVHTagStore32.m in Sources */,
+				AABF3956185E157E00E62240 /* TVHModelAnalytics.m in Sources */,
 				AA3054561859299800486A75 /* TVHAutoRecStore40.m in Sources */,
 				AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */,
 				AABCEFB8182EFBEB00549ADF /* TVHService.m in Sources */,

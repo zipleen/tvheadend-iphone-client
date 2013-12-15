@@ -11,6 +11,7 @@
 //
 
 #import "TVHServer.h"
+#import "TVHPlayXbmc.h"
 
 @interface TVHServer() {
     BOOL inProcessing;
@@ -67,6 +68,7 @@
     self = [super init];
     if (self) {
         inProcessing = NO;
+        [TVHPlayXbmc sharedInstance];
         self.settings = settings;
         self.version = settings.version;
         [self.tagStore fetchTagList];
@@ -257,6 +259,14 @@
         }
     }
     return @"34";
+}
+
+- (TVHPlayStream*)playStream
+{
+    if ( ! _playStream ) {
+        _playStream = [[TVHPlayStream alloc] initWithTvhServer:self];
+    }
+    return _playStream;
 }
 
 #pragma mark fetch version

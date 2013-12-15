@@ -53,8 +53,8 @@
 // "system wide" settings
 @property (nonatomic) NSInteger sortChannel;
 @property (nonatomic) BOOL autoStartPolling;
-//@property (nonatomic, strong) NSString *transcodeResolution;
-//@property (nonatomic, strong) NSString *customPrefix;
+@property (nonatomic, strong) NSString *transcodeResolution;
+@property (nonatomic, strong) NSString *customPrefix;
 
 - (id)initWithSettings:(NSDictionary*)settings;
 - (NSURL*)baseURL;

@@ -13,11 +13,13 @@
 #import "TVHSingletonServer.h"
 #import "TVHServerSettings.h"
 #import "TVHSettings.h"
+#import "TVHModelAnalytics.h"
 #import "TVHPlayXbmc.h"
 
 @implementation TVHSingletonServer {
     TVHServer *__tvhserver;
     TVHSettings *settings;
+    id<TVHModelAnalyticsProtocol> _analytics;
 }
 
 + (TVHSingletonServer*)sharedInstance {
@@ -34,7 +36,6 @@
                                                  selector:@selector(refreshServerVersion)
                                                      name:@"didLoadTVHVersion"
                                                    object:nil];
-        [TVHPlayXbmc sharedInstance];
     });
     
     return __sharedInstance;
@@ -49,6 +50,7 @@
 - (TVHServer*)serverInstance {
     if ( ! __tvhserver ) {
         __tvhserver = [[TVHServer alloc] initWithSettings:self.serverSettings];
+        __tvhserver.analytics = [self analytics];
     }
     return __tvhserver;
 }
@@ -62,6 +64,14 @@
         settings = [TVHSettings sharedInstance];
     }
     return settings;
+}
+
+- (id<TVHModelAnalyticsProtocol>)analytics
+{
+    if ( ! _analytics ) {
+        _analytics = [[TVHModelAnalytics alloc] init];
+    }
+    return _analytics;
 }
 
 #pragma mark Notifications

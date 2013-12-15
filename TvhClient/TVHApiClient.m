@@ -18,7 +18,14 @@
 
 @implementation TVHApiClient
 
+- (id)init
+{
+    [NSException raise:@"Invalid Init" format:@"TVHApiClient needs JsonClient to work"];
+    return nil;
+}
+
 - (id)initWithClient:(TVHJsonClient*)jsonClient {
+    NSParameterAssert(jsonClient);
     self = [super init];
     if (!self) return nil;
     

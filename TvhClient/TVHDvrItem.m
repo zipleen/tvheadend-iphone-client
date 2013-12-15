@@ -102,6 +102,11 @@
     return nil;
 }
 
+- (NSString*)streamUrlWithTranscoding:(BOOL)transcoding withInternal:(BOOL)internal
+{
+    return [self.tvhServer.playStream streamUrlForObject:self withTranscoding:transcoding withInternal:internal];
+}
+
 - (BOOL)isEqual: (id)other {
     if (other == self)
         return YES;
