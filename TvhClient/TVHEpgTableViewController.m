@@ -48,7 +48,10 @@
         _epgStore = [server createEpgStoreWithName:@"Shared"];
         [_epgStore setDelegate:self];
         // we can't have the object register the notification, because every channel has one epgStore - that would make every epgStore object update itself!!
-        [[NSNotificationCenter defaultCenter] addObserver:_epgStore selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:_epgStore
+                                                 selector:@selector(appWillEnterForeground:)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(appWillResignActive:)
@@ -65,12 +68,16 @@
 }
 
 - (void)appWillResignActive:(NSNotification*)note {
-    [self.timer invalidate];
+    if ( self ) {
+        [self.timer invalidate];
+    }
 }
 
 - (void)appWillEnterForeground:(NSNotification*)note {
-    [self processTimerEvents];
-    [self startTimer];
+    if ( self ) {
+        [self processTimerEvents];
+        [self startTimer];
+    }
 }
 
 - (void)startTimer {
