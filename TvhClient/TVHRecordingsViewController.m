@@ -57,7 +57,7 @@
 }
 
 - (void)receiveDvrNotification:(NSNotification *) notification {
-    if ( [[notification name] isEqualToString:@"didSuccessDvrAction"] ) {
+    if ( [[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] ) {
         if ( [notification.object isEqualToString:@"deleteEntry"]) {
             [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Recording", nil)];
         }
@@ -77,7 +77,7 @@
     if( [self.dvrStore delegate] ) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didLoadDvr:)
-                                                     name:@"didLoadDvr"
+                                                     name:TVHDvrStoreDidLoadNotification
                                                    object:self.dvrStore];
     } else {
         [self.dvrStore setDelegate:self];
@@ -86,7 +86,7 @@
     if( [self.autoRecStore delegate] ) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didLoadDvrAutoRec)
-                                                     name:@"didLoadDvrAutoRec"
+                                                     name:TVHAutoRecStoreDidLoadNotification
                                                    object:self.autoRecStore];
     } else {
         [self.autoRecStore setDelegate:self];
@@ -119,7 +119,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDvrNotification:)
-                                                 name:@"didSuccessDvrAction"
+                                                 name:TVHDvrActionDidSucceedNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self

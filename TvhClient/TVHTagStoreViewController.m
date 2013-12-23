@@ -64,7 +64,7 @@
     if( [self.tagStore delegate] ) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didLoadTags)
-                                                     name:@"didLoadTags"
+                                                     name:TVHTagStoreDidLoadNotification
                                                    object:self.tagStore];
     } else {
         [self.tagStore setDelegate:self];

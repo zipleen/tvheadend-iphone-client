@@ -49,7 +49,7 @@
         if( [_statusSubscriptionsStore delegate] ) {
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(didLoadAdapters)
-                                                         name:@"didLoadAdapters"
+                                                         name:TVHAdapterStoreDidLoadNotification
                                                        object:_statusSubscriptionsStore];
         } else {
             [_statusSubscriptionsStore setDelegate:self];
@@ -65,7 +65,7 @@
         if( [_adapterStore delegate] ) {
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(didLoadStatusSubscriptions)
-                                                         name:@"didLoadStatusSubscriptions"
+                                                         name:TVHStatusSubscriptionStoreDidLoadNotification
                                                        object:_adapterStore];
         } else {
             [_adapterStore setDelegate:self];
@@ -81,7 +81,7 @@
         if( [_inputStore delegate] ) {
             [[NSNotificationCenter defaultCenter] addObserver:self
                                                      selector:@selector(didLoadStatusInputs)
-                                                         name:@"didLoadStatusInputs"
+                                                         name:TVHStatusInputStoreDidLoadNotification
                                                        object:_adapterStore];
         } else {
             [_inputStore setDelegate:self];

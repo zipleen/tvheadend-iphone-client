@@ -57,7 +57,7 @@
     if( [self.channelList delegate] ) {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didLoadChannels)
-                                                     name:@"didLoadChannels"
+                                                     name:TVHChannelStoreDidLoadNotification
                                                    object:self.channelList];
     } else {
         [self.channelList setDelegate:self];

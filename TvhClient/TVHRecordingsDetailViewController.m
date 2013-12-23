@@ -55,7 +55,7 @@
 }
 
 - (void) receiveDvrNotification:(NSNotification *) notification {
-    if ([[notification name] isEqualToString:@"didSuccessDvrAction"] && [notification.object isEqualToString:@"recordEvent"]) {
+    if ([[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] && [notification.object isEqualToString:@"recordEvent"]) {
         [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
     }
 }
@@ -135,7 +135,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDvrNotification:)
-                                                 name:@"didSuccessDvrAction"
+                                                 name:TVHDvrActionDidSucceedNotification
                                                object:nil];
     
     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
