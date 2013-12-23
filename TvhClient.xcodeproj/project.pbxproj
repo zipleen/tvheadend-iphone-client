@@ -1458,6 +1458,7 @@
 					"\"$(SRCROOT)/vendor/TestFlight\\ SDK\"",
 					"\"$(SRCROOT)/vendor/GoogleAnalytics\\ SDK\"",
 				);
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
@@ -1479,6 +1480,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1494,6 +1496,7 @@
 					"\"$(SRCROOT)/vendor/TestFlight\\ SDK\"",
 					"\"$(SRCROOT)/vendor/GoogleAnalytics\\ SDK\"",
 				);
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
