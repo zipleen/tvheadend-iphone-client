@@ -150,6 +150,13 @@
                    constrainedToSize:CGSizeMake(screenWidth-20, CGFLOAT_MAX)];
     logCell.frame = CGRectMake(10, 5, screenWidth-20, size.height);
     logCell.text = [self lineAtIndex:indexPath.row];
+    
+    if ( indexPath.row % 2 ) {
+        logCell.backgroundColor = [UIColor colorWithRed:0.824 green:0.824 blue:0.824 alpha:1];
+    } else {
+        logCell.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
+    }
+    
     return cell;
 }
 
