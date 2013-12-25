@@ -55,7 +55,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearLog:)
-                                                 name:@"resetAllObjects"
+                                                 name:TVHWillDestroyServerNotification
                                                object:nil];
     
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];

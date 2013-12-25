@@ -29,12 +29,12 @@
         __sharedInstance = [[TVHSingletonServer alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:__sharedInstance
                                                  selector:@selector(resetServer)
-                                                     name:@"resetAllObjects"
+                                                     name:TVHWillDestroyServerNotification
                                                    object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:__sharedInstance
                                                  selector:@selector(refreshServerVersion)
-                                                     name:@"didLoadTVHVersion"
+                                                     name:TVHDidLoadVersionNotification
                                                    object:nil];
     });
     

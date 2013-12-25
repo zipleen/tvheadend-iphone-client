@@ -13,6 +13,8 @@
 #import <Foundation/Foundation.h>
 #import "TVHServer.h"
 
+#define TVHWillDestroyServerNotification @"resetAllObjects"
+
 @interface TVHSingletonServer : NSObject
 + (TVHSingletonServer*)sharedInstance;
 + (TVHServer*)sharedServerInstance;

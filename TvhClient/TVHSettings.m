@@ -12,6 +12,7 @@
 
 #import "TVHSettings.h"
 #import "TVHJsonClient.h"
+#import "TVHSingletonServer.h"
 #import "PDKeychainBindings.h"
 #import <CommonCrypto/CommonDigest.h>
 
@@ -283,7 +284,7 @@ withPassword:(NSString*)password {
     _currentServerSettings = nil;
     
     [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"resetAllObjects"
+     postNotificationName:TVHWillDestroyServerNotification
      object:nil];
 }
 

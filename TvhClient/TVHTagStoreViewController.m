@@ -91,7 +91,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetControllerData)
-                                                 name:@"resetAllObjects"
+                                                 name:TVHWillDestroyServerNotification
                                                object:nil];
     self.settingsButton.title = NSLocalizedString(@"Settings", @"");
 }

@@ -115,7 +115,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetEpgStore)
-                                                 name:@"resetAllObjects"
+                                                 name:TVHWillDestroyServerNotification
                                                object:nil];
     [self.searchBar setDelegate:self];
     shouldBeginEditing = YES;

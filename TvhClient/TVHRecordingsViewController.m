@@ -132,7 +132,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(resetRecordingsStore)
-                                                 name:@"resetAllObjects"
+                                                 name:TVHWillDestroyServerNotification
                                                object:nil];
     
     factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
