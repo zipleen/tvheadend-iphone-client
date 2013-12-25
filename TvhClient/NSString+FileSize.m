@@ -15,33 +15,12 @@
 @implementation NSString (NSStringWithFileSize)
 
 + (NSString*)stringFromFileSize:(unsigned long long)theSize {
-    float floatSize = (float)theSize;
-    
     if ( theSize == 0 ) {
         return @"0";
     }
     
-    if ( theSize < 1023 ){
-        return ([NSString stringWithFormat:@"%llul bytes",theSize]);
-    }
-    
-    floatSize = floatSize / 1024;
-    if ( floatSize < 1023 ){
-        return ([NSString stringWithFormat:@"%1.1f KB",floatSize]);
-    }
-    
-    floatSize = floatSize / 1024;
-    if ( floatSize < 1023 ) {
-        return ([NSString stringWithFormat:@"%1.1f MB",floatSize]);
-    }
-    
-    floatSize = floatSize / 1024;
-    if ( floatSize < 1023 ) {
-        return ([NSString stringWithFormat:@"%1.1f GB",floatSize]);
-    }
-    
-    floatSize = floatSize / 1024;
-    return([NSString stringWithFormat:@"%1.1f TB",floatSize]);
+    NSByteCountFormatter *formatter = [[NSByteCountFormatter alloc] init];
+    return [formatter stringFromByteCount:theSize];
 }
 
 + (NSString*)stringFromFileSizeInBits:(unsigned long long)theSize {
