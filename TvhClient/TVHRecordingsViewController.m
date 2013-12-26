@@ -23,6 +23,7 @@
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHImageCache.h"
 #import "TVHSingletonServer.h"
+#import "TVHTableMgrActions.h"
 
 #define SEGMENT_UPCOMING_REC 0
 #define SEGMENT_COMPLETED_REC 1
@@ -66,7 +67,7 @@
         }
     }
     // this is WRONG, there should be a specific notification for the autorec deleting
-    if ( [[notification name] isEqualToString:@"didSuccessTableMgrAction"] ) {
+    if ( [[notification name] isEqualToString:TVHDidSuccessedTableMgrActionNotification] ) {
         if ( [notification.object isEqualToString:@"delete"]) {
             [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Auto Recording", nil)];
         }
@@ -124,7 +125,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDvrNotification:)
-                                                 name:@"didSuccessTableMgrAction"
+                                                 name:TVHDidSuccessedTableMgrActionNotification
                                                object:nil];
     
     dateFormatter = [[NSDateFormatter alloc] init];
