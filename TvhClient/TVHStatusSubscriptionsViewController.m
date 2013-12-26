@@ -19,13 +19,18 @@
 #import "TVHSingletonServer.h"
 #import "TVHAdapter.h"
 #import "TVHStatusInput.h"
+#import "TVHNetwork.h"
 #import "TVHAdapterMuxViewController.h"
 #import "TVHProgressBar.h"
 #import "TVHStatusSplitViewController.h"
-
 #import "TVHDebugLogViewController.h"
 #import "TVHWebLogViewController.h"
 #import "TVHSettings.h"
+
+#define SubscriptionsSection 0
+#define AdaptersSection 1
+#define StreamInputsSection 2
+#define NetworksSection 3
 
 @interface TVHStatusSubscriptionsViewController (){
     NIKFontAwesomeIconFactory *factory;
@@ -37,6 +42,7 @@
 @property (weak, nonatomic) id <TVHStatusSubscriptionsStore> statusSubscriptionsStore;
 @property (weak, nonatomic) id <TVHAdaptersStore> adapterStore;
 @property (weak, nonatomic) id <TVHStatusInputStore> inputStore;
+@property (weak, nonatomic) id <TVHNetworkStore> networkStore;
 @property (weak, nonatomic) id <TVHCometPoll> cometPoll;
 @end
 
@@ -88,6 +94,22 @@
         }
     }
     return _inputStore;
+}
+
+- (id <TVHNetworkStore>)networkStore {
+    if ( _networkStore == nil) {
+        _networkStore = [[TVHSingletonServer sharedServerInstance] networkStore];
+        
+        if( [_networkStore delegate] ) {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(didLoadNetwork)
+                                                         name:TVHNetworkStoreDidLoadNotification
+                                                       object:_networkStore];
+        } else {
+            [_networkStore setDelegate:self];
+        }
+    }
+    return _networkStore;
 }
 
 - (void)viewDidLoad {
@@ -150,8 +172,6 @@
 
 - (void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] removeObserver:_adapterStore];
-    [[NSNotificationCenter defaultCenter] removeObserver:_statusSubscriptionsStore];
     self.adapterStore = nil;
     self.cometPoll = nil;
     self.statusSubscriptionsStore = nil;
@@ -181,73 +201,58 @@
     [TVHAnalytics sendView:NSStringFromClass([self class])];
 }
 
-- (void)didLoadStatusSubscriptions {
-    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
-        [self.tableView reloadData];
-        lastTableUpdate = [NSDate date];
-        [self.refreshControl endRefreshing];
-    }
-}
-
-- (void)didLoadAdapters {
-    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
-        [self.tableView reloadData];
-        lastTableUpdate = [NSDate date];
-        [self.refreshControl endRefreshing];
-    }
-}
-
-- (void)didLoadStatusInputs {
-    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
-        [self.tableView reloadData];
-        lastTableUpdate = [NSDate date];
-        [self.refreshControl endRefreshing];
-    }
-}
-
 - (void)pullToRefreshViewShouldRefresh {
     [self.tableView reloadData];
     [self.statusSubscriptionsStore fetchStatusSubscriptions];
     [self.adapterStore fetchAdapters];
     [self.inputStore fetchStatusInputs];
+    [self.networkStore fetchNetworks];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if ( section == 0 && self.statusSubscriptionsStore ) {
+    if ( section == SubscriptionsSection && self.statusSubscriptionsStore ) {
         return NSLocalizedString(@"Active Subscriptions", nil);
     }
-    if ( section == 1 && self.adapterStore ) {
+    if ( section == AdaptersSection && self.adapterStore ) {
         return NSLocalizedString(@"Adapters", nil);
     }
-    if ( section == 2 && self.inputStore ) {
+    if ( section == StreamInputsSection && self.inputStore ) {
         return NSLocalizedString(@"Stream Inputs", nil);
+    }
+    if ( section == NetworksSection && self.networkStore ) {
+        return NSLocalizedString(@"Networks", nil);
     }
     return nil;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    if ( section == 0 ) {
+    if ( section == SubscriptionsSection ) {
         if ( [self.statusSubscriptionsStore count] == 0 && self.statusSubscriptionsStore ) {
             return NSLocalizedString(@"No active subscriptions.", nil);
         }
     }
-    if ( section == 1 ) {
+    if ( section == AdaptersSection ) {
         if ( [self.adapterStore count] == 0 && self.adapterStore ) {
             return NSLocalizedString(@"No adapters found.", nil);
         }
     }
-    if ( section == 2 ) {
+    if ( section == StreamInputsSection ) {
         if ( [self.inputStore count] == 0 && self.inputStore ) {
             return NSLocalizedString(@"No Stream found.", nil);
+        }
+    }
+    if ( section == NetworksSection ) {
+        if ( [self.networkStore count] == 0 && self.networkStore ) {
+            return NSLocalizedString(@"No Networks found.", nil);
         }
     }
     return nil;
@@ -255,14 +260,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ( section == 0 ) {
+    if ( section == SubscriptionsSection ) {
         return [self.statusSubscriptionsStore count];
     }
-    if ( section == 1 ) {
+    if ( section == AdaptersSection ) {
         return [self.adapterStore count];
     }
-    if ( section == 2 ) {
+    if ( section == StreamInputsSection ) {
         return [self.inputStore count];
+    }
+    if ( section == NetworksSection ) {
+        return [self.networkStore count];
     }
     return 0;
 }
@@ -271,144 +279,213 @@
 {
     UITableViewCell *cell;
     
-    if ( indexPath.section == 0 ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" ];
-        if(cell==nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreSubscriptionItems"];
-        }
-        
-        UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
-        UILabel *programLabel = (UILabel *)[cell viewWithTag:110];
-        UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
-        UILabel *channelLabel = (UILabel *)[cell viewWithTag:103];
-        UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
-        //UILabel *startLabel = (UILabel *)[cell viewWithTag:105];
-        UILabel *stateLabel = (UILabel *)[cell viewWithTag:106];
-        UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
-        UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
-        UIImageView *channelIcon = (UIImageView *)[cell viewWithTag:120];
-        UIImageView *stateIcon = (UIImageView *)[cell viewWithTag:121];
-        UIImageView *errorIcon = (UIImageView *)[cell viewWithTag:122];
-        UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:123];
-        UIImageView *clientIcon = (UIImageView *)[cell viewWithTag:124];
-        UIImageView *client2Icon = (UIImageView *)[cell viewWithTag:125];
-        
-        TVHStatusSubscription *subscription = [self.statusSubscriptionsStore objectAtIndex:indexPath.row];
-        TVHChannel *channel = [[[TVHSingletonServer sharedServerInstance] channelStore] channelWithName:subscription.channel];
-        
-        hostnameLabel.text = subscription.hostname;
-        programLabel.text = [channel.currentPlayingProgram title];
-        titleLabel.text = subscription.title;
-        channelLabel.text = subscription.channel;
-        serviceLabel.text = subscription.service;
-        //startLabel.text = [subscription.start description];
-        stateLabel.text = subscription.state;
-        errorsLabel.text = [NSString stringWithFormat:@"%d", subscription.errors];
-        bandwidthLabel.text = [NSString stringWithFormat:@"%@", [NSString stringFromFileSizeInBits:subscription.bw]];
-        
-        [channelIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconDesktop]];
-        [channelIcon setContentMode:UIViewContentModeScaleAspectFit];
-        [stateIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconSignal]];
-        [stateIcon setContentMode:UIViewContentModeScaleAspectFit];
-        [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign]];
-        [errorIcon setContentMode:UIViewContentModeScaleAspectFit];
-        [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
-        [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
-        [clientIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconHdd]];
-        [clientIcon setContentMode:UIViewContentModeScaleAspectFit];
-        [client2Icon setImage:[factory createImageForIcon:NIKFontAwesomeIconPlayCircle]];
-        [client2Icon setContentMode:UIViewContentModeScaleAspectFit];
-        
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    if ( indexPath.section == SubscriptionsSection ) {
+        cell = [self cellForActiveSubscription:tableView atRowIndexPath:indexPath];
     }
-    if ( indexPath.section == 1 ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
-        if(cell==nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
-        }
-        
-        UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
-        UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
-        UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
-        UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
-        UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
-        UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
-        UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
-        UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];
-        UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
-        TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
-        [progress setTintColor:PROGRESS_BAR_PLAYBACK];
-        CGRect progressBarFrame = {
-            .origin.x = progress.frame.origin.x,
-            .origin.y = progress.frame.origin.y,
-            .size.width = progress.frame.size.width,
-            .size.height = 4,
-        };
-        [progress setFrame:progressBarFrame];
-        
-        TVHAdapter *adapter = [self.adapterStore objectAtIndex:indexPath.row];
-        
-        deviceNameLabel.text = adapter.devicename;
-        adapterPathLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", adapter.name, adapter.path];
-        bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
-        serviceLabel.text = adapter.currentMux;
-        snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
-        uncLabel.text = [NSString stringWithFormat:@"%d", adapter.uncavg];
-        berLabel.text = [NSString stringWithFormat:@"%d", adapter.ber];
-        signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
-        progress.progress = (float)adapter.signal/100;
-        [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
-        [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
-        
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if ( indexPath.section == AdaptersSection ) {
+        cell = [self cellForAdapter:tableView atRowIndexPath:indexPath];
     }
-    if ( indexPath.section == 2 ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
-        if(cell==nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
-        }
-        
-        UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
-        UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
-        UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
-        UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
-        UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
-        UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
-        UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
-        UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];
-        UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
-        TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
-        [progress setTintColor:PROGRESS_BAR_PLAYBACK];
-        CGRect progressBarFrame = {
-            .origin.x = progress.frame.origin.x,
-            .origin.y = progress.frame.origin.y,
-            .size.width = progress.frame.size.width,
-            .size.height = 4,
-        };
-        [progress setFrame:progressBarFrame];
-        
-        TVHStatusInput *input = [self.inputStore objectAtIndex:indexPath.row];
-        
-        deviceNameLabel.text = input.stream;
-        adapterPathLabel.text = input.input;
-        bwLabel.text = [NSString stringFromFileSizeInBits:input.bps];
-        serviceLabel.text = input.stream;
-        snrLabel.text = [NSString stringWithFormat:@"%.1f dB", input.snr];
-        uncLabel.text = [NSString stringWithFormat:@"%d", input.unc];
-        berLabel.text = [NSString stringWithFormat:@"%d", input.ber];
-        signalLabel.text = [NSString stringWithFormat:@"%d %%", input.signal];
-        progress.progress = (float)input.signal/100;
-        [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
-        [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
-        
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if ( indexPath.section == StreamInputsSection ) {
+        cell = [self cellForStreamInput:tableView atRowIndexPath:indexPath];
+    }
+    if ( indexPath.section == NetworksSection ) {
+        cell = [self cellForNetwork:tableView atRowIndexPath:indexPath];
     }
 
-    
     return cell;
 }
 
-#pragma mark - Table view delegate
+- (UITableViewCell *)cellForActiveSubscription:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" ];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreSubscriptionItems"];
+    }
+    
+    UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
+    UILabel *programLabel = (UILabel *)[cell viewWithTag:110];
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:102];
+    UILabel *channelLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+    //UILabel *startLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *stateLabel = (UILabel *)[cell viewWithTag:106];
+    UILabel *errorsLabel = (UILabel *)[cell viewWithTag:107];
+    UILabel *bandwidthLabel = (UILabel *)[cell viewWithTag:108];
+    UIImageView *channelIcon = (UIImageView *)[cell viewWithTag:120];
+    UIImageView *stateIcon = (UIImageView *)[cell viewWithTag:121];
+    UIImageView *errorIcon = (UIImageView *)[cell viewWithTag:122];
+    UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:123];
+    UIImageView *clientIcon = (UIImageView *)[cell viewWithTag:124];
+    UIImageView *client2Icon = (UIImageView *)[cell viewWithTag:125];
+    
+    TVHStatusSubscription *subscription = [self.statusSubscriptionsStore objectAtIndex:indexPath.row];
+    TVHChannel *channel = [[[TVHSingletonServer sharedServerInstance] channelStore] channelWithName:subscription.channel];
+    
+    hostnameLabel.text = subscription.hostname;
+    programLabel.text = [channel.currentPlayingProgram title];
+    titleLabel.text = subscription.title;
+    channelLabel.text = subscription.channel;
+    serviceLabel.text = subscription.service;
+    //startLabel.text = [subscription.start description];
+    stateLabel.text = subscription.state;
+    errorsLabel.text = [NSString stringWithFormat:@"%d", subscription.errors];
+    bandwidthLabel.text = [NSString stringWithFormat:@"%@", [NSString stringFromFileSizeInBits:subscription.bw]];
+    
+    [channelIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconDesktop]];
+    [channelIcon setContentMode:UIViewContentModeScaleAspectFit];
+    [stateIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconSignal]];
+    [stateIcon setContentMode:UIViewContentModeScaleAspectFit];
+    [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign]];
+    [errorIcon setContentMode:UIViewContentModeScaleAspectFit];
+    [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+    [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
+    [clientIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconHdd]];
+    [clientIcon setContentMode:UIViewContentModeScaleAspectFit];
+    [client2Icon setImage:[factory createImageForIcon:NIKFontAwesomeIconPlayCircle]];
+    [client2Icon setContentMode:UIViewContentModeScaleAspectFit];
+    
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    return cell;
+}
+
+- (UITableViewCell *)cellForAdapter:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
+    }
+    
+    UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
+    UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
+    UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+    UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
+    UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
+    UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];
+    UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
+    TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
+    [progress setTintColor:PROGRESS_BAR_PLAYBACK];
+    CGRect progressBarFrame = {
+        .origin.x = progress.frame.origin.x,
+        .origin.y = progress.frame.origin.y,
+        .size.width = progress.frame.size.width,
+        .size.height = 4,
+    };
+    [progress setFrame:progressBarFrame];
+    
+    TVHAdapter *adapter = [self.adapterStore objectAtIndex:indexPath.row];
+    
+    deviceNameLabel.text = adapter.devicename;
+    adapterPathLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", adapter.name, adapter.path];
+    bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
+    serviceLabel.text = adapter.currentMux;
+    snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
+    uncLabel.text = [NSString stringWithFormat:@"%d", adapter.uncavg];
+    berLabel.text = [NSString stringWithFormat:@"%d", adapter.ber];
+    signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
+    progress.progress = (float)adapter.signal/100;
+    [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+    [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+- (UITableViewCell *)cellForStreamInput:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+    if ( cell==nil ) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
+    }
+    
+    UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
+    UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
+    UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+    UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
+    UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
+    UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];
+    UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
+    TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
+    [progress setTintColor:PROGRESS_BAR_PLAYBACK];
+    CGRect progressBarFrame = {
+        .origin.x = progress.frame.origin.x,
+        .origin.y = progress.frame.origin.y,
+        .size.width = progress.frame.size.width,
+        .size.height = 4,
+    };
+    [progress setFrame:progressBarFrame];
+    
+    TVHStatusInput *input = [self.inputStore objectAtIndex:indexPath.row];
+    
+    deviceNameLabel.text = input.stream;
+    adapterPathLabel.text = input.input;
+    bwLabel.text = [NSString stringFromFileSizeInBits:input.bps];
+    serviceLabel.text = input.stream;
+    snrLabel.text = [NSString stringWithFormat:@"%.1f dB", input.snr];
+    uncLabel.text = [NSString stringWithFormat:@"%d", input.unc];
+    berLabel.text = [NSString stringWithFormat:@"%d", input.ber];
+    signalLabel.text = [NSString stringWithFormat:@"%d %%", input.signal];
+    progress.progress = (float)input.signal/100;
+    [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+    [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+- (UITableViewCell *)cellForNetwork:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
+    }
+    
+    UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
+    /*UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
+    UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
+    UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
+    UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
+    UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];*/
+    UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
+    TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
+    [progress setTintColor:PROGRESS_BAR_PLAYBACK];
+    CGRect progressBarFrame = {
+        .origin.x = progress.frame.origin.x,
+        .origin.y = progress.frame.origin.y,
+        .size.width = progress.frame.size.width,
+        .size.height = 4,
+    };
+    [progress setFrame:progressBarFrame];
+    
+    TVHNetwork *network = [self.networkStore objectAtIndex:indexPath.row];
+    
+    deviceNameLabel.text = network.uuid;
+    /*
+    adapterPathLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", adapter.name, adapter.path];
+    bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
+    serviceLabel.text = adapter.currentMux;
+    snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
+    uncLabel.text = [NSString stringWithFormat:@"%d", adapter.uncavg];
+    berLabel.text = [NSString stringWithFormat:@"%d", adapter.ber];
+    signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
+    progress.progress = (float)adapter.signal/100;
+    */
+     
+    [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
+    [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    return cell;
+}
+
+
+#pragma mark - Table view delegate - click actions
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( indexPath.section == 1 ) {
         if ( indexPath.row  < [self.adapterStore count] ) {
@@ -430,7 +507,32 @@
     }
 }
 
-#pragma mark - Table view delegate
+#pragma mark - TVH Model objects refresh delegates
+
+- (void)didLoadStatusSubscriptions {
+    [self doReloadData];
+}
+
+- (void)didLoadAdapters {
+    [self doReloadData];
+}
+
+- (void)didLoadStatusInputs {
+    [self doReloadData];
+}
+
+- (void)didLoadNetwork {
+    [self doReloadData];
+}
+
+- (void)doReloadData
+{
+    if ( [[NSDate date] compare:[lastTableUpdate dateByAddingTimeInterval:1]] == NSOrderedDescending ) {
+        [self.tableView reloadData];
+        lastTableUpdate = [NSDate date];
+        [self.refreshControl endRefreshing];
+    }
+}
 
 - (void)willLoadAdapters {
     [self.refreshControl beginRefreshing];
@@ -462,6 +564,8 @@
     }
     [self changePollingIcon];
 }
+
+#pragma mark iPad Split Button Actions
 
 - (IBAction)showSplitLog:(id)sender {
     if( self.splitViewController ) {
