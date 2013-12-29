@@ -21,16 +21,20 @@
     CGContextFillRect(ctx, progressRect);
 }
 
-- (TVHProgressBar *)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-	if(self) {
-        //set bar color
+- (id)initWithCoder:(NSCoder *)decoder {
+    if ( self=[super initWithCoder: decoder] )
+    {
+        //self.frame = CGRectMake(0,0,100,4);
         _tintColor = PROGRESS_BAR_PLAYBACK;
-		self.progress = 0;
         self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
-	}
-    
-	return self;
+        
+        NSArray *subViews = self.subviews;
+        for(UIView *view in subViews)
+        {
+            [view removeFromSuperview];
+        }
+    }
+    return self;
 }
 
 @end

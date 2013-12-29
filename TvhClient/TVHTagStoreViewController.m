@@ -216,4 +216,12 @@
     }
 }
 
+- (void)didErrorLoadingTagStore:(NSError *)error
+{
+    [TVHShowNotice errorNoticeInView:self.view
+                               title:NSLocalizedString(@"Network Error", nil)
+                             message:error.localizedDescription];
+    [self.refreshControl endRefreshing];
+}
+
 @end

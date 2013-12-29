@@ -19,6 +19,6 @@
 
 @interface TVHProgressBar : UIProgressView
 @property (nonatomic, strong) UIColor *tintColor;
-- (TVHProgressBar *)initWithFrame:(CGRect)frame;
+- (id)initWithCoder:(NSCoder *)decoder;
 
 @end
