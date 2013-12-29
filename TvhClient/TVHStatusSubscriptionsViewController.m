@@ -444,8 +444,8 @@
     }
     
     UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
-    /*UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
-    UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
+    /*UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
     UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
     UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
     UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
@@ -465,8 +465,8 @@
     TVHNetwork *network = [self.networkStore objectAtIndex:indexPath.row];
     
     deviceNameLabel.text = network.uuid;
+    adapterPathLabel.text = network.networkname;
     /*
-    adapterPathLabel.text = [NSString stringWithFormat:@"%@ ( %@ )", adapter.name, adapter.path];
     bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
     serviceLabel.text = adapter.currentMux;
     snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
