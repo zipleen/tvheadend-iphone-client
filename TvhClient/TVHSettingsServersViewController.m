@@ -14,21 +14,17 @@
 #import "TVHSettings.h"
 #import "UIView+ClosestParent.h"
 
+#define TVH_SETTINGS_SECTION_SERVER_DETAILS 0
+#define TVH_SETTINGS_SECTION_AUTH 1
+#define TVH_SETTINGS_SECTION_ADVANCED_OPTIONS 2
+#define TVH_SETTINGS_SECTION_SSH 3
+
 @interface TVHSettingsServersViewController () <UITextFieldDelegate>
 @property (nonatomic, weak) TVHSettings *settings;
 @property (nonatomic, strong) NSMutableDictionary *server;
 @end
 
 @implementation TVHSettingsServersViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -52,16 +48,16 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == TVH_SETTINGS_SECTION_SERVER_DETAILS) {
         return NSLocalizedString(@"TVHeadend Server Details", @"..in Settings server edit");
     }
-    if (section == 1) {
+    if (section == TVH_SETTINGS_SECTION_AUTH) {
         return NSLocalizedString(@"Authentication", @"..in Settings server edit");
     }
-    if (section == 2) {
+    if (section == TVH_SETTINGS_SECTION_ADVANCED_OPTIONS) {
         return NSLocalizedString(@"Advanced Options", @"..in Settings server edit");
     }
-    if (section == 3) {
+    if (section == TVH_SETTINGS_SECTION_SSH) {
         return NSLocalizedString(@"SSH Port Forward", @"..in Settings server edit");
     }
     return nil;
@@ -69,21 +65,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#ifdef TESTING
+    return 4;
+#else
     return 3;
+#endif
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ( section == 0 ) {
+    if ( section == TVH_SETTINGS_SECTION_SERVER_DETAILS ) {
         return 4;
     }
-    if ( section == 1 ) {
+    if ( section == TVH_SETTINGS_SECTION_AUTH ) {
         return 2;
     }
-    if ( section == 2 ) {
+    if ( section == TVH_SETTINGS_SECTION_ADVANCED_OPTIONS ) {
         return 2;
     }
-    if ( section == 3 ) {
+    if ( section == TVH_SETTINGS_SECTION_SSH ) {
         return 4;
     }
     return 0;
@@ -115,89 +115,107 @@
     textField.returnKeyType = UIReturnKeyDone;
     textField.hidden = NO;
     switchfield.hidden = YES;
-    if ( indexPath.row == 0 && indexPath.section == 0 ) {
-        textLabel.text = NSLocalizedString(@"Name", @"..in Settings server edit");
-        textField.placeholder = @"";
-    }
-    if ( indexPath.row == 1 && indexPath.section == 0  ) {
-        textLabel.text = NSLocalizedString(@"Address", @"..in Settings server edit");
-        textField.placeholder = @"IP or Address";
-        textField.keyboardType = UIKeyboardTypeAlphabet;
-    }
-    if ( indexPath.row == 2 && indexPath.section == 0  ) {
-        textLabel.text = NSLocalizedString(@"Port", @"..in Settings server edit");
-        textField.placeholder = @"9981";
-        textField.keyboardType = UIKeyboardTypeNumberPad;
-    }
-    if ( indexPath.row == 3 && indexPath.section == 0  ) {
-        textLabel.text = NSLocalizedString(@"HTSP Port", @"..in Settings server edit");
-        textField.placeholder = @"9982";
-        textField.keyboardType = UIKeyboardTypeNumberPad;
-    }
-    if ( indexPath.row == 0 && indexPath.section == 1 ) {
-        textLabel.text = NSLocalizedString(@"Username", @"..in Settings server edit");
-        textField.placeholder = @"";
-        textField.keyboardType = UIKeyboardTypeDefault;
-    }
-    if ( indexPath.row == 1 && indexPath.section == 1 ) {
-        textLabel.text = NSLocalizedString(@"Password", @"..in Settings server edit");
-        textField.placeholder = @"";
-        textField.keyboardType = UIKeyboardTypeDefault;
-        textField.secureTextEntry = YES;
-    }
-    if ( indexPath.row == 0 && indexPath.section == 2 ) {
-        textLabel.text = NSLocalizedString(@"Use HTTPS", @"..in Settings server edit");
-        textField.hidden = YES;
-        switchfield.hidden = NO;
-        if ( [[self.server objectForKey:TVHS_USE_HTTPS] isEqualToString:@"s"] ) {
-            [switchfield setOn:YES];
-        } else {
-            [switchfield setOn:NO];
+    if ( indexPath.section == TVH_SETTINGS_SECTION_SERVER_DETAILS ) {
+        if ( indexPath.row == 0 ) {
+            textLabel.text = NSLocalizedString(@"Name", @"..in Settings server edit");
+            textField.placeholder = @"";
         }
-        [switchfield addTarget:self action: @selector(setUseHttps:) forControlEvents:UIControlEventValueChanged];
+        
+        if ( indexPath.row == 1 ) {
+            textLabel.text = NSLocalizedString(@"Address", @"..in Settings server edit");
+            textField.placeholder = @"IP or Address";
+            textField.keyboardType = UIKeyboardTypeAlphabet;
+        }
+        
+        if ( indexPath.row == 2 ) {
+            textLabel.text = NSLocalizedString(@"Port", @"..in Settings server edit");
+            textField.placeholder = @"9981";
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+        }
+        
+        if ( indexPath.row == 3 ) {
+            textLabel.text = NSLocalizedString(@"HTSP Port", @"..in Settings server edit");
+            textField.placeholder = @"9982";
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+        }
     }
-    if ( indexPath.row == 1 && indexPath.section == 2 ) {
-        textLabel.text = NSLocalizedString(@"Web Root", @"..in Settings server edit");
-        textField.placeholder = @"/";
-        textField.keyboardType = UIKeyboardTypeURL;
+    
+    if ( indexPath.section == TVH_SETTINGS_SECTION_AUTH ) {
+        if ( indexPath.row == 0 ) {
+            textLabel.text = NSLocalizedString(@"Username", @"..in Settings server edit");
+            textField.placeholder = @"";
+            textField.keyboardType = UIKeyboardTypeDefault;
+        }
+        
+        if ( indexPath.row == 1 ) {
+            textLabel.text = NSLocalizedString(@"Password", @"..in Settings server edit");
+            textField.placeholder = @"";
+            textField.keyboardType = UIKeyboardTypeDefault;
+            textField.secureTextEntry = YES;
+        }
     }
-    if ( indexPath.row == 0 && indexPath.section == 3  ) {
-        textLabel.text = NSLocalizedString(@"Address", @"..in Settings server edit");
-        textField.placeholder = @"SSH Host Address";
-        textField.keyboardType = UIKeyboardTypeAlphabet;
+    
+    if ( indexPath.section == TVH_SETTINGS_SECTION_ADVANCED_OPTIONS ) {
+        if ( indexPath.row == 0 ) {
+            textLabel.text = NSLocalizedString(@"Use HTTPS", @"..in Settings server edit");
+            textField.hidden = YES;
+            switchfield.hidden = NO;
+            if ( [[self.server objectForKey:TVHS_USE_HTTPS] isEqualToString:@"s"] ) {
+                [switchfield setOn:YES];
+            } else {
+                [switchfield setOn:NO];
+            }
+            // horrible hack :(
+            [switchfield addTarget:self action: @selector(setUseHttps:) forControlEvents:UIControlEventValueChanged];
+        }
+        
+        if ( indexPath.row == 1 ) {
+            textLabel.text = NSLocalizedString(@"Web Root", @"..in Settings server edit");
+            textField.placeholder = @"/";
+            textField.keyboardType = UIKeyboardTypeURL;
+        }
     }
-    if ( indexPath.row == 1 && indexPath.section == 3  ) {
-        textLabel.text = NSLocalizedString(@"SSH Port", @"..in Settings server edit");
-        textField.placeholder = @"22";
-        textField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    if ( indexPath.section == TVH_SETTINGS_SECTION_SSH ) {
+        if ( indexPath.row == 0 ) {
+            textLabel.text = NSLocalizedString(@"Address", @"..in Settings server edit");
+            textField.placeholder = @"SSH Host Address";
+            textField.keyboardType = UIKeyboardTypeAlphabet;
+        }
+        
+        if ( indexPath.row == 1 ) {
+            textLabel.text = NSLocalizedString(@"SSH Port", @"..in Settings server edit");
+            textField.placeholder = @"22";
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+        }
+        
+        if ( indexPath.row == 2 ) {
+            textLabel.text = NSLocalizedString(@"SSH Username", @"..in Settings server edit");
+            textField.placeholder = @"";
+            textField.keyboardType = UIKeyboardTypeAlphabet;
+        }
+        
+        if ( indexPath.row == 3 ) {
+            textLabel.text = NSLocalizedString(@"SSH Password", @"..in Settings server edit");
+            textField.placeholder = @"";
+            textField.keyboardType = UIKeyboardTypeAlphabet;
+            textField.secureTextEntry = YES;
+        }
     }
-    if ( indexPath.row == 2 && indexPath.section == 3  ) {
-        textLabel.text = NSLocalizedString(@"SSH Username", @"..in Settings server edit");
-        textField.placeholder = @"";
-        textField.keyboardType = UIKeyboardTypeAlphabet;
-    }
-    if ( indexPath.row == 3 && indexPath.section == 3  ) {
-        textLabel.text = NSLocalizedString(@"SSH Password", @"..in Settings server edit");
-        textField.placeholder = @"";
-        textField.keyboardType = UIKeyboardTypeAlphabet;
-        textField.secureTextEntry = YES;
-    }
+    
     textField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
     textField.textAlignment = UITextAlignmentLeft;
-    //textField.tag = indexPath.row + (indexPath.section * 10) + 100;
     textField.delegate = self;
     textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
     textField.enabled = YES;
     textField.text = [self.server objectForKey:TVHS_SERVER_KEY_SETTINGS[[self indexOfSettingsArray:indexPath.section row:indexPath.row]] ] ;
     
-    [cell.contentView addSubview:textField];
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ( indexPath.row == 0 && indexPath.section == 2 ) {
+    if ( indexPath.row == 0 && indexPath.section == TVH_SETTINGS_SECTION_ADVANCED_OPTIONS ) {
         return;
     }
     
@@ -217,8 +235,8 @@
     
     [self.server setValue:textField.text
                    forKey:TVHS_SERVER_KEY_SETTINGS[ [self indexOfSettingsArray:indexPath.section
-                                                                  row:indexPath.row]
-                                           ]
+                                                                           row:indexPath.row]
+                                                   ]
      ];
     
     return YES;
