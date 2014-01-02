@@ -28,6 +28,11 @@
 		AA43D4A016CF167300104BBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AA43D4A616CF167300104BBF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA43D4A416CF167300104BBF /* InfoPlist.strings */; };
 		AA43D4A916CF167300104BBF /* TvhClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D4A816CF167300104BBF /* TvhClientTests.m */; };
+		AA476BFE1874F4C60093D9E5 /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476BFB1874F4C60093D9E5 /* libssh2.a */; };
+		AA476BFF1874F4C60093D9E5 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476BFC1874F4C60093D9E5 /* libcrypto.a */; };
+		AA476C001874F4C60093D9E5 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476BFD1874F4C60093D9E5 /* libssl.a */; };
+		AA476C041874F7BC0093D9E5 /* libgcrypt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476C021874F7BC0093D9E5 /* libgcrypt.a */; };
+		AA476C051874F7BC0093D9E5 /* libgpg-error.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476C031874F7BC0093D9E5 /* libgpg-error.a */; };
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
 		AA6ADF86181F2A42000DC39A /* TVHSettingsWebControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6ADF85181F2A42000DC39A /* TVHSettingsWebControllerViewController.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
@@ -206,6 +211,11 @@
 		AA43D4A716CF167300104BBF /* TvhClientTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TvhClientTests.h; sourceTree = "<group>"; };
 		AA43D4A816CF167300104BBF /* TvhClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TvhClientTests.m; sourceTree = "<group>"; };
 		AA43D4AA16CF167300104BBF /* TvhClientTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TvhClientTests-Prefix.pch"; sourceTree = "<group>"; };
+		AA476BFB1874F4C60093D9E5 /* libssh2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssh2.a; path = "tvheadend-ios-lib/vendor/libssh2-for-iOS/lib/libssh2.a"; sourceTree = "<group>"; };
+		AA476BFC1874F4C60093D9E5 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "tvheadend-ios-lib/vendor/libssh2-for-iOS/lib/libcrypto.a"; sourceTree = "<group>"; };
+		AA476BFD1874F4C60093D9E5 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "tvheadend-ios-lib/vendor/libssh2-for-iOS/lib/libssl.a"; sourceTree = "<group>"; };
+		AA476C021874F7BC0093D9E5 /* libgcrypt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgcrypt.a; path = "tvheadend-ios-lib/vendor/libssh2-for-iOS/lib/libgcrypt.a"; sourceTree = "<group>"; };
+		AA476C031874F7BC0093D9E5 /* libgpg-error.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgpg-error.a"; path = "tvheadend-ios-lib/vendor/libssh2-for-iOS/lib/libgpg-error.a"; sourceTree = "<group>"; };
 		AA6542211706196800BA20C1 /* TVHShowNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHShowNotice.h; sourceTree = "<group>"; };
 		AA6542221706196800BA20C1 /* TVHShowNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHShowNotice.m; sourceTree = "<group>"; };
 		AA6ADF84181F2A42000DC39A /* TVHSettingsWebControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsWebControllerViewController.h; sourceTree = "<group>"; };
@@ -418,6 +428,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA476C041874F7BC0093D9E5 /* libgcrypt.a in Frameworks */,
+				AA476C051874F7BC0093D9E5 /* libgpg-error.a in Frameworks */,
+				AA476BFE1874F4C60093D9E5 /* libssh2.a in Frameworks */,
+				AA476BFF1874F4C60093D9E5 /* libcrypto.a in Frameworks */,
+				AA476C001874F4C60093D9E5 /* libssl.a in Frameworks */,
 				AABF3BBD185E6B2100E62240 /* libtvheadend-ios-lib.a in Frameworks */,
 				AABF3BB9185E66CA00E62240 /* libz.dylib in Frameworks */,
 				AAC59D6517A09A1E005F07B3 /* StoreKit.framework in Frameworks */,
@@ -778,6 +793,11 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA476C021874F7BC0093D9E5 /* libgcrypt.a */,
+				AA476C031874F7BC0093D9E5 /* libgpg-error.a */,
+				AA476BFB1874F4C60093D9E5 /* libssh2.a */,
+				AA476BFC1874F4C60093D9E5 /* libcrypto.a */,
+				AA476BFD1874F4C60093D9E5 /* libssl.a */,
 				AABF3BB8185E66CA00E62240 /* libz.dylib */,
 				AAC7D18D18286F7C00089875 /* Crashlytics.framework */,
 				AAC59D6417A09A1E005F07B3 /* StoreKit.framework */,
@@ -1450,13 +1470,14 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib\"";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib";
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/vendor/TestFlight\\ SDK\"",
-					"\"$(SRCROOT)/vendor/GoogleAnalytics\\ SDK\"",
+					"$(SRCROOT)/vendor/TestFlight\\ SDK",
+					"$(SRCROOT)/vendor/GoogleAnalytics\\ SDK",
+					"/Users/zipleen/dev/tvheadend-iphone-client/tvheadend-ios-lib/vendor/libssh2-for-iOS/lib",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
@@ -1488,13 +1509,14 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib\"";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib";
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/vendor/TestFlight\\ SDK\"",
-					"\"$(SRCROOT)/vendor/GoogleAnalytics\\ SDK\"",
+					"$(SRCROOT)/vendor/TestFlight\\ SDK",
+					"$(SRCROOT)/vendor/GoogleAnalytics\\ SDK",
+					"/Users/zipleen/dev/tvheadend-iphone-client/tvheadend-ios-lib/vendor/libssh2-for-iOS/lib",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-ObjC";
