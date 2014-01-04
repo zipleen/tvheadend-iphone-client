@@ -68,16 +68,11 @@
 }
 
 - (void)appWillResignActive:(NSNotification*)note {
-    if ( self ) {
-        [self.timer invalidate];
-    }
+    [self stopTimer];
 }
 
 - (void)appWillEnterForeground:(NSNotification*)note {
-    if ( self ) {
-        [self processTimerEvents];
-        [self startTimer];
-    }
+    [self processTimerEvents];
 }
 
 - (void)startTimer {
@@ -89,6 +84,14 @@
         [self.epgStore removeOldProgramsFromStore];
         [self startTimer];
         [self.tableView reloadData];
+    }
+}
+
+- (void)stopTimer
+{
+    if ( self.timer ) {
+        [self.timer invalidate];
+        self.timer = nil;
     }
 }
 
@@ -135,10 +138,11 @@
 
 - (void)viewDidUnload
 {
+    [self stopTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self setFilterToolBar:nil];
     [self setFilterSegmentedControl:nil];
     [self setSearchBar:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.epgStore = nil;
     self.epgTable = nil;
     self.tableView = nil;
