@@ -417,7 +417,9 @@
         return;
     }
     
-    [self setFilterProgramTitle:searchBar.text];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setFilterProgramTitleFromSearchBar:) object:searchBar];
+    [self performSelector:@selector(setFilterProgramTitleFromSearchBar:) withObject:searchBar afterDelay:0.3];
+    
     if ( [searchText isEqualToString:@""] ) {
         // why do I have to do this!??! if I put the resignFirstResponder here, it doesn't work...
         [self performSelector:@selector(hideKeyboardWithSearchBar:) withObject:searchBar afterDelay:0];
@@ -442,6 +444,10 @@
 }
 
 #pragma mark - epg filter
+
+- (void)setFilterProgramTitleFromSearchBar:(UISearchBar *)searchbar {
+    [self setFilterProgramTitle:searchbar.text];
+}
 
 - (void)setFilterProgramTitle:(NSString*)programTitle {
     [self.epgStore setFilterToProgramTitle:programTitle];
