@@ -168,6 +168,11 @@
     lastTableUpdate = [NSDate dateWithTimeIntervalSinceNow:-1];
     
     self.title = NSLocalizedString(@"Status", @"");
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetControllerData)
+                                                 name:TVHWillDestroyServerNotification
+                                               object:nil];
 }
 
 - (void)viewDidUnload {
@@ -178,6 +183,11 @@
     self.inputStore = nil;
     [self setSwitchButton:nil];
     [super viewDidUnload];
+}
+
+- (void)resetControllerData
+{
+    [self pullToRefreshViewShouldRefresh];
 }
 
 - (void)changePollingIcon {

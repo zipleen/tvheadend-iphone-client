@@ -39,7 +39,7 @@
 
 - (void)resetControllerData {
     self.tags = nil;
-    [self.tagStore setDelegate:self];
+    [self initDelegate];
     [self.tagStore fetchTagList];
 }
 

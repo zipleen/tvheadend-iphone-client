@@ -69,7 +69,11 @@
 {
     [super viewDidLoad];
     [self initDelegate];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetControllerData)
+                                                 name:TVHWillDestroyServerNotification
+                                               object:nil];
+
     [self.channelList setFilterTag:self.filterTagId];
     
     //pull to refresh
@@ -91,6 +95,17 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)resetControllerData
+{
+    if ( self.splitViewController ) {
+        UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
+        [detailView popToRootViewControllerAnimated:NO];
+        
+        UINavigationController *mainView = [self.splitViewController.viewControllers firstObject];
+        [mainView popToRootViewControllerAnimated:NO];
+    }
 }
 
 - (void)pullToRefreshViewShouldRefresh
