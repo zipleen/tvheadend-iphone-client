@@ -335,9 +335,9 @@
             [self.settings setSelectedServer:indexPath.row];
             [self.tableView reloadData];
             [TVHAnalytics sendEventWithCategory:@"uiAction"
-                                                            withAction:@"changeServer"
-                                                             withLabel:@"changeServer"
-                                                             withValue:[NSNumber numberWithInt:0]];
+                                     withAction:@"changeServer"
+                                      withLabel:@"changeServer"
+                                      withValue:[NSNumber numberWithInt:0]];
         } else {
             [self performSegueWithIdentifier:@"SettingsServers" sender:self];
         }

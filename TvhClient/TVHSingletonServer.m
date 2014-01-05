@@ -77,7 +77,7 @@
 #pragma mark Notifications
 
 - (void)resetServer {
-    [__tvhserver resetData];
+    [__tvhserver cancelAllOperations];
     __tvhserver = nil;
 }
 
