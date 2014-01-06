@@ -11,7 +11,7 @@
 //
 
 #import "TVHAnalytics.h"
-#ifdef TVH_GOOGLEANALYTICS_KEY
+#ifdef TVH_GOOGLEANALYTICS
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
@@ -20,7 +20,7 @@
 @implementation TVHAnalytics
 
 + (void)start {
-#ifdef TVH_GOOGLEANALYTICS_KEY
+#ifdef TVH_GOOGLEANALYTICS
     [GAI sharedInstance].trackUncaughtExceptions = NO;
     [GAI sharedInstance].dispatchInterval = 60;
 #ifdef TESTING
@@ -40,13 +40,13 @@
 }
 
 + (void)setOptOut:(BOOL)optOut {
-#ifdef TVH_GOOGLEANALYTICS_KEY
+#ifdef TVH_GOOGLEANALYTICS
     [[GAI sharedInstance] setOptOut:optOut];
 #endif
 }
 
 + (void)sendView:(NSString*)message {
-#ifdef TVH_GOOGLEANALYTICS_KEY
+#ifdef TVH_GOOGLEANALYTICS
     [[GAI sharedInstance].defaultTracker set:kGAIScreenName value:message];
     [[GAI sharedInstance].defaultTracker send:[[GAIDictionaryBuilder createAppView]  build]];
 #endif
@@ -57,7 +57,7 @@
                    withAction:(NSString *)action
                     withLabel:(NSString *)label
                     withValue:(NSNumber *)value {
-#ifdef TVH_GOOGLEANALYTICS_KEY
+#ifdef TVH_GOOGLEANALYTICS
     [[GAI sharedInstance].defaultTracker send:[[GAIDictionaryBuilder
                                                 createEventWithCategory:category
                                                 action:action
@@ -70,7 +70,7 @@
                      withValue:(NSTimeInterval)time
                       withName:(NSString *)name
                      withLabel:(NSString *)label {
-#ifdef TVH_GOOGLEANALYTICS_KEY
+#ifdef TVH_GOOGLEANALYTICS
     [[GAI sharedInstance].defaultTracker send:[[GAIDictionaryBuilder
                                                 createTimingWithCategory:category
                                                 interval:[NSNumber numberWithDouble:time]

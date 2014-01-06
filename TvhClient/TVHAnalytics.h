@@ -12,6 +12,10 @@
 
 #import <Foundation/Foundation.h>
 
+#if defined TVH_GOOGLEANALYTICS_KEY && !defined __LP64__
+#define TVH_GOOGLEANALYTICS
+#endif
+
 @interface TVHAnalytics : NSObject
 + (void)start;
 + (void)setOptOut:(BOOL)optOut;
