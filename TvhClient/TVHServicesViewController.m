@@ -34,7 +34,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.services = [[self.adapter arrayServicesForMux:self.adapterMux] mutableCopy];
+    if ( self.network ) {
+        self.services = [[self.network networkServicesForMux:self.adapterMux] mutableCopy];
+    } else {
+        self.services = [[self.adapter arrayServicesForMux:self.adapterMux] mutableCopy];
+    }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
@@ -55,7 +59,7 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%d Services", [self.services count]];
+    return [NSString stringWithFormat:@"%lu Services", (unsigned long)[self.services count]];
 }
 
 
@@ -80,7 +84,7 @@
     if ( service.svcname ) {
         svcname.text = service.svcname;
     } else {
-        svcname.text = [NSString stringWithFormat:@"Type: %@ Sid: %d", service.type, service.sid];
+        svcname.text = [NSString stringWithFormat:@"Type: %@ Sid: %ld", service.type, (long)service.sid];
     }
     channelName.text = [service.mappedChannel name];
     

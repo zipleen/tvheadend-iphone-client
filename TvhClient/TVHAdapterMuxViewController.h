@@ -12,8 +12,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TVHAdapter.h"
+#import "TVHNetwork.h"
 
 @interface TVHAdapterMuxViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) TVHAdapter *adapter;
+@property (strong, nonatomic) TVHNetwork *network;
 @end

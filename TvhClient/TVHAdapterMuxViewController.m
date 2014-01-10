@@ -33,7 +33,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.muxes = [[self.adapter arrayAdapterMuxes] mutableCopy];
+    if ( self.network ) {
+        self.muxes = [[self.network networkMuxes] mutableCopy];
+    } else {
+        self.muxes = [[self.adapter arrayAdapterMuxes] mutableCopy];
+    }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -59,7 +63,7 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"%d Muxes - %d Services", [self.muxes count], [self.adapter services]];
+    return [NSString stringWithFormat:@"%lu Muxes - %ld Services", (unsigned long)[self.muxes count], (long)[self.adapter services]];
 }
 
 
@@ -114,14 +118,14 @@
     progressText.textColor = textColor;
     
     network.text = mux.network;
-    freq.text = mux.freq;
+    freq.text = mux.freq ? mux.freq : mux.name;
     mod.text = mux.mod;
     pol.text = mux.pol;
     fe_status.text = [NSString stringWithFormat:@"Frontend Status: %@", mux.fe_status];
-    networkid.text = [NSString stringWithFormat:@"NetId: %d", mux.onid];
-    muxid.text = [NSString stringWithFormat:@"MuxId: %d", mux.muxid];
+    networkid.text = [NSString stringWithFormat:@"NetId: %ld", (long)mux.onid];
+    muxid.text = [NSString stringWithFormat:@"MuxId: %ld", (long)mux.muxid];
     [quality setProgress:mux.quality/100.0];
-    progressText.text = [NSString stringWithFormat:@"%d%%", mux.quality];
+    progressText.text = [NSString stringWithFormat:@"%ld%%", (long)mux.quality];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -145,7 +149,8 @@
         TVHServicesViewController *serviceViewController = segue.destinationViewController;
         [serviceViewController setAdapterMux:adapterMux];
         [serviceViewController setAdapter:self.adapter];
-        [serviceViewController setTitle:adapterMux.freq];
+        [serviceViewController setNetwork:self.network];
+        [serviceViewController setTitle:adapterMux.freq ? adapterMux.freq : adapterMux.name];
     }
 }
 

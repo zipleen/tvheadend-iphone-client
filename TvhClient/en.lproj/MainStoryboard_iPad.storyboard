@@ -781,6 +781,222 @@
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StatusInputItems" id="quC-UV-yKN">
+                                <rect key="frame" x="0.0" y="271" width="768" height="108"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="quC-UV-yKN" id="veA-DA-xfN">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="107"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" text="deviceName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="GP4-09-71A">
+                                            <rect key="frame" x="125" y="83" width="542" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Device Name">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" text="bw" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rhN-d3-cO4">
+                                            <rect key="frame" x="125" y="35" width="217" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Bandwidth">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="106" contentMode="left" text="UNC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ND7-li-C4q">
+                                            <rect key="frame" x="41" y="83" width="43" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="UNC">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="107" contentMode="left" text="BER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hba-2L-PQi">
+                                            <rect key="frame" x="41" y="59" width="43" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="BER">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="108" contentMode="left" text="100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hcq-aG-HyO">
+                                            <rect key="frame" x="627" y="17" width="31" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Signal">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="SNR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uhc-qB-o10">
+                                            <rect key="frame" x="41" y="35" width="128" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="SNR">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" text="Service" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="6A8-Rs-qot">
+                                            <rect key="frame" x="41" y="2" width="707" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Service">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="adapterPath" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" adjustsLetterSpacingToFitWidth="YES" id="LVd-2a-xAK">
+                                            <rect key="frame" x="125" y="59" width="517" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Adapter">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="SNR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="frQ-S8-rIO">
+                                            <rect key="frame" x="11" y="35" width="25" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eVZ-tS-uNz">
+                                            <rect key="frame" x="11" y="59" width="25" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="UNC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SUL-Tu-6vP">
+                                            <rect key="frame" x="11" y="83" width="30" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="satellite.png" id="8WA-jP-n9m">
+                                            <rect key="frame" x="17" y="11" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" tag="301" contentMode="scaleToFill" id="g6d-Gq-vmI">
+                                            <rect key="frame" x="101" y="38" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="hardware.png" id="Gs9-gv-Yl9">
+                                            <rect key="frame" x="101" y="86" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="hardware.png" id="t7J-le-dpP">
+                                            <rect key="frame" x="101" y="62" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </imageView>
+                                        <progressView opaque="NO" tag="110" contentMode="scaleToFill" progress="0.5" id="Z2J-07-Ap5" customClass="TVHProgressBar">
+                                            <rect key="frame" x="41" y="23" width="578" height="2"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Signal"/>
+                                        </progressView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NetworkItems" rowHeight="65" id="NKB-lh-Ulo">
+                                <rect key="frame" x="0.0" y="379" width="768" height="65"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NKB-lh-Ulo" id="Jn5-Q2-fFG">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="106" contentMode="left" text="UNC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hju-Sm-92F">
+                                            <rect key="frame" x="185" y="33" width="43" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="UNC">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="107" contentMode="left" text="BER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vUw-gO-omb">
+                                            <rect key="frame" x="62" y="33" width="60" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="BER">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="SNR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YRy-lL-FwJ">
+                                            <rect key="frame" x="101" y="8" width="280" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <accessibility key="accessibilityConfiguration" hint="SNR">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Network Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ngo-Dk-TAz">
+                                            <rect key="frame" x="11" y="8" width="87" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Muxes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ANL-vo-oIM">
+                                            <rect key="frame" x="11" y="33" width="39" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Services" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sEf-YP-BoV">
+                                            <rect key="frame" x="130" y="33" width="45" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="10"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableViewCell>
                         </prototypes>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>

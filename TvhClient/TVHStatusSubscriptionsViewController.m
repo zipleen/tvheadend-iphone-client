@@ -157,7 +157,7 @@
         [act setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
     }
     
-    int navigationControllerCount = [[self.navigationController.navigationBar subviews] count];
+    NSUInteger navigationControllerCount = [[self.navigationController.navigationBar subviews] count];
     if ( navigationControllerCount >= 2 ) {
         if ( DEVICE_HAS_IOS7 && ! IS_IPAD ) {
             shiftButton += 1;
@@ -338,7 +338,7 @@
     serviceLabel.text = subscription.service;
     //startLabel.text = [subscription.start description];
     stateLabel.text = subscription.state;
-    errorsLabel.text = [NSString stringWithFormat:@"%d", subscription.errors];
+    errorsLabel.text = [NSString stringWithFormat:@"%ld", (long)subscription.errors];
     bandwidthLabel.text = [NSString stringWithFormat:@"%@", [NSString stringFromFileSizeInBits:subscription.bw]];
     
     [channelIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconDesktop]];
@@ -391,9 +391,9 @@
     bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
     serviceLabel.text = adapter.currentMux;
     snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
-    uncLabel.text = [NSString stringWithFormat:@"%d", adapter.uncavg];
-    berLabel.text = [NSString stringWithFormat:@"%d", adapter.ber];
-    signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
+    uncLabel.text = [NSString stringWithFormat:@"%ld", (long)adapter.uncavg];
+    berLabel.text = [NSString stringWithFormat:@"%ld", (long)adapter.ber];
+    signalLabel.text = [NSString stringWithFormat:@"%ld %%", (long)adapter.signal];
     progress.progress = (float)adapter.signal/100;
     [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
     [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
@@ -404,9 +404,9 @@
 
 - (UITableViewCell *)cellForStreamInput:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StatusInputItems" ];
     if ( cell==nil ) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StatusInputItems"];
     }
     
     UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
@@ -430,64 +430,38 @@
     
     TVHStatusInput *input = [self.inputStore objectAtIndex:indexPath.row];
     
-    deviceNameLabel.text = input.stream;
+    deviceNameLabel.text = [NSString stringWithFormat:@"Subs: %ld Weight: %ld", (long)input.subs, (long)input.weight];
     adapterPathLabel.text = input.input;
     bwLabel.text = [NSString stringFromFileSizeInBits:input.bps];
     serviceLabel.text = input.stream;
     snrLabel.text = [NSString stringWithFormat:@"%.1f dB", input.snr];
-    uncLabel.text = [NSString stringWithFormat:@"%d", input.unc];
-    berLabel.text = [NSString stringWithFormat:@"%d", input.ber];
-    signalLabel.text = [NSString stringWithFormat:@"%d %%", input.signal];
+    uncLabel.text = [NSString stringWithFormat:@"%ld", (long)input.unc];
+    berLabel.text = [NSString stringWithFormat:@"%ld", (long)input.ber];
+    signalLabel.text = [NSString stringWithFormat:@"%ld %%", (long)input.signal];
     progress.progress = (float)input.signal/100;
     [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
     [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryNone;
     return cell;
 }
 
 - (UITableViewCell *)cellForNetwork:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NetworkItems" ];
     if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NetworkItems"];
     }
     
-    UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
-    UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
-    /*UILabel *bwLabel = (UILabel *)[cell viewWithTag:103];
-    UILabel *serviceLabel = (UILabel *)[cell viewWithTag:104];
-    UILabel *snrLabel = (UILabel *)[cell viewWithTag:105];
-    UILabel *uncLabel = (UILabel *)[cell viewWithTag:106];
-    UILabel *berLabel = (UILabel *)[cell viewWithTag:107];
-    UILabel *signalLabel = (UILabel *)[cell viewWithTag:108];*/
-    UIImageView *bwIcon = (UIImageView *)[cell viewWithTag:301];
-    TVHProgressBar *progress = (TVHProgressBar *)[cell viewWithTag:110];
-    [progress setTintColor:PROGRESS_BAR_PLAYBACK];
-    CGRect progressBarFrame = {
-        .origin.x = progress.frame.origin.x,
-        .origin.y = progress.frame.origin.y,
-        .size.width = progress.frame.size.width,
-        .size.height = 4,
-    };
-    [progress setFrame:progressBarFrame];
+    UILabel *networkNameLabel = (UILabel *)[cell viewWithTag:105];
+    UILabel *servicesLabel = (UILabel *)[cell viewWithTag:106];
+    UILabel *muxesLabel = (UILabel *)[cell viewWithTag:107];
     
     TVHNetwork *network = [self.networkStore objectAtIndex:indexPath.row];
     
-    deviceNameLabel.text = network.uuid;
-    adapterPathLabel.text = network.networkname;
-    /*
-    bwLabel.text = [NSString stringFromFileSizeInBits:adapter.bw];
-    serviceLabel.text = adapter.currentMux;
-    snrLabel.text = [NSString stringWithFormat:@"%.1f dB", adapter.snr];
-    uncLabel.text = [NSString stringWithFormat:@"%d", adapter.uncavg];
-    berLabel.text = [NSString stringWithFormat:@"%d", adapter.ber];
-    signalLabel.text = [NSString stringWithFormat:@"%d %%", adapter.signal];
-    progress.progress = (float)adapter.signal/100;
-    */
-     
-    [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
-    [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
+    networkNameLabel.text = network.networkname;
+    servicesLabel.text = [NSString stringWithFormat:@"%ld", (long)network.num_svc];
+    muxesLabel.text = [NSString stringWithFormat:@"%ld", (long)network.num_mux];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -497,8 +471,14 @@
 #pragma mark - Table view delegate - click actions
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ( indexPath.section == 1 ) {
+    if ( indexPath.section == AdaptersSection ) {
         if ( indexPath.row  < [self.adapterStore count] ) {
+            [self performSegueWithIdentifier:@"Show DVB Mux" sender:self];
+        }
+    }
+    
+    if ( indexPath.section == NetworksSection  ) {
+        if ( indexPath.row  < [self.networkStore count] ) {
             [self performSegueWithIdentifier:@"Show DVB Mux" sender:self];
         }
     }
@@ -509,11 +489,18 @@
     if( [segue.identifier isEqualToString:@"Show DVB Mux"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        TVHAdapter *adapter = [self.adapterStore objectAtIndex:path.row];
-        
         TVHAdapterMuxViewController *mux = segue.destinationViewController;
-        [mux setAdapter:adapter];
-        [mux setTitle:adapter.name];
+        
+        if ( path.section == AdaptersSection ) {
+            TVHAdapter *adapter = [self.adapterStore objectAtIndex:path.row];
+            [mux setAdapter:adapter];
+            [mux setTitle:adapter.name];
+        }
+        if ( path.section == NetworksSection ) {
+            TVHNetwork *network = [self.networkStore objectAtIndex:path.row];
+            [mux setNetwork:network];
+            [mux setTitle:network.networkname];
+        }
     }
 }
 
