@@ -126,7 +126,7 @@
 
 - (void)handleSwipeFromRight:(UISwipeGestureRecognizer *)recognizer {
     if ( recognizer.state == UIGestureRecognizerStateEnded ) {
-        int sel = [self.segmentedControl selectedSegmentIndex] -1;
+        NSInteger sel = [self.segmentedControl selectedSegmentIndex] -1;
         if (sel >= 0 ) {
             [self.segmentedControl setSelectedSegmentIndex:sel];
             [self.tableView reloadData];
@@ -138,7 +138,7 @@
 
 - (void)handleSwipeFromLeft:(UISwipeGestureRecognizer *)recognizer {
     if ( recognizer.state == UIGestureRecognizerStateEnded ) {
-        int sel = [self.segmentedControl selectedSegmentIndex] + 1;
+        NSInteger sel = [self.segmentedControl selectedSegmentIndex] + 1;
         if (sel < [self.segmentedControl numberOfSegments] ) {
             [self.segmentedControl setSelectedSegmentIndex:sel];
             [self.tableView reloadData];
@@ -188,7 +188,7 @@
     }
     
     // remove excess segments
-    for ( int i = [self.segmentedControl numberOfSegments]; i > [self.channel totalCountOfDaysEpg]; i-- ) {
+    for ( NSInteger i = [self.segmentedControl numberOfSegments]; i > [self.channel totalCountOfDaysEpg]; i-- ) {
         [self.segmentedControl removeSegmentAtIndex:i animated:YES];
     }
     
@@ -199,7 +199,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    uint selected = self.segmentedControl.selectedSegmentIndex;
+    NSInteger selected = self.segmentedControl.selectedSegmentIndex;
     if ( self.segmentedControl.selectedSegmentIndex == -1 ) {
         selected = 0;
     }
@@ -287,7 +287,7 @@
     return nil;
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01f;
 }
 

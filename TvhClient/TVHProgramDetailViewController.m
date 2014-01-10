@@ -60,7 +60,7 @@
     NSMutableDictionary *p = [[NSMutableDictionary alloc] init];
     
     if ( self.epg.start ) {
-        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:self.epg.start], [hourFormatter stringFromDate:self.epg.end], self.epg.duration/60 ];
+        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:self.epg.start], [hourFormatter stringFromDate:self.epg.end], self.epg.duration/60 ];
         [p setObject:str forKey:@"Time"];
     }
     
@@ -85,7 +85,7 @@
 
 - (void)handleSwipeFromRight:(UISwipeGestureRecognizer *)recognizer {
     if ( recognizer.state == UIGestureRecognizerStateEnded ) {
-        int sel = [self.segmentedControl selectedSegmentIndex] -1;
+        NSInteger sel = [self.segmentedControl selectedSegmentIndex] -1;
         if (sel >= 0 ) {
             [self.segmentedControl setSelectedSegmentIndex:sel];
             [self segmentedDidChange:self.segmentedControl];
@@ -95,7 +95,7 @@
 
 - (void)handleSwipeFromLeft:(UISwipeGestureRecognizer *)recognizer {
     if ( recognizer.state == UIGestureRecognizerStateEnded ) {
-        int sel = [self.segmentedControl selectedSegmentIndex] + 1;
+        NSInteger sel = [self.segmentedControl selectedSegmentIndex] + 1;
         if (sel < [self.segmentedControl numberOfSegments] ) {
             [self.segmentedControl setSelectedSegmentIndex:sel];
             [self segmentedDidChange:self.segmentedControl];
@@ -280,7 +280,7 @@
         return [self.propertiesKeys count];
     }
     if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
-        int count = [self.moreTimesItems count];
+        NSUInteger count = [self.moreTimesItems count];
         if ( count == 0 ) {
             return 1;
         }

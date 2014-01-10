@@ -64,7 +64,7 @@
     NSMutableDictionary *p = [[NSMutableDictionary alloc] init];
     
     if ( self.dvrItem.start ) {
-        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:self.dvrItem.start], [hourFormatter stringFromDate:self.dvrItem.end], self.dvrItem.duration/60 ];
+        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:self.dvrItem.start], [hourFormatter stringFromDate:self.dvrItem.end], self.dvrItem.duration/60 ];
         [p setObject:str forKey:@"Time"];
     }
     
@@ -209,7 +209,7 @@
 
 #pragma MARK table view delegate
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if( self.segmentedControl.selectedSegmentIndex == 0 ) {
         NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
         unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
@@ -232,7 +232,7 @@
         return [self.propertiesKeys count];
     }
     if ( self.segmentedControl.selectedSegmentIndex == 1 ) {
-        int count = [self.moreTimesItems count];
+        NSInteger count = [self.moreTimesItems count];
         if ( count == 0 ) {
             return 1;
         }
@@ -276,7 +276,7 @@
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
             titleLabel.text = epg.title;
-            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%d min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%ld min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
     }
     
@@ -313,7 +313,7 @@
     }
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01f;
 }
 

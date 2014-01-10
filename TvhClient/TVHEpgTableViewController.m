@@ -226,7 +226,7 @@
     TVHProgressBar *currentTimeProgress = (TVHProgressBar *)[cell viewWithTag:105];
         
     programLabel.text = epg.fullTitle;
-    timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%d min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+    timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
     channelName.text = epg.channel;
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
     [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
@@ -283,7 +283,7 @@
     return cell;
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01f;
 }
 

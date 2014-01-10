@@ -119,7 +119,7 @@
     return [self.logLines objectAtIndex:[self.logLines count]-1-row];
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *str = [self lineAtIndex:indexPath.row];
     unsigned int screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGSize size = [str

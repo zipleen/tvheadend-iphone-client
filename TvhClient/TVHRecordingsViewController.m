@@ -280,7 +280,7 @@
     } else {
         TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
         titleLabel.text = dvrItem.fullTitle;
-        dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
+        dateLabel.text = [NSString stringWithFormat:@"%@ (%ld min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
         statusLabel.text = dvrItem.status;
         [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (!error && image) {
@@ -341,7 +341,7 @@
      
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01f;
 }
 
@@ -383,7 +383,7 @@
 
 - (void)handleSwipeFromRight:(UISwipeGestureRecognizer *)recognizer {
     if ( recognizer.state == UIGestureRecognizerStateEnded ) {
-        int sel = [self.segmentedControl selectedSegmentIndex] -1;
+        NSInteger sel = [self.segmentedControl selectedSegmentIndex] -1;
         if (sel >= 0 ) {
             [self.segmentedControl setSelectedSegmentIndex:sel];
             [self segmentedDidChange:self.segmentedControl];
@@ -393,7 +393,7 @@
 
 - (void)handleSwipeFromLeft:(UISwipeGestureRecognizer *)recognizer {
     if ( recognizer.state == UIGestureRecognizerStateEnded ) {
-        int sel = [self.segmentedControl selectedSegmentIndex] + 1;
+        NSInteger sel = [self.segmentedControl selectedSegmentIndex] + 1;
         if (sel < [self.segmentedControl numberOfSegments] ) {
             [self.segmentedControl setSelectedSegmentIndex:sel];
             [self segmentedDidChange:self.segmentedControl];
