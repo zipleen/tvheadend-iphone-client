@@ -276,7 +276,7 @@
         } else if( [self.moreTimesItems count] > 0 ) {
             epg = self.moreTimesItems[indexPath.row];
             titleLabel.text = epg.title;
-            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%ld min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%d min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
         }
     }
     

@@ -256,12 +256,12 @@
     if ( self.segmentedControl.selectedSegmentIndex == SEGMENT_AUTOREC ) {
         TVHAutoRecItem *autoRecItem = [self.autoRecStore objectAtIndex:indexPath.row];
         titleLabel.text = autoRecItem.title;
-        dateLabel.text = autoRecItem.channel;
+        dateLabel.text = @"";
         statusLabel.text = [NSString stringOfWeekdaysLocalizedFromArray:autoRecItem.weekdays joinedByString:@","];
+        TVHChannel *channel = [autoRecItem channelObject];
         
-        if (autoRecItem.channel) {
-            id <TVHChannelStore> channelStore = [[self.dvrStore tvhServer] channelStore];
-            TVHChannel *channel = [channelStore channelWithName:autoRecItem.channel];
+        if (channel) {
+            dateLabel.text = channel.name;
             channelImage.contentMode = UIViewContentModeScaleAspectFit;
             [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 if (!error && image) {
@@ -280,7 +280,7 @@
     } else {
         TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
         titleLabel.text = dvrItem.fullTitle;
-        dateLabel.text = [NSString stringWithFormat:@"%@ (%ld min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
+        dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
         statusLabel.text = dvrItem.status;
         [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
             if (!error && image) {

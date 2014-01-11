@@ -110,12 +110,14 @@
             UIPasteboard *pb = [UIPasteboard generalPasteboard];
             [pb setString:streamUrl];
         }
+        return ;
     }
     
     // transcode will call this menu again with the transcoding setting turned on
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Transcode", nil)] ) {
         [self dismissActionSheet];
         [self showTranscodeMenu:self.sender withVC:self.vc withActionSheet:NSLocalizedString(@"Playback Transcode Stream", nil)];
+        return ;
     }
     
     [TVHAnalytics sendEventWithCategory:@"uiActions"
@@ -127,6 +129,7 @@
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal Player", nil)] ) {
         streamUrlInternal = [self.streamObject streamUrlWithTranscoding:transcodingEnabled withInternal:YES];
         [self streamNativeUrl:streamUrlInternal];
+        return ;
     }
     
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Cancel", nil)] ) {

@@ -45,7 +45,7 @@
     [super viewWillAppear:animated];
     [self.itemTitle setText:[self.item title]];
     [self.itemEnable setOn:[self.item enabled]];
-    [self.itemChannel.detailTextLabel setText:[self.item channel]];
+    [self.itemChannel.detailTextLabel setText:[self.item.channelObject name]];
     [self.itemTag.detailTextLabel setText:[self.item tag]];
     [self.itemGenre.detailTextLabel setText:[self.item genre]];
     [self.itemWeekdays.detailTextLabel setText:[NSString stringOfWeekdaysLocalizedFromArray:self.item.weekdays joinedByString:@","]];
@@ -143,8 +143,14 @@
             [vc setSelectedOption:[list indexOfObject:self.itemChannel.detailTextLabel.text]];
             [vc setResponseBack:^(NSInteger order) {
                 NSString *text = [list objectAtIndex:order];
-                [self.item updateValue:text forKey:@"channel"];
-                [self.item setChannel:text];
+                TVHChannel *channel = [[self.item.tvhServer channelStore] channelWithName:text];
+                if ( channel.uuid ) {
+                    [self.item updateValue:channel.channelIdKey forKey:@"channel"];
+                    [self.item setChannel:channel.channelIdKey];
+                } else {
+                    [self.item updateValue:channel.name forKey:@"channel"];
+                    [self.item setChannel:channel.name];
+                }
             }];
         }
         
