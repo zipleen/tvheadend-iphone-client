@@ -48,7 +48,8 @@
 
 @implementation TVHStatusSubscriptionsViewController
 
-- (id <TVHStatusSubscriptionsStore>)statusSubscriptionsStore {
+- (id <TVHStatusSubscriptionsStore>)statusSubscriptionsStore
+{
     if ( _statusSubscriptionsStore == nil) {
         _statusSubscriptionsStore = [[TVHSingletonServer sharedServerInstance] statusStore];
         
@@ -64,7 +65,8 @@
     return _statusSubscriptionsStore;
 }
 
-- (id <TVHAdaptersStore>)adapterStore {
+- (id <TVHAdaptersStore>)adapterStore
+{
     if ( _adapterStore == nil) {
         _adapterStore = [[TVHSingletonServer sharedServerInstance] adapterStore];
         
@@ -80,7 +82,8 @@
     return _adapterStore;
 }
 
-- (id <TVHStatusInputStore>)inputStore {
+- (id <TVHStatusInputStore>)inputStore
+{
     if ( _inputStore == nil) {
         _inputStore = [[TVHSingletonServer sharedServerInstance] inputStore];
         
@@ -96,7 +99,8 @@
     return _inputStore;
 }
 
-- (id <TVHNetworkStore>)networkStore {
+- (id <TVHNetworkStore>)networkStore
+{
     if ( _networkStore == nil) {
         _networkStore = [[TVHSingletonServer sharedServerInstance] networkStore];
         
@@ -110,6 +114,14 @@
         }
     }
     return _networkStore;
+}
+
+- (id <TVHCometPoll>)cometPoll
+{
+    if ( _cometPoll == nil ) {
+        _cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
+    }
+    return _cometPoll;
 }
 
 - (void)viewDidLoad {
@@ -135,8 +147,6 @@
         }
         self.navigationItem.rightBarButtonItems = [buttons copy];
     }
-    
-    self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
     
     //pull to refresh
     self.refreshControl = [[UIRefreshControl alloc] init];

@@ -54,6 +54,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if ( self.network ) {
+        return [NSString stringWithFormat:@"%@ - %@ %@ %@ %@ %@ %@", [self.adapterMux delsys], [self.adapterMux bandwidth], [self.adapterMux constellation], [self.adapterMux transmission_mode], [self.adapterMux guard_interval], [self.adapterMux fec_hi], [self.adapterMux fec_lo]];
+    }
     return [NSString stringWithFormat:@"%@ %@", [self.adapterMux network], [self.adapterMux freq]];
 }
 

@@ -696,7 +696,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="SNR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HMe-0m-OKD">
-                                            <rect key="frame" x="41" y="35" width="128" height="21"/>
+                                            <rect key="frame" x="41" y="35" width="52" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                             <accessibility key="accessibilityConfiguration" hint="SNR">
@@ -844,7 +844,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <label clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="SNR" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uhc-qB-o10">
-                                            <rect key="frame" x="41" y="35" width="128" height="21"/>
+                                            <rect key="frame" x="41" y="35" width="52" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                             <accessibility key="accessibilityConfiguration" hint="SNR">

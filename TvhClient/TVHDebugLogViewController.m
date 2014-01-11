@@ -24,6 +24,14 @@
     NSDate *lastTableUpdate;
 }
 
+- (id <TVHCometPoll>)cometPoll
+{
+    if ( _cometPoll == nil ) {
+        _cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
+    }
+    return _cometPoll;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -50,8 +58,6 @@
     [super viewDidLoad];
     self.logStore = [[TVHSingletonServer sharedServerInstance] logStore];
     [self initDelegate];
-    
-    self.cometPoll = [[TVHSingletonServer sharedServerInstance] cometStore];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(clearLog:)

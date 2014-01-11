@@ -58,11 +58,17 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if ( self.network ) {
+        return [NSString stringWithFormat:@"%@ / %@", self.network.networkname, self.network.charset];
+    }
     return [self.adapter devicename];
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
+    if ( self.network ) {
+        return [NSString stringWithFormat:@"%lu Muxes - %ld Services", (unsigned long)[self.muxes count], (long)[self.network num_svc]];
+    }
     return [NSString stringWithFormat:@"%lu Muxes - %ld Services", (unsigned long)[self.muxes count], (long)[self.adapter services]];
 }
 
