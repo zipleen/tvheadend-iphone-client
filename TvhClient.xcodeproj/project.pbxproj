@@ -1063,6 +1063,11 @@
 				CLASSPREFIX = TVH;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = zipleen;
+				TargetAttributes = {
+					AAB399EF16BDB21900973F88 = {
+						DevelopmentTeam = FPS864GPA9;
+					};
+				};
 			};
 			buildConfigurationList = AAB399EB16BDB21900973F88 /* Build configuration list for PBXProject "TvhClient" */;
 			compatibilityVersion = "Xcode 3.2";
