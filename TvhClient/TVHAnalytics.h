@@ -12,7 +12,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if defined TVH_GOOGLEANALYTICS_KEY && !defined __LP64__
+#if defined TVH_GOOGLEANALYTICS_KEY
 #define TVH_GOOGLEANALYTICS
 #endif
 
