@@ -325,7 +325,7 @@
 
 - (UITableViewCell *)cellForActiveSubscription:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" ];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" ];
     if(cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreSubscriptionItems"];
     }

@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
     self.settings = [TVHSettings sharedInstance];
+    self.title = NSLocalizedString(@"Website Address in Status", @"..in Settings server edit");
 }
 
 #pragma mark - Table view data source
@@ -36,7 +37,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"webserverCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
+    if(cell==nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     UITextField *textField = (UITextField *)[cell viewWithTag:201];
     UILabel *textLabel = (UILabel *)[cell viewWithTag:200];
