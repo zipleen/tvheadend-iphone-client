@@ -258,7 +258,7 @@
     return 0;
 }
 
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ( self.segmentedControl.selectedSegmentIndex == 0 ) {
         NSString *str = [self.properties objectForKey:[self.propertiesKeys objectAtIndex:indexPath.row]];
         unsigned int screenWidth = [self.view bounds].size.width;
