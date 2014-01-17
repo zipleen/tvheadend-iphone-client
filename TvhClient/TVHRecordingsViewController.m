@@ -282,11 +282,14 @@
         titleLabel.text = dvrItem.fullTitle;
         dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
         statusLabel.text = dvrItem.status;
-        [channelImage setImageWithURL:[NSURL URLWithString:dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            if (!error && image) {
-                channelImage.image = [TVHImageCache resizeImage:image];
-            }
-        } ];
+        TVHChannel *channel = [dvrItem channelObject];
+        if (channel) {
+            [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                if (!error && image) {
+                    channelImage.image = [TVHImageCache resizeImage:image];
+                }
+            } ];
+        }
     }
         
     // rouding corners - this makes the animation in ipad become VERY SLOW!!!
