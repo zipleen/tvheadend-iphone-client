@@ -217,7 +217,7 @@
             [vc setOptions:list];
             [vc setSelectedOption:self.item.approx_time / 10];
             [vc setResponseBack:^(NSInteger order) {
-                [self.item updateValue:[NSNumber numberWithInt:order*10] forKey:@"approx_time"];
+                [self.item updateValue:[NSNumber numberWithInt:(int)order*10] forKey:@"approx_time"];
                 [self.item setApprox_time:order*10];
             }];
         }

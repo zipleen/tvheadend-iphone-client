@@ -226,7 +226,7 @@
     TVHProgressBar *currentTimeProgress = (TVHProgressBar *)[cell viewWithTag:105];
         
     programLabel.text = epg.fullTitle;
-    timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+    timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/(long)60 ];
     channelName.text = epg.channel;
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
     [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
@@ -349,7 +349,7 @@
         }
         
         TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-        int clickedFilterButton = [self.filterSegmentedControl selectedSegmentIndex];
+        NSInteger clickedFilterButton = [self.filterSegmentedControl selectedSegmentIndex];
         if ( clickedFilterButton == 0 ) {
             id <TVHChannelStore> channelStore = [[TVHSingletonServer sharedServerInstance] channelStore];
             NSArray *objectChannelList = [channelStore channels];

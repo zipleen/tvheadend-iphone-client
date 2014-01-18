@@ -29,7 +29,7 @@
             break;
             
         default:
-            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %ld", contentMode];
+            [NSException raise:NSInvalidArgumentException format:@"Unsupported content mode: %d", (int)contentMode];
     }
     
     CGSize newSize = CGSizeMake(image.size.width * ratio, image.size.height * ratio);
