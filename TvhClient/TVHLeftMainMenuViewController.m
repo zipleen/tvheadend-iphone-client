@@ -175,7 +175,7 @@
 }
 
 - (void)setRightPanel:(NSInteger)row {
-    int rightMenu = [[TVHSettings sharedInstance] splitRightMenu];
+    NSInteger rightMenu = [[TVHSettings sharedInstance] splitRightMenu];
     if ( rightMenu == TVHS_SPLIT_RIGHT_MENU_DYNAMIC ) {
         if ( row == TVH_CENTER_CHANNELS ) {
             [self.sidePanelController setRightPanel:self.recordController];

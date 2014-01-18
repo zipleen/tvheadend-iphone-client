@@ -16,6 +16,7 @@
 		AA21878816E7F6D9005D95EF /* NSString+FileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21878716E7F6D9005D95EF /* NSString+FileSize.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */; };
 		AA28BA4816E6A12A0029A723 /* TVHPlayStreamHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */; };
+		AA336F81188AEDA700FD2A03 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = AA336F80188AEDA700FD2A03 /* NSData+ImageContentType.m */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3EE6F7172B008100AD60F5 /* CoreData.framework */; };
@@ -119,7 +120,6 @@
 		AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD3631170106DA00448059 /* TVHSettingsGenericFieldViewController.m */; };
 		AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD36371701232000448059 /* TVHSettingsGenericTextViewController.m */; };
 		AAFDEC6417454CE80035D734 /* TVHSingletonServer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFDEC6317454CE80035D734 /* TVHSingletonServer.m */; };
-		AAFE73A4179C14B0000E7105 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFE738A179C14B0000E7105 /* NSData+GIF.m */; };
 		AAFE73A5179C14B0000E7105 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFE738C179C14B0000E7105 /* SDImageCache.m */; };
 		AAFE73A6179C14B0000E7105 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFE738E179C14B0000E7105 /* SDWebImageCompat.m */; };
 		AAFE73A7179C14B0000E7105 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFE7390179C14B0000E7105 /* SDWebImageDecoder.m */; };
@@ -191,6 +191,8 @@
 		AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelStoreProgramsViewController.m; sourceTree = "<group>"; };
 		AA28BA4616E6A1290029A723 /* TVHPlayStreamHelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHPlayStreamHelpController.h; sourceTree = "<group>"; };
 		AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHPlayStreamHelpController.m; sourceTree = "<group>"; };
+		AA336F7F188AEDA700FD2A03 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+ImageContentType.h"; path = "vendor/SDWebImage/NSData+ImageContentType.h"; sourceTree = SOURCE_ROOT; };
+		AA336F80188AEDA700FD2A03 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+ImageContentType.m"; path = "vendor/SDWebImage/NSData+ImageContentType.m"; sourceTree = SOURCE_ROOT; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3EE6F7172B008100AD60F5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -380,8 +382,6 @@
 		AAFD36371701232000448059 /* TVHSettingsGenericTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsGenericTextViewController.m; sourceTree = "<group>"; };
 		AAFDEC6217454CE80035D734 /* TVHSingletonServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSingletonServer.h; sourceTree = "<group>"; };
 		AAFDEC6317454CE80035D734 /* TVHSingletonServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSingletonServer.m; sourceTree = "<group>"; };
-		AAFE7389179C14B0000E7105 /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+GIF.h"; path = "vendor/SDWebImage/SDWebImage/NSData+GIF.h"; sourceTree = SOURCE_ROOT; };
-		AAFE738A179C14B0000E7105 /* NSData+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+GIF.m"; path = "vendor/SDWebImage/SDWebImage/NSData+GIF.m"; sourceTree = SOURCE_ROOT; };
 		AAFE738B179C14B0000E7105 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = vendor/SDWebImage/SDWebImage/SDImageCache.h; sourceTree = SOURCE_ROOT; };
 		AAFE738C179C14B0000E7105 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDImageCache.m; path = vendor/SDWebImage/SDWebImage/SDImageCache.m; sourceTree = SOURCE_ROOT; };
 		AAFE738D179C14B0000E7105 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageCompat.h; path = vendor/SDWebImage/SDWebImage/SDWebImageCompat.h; sourceTree = SOURCE_ROOT; };
@@ -681,8 +681,8 @@
 		AA8DED3D16DEE35900AF6A51 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
-				AAFE7389179C14B0000E7105 /* NSData+GIF.h */,
-				AAFE738A179C14B0000E7105 /* NSData+GIF.m */,
+				AA336F7F188AEDA700FD2A03 /* NSData+ImageContentType.h */,
+				AA336F80188AEDA700FD2A03 /* NSData+ImageContentType.m */,
 				AAFE738B179C14B0000E7105 /* SDImageCache.h */,
 				AAFE738C179C14B0000E7105 /* SDImageCache.m */,
 				AAFE738D179C14B0000E7105 /* SDWebImageCompat.h */,
@@ -1230,6 +1230,7 @@
 				AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */,
 				AAC7D17E18286D7A00089875 /* WBNoticeView.m in Sources */,
 				AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */,
+				AA336F81188AEDA700FD2A03 /* NSData+ImageContentType.m in Sources */,
 				AAC7D18118286D7A00089875 /* WBSuccessNoticeView.m in Sources */,
 				AA97AA5A170642FE0068702E /* PDKeychainBindings.m in Sources */,
 				AA97AA5B170642FE0068702E /* PDKeychainBindingsController.m in Sources */,
@@ -1257,7 +1258,6 @@
 				AAC7D17F18286D7A00089875 /* WBRedGradientView.m in Sources */,
 				AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */,
 				AAC7D17918286D7A00089875 /* UILabel+WBExtensions.m in Sources */,
-				AAFE73A4179C14B0000E7105 /* NSData+GIF.m in Sources */,
 				AAFE73A5179C14B0000E7105 /* SDImageCache.m in Sources */,
 				AAFE73A6179C14B0000E7105 /* SDWebImageCompat.m in Sources */,
 				AAFE73A7179C14B0000E7105 /* SDWebImageDecoder.m in Sources */,

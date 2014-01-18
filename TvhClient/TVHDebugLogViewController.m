@@ -121,7 +121,7 @@
     }
 }
 
-- (NSString*)lineAtIndex:(int)row {
+- (NSString*)lineAtIndex:(NSUInteger)row {
     return [self.logLines objectAtIndex:[self.logLines count]-1-row];
 }
 

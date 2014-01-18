@@ -280,7 +280,7 @@
     } else {
         TVHDvrItem *dvrItem = [self.dvrStore objectAtIndex:indexPath.row forType:self.segmentedControl.selectedSegmentIndex];
         titleLabel.text = dvrItem.fullTitle;
-        dateLabel.text = [NSString stringWithFormat:@"%@ (%d min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/60 ];
+        dateLabel.text = [NSString stringWithFormat:@"%@ (%ld min)", [dateFormatter stringFromDate:dvrItem.start], dvrItem.duration/(long)60 ];
         statusLabel.text = dvrItem.status;
         TVHChannel *channel = [dvrItem channelObject];
         if (channel) {
