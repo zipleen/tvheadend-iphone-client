@@ -57,30 +57,32 @@
 }
 
 - (NSDictionary*)propertiesDict {
-    NSMutableDictionary *p = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *epgProperties = [[NSMutableDictionary alloc] init];
     
     if ( self.epg.start ) {
-        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:self.epg.start], [hourFormatter stringFromDate:self.epg.end], self.epg.duration/60 ];
-        [p setObject:str forKey:@"Time"];
+        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:self.epg.start], [hourFormatter stringFromDate:self.epg.end], self.epg.duration/(long)60 ];
+        if ( str ) {
+            [epgProperties setObject:str forKey:@"Time"];
+        }
     }
     
     if ( self.epg.description && ![self.epg.description isEqualToString:@"(null)"] ) {
-        [p setObject:self.epg.description forKey:@"Description"];
+        [epgProperties setObject:self.epg.description forKey:@"Description"];
     }
     
     if ( self.epg.subtitle && ![self.epg.subtitle isEqualToString:@"(null)"] ) {
-        [p setObject:self.epg.subtitle forKey:@"Subtitle"];
+        [epgProperties setObject:self.epg.subtitle forKey:@"Subtitle"];
     }
     
     if ( self.epg.episode && ![self.epg.episode isEqualToString:@"(null)"] ) {
-        [p setObject:self.epg.episode forKey:@"Episode"];
+        [epgProperties setObject:self.epg.episode forKey:@"Episode"];
     }
     
     if ( self.epg.schedstate && ![self.epg.schedstate isEqualToString:@"(null)"] ) {
-        [p setObject:self.epg.schedstate forKey:@"Schedule State"];
+        [epgProperties setObject:self.epg.schedstate forKey:@"Schedule State"];
     }
     
-    return [p copy];
+    return [epgProperties copy];
 }
 
 - (void)handleSwipeFromRight:(UISwipeGestureRecognizer *)recognizer {
@@ -341,7 +343,7 @@
             epg = self.moreTimesItems[indexPath.row];
             [self setStyleForRecordButton:recordButton forEpg:epg];
             titleLabel.text = epg.fullTitle;
-            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%d min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/60 ];
+            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%ld min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/(long)60 ];
         }
     }
     
@@ -370,7 +372,7 @@
     }
 }
 
-- (float)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01f;
 }
 

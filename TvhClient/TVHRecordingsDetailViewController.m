@@ -61,42 +61,47 @@
 }
 
 - (NSDictionary*)propertiesDict {
-    NSMutableDictionary *p = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *recordingProperties = [[NSMutableDictionary alloc] init];
     
     if ( self.dvrItem.start ) {
-        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:self.dvrItem.start], [hourFormatter stringFromDate:self.dvrItem.end], self.dvrItem.duration/60 ];
-        [p setObject:str forKey:@"Time"];
+        NSString *str = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:self.dvrItem.start], [hourFormatter stringFromDate:self.dvrItem.end], self.dvrItem.duration/(long)60 ];
+        if ( str ) {
+            [recordingProperties setObject:str forKey:@"Time"];
+        }
     }
     
     if ( self.dvrItem.description && ![self.dvrItem.description isEqualToString:@"(null)"] ) {
-        [p setObject:self.dvrItem.description forKey:@"Description"];
+        [recordingProperties setObject:self.dvrItem.description forKey:@"Description"];
     }
     
     if ( self.dvrItem.status && ![self.dvrItem.status isEqualToString:@"(null)"] ) {
-        [p setObject:self.dvrItem.status forKey:@"Status"];
+        [recordingProperties setObject:self.dvrItem.status forKey:@"Status"];
     }
     
     if ( self.dvrItem.creator && ![self.dvrItem.creator isEqualToString:@"(null)"] ) {
-        [p setObject:self.dvrItem.creator forKey:@"Creator"];
+        [recordingProperties setObject:self.dvrItem.creator forKey:@"Creator"];
     }
     
     if ( self.dvrItem.pri && ![self.dvrItem.pri isEqualToString:@"(null)"] ) {
-        [p setObject:self.dvrItem.pri forKey:@"Priority"];
+        [recordingProperties setObject:self.dvrItem.pri forKey:@"Priority"];
     }
     
     if ( self.dvrItem.schedstate && ![self.dvrItem.schedstate isEqualToString:@"(null)"] ) {
-        [p setObject:self.dvrItem.schedstate forKey:@"Scheduled State"];
+        [recordingProperties setObject:self.dvrItem.schedstate forKey:@"Scheduled State"];
     }
     
     if ( self.dvrItem.filesize ) {
-        [p setObject:[NSString stringFromFileSize:self.dvrItem.filesize] forKey:@"File Size"];
+        NSString *fileSize = [NSString stringFromFileSize:self.dvrItem.filesize];
+        if ( fileSize ) {
+            [recordingProperties setObject:fileSize forKey:@"File Size"];
+        }
     }
     
     if ( self.dvrItem.episode && ![self.dvrItem.episode isEqualToString:@"(null)"] ) {
-        [p setObject:self.dvrItem.episode forKey:@"Episode"];
+        [recordingProperties setObject:self.dvrItem.episode forKey:@"Episode"];
     }
     
-    return [p copy];
+    return [recordingProperties copy];
 }
 
 
