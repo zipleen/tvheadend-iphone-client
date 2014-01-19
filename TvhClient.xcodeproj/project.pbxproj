@@ -732,6 +732,7 @@
 				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 			);
 			name = "Third Party Frameworks";
+			path = TvhClient;
 			sourceTree = "<group>";
 		};
 		AA97AA52170642E10068702E /* PDKeychainBindingsController */ = {
@@ -769,6 +770,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB399F916BDB21900973F88 /* TvhClient */,
+				AA9101AA16C6B2C500673DF5 /* Third Party Frameworks */,
 				AA43D4A116CF167300104BBF /* TvhClientTests */,
 				AAB399F216BDB21900973F88 /* Frameworks */,
 				AAB399F116BDB21900973F88 /* Products */,
@@ -829,7 +831,6 @@
 			isa = PBXGroup;
 			children = (
 				AA041CFA181422D7002019FF /* Images.xcassets */,
-				AA9101AA16C6B2C500673DF5 /* Third Party Frameworks */,
 				AAB399FB16BDB21900973F88 /* TvhClient-Info.plist */,
 				AAB399FC16BDB21900973F88 /* InfoPlist.strings */,
 				AAB399FF16BDB21900973F88 /* main.m */,
@@ -1478,7 +1479,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib";
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/vendor/TestFlight\\ SDK",
@@ -1526,7 +1527,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib";
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/vendor/TestFlight\\ SDK",
