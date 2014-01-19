@@ -325,10 +325,7 @@
 
 - (UITableViewCell *)cellForActiveSubscription:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" ];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreSubscriptionItems"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreSubscriptionItems" forIndexPath:indexPath];
     
     UILabel *hostnameLabel = (UILabel *)[cell viewWithTag:100];
     UILabel *programLabel = (UILabel *)[cell viewWithTag:110];
@@ -378,10 +375,7 @@
 
 - (UITableViewCell *)cellForAdapter:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" ];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SubscriptionStoreAdapterItems"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SubscriptionStoreAdapterItems" forIndexPath:indexPath];
     
     UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
     UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
@@ -422,10 +416,7 @@
 
 - (UITableViewCell *)cellForStreamInput:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StatusInputItems" ];
-    if ( cell==nil ) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"StatusInputItems"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StatusInputItems" forIndexPath:indexPath];
     
     UILabel *deviceNameLabel = (UILabel *)[cell viewWithTag:100];
     UILabel *adapterPathLabel = (UILabel *)[cell viewWithTag:102];
@@ -466,10 +457,7 @@
 
 - (UITableViewCell *)cellForNetwork:(UITableView *)tableView atRowIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NetworkItems" ];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NetworkItems"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NetworkItems" forIndexPath:indexPath];
     
     UILabel *networkNameLabel = (UILabel *)[cell viewWithTag:105];
     UILabel *servicesLabel = (UILabel *)[cell viewWithTag:106];

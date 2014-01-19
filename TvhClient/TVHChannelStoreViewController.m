@@ -122,11 +122,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ChannelListTableItems";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ChannelListTableItems" forIndexPath:indexPath];
     
     TVHChannel *channel = [self.channels objectAtIndex:indexPath.row];
     NSArray *currentAndNextPlayingPrograms = [channel nextPrograms:3];

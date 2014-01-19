@@ -121,11 +121,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"TagListTableItems";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TagListTableItems" forIndexPath:indexPath];
     
     TVHTag *tag = [self.tags objectAtIndex:indexPath.row];
     

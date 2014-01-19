@@ -80,11 +80,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
-    cell = [tableView dequeueReusableCellWithIdentifier:@"dvbMuxItems" ];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dvbMuxItems"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dvbMuxItems" forIndexPath:indexPath];
     
     UILabel *network = (UILabel *)[cell viewWithTag:100];
     UILabel *freq = (UILabel *)[cell viewWithTag:101];

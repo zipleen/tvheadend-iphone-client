@@ -57,8 +57,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"OptionCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OptionCell" forIndexPath:indexPath];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.options objectAtIndex:indexPath.row] ];
     if ( self.selectedOption == indexPath.row ) {

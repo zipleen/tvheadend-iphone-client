@@ -73,11 +73,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
-    cell = [tableView dequeueReusableCellWithIdentifier:@"servicesItems" ];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"servicesItems"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"servicesItems" forIndexPath:indexPath];
     
     UILabel *svcname = (UILabel *)[cell viewWithTag:100];
     UILabel *channelName = (UILabel *)[cell viewWithTag:101];

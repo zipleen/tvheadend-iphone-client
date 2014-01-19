@@ -132,10 +132,7 @@
     
     if ( indexPath.section == 0 ) {
         icon = NIKFontAwesomeIconDesktop;
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
-        if(cell==nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsServerList"];
-        }
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList" forIndexPath:indexPath];
         
         if ( indexPath.row < [self.servers count] ) {
             cell.textLabel.text = [self.settings serverProperty:TVHS_SERVER_NAME forServer:indexPath.row];
@@ -154,10 +151,7 @@
     if ( indexPath.section == 1 ) {
         
         if ( indexPath.row == 0 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
-            if(cell==nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
-            }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell" forIndexPath:indexPath];
             
             UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
             [switchfield setOn:[self.settings autoStartPolling]];
@@ -167,10 +161,7 @@
             textLabel.text = NSLocalizedString(@"Auto Start Polling", @".. in settings screen");
         }
         if ( indexPath.row == 1 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
-            if(cell==nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsTextCell"];
-            }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell" forIndexPath:indexPath];
             
             // cacheTime
             UITextField *textField = (UITextField *)[cell viewWithTag:200];
@@ -187,10 +178,7 @@
             textLabel.adjustsFontSizeToFitWidth = YES;
         }
         if ( indexPath.row == 2 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
-            if(cell==nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
-            }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
             
             cell.textLabel.text = NSLocalizedString(@"Order Channels", @".. in settings screen");
             if ( [self.settings sortChannel] == TVHS_SORT_CHANNEL_BY_NAME ) {
@@ -201,10 +189,7 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         if ( indexPath.row == 3 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
-            if(cell==nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
-            }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell" forIndexPath:indexPath];
             
             UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
             [switchfield setOn:[self.settings sendAnonymousStatistics]];
@@ -214,10 +199,7 @@
             textLabel.text = NSLocalizedString(@"Anonymous Statistics", @".. in settings screen");
         }
         if ( indexPath.row == 4 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell"];
-            if(cell==nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsSwitchCell"];
-            }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsSwitchCell" forIndexPath:indexPath];
             
             UISwitch *switchfield = (UISwitch *)[cell viewWithTag:300];
             [switchfield setOn:[self.settings useBlackBorders]];
@@ -228,10 +210,7 @@
         }
         
         if ( indexPath.row == 5 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
-            if(cell==nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
-            }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
             
             cell.textLabel.text = NSLocalizedString(@"Transcode Resolution", @".. in settings screen");
             cell.detailTextLabel.text = [self.settings transcodeResolution];
@@ -240,10 +219,7 @@
         
         if ( IS_IPAD ) {
             if ( indexPath.row == 6 ) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell"];
-                if(cell==nil) {
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsDetailCell"];
-                }
+                cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
                 
                 cell.textLabel.text = NSLocalizedString(@"Right Panel", @".. in settings screen");
                 if ( [self.settings splitRightMenu] == TVHS_SPLIT_RIGHT_MENU_DYNAMIC ) {
@@ -259,10 +235,7 @@
             }
             
             if ( indexPath.row == 7 ) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell"];
-                if(cell==nil) {
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsOptionsTextCell"];
-                }
+                cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell" forIndexPath:indexPath];
                 
                 UITextField *textField = (UITextField *)[cell viewWithTag:200];
                 textField.enabled = NO;
@@ -276,10 +249,7 @@
         }
     }
     if ( indexPath.section == 2 ) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList"];
-        if(cell==nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SettingsServerList"];
-        }
+        cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList" forIndexPath:indexPath];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if ( indexPath.row == 0 ) {

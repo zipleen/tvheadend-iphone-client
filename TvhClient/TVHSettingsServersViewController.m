@@ -99,11 +99,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ServerPropertiesCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell==nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ServerPropertiesCell" forIndexPath:indexPath];
     
     //UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(136, 10, 160, 30)];
     UITextField *textField = (UITextField *)[cell viewWithTag:201];
