@@ -11,7 +11,6 @@
 //
 
 #import "TVHRecordingsViewController.h"
-#import "CKRefreshControl.h"
 #import "TVHShowNotice.h"
 #import "TVHSettings.h"
 #import "UIImageView+WebCache.h"

@@ -11,7 +11,6 @@
 //
 
 #import "TVHStatusSubscriptionsViewController.h"
-#import "CKRefreshControl.h"
 #import "TVHShowNotice.h"
 #import "NSString+FileSize.h"
 #import "NIKFontAwesomeIconFactory.h"

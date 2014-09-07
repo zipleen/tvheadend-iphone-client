@@ -1,9 +1,6 @@
 [submodule "vendor/NoticeView"]
 	path = vendor/NoticeView
 	url = git://github.com/tciuro/NoticeView.git
-[submodule "vendor/CKRefreshControl"]
-	path = vendor/CKRefreshControl
-	url = git://github.com/instructure/CKRefreshControl.git
 [submodule "vendor/SDSegmentedControl"]
 	path = vendor/SDSegmentedControl
 	url = git://github.com/rs/SDSegmentedControl.git

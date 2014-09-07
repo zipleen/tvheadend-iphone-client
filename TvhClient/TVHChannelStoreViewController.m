@@ -14,7 +14,6 @@
 #import "TVHChannelStoreProgramsViewController.h"
 #import "TVHChannel.h"
 #import "TVHShowNotice.h"
-#import "CKRefreshControl.h"
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHImageCache.h"

@@ -90,9 +90,6 @@
 		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
 		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
 		AAC59D6517A09A1E005F07B3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC59D6417A09A1E005F07B3 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		AAC7D15E18286AB300089875 /* CKParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D15818286AB300089875 /* CKParagraphStyle.m */; };
-		AAC7D15F18286AB300089875 /* CKRefreshArrowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D15A18286AB300089875 /* CKRefreshArrowView.m */; };
-		AAC7D16018286AB300089875 /* CKRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D15D18286AB300089875 /* CKRefreshControl.m */; };
 		AAC7D17718286D7A00089875 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC7D16118286D7A00089875 /* NoticeView.bundle */; };
 		AAC7D17818286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16318286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m */; };
 		AAC7D17918286D7A00089875 /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16518286D7A00089875 /* UILabel+WBExtensions.m */; };
@@ -335,12 +332,6 @@
 		AAC59D5E17A09821005F07B3 /* TVHSupportMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSupportMeViewController.h; sourceTree = "<group>"; };
 		AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSupportMeViewController.m; sourceTree = "<group>"; };
 		AAC59D6417A09A1E005F07B3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		AAC7D15718286AB300089875 /* CKParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKParagraphStyle.h; path = vendor/CKRefreshControl/CKRefreshControl/CKParagraphStyle.h; sourceTree = SOURCE_ROOT; };
-		AAC7D15818286AB300089875 /* CKParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKParagraphStyle.m; path = vendor/CKRefreshControl/CKRefreshControl/CKParagraphStyle.m; sourceTree = SOURCE_ROOT; };
-		AAC7D15918286AB300089875 /* CKRefreshArrowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKRefreshArrowView.h; path = vendor/CKRefreshControl/CKRefreshControl/CKRefreshArrowView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D15A18286AB300089875 /* CKRefreshArrowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKRefreshArrowView.m; path = vendor/CKRefreshControl/CKRefreshControl/CKRefreshArrowView.m; sourceTree = SOURCE_ROOT; };
-		AAC7D15C18286AB300089875 /* CKRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKRefreshControl.h; path = vendor/CKRefreshControl/CKRefreshControl/CKRefreshControl.h; sourceTree = SOURCE_ROOT; };
-		AAC7D15D18286AB300089875 /* CKRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKRefreshControl.m; path = vendor/CKRefreshControl/CKRefreshControl/CKRefreshControl.m; sourceTree = SOURCE_ROOT; };
 		AAC7D16118286D7A00089875 /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NoticeView.bundle; path = vendor/NoticeView/NoticeView/WBNoticeView/NoticeView.bundle; sourceTree = SOURCE_ROOT; };
 		AAC7D16218286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSOperationQueue+WBNoticeExtensions.h"; path = "vendor/NoticeView/NoticeView/WBNoticeView/NSOperationQueue+WBNoticeExtensions.h"; sourceTree = SOURCE_ROOT; };
 		AAC7D16318286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSOperationQueue+WBNoticeExtensions.m"; path = "vendor/NoticeView/NoticeView/WBNoticeView/NSOperationQueue+WBNoticeExtensions.m"; sourceTree = SOURCE_ROOT; };
@@ -464,20 +455,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA10AA7C16D1304D00BBDFEA /* CKRefreshControl */ = {
-			isa = PBXGroup;
-			children = (
-				AAC7D15718286AB300089875 /* CKParagraphStyle.h */,
-				AAC7D15818286AB300089875 /* CKParagraphStyle.m */,
-				AAC7D15918286AB300089875 /* CKRefreshArrowView.h */,
-				AAC7D15A18286AB300089875 /* CKRefreshArrowView.m */,
-				AAC7D15C18286AB300089875 /* CKRefreshControl.h */,
-				AAC7D15D18286AB300089875 /* CKRefreshControl.m */,
-			);
-			name = CKRefreshControl;
-			path = CKRefreshControl/CKRefreshControl;
-			sourceTree = SOURCE_ROOT;
-		};
 		AA132E9A16D91EA60074FAB8 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,7 +721,6 @@
 				AAE5E88016EE9875007BEC40 /* TestFlight SDK */,
 				AA8DED3D16DEE35900AF6A51 /* SDWebImage */,
 				AA8DECF816DEBD7A00AF6A51 /* SDSegmentedControl */,
-				AA10AA7C16D1304D00BBDFEA /* CKRefreshControl */,
 				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 			);
 			name = "Third Party Frameworks";
@@ -1233,7 +1209,6 @@
 				AAC7D17C18286D7A00089875 /* WBGrayGradientView.m in Sources */,
 				AAC7D17A18286D7A00089875 /* WBBlueGradientView.m in Sources */,
 				AA2C7E1419BCBA8D001EDC67 /* SDWebImageDecoder.m in Sources */,
-				AAC7D15E18286AB300089875 /* CKParagraphStyle.m in Sources */,
 				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
 				AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */,
 				AA6ADF86181F2A42000DC39A /* TVHSettingsWebControllerViewController.m in Sources */,
@@ -1243,7 +1218,6 @@
 				AA8DED0116DEDB3B00AF6A51 /* SDSegmentedControl.m in Sources */,
 				AA8DC11C16E1762E00F93BD7 /* TVHRecordingsDetailViewController.m in Sources */,
 				AA28BA4816E6A12A0029A723 /* TVHPlayStreamHelpController.m in Sources */,
-				AAC7D15F18286AB300089875 /* CKRefreshArrowView.m in Sources */,
 				AA21878816E7F6D9005D95EF /* NSString+FileSize.m in Sources */,
 				AABE682A16EBB0FE003E8F92 /* TVHDebugLogViewController.m in Sources */,
 				AA99BC5F16ED54290087060A /* TVHEpgTableViewController.m in Sources */,
@@ -1294,7 +1268,6 @@
 				AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */,
 				AAC7D17918286D7A00089875 /* UILabel+WBExtensions.m in Sources */,
 				AA2C7E1519BCBA8D001EDC67 /* SDWebImageDownloader.m in Sources */,
-				AAC7D16018286AB300089875 /* CKRefreshControl.m in Sources */,
 				AAC7D17818286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m in Sources */,
 				AA8CDBE01819CC090025C39F /* TVHAnalytics.m in Sources */,
 				AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */,

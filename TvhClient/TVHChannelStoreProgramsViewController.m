@@ -14,7 +14,6 @@
 #import "TVHProgramDetailViewController.h"
 #import "TVHEpg.h"
 #import "TVHShowNotice.h"
-#import "CKRefreshControl.h"
 #import "TVHPlayStreamHelpController.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"

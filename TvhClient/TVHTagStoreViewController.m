@@ -12,7 +12,6 @@
 
 #import "TVHTagStoreViewController.h"
 #import "TVHChannelStoreViewController.h"
-#import "CKRefreshControl.h"
 #import "UIImageView+WebCache.h"
 #import "TVHShowNotice.h"
 #import "TVHImageCache.h"
