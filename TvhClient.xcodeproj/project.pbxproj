@@ -32,6 +32,8 @@
 		AA2C7E1D19BCBA8D001EDC67 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C7E0C19BCBA8D001EDC67 /* UIImageView+HighlightedWebCache.m */; };
 		AA2C7E1E19BCBA8D001EDC67 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C7E0E19BCBA8D001EDC67 /* UIImageView+WebCache.m */; };
 		AA2C7E1F19BCBA8D001EDC67 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2C7E1019BCBA8D001EDC67 /* UIView+WebCacheOperation.m */; };
+		AA2C7E2F19BCDA40001EDC67 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */; };
+		AA2C7E3119BCDA94001EDC67 /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3EE6F7172B008100AD60F5 /* CoreData.framework */; };
@@ -44,9 +46,6 @@
 		AA43D4A016CF167300104BBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AA43D4A616CF167300104BBF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA43D4A416CF167300104BBF /* InfoPlist.strings */; };
 		AA43D4A916CF167300104BBF /* TvhClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA43D4A816CF167300104BBF /* TvhClientTests.m */; };
-		AA476BFE1874F4C60093D9E5 /* libssh2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476BFB1874F4C60093D9E5 /* libssh2.a */; };
-		AA476BFF1874F4C60093D9E5 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476BFC1874F4C60093D9E5 /* libcrypto.a */; };
-		AA476C001874F4C60093D9E5 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA476BFD1874F4C60093D9E5 /* libssl.a */; };
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
 		AA6ADF86181F2A42000DC39A /* TVHSettingsWebControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6ADF85181F2A42000DC39A /* TVHSettingsWebControllerViewController.m */; };
 		AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C3FCE16C6CC810057E4C4 /* TVHSettings.m */; };
@@ -227,6 +226,8 @@
 		AA2C7E0F19BCBA8D001EDC67 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "vendor/SDWebImage/SDWebImage/UIView+WebCacheOperation.h"; sourceTree = SOURCE_ROOT; };
 		AA2C7E1019BCBA8D001EDC67 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "vendor/SDWebImage/SDWebImage/UIView+WebCacheOperation.m"; sourceTree = SOURCE_ROOT; };
 		AA2C7E2219BCC298001EDC67 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "tvheadend-ios-lib/vendor/GoogleCast.framework"; sourceTree = "<group>"; };
+		AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaAccessibility.framework; path = System/Library/Frameworks/MediaAccessibility.framework; sourceTree = SDKROOT; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3EE6F7172B008100AD60F5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -427,17 +428,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */,
+				AA2C7E3119BCDA94001EDC67 /* MediaAccessibility.framework in Frameworks */,
+				AA2C7E2F19BCDA40001EDC67 /* GoogleCast.framework in Frameworks */,
 				AA2C7DEE19BCB6A3001EDC67 /* libsqlite3.0.dylib in Frameworks */,
-				AA476BFE1874F4C60093D9E5 /* libssh2.a in Frameworks */,
-				AA476BFF1874F4C60093D9E5 /* libcrypto.a in Frameworks */,
-				AA476C001874F4C60093D9E5 /* libssl.a in Frameworks */,
 				AABF3BBD185E6B2100E62240 /* libtvheadend-ios-lib.a in Frameworks */,
 				AABF3BB9185E66CA00E62240 /* libz.dylib in Frameworks */,
 				AAC59D6517A09A1E005F07B3 /* StoreKit.framework in Frameworks */,
 				AAB33133179A0AD4001630DC /* MediaPlayer.framework in Frameworks */,
 				AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */,
 				AA91023516C6B72500673DF5 /* SystemConfiguration.framework in Frameworks */,
-				AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */,
 				AAE7B798170781AB0052E6F3 /* CFNetwork.framework in Frameworks */,
 				AA97AA5D17065B540068702E /* Security.framework in Frameworks */,
 				AA8DED2416DEDFB300AF6A51 /* ImageIO.framework in Frameworks */,
@@ -779,6 +779,8 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */,
+				AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */,
 				AA2C7DED19BCB6A3001EDC67 /* libsqlite3.0.dylib */,
 				AA476BFB1874F4C60093D9E5 /* libssh2.a */,
 				AA476BFC1874F4C60093D9E5 /* libcrypto.a */,
@@ -1467,6 +1469,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/zipleen/dev/tvheadend-iphone-client/vendor",
+					"$(PROJECT_DIR)/tvheadend-ios-lib/vendor",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
@@ -1484,7 +1487,10 @@
 					"/Users/zipleen/dev/tvheadend-iphone-client/tvheadend-ios-lib/vendor/libssh2-for-iOS/lib",
 				);
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1514,6 +1520,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/zipleen/dev/tvheadend-iphone-client/vendor",
+					"$(PROJECT_DIR)/tvheadend-ios-lib/vendor",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClient/TvhClient-Prefix.pch";
@@ -1531,7 +1538,10 @@
 					"/Users/zipleen/dev/tvheadend-iphone-client/tvheadend-ios-lib/vendor/libssh2-for-iOS/lib",
 				);
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

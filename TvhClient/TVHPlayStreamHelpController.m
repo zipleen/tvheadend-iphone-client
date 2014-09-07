@@ -43,7 +43,7 @@
 }
 
 - (void)showMenu:(id)sender withVC:(UIViewController*)vc withActionSheet:(NSString*)actionTitle {
-    int countOfItems = 0;
+    __block int countOfItems = 0;
     NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
     NSString *cancel = NSLocalizedString(@"Cancel", nil);
     NSString *transcode;
@@ -66,11 +66,14 @@
     
     [myActionSheet addButtonWithTitle:copy];
     countOfItems++;
-    NSArray *available = [self.playStreamModal arrayOfAvailablePrograms];
-    countOfItems += [available count];
-    for( NSString *title in available )  {
-        [myActionSheet addButtonWithTitle:title];
-    }
+    NSDictionary *availablePrograms = [self.playStreamModal arrayOfAvailablePrograms:transcodingEnabled];
+    
+    [availablePrograms enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [myActionSheet addButtonWithTitle:key];
+        [[[myActionSheet valueForKey:@"_buttons"] objectAtIndex:countOfItems] setImage:[UIImage imageNamed:obj] forState:UIControlStateNormal];
+        countOfItems++;
+    }];
+    
     [myActionSheet setCancelButtonIndex:countOfItems];
     [myActionSheet addButtonWithTitle:cancel];
     
