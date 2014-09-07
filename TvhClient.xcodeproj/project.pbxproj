@@ -229,6 +229,7 @@
 		AA2C7E0E19BCBA8D001EDC67 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+WebCache.m"; path = "vendor/SDWebImage/SDWebImage/UIImageView+WebCache.m"; sourceTree = SOURCE_ROOT; };
 		AA2C7E0F19BCBA8D001EDC67 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "vendor/SDWebImage/SDWebImage/UIView+WebCacheOperation.h"; sourceTree = SOURCE_ROOT; };
 		AA2C7E1019BCBA8D001EDC67 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+WebCacheOperation.m"; path = "vendor/SDWebImage/SDWebImage/UIView+WebCacheOperation.m"; sourceTree = SOURCE_ROOT; };
+		AA2C7E2219BCC298001EDC67 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3EE6F7172B008100AD60F5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1099,6 +1100,7 @@
 				pt,
 				"pt-PT",
 				Base,
+				de,
 			);
 			mainGroup = AAB399E716BDB21900973F88;
 			productRefGroup = AAB399F116BDB21900973F88 /* Products */;
@@ -1334,6 +1336,7 @@
 				AA407E2E16D1A0EE00451E6F /* en */,
 				AA407E3016D1A10400451E6F /* pt */,
 				AA407E3116D1A10400451E6F /* pt-PT */,
+				AA2C7E2219BCC298001EDC67 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
