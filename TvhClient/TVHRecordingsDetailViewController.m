@@ -119,7 +119,7 @@
     hourFormatter.dateFormat = @"HH:mm";
     
     self.programTitle.text = self.dvrItem.fullTitle;
-    self.channelTitle.text = self.dvrItem.channel;
+    self.channelTitle.text = [self.dvrItem.channelObject name];
     [self.programImage setImageWithURL:[NSURL URLWithString:self.dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     self.properties = [self propertiesDict];
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];

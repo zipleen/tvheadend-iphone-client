@@ -353,7 +353,7 @@
     //startLabel.text = [subscription.start description];
     stateLabel.text = subscription.state;
     errorsLabel.text = [NSString stringWithFormat:@"%ld", (long)subscription.errors];
-    bandwidthLabel.text = [NSString stringWithFormat:@"%@", [NSString stringFromFileSizeInBits:subscription.bw]];
+    bandwidthLabel.text = [NSString stringWithFormat:@"%@", [NSString stringFromFileSizeInBits:subscription.bandwidth]];
     
     [channelIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconDesktop]];
     [channelIcon setContentMode:UIViewContentModeScaleAspectFit];
