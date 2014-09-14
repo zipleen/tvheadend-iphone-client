@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="GXe-3y-tE2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="GXe-3y-tE2">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller - Channels-->
+        <!--Channels-->
         <scene sceneID="Tuh-NU-G7h">
             <objects>
                 <navigationController id="oHm-oh-kZN" sceneMemberID="viewController">
@@ -26,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-687" y="-1330"/>
         </scene>
-        <!--Settings View Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="eAX-1q-sEA">
             <objects>
                 <tableViewController id="ZNU-5c-2gO" customClass="TVHSettingsViewController" sceneMemberID="viewController">
@@ -268,7 +267,7 @@
             </objects>
             <point key="canvasLocation" x="1413" y="-3348"/>
         </scene>
-        <!--Tag Store View Controller - Tags-->
+        <!--Tags-->
         <scene sceneID="9w5-0r-HFn">
             <objects>
                 <tableViewController id="bdm-Gl-dUk" customClass="TVHTagStoreViewController" sceneMemberID="viewController">
@@ -337,7 +336,7 @@
             </objects>
             <point key="canvasLocation" x="-218" y="-1330"/>
         </scene>
-        <!--Recordings View Controller - Recordings-->
+        <!--Recordings-->
         <scene sceneID="pI0-em-8fb">
             <objects>
                 <viewController id="Zd5-tA-kvP" customClass="TVHRecordingsViewController" sceneMemberID="viewController">
@@ -433,14 +432,13 @@
             </objects>
             <point key="canvasLocation" x="-218" y="-705"/>
         </scene>
-        <!--Navigation Controller - Recordings-->
+        <!--Recordings-->
         <scene sceneID="GFR-GP-9JM">
             <objects>
                 <navigationController definesPresentationContext="YES" id="OaY-Sr-1K6" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Recordings" image="rec.png" id="eeC-mw-QS2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WWf-v7-Bn6" customClass="TVHUICustomNavigationBar">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
@@ -452,7 +450,7 @@
             </objects>
             <point key="canvasLocation" x="-687" y="-705"/>
         </scene>
-        <!--Status Subscriptions View Controller - Status-->
+        <!--Status-->
         <scene sceneID="45W-Ov-3jU">
             <objects>
                 <tableViewController id="pq9-s6-D4Q" customClass="TVHStatusSubscriptionsViewController" sceneMemberID="viewController">
@@ -1334,7 +1332,7 @@
             </objects>
             <point key="canvasLocation" x="1450" y="-80"/>
         </scene>
-        <!--Navigation Controller - Status-->
+        <!--Status-->
         <scene sceneID="ZhY-Zp-32P">
             <objects>
                 <navigationController definesPresentationContext="YES" id="HH2-ic-xdM" sceneMemberID="viewController">
@@ -1352,7 +1350,7 @@
             </objects>
             <point key="canvasLocation" x="-684" y="-62"/>
         </scene>
-        <!--Channel Store View Controller - Channels-->
+        <!--Channels-->
         <scene sceneID="GxO-Zf-lVI">
             <objects>
                 <tableViewController id="J4O-6S-mIr" customClass="TVHChannelStoreViewController" sceneMemberID="viewController">
@@ -1471,7 +1469,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="44:49" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="28V-DF-uj8">
+                                                <label clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="44:49" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="28V-DF-uj8">
                                                     <rect key="frame" x="14" y="5" width="40" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -1687,7 +1685,7 @@
             </objects>
             <point key="canvasLocation" x="-1378" y="-437"/>
         </scene>
-        <!--Navigation Controller - Now-->
+        <!--Now-->
         <scene sceneID="A1e-kY-opM">
             <objects>
                 <navigationController id="tFx-kh-QHr" sceneMemberID="viewController">
@@ -1708,7 +1706,7 @@
             </objects>
             <point key="canvasLocation" x="-687" y="563"/>
         </scene>
-        <!--Epg Table View Controller - Now-->
+        <!--Now-->
         <scene sceneID="afb-lu-OPl">
             <objects>
                 <viewController id="wFS-vF-5Bx" customClass="TVHEpgTableViewController" sceneMemberID="viewController">
@@ -1939,7 +1937,7 @@
             </objects>
             <point key="canvasLocation" x="309" y="-62"/>
         </scene>
-        <!--Navigation Controller - Log-->
+        <!--Log-->
         <scene sceneID="i7D-JP-Upi">
             <objects>
                 <navigationController id="cCU-Qu-eRi" sceneMemberID="viewController">
@@ -1960,7 +1958,7 @@
             </objects>
             <point key="canvasLocation" x="-689" y="1134"/>
         </scene>
-        <!--Debug Log View Controller - Log-->
+        <!--Log-->
         <scene sceneID="CnS-wD-gXX">
             <objects>
                 <tableViewController id="pt2-PR-5v2" customClass="TVHDebugLogViewController" sceneMemberID="viewController">
