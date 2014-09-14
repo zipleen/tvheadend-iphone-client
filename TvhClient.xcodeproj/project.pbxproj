@@ -41,7 +41,6 @@
 		AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA407E4016D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m */; };
 		AA424AF416F6797C00D20F12 /* TVHSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA424AF316F6797B00D20F12 /* TVHSettingsViewController.m */; };
 		AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43D46F16CEFC5400104BBF /* QuartzCore.framework */; };
-		AA43D49E16CF167300104BBF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA43D49D16CF167300104BBF /* SenTestingKit.framework */; };
 		AA43D49F16CF167300104BBF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F316BDB21900973F88 /* UIKit.framework */; };
 		AA43D4A016CF167300104BBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB399F516BDB21900973F88 /* Foundation.framework */; };
 		AA43D4A616CF167300104BBF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA43D4A416CF167300104BBF /* InfoPlist.strings */; };
@@ -239,8 +238,7 @@
 		AA424AF216F6797A00D20F12 /* TVHSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSettingsViewController.h; sourceTree = "<group>"; };
 		AA424AF316F6797B00D20F12 /* TVHSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSettingsViewController.m; sourceTree = "<group>"; };
 		AA43D46F16CEFC5400104BBF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		AA43D49C16CF167300104BBF /* TvhClientTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TvhClientTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA43D49D16CF167300104BBF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		AA43D49C16CF167300104BBF /* TvhClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TvhClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA43D4A316CF167300104BBF /* TvhClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TvhClientTests-Info.plist"; sourceTree = "<group>"; };
 		AA43D4A516CF167300104BBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AA43D4A716CF167300104BBF /* TvhClientTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TvhClientTests.h; sourceTree = "<group>"; };
@@ -418,7 +416,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA43D49E16CF167300104BBF /* SenTestingKit.framework in Frameworks */,
 				AA43D49F16CF167300104BBF /* UIKit.framework in Frameworks */,
 				AA43D4A016CF167300104BBF /* Foundation.framework in Frameworks */,
 			);
@@ -771,7 +768,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB399F016BDB21900973F88 /* TvhClient.app */,
-				AA43D49C16CF167300104BBF /* TvhClientTests.octest */,
+				AA43D49C16CF167300104BBF /* TvhClientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -801,7 +798,6 @@
 				AAB399F316BDB21900973F88 /* UIKit.framework */,
 				AAB399F516BDB21900973F88 /* Foundation.framework */,
 				AAB399F716BDB21900973F88 /* CoreGraphics.framework */,
-				AA43D49D16CF167300104BBF /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1030,8 +1026,8 @@
 			);
 			name = TvhClientTests;
 			productName = TvhClientTests;
-			productReference = AA43D49C16CF167300104BBF /* TvhClientTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = AA43D49C16CF167300104BBF /* TvhClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		AAB399EF16BDB21900973F88 /* TvhClient */ = {
 			isa = PBXNativeTarget;
@@ -1060,7 +1056,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TVH;
-				LastTestingUpgradeCheck = 0510;
+				LastTestingUpgradeCheck = 0600;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = zipleen;
 				TargetAttributes = {
@@ -1358,6 +1354,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClientTests/TvhClientTests-Prefix.pch";
@@ -1365,7 +1362,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1376,6 +1372,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TvhClientTests/TvhClientTests-Prefix.pch";
@@ -1383,7 +1380,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

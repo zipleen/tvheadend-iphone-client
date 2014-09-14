@@ -19,6 +19,12 @@
 #define DEVICE_HAS_IOS7 NO
 #endif
 
+#ifdef __IPHONE_8_0
+#define DEVICE_HAS_IOS8 SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")
+#else
+#define DEVICE_HAS_IOS8 NO
+#endif
+
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>

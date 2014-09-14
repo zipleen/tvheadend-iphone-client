@@ -70,7 +70,9 @@
     
     [availablePrograms enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [myActionSheet addButtonWithTitle:key];
-        [[[myActionSheet valueForKey:@"_buttons"] objectAtIndex:countOfItems] setImage:[UIImage imageNamed:obj] forState:UIControlStateNormal];
+        if ( !DEVICE_HAS_IOS8 ) {
+           [[[myActionSheet valueForKey:@"_buttons"] objectAtIndex:countOfItems] setImage:[UIImage imageNamed:obj] forState:UIControlStateNormal];
+        }
         countOfItems++;
     }];
     
