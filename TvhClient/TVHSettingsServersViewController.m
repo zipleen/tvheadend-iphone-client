@@ -201,7 +201,7 @@
     
     textField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-    textField.textAlignment = UITextAlignmentLeft;
+    textField.textAlignment = NSTextAlignmentLeft;
     textField.delegate = self;
     textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
     textField.enabled = YES;

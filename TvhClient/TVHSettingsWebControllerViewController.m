@@ -65,7 +65,7 @@
     }
     textField.autocorrectionType = UITextAutocorrectionTypeNo; // no auto correction support
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone; // no auto capitalization support
-    textField.textAlignment = UITextAlignmentLeft;
+    textField.textAlignment = NSTextAlignmentLeft;
     //textField.tag = indexPath.row + (indexPath.section * 10) + 100;
     textField.delegate = self;
     textField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right

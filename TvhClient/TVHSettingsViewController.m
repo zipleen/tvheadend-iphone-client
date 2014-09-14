@@ -170,7 +170,7 @@
             textField.adjustsFontSizeToFitWidth = YES;
             textField.keyboardType = UIKeyboardTypeDefault;
             textField.returnKeyType = UIReturnKeyDone;
-            textField.textAlignment = UITextAlignmentLeft;
+            textField.textAlignment = NSTextAlignmentLeft;
             textField.delegate = self;
             textField.clearButtonMode = UITextFieldViewModeNever;
             textField.text = [self.settings customPrefix];

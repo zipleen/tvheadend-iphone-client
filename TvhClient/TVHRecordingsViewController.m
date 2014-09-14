@@ -215,8 +215,8 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:17];
     label.numberOfLines = 2;
-    label.lineBreakMode = UILineBreakModeWordWrap;
-    label.textAlignment = UITextAlignmentCenter;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor colorWithRed:0.298039 green:0.337255 blue:0.423529 alpha:1];
     label.shadowColor = [UIColor whiteColor];
     label.text = [self tableView:self.tableView titleForFooterInSection:section];
