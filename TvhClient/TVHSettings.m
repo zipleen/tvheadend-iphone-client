@@ -30,6 +30,9 @@
 #define TVHS_STATUS_SHOWLOG @"statusShowLog"
 #define TVHS_SPLIT_RIGHT_MENU @"splitRightMenu"
 #define TVHS_TRANSCODE_RES @"transcodeResolution"
+#define TVHS_TRANSCODE_VIDEO @"transcodeVideo"
+#define TVHS_TRANSCODE_SOUND @"transcodeSound"
+#define TVHS_TRANSCODE_MUX @"transcodeMux"
 #define TVHS_WEB1_URL @"website1Url"
 #define TVHS_WEB1_USER @"website1User"
 #define TVHS_WEB1_PASS @"website1Pass"
@@ -50,6 +53,9 @@
 @synthesize statusShowLog = _statusShowLog;
 @synthesize splitRightMenu = _splitRightMenu;
 @synthesize transcodeResolution = _transcodeResolution;
+@synthesize transcodeVideo = _transcodeVideo;
+@synthesize transcodeSound = _transcodeSound;
+@synthesize transcodeMux = _transcodeMux;
 @synthesize web1Url = _web1Url;
 @synthesize web1User = _web1User;
 @synthesize web1Pass = _web1Pass;
@@ -467,6 +473,8 @@ withPassword:(NSString*)password {
     return _splitRightMenu;
 }
 
+/** transcode options **/
+
 - (void)setTranscodeResolution:(NSString *)transcodeResolution {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:transcodeResolution forKey:TVHS_TRANSCODE_RES];
@@ -485,6 +493,68 @@ withPassword:(NSString*)password {
     }
     return _transcodeResolution;
 }
+
+- (void)setTranscodeVideo:(NSString *)transcodeVideo
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:transcodeVideo forKey:TVHS_TRANSCODE_VIDEO];
+    [defaults synchronize];
+    _transcodeVideo = transcodeVideo;
+    self.currentServerSettings.transcodeVideo = transcodeVideo;
+}
+
+- (NSString*)transcodeVideo {
+    if ( !_transcodeVideo ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _transcodeVideo = [defaults stringForKey:TVHS_TRANSCODE_VIDEO];
+        if ( ! _transcodeVideo ) {
+            _transcodeVideo = @"H264";
+        }
+    }
+    return _transcodeVideo;
+}
+
+- (void)setTranscodeSound:(NSString *)transcodeSound
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:transcodeSound forKey:TVHS_TRANSCODE_SOUND];
+    [defaults synchronize];
+    _transcodeSound = transcodeSound;
+    self.currentServerSettings.transcodeSound = transcodeSound;
+}
+
+- (NSString*)transcodeSound {
+    if ( !_transcodeSound ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _transcodeSound = [defaults stringForKey:TVHS_TRANSCODE_SOUND];
+        if ( ! _transcodeSound ) {
+            _transcodeSound = @"AAC";
+        }
+    }
+    return _transcodeSound;
+}
+
+- (void)setTranscodeMux:(NSString *)transcodeMux
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:transcodeMux forKey:TVHS_TRANSCODE_MUX];
+    [defaults synchronize];
+    _transcodeMux = transcodeMux;
+    self.currentServerSettings.transcodeMux = transcodeMux;
+}
+
+- (NSString*)transcodeMux {
+    if ( !_transcodeMux ) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _transcodeMux = [defaults stringForKey:TVHS_TRANSCODE_MUX];
+        if ( ! _transcodeMux ) {
+            _transcodeMux = @"NONE";
+        }
+    }
+    return _transcodeMux;
+}
+
+/** web url options **/
 
 - (void)setWeb1Url:(NSString *)web1Url {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

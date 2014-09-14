@@ -24,6 +24,9 @@
 @property (nonatomic) NSInteger sortChannel;
 @property (nonatomic) BOOL autoStartPolling;
 @property (nonatomic, strong) NSString *transcodeResolution;
+@property (nonatomic, strong) NSString *transcodeVideo;
+@property (nonatomic, strong) NSString *transcodeSound;
+@property (nonatomic, strong) NSString *transcodeMux;
 @property (nonatomic, strong) NSString *customPrefix;
 
 @property (nonatomic) NSInteger selectedServer;

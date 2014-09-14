@@ -19,8 +19,7 @@
 #import "NIKFontAwesomeIconFactory+iOS.h"
 #import "TVHSingletonServer.h"
 #import "UIView+ClosestParent.h"
-
-#define TVHS_TRANSCODE_RESOLUTIONS @[@"288", @"384", @"480", @"576", @"720"]
+#import "TVHPlayStream.h"
 
 @interface TVHSettingsViewController () <UITextFieldDelegate> {
     NIKFontAwesomeIconFactory *factory;
@@ -85,7 +84,7 @@
             return [NSString stringWithFormat:@"Tvheadend Version: %@ (%@)", [server realVersion], [server version]];
         }
     }
-    if ( section == 2 ) {
+    if ( section == 3 ) {
         NSString *shortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
         NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         return [NSString stringWithFormat:@"TvhClient Version: %@ (%@)", shortVersion, version];
@@ -101,12 +100,15 @@
     if (section == 1) {
         return NSLocalizedString(@"Advanced Settings", @"Title 2 in settings screen");
     }
+    if (section == 2) {
+        return NSLocalizedString(@"Transcode Settings", @"Title 3 in settings screen");
+    }
     return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3  ;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -116,12 +118,16 @@
     }
     if ( section == 1 ) {
         if ( IS_IPAD ) {
-            return 8;
+            return 7;
         } else {
-            return 6;
+            return 5;
         }
     }
     if ( section == 2 ) {
+        return 4;
+    }
+    
+    if ( section == 3 ) {
         return 5;
     }
     return 0;
@@ -211,16 +217,8 @@
             textLabel.text = NSLocalizedString(@"Draw Image Border", @".. in settings screen");
         }
         
-        if ( indexPath.row == 5 ) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
-            
-            cell.textLabel.text = NSLocalizedString(@"Transcode Resolution", @".. in settings screen");
-            cell.detailTextLabel.text = [self.settings transcodeResolution];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        
         if ( IS_IPAD ) {
-            if ( indexPath.row == 6 ) {
+            if ( indexPath.row == 5 ) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
                 
                 cell.textLabel.text = NSLocalizedString(@"Right Panel", @".. in settings screen");
@@ -236,7 +234,7 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             
-            if ( indexPath.row == 7 ) {
+            if ( indexPath.row == 6 ) {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsTextCell" forIndexPath:indexPath];
                 
                 UITextField *textField = (UITextField *)[cell viewWithTag:200];
@@ -250,7 +248,42 @@
             }
         }
     }
+    
     if ( indexPath.section == 2 ) {
+        if ( indexPath.row == 0 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
+            
+            cell.textLabel.text = NSLocalizedString(@"Transcode Resolution", @".. in settings screen");
+            cell.detailTextLabel.text = [self.settings transcodeResolution];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+
+        if ( indexPath.row == 1 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
+            
+            cell.textLabel.text = NSLocalizedString(@"Transcode Video Codec", @".. in settings screen");
+            cell.detailTextLabel.text = [self.settings transcodeVideo];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        if ( indexPath.row == 2 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
+            
+            cell.textLabel.text = NSLocalizedString(@"Transcode Sound Codec", @".. in settings screen");
+            cell.detailTextLabel.text = [self.settings transcodeSound];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        if ( indexPath.row == 3 ) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsOptionsDetailCell" forIndexPath:indexPath];
+            
+            cell.textLabel.text = NSLocalizedString(@"Transcode Mux", @".. in settings screen");
+            cell.detailTextLabel.text = [self.settings transcodeMux];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+    }
+    
+    if ( indexPath.section == 3 ) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"SettingsServerList" forIndexPath:indexPath];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -331,19 +364,19 @@
     }
     
     if ( indexPath.section == 1 && indexPath.row == 6 ) {
-        [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
-    }
-    
-    if ( indexPath.section == 1 && indexPath.row == 7 ) {
         [self performSegueWithIdentifier:@"SettingsWebserver" sender:self];
     }
     
-    if ( indexPath.section == 2 && indexPath.row == 0 ) {
+    if ( indexPath.section == 2 ) {
+        [self performSegueWithIdentifier:@"SettingsGenericField" sender:self];
+    }
+    
+    if ( indexPath.section == 3 && indexPath.row == 0 ) {
         //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/zipleen/tvheadend-iphone-client/wiki/Support"]];
         [self performSegueWithIdentifier:@"Support Me" sender:self];
     }
     
-    if ( indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4) ) {
+    if ( indexPath.section == 3 && (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4) ) {
         [self performSegueWithIdentifier:@"SettingsGenericText" sender:self];
     }
     
@@ -399,6 +432,18 @@
         
         if ( path.section == 1 && path.row == 5 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Right Panel", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Choose what you want to see on the right panel (App restart required)", @".. in settings screen")];
+            [vc setOptions:@[NSLocalizedString(@"Dynamic based on screen", @".. in settings screen"), NSLocalizedString(@"Show Status", @".. in settings screen"), NSLocalizedString(@"Show Log", @".. in settings screen"), NSLocalizedString(@"None", @".. in settings screen")] ];
+            [vc setSelectedOption:[self.settings splitRightMenu]];
+            [vc setResponseBack:^(NSInteger order) {
+                [[TVHSettings sharedInstance] setSplitRightMenu:order];
+                
+            }];
+        }
+        
+        if ( path.section == 2 && path.row == 0 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Transcode Resolution", @".. in settings screen")];
             [vc setSectionHeader:NSLocalizedString(@"Choose transcode resolution", @".. in settings screen")];
             [vc setOptions:TVHS_TRANSCODE_RESOLUTIONS ];
@@ -408,15 +453,36 @@
             }];
         }
         
-        if ( path.section == 1 && path.row == 6 ) {
+        if ( path.section == 2 && path.row == 1 ) {
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
-            [vc setTitle:NSLocalizedString(@"Right Panel", @".. in settings screen")];
-            [vc setSectionHeader:NSLocalizedString(@"Choose what you want to see on the right panel (App restart required)", @".. in settings screen")];
-            [vc setOptions:@[NSLocalizedString(@"Dynamic based on screen", @".. in settings screen"), NSLocalizedString(@"Show Status", @".. in settings screen"), NSLocalizedString(@"Show Log", @".. in settings screen"), NSLocalizedString(@"None", @".. in settings screen")] ];
-            [vc setSelectedOption:[self.settings splitRightMenu]];
+            [vc setTitle:NSLocalizedString(@"Transcode Video Codec", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Choose Video Codec (default: H264, PASS = Passthrough, NONE = Removed)", @".. in settings screen")];
+            [vc setOptions:TVHS_TRANSCODE_VIDEO];
+            [vc setSelectedOption:[TVHS_TRANSCODE_VIDEO indexOfObject:[self.settings transcodeVideo]]];
             [vc setResponseBack:^(NSInteger order) {
-                [[TVHSettings sharedInstance] setSplitRightMenu:order];
-                
+                [[TVHSettings sharedInstance] setTranscodeVideo:[TVHS_TRANSCODE_VIDEO objectAtIndex:order]];
+            }];
+        }
+        
+        if ( path.section == 2 && path.row == 2 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Transcode Sound Codec", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Choose Sound Codec (default: AAC, PASS = Passthrough, NONE = Removed). Sound Codec also affects Internal Player, use only AAC or MP3", @".. in settings screen")];
+            [vc setOptions:TVHS_TRANSCODE_SOUND];
+            [vc setSelectedOption:[TVHS_TRANSCODE_SOUND indexOfObject:[self.settings transcodeSound]]];
+            [vc setResponseBack:^(NSInteger order) {
+                [[TVHSettings sharedInstance] setTranscodeSound:[TVHS_TRANSCODE_SOUND objectAtIndex:order]];
+            }];
+        }
+        
+        if ( path.section == 2 && path.row == 3 ) {
+            TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
+            [vc setTitle:NSLocalizedString(@"Transcode Mux", @".. in settings screen")];
+            [vc setSectionHeader:NSLocalizedString(@"Choose Mux container (default: NONE, PASS = Passthrough, NONE = Removed)", @".. in settings screen")];
+            [vc setOptions:TVHS_TRANSCODE_MUX];
+            [vc setSelectedOption:[TVHS_TRANSCODE_MUX indexOfObject:[self.settings transcodeMux]]];
+            [vc setResponseBack:^(NSInteger order) {
+                [[TVHSettings sharedInstance] setTranscodeMux:[TVHS_TRANSCODE_MUX objectAtIndex:order]];
             }];
         }
     }
