@@ -149,7 +149,7 @@
 - (void)setHeaderChannelData {
     self.programTitle.text = self.epg.fullTitle;
     self.channelTitle.text = self.epg.channel;
-    [self.programImage setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+    [self.programImage sd_setImageWithURL:[NSURL URLWithString:self.epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error && image) {
             self.programImage.image = [TVHImageCache resizeImage:image];
         }

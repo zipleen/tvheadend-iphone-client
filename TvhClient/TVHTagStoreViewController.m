@@ -141,7 +141,7 @@
     tagNumberLabel.adjustsFontSizeToFitWidth = YES;
     
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
-    [channelImage setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+    [channelImage sd_setImageWithURL:[NSURL URLWithString:tag.icon] placeholderImage:[UIImage imageNamed:@"tag.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error && image) {
             channelImage.image = [TVHImageCache resizeImage:image];
         }

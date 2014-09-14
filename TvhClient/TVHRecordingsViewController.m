@@ -259,7 +259,7 @@
         if (channel) {
             dateLabel.text = channel.name;
             channelImage.contentMode = UIViewContentModeScaleAspectFit;
-            [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            [channelImage sd_setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (!error && image) {
                     channelImage.image = [TVHImageCache resizeImage:image];
                 }
@@ -280,7 +280,7 @@
         statusLabel.text = dvrItem.status;
         TVHChannel *channel = [dvrItem channelObject];
         if (channel) {
-            [channelImage setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            [channelImage sd_setImageWithURL:[NSURL URLWithString:channel.imageUrl] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (!error && image) {
                     channelImage.image = [TVHImageCache resizeImage:image];
                 }

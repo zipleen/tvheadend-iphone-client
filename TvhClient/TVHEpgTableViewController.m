@@ -229,7 +229,7 @@
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/(long)60 ];
     channelName.text = epg.channel;
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
-    [channelImage setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+    [channelImage sd_setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error && image) {
             channelImage.image = [TVHImageCache resizeImage:image];
         }
