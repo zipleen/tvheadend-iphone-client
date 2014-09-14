@@ -457,10 +457,10 @@
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Transcode Video Codec", @".. in settings screen")];
             [vc setSectionHeader:NSLocalizedString(@"Choose Video Codec (default: H264, PASS = Passthrough, NONE = Removed)", @".. in settings screen")];
-            [vc setOptions:TVHS_TRANSCODE_VIDEO];
-            [vc setSelectedOption:[TVHS_TRANSCODE_VIDEO indexOfObject:[self.settings transcodeVideo]]];
+            [vc setOptions:TVHS_TRANSCODE_VIDEO_OPTIONS];
+            [vc setSelectedOption:[TVHS_TRANSCODE_VIDEO_OPTIONS indexOfObject:[self.settings transcodeVideo]]];
             [vc setResponseBack:^(NSInteger order) {
-                [[TVHSettings sharedInstance] setTranscodeVideo:[TVHS_TRANSCODE_VIDEO objectAtIndex:order]];
+                [[TVHSettings sharedInstance] setTranscodeVideo:[TVHS_TRANSCODE_VIDEO_OPTIONS objectAtIndex:order]];
             }];
         }
         
@@ -468,10 +468,10 @@
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Transcode Sound Codec", @".. in settings screen")];
             [vc setSectionHeader:NSLocalizedString(@"Choose Sound Codec (default: AAC, PASS = Passthrough, NONE = Removed). Sound Codec also affects Internal Player, use only AAC or MP3", @".. in settings screen")];
-            [vc setOptions:TVHS_TRANSCODE_SOUND];
-            [vc setSelectedOption:[TVHS_TRANSCODE_SOUND indexOfObject:[self.settings transcodeSound]]];
+            [vc setOptions:TVHS_TRANSCODE_SOUND_OPTIONS];
+            [vc setSelectedOption:[TVHS_TRANSCODE_SOUND_OPTIONS indexOfObject:[self.settings transcodeSound]]];
             [vc setResponseBack:^(NSInteger order) {
-                [[TVHSettings sharedInstance] setTranscodeSound:[TVHS_TRANSCODE_SOUND objectAtIndex:order]];
+                [[TVHSettings sharedInstance] setTranscodeSound:[TVHS_TRANSCODE_SOUND_OPTIONS objectAtIndex:order]];
             }];
         }
         
@@ -479,10 +479,10 @@
             TVHSettingsGenericFieldViewController *vc = segue.destinationViewController;
             [vc setTitle:NSLocalizedString(@"Transcode Mux", @".. in settings screen")];
             [vc setSectionHeader:NSLocalizedString(@"Choose Mux container (default: NONE, PASS = Passthrough, NONE = Removed)", @".. in settings screen")];
-            [vc setOptions:TVHS_TRANSCODE_MUX];
-            [vc setSelectedOption:[TVHS_TRANSCODE_MUX indexOfObject:[self.settings transcodeMux]]];
+            [vc setOptions:TVHS_TRANSCODE_MUX_OPTIONS];
+            [vc setSelectedOption:[TVHS_TRANSCODE_MUX_OPTIONS indexOfObject:[self.settings transcodeMux]]];
             [vc setResponseBack:^(NSInteger order) {
-                [[TVHSettings sharedInstance] setTranscodeMux:[TVHS_TRANSCODE_MUX objectAtIndex:order]];
+                [[TVHSettings sharedInstance] setTranscodeMux:[TVHS_TRANSCODE_MUX_OPTIONS objectAtIndex:order]];
             }];
         }
     }
