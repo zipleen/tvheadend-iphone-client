@@ -124,6 +124,8 @@
     shouldBeginEditing = YES;
     self.title = NSLocalizedString(@"Now", @"");
     self.searchBar.placeholder = NSLocalizedString(@"Search Program Title", @"");
+    [self.filterSegmentedControl setTitle:NSLocalizedString(@"Channel", nil) forSegmentAtIndex:0];
+    [self.filterSegmentedControl setTitle:NSLocalizedString(@"Tag", nil) forSegmentAtIndex:1];
     
     if ( ! self.splitViewController ) {
         // iPad has a setFilter which triggers the downloadEpgList, we don't want to call this again!
@@ -134,6 +136,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [TVHAnalytics sendView:NSStringFromClass([self class])];
     [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload
@@ -146,6 +149,7 @@
     self.epgStore = nil;
     self.epgTable = nil;
     self.tableView = nil;
+    [super viewDidUnload];
 }
 
 - (void)resetEpgStore {
