@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="VUp-rw-5rM">
     <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -371,8 +372,15 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Tags" id="qYf-zH-nV7"/>
+                    <navigationItem key="navigationItem" title="Tags" id="qYf-zH-nV7">
+                        <barButtonItem key="rightBarButtonItem" id="ml3-DC-Agm">
+                            <connections>
+                                <action selector="changeServer:" destination="bdm-Gl-dUk" id="Kh4-XE-HoC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="serverButton" destination="ml3-DC-Agm" id="3YG-8x-dQk"/>
                         <segue destination="pik-Xq-282" kind="modal" identifier="ShowSettings" id="3xr-zC-yCB"/>
                     </connections>
                 </tableViewController>
