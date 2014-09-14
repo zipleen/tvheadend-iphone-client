@@ -19,6 +19,7 @@
 #import "TVHSingletonServer.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TVHSettings.h"
+#import "UIActionSheet+Blocks.h"
 
 @interface TVHTagStoreViewController () {
     BOOL didAlreadyPushed;
@@ -40,6 +41,14 @@
     self.tags = nil;
     [self initDelegate];
     [self.tagStore fetchTagList];
+}
+
+- (void)updateServerName
+{
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    if( [settings selectedServer] != NSNotFound ) {
+        self.serverButton.title = [settings serverProperty:TVHS_SERVER_NAME forServer:[settings selectedServer]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,6 +103,7 @@
                                                  name:TVHWillDestroyServerNotification
                                                object:nil];
     self.settingsButton.title = NSLocalizedString(@"Settings", @"");
+    [self updateServerName];
 }
 
 - (void)viewDidUnload {
@@ -108,6 +118,7 @@
 }
 
 - (void)reloadData {
+    [self updateServerName];
     self.tags = [[self.tagStore tags] copy];
     [self.tableView reloadData];
 }
@@ -220,4 +231,22 @@
     [self.refreshControl endRefreshing];
 }
 
+- (IBAction)changeServer:(id)sender {
+    TVHSettings *settings = [TVHSettings sharedInstance];
+    NSMutableArray *servers = [[NSMutableArray alloc] init];
+    [[settings availableServers] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [servers addObject:[obj objectForKey:TVHS_SERVER_NAME]];
+    }];
+    
+    [UIActionSheet showFromBarButtonItem:sender
+                                animated:YES
+                               withTitle:NSLocalizedString(@"TVHeadend Server", nil)
+                       cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                  destructiveButtonTitle:nil
+                       otherButtonTitles:servers
+                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                                    TVHSettings *settings = [TVHSettings sharedInstance];
+                                    [settings setSelectedServer:buttonIndex];
+                                }];
+}
 @end

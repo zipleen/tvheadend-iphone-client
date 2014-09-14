@@ -16,5 +16,7 @@
 
 @interface TVHTagStoreViewController : UITableViewController <TVHTagStoreDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *serverButton;
+- (IBAction)changeServer:(id)sender;
 
 @end

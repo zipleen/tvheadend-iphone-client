@@ -13,6 +13,7 @@
 		AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0BE35F17A1DFBF00D33B7A /* TVHProgressBar.m */; };
 		AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA132E9C16D91EDC0074FAB8 /* TVHUICustomTabBar.m */; };
 		AA132EBB16D9594B0074FAB8 /* TVHUICustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA132EBA16D9594B0074FAB8 /* TVHUICustomNavigationBar.m */; };
+		AA19864019C62A6F007E0E1C /* UIActionSheet+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = AA19863F19C62A6F007E0E1C /* UIActionSheet+Blocks.m */; };
 		AA21878816E7F6D9005D95EF /* NSString+FileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21878716E7F6D9005D95EF /* NSString+FileSize.m */; };
 		AA21F11616C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F11516C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m */; };
 		AA28BA4816E6A12A0029A723 /* TVHPlayStreamHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */; };
@@ -182,6 +183,8 @@
 		AA132E9C16D91EDC0074FAB8 /* TVHUICustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHUICustomTabBar.m; sourceTree = "<group>"; };
 		AA132EB916D9594B0074FAB8 /* TVHUICustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHUICustomNavigationBar.h; sourceTree = "<group>"; };
 		AA132EBA16D9594B0074FAB8 /* TVHUICustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHUICustomNavigationBar.m; sourceTree = "<group>"; };
+		AA19863E19C62A6F007E0E1C /* UIActionSheet+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+Blocks.h"; path = "vendor/UIActionSheet-Blocks/UIActionSheet+Blocks.h"; sourceTree = SOURCE_ROOT; };
+		AA19863F19C62A6F007E0E1C /* UIActionSheet+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIActionSheet+Blocks.m"; path = "vendor/UIActionSheet-Blocks/UIActionSheet+Blocks.m"; sourceTree = SOURCE_ROOT; };
 		AA21878616E7F6D9005D95EF /* NSString+FileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FileSize.h"; sourceTree = "<group>"; };
 		AA21878716E7F6D9005D95EF /* NSString+FileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FileSize.m"; sourceTree = "<group>"; };
 		AA21F11416C7F6A10041C505 /* TVHChannelStoreProgramsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelStoreProgramsViewController.h; sourceTree = "<group>"; };
@@ -474,6 +477,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		AA19863C19C62A55007E0E1C /* UIActionSheet-Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				AA19863E19C62A6F007E0E1C /* UIActionSheet+Blocks.h */,
+				AA19863F19C62A6F007E0E1C /* UIActionSheet+Blocks.m */,
+			);
+			name = "UIActionSheet-Blocks";
+			sourceTree = "<group>";
+		};
 		AA1D426A16BEC1B700F42F7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -718,6 +730,7 @@
 				AAE5E88016EE9875007BEC40 /* TestFlight SDK */,
 				AA8DED3D16DEE35900AF6A51 /* SDWebImage */,
 				AA8DECF816DEBD7A00AF6A51 /* SDSegmentedControl */,
+				AA19863C19C62A55007E0E1C /* UIActionSheet-Blocks */,
 				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 			);
 			name = "Third Party Frameworks";
@@ -1263,6 +1276,7 @@
 				AA2C7E1B19BCBA8D001EDC67 /* UIImage+MultiFormat.m in Sources */,
 				AAC7D17F18286D7A00089875 /* WBRedGradientView.m in Sources */,
 				AA2C7E1619BCBA8D001EDC67 /* SDWebImageDownloaderOperation.m in Sources */,
+				AA19864019C62A6F007E0E1C /* UIActionSheet+Blocks.m in Sources */,
 				AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */,
 				AAC7D17918286D7A00089875 /* UILabel+WBExtensions.m in Sources */,
 				AA2C7E1519BCBA8D001EDC67 /* SDWebImageDownloader.m in Sources */,
