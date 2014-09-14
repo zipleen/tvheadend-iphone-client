@@ -328,7 +328,7 @@
                                 <segue destination="pik-Xq-282" kind="modal" identifier="ShowSettings" id="amm-hv-5If"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" id="299-Xa-guT" userLabel="Server Button">
+                        <barButtonItem key="rightBarButtonItem" title=" " id="299-Xa-guT" userLabel="Server Button">
                             <connections>
                                 <action selector="changeServer:" destination="bdm-Gl-dUk" id="Wq2-cI-zai"/>
                             </connections>
