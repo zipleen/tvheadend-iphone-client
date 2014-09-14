@@ -110,6 +110,7 @@
     [TVHAnalytics sendView:NSStringFromClass([self class])];
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
                                     self.tableView);
+    [super viewDidAppear:animated];
 }
 
 - (void)setSegmentNames {
@@ -227,6 +228,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.help dismissActionSheet];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload {

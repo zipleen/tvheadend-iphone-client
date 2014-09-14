@@ -60,11 +60,13 @@
     [TVHAnalytics sendView:NSStringFromClass([self class])];
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
                                     self.tableView);
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidUnload {
     self.settings = nil;
     self.servers = nil;
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning

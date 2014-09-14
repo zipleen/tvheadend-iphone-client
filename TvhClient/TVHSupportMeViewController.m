@@ -42,6 +42,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [TVHAnalytics sendView:NSStringFromClass([self class])];
+    [super viewDidAppear:animated];
 }
 
 - (void)viewDidLoad
@@ -163,10 +164,12 @@
                                              selector:@selector(productPurchased:)
                                                  name:IAPHelperProductPurchasedNotification
                                                object:nil];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewWillDisappear:animated];
 }
 
 - (void)productPurchased:(NSNotification *)notification {

@@ -214,10 +214,12 @@
     //[self.adapterStore fetchAdapters];
     //[self.statusSubscriptionsStore fetchStatusSubscriptions];
     [self changePollingIcon];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [TVHAnalytics sendView:NSStringFromClass([self class])];
+    [super viewDidAppear:animated];
 }
 
 - (void)pullToRefreshViewShouldRefresh {

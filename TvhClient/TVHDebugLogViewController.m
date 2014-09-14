@@ -98,11 +98,13 @@
         self.debugButton.style = UIBarButtonItemStyleBordered;
     }
     [self reloadData];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [TVHAnalytics sendView:NSStringFromClass([self class])];
+    [super viewDidAppear:animated];
 }
 
 - (void)reloadData {

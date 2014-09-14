@@ -57,6 +57,7 @@
     [TVHAnalytics sendView:NSStringFromClass([self class])];
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification,
                                     self.tableView);
+    [super viewDidAppear:animated];
 }
 
 - (void)initDelegate {

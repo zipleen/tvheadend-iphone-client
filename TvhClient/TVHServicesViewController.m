@@ -45,6 +45,7 @@
 
 - (void)viewDidUnload {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning

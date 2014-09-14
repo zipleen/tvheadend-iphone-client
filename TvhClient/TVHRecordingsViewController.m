@@ -173,6 +173,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     TVHSettings *settings = [TVHSettings sharedInstance];
     if ( [settings programFirstRun] ) {
         [self.segmentedControl setSelectedSegmentIndex:3 ];
