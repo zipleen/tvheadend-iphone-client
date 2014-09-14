@@ -31,3 +31,6 @@
 [submodule "tvheadend-ios-lib"]
 	path = tvheadend-ios-lib
 	url = https://github.com/zipleen/tvheadend-ios-lib.git
+[submodule "vendor/UIActionSheet-Blocks"]
+	path = vendor/UIActionSheet-Blocks
+	url = git@github.com:ryanmaxwell/UIActionSheet-Blocks.git
