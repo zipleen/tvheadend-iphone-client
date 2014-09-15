@@ -277,6 +277,9 @@ withPassword:(NSString*)password {
         [_currentServerSettings setCustomPrefix:self.customPrefix];
         [_currentServerSettings setAutoStartPolling:self.autoStartPolling];
         [_currentServerSettings setTranscodeResolution:self.transcodeResolution];
+        [_currentServerSettings setTranscodeVideo:self.transcodeVideo];
+        [_currentServerSettings setTranscodeSound:self.transcodeSound];
+        [_currentServerSettings setTranscodeMux:self.transcodeMux];
     }
     return _currentServerSettings;
 }
