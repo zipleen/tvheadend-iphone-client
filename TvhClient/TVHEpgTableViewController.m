@@ -227,7 +227,7 @@
         
     programLabel.text = epg.fullTitle;
     timeLabel.text = [NSString stringWithFormat:@"%@ - %@ (%ld min)", [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/(long)60 ];
-    channelName.text = epg.channel;
+    channelName.text = [epg.channelObject name];
     channelImage.contentMode = UIViewContentModeScaleAspectFit;
     [channelImage sd_setImageWithURL:[NSURL URLWithString:epg.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if (!error && image) {
@@ -460,7 +460,9 @@
     } else {
         [self.filterSegmentedControl setTitle:NSLocalizedString(@"Channel", nil) forSegmentAtIndex:0];
     }
-    [self.epgStore setFilterToChannelName:channelName];
+    
+    TVHChannel *channel = [[[self.epgStore tvhServer] channelStore] channelWithName:channelName];
+    [self.epgStore setFilterToChannel:channel];
     [self.epgStore downloadEpgList];
     [self resizeSegmentsToFitTitles:self.filterSegmentedControl];
 }
