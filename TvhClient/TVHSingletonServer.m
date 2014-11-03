@@ -82,16 +82,17 @@
 }
 
 - (void)refreshServerVersion {
-    NSString *serverVersion = [__tvhserver version];
+    NSString *serverVersion = __tvhserver.version;
     if ( ! [serverVersion isEqualToString:self.currentServerVersion] ) {
-        [self changeCurrentServerVersionTo:serverVersion];
+        [self changeCurrentServerVersionTo:serverVersion apiVersion:__tvhserver.apiVersion];
         [self resetServer];
     }
 }
 
-- (void)changeCurrentServerVersionTo:(NSString*)serverVersion {
+- (void)changeCurrentServerVersionTo:(NSString*)serverVersion apiVersion:(NSNumber*)apiVersion {
     NSMutableDictionary *prop = [[settings serverProperties:[settings selectedServer]] mutableCopy];
     [prop setValue:serverVersion forKey:TVHS_SERVER_VERSION];
+    [prop setValue:apiVersion forKey:TVHS_API_VERSION];
     [settings setServerProperties:prop forServerId:[settings selectedServer]];
 }
 
