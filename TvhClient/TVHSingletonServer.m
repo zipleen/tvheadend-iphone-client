@@ -79,6 +79,7 @@
 - (void)resetServer {
     [__tvhserver cancelAllOperations];
     __tvhserver = nil;
+    settings = nil;
 }
 
 - (void)refreshServerVersion {
