@@ -120,10 +120,9 @@
     
     self.programTitle.text = self.dvrItem.fullTitle;
     self.channelTitle.text = [self.dvrItem.channelObject name];
-    [self.programImage sd_setImageWithURL:[NSURL URLWithString:self.dvrItem.chicon] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
+    [self.programImage sd_setImageWithURL:[NSURL URLWithString:[self.dvrItem.channelObject imageUrl]] placeholderImage:[UIImage imageNamed:@"tv2.png"]];
     self.properties = [self propertiesDict];
     self.propertiesKeys = [[self.properties allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    
     
     // shadow
     self.programImage.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -134,9 +133,6 @@
     self.programImage.contentMode = UIViewContentModeScaleAspectFit;
     
     self.view.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
-    
-    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDvrNotification:)
@@ -258,9 +254,8 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *descLabel = (UILabel *)[cell viewWithTag:101];
     UIButton *recordButton = (UIButton *)[cell viewWithTag:103];
-    [recordButton setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-    [recordButton setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
     
+    recordButton.titleLabel.text = NSLocalizedString(@"Record", nil);
     descLabel.numberOfLines = 0;
     recordButton.hidden = NO;
     

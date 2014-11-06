@@ -160,8 +160,6 @@
 
 - (void)setScreenTheme {
     self.view.backgroundColor = [UIColor colorWithRed:0.961 green:0.961 blue:0.961 alpha:1];
-    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-    [self.record setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
     if ( [self.epg serieslink] == 1 ) {
         [self.record setTitle:NSLocalizedString(@"Rec Series", @"Record series button") forState:UIControlStateNormal];
     } else {
@@ -314,8 +312,6 @@
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
 	UILabel *descLabel = (UILabel *)[cell viewWithTag:101];
     UIButton *recordButton = (UIButton *)[cell viewWithTag:103];
-    [recordButton setBackgroundImage:[[UIImage imageNamed:@"nav-button.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateNormal];
-    [recordButton setBackgroundImage:[[UIImage imageNamed:@"nav-button_selected.png"]  stretchableImageWithLeftCapWidth:3.0 topCapHeight:0.0] forState:UIControlStateHighlighted];
     
     descLabel.numberOfLines = 0;
     recordButton.hidden = NO;
