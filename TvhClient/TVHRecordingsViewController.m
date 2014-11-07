@@ -58,7 +58,7 @@
 
 - (void)receiveDvrNotification:(NSNotification *) notification {
     if ( [[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] ) {
-        if ( [notification.object isEqualToString:@"deleteEntry"]) {
+        if ( [notification.object isEqualToString:@"deleteEntry"] || [notification.object isEqualToString:@"api/idnode/delete"]) {
             [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Recording", nil)];
         }
         else if([notification.object isEqualToString:@"cancelEntry"]) {
