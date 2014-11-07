@@ -151,7 +151,7 @@
         [self.navigationItem setRightBarButtonItems:nil];
     }
     
-    [self.record setTitle:NSLocalizedString(@"Record", @"dvr recording detail button") forState:UIControlStateNormal];
+    [self.record setTitle:NSLocalizedString(@"Remove", @"dvr recording remove button") forState:UIControlStateNormal];
     
     [self.segmentedControl setTitle:NSLocalizedString(@"Details", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:NSLocalizedString(@"See Again", nil) forSegmentAtIndex:1];
