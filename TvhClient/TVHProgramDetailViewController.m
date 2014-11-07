@@ -337,7 +337,7 @@
             epg = self.moreTimesItems[indexPath.row];
             [self setStyleForRecordButton:recordButton forEpg:epg];
             titleLabel.text = epg.fullTitle;
-            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%ld min)", epg.channel, [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/(long)60 ];
+            descLabel.text = [NSString stringWithFormat:@"%@\n%@ - %@ (%ld min)", [epg.channelObject name], [dateFormatter stringFromDate:epg.start], [hourFormatter stringFromDate:epg.end], epg.duration/(long)60 ];
         }
     }
     
