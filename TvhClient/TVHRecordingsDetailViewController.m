@@ -140,12 +140,18 @@
                                                object:nil];
     
     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    
     if ( DEVICE_HAS_IOS7 ) {
         [self.navigationItem.rightBarButtonItem setTitle:NSLocalizedString(@"Play", @"toolbar play")];
     } else {
         factory.size = 16;
         [self.navigationItem.rightBarButtonItem setImage:[factory createImageForIcon:NIKFontAwesomeIconFilm]];
     }
+    if (self.self.dvrItem.dvrType == RECORDING_UPCOMING) {
+        [self.navigationItem setRightBarButtonItems:nil];
+    }
+    
+    [self.record setTitle:NSLocalizedString(@"Record", @"dvr recording detail button") forState:UIControlStateNormal];
     
     [self.segmentedControl setTitle:NSLocalizedString(@"Details", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:NSLocalizedString(@"See Again", nil) forSegmentAtIndex:1];
@@ -255,7 +261,7 @@
 	UILabel *descLabel = (UILabel *)[cell viewWithTag:101];
     UIButton *recordButton = (UIButton *)[cell viewWithTag:103];
     
-    recordButton.titleLabel.text = NSLocalizedString(@"Record", nil);
+    [recordButton setTitle:NSLocalizedString(@"Record", nil) forState:UIControlStateNormal];
     descLabel.numberOfLines = 0;
     recordButton.hidden = NO;
     

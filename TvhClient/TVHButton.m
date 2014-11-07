@@ -29,12 +29,12 @@
 }
 
 - (void)setupColor {
-    if (DEVICE_HAS_IOS7 ) {
+    if ( DEVICE_HAS_IOS7 ) {
         UIColor *defaultTintColor = [UIColor blueColor];//[UIColor colorWithRed:0.041 green:0.375 blue:0.998 alpha:1.000];
         self.layer.borderWidth = 1;
         self.layer.borderColor = defaultTintColor.CGColor;
         self.layer.cornerRadius = 2;
-        self.layer.masksToBounds = YES;
+        //self.layer.masksToBounds = YES;
         
         [self setTitleColor:defaultTintColor forState:UIControlStateNormal];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
