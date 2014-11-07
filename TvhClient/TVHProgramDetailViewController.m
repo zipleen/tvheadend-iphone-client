@@ -48,7 +48,7 @@
 }
 
 - (void)receiveDvrNotification:(NSNotification *) notification {
-    if ([[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] && [notification.object isEqualToString:@"recordEvent"]) {
+    if ([[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] && ([notification.object isEqualToString:@"recordEvent"] || [notification.object isEqualToString:@"api/idnode/delete"] )) {
         [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
     }
     if ([[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] && [notification.object isEqualToString:@"recordSeries"]) {
