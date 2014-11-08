@@ -64,10 +64,13 @@
         else if([notification.object isEqualToString:@"cancelEntry"]) {
             [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Canceled Recording", nil)];
         }
+        else if([notification.object isEqualToString:@"api/idnode/delete"]) {
+            [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Auto Recording", nil)];
+        }
     }
     // this is WRONG, there should be a specific notification for the autorec deleting
     if ( [[notification name] isEqualToString:TVHDidSuccessedTableMgrActionNotification] ) {
-        if ( [notification.object isEqualToString:@"delete"]) {
+        if ( [notification.object isEqualToString:@"delete"] ) {
             [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully Deleted Auto Recording", nil)];
         }
     }

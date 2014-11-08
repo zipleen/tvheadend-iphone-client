@@ -51,7 +51,7 @@
     if ([[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] && ([notification.object isEqualToString:@"recordEvent"] || [notification.object isEqualToString:@"api/idnode/delete"] )) {
         [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Recording", nil)];
     }
-    if ([[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] && [notification.object isEqualToString:@"recordSeries"]) {
+    if ([[notification name] isEqualToString:TVHDvrActionDidSucceedNotification] && ([notification.object isEqualToString:@"recordSeries"] || [notification.object isEqualToString:@"api/dvr/autorec/create"])) {
         [TVHShowNotice successNoticeInView:self.view title:NSLocalizedString(@"Succesfully added Auto Recording", nil)];
     }
 }
