@@ -30,18 +30,18 @@ You can now download the app directly from the App Store!
 
 ##Screenshots iPhone
 
-![Channels](http://a572.phobos.apple.com/us/r1000/068/Purple/v4/ed/42/4e/ed424e9c-fee9-fc23-c74f-8d9591766fbd/mzl.dthdmvhr.320x480-75.jpg)
-![ChannelPrograms](http://a1437.phobos.apple.com/us/r1000/064/Purple2/v4/08/b6/70/08b67026-50bc-bfcb-e68f-b47d0886ccd4/mzl.ekqhetuf.320x480-75.jpg)
-![ProgramDetails](http://a1542.phobos.apple.com/us/r1000/116/Purple/v4/d7/b5/8f/d7b58fb7-d360-6981-bc04-f1a4c1dd6a88/mzl.fdlipgep.320x480-75.jpg)
-![Recordings](http://a404.phobos.apple.com/us/r1000/120/Purple/v4/f2/0e/4b/f20e4b51-a2d7-0119-8ae0-99415c6c0633/mzl.xshppebg.320x480-75.jpg)
-![Status](http://a1501.phobos.apple.com/us/r1000/070/Purple2/v4/a8/ab/b8/a8abb8a1-d052-f8c8-6730-385615f12bf1/mzl.jzfxfbli.320x480-75.jpg)
+![Channels](http://a3.mzstatic.com/eu/r30/Purple5/v4/df/e4/17/dfe41704-81e9-7312-b57f-76f4b51ad511/screen322x572.jpeg)
+![ChannelPrograms](http://a2.mzstatic.com/eu/r30/Purple5/v4/84/a8/7e/84a87e62-553b-33f6-bbb3-b1658e9c7e8a/screen322x572.jpeg)
+![ProgramDetails](http://a1.mzstatic.com/eu/r30/Purple5/v4/57/ca/f5/57caf5b2-48fd-9149-648b-e22c1663c501/screen322x572.jpeg)
+![Recordings](http://a2.mzstatic.com/eu/r30/Purple5/v4/74/27/06/7427065c-9ed3-eb1e-5339-cc9e5e079296/screen322x572.jpeg)
+![Status](http://a5.mzstatic.com/eu/r30/Purple3/v4/1a/f9/77/1af97715-784c-e3d3-8b88-9cfeb15a2afd/screen322x572.jpeg)
 
 ##Screenshots iPad
 
-![Channels](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/channels.png?raw=true)
-![ChannelPrograms](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/channelsepg.png?raw=true)
-![Recordings](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/recordings.png?raw=true)
-![Status](https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/status.png?raw=true)
+![Channels](http://a3.mzstatic.com/eu/r30/Purple5/v4/ef/d8/87/efd88778-07ad-ba84-d708-5d71775907a5/screen480x480.jpeg)
+![ChannelPrograms](http://a1.mzstatic.com/eu/r30/Purple3/v4/5a/a5/ab/5aa5abf6-0be0-bc2b-8c4b-59d4205645a4/screen480x480.jpeg)
+![Recordings](http://a5.mzstatic.com/eu/r30/Purple3/v4/bb/e0/b8/bbe0b847-7723-1ef1-0564-eda41963632c/screen480x480.jpeg)
+![Status](http://a3.mzstatic.com/eu/r30/Purple1/v4/89/59/51/895951cf-5a35-ba8a-743f-01bd082553d7/screen480x480.jpeg)
 
 ## Getting the code
 
