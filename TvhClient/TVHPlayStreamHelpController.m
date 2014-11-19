@@ -14,10 +14,12 @@
 #import "TVHNativeMoviePlayerViewController.h"
 #import "TVHPlayStream.h"
 #import "TVHSingletonServer.h"
+#import "VLCMovieViewController.h"
 
 @interface TVHPlayStreamHelpController() <UIActionSheetDelegate> {
     UIActionSheet *myActionSheet;
     BOOL transcodingEnabled;
+    VLCMovieViewController *_movieViewController;
 }
 @property (weak, nonatomic) id<TVHPlayStreamDelegate> streamObject;
 @property (weak, nonatomic) UIStoryboard *storyboard;
@@ -46,6 +48,7 @@
     __block int countOfItems = 0;
     NSString *copy = NSLocalizedString(@"Copy to Clipboard", nil);
     NSString *cancel = NSLocalizedString(@"Cancel", nil);
+    NSString *vlc = NSLocalizedString(@"Internal VLC", nil);
     NSString *transcode;
     if ( transcodingEnabled ) {
         transcode = NSLocalizedString(@"Internal Player", nil);
@@ -57,6 +60,9 @@
     myActionSheet = [[UIActionSheet alloc] init];
     [myActionSheet setTitle:actionTitle];
     [myActionSheet setDelegate:self];
+    
+    [myActionSheet addButtonWithTitle:vlc];
+    countOfItems++;
     
     if ( [self.playStreamModal isTranscodingCapable] ) {
         [myActionSheet addButtonWithTitle:transcode];
@@ -130,6 +136,12 @@
                               withLabel:buttonTitle
                               withValue:[NSNumber numberWithInt:1]];
     
+    // internal VLC
+    if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal VLC", nil)] ) {
+        [self openMovieFromURL:[NSURL URLWithString:streamUrl] successCallback:nil];
+        return ;
+    }
+    
     // internal player
     if ( [buttonTitle isEqualToString:NSLocalizedString(@"Internal Player", nil)] ) {
         streamUrlInternal = [self.streamObject streamUrlWithTranscoding:transcodingEnabled withInternal:YES];
@@ -158,6 +170,26 @@
         [moviePlayer playStream:url];
     }];
     
+}
+
+- (void)openMovieFromURL:(NSURL *)url
+         successCallback:(NSURL *)successCallback
+{
+    if (!_movieViewController)
+        _movieViewController = [[VLCMovieViewController alloc] initWithNibName:nil bundle:nil];
+    
+    _movieViewController.url = url;
+    _movieViewController.successCallback = successCallback;
+    
+    [self performSelector: @selector(presentInternalVlc) withObject: nil afterDelay: 0];
+}
+
+- (void)presentInternalVlc
+{
+    UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:_movieViewController];
+    navCon.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    [self.vc presentViewController:navCon animated:YES completion:nil];
 }
 
 @end
