@@ -361,11 +361,11 @@
     [channelIcon setContentMode:UIViewContentModeScaleAspectFit];
     [stateIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconSignal]];
     [stateIcon setContentMode:UIViewContentModeScaleAspectFit];
-    [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign]];
+    [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamation]];
     [errorIcon setContentMode:UIViewContentModeScaleAspectFit];
     [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
     [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
-    [clientIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconHdd]];
+    [clientIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconHddO]];
     [clientIcon setContentMode:UIViewContentModeScaleAspectFit];
     [client2Icon setImage:[factory createImageForIcon:NIKFontAwesomeIconPlayCircle]];
     [client2Icon setContentMode:UIViewContentModeScaleAspectFit];

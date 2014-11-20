@@ -212,7 +212,7 @@
     factory.colors = @[[UIColor grayColor], [UIColor lightGrayColor]];
     [schedStatusIcon setImage:nil];
     if ( [epg isScheduledForRecording] ) {
-        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconTime]];
+        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconTimes]];
     }
     if ( [epg isRecording] ) {
         factory.colors = @[[UIColor redColor]];

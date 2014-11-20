@@ -136,7 +136,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    NIKFontAwesomeIcon icon = NIKFontAwesomeIconHdd;
+    NIKFontAwesomeIcon icon = NIKFontAwesomeIconHddO;
     
     if ( indexPath.section == 0 ) {
         icon = NIKFontAwesomeIconDesktop;
@@ -296,15 +296,15 @@
             cell.textLabel.text = NSLocalizedString(@"Got an issue?", @".. in settings screen");
         }
         if ( indexPath.row == 2 ) {
-            icon = NIKFontAwesomeIconQuestionSign;
+            icon = NIKFontAwesomeIconQuestion;
             cell.textLabel.text = NSLocalizedString(@"FAQ", @".. in settings screen");
         }
         if ( indexPath.row == 3 ) {
-            icon = NIKFontAwesomeIconInfoSign;
+            icon = NIKFontAwesomeIconInfo;
             cell.textLabel.text = NSLocalizedString(@"About", @".. in settings screen");
         }
         if ( indexPath.row == 4 ) {
-            icon = NIKFontAwesomeIconFileAlt;
+            icon = NIKFontAwesomeIconFileText;
             cell.textLabel.text = NSLocalizedString(@"Licenses", @".. in settings screen");
         }
         [cell.imageView setImage:[factory createImageForIcon:icon]];

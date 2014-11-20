@@ -141,10 +141,10 @@
     factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     factory.size = 18;
     factory.colors = @[[UIColor grayColor]];
-    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconTime] forSegmentAtIndex:0];
-    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconOkCircle] forSegmentAtIndex:1];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconTimes] forSegmentAtIndex:0];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconCircle] forSegmentAtIndex:1];
     [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconMagic] forSegmentAtIndex:3];
-    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationSign] forSegmentAtIndex:2];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamation] forSegmentAtIndex:2];
     
     [self.segmentedControl setTitle:NSLocalizedString(@"Upcoming", nil) forSegmentAtIndex:0];
     [self.segmentedControl setTitle:NSLocalizedString(@"Completed", nil) forSegmentAtIndex:1];

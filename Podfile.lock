@@ -1,0 +1,46 @@
+PODS:
+  - FontAwesomeIconFactory (1.4)
+  - GoogleAnalytics-iOS-SDK (3.10)
+  - JASidePanels (1.3.2)
+  - MGSplitViewController (1.0.0)
+  - MobileVLCKit (2.2.1)
+  - PDKeychainBindingsController (0.0.1)
+  - SDSegmentedControl (HEAD based on 1.0.2)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.1)
+  - TestFlightSDK (3.0.2)
+  - UIActionSheet+Blocks (0.8.1)
+  - WTStatusBar (0.0.5)
+
+DEPENDENCIES:
+  - FontAwesomeIconFactory (~> 1.4)
+  - GoogleAnalytics-iOS-SDK (~> 3.10)
+  - JASidePanels (~> 1.3)
+  - MGSplitViewController (from `git://github.com/zipleen/MGSplitViewController.git`)
+  - MobileVLCKit (~> 2.2)
+  - PDKeychainBindingsController (~> 0.0)
+  - SDSegmentedControl (HEAD)
+  - SDWebImage (~> 3.7)
+  - TestFlightSDK (~> 3.0)
+  - UIActionSheet+Blocks (~> 0.8)
+  - WTStatusBar (~> 0.0)
+
+EXTERNAL SOURCES:
+  MGSplitViewController:
+    :git: git://github.com/zipleen/MGSplitViewController.git
+
+SPEC CHECKSUMS:
+  FontAwesomeIconFactory: 6ef139e879d779e8e4561980ca170ea0981f5f9e
+  GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
+  JASidePanels: ca943907d88a0738c80755204c6098969d43e4e9
+  MGSplitViewController: ae16af86f4b080c650f24f03b1a18b3fe2472d42
+  MobileVLCKit: 1bb766d1bb4fa5a7fcdbc8b93383a16b56d085bd
+  PDKeychainBindingsController: 529f006d0707646b2bf0c79d476acdda58a9a587
+  SDSegmentedControl: 01fda28a7ba24a45915c0a3e69c32691643aa327
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
+  UIActionSheet+Blocks: c8b9c02f3d08964e8f7a4202f004a639c15eab80
+  WTStatusBar: cc867bd6dbde6c11ed5801d323b26b91214a591f
+
+COCOAPODS: 0.34.4
