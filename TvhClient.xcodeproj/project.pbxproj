@@ -20,7 +20,6 @@
 		AA2C7E2F19BCDA40001EDC67 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */; };
 		AA2C7E3119BCDA94001EDC67 /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */; };
 		AA35BBCA1A1973370043DEA1 /* UIDevice+SpeedCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AA35BBC91A1973370043DEA1 /* UIDevice+SpeedCategory.m */; };
-		AA35BBDD1A1977200043DEA1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA35BBDC1A1977200043DEA1 /* OpenGLES.framework */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3EE6F7172B008100AD60F5 /* CoreData.framework */; };
@@ -38,11 +37,6 @@
 		AA6199AC1A18EAB400D9374D /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6199AB1A18EAB400D9374D /* OBSlider.m */; };
 		AA6199AF1A18EACC00D9374D /* VLCStatusLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6199AE1A18EACC00D9374D /* VLCStatusLabel.m */; };
 		AA6199B21A18EBD800D9374D /* UIColor+Presets.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6199B11A18EBD800D9374D /* UIColor+Presets.m */; };
-		AA6199B51A18F27E00D9374D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6199B41A18F27E00D9374D /* AudioToolbox.framework */; };
-		AA6199B71A18F2C300D9374D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6199B61A18F2C300D9374D /* AVFoundation.framework */; };
-		AA6199B91A18F31000D9374D /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6199B81A18F31000D9374D /* libbz2.dylib */; };
-		AA6199BB1A18F31B00D9374D /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6199BA1A18F31B00D9374D /* libiconv.dylib */; };
-		AA6199BD1A18F32500D9374D /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA6199BC1A18F32500D9374D /* libstdc++.dylib */; };
 		AA6199D61A18FC3700D9374D /* VLCMovieViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA6199D41A18FC3700D9374D /* VLCMovieViewController~ipad.xib */; };
 		AA6199DA1A1903F000D9374D /* VLCSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6199D91A1903F000D9374D /* VLCSlider.m */; };
 		AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6542221706196800BA20C1 /* TVHShowNotice.m */; };
@@ -163,7 +157,6 @@
 		AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaAccessibility.framework; path = System/Library/Frameworks/MediaAccessibility.framework; sourceTree = SDKROOT; };
 		AA35BBC81A1973370043DEA1 /* UIDevice+SpeedCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+SpeedCategory.h"; path = "../../vlc/Sources/UIDevice+SpeedCategory.h"; sourceTree = "<group>"; };
 		AA35BBC91A1973370043DEA1 /* UIDevice+SpeedCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+SpeedCategory.m"; path = "../../vlc/Sources/UIDevice+SpeedCategory.m"; sourceTree = "<group>"; };
-		AA35BBDC1A1977200043DEA1 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3EE6F7172B008100AD60F5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -194,11 +187,6 @@
 		AA6199B01A18EBD800D9374D /* UIColor+Presets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Presets.h"; path = "vlc/UIColor+Presets.h"; sourceTree = "<group>"; };
 		AA6199B11A18EBD800D9374D /* UIColor+Presets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Presets.m"; path = "vlc/UIColor+Presets.m"; sourceTree = "<group>"; };
 		AA6199B31A18ECAE00D9374D /* VLCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VLCConstants.h; path = vlc/VLCConstants.h; sourceTree = "<group>"; };
-		AA6199B41A18F27E00D9374D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		AA6199B61A18F2C300D9374D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		AA6199B81A18F31000D9374D /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
-		AA6199BA1A18F31B00D9374D /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
-		AA6199BC1A18F32500D9374D /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		AA6199D41A18FC3700D9374D /* VLCMovieViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "VLCMovieViewController~ipad.xib"; path = "vlc/VLCMovieViewController~ipad.xib"; sourceTree = "<group>"; };
 		AA6199D81A1903F000D9374D /* VLCSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VLCSlider.h; path = vlc/VLCSlider.h; sourceTree = "<group>"; };
 		AA6199D91A1903F000D9374D /* VLCSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VLCSlider.m; path = vlc/VLCSlider.m; sourceTree = "<group>"; };
@@ -315,12 +303,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA35BBDD1A1977200043DEA1 /* OpenGLES.framework in Frameworks */,
-				AA6199BD1A18F32500D9374D /* libstdc++.dylib in Frameworks */,
-				AA6199BB1A18F31B00D9374D /* libiconv.dylib in Frameworks */,
-				AA6199B91A18F31000D9374D /* libbz2.dylib in Frameworks */,
-				AA6199B71A18F2C300D9374D /* AVFoundation.framework in Frameworks */,
-				AA6199B51A18F27E00D9374D /* AudioToolbox.framework in Frameworks */,
 				AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */,
 				AA2C7E3119BCDA94001EDC67 /* MediaAccessibility.framework in Frameworks */,
 				AA2C7E2F19BCDA40001EDC67 /* GoogleCast.framework in Frameworks */,
@@ -574,12 +556,6 @@
 		AAB399F216BDB21900973F88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA35BBDC1A1977200043DEA1 /* OpenGLES.framework */,
-				AA6199BC1A18F32500D9374D /* libstdc++.dylib */,
-				AA6199BA1A18F31B00D9374D /* libiconv.dylib */,
-				AA6199B81A18F31000D9374D /* libbz2.dylib */,
-				AA6199B61A18F2C300D9374D /* AVFoundation.framework */,
-				AA6199B41A18F27E00D9374D /* AudioToolbox.framework */,
 				AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */,
 				AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */,
 				AA2C7DED19BCB6A3001EDC67 /* libsqlite3.0.dylib */,
