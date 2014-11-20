@@ -1,36 +1,6 @@
-[submodule "vendor/NoticeView"]
-	path = vendor/NoticeView
-	url = git://github.com/tciuro/NoticeView.git
-[submodule "vendor/SDSegmentedControl"]
-	path = vendor/SDSegmentedControl
-	url = git://github.com/rs/SDSegmentedControl.git
-[submodule "vendor/SDWebImage"]
-	path = vendor/SDWebImage
-	url = git://github.com/rs/SDWebImage.git
-[submodule "vendor/PDKeychainBindingsController"]
-	path = vendor/PDKeychainBindingsController
-	url = git://github.com/carlbrown/PDKeychainBindingsController.git
-[submodule "vendor/FontAwesomeIconFactory"]
-	path = vendor/FontAwesomeIconFactory
-	url = git://github.com/nschum/FontAwesomeIconFactory.git
-[submodule "vendor/JASidePanels"]
-	path = vendor/JASidePanels
-	url = git://github.com/gotosleep/JASidePanels.git
-[submodule "vendor/MGSplitViewController"]
-	path = vendor/MGSplitViewController
-	url = https://github.com/zipleen/MGSplitViewController.git 
-[submodule "vendor/ETProgressBar"]
-	path = vendor/ETProgressBar
-	url = https://github.com/elitalon/ETProgressBar.git
-[submodule "vendor/WTStatusBar"]
-	path = vendor/WTStatusBar
-	url = https://github.com/pieceofsummer/WTStatusBar.git
 [submodule "vendor/AFHTTPRequestOperationLogger"]
 	path = vendor/AFHTTPRequestOperationLogger
 	url = https://github.com/AFNetworking/AFHTTPRequestOperationLogger.git
 [submodule "tvheadend-ios-lib"]
 	path = tvheadend-ios-lib
 	url = https://github.com/zipleen/tvheadend-ios-lib.git
-[submodule "vendor/UIActionSheet-Blocks"]
-	path = vendor/UIActionSheet-Blocks
-	url = git@github.com:ryanmaxwell/UIActionSheet-Blocks.git

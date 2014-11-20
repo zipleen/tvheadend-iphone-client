@@ -84,17 +84,6 @@
 		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
 		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
 		AAC59D6517A09A1E005F07B3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC59D6417A09A1E005F07B3 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		AAC7D17718286D7A00089875 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAC7D16118286D7A00089875 /* NoticeView.bundle */; };
-		AAC7D17818286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16318286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m */; };
-		AAC7D17918286D7A00089875 /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16518286D7A00089875 /* UILabel+WBExtensions.m */; };
-		AAC7D17A18286D7A00089875 /* WBBlueGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16718286D7A00089875 /* WBBlueGradientView.m */; };
-		AAC7D17B18286D7A00089875 /* WBErrorNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16918286D7A00089875 /* WBErrorNoticeView.m */; };
-		AAC7D17C18286D7A00089875 /* WBGrayGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16B18286D7A00089875 /* WBGrayGradientView.m */; };
-		AAC7D17D18286D7A00089875 /* WBNoticeOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16D18286D7A00089875 /* WBNoticeOperation.m */; };
-		AAC7D17E18286D7A00089875 /* WBNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D16F18286D7A00089875 /* WBNoticeView.m */; };
-		AAC7D17F18286D7A00089875 /* WBRedGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D17218286D7A00089875 /* WBRedGradientView.m */; };
-		AAC7D18018286D7A00089875 /* WBStickyNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D17418286D7A00089875 /* WBStickyNoticeView.m */; };
-		AAC7D18118286D7A00089875 /* WBSuccessNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7D17618286D7A00089875 /* WBSuccessNoticeView.m */; };
 		AAC7D18E18286F7C00089875 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC7D18D18286F7C00089875 /* Crashlytics.framework */; };
 		AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */; };
 		AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -278,28 +267,6 @@
 		AAC59D5E17A09821005F07B3 /* TVHSupportMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSupportMeViewController.h; sourceTree = "<group>"; };
 		AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSupportMeViewController.m; sourceTree = "<group>"; };
 		AAC59D6417A09A1E005F07B3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		AAC7D16118286D7A00089875 /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NoticeView.bundle; path = vendor/NoticeView/NoticeView/WBNoticeView/NoticeView.bundle; sourceTree = SOURCE_ROOT; };
-		AAC7D16218286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSOperationQueue+WBNoticeExtensions.h"; path = "vendor/NoticeView/NoticeView/WBNoticeView/NSOperationQueue+WBNoticeExtensions.h"; sourceTree = SOURCE_ROOT; };
-		AAC7D16318286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSOperationQueue+WBNoticeExtensions.m"; path = "vendor/NoticeView/NoticeView/WBNoticeView/NSOperationQueue+WBNoticeExtensions.m"; sourceTree = SOURCE_ROOT; };
-		AAC7D16418286D7A00089875 /* UILabel+WBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+WBExtensions.h"; path = "vendor/NoticeView/NoticeView/WBNoticeView/UILabel+WBExtensions.h"; sourceTree = SOURCE_ROOT; };
-		AAC7D16518286D7A00089875 /* UILabel+WBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+WBExtensions.m"; path = "vendor/NoticeView/NoticeView/WBNoticeView/UILabel+WBExtensions.m"; sourceTree = SOURCE_ROOT; };
-		AAC7D16618286D7A00089875 /* WBBlueGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBBlueGradientView.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBBlueGradientView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D16718286D7A00089875 /* WBBlueGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBBlueGradientView.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBBlueGradientView.m; sourceTree = SOURCE_ROOT; };
-		AAC7D16818286D7A00089875 /* WBErrorNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBErrorNoticeView.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBErrorNoticeView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D16918286D7A00089875 /* WBErrorNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBErrorNoticeView.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBErrorNoticeView.m; sourceTree = SOURCE_ROOT; };
-		AAC7D16A18286D7A00089875 /* WBGrayGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBGrayGradientView.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBGrayGradientView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D16B18286D7A00089875 /* WBGrayGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBGrayGradientView.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBGrayGradientView.m; sourceTree = SOURCE_ROOT; };
-		AAC7D16C18286D7A00089875 /* WBNoticeOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBNoticeOperation.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBNoticeOperation.h; sourceTree = SOURCE_ROOT; };
-		AAC7D16D18286D7A00089875 /* WBNoticeOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBNoticeOperation.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBNoticeOperation.m; sourceTree = SOURCE_ROOT; };
-		AAC7D16E18286D7A00089875 /* WBNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBNoticeView.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBNoticeView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D16F18286D7A00089875 /* WBNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBNoticeView.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBNoticeView.m; sourceTree = SOURCE_ROOT; };
-		AAC7D17018286D7A00089875 /* WBNoticeView+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WBNoticeView+ForSubclassEyesOnly.h"; path = "vendor/NoticeView/NoticeView/WBNoticeView/WBNoticeView+ForSubclassEyesOnly.h"; sourceTree = SOURCE_ROOT; };
-		AAC7D17118286D7A00089875 /* WBRedGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBRedGradientView.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBRedGradientView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D17218286D7A00089875 /* WBRedGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBRedGradientView.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBRedGradientView.m; sourceTree = SOURCE_ROOT; };
-		AAC7D17318286D7A00089875 /* WBStickyNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBStickyNoticeView.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBStickyNoticeView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D17418286D7A00089875 /* WBStickyNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBStickyNoticeView.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBStickyNoticeView.m; sourceTree = SOURCE_ROOT; };
-		AAC7D17518286D7A00089875 /* WBSuccessNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WBSuccessNoticeView.h; path = vendor/NoticeView/NoticeView/WBNoticeView/WBSuccessNoticeView.h; sourceTree = SOURCE_ROOT; };
-		AAC7D17618286D7A00089875 /* WBSuccessNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WBSuccessNoticeView.m; path = vendor/NoticeView/NoticeView/WBNoticeView/WBSuccessNoticeView.m; sourceTree = SOURCE_ROOT; };
 		AAC7D18D18286F7C00089875 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = vendor/Crashlytics.framework; sourceTree = "<group>"; };
 		AAC8426C172F11A5004BAB24 /* TVHChannelSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelSplitViewController.h; sourceTree = "<group>"; };
 		AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelSplitViewController.m; sourceTree = "<group>"; };
@@ -446,36 +413,6 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		AA43D47116CEFDB700104BBF /* WBNoticeView */ = {
-			isa = PBXGroup;
-			children = (
-				AAC7D16118286D7A00089875 /* NoticeView.bundle */,
-				AAC7D16218286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.h */,
-				AAC7D16318286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m */,
-				AAC7D16418286D7A00089875 /* UILabel+WBExtensions.h */,
-				AAC7D16518286D7A00089875 /* UILabel+WBExtensions.m */,
-				AAC7D16618286D7A00089875 /* WBBlueGradientView.h */,
-				AAC7D16718286D7A00089875 /* WBBlueGradientView.m */,
-				AAC7D16818286D7A00089875 /* WBErrorNoticeView.h */,
-				AAC7D16918286D7A00089875 /* WBErrorNoticeView.m */,
-				AAC7D16A18286D7A00089875 /* WBGrayGradientView.h */,
-				AAC7D16B18286D7A00089875 /* WBGrayGradientView.m */,
-				AAC7D16C18286D7A00089875 /* WBNoticeOperation.h */,
-				AAC7D16D18286D7A00089875 /* WBNoticeOperation.m */,
-				AAC7D16E18286D7A00089875 /* WBNoticeView.h */,
-				AAC7D16F18286D7A00089875 /* WBNoticeView.m */,
-				AAC7D17018286D7A00089875 /* WBNoticeView+ForSubclassEyesOnly.h */,
-				AAC7D17118286D7A00089875 /* WBRedGradientView.h */,
-				AAC7D17218286D7A00089875 /* WBRedGradientView.m */,
-				AAC7D17318286D7A00089875 /* WBStickyNoticeView.h */,
-				AAC7D17418286D7A00089875 /* WBStickyNoticeView.m */,
-				AAC7D17518286D7A00089875 /* WBSuccessNoticeView.h */,
-				AAC7D17618286D7A00089875 /* WBSuccessNoticeView.m */,
-			);
-			name = WBNoticeView;
-			path = NoticeView/NoticeView/WBNoticeView;
-			sourceTree = SOURCE_ROOT;
-		};
 		AA43D4A116CF167300104BBF /* TvhClientTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,7 +527,6 @@
 			children = (
 				AABF3B96185E654500E62240 /* AFHTTPRequestOperationLogger */,
 				AAF5FCAC17A844A2001E908B /* NSDate */,
-				AA43D47116CEFDB700104BBF /* WBNoticeView */,
 			);
 			name = "Third Party Frameworks";
 			sourceTree = "<group>";
@@ -929,7 +865,6 @@
 				AA6199D61A18FC3700D9374D /* VLCMovieViewController~ipad.xib in Resources */,
 				AAB229221A1C108A00842EC2 /* VLCMovieViewController~iphone.xib in Resources */,
 				AA041CFB181422D7002019FF /* Images.xcassets in Resources */,
-				AAC7D17718286D7A00089875 /* NoticeView.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,8 +968,6 @@
 				AA21F11616C7F6A10041C505 /* TVHChannelStoreProgramsViewController.m in Sources */,
 				AAFCB6C116C86EC800A64434 /* TVHProgramDetailViewController.m in Sources */,
 				AA9E76E1181DD48500E5A0D4 /* TVHWebLogViewController.m in Sources */,
-				AAC7D17C18286D7A00089875 /* WBGrayGradientView.m in Sources */,
-				AAC7D17A18286D7A00089875 /* WBBlueGradientView.m in Sources */,
 				AA6199AC1A18EAB400D9374D /* OBSlider.m in Sources */,
 				AA407E4116D1CE5600451E6F /* TVHStatusSubscriptionsViewController.m in Sources */,
 				AA132E9D16D91EDC0074FAB8 /* TVHUICustomTabBar.m in Sources */,
@@ -1053,11 +986,8 @@
 				AAFC2A0A16FB34B500194DFF /* TVHSettingsServersViewController.m in Sources */,
 				AAFD3632170106DA00448059 /* TVHSettingsGenericFieldViewController.m in Sources */,
 				AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */,
-				AAC7D17E18286D7A00089875 /* WBNoticeView.m in Sources */,
 				AA6542231706196900BA20C1 /* TVHShowNotice.m in Sources */,
-				AAC7D18118286D7A00089875 /* WBSuccessNoticeView.m in Sources */,
 				AA6199A01A18D03300D9374D /* VLCExternalDisplayController.m in Sources */,
-				AAC7D17B18286D7A00089875 /* WBErrorNoticeView.m in Sources */,
 				AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */,
 				AA6199AF1A18EACC00D9374D /* VLCStatusLabel.m in Sources */,
 				AAF2648217441EC2006C96CE /* TVHMainSlidePanelViewController.m in Sources */,
@@ -1069,12 +999,8 @@
 				AAFDEC6417454CE80035D734 /* TVHSingletonServer.m in Sources */,
 				AAAC5AC71748FDC4006B093E /* TVHStatusSplitViewController.m in Sources */,
 				AA8EA9801751413A008B3703 /* TVHJASidePanelController.m in Sources */,
-				AAC7D17D18286D7A00089875 /* WBNoticeOperation.m in Sources */,
-				AAC7D17F18286D7A00089875 /* WBRedGradientView.m in Sources */,
 				AA6199A11A18D03300D9374D /* VLCMovieViewController.m in Sources */,
 				AAB33136179A0B66001630DC /* TVHNativeMoviePlayerViewController.m in Sources */,
-				AAC7D17918286D7A00089875 /* UILabel+WBExtensions.m in Sources */,
-				AAC7D17818286D7A00089875 /* NSOperationQueue+WBNoticeExtensions.m in Sources */,
 				AA8CDBE01819CC090025C39F /* TVHAnalytics.m in Sources */,
 				AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */,
 				AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */,
@@ -1083,7 +1009,6 @@
 				AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */,
 				AA35BBCA1A1973370043DEA1 /* UIDevice+SpeedCategory.m in Sources */,
 				AAF5FCAF17A844BD001E908B /* NSDate+Utilities.m in Sources */,
-				AAC7D18018286D7A00089875 /* WBStickyNoticeView.m in Sources */,
 				AAF5FCB517A85A49001E908B /* TVHAdapterMuxViewController.m in Sources */,
 				AA08625517AAF9FD001108D7 /* TVHUICustomTabBarController.m in Sources */,
 				AABF3B99185E655B00E62240 /* AFHTTPRequestOperationLogger.m in Sources */,
@@ -1284,15 +1209,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib",
+					"$(SRCROOT)/tvheadend-ios-lib/vendor/**",
 				);
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/vendor/TestFlight SDK\"",
-					"\"$(SRCROOT)/vendor/GoogleAnalytics SDK\"",
 					"$(PROJECT_DIR)/tvheadend-ios-lib/vendor/libssh2-compiled",
-					"/Users/zipleen/dev/vlc/ImportedSources/VLCKit/build/Release-iphonesimulator",
 				);
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -1341,15 +1264,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/tvheadend-ios-lib/tvheadend-ios-lib",
+					"$(SRCROOT)/tvheadend-ios-lib/vendor/**",
 				);
 				INFOPLIST_FILE = "TvhClient/TvhClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/vendor/TestFlight SDK\"",
-					"\"$(SRCROOT)/vendor/GoogleAnalytics SDK\"",
 					"$(PROJECT_DIR)/tvheadend-ios-lib/vendor/libssh2-compiled",
-					"/Users/zipleen/dev/vlc/ImportedSources/VLCKit/build/Release-iphonesimulator",
 				);
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
