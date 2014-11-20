@@ -46,10 +46,8 @@ You can now download the app directly from the App Store!
 ## Getting the code
 
     git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
-    cd libssh2-for-iOS
-    ./build-all openssl
+    pod install
 
-Don't forget to have the command line tools installed from Xcode, otherwise libssh2 won't compile.
 Build and run ! Send your patches to me via a pull request ;)
 
 ## Video Streaming
