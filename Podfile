@@ -15,6 +15,7 @@ pod 'JASidePanels', '~> 1.3'
 pod 'MGSplitViewController', :git => 'git://github.com/zipleen/MGSplitViewController.git'
 pod 'FontAwesomeIconFactory', '~> 1.4'
 pod 'NoticeView', '~> 3.0'
+pod 'CrashlyticsFramework', '~> 2.2'
 
 target 'TvhClient' do
   

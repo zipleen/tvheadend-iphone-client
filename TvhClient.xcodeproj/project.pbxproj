@@ -78,7 +78,6 @@
 		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
 		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
 		AAC59D6517A09A1E005F07B3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC59D6417A09A1E005F07B3 /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		AAC7D18E18286F7C00089875 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC7D18D18286F7C00089875 /* Crashlytics.framework */; };
 		AAC8426E172F11A5004BAB24 /* TVHChannelSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */; };
 		AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AAE5273E16F28FEF002047E4 /* TVHAutoRecDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE5273D16F28FEF002047E4 /* TVHAutoRecDetailViewController.m */; };
@@ -255,7 +254,6 @@
 		AAC59D5E17A09821005F07B3 /* TVHSupportMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHSupportMeViewController.h; sourceTree = "<group>"; };
 		AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHSupportMeViewController.m; sourceTree = "<group>"; };
 		AAC59D6417A09A1E005F07B3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		AAC7D18D18286F7C00089875 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = vendor/Crashlytics.framework; sourceTree = "<group>"; };
 		AAC8426C172F11A5004BAB24 /* TVHChannelSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHChannelSplitViewController.h; sourceTree = "<group>"; };
 		AAC8426D172F11A5004BAB24 /* TVHChannelSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHChannelSplitViewController.m; sourceTree = "<group>"; };
 		AAE1EAC9170B6A4A006DE2BE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -316,7 +314,6 @@
 				AAE7B798170781AB0052E6F3 /* CFNetwork.framework in Frameworks */,
 				AA97AA5D17065B540068702E /* Security.framework in Frameworks */,
 				AA8DED2416DEDFB300AF6A51 /* ImageIO.framework in Frameworks */,
-				AAC7D18E18286F7C00089875 /* Crashlytics.framework in Frameworks */,
 				AA43D47016CEFC5500104BBF /* QuartzCore.framework in Frameworks */,
 				AA91023316C6B6F800673DF5 /* MobileCoreServices.framework in Frameworks */,
 				AAB399F416BDB21900973F88 /* UIKit.framework in Frameworks */,
@@ -560,7 +557,6 @@
 				AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */,
 				AA2C7DED19BCB6A3001EDC67 /* libsqlite3.0.dylib */,
 				AABF3BB8185E66CA00E62240 /* libz.dylib */,
-				AAC7D18D18286F7C00089875 /* Crashlytics.framework */,
 				AAC59D6417A09A1E005F07B3 /* StoreKit.framework */,
 				AAB33132179A0AD4001630DC /* MediaPlayer.framework */,
 				AA9BD3CB175B953700670C76 /* AdSupport.framework */,
@@ -887,7 +883,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "releaseConfig=\"Release\"\nhaveKey=`awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\nif [ \"$releaseConfig\" == \"${CONFIGURATION}\" ]; then\n    if [ \"$haveKey\" != \"\" ]; then\n        echo \"Running Crashlytics\"\n        ./vendor/Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\n    fi\nfi";
+			shellScript = "releaseConfig=\"Release\"\nhaveKey=`awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\nif [ \"$releaseConfig\" == \"${CONFIGURATION}\" ]; then\n    if [ \"$haveKey\" != \"\" ]; then\n        echo \"Running Crashlytics\"\n        ./Pods/CrashlyticsFramework/Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\n    fi\nfi";
 		};
 		AAFC2A0B16FBA52900194DFF /* Run git version */ = {
 			isa = PBXShellScriptBuildPhase;

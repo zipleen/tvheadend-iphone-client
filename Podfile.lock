@@ -1,4 +1,5 @@
 PODS:
+  - CrashlyticsFramework (2.2.5.1)
   - FontAwesomeIconFactory (1.4)
   - GoogleAnalytics-iOS-SDK (3.10)
   - JASidePanels (1.3.2)
@@ -15,6 +16,7 @@ PODS:
   - WTStatusBar (0.0.5)
 
 DEPENDENCIES:
+  - CrashlyticsFramework (~> 2.2)
   - FontAwesomeIconFactory (~> 1.4)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - JASidePanels (~> 1.3)
@@ -33,6 +35,7 @@ EXTERNAL SOURCES:
     :git: git://github.com/zipleen/MGSplitViewController.git
 
 SPEC CHECKSUMS:
+  CrashlyticsFramework: 195dfef587ade7a3954ce8effd483a3879d35877
   FontAwesomeIconFactory: 6ef139e879d779e8e4561980ca170ea0981f5f9e
   GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
   JASidePanels: ca943907d88a0738c80755204c6098969d43e4e9
