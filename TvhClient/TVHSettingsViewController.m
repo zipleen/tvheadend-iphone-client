@@ -300,7 +300,7 @@
             cell.textLabel.text = NSLocalizedString(@"FAQ", @".. in settings screen");
         }
         if ( indexPath.row == 3 ) {
-            icon = NIKFontAwesomeIconInfo;
+            icon = NIKFontAwesomeIconInfoCircle;
             cell.textLabel.text = NSLocalizedString(@"About", @".. in settings screen");
         }
         if ( indexPath.row == 4 ) {

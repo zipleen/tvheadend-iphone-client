@@ -158,8 +158,8 @@
     
     factory.size = 18;
     factory.colors = @[[UIColor grayColor]];
-    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconTimes] forSegmentAtIndex:1];
-    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconInfo] forSegmentAtIndex:0];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconClockO] forSegmentAtIndex:1];
+    [self.segmentedControl setImage:[factory createImageForIcon:NIKFontAwesomeIconInfoCircle] forSegmentAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning

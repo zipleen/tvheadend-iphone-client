@@ -204,7 +204,7 @@
     factory.colors = @[[UIColor grayColor], [UIColor lightGrayColor]];
     [schedStatusIcon setImage:nil];
     if ( [[epg schedstate] isEqualToString:@"scheduled"] ) {
-        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconTimes]];
+        [schedStatusIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconClockO]];
     }
     if ( [[epg schedstate] isEqualToString:@"recording"] ) {
         factory.colors = @[[UIColor redColor]];

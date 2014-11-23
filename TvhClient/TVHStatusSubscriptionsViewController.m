@@ -361,7 +361,7 @@
     [channelIcon setContentMode:UIViewContentModeScaleAspectFit];
     [stateIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconSignal]];
     [stateIcon setContentMode:UIViewContentModeScaleAspectFit];
-    [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamation]];
+    [errorIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconExclamationCircle]];
     [errorIcon setContentMode:UIViewContentModeScaleAspectFit];
     [bwIcon setImage:[factory createImageForIcon:NIKFontAwesomeIconCloudDownload]];
     [bwIcon setContentMode:UIViewContentModeScaleAspectFit];
