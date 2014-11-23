@@ -1,150 +1,299 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+<html><head>
+	<meta charset="utf-8">
+	<meta name="apple-itunes-app" content="app-id=638900112">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TvhClient</title>
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+	
+	<script id="facebook-jssdk" src="//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;appId=385205984962960&amp;version=v2.0"></script>
+	
 
-    <title>TvhClient by zipleen</title>
-  </head>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <body>
-    <header>
-      <div class="inner">
-        <h1>TvhClient</h1>
-        <h2>TVHeadend iOS (iPhone / iPad) Client</h2>
-        <a href="https://github.com/zipleen/tvheadend-iphone-client" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+<style>
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+html, body, #content {
+	margin: 0px;
+	height: 100%;
+	font-family: sans-serif;
+	font-weight: lighter;
+	color: #233346;
+	background-color: #d6d9db;
+	text-align: center;
+	line-height: 1.4;
+}
+#splash {
+	height: 100%;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	max-width: 700px;
+	margin: auto;
+	position: relative;
+}
+@media screen and (min-width: 700px) {
+	#splash > div {
+		display: table-cell;
+		vertical-align: middle;
+		padding: 1em;
+		height: 100%;
+	}
+	#splash #left {
+		text-align: right;
+	}
+	#splash #right {
+		text-align: left;
+	}
+	#splash .iphone {
+		width: 288px;
+		height: 576px;
+	}
+	#screenshots img {
+		max-width: 200px;
+	}
+	#like-container {
+		position: absolute;
+		top: 100%;
+		right: 20px;
+		margin-top: -50px;
+	}
+}
+#chevron {
+	position: absolute;
+	left: 50%;
+	top: 100%;
+	margin-top: -2em;
+	color: #233346;
+	opacity: 0.5;
+	margin-left: -0.5em;
+}
+@media screen and (max-width: 700px) {
+	#chevron {
+		display: none;
+	}
+	#splash .iphone {
+		width: 192px;
+		height: 384px;
+		display: inline-block;
+	}
+	#splash #left {
+		padding: 10px;
+	}
+	#screenshots img {
+		max-width: 100px;
+	}
+	#splash .appstore {
+		display: none;
+	}
+}
+img.appstore {
+	max-width: 120px;
+}
+.iphone {
+	background-image: url('http://app-stop.appspot.com/static/5s.png');
+	background-size: contain;
+	position: relative;
+	width: 720px;
+	height: 1440px;
+}
+.iphone img {
+	position: absolute;
+	top: 17.9%;
+	left: 14%;
+	width: 73%;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Raleway", sans-serif;
+	font-weight: normal;
+}
+#icon-row {
+	margin: 30px;
+	margin-top: 40px;
+	margin-bottom: 80px;
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+	position: relative;
+}
+#icon-row #icon-container {
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	left: 50%;
+	top: 50%;
+	margin-left: -50px;
+	margin-top: -50px;
+	border: 10px solid #d6d9db;
+}
+#icon-row img {
+	width: 100%;
+	border-radius: 19px;
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+}
+#description {
+	margin: auto;
+	width: 90%;
+	max-width: 600px;
+}
+#screenshots {
+	margin-bottom: 2em;
+}
+#screenshots img {
+	border: 1px solid white;
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+	margin: 1em;
+}
+#description {
+	white-space: pre-wrap;
+}
+#stars {
+	text-align: center;
+	font-style: italic;
+	font-size: small;
+}
+#stars span {
+	display: block;
+	font-size: 30px;
+	font-style: normal;
+}
+#attribution {
+	font-size: small;
+	padding: 2em;
+}
+#attribution a {
+	color: #233346;
+}
+</style>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
-<a name="tvheadend-ios-client" class="anchor" href="#tvheadend-ios-client"><span class="octicon octicon-link"></span></a>TVHeadend iOS Client</h1>
 
-<p>TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to remote control the TVHeadend server  ( <a href="https://github.com/tvheadend/tvheadend">https://github.com/tvheadend/tvheadend</a> ) - a DVB receiver, DVR and streaming server.</p>
+<style type="text/css"></style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+<body>
+	<!-- begin Facebook SDK -->
+	<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="http://static.ak.facebook.com/connect/xd_arbiter/7r8gQb8MIqE.js?version=41#channel=f197cc5fb8&amp;origin=http%3A%2F%2Fapp-stop.appspot.com" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="https://s-static.ak.facebook.com/connect/xd_arbiter/7r8gQb8MIqE.js?version=41#channel=f197cc5fb8&amp;origin=http%3A%2F%2Fapp-stop.appspot.com" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=385205984962960&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<!-- end Facebook SDK -->
 
-<p>It allows you to list channels, view channel's EPG, search for programs, schedule recordings (DVR) and view the log / status of the server. It will also allow you to easily launch a third party video application to view the channel's streaming video.</p>
 
-<p>You can now download the app directly from the App Store!</p>
+	
+<div id="content">
 
-<p><a href="https://itunes.apple.com/gb/app/tvhclient/id638900112?mt=8&amp;uo=4"><img src="http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png" alt="TvhClient"></a></p>
 
-<p>Please help keep this project alive by donating =)</p>
+<div id="chevron" class="fa fa-chevron-down"></div>
+<div id="splash">
+	<div id="left">
+		<h1>TvhClient</h1>
+		<p>TvhClient is an open source app that will enable your iOS device (iPhone or iPad) to easily perform your TVHeadend common daily tasks and allow you to watch your channels on your device.</p>
+		<a href="https://itunes.apple.com/us/app/tvhclient/id638900112?mt=8&amp;uo=4"><img class="appstore" src="http://app-stop.appspot.com/static/appstore.svg" alt="Download on the Apple App Store"></a>
+		<p>Please help keep this project alive by donating =)</p>
 
 <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=G6DBJWV5LP36A"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"></a></p>
 
+	</div>
+	<div id="right">
+		<div class="iphone">
+			<img src="http://a2.mzstatic.com/us/r30/Purple1/v4/4b/e0/1f/4be01fa7-236b-d4e0-1efc-de878dcf5227/screen1136x1136.jpeg">
+		</div>
+	</div>
+</div>
+
+<div id="icon-row">
+	<div id="icon-container">
+		<img src="http://a1611.phobos.apple.com/us/r30/Purple3/v4/4f/66/01/4f660142-8186-a942-400d-76076bd076cc/mzl.hugbqsyq.png">
+	</div>
+</div>
+
+<div id="screenshots">
+	
+		<img src="http://a2.mzstatic.com/us/r30/Purple5/v4/4c/d6/b8/4cd6b862-e93e-2c5c-ceb0-1253a3a61b0a/screen1136x1136.jpeg">
+	
+		<img src="http://a4.mzstatic.com/us/r30/Purple1/v4/83/d8/d4/83d8d41e-94a5-c6be-6dee-6c2d7b628a0a/screen1136x1136.jpeg">
+
+		<img src="https://camo.githubusercontent.com/2acaefd477be2fe5884588760a74670ec15994a3/687474703a2f2f61312e6d7a7374617469632e636f6d2f65752f7233302f507572706c65352f76342f35372f63612f66352f35376361663562322d343866642d393134392d363438622d6532326331363633633530312f73637265656e333232783537322e6a706567">	
+	
+		<img src="https://camo.githubusercontent.com/a7d81c6057886bd84bd563578327f246fe82797b/687474703a2f2f61352e6d7a7374617469632e636f6d2f65752f7233302f507572706c65332f76342f31612f66392f37372f31616639373731352d373834632d653364332d386238382d3963666562313561326166642f73637265656e333232783537322e6a706567">	
+	
+</div>
+
+
+
+<p id="description">TvhClient is an open source app that will enable your iOS device (iPhone or iPad) to easily perform your TVHeadend common daily tasks and allow you to watch your channels on your device (experimental).
+
+** For support (or crashes!) contact me at tvhclient@gmail.com, @zipleen on twitter or github. Bear in mind that I do this on my spare time and it's an open source free app. News and updates will be posted on twitter @zipleen.
+If you want to help me beta test TvhClient, contact me via email!
+
+TvhClient allows you to remotely control the TVHeadend server - a DVB receiver, DVR and streaming server. 
+
+The app relies on real-time data it retrieves from the TVHeadend server allowing you to accomplish several tasks, including:
+* launch a third party video application to view the channel's streaming video, 
+* video play (experimental) transcoded stream,
+* list channels, 
+* view channel's EPGs, 
+* search by program title, 
+* start or schedule recordings (DVR),
+* check alternative times for any show scheduled,
+* view the log / status of the server.
+
 <h2>
-<a name="support-pages" class="anchor" href="#support-pages"><span class="octicon octicon-link"></span></a>Support Pages</h2>
-
-<ul>
-<li><a href="https://github.com/zipleen/tvheadend-iphone-client/wiki/FAQ">FAQ</a></li>
-<li><a href="https://github.com/zipleen/tvheadend-iphone-client/wiki/Support">Support</a></li>
-<li><a href="https://github.com/zipleen/tvheadend-iphone-client/wiki/Support-Me">Support Me</a></li>
-<li><a href="https://github.com/zipleen/tvheadend-iphone-client/wiki/Tvheadend-Transcoding">Tvheadend transcoding</a></li>
-</ul><h2>
-<a name="screenshots-iphone" class="anchor" href="#screenshots-iphone"><span class="octicon octicon-link"></span></a>Screenshots iPhone</h2>
-
-<p><img src="http://a572.phobos.apple.com/us/r1000/068/Purple/v4/ed/42/4e/ed424e9c-fee9-fc23-c74f-8d9591766fbd/mzl.dthdmvhr.320x480-75.jpg" alt="Channels"><img src="http://a1437.phobos.apple.com/us/r1000/064/Purple2/v4/08/b6/70/08b67026-50bc-bfcb-e68f-b47d0886ccd4/mzl.ekqhetuf.320x480-75.jpg" alt="ChannelPrograms"><img src="http://a1542.phobos.apple.com/us/r1000/116/Purple/v4/d7/b5/8f/d7b58fb7-d360-6981-bc04-f1a4c1dd6a88/mzl.fdlipgep.320x480-75.jpg" alt="ProgramDetails"><img src="http://a404.phobos.apple.com/us/r1000/120/Purple/v4/f2/0e/4b/f20e4b51-a2d7-0119-8ae0-99415c6c0633/mzl.xshppebg.320x480-75.jpg" alt="Recordings"><img src="http://a1501.phobos.apple.com/us/r1000/070/Purple2/v4/a8/ab/b8/a8abb8a1-d052-f8c8-6730-385615f12bf1/mzl.jzfxfbli.320x480-75.jpg" alt="Status"></p>
-
-<h2>
-<a name="screenshots-ipad" class="anchor" href="#screenshots-ipad"><span class="octicon octicon-link"></span></a>Screenshots iPad</h2>
-
-<p><img src="https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/channels.png?raw=true" alt="Channels"><img src="https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/channelsepg.png?raw=true" alt="ChannelPrograms"><img src="https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/recordings.png?raw=true" alt="Recordings"><img src="https://github.com/zipleen/tvheadend-iphone-client/blob/screenshots/Screenshots/ipad/status.png?raw=true" alt="Status"></p>
-
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
-
-<ul>
-<li>View tags</li>
-<li>View channel list by tag</li>
-<li>View channel's EPG</li>
-<li>View EPG Program details</li>
-<li>Launch Stream URL with external video app</li>
-<li>Add / view / remove recordings</li>
-<li>Add / view / remove AutoRec</li>
-<li>Status subscriptions and Status adapters</li>
-<li>Log and debug log</li>
-<li>Search EPG</li>
-<li>Multiple Tvheadend servers</li>
-<li>iPad support</li>
-</ul><h4>
-<a name="future-features" class="anchor" href="#future-features"><span class="octicon octicon-link"></span></a>Future Features</h4>
-
-<ul>
-<li>SSH tunnel to access tvheadend</li>
-<li>Visual EPG</li>
-</ul><h2>
-<a name="getting-the-code" class="anchor" href="#getting-the-code"><span class="octicon octicon-link"></span></a>Getting the code</h2>
+Getting the code</h2>
 
 <pre><code>git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
-cd libssh2-for-iOS
-./build-all openssl
+pod install
 </code></pre>
 
-<p>Don't forget to have the command line tools installed from Xcode, otherwise libssh2 won't compile.
-Build and run ! Send your patches to me via a pull request ;)</p>
+<p>You will need Cocoa pods installed to get the dependencies.</p>
 
 <h2>
-<a name="video-streaming" class="anchor" href="#video-streaming"><span class="octicon octicon-link"></span></a>Video Streaming</h2>
+Video Streaming</h2>
 
-<p>Download VLC from the App Store and open the stream with it!</p>
-
-<p>There's also an option to use the new alpha transcoding feature from TVHeadend to stream H264/AAC MPEG-TS, compatible with iOS. In order to use transcoding you need TVHeadend 3.5 and enable transcoding support by changing src/plumbing/transcoding.c : 114 variable from 0 to 1. The transcoding is still a very experimental feature.</p>
-
-<p>In the future there could be a possibility to add VLC into the app, in order to software decode the stream. Although AC3 won't ever be possible because of patent issues.</p>
+TvhClient now bundles VLC into the app, just select "Internal VLC". You can still use external players, including the offical VLC.
 
 <h2>
-<a name="technical-background-regarding-connection-to-tvheadend" class="anchor" href="#technical-background-regarding-connection-to-tvheadend"><span class="octicon octicon-link"></span></a>Technical Background regarding connection to TVHeadend</h2>
+Technical Background regarding connection to TVHeadend</h2>
 
 <p>There's two ways to connect to TVHeadend: HTSP and using the web interface. This app uses the web interface, although it's not officially supported. This way we have more detailed information on some components of the software, like the Status. It was also easier for me, as this is my first iPhone App. Also, with SSH tunneling this shouldn't be a problem! </p>
 
 <h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+License</h2>
 
 <p>This app's source code is licensed under the Mozilla Public License 2 (MPL-2). </p>
 
 <p>App Icon made by Julio Costa Pinto, thanks =)</p>
 
 <p>Clean Icons from Matt Gentile, from icondeposit.com.</p>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/zipleen/tvheadend-iphone-client/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/zipleen/tvheadend-iphone-client/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
 
-          <p class="repo-owner"><a href="https://github.com/zipleen/tvheadend-iphone-client"></a> is maintained by <a href="https://github.com/zipleen">zipleen</a>.</p>
+<p>
+	<a href="https://itunes.apple.com/us/app/tvhclient/id638900112?mt=8&amp;uo=4"><img class="appstore" src="http://app-stop.appspot.com/static/appstore.svg" alt="Download on the Apple App Store"></a>
+</p>
 
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+<p>
+	</p><div id="like-container"><div class="fb-like fb_iframe_widget" data-href="http://app-stop.appspot.com/id/638900112" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=385205984962960&amp;href=http%3A%2F%2Fapp-stop.appspot.com%2Fid%2F638900112&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true"><span style="vertical-align: bottom; width: 121px; height: 20px;"><iframe name="fb9b5b77c" width="1000px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="http://www.facebook.com/v2.0/plugins/like.php?action=like&amp;app_id=385205984962960&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2F7r8gQb8MIqE.js%3Fversion%3D41%23cb%3Df245b1d2c%26domain%3Dapp-stop.appspot.com%26origin%3Dhttp%253A%252F%252Fapp-stop.appspot.com%252Ff197cc5fb8%26relation%3Dparent.parent&amp;href=http%3A%2F%2Fapp-stop.appspot.com%2Fid%2F638900112&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true" class="" style="border: none; visibility: visible; width: 121px; height: 20px;"></iframe></span></div></div>
+	<script>
+	// dynamically create a Facebook like button for the current URL:
+	var like = document.createElement("div");
+	like.className = "fb-like";
+	like.setAttribute("data-href", location.href);
+	like.setAttribute("data-layout", "button_count");
+	like.setAttribute("data-action", "like");
+	like.setAttribute("data-show-faces", "true");
+	like.setAttribute("data-share", "true");
+	document.getElementById("like-container").appendChild(like);
+	</script>
+<p></p>
 
-            <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-38954448-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+<p id="copyright">© Luis Fernandes </p>
 
-  </body>
-</html>
+<p id="attribution">
+Landing page created automatically with <a href="http://app-stop.appspot.com">AppStop</a></p>
+
+
+</div>
+
+
+</body></html>
