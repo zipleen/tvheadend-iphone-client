@@ -19,7 +19,6 @@
 		AA2C7DEE19BCB6A3001EDC67 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7DED19BCB6A3001EDC67 /* libsqlite3.0.dylib */; };
 		AA2C7E2F19BCDA40001EDC67 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */; };
 		AA2C7E3119BCDA94001EDC67 /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */; };
-		AA35BBCA1A1973370043DEA1 /* UIDevice+SpeedCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AA35BBC91A1973370043DEA1 /* UIDevice+SpeedCategory.m */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3EE6F7172B008100AD60F5 /* CoreData.framework */; };
@@ -74,6 +73,7 @@
 		AABF3BB9185E66CA00E62240 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF3BB8185E66CA00E62240 /* libz.dylib */; };
 		AABF3BBD185E6B2100E62240 /* libtvheadend-ios-lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AABF3B90185E62B600E62240 /* libtvheadend-ios-lib.a */; };
 		AABF3C05185E6E6600E62240 /* TVHImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AABF3C04185E6E6600E62240 /* TVHImageCache.m */; };
+		AAC468551A22662E000E3E73 /* UIDevice+SpeedCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC468541A22662E000E3E73 /* UIDevice+SpeedCategory.m */; };
 		AAC59D6017A09821005F07B3 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5B17A09821005F07B3 /* IAPHelper.m */; };
 		AAC59D6117A09821005F07B3 /* TVHIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5D17A09821005F07B3 /* TVHIAPHelper.m */; };
 		AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC59D5F17A09821005F07B3 /* TVHSupportMeViewController.m */; };
@@ -154,8 +154,6 @@
 		AA2C7E2219BCC298001EDC67 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "tvheadend-ios-lib/vendor/GoogleCast.framework"; sourceTree = "<group>"; };
 		AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaAccessibility.framework; path = System/Library/Frameworks/MediaAccessibility.framework; sourceTree = SDKROOT; };
-		AA35BBC81A1973370043DEA1 /* UIDevice+SpeedCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+SpeedCategory.h"; path = "../../vlc/Sources/UIDevice+SpeedCategory.h"; sourceTree = "<group>"; };
-		AA35BBC91A1973370043DEA1 /* UIDevice+SpeedCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+SpeedCategory.m"; path = "../../vlc/Sources/UIDevice+SpeedCategory.m"; sourceTree = "<group>"; };
 		AA3721C116FBF18500C21F09 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		AA3721C316FBF19100C21F09 /* licenses.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = licenses.html; sourceTree = "<group>"; };
 		AA3EE6F7172B008100AD60F5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -250,6 +248,8 @@
 		AAC468501A225503000E3E73 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AAC468511A225585000E3E73 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AAC468521A2255EF000E3E73 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AAC468531A22662E000E3E73 /* UIDevice+SpeedCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+SpeedCategory.h"; path = "vlc/UIDevice+SpeedCategory.h"; sourceTree = "<group>"; };
+		AAC468541A22662E000E3E73 /* UIDevice+SpeedCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+SpeedCategory.m"; path = "vlc/UIDevice+SpeedCategory.m"; sourceTree = "<group>"; };
 		AAC59D5A17A09821005F07B3 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		AAC59D5B17A09821005F07B3 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		AAC59D5C17A09821005F07B3 /* TVHIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHIAPHelper.h; sourceTree = "<group>"; };
@@ -418,6 +418,8 @@
 		AA61999B1A18D01A00D9374D /* VLC */ = {
 			isa = PBXGroup;
 			children = (
+				AAC468531A22662E000E3E73 /* UIDevice+SpeedCategory.h */,
+				AAC468541A22662E000E3E73 /* UIDevice+SpeedCategory.m */,
 				AA61999C1A18D03300D9374D /* VLCExternalDisplayController.h */,
 				AA61999D1A18D03300D9374D /* VLCExternalDisplayController.m */,
 				AA61999E1A18D03300D9374D /* VLCMovieViewController.h */,
@@ -435,8 +437,6 @@
 				AA6199B31A18ECAE00D9374D /* VLCConstants.h */,
 				AA6199D41A18FC3700D9374D /* VLCMovieViewController~ipad.xib */,
 				AAB229211A1C108A00842EC2 /* VLCMovieViewController~iphone.xib */,
-				AA35BBC81A1973370043DEA1 /* UIDevice+SpeedCategory.h */,
-				AA35BBC91A1973370043DEA1 /* UIDevice+SpeedCategory.m */,
 			);
 			name = VLC;
 			sourceTree = "<group>";
@@ -938,6 +938,7 @@
 				AAB39A0016BDB21900973F88 /* main.m in Sources */,
 				AAB39A0416BDB21900973F88 /* TVHAppDelegate.m in Sources */,
 				AAB39A1B16BDB29C00973F88 /* TVHChannelStoreViewController.m in Sources */,
+				AAC468551A22662E000E3E73 /* UIDevice+SpeedCategory.m in Sources */,
 				AA845E3817E90309002D1CB5 /* TVHStatusBar.m in Sources */,
 				AABF3C05185E6E6600E62240 /* TVHImageCache.m in Sources */,
 				AA7C3FCF16C6CC810057E4C4 /* TVHSettings.m in Sources */,
@@ -985,7 +986,6 @@
 				AABF3956185E157E00E62240 /* TVHModelAnalytics.m in Sources */,
 				AAC59D6217A09821005F07B3 /* TVHSupportMeViewController.m in Sources */,
 				AA0BE36017A1DFBF00D33B7A /* TVHProgressBar.m in Sources */,
-				AA35BBCA1A1973370043DEA1 /* UIDevice+SpeedCategory.m in Sources */,
 				AAF5FCAF17A844BD001E908B /* NSDate+Utilities.m in Sources */,
 				AAF5FCB517A85A49001E908B /* TVHAdapterMuxViewController.m in Sources */,
 				AA08625517AAF9FD001108D7 /* TVHUICustomTabBarController.m in Sources */,
