@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5100" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VLCMovieViewController">
@@ -40,7 +40,6 @@
                 <outlet property="playingExternallyTitle" destination="125" id="133"/>
                 <outlet property="playingExternallyView" destination="123" id="131"/>
                 <outlet property="positionSlider" destination="249" id="261"/>
-                <outlet property="repeatButton" destination="96c-QK-bZI" id="SPv-gB-C2a"/>
                 <outlet property="resetVideoFilterButton" destination="142" id="175"/>
                 <outlet property="saturationLabel" destination="150" id="166"/>
                 <outlet property="saturationSlider" destination="149" id="168"/>
@@ -441,17 +440,6 @@
                                 <action selector="playPause" destination="-1" eventType="touchUpInside" id="283"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="96c-QK-bZI">
-                            <rect key="frame" x="217" y="5" width="32" height="40"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                            <state key="normal" image="repeat.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="toggleRepeatMode:" destination="-1" eventType="touchUpInside" id="UWl-MQ-MX7"/>
-                            </connections>
-                        </button>
                     </subviews>
                 </view>
                 <view contentMode="scaleToFill" id="141" userLabel="Controls panel" customClass="VLCFrostedGlasView">
@@ -558,7 +546,6 @@
         <image name="forwardIcon.png" width="32" height="16"/>
         <image name="playIcon.png" width="19" height="17"/>
         <image name="ratioIcon.png" width="15" height="15"/>
-        <image name="repeat.png" width="23" height="18"/>
         <image name="resetIcon.png" width="24" height="30"/>
         <image name="speedIcon.png" width="19" height="19"/>
         <image name="subtitleIcon.png" width="19" height="19"/>
