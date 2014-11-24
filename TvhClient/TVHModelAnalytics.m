@@ -28,7 +28,8 @@
                       withName:(NSString *)name
                      withLabel:(NSString *)label
 {
-    [TVHAnalytics sendTimingWithCategory:category withValue:time withName:name withLabel:label];
+    // remove the network profiling timings
+    //[TVHAnalytics sendTimingWithCategory:category withValue:time withName:name withLabel:label];
 }
 
 - (void)setObjectValue:(id)value forKey:(NSString*)key
