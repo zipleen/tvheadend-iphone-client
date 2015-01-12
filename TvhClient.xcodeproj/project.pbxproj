@@ -1198,6 +1198,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/tvheadend-ios-lib/vendor/libssh2-compiled",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
