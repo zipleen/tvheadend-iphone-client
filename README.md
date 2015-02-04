@@ -1,6 +1,8 @@
 TVHeadend iOS Client
 =======================
 
+[![Join the chat at https://gitter.im/zipleen/tvheadend-iphone-client](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zipleen/tvheadend-iphone-client?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to remote control the TVHeadend server  ( https://github.com/tvheadend/tvheadend ) - a DVB receiver, DVR and streaming server.
 
 It allows you to list channels, view channel's EPG, search for programs, schedule recordings (DVR) and view the log / status of the server. It will also allow you to easily launch a third party video application to view the channel's streaming video.
