@@ -34,10 +34,6 @@
     #import "TVHApiKeys.h"
     #import "NSDate+Utilities.h"
     #import "TVHStatusBar.h"
-    #if defined TVH_TESTFLIGHT_KEY && defined TESTING
-        #import "TestFlight.h"
-        #define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-    #endif
     #if defined TVH_CRASHLYTICS_KEY && !defined TESTING
         #import <Crashlytics/Crashlytics.h>
         #define NSLog(__FORMAT__, ...) CLSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)

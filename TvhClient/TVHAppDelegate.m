@@ -14,8 +14,7 @@
 #import "TVHSettings.h"
 #import "TVHApiKeys.h"
 
-#ifdef TVH_TESTFLIGHT_KEY
-#import "TestFlight.h"
+#ifdef TESTING
 #import "AFHTTPRequestOperationLogger.h"
 #endif
 
@@ -26,11 +25,7 @@
     [TVHAnalytics start];
     BOOL sendAnonymousStats = [[TVHSettings sharedInstance] sendAnonymousStatistics];
     if ( sendAnonymousStats ) {
-#if defined TESTING && defined TVH_TESTFLIGHT_KEY
-        //[TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-#endif
-#if defined TESTING && defined TVH_TESTFLIGHT_KEY
-        [TestFlight takeOff:TVH_TESTFLIGHT_KEY];
+#if defined TESTING
         [[AFHTTPRequestOperationLogger sharedLogger] startLogging];
 #endif
     } else {

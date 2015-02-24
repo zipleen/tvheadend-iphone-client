@@ -7,7 +7,6 @@ pod 'MobileVLCKit', '~> 2.2'
 pod 'WTStatusBar', '~> 0.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
 pod 'PDKeychainBindingsController', '~> 0.0'
-pod 'TestFlightSDK', '~> 3.0'
 pod 'SDWebImage', '~> 3.7'
 pod 'SDSegmentedControl', :head
 pod 'UIActionSheet+Blocks', '~> 0.8'
