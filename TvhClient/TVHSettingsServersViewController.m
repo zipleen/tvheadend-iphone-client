@@ -81,7 +81,7 @@
         return 2;
     }
     if ( section == TVH_SETTINGS_SECTION_ADVANCED_OPTIONS ) {
-        return 2;
+        return 4;
     }
     if ( section == TVH_SETTINGS_SECTION_SSH ) {
         return 4;
@@ -169,6 +169,18 @@
             textLabel.text = NSLocalizedString(@"Web Root", @"..in Settings server edit");
             textField.placeholder = @"/";
             textField.keyboardType = UIKeyboardTypeURL;
+        }
+        
+        if ( indexPath.row == 2 ) {
+            textLabel.text = NSLocalizedString(@"SETTINGS_NETWORK_CACHING_TITLE", @"..in Settings server edit");
+            textField.placeholder = @"Low:333 | Normal(default):999 | High:3333";
+            textField.keyboardType = UIKeyboardTypeDecimalPad;
+        }
+        
+        if ( indexPath.row == 3 ) {
+            textLabel.text = NSLocalizedString(@"SETTINGS_DEINTERLACE", @"..in Settings server edit");
+            textField.placeholder = @"Disabled:0 | Enabled:1";
+            textField.keyboardType = UIKeyboardTypeDecimalPad;
         }
     }
     

@@ -14,6 +14,7 @@
 #import "TVHJsonClient.h"
 #import "TVHSingletonServer.h"
 #import "PDKeychainBindings.h"
+#import "VLCConstants.h"
 #import <CommonCrypto/CommonDigest.h>
 
 #define TVHS_SELECTED_SERVER @"SelectedServer"
@@ -199,6 +200,8 @@ withPassword:(NSString*)password {
                                 TVHS_PASSWORD_KEY:@"",
                                 TVHS_USE_HTTPS:@"",
                                 TVHS_SERVER_WEBROOT:@"",
+                                TVHS_VLC_NETWORK_LATENCY:@"999",
+                                TVHS_VLC_DEINTERLACE: @"0",
                                 TVHS_SSH_PF_HOST:@"",
                                 TVHS_SSH_PF_PORT:@"",
                                 TVHS_SSH_PF_USERNAME:@"",
@@ -228,6 +231,8 @@ withPassword:(NSString*)password {
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:serverId forKey:TVHS_SELECTED_SERVER];
+        [defaults setInteger:[[self serverProperty:TVHS_VLC_NETWORK_LATENCY forServer:serverId] integerValue] forKey:kVLCSettingNetworkCaching];
+        [defaults setInteger:[[self serverProperty:TVHS_VLC_DEINTERLACE forServer:serverId] integerValue] forKey:kVLCSettingDeinterlace];
         [defaults synchronize];
         
         [self resetSettings];
