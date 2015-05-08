@@ -9,7 +9,7 @@ PODS:
   - MobileVLCKit (2.2.1)
   - NoticeView (3.0.7)
   - PDKeychainBindingsController (0.0.1)
-  - SDSegmentedControl (HEAD based on 1.0.2)
+  - SDSegmentedControl (HEAD based on 1.0.4)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
@@ -40,17 +40,17 @@ CHECKOUT OPTIONS:
     :git: git://github.com/zipleen/MGSplitViewController.git
 
 SPEC CHECKSUMS:
-  CrashlyticsFramework: 4e91082f3019bea7e718e1b67b0a3b56729dbc5d
-  FontAwesomeIconFactory: 6ef139e879d779e8e4561980ca170ea0981f5f9e
-  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  JASidePanels: ca943907d88a0738c80755204c6098969d43e4e9
+  CrashlyticsFramework: c4476108c87948b72835a5a26db90e8d6249da62
+  FontAwesomeIconFactory: 4b6d0a8d90b2604a2518e34d15bbc100af99f11c
+  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  JASidePanels: c8f5b130e18d51ee3de988d1c1fad2f88e0b0d21
   MGSplitViewController: e20898b05fe128c40dc8c02c3553b3b42c6185ad
-  MobileVLCKit: 1bb766d1bb4fa5a7fcdbc8b93383a16b56d085bd
-  NoticeView: 357545814931eb92428de54449f405f91c84a1b8
-  PDKeychainBindingsController: 529f006d0707646b2bf0c79d476acdda58a9a587
-  SDSegmentedControl: 01fda28a7ba24a45915c0a3e69c32691643aa327
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  UIActionSheet+Blocks: c8b9c02f3d08964e8f7a4202f004a639c15eab80
-  WTStatusBar: cc867bd6dbde6c11ed5801d323b26b91214a591f
+  MobileVLCKit: bb3359b2221316554129beb0c45827803a2de9be
+  NoticeView: 20178f60a5ab0b7fc496a2da6518df72bf14c0b0
+  PDKeychainBindingsController: fa8cb3cf99f2ea9240d61066ed0549f34e2cec3c
+  SDSegmentedControl: 268239cca96710be486efb0ad96d2838a60b90c5
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  UIActionSheet+Blocks: 7fdab45fc8f15ac2dc1cd65af1470746600b5f46
+  WTStatusBar: 2803d0d84937a1ec82fbe17ae7a2d1b76b192396
 
-COCOAPODS: 0.36.0.beta.2
+COCOAPODS: 0.37.0
