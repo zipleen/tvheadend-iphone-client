@@ -338,6 +338,7 @@
     if ( indexPath.section == 0 && [self.tableView isEditing] == NO ) {
         if ( indexPath.row < [self.servers count] ) {
             [self.settings setSelectedServer:indexPath.row];
+            self.servers = self.settings.availableServers;
             [self.tableView reloadData];
             [TVHAnalytics sendEventWithCategory:@"uiAction"
                                      withAction:@"changeServer"

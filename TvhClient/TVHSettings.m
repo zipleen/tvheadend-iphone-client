@@ -143,7 +143,8 @@ withPassword:(NSString*)password {
     return nil;
 }
 
-- (void)setServerProperties:(NSDictionary*)properties forServerId:(NSInteger)serverId {
+// return the serverId of the selected server
+- (NSInteger)setServerProperties:(NSDictionary*)properties forServerId:(NSInteger)serverId {
     NSMutableArray *servers = [self.availableServers mutableCopy];
     NSString *password = [properties objectForKey:TVHS_PASSWORD_KEY];
     NSString *sshPassword = [properties objectForKey:TVHS_SSH_PF_PASSWORD];
@@ -166,6 +167,7 @@ withPassword:(NSString*)password {
     
     if ( serverId == -1 ) {
         [servers addObject:server];
+        serverId = servers.count - 1;
     } else {
         [servers replaceObjectAtIndex:serverId withObject:server];
     }
@@ -174,6 +176,7 @@ withPassword:(NSString*)password {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:servers forKey:TVHS_SERVERS];
     [defaults synchronize];
+    return serverId;
 }
 
 - (NSDictionary*)serverProperties:(NSInteger)serverId {

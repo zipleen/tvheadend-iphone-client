@@ -255,8 +255,8 @@
     NSDictionary *new = [self.settings newServer];
     NSDictionary *server = [self.server copy];
     if ( ! [new isEqualToDictionary:server] ) {
-        [self.settings setServerProperties:server forServerId:self.selectedServer];
-        [self.settings setSelectedServer:[self.settings selectedServer]];
+        self.selectedServer = [self.settings setServerProperties:server forServerId:self.selectedServer];
+        [self.settings setSelectedServer:self.selectedServer];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

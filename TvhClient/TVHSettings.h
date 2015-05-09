@@ -43,7 +43,7 @@
 
 - (NSString*)currentServerProperty:(NSString*)key;
 - (NSString*)serverProperty:(NSString*)key forServer:(NSInteger)serverId;
-- (void)setServerProperties:(NSDictionary*)properties forServerId:(NSInteger)serverId;
+- (NSInteger)setServerProperties:(NSDictionary*)properties forServerId:(NSInteger)serverId;
 - (NSDictionary*)serverProperties:(NSInteger)serverId;
 
 - (NSArray*)availableServers;
