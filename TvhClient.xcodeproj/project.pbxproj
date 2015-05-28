@@ -18,7 +18,6 @@
 		AA28BA4816E6A12A0029A723 /* TVHPlayStreamHelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA28BA4716E6A1290029A723 /* TVHPlayStreamHelpController.m */; };
 		AA2C7DEE19BCB6A3001EDC67 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7DED19BCB6A3001EDC67 /* libsqlite3.0.dylib */; };
 		AA2C7E2F19BCDA40001EDC67 /* GoogleCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E2E19BCDA40001EDC67 /* GoogleCast.framework */; };
-		AA2C7E3119BCDA94001EDC67 /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */; };
 		AA3721C216FBF18500C21F09 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C116FBF18500C21F09 /* about.html */; };
 		AA3721C416FBF19100C21F09 /* licenses.html in Resources */ = {isa = PBXBuildFile; fileRef = AA3721C316FBF19100C21F09 /* licenses.html */; };
 		AA3EE6F8172B008100AD60F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3EE6F7172B008100AD60F5 /* CoreData.framework */; };
@@ -95,6 +94,7 @@
 		AAFD36381701232000448059 /* TVHSettingsGenericTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD36371701232000448059 /* TVHSettingsGenericTextViewController.m */; };
 		AAFDEC6417454CE80035D734 /* TVHSingletonServer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFDEC6317454CE80035D734 /* TVHSingletonServer.m */; };
 		DBB742A81FF29EF1F973782E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3AA44A636E6CB7CDFED665D /* libPods.a */; };
+		F0D376F11B166A7A008B234B /* MediaAccessibility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2C7E3019BCDA94001EDC67 /* MediaAccessibility.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -304,8 +304,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0D376F11B166A7A008B234B /* MediaAccessibility.framework in Frameworks */,
 				AAE1EACA170B6A4A006DE2BE /* CoreText.framework in Frameworks */,
-				AA2C7E3119BCDA94001EDC67 /* MediaAccessibility.framework in Frameworks */,
 				AA2C7E2F19BCDA40001EDC67 /* GoogleCast.framework in Frameworks */,
 				AA2C7DEE19BCB6A3001EDC67 /* libsqlite3.0.dylib in Frameworks */,
 				AABF3BBD185E6B2100E62240 /* libtvheadend-ios-lib.a in Frameworks */,
@@ -889,7 +889,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "releaseConfig=\"Release\"\nhaveKey=`awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\nif [ \"$releaseConfig\" == \"${CONFIGURATION}\" ]; then\n    if [ \"$haveKey\" != \"\" ]; then\n        echo \"Running Crashlytics\"\n        ./Pods/CrashlyticsFramework/Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\n    fi\nfi";
+			shellScript = "releaseConfig=\"Release\"\nhaveKey=`awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\nif [ \"$releaseConfig\" == \"${CONFIGURATION}\" ]; then\n    if [ \"$haveKey\" != \"\" ]; then\n        echo \"Running Crashlytics\"\n        ./Pods/CrashlyticsFrameworkIOS/Crashlytics.framework/run `awk -F \"\\\"\" '/CRASH/{print $2}' TvhClient/TVHApiKeys.h`\n    fi\nfi";
 		};
 		AAFC2A0B16FBA52900194DFF /* Run git version */ = {
 			isa = PBXShellScriptBuildPhase;

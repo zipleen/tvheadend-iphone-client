@@ -1,23 +1,23 @@
 PODS:
-  - CrashlyticsFramework (2.2.5.2)
+  - CrashlyticsFrameworkIOS (3.0.8)
   - FontAwesomeIconFactory (1.4)
-  - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
-  - GoogleAnalytics-iOS-SDK/Core (3.10)
+  - GoogleAnalytics-iOS-SDK (3.12):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.12)
+  - GoogleAnalytics-iOS-SDK/Core (3.12)
   - JASidePanels (1.3.2)
   - MGSplitViewController (1.0.0)
   - MobileVLCKit (2.2.1)
   - NoticeView (3.0.7)
   - PDKeychainBindingsController (0.0.1)
   - SDSegmentedControl (HEAD based on 1.0.4)
-  - SDWebImage (3.7.1):
-    - SDWebImage/Core (= 3.7.1)
-  - SDWebImage/Core (3.7.1)
-  - UIActionSheet+Blocks (0.8.1)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
+  - UIActionSheet+Blocks (0.9)
   - WTStatusBar (0.0.5)
 
 DEPENDENCIES:
-  - CrashlyticsFramework (~> 2.2)
+  - CrashlyticsFrameworkIOS (~> 3.0)
   - FontAwesomeIconFactory (~> 1.4)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - JASidePanels (~> 1.3)
@@ -40,17 +40,17 @@ CHECKOUT OPTIONS:
     :git: git://github.com/zipleen/MGSplitViewController.git
 
 SPEC CHECKSUMS:
-  CrashlyticsFramework: c4476108c87948b72835a5a26db90e8d6249da62
+  CrashlyticsFrameworkIOS: d16ae30f1feafe8c8bbe5bc7fdd69f2f5fe2de52
   FontAwesomeIconFactory: 4b6d0a8d90b2604a2518e34d15bbc100af99f11c
-  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  GoogleAnalytics-iOS-SDK: 0a3327a993b8ed2b8fe1c6c4a8dcf5b76d2237a8
   JASidePanels: c8f5b130e18d51ee3de988d1c1fad2f88e0b0d21
   MGSplitViewController: e20898b05fe128c40dc8c02c3553b3b42c6185ad
   MobileVLCKit: bb3359b2221316554129beb0c45827803a2de9be
   NoticeView: 20178f60a5ab0b7fc496a2da6518df72bf14c0b0
   PDKeychainBindingsController: fa8cb3cf99f2ea9240d61066ed0549f34e2cec3c
   SDSegmentedControl: 268239cca96710be486efb0ad96d2838a60b90c5
-  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
-  UIActionSheet+Blocks: 7fdab45fc8f15ac2dc1cd65af1470746600b5f46
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
   WTStatusBar: 2803d0d84937a1ec82fbe17ae7a2d1b76b192396
 
-COCOAPODS: 0.37.0
+COCOAPODS: 0.37.2
