@@ -5,7 +5,7 @@ TVHeadend iOS Client
 
 TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to remote control the TVHeadend server  ( https://github.com/tvheadend/tvheadend ) - a DVB receiver, DVR and streaming server.
 
-It allows you to list channels, view channel's EPG, search for programs, schedule recordings (DVR) and view the log / status of the server. It will also allow you to easily launch a third party video application to view the channel's streaming video.
+It allows you to stream channel video, list channels, view channel's EPG, search for programs, schedule recordings (DVR) and view the log / status of the server. It will also allow you to easily launch a third party video application to view the channel's streaming video.
 
 You can now download the app directly from the App Store!
 
@@ -18,6 +18,7 @@ You can now download the app directly from the App Store!
 - View channel's EPG
 - View EPG Program details
 - Launch Stream URL with external video app
+- Open Video Stream from within the app
 - Add / view / remove recordings
 - Add / view / remove AutoRec
 - Status subscriptions and Status adapters
@@ -56,9 +57,7 @@ Build and run ! Send your patches to me via a pull request ;)
 
 Download VLC from the App Store and open the stream with it!
 
-There's also an option to use the new alpha transcoding feature from TVHeadend to stream H264/AAC MPEG-TS, compatible with iOS. See [here](https://github.com/zipleen/tvheadend-iphone-client/wiki/Tvheadend-Transcoding) 
-
-In the future there could be a possibility to add VLC into the app, in order to software decode the stream. Although AC3 won't ever be possible because of patent issues.
+Or just use "Internal VLC" option - TvhClient has VLC bundled !
 
 ## Technical Background regarding connection to TVHeadend
 
