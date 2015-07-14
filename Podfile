@@ -5,7 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 pod 'MobileVLCKit', '~> 2.2'
 pod 'WTStatusBar', '~> 0.0'
-pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
+pod 'GoogleAnalytics'
 pod 'PDKeychainBindingsController', '~> 0.0'
 pod 'SDWebImage', '~> 3.7'
 pod 'SDSegmentedControl', :head
