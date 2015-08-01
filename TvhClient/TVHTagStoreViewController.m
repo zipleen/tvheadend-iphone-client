@@ -198,6 +198,9 @@
         UINavigationController *detailView = [self.splitViewController.viewControllers lastObject];
         [detailView popToRootViewControllerAnimated:YES];
         TVHEpgTableViewController *epgDetailView = [detailView.viewControllers lastObject];
+        if (![epgDetailView isKindOfClass:[TVHEpgTableViewController class]]) {
+            return;
+        }
         [epgDetailView setFilterTag:tag.name];
         if ( tag ) {
             [epgDetailView setTitle:[@[NSLocalizedString(@"Now in", nil), tag.name] componentsJoinedByString:@" "]];
