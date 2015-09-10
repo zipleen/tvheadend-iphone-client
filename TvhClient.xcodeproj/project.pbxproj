@@ -119,7 +119,7 @@
 			remoteGlobalIDString = AABF3A5C185E586700E62240;
 			remoteInfo = "tvheadend-ios-libTests";
 		};
-		AABF3BBB185E6B0500E62240 /* PBXContainerItemProxy */ = {
+		F0CDE4661BA21460000A969B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AABF3B8A185E62B600E62240 /* tvheadend-ios-lib.xcodeproj */;
 			proxyType = 1;
@@ -750,7 +750,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				AABF3BBC185E6B0500E62240 /* PBXTargetDependency */,
+				F0CDE4671BA21460000A969B /* PBXTargetDependency */,
 			);
 			name = TvhClient;
 			productName = "TVHeadend iOS Client";
@@ -765,7 +765,7 @@
 			attributes = {
 				CLASSPREFIX = TVH;
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = zipleen;
 				TargetAttributes = {
 					AAB399EF16BDB21900973F88 = {
@@ -1002,10 +1002,10 @@
 			target = AAB399EF16BDB21900973F88 /* TvhClient */;
 			targetProxy = AA43D4B416CF230400104BBF /* PBXContainerItemProxy */;
 		};
-		AABF3BBC185E6B0500E62240 /* PBXTargetDependency */ = {
+		F0CDE4671BA21460000A969B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "tvheadend-ios-lib";
-			targetProxy = AABF3BBB185E6B0500E62240 /* PBXContainerItemProxy */;
+			targetProxy = F0CDE4661BA21460000A969B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1072,6 +1072,7 @@
 				GCC_PREFIX_HEADER = "TvhClientTests/TvhClientTests-Prefix.pch";
 				INFOPLIST_FILE = "TvhClientTests/TvhClientTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "zipleen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -1090,6 +1091,7 @@
 				GCC_PREFIX_HEADER = "TvhClientTests/TvhClientTests-Prefix.pch";
 				INFOPLIST_FILE = "TvhClientTests/TvhClientTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "zipleen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -1110,6 +1112,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1204,6 +1207,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zipleen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1259,6 +1263,7 @@
 					"$(inherited)",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zipleen.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TvhClient;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
