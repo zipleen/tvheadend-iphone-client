@@ -210,7 +210,7 @@ withPassword:(NSString*)password {
                                 TVHS_SSH_PF_USERNAME:@"",
                                 TVHS_SSH_PF_PASSWORD:@"",
                                 TVHS_SERVER_VERSION:@"34",
-                                TVHS_API_VERSION:@0
+                                TVHS_API_VERSION:@15
                                 };
     
     return newServer;

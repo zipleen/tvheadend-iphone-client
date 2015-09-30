@@ -1,1 +1,1 @@
-*.pbxproj -crlf 
+*.pbxproj -crlf merge=union 
