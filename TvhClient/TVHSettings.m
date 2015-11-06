@@ -195,6 +195,7 @@ withPassword:(NSString*)password {
 }
 
 - (NSDictionary*)newServer {
+    // if you change TVHS_API_VERSION from 0 to 15 you'll break 3.4 and 3.6 versions! 
     NSDictionary *newServer = @{TVHS_SERVER_NAME:@"",
                                 TVHS_IP_KEY:@"",
                                 TVHS_PORT_KEY:@"9981",
@@ -210,7 +211,7 @@ withPassword:(NSString*)password {
                                 TVHS_SSH_PF_USERNAME:@"",
                                 TVHS_SSH_PF_PASSWORD:@"",
                                 TVHS_SERVER_VERSION:@"34",
-                                TVHS_API_VERSION:@15
+                                TVHS_API_VERSION:@0
                                 };
     
     return newServer;

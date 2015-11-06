@@ -9,7 +9,7 @@ pod 'GoogleAnalytics'
 pod 'PDKeychainBindingsController', '~> 0.0'
 pod 'SDWebImage', '~> 3.7'
 pod 'SDSegmentedControl', :head
-pod 'UIActionSheet+Blocks', '~> 0.8'
+pod 'UIActionSheet+Blocks', '~> 0.9'
 pod 'JASidePanels', '~> 1.3'
 pod 'MGSplitViewController', :git => 'git://github.com/zipleen/MGSplitViewController.git'
 pod 'FontAwesomeIconFactory', '~> 1.4'

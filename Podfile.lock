@@ -25,7 +25,7 @@ DEPENDENCIES:
   - PDKeychainBindingsController (~> 0.0)
   - SDSegmentedControl (HEAD)
   - SDWebImage (~> 3.7)
-  - UIActionSheet+Blocks (~> 0.8)
+  - UIActionSheet+Blocks (~> 0.9)
   - WTStatusBar (~> 0.0)
 
 EXTERNAL SOURCES:
@@ -51,4 +51,4 @@ SPEC CHECKSUMS:
   UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
   WTStatusBar: 2803d0d84937a1ec82fbe17ae7a2d1b76b192396
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
