@@ -1445,7 +1445,7 @@
             self.timeDisplay.frame = rect;
             rect = self.positionSlider.frame;
             rect.size.width += self.aspectRatioButton.frame.size.width;
-            self.positionSlider.frame = rect;
+            //self.positionSlider.frame = rect;
             self.aspectRatioButton.hidden = YES;
         }
     } else {
