@@ -7,61 +7,23 @@ TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to remo
 
 It allows you to stream channel video, list channels, view channel's EPG, search for programs, schedule recordings (DVR) and view the log / status of the server. It will also allow you to easily launch a third party video application to view the channel's streaming video.
 
-You can now download the app directly from the App Store!
+You can now download the app [directly](https://itunes.apple.com/gb/app/tvhclient/id638900112?mt=8&uo=4) from the App Store!
 
-[![TvhClient](http://linkmaker.itunes.apple.com/htmlResources/assets/images/web/linkmaker/badge_appstore-lrg.png)](https://itunes.apple.com/gb/app/tvhclient/id638900112?mt=8&uo=4)
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G6DBJWV5LP36A)
+## Source Code
 
-##Features
-- View tags
-- View channel list by tag
-- View channel's EPG
-- View EPG Program details
-- Launch Stream URL with external video app
-- Open Video Stream from within the app
-- Add / view / remove recordings
-- Add / view / remove AutoRec
-- Status subscriptions and Status adapters
-- Log and debug log
-- Search EPG
-- Multiple Tvheadend servers
-- iPad support
+Unfortunately, source code for new versions of the app are not published on github anymore. The main reason for this is that I've seen clones of this app by "companies" that remove the generic server support and hardcode their own servers. I do not condone this very suspicious behaviour at all. On top of that no one ever added any features so there's very little benefit on my part to keep it open source.
 
-#### Future Features
-- SSH tunnel to access tvheadend
-- Visual EPG
+If you want to help please do so by [![Join the chat at https://gitter.im/zipleen/tvheadend-iphone-client](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zipleen/tvheadend-iphone-client?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) and :
+- Beta test the app - there has been a lot of beta testers throughout the years, everyone has been extremely helpful and if you're up to, you just need to normally use the beta versions as you use the stable versions, helping out detailing crashes or requesting features
+- Give suggestions and help out fellow users
+- If you want to help adding or fixing any features, tell me what you want to do and I can give you access to the repository to help out
+- The netcode and all backend code is still open source at https://github.com/zipleen/tvheadend-ios-lib - if you have any internal bugs that you want fixed, please go ahead and send me a PR.
 
-##Screenshots iPhone
+## GitHub Issues
 
-![Channels](http://a3.mzstatic.com/eu/r30/Purple5/v4/df/e4/17/dfe41704-81e9-7312-b57f-76f4b51ad511/screen322x572.jpeg)
-![ChannelPrograms](http://a2.mzstatic.com/eu/r30/Purple5/v4/84/a8/7e/84a87e62-553b-33f6-bbb3-b1658e9c7e8a/screen322x572.jpeg)
-![ProgramDetails](http://a1.mzstatic.com/eu/r30/Purple5/v4/57/ca/f5/57caf5b2-48fd-9149-648b-e22c1663c501/screen322x572.jpeg)
-![Recordings](http://a2.mzstatic.com/eu/r30/Purple5/v4/74/27/06/7427065c-9ed3-eb1e-5339-cc9e5e079296/screen322x572.jpeg)
-![Status](http://a5.mzstatic.com/eu/r30/Purple3/v4/1a/f9/77/1af97715-784c-e3d3-8b88-9cfeb15a2afd/screen322x572.jpeg)
+The issues are still being used as a basic support and tracking of ideas to implement. You can still open tickets, or ask for help in the gitter channel.
 
-##Screenshots iPad
-
-![Channels](http://a3.mzstatic.com/eu/r30/Purple5/v4/ef/d8/87/efd88778-07ad-ba84-d708-5d71775907a5/screen480x480.jpeg)
-![ChannelPrograms](http://a1.mzstatic.com/eu/r30/Purple3/v4/5a/a5/ab/5aa5abf6-0be0-bc2b-8c4b-59d4205645a4/screen480x480.jpeg)
-![Recordings](http://a5.mzstatic.com/eu/r30/Purple3/v4/bb/e0/b8/bbe0b847-7723-1ef1-0564-eda41963632c/screen480x480.jpeg)
-![Status](http://a3.mzstatic.com/eu/r30/Purple1/v4/89/59/51/895951cf-5a35-ba8a-743f-01bd082553d7/screen480x480.jpeg)
-
-## Getting the code
-
-    git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
-    pod install
-
-Build and run ! Send your patches to me via a pull request ;)
-
-## Video Streaming
-
-Download VLC from the App Store and open the stream with it!
-
-Or just use "Internal VLC" option - TvhClient has VLC bundled !
-
-## Technical Background regarding connection to TVHeadend
-
-There's two ways to connect to TVHeadend: HTSP and using the web interface. This app uses the web interface, although it's not officially supported. This way we have more detailed information on some components of the software, like the Status. It was also easier for me, as this is my first iPhone App. Also, with SSH tunneling this shouldn't be a problem! 
+![Channels](http://a3.mzstatic.com/eu/r30/Purple5/v4/df/e4/17/dfe41704-81e9-7312-b57f-76f4b51ad511/screen322x572.jpeg) 
 
 ## License
 
