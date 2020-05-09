@@ -1,7 +1,7 @@
 TVHeadend iOS Client
 =======================
 
-[![Join the chat at https://gitter.im/zipleen/tvheadend-iphone-client](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zipleen/tvheadend-iphone-client?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Discord Chat](https://img.shields.io/discord/708697954625650739.svg)](http://chat.tvhclient.com/)  
 
 TvhClient is a TVHeadend iOS (iPhone, iPad) Client app, which allows you to remote control the TVHeadend server  ( https://github.com/tvheadend/tvheadend ) - a DVB receiver, DVR and streaming server.
 
@@ -13,7 +13,7 @@ You can now download the app [directly](https://itunes.apple.com/gb/app/tvhclien
 
 Unfortunately, source code for new versions of the app are not published on github anymore. The main reason for this is that I've seen clones of this app by "companies" that remove the generic server support and hardcode their own servers. I do not condone this very suspicious behaviour at all. On top of that no one ever added any features so there's very little benefit on my part to keep it open source.
 
-If you want to help please do so by [![Join the chat at https://gitter.im/zipleen/tvheadend-iphone-client](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zipleen/tvheadend-iphone-client?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) and :
+If you want to help please do so by [![Discord Chat](https://img.shields.io/discord/708697954625650739.svg)](http://chat.tvhclient.com/)   and :
 - Beta test the app - there has been a lot of beta testers throughout the years, everyone has been extremely helpful and if you're up to, you just need to normally use the beta versions as you use the stable versions, helping out detailing crashes or requesting features
 - Give suggestions and help out fellow users
 - If you want to help adding or fixing any features, tell me what you want to do and I can give you access to the repository to help out
