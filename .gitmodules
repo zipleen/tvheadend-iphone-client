@@ -1,6 +1,0 @@
-[submodule "vendor/AFHTTPRequestOperationLogger"]
-	path = vendor/AFHTTPRequestOperationLogger
-	url = https://github.com/AFNetworking/AFHTTPRequestOperationLogger.git
-[submodule "tvheadend-ios-lib"]
-	path = tvheadend-ios-lib
-	url = https://github.com/zipleen/tvheadend-ios-lib.git
