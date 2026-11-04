@@ -1,267 +1,99 @@
-<html><head>
-	<meta charset="utf-8">
-	<meta name="apple-itunes-app" content="app-id=638900112">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TvhClient</title>
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-itunes-app" content="app-id=638900112">
+<title>TvhClient – tvheadend on your iPhone, iPad and Apple TV</title>
+<meta name="description" content="TvhClient is the client for your tvheadend server: watch live TV, browse the guide, schedule and play recordings on iPhone, iPad and Apple TV.">
+<meta property="og:title" content="TvhClient">
+<meta property="og:description" content="Watch live TV and recordings from your tvheadend server on iPhone, iPad and Apple TV.">
+<meta property="og:image" content="https://tvhclient.com/img/tvh/banner.jpg">
+<link rel="icon" href="img/tvh/icon.png">
+<link rel="stylesheet" href="css/site.css">
+</head><body>
+<nav><div class="wrap">
+  <a class="brand" href="#top"><img src="img/tvh/icon.png" alt="">TvhClient</a>
+  <span class="sp"></span>
+  <a class="l h" href="#features">Features</a>
+  <a class="l h" href="#appletv">Apple TV</a>
+  <a class="l" href="https://github.com/zipleen/tvheadend-iphone-client/issues">Issues</a>
+  <a class="l" href="#donate">Donate</a>
+</div></nav>
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<header class="hero" id="top"><div class="wrap">
+  <img class="icon" src="img/tvh/icon.png" alt="TvhClient icon">
+  <h1>TvhClient</h1>
+  <p class="lead">Your tvheadend server, in your pocket and on your TV. Watch live channels, browse the guide, and schedule, manage and play recordings on iPhone, iPad and Apple TV.</p>
+  <div class="btns">
+    <a class="btn" href="https://itunes.apple.com/us/app/tvhclient/id638900112?mt=8&amp;uo=4">Download on the App Store</a>
+    <a class="btn o" href="https://github.com/zipleen/tvheadend-iphone-client/issues">Report an issue</a>
+  </div>
+  <div class="shots">
+    <img src="img/tvh/iphone-9.jpg" alt="Channels as cards, with what is on now">
+    <img src="img/tvh/iphone-4.jpg" alt="The EPG guide, channels down and time across">
+    <img src="img/tvh/iphone-5.jpg" alt="Recordings by day">
+  </div>
+</div></header>
 
-<style>
-@import url(http://fonts.googleapis.com/css?family=Raleway);
-html, body, #content {
-	margin: 0px;
-	height: 100%;
-	font-family: sans-serif;
-	font-weight: lighter;
-	color: #233346;
-	background-color: #d6d9db;
-	text-align: center;
-	line-height: 1.4;
-}
-#splash {
-	height: 100%;
-	width: 100%;
-	display: table;
-	table-layout: fixed;
-	max-width: 700px;
-	margin: auto;
-	position: relative;
-}
-@media screen and (min-width: 700px) {
-	#splash > div {
-		display: table-cell;
-		vertical-align: middle;
-		padding: 1em;
-		height: 100%;
-	}
-	#splash #left {
-		text-align: right;
-	}
-	#splash #right {
-		text-align: left;
-	}
-	#splash .iphone {
-		width: 288px;
-		height: 576px;
-	}
-	#screenshots img {
-		max-width: 200px;
-	}
-	#like-container {
-		position: absolute;
-		top: 100%;
-		right: 20px;
-		margin-top: -50px;
-	}
-}
-#chevron {
-	position: absolute;
-	left: 50%;
-	top: 100%;
-	margin-top: -2em;
-	color: #233346;
-	opacity: 0.5;
-	margin-left: -0.5em;
-}
-@media screen and (max-width: 700px) {
-	#chevron {
-		display: none;
-	}
-	#splash .iphone {
-		width: 192px;
-		height: 384px;
-		display: inline-block;
-	}
-	#splash #left {
-		padding: 10px;
-	}
-	#screenshots img {
-		max-width: 100px;
-	}
-	#splash .appstore {
-		display: none;
-	}
-}
-img.appstore {
-	max-width: 120px;
-}
-.iphone {
-	background-image: url('http://app-stop.appspot.com/static/5s.png');
-	background-size: contain;
-	position: relative;
-	width: 720px;
-	height: 1440px;
-}
-.iphone img {
-	position: absolute;
-	top: 17.9%;
-	left: 14%;
-	width: 73%;
-}
-h1, h2, h3, h4, h5, h6 {
-	font-family: "Raleway", sans-serif;
-	font-weight: normal;
-}
-#icon-row {
-	margin: 30px;
-	margin-top: 40px;
-	margin-bottom: 80px;
-	border-bottom: 1px solid rgba(0,0,0,0.3);
-	position: relative;
-}
-#icon-row #icon-container {
-	position: absolute;
-	width: 80px;
-	height: 80px;
-	left: 50%;
-	top: 50%;
-	margin-left: -50px;
-	margin-top: -50px;
-	border: 10px solid #d6d9db;
-}
-#icon-row img {
-	width: 100%;
-	border-radius: 19px;
-	box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-}
-#description {
-	margin: auto;
-	width: 90%;
-	max-width: 600px;
-}
-#screenshots {
-	margin-bottom: 2em;
-}
-#screenshots img {
-	border: 1px solid white;
-	box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
-	margin: 1em;
-}
-#description {
-	white-space: pre-wrap;
-}
-#stars {
-	text-align: center;
-	font-style: italic;
-	font-size: small;
-}
-#stars span {
-	display: block;
-	font-size: 30px;
-	font-style: normal;
-}
-#attribution {
-	font-size: small;
-	padding: 2em;
-}
-#attribution a {
-	color: #233346;
-}
-</style>
+<section id="features"><div class="wrap">
+  <h2>Everything tvheadend does, one tap away</h2>
+  <p class="sub">Built for people who run their own TV server. Works over your home network or from anywhere.</p>
+  <div class="grid">
+    <div class="card"><h3>Live TV</h3><p>Channel lists and cards with now / next, progress bars and search. Tap a logo and it plays. Timeshift, tracks, channel switcher and Picture in Picture in our own player.</p></div>
+    <div class="card"><h3>A real guide</h3><p>A timeline EPG with channels down and time across. Filter by tag or channel, search by title, tap a programme for details or hold to play or record.</p></div>
+    <div class="card"><h3>Recordings</h3><p>Upcoming, completed, failed, removed and AutoRec rules. Add and edit with the same options as the web UI. Play any recording, seekable.</p></div>
+    <div class="card"><h3>Downloads</h3><p>Copy recordings to your device and watch them offline, on the plane or the train.</p></div>
+    <div class="card"><h3>Remind me</h3><p>A notification before a programme starts. Find the same title elsewhere with “See Again”.</p></div>
+    <div class="card"><h3>Server status</h3><p>Subscriptions, tuner inputs, networks, muxes, services and the server log, right in the app.</p></div>
+    <div class="card"><h3>Two players</h3><p>mpv or VLC behind one player, switchable on the fly, with deinterlacing and hardware decoding.</p></div>
+    <div class="card"><h3>Siri, widgets, CarPlay</h3><p>Shortcuts and Siri for your channels, widgets, and live audio in the car.</p></div>
+    <div class="card"><h3>Multiple servers</h3><p>Add several servers, find them on your network with Bonjour, and keep your playback position in sync through iCloud.</p></div>
+  </div>
+</div></section>
 
-	</head>
-<body>
-	
-<div id="content">
+<section class="alt"><div class="wrap">
+  <div class="split">
+    <div><span class="tag">iPad</span><h2>Made to use the whole screen</h2>
+      <ul><li><b>Sidebars</b> for channels, recordings and status.</li><li><b>The guide</b> shows many channels and hours at once.</li><li><b>Record with one tap</b> from a programme page.</li></ul></div>
+    <img src="img/tvh/ipad-5.jpg" alt="The EPG guide on iPad">
+  </div>
+  <div class="split" style="margin-top:56px">
+    <img src="img/tvh/ipad-3.jpg" alt="What is on now, on iPad">
+    <div><span class="tag">Now</span><h2>See what is on right now</h2>
+      <ul><li>Every channel’s current programme, with progress.</li><li>Search by title across the whole lineup.</li><li>Filter by tag or channel.</li></ul></div>
+  </div>
+</div></section>
 
+<section id="appletv"><div class="wrap">
+  <div style="text-align:center"><img src="img/tvh/icon-tv.png" alt="" style="width:96px;height:96px;border-radius:22px"></div>
+  <h2 style="margin-top:14px">TvhClient for Apple TV</h2>
+  <p class="sub">The big screen, done properly. The same tvheadend library, designed for the couch and the Siri Remote.</p>
+  <div class="grid">
+    <div class="card"><h3>Live TV on the big screen</h3><p>Channel grids with logos and what is on, a quick channel switcher and a full-screen player.</p></div>
+    <div class="card"><h3>Guide and recordings</h3><p>Browse the EPG, schedule recordings and play them, all by remote.</p></div>
+    <div class="card"><h3>Control it from your iPhone</h3><p>“Watch on TV” sends what you are watching to the Apple TV, and your iPhone becomes the remote.</p></div>
+    <div class="card"><h3>In sync</h3><p>Servers and playback positions follow you between iPhone, iPad and Apple TV through iCloud.</p></div>
+  </div>
+</div></section>
 
-<div id="chevron" class="fa fa-chevron-down"></div>
-<div id="splash">
-	<div id="left">
-		<h1>TvhClient</h1>
-		<p>TvhClient is an open source app that will enable your iOS device (iPhone or iPad) to easily perform your TVHeadend common daily tasks and allow you to watch your channels on your device.</p>
-		<a href="https://itunes.apple.com/us/app/tvhclient/id638900112?mt=8&amp;uo=4"><img class="appstore" src="http://app-stop.appspot.com/static/appstore.svg" alt="Download on the Apple App Store"></a>
-		<p>Please help keep this project alive by donating =)</p>
+<section class="alt" id="support"><div class="wrap">
+  <h2>Help and feedback</h2>
+  <p class="sub">TvhClient is made in spare time by one person. Found a bug, or want a feature? Tell me.</p>
+  <div class="btns">
+    <a class="btn" href="https://github.com/zipleen/tvheadend-iphone-client/issues">Open an issue on GitHub</a>
+    <a class="btn o" href="mailto:tvhclient@gmail.com">tvhclient@gmail.com</a>
+    <a class="btn o" href="https://discord.com/channels/708697954625650739">Discord</a>
+  </div>
+</div></section>
 
-<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=G6DBJWV5LP36A"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate"></a></p>
-<p><iframe src="https://discordapp.com/widget?id=708697954625650739&theme=dark" width="250" height="300" allowtransparency="true" frameborder="0"></iframe></p>
-		
-	</div>
-	<div id="right">
-		<div class="iphone">
-			<img src="http://a2.mzstatic.com/us/r30/Purple1/v4/4b/e0/1f/4be01fa7-236b-d4e0-1efc-de878dcf5227/screen1136x1136.jpeg">
-		</div>
-	</div>
-</div>
+<section id="donate"><div class="wrap donate">
+  <h2>Keep TvhClient alive</h2>
+  <p>TvhClient has been around for many years and is built in my spare time. If it earns a place on your devices, a donation helps keep it going. Thank you!</p>
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=G6DBJWV5LP36A"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Donate with PayPal"></a>
+</div></section>
 
-<div id="icon-row">
-	<div id="icon-container">
-		<img src="http://a1611.phobos.apple.com/us/r30/Purple3/v4/4f/66/01/4f660142-8186-a942-400d-76076bd076cc/mzl.hugbqsyq.png">
-	</div>
-</div>
-
-<div id="screenshots">
-	
-		<img src="http://a2.mzstatic.com/us/r30/Purple5/v4/4c/d6/b8/4cd6b862-e93e-2c5c-ceb0-1253a3a61b0a/screen1136x1136.jpeg">
-	
-		<img src="http://a4.mzstatic.com/us/r30/Purple1/v4/83/d8/d4/83d8d41e-94a5-c6be-6dee-6c2d7b628a0a/screen1136x1136.jpeg">
-
-		<img src="https://camo.githubusercontent.com/2acaefd477be2fe5884588760a74670ec15994a3/687474703a2f2f61312e6d7a7374617469632e636f6d2f65752f7233302f507572706c65352f76342f35372f63612f66352f35376361663562322d343866642d393134392d363438622d6532326331363633633530312f73637265656e333232783537322e6a706567">	
-	
-		<img src="https://camo.githubusercontent.com/a7d81c6057886bd84bd563578327f246fe82797b/687474703a2f2f61352e6d7a7374617469632e636f6d2f65752f7233302f507572706c65332f76342f31612f66392f37372f31616639373731352d373834632d653364332d386238382d3963666562313561326166642f73637265656e333232783537322e6a706567">	
-	
-</div>
-
-
-
-<p id="description">TvhClient is an open source app that will enable your iOS device (iPhone or iPad) to easily perform your TVHeadend common daily tasks and allow you to watch your channels on your device (experimental).
-
-** For support (or crashes!) contact me at tvhclient@gmail.com, @zipleen on twitter or github. Bear in mind that I do this on my spare time and it's an open source free app. News and updates will be posted on twitter @zipleen.
-If you want to help me beta test TvhClient, contact me via email!
-
-TvhClient allows you to remotely control the TVHeadend server - a DVB receiver, DVR and streaming server. 
-
-The app relies on real-time data it retrieves from the TVHeadend server allowing you to accomplish several tasks, including:
-* launch a third party video application to view the channel's streaming video, 
-* video play (experimental) transcoded stream,
-* list channels, 
-* view channel's EPGs, 
-* search by program title, 
-* start or schedule recordings (DVR),
-* check alternative times for any show scheduled,
-* view the log / status of the server.
-
-<h2>
-Getting the code</h2>
-
-<pre><code>git clone --recursive git://github.com/zipleen/tvheadend-iphone-client.git
-pod install
-</code></pre>
-
-<p>You will need Cocoa pods installed to get the dependencies.</p>
-
-<h2>
-Video Streaming</h2>
-
-TvhClient now bundles VLC into the app, just select "Internal VLC". You can still use external players, including the offical VLC.
-
-<h2>
-Technical Background regarding connection to TVHeadend</h2>
-
-<p>There's two ways to connect to TVHeadend: HTSP and using the web interface. This app uses the web interface, although it's not officially supported. This way we have more detailed information on some components of the software, like the Status. It was also easier for me, as this is my first iPhone App. Also, with SSH tunneling this shouldn't be a problem! </p>
-
-<h2>
-License</h2>
-
-<p>This app's source code is licensed under the Mozilla Public License 2 (MPL-2). </p>
-
-<p>App Icon made by Julio Costa Pinto, thanks =)</p>
-
-<p>Clean Icons from Matt Gentile, from icondeposit.com.</p>
-
-
-<p>
-	<a href="https://itunes.apple.com/us/app/tvhclient/id638900112?mt=8&amp;uo=4"><img class="appstore" src="http://app-stop.appspot.com/static/appstore.svg" alt="Download on the Apple App Store"></a>
-</p>
-
-<p></p>
-
-<p id="copyright">© Luis Fernandes </p>
-
-<p id="attribution">
-Landing page created automatically with <a href="http://app-stop.appspot.com">AppStop</a></p>
-
-
-</div>
-
+<footer><div class="wrap">
+  © Luis Fernandes · <a href="https://github.com/zipleen/tvheadend-iphone-client/issues">Issues</a> · <a href="/bismon/">Also: Bismon, SSH and servers for iPhone, iPad and Mac</a><br>
+  App icon by Julio Costa Pinto. tvheadend is a trademark of its respective owners; TvhClient is an independent app.
+</div></footer>
 </body></html>
