@@ -35,3 +35,9 @@ h2{font-size:clamp(26px,4vw,38px);margin:0 0 10px;letter-spacing:-.01em;text-ali
 footer{padding:36px 0;border-top:1px solid var(--line);color:var(--mute);font-size:14px;text-align:center}
 footer a{color:var(--mute);text-decoration:underline}
 @media(max-width:760px){.split{grid-template-columns:1fr}nav a.l.h{display:none}.hero{padding-top:48px}}
+.legal{max-width:760px;margin:0 auto;padding:56px 20px 64px}
+.legal h1{font-size:clamp(30px,5vw,44px);letter-spacing:-.02em;margin:0 0 6px}
+.legal h2{text-align:left;font-size:22px;margin:36px 0 8px}
+.legal p,.legal li{color:var(--mute)}.legal ul{padding-left:20px}.legal li{margin:6px 0}
+.legal .date{color:var(--mute);font-size:14px;margin:0 0 24px}
+.legal b,.legal strong{color:var(--ink)}
